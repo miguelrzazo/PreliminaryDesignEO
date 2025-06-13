@@ -1,0 +1,11 @@
+=== ANÁLISIS DE MASA ===
+
+Configuración: 2 satélite(s), 1 telescopio(s)
+Detector: 3
+Telescopio: Korsch
+
+Estadísticas de masa total:
+Masa mínima: 243.78 kg (Altura: 1230 km)
+Masa máxima: 356.79 kg
+Masa promedio: 298.08 kg
+Rango de alturas válidas: 1230 - 1400 km

@@ -1,0 +1,11 @@
+=== ANÁLISIS DE MASA ===
+
+Configuración: 2 satélite(s), 1 telescopio(s)
+Detector: 2
+Telescopio: Refractivo
+
+Estadísticas de masa total:
+Masa mínima: 15.98 kg (Altura: 400 km)
+Masa máxima: 16.49 kg
+Masa promedio: 16.23 kg
+Rango de alturas válidas: 400 - 410 km

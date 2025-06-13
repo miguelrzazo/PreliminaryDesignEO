@@ -1,0 +1,11 @@
+=== ANÁLISIS DE MASA ===
+
+Configuración: 2 satélite(s), 1 telescopio(s)
+Detector: 3
+Telescopio: Cassegrain
+
+Estadísticas de masa total:
+Masa mínima: 729.52 kg (Altura: 1230 km)
+Masa máxima: 1079.09 kg
+Masa promedio: 897.08 kg
+Rango de alturas válidas: 1230 - 1400 km

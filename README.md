@@ -1,0 +1,1 @@
+Final solution was obtained throught ver 1.5 of the code. Even though the propagation model works, runtime was too long. Optmizitation is still posible and a solution can be obtained through this model. Unfortunately I dind't have enough time to complete. Further work can be put in this model to get a better and more accurate result through a numerical solution.

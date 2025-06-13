@@ -1,0 +1,34 @@
+=== ANÁLISIS SNR ===
+
+Telescopio: TMA
+Detector: 1
+Longitud de onda: 0.76 μm
+GSD: 50 m
+Requirement SNR: ≥ 400
+
+Estadísticas de valores válidos (SNR ≥ 400):
+Valores válidos: 54422 de 58681 (92.7%)
+SNR mínimo: 400.10
+SNR máximo: 5560.14
+SNR promedio: 2234.94
+SNR mediana: 2128.28
+
+Parámetros del análisis:
+Rango alturas: 400 - 1400 km
+Rango diámetros: 20 - 600 mm
+Obscuración central: 0.0
+Transmitancia: 0.60
+Eficiencia cuántica: 0.60
+Tamaño pixel: 30.0 μm
+Radiancia referencia: 100 W/(m²·sr·μm)
+Ancho de banda: 20000000.0 nm
+
+Ruidos del sistema (e⁻ RMS):
+Ruido térmico: 50
+Ruido de lectura: 100
+Ruido preamplificador: 5
+Ruido línea video: 10
+Ruido jitter: 5
+Ruido EMC: 5
+Ruido cuantización: 2
+Ruido no linealidad: 2

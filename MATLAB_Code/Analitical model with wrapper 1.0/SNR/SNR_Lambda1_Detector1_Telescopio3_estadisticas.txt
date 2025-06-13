@@ -1,0 +1,34 @@
+=== ANÁLISIS SNR ===
+
+Telescopio: Cassegrain
+Detector: 1
+Longitud de onda: 1.61 μm
+GSD: 50 m
+Requirement SNR: ≥ 400
+
+Estadísticas de valores válidos (SNR ≥ 400):
+Valores válidos: 46615 de 47061 (99.1%)
+SNR mínimo: 400.00
+SNR máximo: 6478.80
+SNR promedio: 4029.47
+SNR mediana: 4362.12
+
+Parámetros del análisis:
+Rango alturas: 200 - 1000 km
+Rango diámetros: 20 - 600 mm
+Obscuración central: 0.2
+Transmitancia: 0.70
+Eficiencia cuántica: 0.85
+Tamaño pixel: 15.0 μm
+Radiancia referencia: 100 W/(m²·sr·μm)
+Ancho de banda: 20000000.0 nm
+
+Ruidos del sistema (e⁻ RMS):
+Ruido térmico: 50
+Ruido de lectura: 100
+Ruido preamplificador: 5
+Ruido línea video: 10
+Ruido jitter: 5
+Ruido EMC: 5
+Ruido cuantización: 2
+Ruido no linealidad: 2

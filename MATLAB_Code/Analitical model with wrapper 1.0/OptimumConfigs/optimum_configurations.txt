@@ -1,0 +1,120 @@
+=== ANÁLISIS DE CONFIGURACIONES ÓPTIMAS ===
+
+==================================================
+CONFIGURACIÓN: 2 satélite(s), 1 telescopio(s)
+==================================================
+
+>>> NO SE ENCONTRARON DATOS VÁLIDOS PARA LA CONFIGURACIÓN 2sat_1tel <<<
+
+==================================================
+CONFIGURACIÓN: 1 satélite(s), 2 telescopio(s)
+==================================================
+
+>>> NO SE ENCONTRARON DATOS VÁLIDOS PARA LA CONFIGURACIÓN 1sat_2tel <<<
+
+==================================================
+CONFIGURACIÓN: 3 satélite(s), 1 telescopio(s)
+==================================================
+
+--- Detector 1, Telescopio Refractivo ---
+Masa total mínima (considerando 3 satélite(s)): 44.40 kg
+Altura orbital: 760 km
+Diámetro de pupila: 90.00 mm
+Masa seca por satélite: 14.80 kg
+Masa combustible por satélite: 0.00 kg
+Masa total por satélite: 14.80 kg
+
+--- Detector 2, Telescopio Refractivo ---
+Masa total mínima (considerando 3 satélite(s)): 44.40 kg
+Altura orbital: 760 km
+Diámetro de pupila: 90.00 mm
+Masa seca por satélite: 14.80 kg
+Masa combustible por satélite: 0.00 kg
+Masa total por satélite: 14.80 kg
+
+--- Detector 3, Telescopio Refractivo ---
+Masa total mínima (considerando 3 satélite(s)): 17.51 kg
+Altura orbital: 760 km
+Diámetro de pupila: 66.00 mm
+Masa seca por satélite: 5.84 kg
+Masa combustible por satélite: 0.00 kg
+Masa total por satélite: 5.84 kg
+
+--- Detector 3, Telescopio TMA ---
+Masa total mínima (considerando 3 satélite(s)): 940.19 kg
+Altura orbital: 910 km
+Diámetro de pupila: 249.00 mm
+Masa seca por satélite: 313.40 kg
+Masa combustible por satélite: 0.00 kg
+Masa total por satélite: 313.40 kg
+
+>>> MÍNIMO PARA CONFIGURACIÓN 3sat_1tel <<<
+Masa total mínima (considerando 3 satélite(s)): 17.51 kg
+Detector: 3
+Telescopio: Refractivo
+Altura orbital: 760 km
+
+==================================================
+CONFIGURACIÓN: 4 satélite(s), 1 telescopio(s)
+==================================================
+
+--- Detector 1, Telescopio Refractivo ---
+Masa total mínima (considerando 4 satélite(s)): 22.85 kg
+Altura orbital: 550 km
+Diámetro de pupila: 65.00 mm
+Masa seca por satélite: 5.57 kg
+Masa combustible por satélite: 0.14 kg
+Masa total por satélite: 5.71 kg
+
+--- Detector 2, Telescopio Refractivo ---
+Masa total mínima (considerando 4 satélite(s)): 22.85 kg
+Altura orbital: 550 km
+Diámetro de pupila: 65.00 mm
+Masa seca por satélite: 5.57 kg
+Masa combustible por satélite: 0.14 kg
+Masa total por satélite: 5.71 kg
+
+--- Detector 3, Telescopio Refractivo ---
+Masa total mínima (considerando 4 satélite(s)): 9.26 kg
+Altura orbital: 550 km
+Diámetro de pupila: 48.00 mm
+Masa seca por satélite: 2.25 kg
+Masa combustible por satélite: 0.07 kg
+Masa total por satélite: 2.31 kg
+
+--- Detector 3, Telescopio TMA ---
+Masa total mínima (considerando 4 satélite(s)): 592.87 kg
+Altura orbital: 710 km
+Diámetro de pupila: 194.00 mm
+Masa seca por satélite: 148.22 kg
+Masa combustible por satélite: 0.00 kg
+Masa total por satélite: 148.22 kg
+
+>>> MÍNIMO PARA CONFIGURACIÓN 4sat_1tel <<<
+Masa total mínima (considerando 4 satélite(s)): 9.26 kg
+Detector: 3
+Telescopio: Refractivo
+Altura orbital: 550 km
+
+==================================================
+           CONFIGURACIÓN ÓPTIMA GLOBAL
+==================================================
+
+Configuración: 4 satélite(s), 1 telescopio(s)
+Detector: 3
+Telescopio: Refractivo
+Masa total de la constelación: 9.26 kg
+
+--- Detalles del Satélite Óptimo ---
+Masa total por satélite: 2.31 kg
+  - Masa seca por satélite: 2.25 kg
+  - Masa combustible por satélite: 0.07 kg
+Altura orbital óptima: 550 km
+Diámetro de pupila requerido: 48.00 mm
+
+--- Parámetros del Instrumento y Misión ---
+Número de impulsos de mantenimiento: 10
+Delta-V total: 60.29 m/s
+Área media del instrumento: 0.0256 m²
+Volumen medio del instrumento: 0.0044 m³
+Potencia media del instrumento: 0.60 W

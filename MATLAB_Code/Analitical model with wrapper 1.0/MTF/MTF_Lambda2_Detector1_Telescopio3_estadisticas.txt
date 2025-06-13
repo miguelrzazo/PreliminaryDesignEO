@@ -1,0 +1,22 @@
+=== ANÁLISIS MTF ===
+
+Telescopio: Cassegrain
+Detector: 1
+Longitud de onda: 2.01 μm
+GSD: 50 m
+Requirement MTF: ≥ 0.25
+
+Estadísticas de valores válidos (MTF ≥ 0.25):
+Valores válidos: 35613 de 47061 (75.7%)
+MTF mínimo: 0.2500
+MTF máximo: 0.2807
+MTF promedio: 0.2684
+MTF mediana: 0.2695
+
+Parámetros del análisis:
+Rango alturas: 200 - 1000 km
+Rango diámetros: 20 - 600 mm
+Obscuración central: 0.2
+MTF alineamiento: 0.80
+MTF detector: 0.45
+Tamaño pixel: 15.0 μm

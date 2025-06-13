@@ -1,0 +1,22 @@
+=== ANÁLISIS MTF ===
+
+Telescopio: Korsch
+Detector: 2
+Longitud de onda: 2.01 μm
+GSD: 50 m
+Requirement MTF: ≥ 0.25
+
+Estadísticas de valores válidos (MTF ≥ 0.25):
+Valores válidos: 17788 de 58681 (30.3%)
+MTF mínimo: 0.2500
+MTF máximo: 0.2622
+MTF promedio: 0.2551
+MTF mediana: 0.2549
+
+Parámetros del análisis:
+Rango alturas: 400 - 1400 km
+Rango diámetros: 20 - 600 mm
+Obscuración central: 0.2
+MTF alineamiento: 0.85
+MTF detector: 0.40
+Tamaño pixel: 18.0 μm

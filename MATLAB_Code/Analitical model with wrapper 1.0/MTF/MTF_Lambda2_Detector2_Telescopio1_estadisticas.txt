@@ -1,0 +1,22 @@
+=== ANÁLISIS MTF ===
+
+Telescopio: Refractivo
+Detector: 2
+Longitud de onda: 2.01 μm
+GSD: 50 m
+Requirement MTF: ≥ 0.25
+
+Estadísticas de valores válidos (MTF ≥ 0.25):
+Valores válidos: 42928 de 47061 (91.2%)
+MTF mínimo: 0.2500
+MTF máximo: 0.3164
+MTF promedio: 0.3001
+MTF mediana: 0.3046
+
+Parámetros del análisis:
+Rango alturas: 200 - 1000 km
+Rango diámetros: 20 - 600 mm
+Obscuración central: 0.0
+MTF alineamiento: 0.90
+MTF detector: 0.45
+Tamaño pixel: 18.0 μm

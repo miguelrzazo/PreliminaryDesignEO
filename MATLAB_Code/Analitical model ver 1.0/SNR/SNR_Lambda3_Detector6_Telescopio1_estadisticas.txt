@@ -1,0 +1,34 @@
+=== ANÁLISIS SNR ===
+
+Telescopio: Refractivo
+Detector: 3
+Longitud de onda: 0.76 μm
+GSD: 50 m
+Requirement SNR: ≥ 400
+
+Estadísticas de valores válidos (SNR ≥ 400):
+Valores válidos: 53578 de 58681 (91.3%)
+SNR mínimo: 400.02
+SNR máximo: 4353.59
+SNR promedio: 1921.56
+SNR mediana: 1862.07
+
+Parámetros del análisis:
+Rango alturas: 400 - 1400 km
+Rango diámetros: 20 - 600 mm
+Obscuración central: 0.0
+Transmitancia: 0.80
+Eficiencia cuántica: 0.35
+Tamaño pixel: 25.0 μm
+Radiancia referencia: 100 W/(m²·sr·μm)
+Ancho de banda: 20000000.0 nm
+
+Ruidos del sistema (e⁻ RMS):
+Ruido térmico: 50
+Ruido de lectura: 100
+Ruido preamplificador: 5
+Ruido línea video: 10
+Ruido jitter: 5
+Ruido EMC: 5
+Ruido cuantización: 2
+Ruido no linealidad: 2

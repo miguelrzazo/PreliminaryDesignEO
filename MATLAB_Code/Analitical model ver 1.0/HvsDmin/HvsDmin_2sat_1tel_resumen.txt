@@ -1,0 +1,32 @@
+=== RESUMEN DE ANALISIS CRUZADO ===
+
+Configuracion: 2sat_1tel
+Numero de satelites: 2
+Numero de telescopios por satelite: 1
+
+Criterios aplicados:
+- MTF (Lambda2) > 0.25
+- SNR (Lambda3) > 400
+- Dias de cobertura <= 7
+- Para telescopio Refractivo: Diametro <= 90mm
+
+Resultados por detector y telescopio:
+
+Detector 1:
+ Refractivo: Alturas validas 400-690 km, Diametros 48-82 mm
+ Korsch: No hay combinaciones validas
+ Cassegrain: No hay combinaciones validas
+ TMA: No hay combinaciones validas
+
+Detector 2:
+ Refractivo: Alturas validas 400-410 km, Diametros 87-89 mm
+ Korsch: Alturas validas 1230-1250 km, Diametros 587-597 mm
+ Cassegrain: No hay combinaciones validas
+ TMA: No hay combinaciones validas
+
+Detector 3:
+ Refractivo: Alturas validas 400-760 km, Diametros 48-90 mm
+ Korsch: Alturas validas 1230-1400 km, Diametros 229-260 mm
+ Cassegrain: Alturas validas 1230-1400 km, Diametros 330-376 mm
+ TMA: No hay combinaciones validas
+
