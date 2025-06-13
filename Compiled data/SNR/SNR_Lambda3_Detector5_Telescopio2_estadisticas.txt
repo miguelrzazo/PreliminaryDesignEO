@@ -1,0 +1,34 @@
+=== ANÁLISIS SNR ===
+
+Telescopio: Korsch
+Detector: 2
+Longitud de onda: 0.76 μm
+GSD: 80 m
+Requirement SNR: ≥ 400
+
+Estadísticas de valores válidos (SNR ≥ 400):
+Valores válidos: 14336 de 14661 (97.8%)
+SNR mínimo: 400.02
+SNR máximo: 4931.71
+SNR promedio: 2188.01
+SNR mediana: 2078.18
+
+Parámetros del análisis:
+Rango alturas: 200 - 1000 km
+Rango diámetros: 20 - 200 mm
+Obscuración central: 0.2
+Transmitancia: 0.65
+Eficiencia cuántica: 0.70
+Tamaño pixel: 18.0 μm
+Radiancia referencia: 100 W/(m²·sr·μm)
+Ancho de banda: 20000000.0 nm
+
+Ruidos del sistema (e⁻ RMS):
+Ruido térmico: 50
+Ruido de lectura: 100
+Ruido preamplificador: 5
+Ruido línea video: 10
+Ruido jitter: 5
+Ruido EMC: 5
+Ruido cuantización: 2
+Ruido no linealidad: 2

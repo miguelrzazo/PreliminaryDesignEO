@@ -1,0 +1,77 @@
+Calculo preliminar:
+- Masa total inicial: 1.95 kg
+
+Iniciando simulacion de la mision de 8 a~nos...
+Impulso #1 en t = 0.13 a~nos. Altitud: 512.2 km
+Impulso #2 en t = 0.26 a~nos. Altitud: 512.2 km
+Impulso #3 en t = 0.40 a~nos. Altitud: 512.2 km
+Impulso #4 en t = 0.53 a~nos. Altitud: 512.2 km
+Impulso #5 en t = 0.66 a~nos. Altitud: 512.2 km
+Impulso #6 en t = 0.79 a~nos. Altitud: 512.2 km
+Impulso #7 en t = 0.92 a~nos. Altitud: 512.2 km
+Impulso #8 en t = 1.05 a~nos. Altitud: 512.2 km
+Impulso #9 en t = 1.18 a~nos. Altitud: 512.2 km
+Impulso #10 en t = 1.31 a~nos. Altitud: 512.2 km
+Impulso #11 en t = 1.44 a~nos. Altitud: 512.2 km
+Impulso #12 en t = 1.57 a~nos. Altitud: 512.2 km
+Impulso #13 en t = 1.70 a~nos. Altitud: 512.2 km
+Impulso #14 en t = 1.82 a~nos. Altitud: 512.2 km
+Impulso #15 en t = 1.95 a~nos. Altitud: 512.2 km
+Impulso #16 en t = 2.08 a~nos. Altitud: 512.2 km
+Impulso #17 en t = 2.21 a~nos. Altitud: 512.2 km
+Impulso #18 en t = 2.34 a~nos. Altitud: 512.2 km
+Impulso #19 en t = 2.46 a~nos. Altitud: 512.2 km
+Impulso #20 en t = 2.59 a~nos. Altitud: 512.2 km
+Impulso #21 en t = 2.72 a~nos. Altitud: 512.2 km
+Impulso #22 en t = 2.84 a~nos. Altitud: 512.2 km
+Impulso #23 en t = 2.97 a~nos. Altitud: 512.2 km
+Impulso #24 en t = 3.10 a~nos. Altitud: 512.2 km
+Impulso #25 en t = 3.22 a~nos. Altitud: 512.2 km
+Impulso #26 en t = 3.35 a~nos. Altitud: 512.2 km
+Impulso #27 en t = 3.47 a~nos. Altitud: 512.2 km
+Impulso #28 en t = 3.60 a~nos. Altitud: 512.2 km
+Impulso #29 en t = 3.72 a~nos. Altitud: 512.2 km
+Impulso #30 en t = 3.85 a~nos. Altitud: 512.2 km
+Impulso #31 en t = 3.97 a~nos. Altitud: 512.2 km
+Impulso #32 en t = 4.10 a~nos. Altitud: 512.2 km
+Impulso #33 en t = 4.22 a~nos. Altitud: 512.2 km
+Impulso #34 en t = 4.34 a~nos. Altitud: 512.2 km
+Impulso #35 en t = 4.47 a~nos. Altitud: 512.2 km
+Impulso #36 en t = 4.59 a~nos. Altitud: 512.2 km
+Impulso #37 en t = 4.71 a~nos. Altitud: 512.2 km
+Impulso #38 en t = 4.84 a~nos. Altitud: 512.2 km
+Impulso #39 en t = 4.96 a~nos. Altitud: 512.2 km
+Impulso #40 en t = 5.08 a~nos. Altitud: 512.2 km
+Impulso #41 en t = 5.20 a~nos. Altitud: 512.2 km
+Impulso #42 en t = 5.32 a~nos. Altitud: 512.2 km
+Impulso #43 en t = 5.44 a~nos. Altitud: 512.2 km
+Impulso #44 en t = 5.57 a~nos. Altitud: 512.2 km
+Impulso #45 en t = 5.69 a~nos. Altitud: 512.2 km
+Impulso #46 en t = 5.81 a~nos. Altitud: 512.2 km
+Impulso #47 en t = 5.93 a~nos. Altitud: 512.2 km
+Impulso #48 en t = 6.05 a~nos. Altitud: 512.2 km
+Impulso #49 en t = 6.17 a~nos. Altitud: 512.2 km
+Impulso #50 en t = 6.29 a~nos. Altitud: 512.2 km
+Impulso #51 en t = 6.41 a~nos. Altitud: 512.2 km
+Impulso #52 en t = 6.53 a~nos. Altitud: 512.2 km
+Impulso #53 en t = 6.65 a~nos. Altitud: 512.2 km
+Impulso #54 en t = 6.76 a~nos. Altitud: 512.2 km
+Impulso #55 en t = 6.88 a~nos. Altitud: 512.2 km
+Impulso #56 en t = 7.00 a~nos. Altitud: 512.2 km
+Impulso #57 en t = 7.12 a~nos. Altitud: 512.2 km
+Impulso #58 en t = 7.24 a~nos. Altitud: 512.2 km
+Impulso #59 en t = 7.35 a~nos. Altitud: 512.2 km
+Impulso #60 en t = 7.47 a~nos. Altitud: 512.2 km
+Impulso #61 en t = 7.59 a~nos. Altitud: 512.2 km
+Impulso #62 en t = 7.71 a~nos. Altitud: 512.2 km
+Impulso #63 en t = 7.82 a~nos. Altitud: 512.2 km
+Impulso #64 en t = 7.94 a~nos. Altitud: 512.2 km
+Simulacion de mision completada.
+
+Maniobra de Deorbitacion:
+- Delta-V: 113.27 m/s
+Simulando reentrada con impulso...
+- Reentrada estimada en 4.13 dias.
+
+Simulando decaimiento natural (sin impulso)...
+- Reentrada natural estimada en 319.13 dias (0.87 a~nos).
