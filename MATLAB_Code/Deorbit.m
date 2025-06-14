@@ -26,7 +26,7 @@ h_perigeo_deorbit_km = 120; % Altitud del perigeo para la maniobra de deorbitaci
 h_reentry_km = 100;      % Altitud a la que se considera reentrada/desintegracion (km)
 
 % --- Parametros del Satelite ---
-masa_seca_kg = 1.67;    % Masa seca del satelite (kg)
+masa_seca_kg = 1.34;    % Masa seca del satelite (kg)
 Area_m2 = 0.07;           % Area transversal efectiva para el arrastre (m^2)
 Cd = 2.5;               % Coeficiente de arrastre (adimensional)
 Isp_s = 220;            % Impulso especifico del sistema de propulsion (s)

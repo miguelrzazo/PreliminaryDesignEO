@@ -23,7 +23,7 @@ t_desfase_seg = pi / abs(delta_n); % Tiempo teórico para desfase de 180°
 num_orbitas_fase = t_desfase_seg / T_fase; % Número de órbitas en faseo
 
 
-fprintf('--- Análisis de la Maniobra de Faseo ---\n');
+fprintf('--- Análisis de la Maniobra de Fase ---\n');
 fprintf('Periodo de la órbita final: %.2f minutos\n', T_final / 60);
 fprintf('Periodo de la órbita de fase: %.2f minutos\n', T_fase / 60);
 fprintf('Tiempo requerido para un desfase de 180°: %.2f horas\n', t_desfase_seg / 3600);
@@ -40,20 +40,20 @@ grid on;
 [x, y, z] = sphere;
 surf(x*R_tierra/1e3, y*R_tierra/1e3, z*R_tierra/1e3, 'FaceColor', '#0077be', 'EdgeColor', 'none', 'DisplayName', 'Tierra');
 ang = linspace(0, 2*pi, 300);
-plot(r_final/1e3 * cos(ang), r_final/1e3 * sin(ang), 'g--', 'LineWidth', 1.5, 'DisplayName', 'Órbita Final (520 km)');
+plot(r_final/1e3 * cos(ang), r_final/1e3 * sin(ang), 'g--', 'LineWidth', 1.5, 'DisplayName', 'Orbita Final (520 km)');
 r_fase_plot = (a_fase*(1-e_fase^2))./(1+e_fase*cos(ang));
-plot(r_fase_plot/1e3 .* cos(ang), r_fase_plot/1e3 .* sin(ang), 'b', 'LineWidth', 1.5, 'DisplayName', 'Órbita de Fase');
+plot(r_fase_plot/1e3 .* cos(ang), r_fase_plot/1e3 .* sin(ang), 'b', 'LineWidth', 1.5, 'DisplayName', 'Orbita de Fase(520 x 720 km)');
 
 % Inicializar objetos gráficos
-h_sat1 = plot(NaN, NaN, 'go', 'MarkerFaceColor', 'g', 'MarkerSize', 8, 'DisplayName', 'Satélite 1');
-h_etapa = plot(NaN, NaN, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 8, 'DisplayName', 'Etapa/Satélite 2');
-h_sat2 = plot(NaN, NaN, 'mo', 'MarkerFaceColor', 'm', 'MarkerSize', 8, 'DisplayName', 'Satélite 2 (Desplegado)', 'Visible', 'off');
-title_handle = title('Inicio de Misión');
-legend('Location', 'northeastoutside', 'AutoUpdate', 'off');
+h_sat1 = plot(NaN, NaN, 'go', 'MarkerFaceColor', 'g', 'MarkerSize', 8, 'DisplayName', 'Satelite 1');
+h_etapa = plot(NaN, NaN, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 8, 'DisplayName', 'Etapa/Satelite 2');
+h_sat2 = plot(NaN, NaN, 'mo', 'MarkerFaceColor', 'm', 'MarkerSize', 8, 'DisplayName', 'Satelite 2 (Desplegado)');
+title_handle = title('Inicio de Misión', 'Interpreter', 'latex', 'FontSize', 14);
+legend('Location', 'northeastoutside', 'AutoUpdate', 'off', 'Interpreter', 'latex');
 xlim([-1.2*r_apogeo_fase/1e3, 1.2*r_apogeo_fase/1e3]);
 ylim([-1.2*r_apogeo_fase/1e3, 1.2*r_apogeo_fase/1e3]);
-xlabel('X (km)');
-ylabel('Y (km)');
+xlabel('X (km)', 'Interpreter', 'latex');
+ylabel('Y (km)', 'Interpreter', 'latex');
 
 % --- 4. BUCLE DE ANIMACIÓN HASTA 180 GRADOS ---
 t = 0;
@@ -88,7 +88,7 @@ while desfase_acumulado_rad < pi
 end
 
 % --- 5. FASE FINAL: DESPLIEGUE ---
-title_handle.String = sprintf('Desfase de 180° alcanzado en %.1f horas. Desplegando Satélite 2.', t / 3600);
+title_handle.String = sprintf('Desfase de 180° alcanzado en %.1f horas. Desplegando Satelite 2.', t / 3600);
 set(h_sat2, 'XData', x_etapa/1e3, 'YData', y_etapa/1e3, 'Visible', 'on');
 set(h_etapa, 'Visible', 'off');
 
