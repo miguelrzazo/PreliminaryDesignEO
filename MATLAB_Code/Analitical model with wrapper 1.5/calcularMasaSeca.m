@@ -45,7 +45,7 @@ masa_seca_TM = 4 * Wi_TM;
 masa_seca_SEOSAT = 4 * Wi_SEOSAT;
 masa_seca = 4 * Wi_instrumento;
 
-%% ---- NUEVOS CÁLCULOS: Propiedades del Satélite ----
+%% ---- Propiedades del Satélite ----
 % Se asume una densidad para el satélite y se calculan sus dimensiones como un CubeSat.
 densidad_sat = 79; % Densidad del satélite [kg/m^3]
 
