@@ -1,0 +1,163 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k}{function}\PYG{+w}{ }\PYG{n+nf}{SNRfunction}\PYG{p}{(}lambda\PYGZus{}c, pixel\PYGZus{}size, eta, tau, GSD, r\PYGZus{}obs, altitudes, diameters, filename\PYGZus{}prefix, telescope\PYGZus{}name, detector\PYGZus{}idx,SNR\PYGZus{}req\PYG{p}{)}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} Constantes físicas}
+\PYG{n}{h}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{6.626e\PYGZhy{}34}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Constante de Planck (J·s)}
+\PYG{n}{c}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{3e8}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Velocidad de la luz (m/s)}
+\PYG{n}{bandwidth\PYGZus{}m}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{20e\PYGZhy{}3}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Ancho de banda espectral (20 nm)}
+\PYG{n}{TDI}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Número de etapas TDI}
+\PYG{n}{rad\PYGZus{}ref}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Radiancia de referencia [W/(m²·sr·um)]}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} Ruidos del sistema (en e RMS)}
+\PYG{n}{Ndark}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{50}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Ruido térmico alto por mal enfriamiento}
+\PYG{n}{Nread}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Sistema de lectura básico o rápido}
+\PYG{n}{Npreamp}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Electrónica con ganancia moderada}
+\PYG{n}{Nvideo}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Línea de vídeo sin filtrado}
+\PYG{n}{Njitter}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Plataforma con jitter notable}
+\PYG{n}{Nemc}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Alta interferencia electromagnética}
+\PYG{n}{Nquant}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} ADC de baja resolución}
+\PYG{n}{Nnonlin}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Mala calibración o no linealidad no compensada}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} Inicialización}
+\PYG{n}{SNR\PYGZus{}table}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{zeros}\PYG{p}{(}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{altitudes}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{diameters}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} Cálculo SNR para cada combinación altura\PYGZhy{}diámetro}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{altitudes}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{h\PYGZus{}orb}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{altitudes}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mf}{1e3}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} convertir a metros}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Focal length basado en GSD, altura y pixel size}
+\PYG{+w}{    }\PYG{n}{focal\PYGZus{}length}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{pixel\PYGZus{}size}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{h\PYGZus{}orb}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{GSD}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Velocidad sobre el suelo}
+\PYG{+w}{    }\PYG{n}{v\PYGZus{}orb}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sqrt}\PYG{p}{(}\PYG{l+m+mf}{3.986e14}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mf}{6371e3}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{h\PYGZus{}orb}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Tiempo de integración}
+\PYG{+w}{    }\PYG{n}{integration\PYGZus{}time}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{GSD}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{v\PYGZus{}orb}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{diameters}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{D}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{diameters}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{1000}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Diámetro de la pupila en metros}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Irradiancia en el detector (W/m²)}
+\PYG{+w}{        }\PYG{n}{irradiance}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{pi}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{tau}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{bandwidth\PYGZus{}m}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{rad\PYGZus{}ref}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{focal\PYGZus{}length}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n+nb}{sqrt}\PYG{p}{(}\PYG{n}{D}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{r\PYGZus{}obs}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Área del píxel}
+\PYG{+w}{        }\PYG{n}{pixel\PYGZus{}area}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{pixel\PYGZus{}size}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Cálculo de Ne (electrones generados)}
+\PYG{+w}{        }\PYG{n}{Ne}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{irradiance}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{pixel\PYGZus{}area}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{eta}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{lambda\PYGZus{}c}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{TDI}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{integration\PYGZus{}time}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{h}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{c}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Ruido total}
+\PYG{+w}{        }\PYG{n}{N\PYGZus{}total}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sqrt}\PYG{p}{(}\PYG{n}{Ndark}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{Nread}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{Npreamp}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{Nvideo}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{            }\PYG{n}{Njitter}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{Nemc}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{Nquant}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{Nnonlin}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{Ne}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} SNR}
+\PYG{+w}{        }\PYG{n}{SNR\PYGZus{}value}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.9}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{Ne}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{N\PYGZus{}total}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Aplicar requirement: valores \PYGZlt{} 400 se convierten a NaN}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{SNR\PYGZus{}value}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{SNR\PYGZus{}req}
+\PYG{+w}{            }\PYG{n}{SNR\PYGZus{}table}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{NaN}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{else}
+\PYG{+w}{            }\PYG{n}{SNR\PYGZus{}table}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{SNR\PYGZus{}value}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{end}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} Generar heatmap con paleta parula y límites optimizados}
+\PYG{n}{fig}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{figure}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Visible\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{off\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Position\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{900}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{700}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{h}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{imagesc}\PYG{p}{(}\PYG{n}{diameters}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{altitudes}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{SNR\PYGZus{}table}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Aplicar técnica AlphaData para mostrar NaN como blanco}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{n}{h}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{AlphaData\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZti{}}\PYG{n+nb}{isnan}\PYG{p}{(}\PYG{n}{SNR\PYGZus{}table}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{n+nb}{gca}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Color\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Fondo blanco}
+
+\PYG{c}{\PYGZpc{} Configurar paleta y límites}
+\PYG{n+nb}{colormap}\PYG{p}{(}\PYG{n+nb}{parula}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{clim}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{400}\PYG{+w}{ }\PYG{l+m+mi}{2000}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Configuración de ejes}
+\PYG{n+nb}{axis}\PYG{+w}{ }\PYG{n}{xy}\PYG{p}{;}
+\PYG{n+nb}{xlabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Di\PYGZbs{}\PYGZsq{}}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ametro de Pupila (mm)\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{ylabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Altura Orbital (km)\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{title}\PYG{p}{(}\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{SNR \PYGZhy{} \PYGZpc{}s \PYGZhy{} Detector \PYGZpc{}d\PYGZbs{}n(\PYGZdl{}\PYGZbs{}\PYGZbs{}lambda\PYGZdl{} = \PYGZpc{}.2f \PYGZdl{}\PYGZbs{}\PYGZbs{}mu\PYGZdl{}m, Blanco: SNR \PYGZdl{}\PYGZlt{} 400\PYGZdl{})\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{    }\PYG{n}{telescope\PYGZus{}name}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{detector\PYGZus{}idx}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lambda\PYGZus{}c}\PYG{o}{*}\PYG{l+m+mf}{1e6}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{14}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontWeight\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{bold\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Colorbar}
+\PYG{n}{cb}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{colorbar}\PYG{p}{;}
+\PYG{n}{cb}\PYG{p}{.}\PYG{n}{Label}\PYG{p}{.}\PYG{n}{String}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{SNR\PYGZsq{}}\PYG{p}{;}
+\PYG{n}{cb}\PYG{p}{.}\PYG{n}{Label}\PYG{p}{.}\PYG{n}{FontSize}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{12}\PYG{p}{;}
+\PYG{n}{cb}\PYG{p}{.}\PYG{n}{Label}\PYG{p}{.}\PYG{n}{Interpreter}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Configurar ticks}
+\PYG{n}{xticks\PYGZus{}vals}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{diameters}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{50}\PYG{p}{:}\PYG{k}{end}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{yticks\PYGZus{}vals}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{altitudes}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{5}\PYG{p}{:}\PYG{k}{end}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{n+nb}{gca}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{XTick\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{xticks\PYGZus{}vals}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{YTick\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{yticks\PYGZus{}vals}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Guardar heatmap}
+\PYG{n+nb}{saveas}\PYG{p}{(}\PYG{n}{fig}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{filename\PYGZus{}prefix}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZus{}heatmap.jpg\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{close}\PYG{p}{(}\PYG{n}{fig}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} Guardar datos en CSV}
+\PYG{c}{\PYGZpc{} Crear tabla con nombres de filas y columnas}
+\PYG{n}{row\PYGZus{}names}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{cell}\PYG{p}{(}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{altitudes}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{altitudes}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{row\PYGZus{}names}\PYG{p}{\PYGZob{}}\PYG{n+nb}{i}\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Alt\PYGZus{}\PYGZpc{}d\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{altitudes}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{end}
+
+\PYG{n}{col\PYGZus{}names}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{cell}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{diameters}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{diameters}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{col\PYGZus{}names}\PYG{p}{\PYGZob{}}\PYG{n+nb}{j}\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Diam\PYGZus{}\PYGZpc{}d\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{diameters}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{end}
+
+\PYG{n}{SNR\PYGZus{}table\PYGZus{}export}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{array2table}\PYG{p}{(}\PYG{n}{SNR\PYGZus{}table}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{RowNames\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row\PYGZus{}names}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{VariableNames\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{col\PYGZus{}names}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{writetable}\PYG{p}{(}\PYG{n}{SNR\PYGZus{}table\PYGZus{}export}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{filename\PYGZus{}prefix}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZus{}resultados.csv\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{WriteRowNames\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{true}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} Generar archivo de estadísticas TXT}
+\PYG{n}{fid}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{fopen}\PYG{p}{(}\PYG{p}{[}\PYG{n}{filename\PYGZus{}prefix}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZus{}estadisticas.txt\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{w\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{=== ANÁLISIS SNR ===\PYGZbs{}n\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Telescopio: \PYGZpc{}s\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{telescope\PYGZus{}name}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Detector: \PYGZpc{}d\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{detector\PYGZus{}idx}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Longitud de onda: \PYGZpc{}.2f um\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lambda\PYGZus{}c}\PYG{o}{*}\PYG{l+m+mf}{1e6}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{GSD: \PYGZpc{}d m\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{GSD}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Requirement SNR: =\PYGZgt{} 400\PYGZbs{}n\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Estadísticas de valores válidos (no NaN)}
+\PYG{n}{valid\PYGZus{}snr}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{SNR\PYGZus{}table}\PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n+nb}{isnan}\PYG{p}{(}\PYG{n}{SNR\PYGZus{}table}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{if}\PYG{+w}{ }\PYG{o}{\PYGZti{}}\PYG{n+nb}{isempty}\PYG{p}{(}\PYG{n}{valid\PYGZus{}snr}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Estadísticas de valores válidos (SNR =\PYGZgt{} 400):\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Valores válidos: \PYGZpc{}d de \PYGZpc{}d (\PYGZpc{}.1f\PYGZpc{}\PYGZpc{})\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{valid\PYGZus{}snr}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{numel}\PYG{p}{(}\PYG{n}{SNR\PYGZus{}table}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{o}{*}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{valid\PYGZus{}snr}\PYG{p}{)}\PYG{o}{/}\PYG{n+nb}{numel}\PYG{p}{(}\PYG{n}{SNR\PYGZus{}table}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{SNR mínimo: \PYGZpc{}.2f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{min}\PYG{p}{(}\PYG{n}{valid\PYGZus{}snr}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{SNR máximo: \PYGZpc{}.2f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{max}\PYG{p}{(}\PYG{n}{valid\PYGZus{}snr}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{SNR promedio: \PYGZpc{}.2f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{mean}\PYG{p}{(}\PYG{n}{valid\PYGZus{}snr}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{SNR mediana: \PYGZpc{}.2f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{median}\PYG{p}{(}\PYG{n}{valid\PYGZus{}snr}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{else}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{No hay valores válidos que cumplan el requirement SNR =\PYGZgt{} 400\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{end}
+
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}nParámetros del análisis:\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Rango alturas: \PYGZpc{}d \PYGZhy{} \PYGZpc{}d km\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{min}\PYG{p}{(}\PYG{n}{altitudes}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{max}\PYG{p}{(}\PYG{n}{altitudes}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Rango diámetros: \PYGZpc{}d \PYGZhy{} \PYGZpc{}d mm\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{min}\PYG{p}{(}\PYG{n}{diameters}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{max}\PYG{p}{(}\PYG{n}{diameters}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Obscuración central: \PYGZpc{}.1f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{r\PYGZus{}obs}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Transmitancia: \PYGZpc{}.2f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{tau}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Eficiencia cuántica: \PYGZpc{}.2f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{eta}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Tamaño pixel: \PYGZpc{}.1f um\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{pixel\PYGZus{}size}\PYG{o}{*}\PYG{l+m+mf}{1e6}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Radiancia referencia: \PYGZpc{}d W/(m²·sr·um)\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{rad\PYGZus{}ref}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Ancho de banda: \PYGZpc{}.1f nm\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{bandwidth\PYGZus{}m}\PYG{o}{*}\PYG{l+m+mf}{1e9}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}nRuidos del sistema (e RMS):\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Ruido térmico: \PYGZpc{}d\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Ndark}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Ruido de lectura: \PYGZpc{}d\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Nread}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Ruido preamplificador: \PYGZpc{}d\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Npreamp}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Ruido línea video: \PYGZpc{}d\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Nvideo}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Ruido jitter: \PYGZpc{}d\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Njitter}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Ruido EMC: \PYGZpc{}d\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Nemc}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Ruido cuantización: \PYGZpc{}d\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Nquant}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Ruido no linealidad: \PYGZpc{}d\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Nnonlin}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n+nb}{fclose}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{SNR calculado para \PYGZpc{}s, Detector \PYGZpc{}d\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{telescope\PYGZus{}name}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{detector\PYGZus{}idx}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{k}{end}
+
+\end{MintedVerbatim}

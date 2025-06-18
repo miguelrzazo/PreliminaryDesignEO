@@ -1,0 +1,109 @@
+\babel@toc {spanish}{}\relax 
+\addvspace {10\p@ }
+\contentsline {xchapter}{Introducción}{1}{chapter.1}%
+\addvspace {10\p@ }
+\contentsline {xchapter}{Misiones semejantes}{4}{chapter.2}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Representación artística del \textit {Orbiting Carbon Observatory }(OCO)-2 de la NASA. Fuente: \blx@tocontentsinit {0}\cite {nasa_jpl_oco2_artist_concept_2014}. }}{5}{figure.caption.5}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Representación artística de GOSAT. Fuente: \blx@tocontentsinit {0}\cite {jaxa_gosat_representation}. }}{6}{figure.caption.6}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces CO2M, de la Agencia Espacial Europea. Fuente: \blx@tocontentsinit {0}\cite {CO2M}. }}{7}{figure.caption.7}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces TanSat. Fuente: \blx@tocontentsinit {0}\cite {tansat}. }}{8}{figure.caption.8}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Imagen artistica de Microcarb. Fuente: \blx@tocontentsinit {0}\cite {futura_microcarb} }}{9}{figure.caption.9}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Constelacion GHGSat. Fuente: \blx@tocontentsinit {0}\cite {gosat_gw} }}{10}{figure.caption.10}%
+\addvspace {10\p@ }
+\contentsline {xchapter}{Conceptos Previos}{14}{chapter.3}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Ejemplo del efecto del aliasing sobre un patrón visual. Fuente: \blx@tocontentsinit {0}\cite {kitdeactores2025moire}}}{16}{figure.caption.12}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Efectos de distintos GSD en imágenes tomadas por satélite. Fuente: \blx@tocontentsinit {0}\cite {rossiter2020gsd_comparison}}}{17}{figure.caption.13}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Representación visual de la MTF. Fuente: \blx@tocontentsinit {0}\cite {EdmundOptics2023}.}}{18}{figure.caption.14}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Efecto de la SNR. Fuente: \blx@tocontentsinit {0}\cite {wikipedia2025snr_demonstration}}}{20}{figure.caption.15}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Esquema visual del \textit {swath} y FoV. Fuente: \blx@tocontentsinit {0}\cite {swath_fov_diagram}.}}{23}{figure.caption.19}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Representación del espectro electromagnético con las longitudes de onda, frecuencias y energías asociadas. Fuente: \blx@tocontentsinit {0}\cite {WikiLecturesSpectrum}.}}{24}{figure.caption.20}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Radiación transmitida por la atmósfera y bandas de absorción. Fuente: \blx@tocontentsinit {0}\cite {atmospheric_transmission_spectrum}.}}{25}{figure.caption.22}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Bandas de Transmitancia del CO$_2$ en función del número de onda. Fuente: \blx@tocontentsinit {0}\cite {nist2025co2_spectrum} }}{26}{figure.caption.24}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Diagrama de funcionamiento de un sensor CCD. Fuente: \blx@tocontentsinit {0}\cite {ccd_operation_diagram}.}}{28}{figure.caption.26}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Diagrama de funcionamiento de un sensor CMOS. Fuente: \blx@tocontentsinit {0}\cite {ccd_operation_diagram}.}}{29}{figure.caption.28}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Disposición del detector MCT. Fuente: \blx@tocontentsinit {0}\cite {coatings2021_11_5_611_extended}.}}{30}{figure.caption.30}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Disposición de capas típica del detector InGaAs. Fuente: \blx@tocontentsinit {0}\cite {everyphotoncounts2025ingaas_spad}.}}{31}{figure.caption.32}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Esquema de funcionamiento del \textit {Time Delay Integration}. Fuente: \blx@tocontentsinit {0}\cite {tdi_sensor2017}.}}{32}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Funcionamiento del escaneo \textit {Pushbroom}. Fuente: \blx@tocontentsinit {0}\cite {pushbroom_sensor_diagram}.}}{33}{figure.caption.35}%
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Funcionamiento del escaneo \textit {Whiskbroom}. Fuente: \blx@tocontentsinit {0}\cite {whiskbroom_diagram}.}}{34}{figure.caption.37}%
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Funcionamiento del escaneo \textit {Step-Stare}. Fuente: \blx@tocontentsinit {0}\cite {step_stare_system}.}}{35}{figure.caption.39}%
+\contentsline {figure}{\numberline {3.17}{\ignorespaces Diagrama de parámetros ópticos. Fuente: \blx@tocontentsinit {0}\cite {entrance_pupil_diagram}.}}{37}{figure.caption.40}%
+\contentsline {figure}{\numberline {3.18}{\ignorespaces Telescopio Refractivo. Fuente: \blx@tocontentsinit {0}\cite {refractor_reflector_comparison}.}}{38}{figure.caption.45}%
+\contentsline {figure}{\numberline {3.19}{\ignorespaces Telescopio Cassegrain. Fuente: \blx@tocontentsinit {0}\cite {cassegrain_telescope_diagram}.}}{39}{figure.caption.47}%
+\contentsline {figure}{\numberline {3.20}{\ignorespaces Telescopio Korsch. Fuente: \blx@tocontentsinit {0}\cite {korsch_telescope_system}.}}{39}{figure.caption.49}%
+\contentsline {figure}{\numberline {3.21}{\ignorespaces Telescopio TMA. Fuente: \blx@tocontentsinit {0}\cite {tma_telescope_diagram}.}}{40}{figure.caption.51}%
+\contentsline {figure}{\numberline {3.22}{\ignorespaces Rueda de Filtros del \textit {James Webb Space Telescope}. Fuente: \blx@tocontentsinit {0}\cite {STScI_MIRI_Filters}.}}{41}{figure.caption.54}%
+\contentsline {figure}{\numberline {3.23}{\ignorespaces Filtrado de las frecuencias. Fuente:\blx@tocontentsinit {0}\cite {Reeve2024BandPass}.}}{42}{figure.caption.55}%
+\contentsline {figure}{\numberline {3.24}{\ignorespaces Representación gráfica de los elementos orbitales. Fuente: \blx@tocontentsinit {0}\cite {WikiElementosOrbitales}. }}{43}{figure.caption.57}%
+\contentsline {figure}{\numberline {3.25}{\ignorespaces Días de vida media en órbita vs Altura orbital (km). Fuente: Elaboración propia basada en \blx@tocontentsinit {0}\cite {spaceacademy_orblife}.}}{46}{figure.caption.60}%
+\addvspace {10\p@ }
+\contentsline {xchapter}{Definición del instrumento}{51}{chapter.4}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Flujo de trabajo de los scripts de MATLAB}}{53}{figure.caption.63}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Imagen satélite del cinturón industrial de Houston. $GSD \approx 8,5$. Fuente: Google Earth (29°42'18.0"N; 95°00'10.8"W)}}{54}{figure.caption.64}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Comparación de imágenes con distintas condiciones de GSD. Fuente: Imagen adaptada, Google Earth.}}{55}{figure.caption.65}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Mapas de calor resultantes del calculo de MTF: Banda 2,01 \textmu m; Detector 1}}{61}{figure.caption.73}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Mapas de calor resultantes del calculo de MTF: Banda 2,01 \textmu m; Detector 2}}{62}{figure.caption.74}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Mapas de calor resultantes del calculo de MTF: Banda 2,01 \textmu m; Detector 3}}{63}{figure.caption.75}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Mapas de calor resultantes del calculo de SNR: Banda 0,76 \textmu m; Detector 1}}{66}{figure.caption.77}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Mapas de calor resultantes del calculo de SNR: Banda 0,76 \textmu m; Detector 2}}{67}{figure.caption.78}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Mapas de calor resultantes del calculo de SNR: Banda 0,76 \textmu m; Detector 3}}{68}{figure.caption.79}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Factores de limitación del swath en el problema de la cobertura}}{70}{figure.caption.81}%
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Esquemas de las configuraciones evaluadas en el problema de la cobertura.}}{71}{figure.caption.82}%
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Mapas de calor resultantes del cálculo de cobertura para el Detector 1, con 2 satélites y 2 telescopios.}}{72}{figure.caption.83}%
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Mapas de calor resultantes del cálculo de cobertura para el Detector 2, con 2 satélites y 2 telescopios.}}{73}{figure.caption.84}%
+\contentsline {figure}{\numberline {4.14}{\ignorespaces Mapas de calor resultantes del cálculo de cobertura para el Detector 3, con 2 satélites y 2 telescopios.}}{74}{figure.caption.85}%
+\contentsline {figure}{\numberline {4.15}{\ignorespaces Mapas de calor resultantes del cálculo de cobertura para el Detector 1, con 3 satélites.}}{75}{figure.caption.86}%
+\contentsline {figure}{\numberline {4.16}{\ignorespaces Mapas de calor resultantes del cálculo de cobertura para el Detector 2, con 3 satélites.}}{76}{figure.caption.87}%
+\contentsline {figure}{\numberline {4.17}{\ignorespaces Mapas de calor resultantes del cálculo de cobertura para el Detector 3, con 3 satélites.}}{77}{figure.caption.88}%
+\contentsline {figure}{\numberline {4.18}{\ignorespaces Comparativa del rendimiento de detectores con telescopio refractivo. Fuente: Elaboración propia.}}{79}{figure.caption.89}%
+\contentsline {figure}{\numberline {4.19}{\ignorespaces Comparativa del rendimiento de detectores con telescopio refractivo. Fuente: Elaboración propia.}}{80}{figure.caption.90}%
+\addvspace {10\p@ }
+\contentsline {xchapter}{Determinación de la solución óptima}{81}{chapter.5}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Estimación de la masa seca del satélite en función de la altura. Fuente: Elaboración propia.}}{83}{figure.caption.92}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Transferencia de Hohmann. Fuente: Elaboración propia.}}{84}{figure.caption.93}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Desglose de masa seca, masa combustible y masa total. Fuente: Elaboración propia.}}{85}{figure.caption.94}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Esquemática de la carga de pago final. Fuente: Elaboración propia.}}{86}{figure.caption.95}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Punto de diseño del satélite. Fuente: Elaboración propia.}}{87}{figure.caption.96}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Tiempo de deorbitación, en días, tras fin de misión. Fuente: Elaboración propia.}}{88}{figure.caption.97}%
+\addvspace {10\p@ }
+\contentsline {xchapter}{Subsistemas}{89}{chapter.6}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Magnetotorque GMAT-1. Fuente: \blx@tocontentsinit {0}\cite {satcatalog:gmat1}}}{90}{figure.caption.99}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Bandas de de comunicaciones de uso típico en nanosatélites. Fuente: \blx@tocontentsinit {0}\cite {kulu2025nanosats}}}{91}{figure.caption.100}%
+\addvspace {10\p@ }
+\contentsline {xchapter}{Lanzadores}{95}{chapter.7}%
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Programa rideshare de SpaceX Fuente: \blx@tocontentsinit {0}\cite {SFNow_Transporter9_2023}.}}{99}{figure.caption.107}%
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Falcon 9 de SpaceX despegando. Fuente: \blx@tocontentsinit {0}\cite {wikipedia2024}.}}{99}{figure.caption.107}%
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Azimut de lanzamiento desde Vanderberg SFB. Fuente: Elaboración propia.}}{100}{figure.caption.109}%
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Órbita de fase para el despliegue de los satélites. Fuente: Elaboración propia.}}{101}{figure.caption.111}%
+\addvspace {10\p@ }
+\contentsline {xchapter}{Segmento terrestre}{102}{chapter.8}%
+\contentsline {figure}{\numberline {8.1}{\ignorespaces Antena de banda X de la estación de Fairbanks, Alaska. Fuente: \blx@tocontentsinit {0}\cite {ASF2025_NSN}.}}{104}{figure.caption.112}%
+\contentsline {figure}{\numberline {8.2}{\ignorespaces Escenario de simulación creado con \textit {Aerospace Toobox}. Fuente: Elaboración Propia}}{105}{figure.caption.113}%
+\contentsline {figure}{\numberline {8.3}{\ignorespaces \textit {Ground tracks} sobre la región de interés. En rojo: Estación de Fairbanks Fuente: Elaboración propia}}{105}{figure.caption.114}%
+\contentsline {figure}{\numberline {8.4}{\ignorespaces Velocidad de descarga de datos semanal a lo largo de 1 año. Fuente: Elaboración Propia}}{107}{figure.caption.118}%
+\contentsline {figure}{\numberline {8.5}{\ignorespaces Velocidad de descarga diaria estimada en función de condiciones climáticas. Fuente: Elaboración Propia}}{108}{figure.caption.119}%
+\contentsline {figure}{\numberline {8.6}{\ignorespaces Evolución de la memoria a bordo de los satélites a lo largo de 1 semana. Fuente: Elaboración Propia}}{110}{figure.caption.122}%
+\addvspace {10\p@ }
+\contentsline {xchapter}{Conclusiones}{112}{chapter.9}%
+\addvspace {10\p@ }
+\contentsline {xchapter}{Tablas de datos}{2}{appendix.Alph1}%
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Mapas de calor resultantes del calculo de MTF: Banda 0,76 \textmu m; Detector 1}}{3}{figure.caption.126}%
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Mapas de calor resultantes del calculo de MTF: Banda 0,76 \textmu m; Detector 2}}{4}{figure.caption.128}%
+\contentsline {figure}{\numberline {A.3}{\ignorespaces Mapas de calor resultantes del calculo de MTF: Banda 0,76 \textmu m; Detector 3}}{5}{figure.caption.129}%
+\contentsline {figure}{\numberline {A.4}{\ignorespaces Mapas de calor resultantes del calculo de MTF: Banda 1,61 \textmu m; Detector 1}}{6}{figure.caption.130}%
+\contentsline {figure}{\numberline {A.5}{\ignorespaces Mapas de calor resultantes del calculo de MTF: Banda 1,61 \textmu m; Detector 2}}{7}{figure.caption.132}%
+\contentsline {figure}{\numberline {A.6}{\ignorespaces Mapas de calor resultantes del calculo de MTF: Banda 1,61 \textmu m; Detector 3}}{8}{figure.caption.133}%
+\contentsline {figure}{\numberline {A.7}{\ignorespaces Mapas de calor resultantes del calculo de MTF: Banda 2,01 \textmu m; Detector 1}}{9}{figure.caption.134}%
+\contentsline {figure}{\numberline {A.8}{\ignorespaces Mapas de calor resultantes del calculo de MTF: Banda 2,01 \textmu m; Detector 2}}{10}{figure.caption.136}%
+\contentsline {figure}{\numberline {A.9}{\ignorespaces Mapas de calor resultantes del calculo de MTF: Banda 2,01 \textmu m; Detector 3}}{11}{figure.caption.137}%
+\contentsline {figure}{\numberline {A.10}{\ignorespaces Mapas de calor resultantes del calculo de SNR: Banda 0,76 \textmu m; Detector 4}}{13}{figure.caption.139}%
+\contentsline {figure}{\numberline {A.11}{\ignorespaces Mapas de calor resultantes del calculo de SNR: Banda 0,76 \textmu m; Detector 5}}{14}{figure.caption.141}%
+\contentsline {figure}{\numberline {A.12}{\ignorespaces Mapas de calor resultantes del calculo de SNR: Banda 0,76 \textmu m; Detector 6}}{15}{figure.caption.143}%
+\contentsline {figure}{\numberline {A.13}{\ignorespaces Mapas de calor resultantes del calculo de SNR: Banda 1,61 \textmu m; Detector 1}}{16}{figure.caption.145}%
+\contentsline {figure}{\numberline {A.14}{\ignorespaces Mapas de calor resultantes del calculo de SNR: Banda 1,61 \textmu m; Detector 2}}{17}{figure.caption.147}%
+\contentsline {figure}{\numberline {A.15}{\ignorespaces Mapas de calor resultantes del calculo de SNR: Banda 1,61 \textmu m; Detector 3}}{18}{figure.caption.149}%
+\contentsline {figure}{\numberline {A.16}{\ignorespaces Mapas de calor resultantes del calculo de SNR: Banda 2,01 \textmu m; Detector 1}}{19}{figure.caption.151}%
+\contentsline {figure}{\numberline {A.17}{\ignorespaces Mapas de calor resultantes del calculo de SNR: Banda 2,01 \textmu m; Detector 2}}{20}{figure.caption.153}%
+\contentsline {figure}{\numberline {A.18}{\ignorespaces Mapas de calor resultantes del calculo de SNR: Banda 2,01 \textmu m; Detector 3}}{21}{figure.caption.155}%
+\addvspace {10\p@ }
+\contentsline {xchapter}{Código MATLAB}{34}{appendix.Alph2}%

@@ -1,0 +1,85 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZpc{} Parámetros de lanzamiento}
+\PYG{n}{lat\PYGZus{}vafb}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{34.7}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Latitud de Vandenberg}
+\PYG{n}{lon\PYGZus{}vafb}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{120.6}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Longitud de Vandenberg}
+
+\PYG{c}{\PYGZpc{} Crear figura 2D}
+\PYG{n+nb}{figure}\PYG{p}{;}
+\PYG{n}{hold}\PYG{+w}{ }\PYG{l+s}{on}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Cargar datos de costas}
+\PYG{n+nb}{load}\PYG{+w}{ }\PYG{n}{coastlines}\PYG{p}{;}
+\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{coastlon}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{coastlat}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{k\PYGZhy{}\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.5}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} LÍMITES DE AZIMUT WTR (170° a 300°)}
+\PYG{n}{azimut\PYGZus{}min}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{170}\PYG{p}{;}
+\PYG{n}{azimut\PYGZus{}max}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{300}\PYG{p}{;}
+\PYG{n}{radio\PYGZus{}linea}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{15}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Líneas de límite}
+\PYG{n}{az\PYGZus{}min\PYGZus{}rad}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{deg2rad}\PYG{p}{(}\PYG{n}{azimut\PYGZus{}min}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{lat\PYGZus{}limite\PYGZus{}min}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{lat\PYGZus{}vafb}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{radio\PYGZus{}linea}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{cos}\PYG{p}{(}\PYG{n}{az\PYGZus{}min\PYGZus{}rad}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{lon\PYGZus{}limite\PYGZus{}min}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{lon\PYGZus{}vafb}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{radio\PYGZus{}linea}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{sin}\PYG{p}{(}\PYG{n}{az\PYGZus{}min\PYGZus{}rad}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n+nb}{cosd}\PYG{p}{(}\PYG{n}{lat\PYGZus{}vafb}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{plot}\PYG{p}{(}\PYG{p}{[}\PYG{n}{lon\PYGZus{}vafb}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lon\PYGZus{}limite\PYGZus{}min}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{lat\PYGZus{}vafb}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lat\PYGZus{}limite\PYGZus{}min}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{k\PYGZhy{}\PYGZhy{}\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n}{az\PYGZus{}max\PYGZus{}rad}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{deg2rad}\PYG{p}{(}\PYG{n}{azimut\PYGZus{}max}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{lat\PYGZus{}limite\PYGZus{}max}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{lat\PYGZus{}vafb}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{radio\PYGZus{}linea}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{cos}\PYG{p}{(}\PYG{n}{az\PYGZus{}max\PYGZus{}rad}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{lon\PYGZus{}limite\PYGZus{}max}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{lon\PYGZus{}vafb}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{radio\PYGZus{}linea}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{sin}\PYG{p}{(}\PYG{n}{az\PYGZus{}max\PYGZus{}rad}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n+nb}{cosd}\PYG{p}{(}\PYG{n}{lat\PYGZus{}vafb}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{plot}\PYG{p}{(}\PYG{p}{[}\PYG{n}{lon\PYGZus{}vafb}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lon\PYGZus{}limite\PYGZus{}max}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{lat\PYGZus{}vafb}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lat\PYGZus{}limite\PYGZus{}max}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{k\PYGZhy{}\PYGZhy{}\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Arco de rango permitido}
+\PYG{n}{azimuts\PYGZus{}arco}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{linspace}\PYG{p}{(}\PYG{n}{azimut\PYGZus{}min}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{azimut\PYGZus{}max}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{50}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{azimuts\PYGZus{}arco\PYGZus{}rad}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{deg2rad}\PYG{p}{(}\PYG{n}{azimuts\PYGZus{}arco}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{radio\PYGZus{}arco}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{8}\PYG{p}{;}
+\PYG{n}{lats\PYGZus{}arco}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{lat\PYGZus{}vafb}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{radio\PYGZus{}arco}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{cos}\PYG{p}{(}\PYG{n}{azimuts\PYGZus{}arco\PYGZus{}rad}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{lons\PYGZus{}arco}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{lon\PYGZus{}vafb}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{radio\PYGZus{}arco}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{sin}\PYG{p}{(}\PYG{n}{azimuts\PYGZus{}arco\PYGZus{}rad}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{./}\PYG{+w}{ }\PYG{n+nb}{cosd}\PYG{p}{(}\PYG{n}{lat\PYGZus{}vafb}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{lons\PYGZus{}arco}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lats\PYGZus{}arco}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{k\PYGZhy{}\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1.5}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Trayectoria de lanzamiento (azimut 198°)}
+\PYG{n}{azimut}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{198}\PYG{p}{;}
+\PYG{n}{azimut\PYGZus{}rad}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{deg2rad}\PYG{p}{(}\PYG{n}{azimut}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{alcance\PYGZus{}horizontal}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{800}\PYG{p}{;}
+\PYG{n}{distancia}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{linspace}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{alcance\PYGZus{}horizontal}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{50}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n}{delta\PYGZus{}lat}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{distancia}\PYG{+w}{ }\PYG{o}{.*}\PYG{+w}{ }\PYG{n+nb}{cos}\PYG{p}{(}\PYG{n}{azimut\PYGZus{}rad}\PYG{p}{)}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{111}\PYG{p}{;}
+\PYG{n}{delta\PYGZus{}lon}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{distancia}\PYG{+w}{ }\PYG{o}{.*}\PYG{+w}{ }\PYG{n+nb}{sin}\PYG{p}{(}\PYG{n}{azimut\PYGZus{}rad}\PYG{p}{)}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{./}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{111}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{cosd}\PYG{p}{(}\PYG{n}{lat\PYGZus{}vafb}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n}{latitudes}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{lat\PYGZus{}vafb}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{delta\PYGZus{}lat}\PYG{p}{;}
+\PYG{n}{longitudes}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{lon\PYGZus{}vafb}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{delta\PYGZus{}lon}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Dibujar la trayectoria en 2D}
+\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{longitudes}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{latitudes}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{r\PYGZhy{}\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Punto de lanzamiento}
+\PYG{n+nb}{scatter}\PYG{p}{(}\PYG{n}{lon\PYGZus{}vafb}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lat\PYGZus{}vafb}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{150}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{g\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{filled\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{text}\PYG{p}{(}\PYG{n}{lon\PYGZus{}vafb}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lat\PYGZus{}vafb}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Vandenberg SFB\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontWeight\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{bold\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Etiquetas con símbolo de grados en LaTeX}
+\PYG{n+nb}{text}\PYG{p}{(}\PYG{n}{lon\PYGZus{}limite\PYGZus{}min}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lat\PYGZus{}limite\PYGZus{}min}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZdl{}170\PYGZca{}\PYGZob{}\PYGZbs{}circ\PYGZcb{}\PYGZdl{}\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Color\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{black\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{text}\PYG{p}{(}\PYG{n}{lon\PYGZus{}limite\PYGZus{}max}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lat\PYGZus{}limite\PYGZus{}max}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZdl{}300\PYGZca{}\PYGZob{}\PYGZbs{}circ\PYGZcb{}\PYGZdl{}\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Color\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{black\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{text}\PYG{p}{(}\PYG{n}{lon\PYGZus{}vafb}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{5}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lat\PYGZus{}vafb}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{WTR Allowable Range\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Color\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{black\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Etiqueta del azimut de lanzamiento}
+\PYG{n+nb}{text}\PYG{p}{(}\PYG{n}{longitudes}\PYG{p}{(}\PYG{l+m+mi}{25}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{latitudes}\PYG{p}{(}\PYG{l+m+mi}{25}\PYG{p}{)}\PYG{o}{+}\PYG{l+m+mf}{0.5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZdl{}198\PYGZca{}\PYGZob{}\PYGZbs{}circ\PYGZcb{}\PYGZdl{}\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{11}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Color\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{red\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontWeight\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{bold\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Configurar ejes}
+\PYG{n+nb}{xlabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Longitud (\PYGZdl{}\PYGZca{}\PYGZob{}\PYGZbs{}circ\PYGZcb{}\PYGZdl{})\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{12}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{ylabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Latitud (\PYGZdl{}\PYGZca{}\PYGZob{}\PYGZbs{}circ\PYGZcb{}\PYGZdl{})\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{12}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{title}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{L\PYGZbs{}\PYGZsq{}}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{imites de Azimut WTR \PYGZhy{} Vandenberg SFB\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{14}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{grid}\PYG{+w}{ }\PYG{l+s}{on}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Límites del mapa}
+\PYG{n+nb}{xlim}\PYG{p}{(}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{130}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{90}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{ylim}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{20}\PYG{+w}{ }\PYG{l+m+mi}{50}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Leyenda}
+\PYG{n+nb}{legend}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Costas\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{L\PYGZbs{}\PYGZsq{}}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{imites WTR\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Rango Permitido\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{       }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Trayectoria (\PYGZdl{}198\PYGZca{}\PYGZob{}\PYGZbs{}circ\PYGZcb{}\PYGZdl{})\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Vandenberg SFB\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{       }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Location\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{northeast\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n}{axis}\PYG{+w}{ }\PYG{l+s}{equal}\PYG{p}{;}
+\PYG{n}{hold}\PYG{+w}{ }\PYG{l+s}{off}\PYG{p}{;}
+
+
+
+\end{MintedVerbatim}

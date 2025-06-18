@@ -1,0 +1,316 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+
+\PYG{n+nb}{clear}\PYG{p}{;}\PYG{+w}{ }\PYG{n+nb}{clc}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{close}\PYG{+w}{ }\PYG{l+s}{all}\PYG{p}{;}
+
+\PYG{n}{lambda1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{1.61e\PYGZhy{}6}\PYG{p}{;}\PYG{+w}{                 }\PYG{c}{\PYGZpc{} Banda 1 Co2}
+\PYG{n}{lambda2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{2.01e\PYGZhy{}6}\PYG{p}{;}\PYG{+w}{                  }\PYG{c}{\PYGZpc{} Banda 2 CO2}
+\PYG{n}{lambda3}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.76e\PYGZhy{}6}\PYG{p}{;}\PYG{+w}{                  }\PYG{c}{\PYGZpc{} Banda Visible O2 A\PYGZhy{}band}
+\PYG{n}{GSD}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{80}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} GSD}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} Definir rangos}
+\PYG{n}{alturas\PYGZus{}orbitales}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{200}\PYG{p}{:}\PYG{l+m+mi}{10}\PYG{p}{:}\PYG{l+m+mi}{1000}\PYG{p}{;}\PYG{+w}{    }\PYG{c}{\PYGZpc{} Alturas orbitales en km}
+\PYG{n}{diametros\PYGZus{}pupila}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{20}\PYG{p}{:}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{200}\PYG{p}{;}\PYG{+w}{        }\PYG{c}{\PYGZpc{} Diámetros pupila en mm}
+\PYG{n}{SNR\PYGZus{}Requirement}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{400}\PYG{p}{;}\PYG{+w}{              }\PYG{c}{\PYGZpc{} SNR minimo}
+\PYG{n}{MTF\PYGZus{}Requirement}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.25}\PYG{p}{;}\PYG{+w}{             }\PYG{c}{\PYGZpc{} MTF minimo}
+\PYG{n}{Cov\PYGZus{}Requirement}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{7}\PYG{p}{;}\PYG{+w}{                }\PYG{c}{\PYGZpc{} días revisita}
+\PYG{n}{max\PYGZus{}detectores}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{;}\PYG{+w}{                 }\PYG{c}{\PYGZpc{} Límite máximo de detectores}
+\PYG{n}{swaths\PYGZus{}km}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{20}\PYG{p}{:}\PYG{l+m+mi}{10}\PYG{p}{:}\PYG{l+m+mi}{500}\PYG{p}{;}\PYG{+w}{               }\PYG{c}{\PYGZpc{} Array de swaths a calcular (km)}
+\PYG{n}{solapamiento}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.05}\PYG{p}{;}\PYG{+w}{                }\PYG{c}{\PYGZpc{} Factor de solapamiento del swath}
+\PYG{n}{cobertura\PYGZus{}nubes}\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{o}{/}\PYG{l+m+mi}{6}\PYG{p}{;}\PYG{+w}{               }\PYG{c}{\PYGZpc{} Pasadas no efectivas}
+\PYG{n}{LTAN\PYGZus{}hour}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{6}\PYG{p}{;}\PYG{+w}{                   }\PYG{c}{\PYGZpc{} Hora de paso local Dawn Dusk}
+
+\PYG{c}{\PYGZpc{} Configuraciones a simular}
+\PYG{n}{satellite\PYGZus{}configs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}
+\PYG{+w}{    }\PYG{c}{\PYGZpc{}1, 1;}
+\PYG{+w}{     }\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{     }\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{+w}{     }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{+w}{     }\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} n satélite(s),  m telescopio(s)Es}
+\PYG{+w}{    }\PYG{c}{\PYGZpc{}4, 1;}
+\PYG{p}{]}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} DETECTOR}
+\PYG{c}{\PYGZpc{} Detector 1 CAPYORK}
+\PYG{n}{eta1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.85}\PYG{p}{;}
+\PYG{n}{MTF\PYGZus{}detector1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.45}\PYG{p}{;}
+\PYG{n}{N\PYGZus{}pix1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1200}\PYG{p}{;}
+\PYG{n}{pixel\PYGZus{}size1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{15e\PYGZhy{}6}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Detector 2 H2RG}
+\PYG{n}{eta2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.7}\PYG{p}{;}
+\PYG{n}{MTF\PYGZus{}detector2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.5}\PYG{p}{;}
+\PYG{n}{N\PYGZus{}pix2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{2048}\PYG{p}{;}
+\PYG{n}{pixel\PYGZus{}size2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{18e\PYGZhy{}6}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Detector 3 SATURN VISIR}
+\PYG{n}{eta3}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.6}\PYG{p}{;}
+\PYG{n}{MTF\PYGZus{}detector3}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.48}\PYG{p}{;}
+\PYG{n}{N\PYGZus{}pix3}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1000}\PYG{p}{;}
+\PYG{n}{pixel\PYGZus{}size3}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{30e\PYGZhy{}6}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Vector detectores 1\PYGZhy{}3 (para lambda1 y lambda2)}
+\PYG{n}{eta\PYGZus{}12}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{eta1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{eta2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{eta3}\PYG{p}{]}\PYG{p}{;}
+\PYG{n}{MTF\PYGZus{}detector\PYGZus{}12}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{MTF\PYGZus{}detector1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}detector2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}detector3}\PYG{p}{]}\PYG{p}{;}
+\PYG{n}{N\PYGZus{}pix\PYGZus{}12}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{N\PYGZus{}pix1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}pix2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}pix3}\PYG{p}{]}\PYG{p}{;}
+\PYG{n}{pixel\PYGZus{}size\PYGZus{}12}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{pixel\PYGZus{}size1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{pixel\PYGZus{}size2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{pixel\PYGZus{}size3}\PYG{p}{]}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} O2 Band}
+\PYG{c}{\PYGZpc{} Detector 4 CMOS}
+\PYG{n}{eta4}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.35}\PYG{p}{;}
+\PYG{n}{MTF\PYGZus{}detector4}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.36}\PYG{p}{;}
+\PYG{n}{N\PYGZus{}pix4}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{512}\PYG{p}{;}
+\PYG{n}{pixel\PYGZus{}size4}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{25e\PYGZhy{}6}\PYG{p}{;}
+
+
+\PYG{c}{\PYGZpc{} Detector 5 H2RG}
+\PYG{n}{eta5}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.7}\PYG{p}{;}
+\PYG{n}{MTF\PYGZus{}detector5}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.5}\PYG{p}{;}
+\PYG{n}{N\PYGZus{}pix5}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{2048}\PYG{p}{;}
+\PYG{n}{pixel\PYGZus{}size5}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{18e\PYGZhy{}6}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Detector 6 SATURN VISIR}
+\PYG{n}{eta6}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.6}\PYG{p}{;}
+\PYG{n}{MTF\PYGZus{}detector6}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.45}\PYG{p}{;}
+\PYG{n}{N\PYGZus{}pix6}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1000}\PYG{p}{;}
+\PYG{n}{pixel\PYGZus{}size6}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{30e\PYGZhy{}6}\PYG{p}{;}
+
+
+\PYG{c}{\PYGZpc{} Vector detectores 4\PYGZhy{}6 (para lambda3)}
+\PYG{n}{eta\PYGZus{}3}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{eta4}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{eta5}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{eta6}\PYG{p}{]}\PYG{p}{;}
+\PYG{n}{MTF\PYGZus{}detector\PYGZus{}3}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{MTF\PYGZus{}detector4}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}detector5}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}detector6}\PYG{p}{]}\PYG{p}{;}
+\PYG{n}{N\PYGZus{}pix\PYGZus{}3}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{N\PYGZus{}pix4}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}pix5}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}pix6}\PYG{p}{]}\PYG{p}{;}
+\PYG{n}{pixel\PYGZus{}size\PYGZus{}3}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{pixel\PYGZus{}size4}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{pixel\PYGZus{}size5}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{pixel\PYGZus{}size6}\PYG{p}{]}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} TELESCOPIOS}
+\PYG{c}{\PYGZpc{} Refractivo 1}
+\PYG{n}{MTF\PYGZus{}alineamiento1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.9}\PYG{p}{;}
+\PYG{n}{tau1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.8}\PYG{p}{;}
+\PYG{n}{fov\PYGZus{}limit\PYGZus{}deg1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Korsch 2}
+\PYG{n}{MTF\PYGZus{}alineamiento2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.85}\PYG{p}{;}
+\PYG{n}{tau2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.65}\PYG{p}{;}
+\PYG{n}{fov\PYGZus{}limit\PYGZus{}deg2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Cassegrain 3}
+\PYG{n}{MTF\PYGZus{}alineamiento3}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.8}\PYG{p}{;}
+\PYG{n}{tau3}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.7}\PYG{p}{;}
+\PYG{n}{fov\PYGZus{}limit\PYGZus{}deg3}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} TMA 4}
+\PYG{n}{MTF\PYGZus{}alineamiento4}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.7}\PYG{p}{;}
+\PYG{n}{tau4}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.6}\PYG{p}{;}
+\PYG{n}{fov\PYGZus{}limit\PYGZus{}deg4}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{8}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Matriz telescopio}
+\PYG{n}{MTF\PYGZus{}telescope}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{MTF\PYGZus{}alineamiento1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}alineamiento2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}alineamiento3}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}alineamiento4}\PYG{p}{]}\PYG{p}{;}
+\PYG{n}{tau\PYGZus{}telescope}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{tau1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{tau2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{tau3}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{tau4}\PYG{p}{]}\PYG{p}{;}
+\PYG{n}{fov\PYGZus{}limit}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{fov\PYGZus{}limit\PYGZus{}deg1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{fov\PYGZus{}limit\PYGZus{}deg2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{fov\PYGZus{}limit\PYGZus{}deg3}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{fov\PYGZus{}limit\PYGZus{}deg4}\PYG{p}{]}\PYG{p}{;}
+\PYG{n}{telescope\PYGZus{}names}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Refractivo\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Korsch\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Cassegrain\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{TMA\PYGZsq{}}\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+\PYG{n}{R}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Radio 0 para Refractivo y TMA que no son obscurados}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} Crear directorios}
+\PYG{n}{dirs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MTF\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{SNR\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Coverage\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{HvsDmin\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Masa\PYGZus{}seca\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Masa\PYGZus{}total\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{OptimumConfigs\PYGZsq{}}\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{dirs}\PYG{p}{)}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{o}{\PYGZti{}}\PYG{n+nb}{exist}\PYG{p}{(}\PYG{n}{dirs}\PYG{p}{\PYGZob{}}\PYG{n+nb}{i}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{dir\PYGZsq{}}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n+nb}{mkdir}\PYG{p}{(}\PYG{n}{dirs}\PYG{p}{\PYGZob{}}\PYG{n+nb}{i}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} MTF para lambda1 (detectores 1\PYGZhy{}3)}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Bucle detectores 1\PYGZhy{}3}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{4}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Bucle telescopios}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Configurar parámetros para esta combinación}
+\PYG{+w}{        }\PYG{n}{current\PYGZus{}pixel\PYGZus{}size}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{pixel\PYGZus{}size\PYGZus{}12}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{current\PYGZus{}MTF\PYGZus{}detector}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}detector\PYGZus{}12}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{current\PYGZus{}MTF\PYGZus{}alineamiento}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}telescope}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{R\PYGZus{}obs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{R}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Nombre de archivo para esta combinación}
+\PYG{+w}{        }\PYG{n}{filename\PYGZus{}prefix}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MTF/MTF\PYGZus{}Lambda1\PYGZus{}Detector\PYGZpc{}d\PYGZus{}Telescopio\PYGZpc{}d\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Llamar a la función MTF con los parámetros actuales}
+\PYG{+w}{        }\PYG{n}{MTFfunction}\PYG{p}{(}\PYG{n}{lambda1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{current\PYGZus{}pixel\PYGZus{}size}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{current\PYGZus{}MTF\PYGZus{}detector}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{            }\PYG{n}{current\PYGZus{}MTF\PYGZus{}alineamiento}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{GSD}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{R\PYGZus{}obs}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{            }\PYG{n}{diametros\PYGZus{}pupila}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{filename\PYGZus{}prefix}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{telescope\PYGZus{}names}\PYG{p}{\PYGZob{}}\PYG{n+nb}{j}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{p}{,}\PYG{n}{MTF\PYGZus{}Requirement}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} MTF para lambda2 (detectores 1\PYGZhy{}3)}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Bucle detectores 1\PYGZhy{}3}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{4}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Bucle telescopios}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Configurar parámetros para esta combinación}
+\PYG{+w}{        }\PYG{n}{current\PYGZus{}pixel\PYGZus{}size}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{pixel\PYGZus{}size\PYGZus{}12}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{current\PYGZus{}MTF\PYGZus{}detector}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}detector\PYGZus{}12}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{current\PYGZus{}MTF\PYGZus{}alineamiento}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}telescope}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{R\PYGZus{}obs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{R}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Nombre de archivo para esta combinación}
+\PYG{+w}{        }\PYG{n}{filename\PYGZus{}prefix}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MTF/MTF\PYGZus{}Lambda2\PYGZus{}Detector\PYGZpc{}d\PYGZus{}Telescopio\PYGZpc{}d\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Llamar a la función MTF con los parámetros actuales}
+\PYG{+w}{        }\PYG{n}{MTFfunction}\PYG{p}{(}\PYG{n}{lambda2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{current\PYGZus{}pixel\PYGZus{}size}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{current\PYGZus{}MTF\PYGZus{}detector}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{            }\PYG{n}{current\PYGZus{}MTF\PYGZus{}alineamiento}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{GSD}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{R\PYGZus{}obs}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{            }\PYG{n}{diametros\PYGZus{}pupila}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{filename\PYGZus{}prefix}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{telescope\PYGZus{}names}\PYG{p}{\PYGZob{}}\PYG{n+nb}{j}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{p}{,}\PYG{n}{MTF\PYGZus{}Requirement}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} MTF para lambda3 (detectores 4\PYGZhy{}6)}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Bucle detectores 4\PYGZhy{}6}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{4}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Bucle telescopios}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Configurar parámetros para esta combinación}
+\PYG{+w}{        }\PYG{n}{current\PYGZus{}pixel\PYGZus{}size}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{pixel\PYGZus{}size\PYGZus{}3}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{current\PYGZus{}MTF\PYGZus{}detector}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}detector\PYGZus{}3}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{current\PYGZus{}MTF\PYGZus{}alineamiento}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}telescope}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{R\PYGZus{}obs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{R}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Nombre de archivo para esta combinación}
+\PYG{+w}{        }\PYG{n}{filename\PYGZus{}prefix}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MTF/MTF\PYGZus{}Lambda3\PYGZus{}Detector\PYGZpc{}d\PYGZus{}Telescopio\PYGZpc{}d\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{o}{+}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Llamar a la función MTF con los parámetros actuales}
+\PYG{+w}{        }\PYG{n}{MTFfunction}\PYG{p}{(}\PYG{n}{lambda3}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{current\PYGZus{}pixel\PYGZus{}size}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{current\PYGZus{}MTF\PYGZus{}detector}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{            }\PYG{n}{current\PYGZus{}MTF\PYGZus{}alineamiento}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{GSD}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{R\PYGZus{}obs}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{            }\PYG{n}{diametros\PYGZus{}pupila}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{filename\PYGZus{}prefix}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{telescope\PYGZus{}names}\PYG{p}{\PYGZob{}}\PYG{n+nb}{j}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}Requirement}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} SNR para lambda1 (detectores 1\PYGZhy{}3)}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Bucle detectores 1\PYGZhy{}3}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{4}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Bucle telescopios}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Configurar parámetros para esta combinación}
+\PYG{+w}{        }\PYG{n}{current\PYGZus{}pixel\PYGZus{}size}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{pixel\PYGZus{}size\PYGZus{}12}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{current\PYGZus{}eta}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{eta\PYGZus{}12}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{current\PYGZus{}tau}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{tau\PYGZus{}telescope}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{R\PYGZus{}obs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{R}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Nombre de archivo para esta combinación}
+\PYG{+w}{        }\PYG{n}{filename\PYGZus{}prefix}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{SNR/SNR\PYGZus{}Lambda1\PYGZus{}Detector\PYGZpc{}d\PYGZus{}Telescopio\PYGZpc{}d\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Llamar a la función SNR con los parámetros actuales}
+\PYG{+w}{        }\PYG{n}{SNRfunction}\PYG{p}{(}\PYG{n}{lambda1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{current\PYGZus{}pixel\PYGZus{}size}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{current\PYGZus{}eta}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{            }\PYG{n}{current\PYGZus{}tau}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{GSD}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{R\PYGZus{}obs}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{            }\PYG{n}{diametros\PYGZus{}pupila}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{filename\PYGZus{}prefix}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{telescope\PYGZus{}names}\PYG{p}{\PYGZob{}}\PYG{n+nb}{j}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{p}{,}\PYG{n}{SNR\PYGZus{}Requirement}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} SNR para lambda2 (detectores 1\PYGZhy{}3)}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Bucle detectores 1\PYGZhy{}3}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{4}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Bucle telescopios}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Configurar parámetros para esta combinación}
+\PYG{+w}{        }\PYG{n}{current\PYGZus{}pixel\PYGZus{}size}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{pixel\PYGZus{}size\PYGZus{}12}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{current\PYGZus{}eta}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{eta\PYGZus{}12}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{current\PYGZus{}tau}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{tau\PYGZus{}telescope}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{R\PYGZus{}obs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{R}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Nombre de archivo para esta combinación}
+\PYG{+w}{        }\PYG{n}{filename\PYGZus{}prefix}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{SNR/SNR\PYGZus{}Lambda2\PYGZus{}Detector\PYGZpc{}d\PYGZus{}Telescopio\PYGZpc{}d\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Llamar a la función SNR con los parámetros actuales}
+\PYG{+w}{        }\PYG{n}{SNRfunction}\PYG{p}{(}\PYG{n}{lambda2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{current\PYGZus{}pixel\PYGZus{}size}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{current\PYGZus{}eta}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{            }\PYG{n}{current\PYGZus{}tau}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{GSD}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{R\PYGZus{}obs}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{            }\PYG{n}{diametros\PYGZus{}pupila}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{filename\PYGZus{}prefix}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{telescope\PYGZus{}names}\PYG{p}{\PYGZob{}}\PYG{n+nb}{j}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{p}{,}\PYG{n}{SNR\PYGZus{}Requirement}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} SNR para lambda3 (detectores 4\PYGZhy{}6)}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Bucle detectores 4\PYGZhy{}6}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{4}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Bucle telescopios}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Configurar parámetros para esta combinación}
+\PYG{+w}{        }\PYG{n}{current\PYGZus{}pixel\PYGZus{}size}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{pixel\PYGZus{}size\PYGZus{}3}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{current\PYGZus{}eta}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{eta\PYGZus{}3}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{current\PYGZus{}tau}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{tau\PYGZus{}telescope}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{R\PYGZus{}obs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{R}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Nombre de archivo para esta combinación}
+\PYG{+w}{        }\PYG{n}{filename\PYGZus{}prefix}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{SNR/SNR\PYGZus{}Lambda3\PYGZus{}Detector\PYGZpc{}d\PYGZus{}Telescopio\PYGZpc{}d\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{o}{+}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Llamar a la función SNR con los parámetros actuales}
+\PYG{+w}{        }\PYG{n}{SNRfunction}\PYG{p}{(}\PYG{n}{lambda3}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{current\PYGZus{}pixel\PYGZus{}size}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{current\PYGZus{}eta}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{            }\PYG{n}{current\PYGZus{}tau}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{GSD}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{R\PYGZus{}obs}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{            }\PYG{n}{diametros\PYGZus{}pupila}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{filename\PYGZus{}prefix}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{telescope\PYGZus{}names}\PYG{p}{\PYGZob{}}\PYG{n+nb}{j}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{p}{,}\PYG{n}{SNR\PYGZus{}Requirement}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} COVERAGE (USANDO REVISITCALC)}
+\PYG{n+nb}{disp}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{====================================================================\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{disp}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Iniciando análisis de cobertura con RevisitCalc\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{disp}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{====================================================================\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Bucle para cada configuración de satelite/telescopio}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n}{config\PYGZus{}idx}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{satellite\PYGZus{}configs}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{N\PYGZus{}sat}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{satellite\PYGZus{}configs}\PYG{p}{(}\PYG{n}{config\PYGZus{}idx}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{N\PYGZus{}telescopes}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{satellite\PYGZus{}configs}\PYG{p}{(}\PYG{n}{config\PYGZus{}idx}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{n}{config\PYGZus{}desc}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Config: \PYGZpc{}d satélite(s), \PYGZpc{}d telescopio(s)\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}sat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}telescopes}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{disp}\PYG{p}{(}\PYG{p}{[}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Procesando \PYGZsq{}}\PYG{+w}{ }\PYG{n}{config\PYGZus{}desc}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Bucle para cada tipo de detector (IDs 1\PYGZhy{}3)}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{detector\PYGZus{}id}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{3}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Bucle para cada tipo de telescopio (IDs 1\PYGZhy{}4)}
+\PYG{+w}{        }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{telescope\PYGZus{}id}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{4}
+
+\PYG{+w}{            }\PYG{c}{\PYGZpc{} Obtener parámetros para la combinación actual}
+\PYG{+w}{            }\PYG{n}{current\PYGZus{}Npix}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{N\PYGZus{}pix\PYGZus{}12}\PYG{p}{(}\PYG{n}{detector\PYGZus{}id}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{current\PYGZus{}fov\PYGZus{}limit}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{fov\PYGZus{}limit}\PYG{p}{(}\PYG{n}{telescope\PYGZus{}id}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{current\PYGZus{}telescope\PYGZus{}name}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{telescope\PYGZus{}names}\PYG{p}{\PYGZob{}}\PYG{n}{telescope\PYGZus{}id}\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+
+\PYG{+w}{            }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZhy{}\PYGZgt{} Calculando para Detector \PYGZpc{}d, Telescopio \PYGZpc{}s...\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{detector\PYGZus{}id}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{current\PYGZus{}telescope\PYGZus{}name}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{            }\PYG{c}{\PYGZpc{} Llamada a la función de cálculo de cobertura}
+\PYG{+w}{            }\PYG{k}{try}
+\PYG{+w}{                }\PYG{n}{CoverageRevisitCalc}\PYG{p}{(}\PYG{n}{GSD}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{swaths\PYGZus{}km}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                                    }\PYG{n}{Cov\PYGZus{}Requirement}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{current\PYGZus{}Npix}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                                    }\PYG{n}{current\PYGZus{}fov\PYGZus{}limit}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}sat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}telescopes}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                                    }\PYG{n}{detector\PYGZus{}id}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{current\PYGZus{}telescope\PYGZus{}name}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                                    }\PYG{n}{solapamiento}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{cobertura\PYGZus{}nubes}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{max\PYGZus{}detectores}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{catch}\PYG{+w}{ }\PYG{n}{ME}
+\PYG{+w}{                }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{    \PYGZhy{}\PYGZgt{} X Error al procesar: \PYGZpc{}s\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ME}\PYG{p}{.}\PYG{n}{message}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{continue}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{end}
+\PYG{+w}{        }\PYG{k}{end}
+\PYG{+w}{    }\PYG{k}{end}
+
+\PYG{+w}{    }\PYG{n+nb}{disp}\PYG{p}{(}\PYG{p}{[}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ok \PYGZsq{}}\PYG{+w}{ }\PYG{n}{config\PYGZus{}desc}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ completada.\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{k}{end}
+
+\PYG{n+nb}{disp}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{====================================================================\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{disp}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Análisis de cobertura finalizado para todas las configuraciones.\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{disp}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{====================================================================\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} CRUCE DE DATOS}
+\PYG{n}{CrossDataFunction}\PYG{p}{(}\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{swaths\PYGZus{}km}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{diametros\PYGZus{}pupila}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{telescope\PYGZus{}names}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{fov\PYGZus{}limit}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{satellite\PYGZus{}configs}\PYG{p}{,}\PYG{n}{MTF\PYGZus{}Requirement}\PYG{p}{,}\PYG{n}{SNR\PYGZus{}Requirement}\PYG{p}{,}\PYG{n}{Cov\PYGZus{}Requirement}\PYG{p}{)}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} ========================================================================}
+\PYG{c}{\PYGZpc{}  ANÁLISIS DE CONFIGURACIONES}
+\PYG{c}{\PYGZpc{}  ========================================================================}
+
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} Empaquetar todos los parámetros de entrada en un único struct}
+\PYG{c}{\PYGZpc{}     para pasarlos a la función de análisis.}
+\PYG{n}{params}\PYG{p}{.}\PYG{n}{satellite\PYGZus{}configs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{satellite\PYGZus{}configs}\PYG{p}{;}
+\PYG{n}{params}\PYG{p}{.}\PYG{n}{telescope\PYGZus{}names}\PYG{+w}{   }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{telescope\PYGZus{}names}\PYG{p}{;}
+\PYG{n}{params}\PYG{p}{.}\PYG{n}{alturas\PYGZus{}orbitales}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{;}
+\PYG{n}{params}\PYG{p}{.}\PYG{n}{swaths\PYGZus{}km}\PYG{+w}{         }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{swaths\PYGZus{}km}\PYG{p}{;}
+\PYG{n}{params}\PYG{p}{.}\PYG{n}{diametros\PYGZus{}pupila}\PYG{+w}{  }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{diametros\PYGZus{}pupila}\PYG{p}{;}
+\PYG{n}{params}\PYG{p}{.}\PYG{n}{Cov\PYGZus{}Requirement}\PYG{+w}{   }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{Cov\PYGZus{}Requirement}\PYG{p}{;}
+\PYG{n}{params}\PYG{p}{.}\PYG{n}{GSD}\PYG{+w}{               }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{GSD}\PYG{p}{;}
+\PYG{n}{params}\PYG{p}{.}\PYG{n}{Npix\PYGZus{}detectors}\PYG{+w}{    }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{N\PYGZus{}pix\PYGZus{}12}\PYG{p}{;}
+\PYG{n}{params}\PYG{p}{.}\PYG{n}{fov\PYGZus{}limit}\PYG{+w}{         }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{fov\PYGZus{}limit}\PYG{p}{;}
+\PYG{n}{params}\PYG{p}{.}\PYG{n}{LTAN\PYGZus{}hour}\PYG{+w}{         }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{LTAN\PYGZus{}hour}\PYG{p}{;}
+\PYG{n}{params}\PYG{p}{.}\PYG{n}{Pixel\PYGZus{}size}\PYG{+w}{        }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{pixel\PYGZus{}size\PYGZus{}12}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} Llamar a la función principal de análisis}
+\PYG{c}{\PYGZpc{}     Esta función se encargará de todo el procesamiento final y la}
+\PYG{c}{\PYGZpc{}     generación de los reportes en CSV y TXT.}
+\PYG{n}{ConfigAnalysis}\PYG{p}{(}\PYG{n}{params}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n+nb}{disp}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{====================================================================\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{disp}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{SCRIPT PRINCIPAL FINALIZADO.\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{disp}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Todos los resultados han sido generados.\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{disp}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{====================================================================\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+
+\end{MintedVerbatim}

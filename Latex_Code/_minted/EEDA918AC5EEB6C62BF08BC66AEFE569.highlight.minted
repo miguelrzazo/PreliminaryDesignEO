@@ -1,0 +1,43 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{c}{\PYGZpc{} Datos aproximados de vida útil en días para diferentes altitudes (de 400 a 2000 km)}
+\PYG{c}{\PYGZpc{} Basado en la tabla y la información de la fuente consultada}
+
+\PYG{n}{altitudes}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{400}\PYG{p}{:}\PYG{l+m+mi}{50}\PYG{p}{:}\PYG{l+m+mi}{2000}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} de 400 a 2000 km en pasos de 50 km}
+
+\PYG{c}{\PYGZpc{} Función para calcular la vida útil en días}
+\PYG{k}{function}\PYG{+w}{ }days\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nf}{lifetime\PYGZus{}days}\PYG{p}{(}alt\PYG{p}{)}
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Aproximación basada en la tabla y la tendencia logarítmica}
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} 400 km: 1 año (365 días), 500 km: 10 años (3650 días),}
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} 700 km: 100 años (36500 días), 900 km: 1000 años (365000 días)}
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Ajuste logarítmico entre los puntos conocidos}
+
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{alt}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{400}
+\PYG{+w}{        }\PYG{n+nb}{days}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{elseif}\PYG{+w}{ }\PYG{n}{alt}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{l+m+mi}{500}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Interpolación logarítmica entre 400 y 500 km}
+\PYG{+w}{        }\PYG{n+nb}{days}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{exp}\PYG{p}{(}\PYG{n+nb}{interp1}\PYG{p}{(}\PYG{p}{[}\PYG{n+nb}{log}\PYG{p}{(}\PYG{l+m+mi}{400}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{log}\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{p}{)}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{n+nb}{log}\PYG{p}{(}\PYG{l+m+mi}{365}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{log}\PYG{p}{(}\PYG{l+m+mi}{3650}\PYG{p}{)}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{log}\PYG{p}{(}\PYG{n}{alt}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{elseif}\PYG{+w}{ }\PYG{n}{alt}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{l+m+mi}{700}
+\PYG{+w}{        }\PYG{n+nb}{days}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{exp}\PYG{p}{(}\PYG{n+nb}{interp1}\PYG{p}{(}\PYG{p}{[}\PYG{n+nb}{log}\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{log}\PYG{p}{(}\PYG{l+m+mi}{700}\PYG{p}{)}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{n+nb}{log}\PYG{p}{(}\PYG{l+m+mi}{3650}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{log}\PYG{p}{(}\PYG{l+m+mi}{36500}\PYG{p}{)}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{log}\PYG{p}{(}\PYG{n}{alt}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{elseif}\PYG{+w}{ }\PYG{n}{alt}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{l+m+mi}{900}
+\PYG{+w}{        }\PYG{n+nb}{days}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{exp}\PYG{p}{(}\PYG{n+nb}{interp1}\PYG{p}{(}\PYG{p}{[}\PYG{n+nb}{log}\PYG{p}{(}\PYG{l+m+mi}{700}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{log}\PYG{p}{(}\PYG{l+m+mi}{900}\PYG{p}{)}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{n+nb}{log}\PYG{p}{(}\PYG{l+m+mi}{36500}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{log}\PYG{p}{(}\PYG{l+m+mi}{365000}\PYG{p}{)}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{log}\PYG{p}{(}\PYG{n}{alt}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{else}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Por encima de 900 km, extrapolamos logarítmicamente hasta 2000 km}
+\PYG{+w}{        }\PYG{n+nb}{days}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{exp}\PYG{p}{(}\PYG{n+nb}{interp1}\PYG{p}{(}\PYG{p}{[}\PYG{n+nb}{log}\PYG{p}{(}\PYG{l+m+mi}{900}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{log}\PYG{p}{(}\PYG{l+m+mi}{2000}\PYG{p}{)}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{n+nb}{log}\PYG{p}{(}\PYG{l+m+mi}{365000}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{log}\PYG{p}{(}\PYG{l+m+mi}{3650000}\PYG{p}{)}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{log}\PYG{p}{(}\PYG{n}{alt}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
+
+\PYG{c}{\PYGZpc{} Calcular las vidas útiles para todas las altitudes}
+\PYG{n}{lifetimes}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{arrayfun}\PYG{p}{(}\PYG{p}{@}\PYG{n}{lifetime\PYGZus{}days}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{altitudes}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Crear la gráfica}
+\PYG{n+nb}{figure}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Position\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{800}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{480}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{altitudes}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lifetimes}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZhy{}\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{n+nb}{gca}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{YScale\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{log\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{xlabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Altura orbital (km)\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{ylabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Dias de vida media en orbita\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{grid}\PYG{+w}{ }\PYG{l+s}{on}\PYG{p}{;}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{n+nb}{gca}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{GridLineStyle\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZhy{}\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{GridAlpha\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{XMinorGrid\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{off\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{YMinorGrid\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{off\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+
+\end{MintedVerbatim}

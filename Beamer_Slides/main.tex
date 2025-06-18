@@ -1,0 +1,371 @@
+\documentclass[10pt]{beamer}
+% ========================
+% OPCIONES DE PRESENTADOR
+% ========================
+%\setbeameroption{show notes on second screen=right} % Mostrar notas en segunda pantalla
+
+% ========================
+% PAQUETES
+% ========================
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[backend=biber,style=authoryear]{biblatex}
+\addbibresource{referencias.bib} % Usa el mismo archivo que tu trabajo
+% Fuentes recomendadas: Alegreya Sans e Inconsolata
+\usepackage[sfdefault]{AlegreyaSans} %
+\usepackage[scaled=0.85]{inconsolata}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, calc}
+% ========================
+% COLORES PERSONALIZADOS
+% ========================
+\definecolor{mybackground}{RGB}{252,248,244} % Color crema
+\definecolor{mytitle}{RGB}{40,40,40} % Gris oscuro para título
+\definecolor{myaccent}{RGB}{217,85,59} % Naranja acento
+\definecolor{mycode}{RGB}{175,30,45} % Rojo apagado para código o enlaces
+
+\setbeamercolor{background canvas}{bg=mybackground}
+\setbeamercolor{frametitle}{fg=mytitle}
+\setbeamercolor{title}{fg=mytitle}
+\setbeamercolor{normal text}{fg=mytitle}
+\setbeamercolor{structure}{fg=myaccent}
+
+% ========================
+% TÍTULO
+% ========================
+% Datos de portada
+\title{Diseño Preliminar de un Satélite de Observación de la Tierra}
+\author{Miguel Rosa Zazo \\ \footnotesize Tutor: Demetrio Zorita Gómez-Escolar }
+\institute{Grado en Ingeniería Aeroespacial\\ \textbf{Universidad Politécnica de Madrid}}
+\date{Julio 2025}
+
+% ========================
+% DOCUMENTO
+% ========================
+\begin{document}
+
+% ===== SLIDE 1: TÍTULO =====
+\begin{frame}[plain]
+  \titlepage
+  \begin{tikzpicture}[remember picture,overlay]
+    % Logo derecho
+    \node[anchor=south east,xshift=-0.5cm,yshift=0.5cm] at (current page.south east) {
+      \includegraphics[width=3cm]{1959339-1955144650.png}
+    };
+    % Logo izquierdo (reemplaza este archivo por el logo de la escuela)
+    \node[anchor=south west,xshift=0.5cm,yshift=0.5cm] at (current page.south west) {
+      \includegraphics[width=3cm]{etsiae-1959139697.png}
+    };
+  \end{tikzpicture}
+  \note[item]{Bienvenida a la audiencia.}
+  \note[item]{Este proyecto es mi TFG para el grado en Ingeniería Aeroespacial.}
+  \note[item]{Vamos a ver cómo diseñar un satélite de observación desde cero.}
+\end{frame}
+
+% ===== SLIDE 2: OBJETIVOS =====
+\begin{frame}
+  \frametitle{Introducción. Objetivos del Proyecto}
+  \begin{itemize}
+    \item Detección del CO$_{2}$ antropogénico: Bandas características.
+    \item Requerimiento de MTF @ Nyquist $\geq$ 0,25 
+    \item Requerimiento de SNR $\geq$ 400
+    \item Cumplir una cobertura semanal sobre EE. UU (continental) con 1 dia cubierto por nubes, por cada 5 descubiertos.
+    \item Minimizar la masa total puesta en orbita, con el fin de optimizar el coste de la misión
+  \end{itemize}
+  \note[item]{En esta sección explicamos el alcance del proyecto.}
+  \note[item]{El objetivo no es fabricar el satélite, sino establecer un diseño preliminar.}
+  
+\end{frame}
+
+
+% ===== SLIDE CAPÍTULO: Misiones semejantes =====
+\begin{frame}[plain]
+  \begin{center}
+    \vspace{1.5cm}
+    {\usebeamerfont{title}\color{myaccent}\Huge Misiones semejantes}
+    
+    \vspace{0.5cm}
+    \rule{0.6\linewidth}{1pt}
+    
+    \vspace{1.5cm}
+    {\Large\textit{Análisis comparativo de misiones existentes}}
+  \end{center}
+
+
+  \note[item]{Inicio del bloque dedicado a la carga útil del satélite.}
+  \note[item]{Se introduce el diseño óptico, elección del detector y consideraciones espectrales.}
+\end{frame}
+
+
+
+% ===== SLIDE CAPÍTULO: CARGA DE PAGO =====
+\begin{frame}[plain]
+  \begin{center}
+    \vspace{1.5cm}
+    {\usebeamerfont{title}\color{myaccent}\Huge Carga de Pago}
+    
+    \vspace{0.5cm}
+    \rule{0.6\linewidth}{1pt}
+    
+    \vspace{1.5cm}
+    {\Large\textit{Diseño del sistema óptico y elección del detector}}
+  \end{center}
+
+
+
+  \note[item]{Inicio del bloque dedicado a la carga útil del satélite.}
+  \note[item]{Se introduce el diseño óptico, elección del detector y consideraciones espectrales.}
+\end{frame}
+
+
+\begin{frame}{Diagrama}
+%Llamada a funciones y entrada de parámetros: Master.m
+\scriptsize
+\hspace*{-1cm}
+\begin{tikzpicture}[
+    node distance=0.3cm and 1cm,
+    box/.style={draw, rounded corners, minimum width=1cm, minimum height=1cm, align=center},
+    ->, >=Stealth
+]
+
+% Nodos
+\node[box] (mtf) at (-25,5) {MTF Calc.m};
+\coordinate (puntoImagen) at ($(mtf.north west) + (-0.3cm,0.3cm)$);
+\draw[->] (mtf.north west) -- (puntoImagen);
+\node at ($(mtf.north west)+(-0.5cm,0.5cm)$) {
+  \includegraphics[width=0.3cm]{png_filetype_icon_227876.png}%
+  \hspace{0.1cm}
+  \includegraphics[width=0.3cm]{txt_filetype_icon_227883.png}
+};
+
+\node[box, below=of mtf] (snr) {SNR Calc.m};
+\coordinate (snrimg) at ($(snr.north west) + (-0.3cm,0.3cm)$);
+\draw[->] (snr.north west) -- (snrimg);
+\node at ($(snr.north west)+(-0.5cm,0.5cm)$) {
+  \includegraphics[width=0.3cm]{png_filetype_icon_227876.png}%
+  \hspace{0.1cm}
+  \includegraphics[width=0.3cm]{txt_filetype_icon_227883.png}
+};
+
+\node[box, below=of snr] (coverage) {Coverage.m\\(\textit{wrapper})};
+\coordinate (puntoImagen) at ($(coverage.north west) + (-0.3cm,0.3cm)$);
+\draw[->] (coverage.north west) -- (puntoImagen);
+\node at ($(coverage.north west)+(-0.5cm,0.5cm)$) {
+  \includegraphics[width=0.3cm]{png_filetype_icon_227876.png}%
+  \hspace{0.1cm}
+  \includegraphics[width=0.3cm]{txt_filetype_icon_227883.png}
+};
+
+\node[box, below=of coverage] (revisit) {RevisitCalc.m};
+
+
+\node[box, right=1cmof snr] (crossdata) {Cross Data.m};
+\coordinate (puntoImagen) at ($(crossdata.north east) + (0.3cm,0.3cm)$);
+\draw[->] (crossdata.north east) -- (puntoImagen);
+\node at ($(crossdata.north east)+(0.5cm,0.5cm)$) {
+  \includegraphics[width=0.3cm]{png_filetype_icon_227876.png}
+  \hspace{0.1cm}
+  \includegraphics[width=0.3cm]{txt_filetype_icon_227883.png}
+};
+
+
+\node[box, right=1cm of crossdata] (masa seca) {Masa Seca.m};
+\coordinate (puntoImagen) at ($(masa seca.north east) + (0.3cm,0.3cm)$);
+\draw[->] (masa seca.north east) -- (puntoImagen);
+\node at ($(masa seca.north east)+(0.5cm,0.5cm)$) {
+  \includegraphics[width=0.3cm]{png_filetype_icon_227876.png}
+  \hspace{0.1cm}
+  \includegraphics[width=0.3cm]{txt_filetype_icon_227883.png}
+};
+
+
+\node[box, right=1cm of masa seca] (masa total) {Masa Total.m};
+\coordinate (puntoImagen) at ($(mtf.north west) + (-0.3cm,0.3cm)$);
+\draw[->] (mtf.north west) -- (puntoImagen);
+\node at ($(mtf.north west)+(-0.5cm,0.5cm)$) {
+  \includegraphics[width=0.3cm]{png_filetype_icon_227876.png}%
+  \hspace{0.1cm}
+  \includegraphics[width=0.3cm]{txt_filetype_icon_227883.png}
+};
+
+
+
+\node[box, right=1cm of masa total] (config) {ConfigAnalysis.m};
+\coordinate (puntoImagen) at ($(config.south) + (-0.0cm,-0.3cm)$);
+\draw[->] (config.south) -- (puntoImagen);
+\node at ($(config.south)+(-0.cm,-0.7cm)$) {
+  \parbox{2.5cm}{%
+    \centering
+    \includegraphics[width=0.3cm]{csv_filetype_icon_227881-375492084.png} \hspace{0.1cm}
+    \includegraphics[width=0.3cm]{txt_filetype_icon_227883.png} \\
+    Lista de configuraciones
+  }
+};
+
+
+
+% Flechas
+\draw (mtf.east) -- (crossdata);
+\node at ($ (mtf.east)!0.3!(crossdata) + (0,0.3) $) 
+  {\includegraphics[width=0.3cm]{csv_filetype_icon_227881-375492084.png}};
+  
+\draw (snr) -- (crossdata);
+\node at ($ (snr.east)!0.3!(crossdata) + (0,0.3) $) 
+  {\includegraphics[width=0.3cm]{csv_filetype_icon_227881-375492084.png}};
+  
+\draw (coverage.east) -- (crossdata);
+\node at ($ (coverage.east)!0.3!(crossdata) + (0,0.3) $) 
+  {\includegraphics[width=0.3cm]{csv_filetype_icon_227881-375492084.png}};
+\draw (crossdata) -- (masa seca);
+\node at ($ (crossdata.east)!0.3!(masa seca) + (0,0.3) $) 
+  {\includegraphics[width=0.3cm]{csv_filetype_icon_227881-375492084.png}};
+\draw (masa seca) -- (masa total);
+\node at ($ (masa seca.east)!0.3!(masa total) + (0,0.3) $) 
+  {\includegraphics[width=0.3cm]{csv_filetype_icon_227881-375492084.png}};
+  
+
+\draw (masa total) -- (config);
+\node at ($ (masa total.east)!0.3!(config) + (0,0.3) $) 
+  {\includegraphics[width=0.3cm]{csv_filetype_icon_227881-375492084.png}};
+  
+
+\draw[->] ([xshift=2pt]coverage.south) -- ([xshift=2pt]revisit.north);
+    \node[left=0.5cm of $(coverage.south)!0.5!(revisit.north)$] {max  days};
+\draw[->] ([xshift=-2pt]revisit.north) -- ([xshift=-2pt]coverage.south);
+\node at ($ ([xshift=-2pt]revisit.north)!0.5!([xshift=-1pt]coverage.south) + (1cm, 0) $) {Input data};
+\end{tikzpicture}
+
+\end{frame}
+
+% ===== SLIDE CAPÍTULO: CARGA DE PAGO =====
+\begin{frame}[plain]
+  \begin{center}
+    \vspace{1.5cm}
+    {\usebeamerfont{title}\color{myaccent}\Huge Optimización de la masa}
+    
+    \vspace{0.5cm}
+    \rule{0.6\linewidth}{1pt}
+    
+    \vspace{1.5cm}
+    {\Large\textit{Selección de la altura órbital}}
+  \end{center}
+
+
+
+  \note[item]{Inicio del bloque dedicado a la carga útil del satélite.}
+  \note[item]{Se introduce el diseño óptico, elección del detector y consideraciones espectrales.}
+\end{frame}
+
+
+% ===== SLIDE CAPÍTULO: CARGA DE PAGO =====
+\begin{frame}[plain]
+  \begin{center}
+    \vspace{1.5cm}
+    {\usebeamerfont{title}\color{myaccent}\Huge Subsistemas}
+    
+    \vspace{0.5cm}
+    \rule{0.6\linewidth}{1pt}
+    
+    \vspace{1.5cm}
+    {\Large\textit{XXXX}}
+  \end{center}
+
+
+
+  \note[item]{Inicio del bloque dedicado a la carga útil del satélite.}
+  \note[item]{Se introduce el diseño óptico, elección del detector y consideraciones espectrales.}
+\end{frame}
+
+% ===== SLIDE CAPÍTULO: CARGA DE PAGO =====
+\begin{frame}[plain]
+  \begin{center}
+    \vspace{1.5cm}
+    {\usebeamerfont{title}\color{myaccent}\Huge Lanzadores}
+    
+    \vspace{0.5cm}
+    \rule{0.6\linewidth}{1pt}
+    
+    \vspace{1.5cm}
+    {\Large\textit{Lanzamiento y puesta en orbita de los satélites}}
+  \end{center}
+
+
+
+  \note[item]{Inicio del bloque dedicado a la carga útil del satélite.}
+  \note[item]{Se introduce el diseño óptico, elección del detector y consideraciones espectrales.}
+\end{frame}
+
+% ===== SLIDE CAPÍTULO: CARGA DE PAGO =====
+\begin{frame}[plain]
+  \begin{center}
+    \vspace{1.5cm}
+    {\usebeamerfont{title}\color{myaccent}\Huge Lanzadores}
+    
+    \vspace{0.5cm}
+    \rule{0.6\linewidth}{1pt}
+    
+    \vspace{1.5cm}
+    {\Large\textit{Lanzamiento y puesta en orbita de los satélites}}
+  \end{center}
+
+
+  \note[item]{Inicio del bloque dedicado a la carga útil del satélite.}
+  \note[item]{Se introduce el diseño óptico, elección del detector y consideraciones espectrales.}
+\end{frame}
+
+% ===== SLIDE CAPÍTULO: CARGA DE PAGO =====
+\begin{frame}[plain]
+  \begin{center}
+    \vspace{1.5cm}
+    {\usebeamerfont{title}\color{myaccent}\Huge Segmento Tierra}
+    
+    \vspace{0.5cm}
+    \rule{0.6\linewidth}{1pt}
+    
+    \vspace{1.5cm}
+    {\Large\textit{Generación y descarga de los datos}}
+  \end{center}
+
+
+  \note[item]{Inicio del bloque dedicado a la carga útil del satélite.}
+  \note[item]{Se introduce el diseño óptico, elección del detector y consideraciones espectrales.}
+\end{frame}
+
+% ===== SLIDE FINAL: GRACIAS =====
+\begin{frame}[plain]
+  \begin{center}
+    \vspace{2cm}
+    {\usebeamerfont{title}\color{myaccent}\Huge ¡Gracias!}
+    
+    \vspace{1cm}
+    {\Large\textit{¿Preguntas?}}
+
+    \vfill
+    \texttt{\textcolor{mycode}{tunombre.github.io/tfg-observacion}}
+  \end{center}
+  
+  \begin{tikzpicture}[remember picture,overlay]
+    % Logo derecho
+    \node[anchor=south east,xshift=-0.5cm,yshift=0.5cm] at (current page.south east) {
+      \includegraphics[width=3cm]{1959339-1955144650.png}
+    };
+    % Logo izquierdo
+    \node[anchor=south west,xshift=0.5cm,yshift=0.5cm] at (current page.south west) {
+      \includegraphics[width=3cm]{etsiae-1959139697.png}
+    };
+  \end{tikzpicture}
+
+  \note[item]{Agradecer la atención del tribunal y la audiencia.}
+  \note[item]{Recordar que el repositorio contiene simulaciones y memoria completa.}
+  \note[item]{Momento para responder preguntas.}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+  \frametitle{Referencias}
+  \printbibliography
+\end{frame}
+
+\end{document}

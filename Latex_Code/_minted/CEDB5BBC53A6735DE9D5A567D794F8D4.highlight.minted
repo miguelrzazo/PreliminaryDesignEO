@@ -1,0 +1,100 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} 1. CONSTANTES Y PARÁMETROS ORBITALES \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{mu}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{3.986004418e14}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Parámetro gravitacional estándar de la Tierra (m\PYGZca{}3/s\PYGZca{}2)}
+\PYG{n}{R\PYGZus{}tierra}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{6371e3}\PYG{p}{;}\PYG{+w}{   }\PYG{c}{\PYGZpc{} Radio de la Tierra (m)}
+
+\PYG{c}{\PYGZpc{} Órbita final (circular)}
+\PYG{n}{altitud\PYGZus{}final}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{520e3}\PYG{p}{;}
+\PYG{n}{r\PYGZus{}final}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{R\PYGZus{}tierra}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{altitud\PYGZus{}final}\PYG{p}{;}
+\PYG{n}{T\PYGZus{}final}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{pi}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{sqrt}\PYG{p}{(}\PYG{n}{r\PYGZus{}final}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{mu}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Periodo para el print}
+\PYG{n}{n\PYGZus{}final}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{pi}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{T\PYGZus{}final}\PYG{p}{;}\PYG{+w}{             }\PYG{c}{\PYGZpc{} Movimiento medio}
+
+\PYG{c}{\PYGZpc{} Órbita de fase (elíptica)}
+\PYG{n}{altitud\PYGZus{}apogeo\PYGZus{}fase}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{720e3}\PYG{p}{;}
+\PYG{n}{r\PYGZus{}apogeo\PYGZus{}fase}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{R\PYGZus{}tierra}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{altitud\PYGZus{}apogeo\PYGZus{}fase}\PYG{p}{;}
+\PYG{n}{r\PYGZus{}perigeo\PYGZus{}fase}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{r\PYGZus{}final}\PYG{p}{;}
+\PYG{n}{a\PYGZus{}fase}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{r\PYGZus{}perigeo\PYGZus{}fase}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{r\PYGZus{}apogeo\PYGZus{}fase}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{n}{e\PYGZus{}fase}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{r\PYGZus{}apogeo\PYGZus{}fase}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{r\PYGZus{}perigeo\PYGZus{}fase}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{r\PYGZus{}apogeo\PYGZus{}fase}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{r\PYGZus{}perigeo\PYGZus{}fase}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{T\PYGZus{}fase}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{pi}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{sqrt}\PYG{p}{(}\PYG{n}{a\PYGZus{}fase}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{mu}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Periodo para el print}
+\PYG{n}{n\PYGZus{}fase}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{pi}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{T\PYGZus{}fase}\PYG{p}{;}\PYG{+w}{             }\PYG{c}{\PYGZpc{} Movimiento medio}
+
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} 2. ANÁLISIS PREVIO Y RESULTADOS EN CONSOLA \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{delta\PYGZus{}n}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{n\PYGZus{}final}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{n\PYGZus{}fase}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Diferencia de movimiento medio}
+\PYG{n}{t\PYGZus{}desfase\PYGZus{}seg}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{pi}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n+nb}{abs}\PYG{p}{(}\PYG{n}{delta\PYGZus{}n}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Tiempo teórico para desfase de 180°}
+\PYG{n}{num\PYGZus{}orbitas\PYGZus{}fase}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{t\PYGZus{}desfase\PYGZus{}seg}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{T\PYGZus{}fase}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Número de órbitas en faseo}
+
+
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZhy{}\PYGZhy{}\PYGZhy{} Análisis de la Maniobra de Fase \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Periodo de la órbita final: \PYGZpc{}.2f minutos\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{T\PYGZus{}final}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{60}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Periodo de la órbita de fase: \PYGZpc{}.2f minutos\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{T\PYGZus{}fase}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{60}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Tiempo requerido para un desfase de 180°: \PYGZpc{}.2f horas\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{t\PYGZus{}desfase\PYGZus{}seg}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{3600}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Número de órbitas en la trayectoria de fase: \PYGZpc{}.2f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{num\PYGZus{}orbitas\PYGZus{}fase}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZbs{}n\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} 3. CONFIGURACIÓN DE LA SIMULACIÓN \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n+nb}{figure}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Name\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Simulación de Desfase Orbital \PYGZhy{} Versión Final\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{NumberTitle\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{off\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{hold}\PYG{+w}{ }\PYG{l+s}{on}\PYG{p}{;}
+\PYG{n}{axis}\PYG{+w}{ }\PYG{l+s}{equal}\PYG{p}{;}
+\PYG{n}{grid}\PYG{+w}{ }\PYG{l+s}{on}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Dibujar Tierra y Órbitas}
+\PYG{p}{[}\PYG{n}{x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{z}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sphere}\PYG{p}{;}
+\PYG{n+nb}{surf}\PYG{p}{(}\PYG{n}{x}\PYG{o}{*}\PYG{n}{R\PYGZus{}tierra}\PYG{o}{/}\PYG{l+m+mf}{1e3}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y}\PYG{o}{*}\PYG{n}{R\PYGZus{}tierra}\PYG{o}{/}\PYG{l+m+mf}{1e3}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{z}\PYG{o}{*}\PYG{n}{R\PYGZus{}tierra}\PYG{o}{/}\PYG{l+m+mf}{1e3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FaceColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZsh{}0077be\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{EdgeColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{none\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{DisplayName\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Tierra\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{ang}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{linspace}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n+nb}{pi}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{300}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{r\PYGZus{}final}\PYG{o}{/}\PYG{l+m+mf}{1e3}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{cos}\PYG{p}{(}\PYG{n}{ang}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{r\PYGZus{}final}\PYG{o}{/}\PYG{l+m+mf}{1e3}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{sin}\PYG{p}{(}\PYG{n}{ang}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{g\PYGZhy{}\PYGZhy{}\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1.5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{DisplayName\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Orbita Final (520 km)\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{r\PYGZus{}fase\PYGZus{}plot}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a\PYGZus{}fase}\PYG{o}{*}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{e\PYGZus{}fase}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{)}\PYG{o}{./}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{+}\PYG{n}{e\PYGZus{}fase}\PYG{o}{*}\PYG{n+nb}{cos}\PYG{p}{(}\PYG{n}{ang}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{r\PYGZus{}fase\PYGZus{}plot}\PYG{o}{/}\PYG{l+m+mf}{1e3}\PYG{+w}{ }\PYG{o}{.*}\PYG{+w}{ }\PYG{n+nb}{cos}\PYG{p}{(}\PYG{n}{ang}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{r\PYGZus{}fase\PYGZus{}plot}\PYG{o}{/}\PYG{l+m+mf}{1e3}\PYG{+w}{ }\PYG{o}{.*}\PYG{+w}{ }\PYG{n+nb}{sin}\PYG{p}{(}\PYG{n}{ang}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{b\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1.5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{DisplayName\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Orbita de Fase(520 x 720 km)\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Inicializar objetos gráficos}
+\PYG{n}{h\PYGZus{}sat1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n+nb}{NaN}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{NaN}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{go\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MarkerFaceColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{g\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MarkerSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{8}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{DisplayName\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Satelite 1\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{h\PYGZus{}etapa}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n+nb}{NaN}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{NaN}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ro\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MarkerFaceColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{r\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MarkerSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{8}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{DisplayName\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Etapa/Satelite 2\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{h\PYGZus{}sat2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n+nb}{NaN}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{NaN}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{mo\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MarkerFaceColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{m\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MarkerSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{8}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{DisplayName\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Satelite 2 (Desplegado)\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{title\PYGZus{}handle}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{title}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Inicio de Misión\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{14}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{legend}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Location\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{northeastoutside\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{AutoUpdate\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{off\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{xlim}\PYG{p}{(}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{1.2}\PYG{o}{*}\PYG{n}{r\PYGZus{}apogeo\PYGZus{}fase}\PYG{o}{/}\PYG{l+m+mf}{1e3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1.2}\PYG{o}{*}\PYG{n}{r\PYGZus{}apogeo\PYGZus{}fase}\PYG{o}{/}\PYG{l+m+mf}{1e3}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{ylim}\PYG{p}{(}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{1.2}\PYG{o}{*}\PYG{n}{r\PYGZus{}apogeo\PYGZus{}fase}\PYG{o}{/}\PYG{l+m+mf}{1e3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1.2}\PYG{o}{*}\PYG{n}{r\PYGZus{}apogeo\PYGZus{}fase}\PYG{o}{/}\PYG{l+m+mf}{1e3}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{xlabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{X (km)\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{ylabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Y (km)\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} 4. BUCLE DE ANIMACIÓN HASTA 180 GRADOS \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{t}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{n}{dt}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{120}\PYG{p}{;}
+\PYG{n}{desfase\PYGZus{}acumulado\PYGZus{}rad}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+
+\PYG{k}{while}\PYG{+w}{ }\PYG{n}{desfase\PYGZus{}acumulado\PYGZus{}rad}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n+nb}{pi}
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Posición Satélite 1}
+\PYG{+w}{    }\PYG{n}{theta1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{n\PYGZus{}final}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{t}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{x1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{r\PYGZus{}final}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{cos}\PYG{p}{(}\PYG{n}{theta1}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{y1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{r\PYGZus{}final}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{sin}\PYG{p}{(}\PYG{n}{theta1}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Posición Satélite 2}
+\PYG{+w}{    }\PYG{n}{theta\PYGZus{}etapa}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{n\PYGZus{}fase}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{t}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{r\PYGZus{}etapa\PYGZus{}actual}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a\PYGZus{}fase}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{e\PYGZus{}fase}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{e\PYGZus{}fase}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{cos}\PYG{p}{(}\PYG{n}{theta\PYGZus{}etapa}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{x\PYGZus{}etapa}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{r\PYGZus{}etapa\PYGZus{}actual}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{cos}\PYG{p}{(}\PYG{n}{theta\PYGZus{}etapa}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{y\PYGZus{}etapa}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{r\PYGZus{}etapa\PYGZus{}actual}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{sin}\PYG{p}{(}\PYG{n}{theta\PYGZus{}etapa}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Calcular desfase acumulado}
+\PYG{+w}{    }\PYG{n}{desfase\PYGZus{}acumulado\PYGZus{}rad}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{delta\PYGZus{}n}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{t}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Actualizar título}
+\PYG{+w}{    }\PYG{n}{title\PYGZus{}handle}\PYG{p}{.}\PYG{n}{String}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Fase de Deriva | Tiempo: \PYGZpc{}.1f h | Desfase: \PYGZpc{}.1f°\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{3600}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{rad2deg}\PYG{p}{(}\PYG{n}{desfase\PYGZus{}acumulado\PYGZus{}rad}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Actualizar posiciones}
+\PYG{+w}{    }\PYG{n+nb}{set}\PYG{p}{(}\PYG{n}{h\PYGZus{}sat1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{XData\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x1}\PYG{o}{/}\PYG{l+m+mf}{1e3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{YData\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y1}\PYG{o}{/}\PYG{l+m+mf}{1e3}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{set}\PYG{p}{(}\PYG{n}{h\PYGZus{}etapa}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{XData\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x\PYGZus{}etapa}\PYG{o}{/}\PYG{l+m+mf}{1e3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{YData\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y\PYGZus{}etapa}\PYG{o}{/}\PYG{l+m+mf}{1e3}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{n+nb}{drawnow}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.01}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{t}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{dt}\PYG{p}{;}
+\PYG{k}{end}
+
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} 5. FASE FINAL: DESPLIEGUE \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{title\PYGZus{}handle}\PYG{p}{.}\PYG{n}{String}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Desfase de 180° alcanzado en \PYGZpc{}.1f horas. Desplegando Satelite 2.\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{3600}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{n}{h\PYGZus{}sat2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{XData\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x\PYGZus{}etapa}\PYG{o}{/}\PYG{l+m+mf}{1e3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{YData\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y\PYGZus{}etapa}\PYG{o}{/}\PYG{l+m+mf}{1e3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Visible\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{on\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{n}{h\PYGZus{}etapa}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Visible\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{off\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n}{hold}\PYG{+w}{ }\PYG{l+s}{off}\PYG{p}{;}
+
+
+\end{MintedVerbatim}

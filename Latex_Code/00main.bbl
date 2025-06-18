@@ -1,0 +1,4193 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{nasa_jpl_oco2_artist_concept_2014}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=5ba947ee90480b37ef5400bf37d8827e}{%
+           family={{NASA/JPL-Caltech}},
+           familyi={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{5ba947ee90480b37ef5400bf37d8827e}
+      \strng{fullhash}{5ba947ee90480b37ef5400bf37d8827e}
+      \strng{fullhashraw}{5ba947ee90480b37ef5400bf37d8827e}
+      \strng{bibnamehash}{5ba947ee90480b37ef5400bf37d8827e}
+      \strng{authorbibnamehash}{5ba947ee90480b37ef5400bf37d8827e}
+      \strng{authornamehash}{5ba947ee90480b37ef5400bf37d8827e}
+      \strng{authorfullhash}{5ba947ee90480b37ef5400bf37d8827e}
+      \strng{authorfullhashraw}{5ba947ee90480b37ef5400bf37d8827e}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://photojournal.jpl.nasa.gov/catalog/PIA18610}}
+      \field{month}{7}
+      \field{note}{Ilustracion artistica del satelite OCO-2 en orbita terrestre. Credito de la imagen: NASA/JPL-Caltech.}
+      \field{title}{{Orbiting Carbon Observatory-2 (Artist's Concept)}}
+      \field{year}{2014}
+    \endentry
+    \entry{eoportal_oco2_2024}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=1f71b100224fb1b54ae14e751c4b40fa}{%
+           family={{European Space Agency}},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{1f71b100224fb1b54ae14e751c4b40fa}
+      \strng{fullhash}{1f71b100224fb1b54ae14e751c4b40fa}
+      \strng{fullhashraw}{1f71b100224fb1b54ae14e751c4b40fa}
+      \strng{bibnamehash}{1f71b100224fb1b54ae14e751c4b40fa}
+      \strng{authorbibnamehash}{1f71b100224fb1b54ae14e751c4b40fa}
+      \strng{authornamehash}{1f71b100224fb1b54ae14e751c4b40fa}
+      \strng{authorfullhash}{1f71b100224fb1b54ae14e751c4b40fa}
+      \strng{authorfullhashraw}{1f71b100224fb1b54ae14e751c4b40fa}
+      \field{extraname}{1}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.eoportal.org/satellite-missions/oco-2}}
+      \field{note}{Última actualizacion: 15 de octubre de 2024}
+      \field{title}{{OCO-2 (Orbiting Carbon Observatory-2) - eoPortal}}
+      \field{year}{2024}
+    \endentry
+    \entry{jaxa_gosat_representation}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=1f71b100224fb1b54ae14e751c4b40fa}{%
+           family={{European Space Agency}},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{1f71b100224fb1b54ae14e751c4b40fa}
+      \strng{fullhash}{1f71b100224fb1b54ae14e751c4b40fa}
+      \strng{fullhashraw}{1f71b100224fb1b54ae14e751c4b40fa}
+      \strng{bibnamehash}{1f71b100224fb1b54ae14e751c4b40fa}
+      \strng{authorbibnamehash}{1f71b100224fb1b54ae14e751c4b40fa}
+      \strng{authornamehash}{1f71b100224fb1b54ae14e751c4b40fa}
+      \strng{authorfullhash}{1f71b100224fb1b54ae14e751c4b40fa}
+      \strng{authorfullhashraw}{1f71b100224fb1b54ae14e751c4b40fa}
+      \field{extraname}{2}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Consultado: 2025}
+      \field{title}{GOSAT Series - ESA Earth Online}
+      \field{year}{2022}
+      \verb{urlraw}
+      \verb https://earth.esa.int/eogateway/missions/gos-1
+      \endverb
+      \verb{url}
+      \verb https://earth.esa.int/eogateway/missions/gos-1
+      \endverb
+    \endentry
+    \entry{jaxa_gosat}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=44d7f7eb1097d1a5beb9942377fb7e16}{%
+           family={{Japan Aerospace Exploration Agency}},
+           familyi={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{44d7f7eb1097d1a5beb9942377fb7e16}
+      \strng{fullhash}{44d7f7eb1097d1a5beb9942377fb7e16}
+      \strng{fullhashraw}{44d7f7eb1097d1a5beb9942377fb7e16}
+      \strng{bibnamehash}{44d7f7eb1097d1a5beb9942377fb7e16}
+      \strng{authorbibnamehash}{44d7f7eb1097d1a5beb9942377fb7e16}
+      \strng{authornamehash}{44d7f7eb1097d1a5beb9942377fb7e16}
+      \strng{authorfullhash}{44d7f7eb1097d1a5beb9942377fb7e16}
+      \strng{authorfullhashraw}{44d7f7eb1097d1a5beb9942377fb7e16}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Consultado: 2025}
+      \field{title}{GOSAT Project}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://earth.jaxa.jp/en/research/projects/gosat/index.html
+      \endverb
+      \verb{url}
+      \verb https://earth.jaxa.jp/en/research/projects/gosat/index.html
+      \endverb
+    \endentry
+    \entry{gogoi2023gosat}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=42f275c8b29a7718924fbdb73a33c9fc}{%
+           family={Gogoi},
+           familyi={G\bibinitperiod},
+           given={Mukunda\bibnamedelima M.},
+           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {BioMed Central}%
+      }
+      \strng{namehash}{d9c5186ae95d6e94f1ddf4f457dd2470}
+      \strng{fullhash}{d9c5186ae95d6e94f1ddf4f457dd2470}
+      \strng{fullhashraw}{d9c5186ae95d6e94f1ddf4f457dd2470}
+      \strng{bibnamehash}{d9c5186ae95d6e94f1ddf4f457dd2470}
+      \strng{authorbibnamehash}{d9c5186ae95d6e94f1ddf4f457dd2470}
+      \strng{authornamehash}{d9c5186ae95d6e94f1ddf4f457dd2470}
+      \strng{authorfullhash}{d9c5186ae95d6e94f1ddf4f457dd2470}
+      \strng{authorfullhashraw}{d9c5186ae95d6e94f1ddf4f457dd2470}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Carbon Balance and Management}
+      \field{number}{1}
+      \field{title}{The Greenhouse gas Observations of Biospheric and Local Emissions from the Upper sky (GOBLEU): a mission overview, instrument description, and results from the first flight}
+      \field{volume}{19}
+      \field{year}{2024}
+      \field{pages}{1\bibrangedash 25}
+      \range{pages}{25}
+      \verb{doi}
+      \verb 10.1186/s13021-024-00273-1
+      \endverb
+    \endentry
+    \entry{CO2M}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=1f71b100224fb1b54ae14e751c4b40fa}{%
+           family={{European Space Agency}},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{1f71b100224fb1b54ae14e751c4b40fa}
+      \strng{fullhash}{1f71b100224fb1b54ae14e751c4b40fa}
+      \strng{fullhashraw}{1f71b100224fb1b54ae14e751c4b40fa}
+      \strng{bibnamehash}{1f71b100224fb1b54ae14e751c4b40fa}
+      \strng{authorbibnamehash}{1f71b100224fb1b54ae14e751c4b40fa}
+      \strng{authornamehash}{1f71b100224fb1b54ae14e751c4b40fa}
+      \strng{authorfullhash}{1f71b100224fb1b54ae14e751c4b40fa}
+      \strng{authorfullhashraw}{1f71b100224fb1b54ae14e751c4b40fa}
+      \field{extraname}{3}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Consultado: 2025}
+      \field{title}{CO2M - SentiWiki - Copernicus}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://sentiwiki.copernicus.eu/web/co2m
+      \endverb
+      \verb{url}
+      \verb https://sentiwiki.copernicus.eu/web/co2m
+      \endverb
+    \endentry
+    \entry{CO2M_progress}{inproceedings}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=52070ecc51af8de7fb39e50f46c99a70}{%
+           family={Meijer},
+           familyi={M\bibinitperiod},
+           given={Yasjka},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {SPIE}%
+      }
+      \strng{namehash}{d69c10d9c394eddba0a449bb8e5d06a8}
+      \strng{fullhash}{d69c10d9c394eddba0a449bb8e5d06a8}
+      \strng{fullhashraw}{d69c10d9c394eddba0a449bb8e5d06a8}
+      \strng{bibnamehash}{d69c10d9c394eddba0a449bb8e5d06a8}
+      \strng{authorbibnamehash}{d69c10d9c394eddba0a449bb8e5d06a8}
+      \strng{authornamehash}{d69c10d9c394eddba0a449bb8e5d06a8}
+      \strng{authorfullhash}{d69c10d9c394eddba0a449bb8e5d06a8}
+      \strng{authorfullhashraw}{d69c10d9c394eddba0a449bb8e5d06a8}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proc. SPIE}
+      \field{title}{Progress on the development of the Copernicus CO2M mission}
+      \field{volume}{13192}
+      \field{year}{2024}
+      \field{pages}{3033794}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1117/12.3033794
+      \endverb
+    \endentry
+    \entry{tansat}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=547b62a6dcf0bf03f2e0439af3a0236e}{%
+           family={{Xinhua News Agency}},
+           familyi={X\bibinitperiod}}}%
+      }
+      \strng{namehash}{547b62a6dcf0bf03f2e0439af3a0236e}
+      \strng{fullhash}{547b62a6dcf0bf03f2e0439af3a0236e}
+      \strng{fullhashraw}{547b62a6dcf0bf03f2e0439af3a0236e}
+      \strng{bibnamehash}{547b62a6dcf0bf03f2e0439af3a0236e}
+      \strng{authorbibnamehash}{547b62a6dcf0bf03f2e0439af3a0236e}
+      \strng{authornamehash}{547b62a6dcf0bf03f2e0439af3a0236e}
+      \strng{authorfullhash}{547b62a6dcf0bf03f2e0439af3a0236e}
+      \strng{authorfullhashraw}{547b62a6dcf0bf03f2e0439af3a0236e}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Consultado: 2025}
+      \field{title}{China Focus: TanSat satellite detects, reports human-caused carbon dioxide emissions}
+      \field{year}{2022}
+      \verb{urlraw}
+      \verb https://english.news.cn/20221025/a8fecde2ddf747aa924562944fe656cf/c.html
+      \endverb
+      \verb{url}
+      \verb https://english.news.cn/20221025/a8fecde2ddf747aa924562944fe656cf/c.html
+      \endverb
+    \endentry
+    \entry{eoportal_tansat}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=bae2fd785a6950de3bbfc069f0c22341}{%
+           family={{Earth Observation Portal}},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{bae2fd785a6950de3bbfc069f0c22341}
+      \strng{fullhash}{bae2fd785a6950de3bbfc069f0c22341}
+      \strng{fullhashraw}{bae2fd785a6950de3bbfc069f0c22341}
+      \strng{bibnamehash}{bae2fd785a6950de3bbfc069f0c22341}
+      \strng{authorbibnamehash}{bae2fd785a6950de3bbfc069f0c22341}
+      \strng{authornamehash}{bae2fd785a6950de3bbfc069f0c22341}
+      \strng{authorfullhash}{bae2fd785a6950de3bbfc069f0c22341}
+      \strng{authorfullhashraw}{bae2fd785a6950de3bbfc069f0c22341}
+      \field{extraname}{1}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Consultado: 2025}
+      \field{title}{TanSat - eoPortal}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://www.eoportal.org/satellite-missions/tansat
+      \endverb
+      \verb{url}
+      \verb https://www.eoportal.org/satellite-missions/tansat
+      \endverb
+    \endentry
+    \entry{futura_microcarb}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=b110aa10dc3e3aa939ba099440938e65}{%
+           family={{Airbus}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{b110aa10dc3e3aa939ba099440938e65}
+      \strng{fullhash}{b110aa10dc3e3aa939ba099440938e65}
+      \strng{fullhashraw}{b110aa10dc3e3aa939ba099440938e65}
+      \strng{bibnamehash}{b110aa10dc3e3aa939ba099440938e65}
+      \strng{authorbibnamehash}{b110aa10dc3e3aa939ba099440938e65}
+      \strng{authornamehash}{b110aa10dc3e3aa939ba099440938e65}
+      \strng{authorfullhash}{b110aa10dc3e3aa939ba099440938e65}
+      \strng{authorfullhashraw}{b110aa10dc3e3aa939ba099440938e65}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Consultado: 2025}
+      \field{title}{Airbus delivers MicroCarb instrument, the first European mission to measure CO2 globally}
+      \field{year}{2022}
+      \verb{urlraw}
+      \verb https://www.airbus.com/en/newsroom/stories/2022-12-airbus-delivers-microcarb-instrument-the-first-european-mission-to-measure
+      \endverb
+      \verb{url}
+      \verb https://www.airbus.com/en/newsroom/stories/2022-12-airbus-delivers-microcarb-instrument-the-first-european-mission-to-measure
+      \endverb
+    \endentry
+    \entry{eoportal_microcarb}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=b77c20a31a186fab97dbc3b04574342e}{%
+           family={{Centre National d'etudes Spatiales}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{b77c20a31a186fab97dbc3b04574342e}
+      \strng{fullhash}{b77c20a31a186fab97dbc3b04574342e}
+      \strng{fullhashraw}{b77c20a31a186fab97dbc3b04574342e}
+      \strng{bibnamehash}{b77c20a31a186fab97dbc3b04574342e}
+      \strng{authorbibnamehash}{b77c20a31a186fab97dbc3b04574342e}
+      \strng{authornamehash}{b77c20a31a186fab97dbc3b04574342e}
+      \strng{authorfullhash}{b77c20a31a186fab97dbc3b04574342e}
+      \strng{authorfullhashraw}{b77c20a31a186fab97dbc3b04574342e}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Consultado: 2025}
+      \field{title}{MicroCarb - CNES}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://cnes.fr/en/projects/microcarb
+      \endverb
+      \verb{url}
+      \verb https://cnes.fr/en/projects/microcarb
+      \endverb
+    \endentry
+    \entry{gosat_gw}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=bae2fd785a6950de3bbfc069f0c22341}{%
+           family={{Earth Observation Portal}},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{bae2fd785a6950de3bbfc069f0c22341}
+      \strng{fullhash}{bae2fd785a6950de3bbfc069f0c22341}
+      \strng{fullhashraw}{bae2fd785a6950de3bbfc069f0c22341}
+      \strng{bibnamehash}{bae2fd785a6950de3bbfc069f0c22341}
+      \strng{authorbibnamehash}{bae2fd785a6950de3bbfc069f0c22341}
+      \strng{authornamehash}{bae2fd785a6950de3bbfc069f0c22341}
+      \strng{authorfullhash}{bae2fd785a6950de3bbfc069f0c22341}
+      \strng{authorfullhashraw}{bae2fd785a6950de3bbfc069f0c22341}
+      \field{extraname}{2}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Consultado: 2025}
+      \field{title}{GHGSat Constellation - eoPortal}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://www.eoportal.org/satellite-missions/ghgsat-con
+      \endverb
+      \verb{url}
+      \verb https://www.eoportal.org/satellite-missions/ghgsat-con
+      \endverb
+    \endentry
+    \entry{wmo_ghgsat_spectrometer}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=8ad9aa44c59582391efd93ec8bfbb056}{%
+           family={{Satellite Today}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{8ad9aa44c59582391efd93ec8bfbb056}
+      \strng{fullhash}{8ad9aa44c59582391efd93ec8bfbb056}
+      \strng{fullhashraw}{8ad9aa44c59582391efd93ec8bfbb056}
+      \strng{bibnamehash}{8ad9aa44c59582391efd93ec8bfbb056}
+      \strng{authorbibnamehash}{8ad9aa44c59582391efd93ec8bfbb056}
+      \strng{authornamehash}{8ad9aa44c59582391efd93ec8bfbb056}
+      \strng{authorfullhash}{8ad9aa44c59582391efd93ec8bfbb056}
+      \strng{authorfullhashraw}{8ad9aa44c59582391efd93ec8bfbb056}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Consultado: 2025}
+      \field{title}{GHGSat Methane Data to Be Available in NASA's Commercial Smallsat Data Program}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://www.satellitetoday.com/imagery-and-sensing/2024/07/31/ghgsat-methane-data-to-be-available-in-nasas-commercial-smallsat-data-program/
+      \endverb
+      \verb{url}
+      \verb https://www.satellitetoday.com/imagery-and-sensing/2024/07/31/ghgsat-methane-data-to-be-available-in-nasas-commercial-smallsat-data-program/
+      \endverb
+    \endentry
+    \entry{kitdeactores2025moire}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=89022b66711b7c95df9c0801ef741150}{%
+           family={{Kit de Actores}},
+           familyi={K\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {spanish}%
+      }
+      \strng{namehash}{89022b66711b7c95df9c0801ef741150}
+      \strng{fullhash}{89022b66711b7c95df9c0801ef741150}
+      \strng{fullhashraw}{89022b66711b7c95df9c0801ef741150}
+      \strng{bibnamehash}{89022b66711b7c95df9c0801ef741150}
+      \strng{authorbibnamehash}{89022b66711b7c95df9c0801ef741150}
+      \strng{authornamehash}{89022b66711b7c95df9c0801ef741150}
+      \strng{authorfullhash}{89022b66711b7c95df9c0801ef741150}
+      \strng{authorfullhashraw}{89022b66711b7c95df9c0801ef741150}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Guia sobre el efecto moire en actuacion y cinematografia}
+      \field{title}{En que afecta el efecto Moire a los actores?}
+      \field{urlday}{17}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://kitdeactores.com/en-que-afecta-el-efecto-moire-a-los-actores/
+      \endverb
+      \verb{url}
+      \verb https://kitdeactores.com/en-que-afecta-el-efecto-moire-a-los-actores/
+      \endverb
+    \endentry
+    \entry{rossiter2020gsd_comparison}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=bd3c4b2e63d9e1c7b4eb84924826f174}{%
+           family={Rossiter},
+           familyi={R\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{bd3c4b2e63d9e1c7b4eb84924826f174}
+      \strng{fullhash}{bd3c4b2e63d9e1c7b4eb84924826f174}
+      \strng{fullhashraw}{bd3c4b2e63d9e1c7b4eb84924826f174}
+      \strng{bibnamehash}{bd3c4b2e63d9e1c7b4eb84924826f174}
+      \strng{authorbibnamehash}{bd3c4b2e63d9e1c7b4eb84924826f174}
+      \strng{authornamehash}{bd3c4b2e63d9e1c7b4eb84924826f174}
+      \strng{authorfullhash}{bd3c4b2e63d9e1c7b4eb84924826f174}
+      \strng{authorfullhashraw}{bd3c4b2e63d9e1c7b4eb84924826f174}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Figure 4.2 in PhD thesis: Developing an integrated approach to seaweed resource assessment}
+      \field{note}{UAV = 5 cm/pixel, aircraft = 60 cm/pixel, Satellite = 10 m/pixel}
+      \field{title}{Comparison of the multispectral ground sampling distance (GSD) from each of the three platforms}
+      \field{year}{2020}
+      \verb{urlraw}
+      \verb https://www.researchgate.net/figure/Comparison-of-the-multispectral-ground-sampling-distance-GSD-from-each-of-the-three_fig15_363319656
+      \endverb
+      \verb{url}
+      \verb https://www.researchgate.net/figure/Comparison-of-the-multispectral-ground-sampling-distance-GSD-from-each-of-the-three_fig15_363319656
+      \endverb
+    \endentry
+    \entry{design_workshop_optical_2023}{manual}{}{}
+      \list{organization}{1}{%
+        {Universidad}%
+      }
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labeltitlesource}{title}
+      \field{note}{Material didectico para el diseño de instrumentos opticos de observacion terrestre}
+      \field{title}{Design Workshop of an Optical Earth Observation Instrument}
+      \field{year}{2023}
+    \endentry
+    \entry{zorita_mtf_2023}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=e4a6b17ca44650d909f9d52813cf6ee6}{%
+           family={Zorita\bibnamedelima Gomez-Escolar},
+           familyi={Z\bibinitperiod\bibinitdelim G\bibinithyphendelim E\bibinitperiod},
+           given={Demetrio},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \strng{fullhash}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \strng{fullhashraw}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \strng{bibnamehash}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \strng{authorbibnamehash}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \strng{authornamehash}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \strng{authorfullhash}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \strng{authorfullhashraw}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \field{extraname}{1}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Documento tecnico sobre MTF en instrumentos opticos espaciales}
+      \field{title}{MTF (Modulation Transfer Function)}
+      \field{type}{techreport}
+      \field{year}{2023}
+    \endentry
+    \entry{EdmundOptics2023}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=714ff9069af003141464f6417a3182c2}{%
+           family={{Edmund Optics}},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{714ff9069af003141464f6417a3182c2}
+      \strng{fullhash}{714ff9069af003141464f6417a3182c2}
+      \strng{fullhashraw}{714ff9069af003141464f6417a3182c2}
+      \strng{bibnamehash}{714ff9069af003141464f6417a3182c2}
+      \strng{authorbibnamehash}{714ff9069af003141464f6417a3182c2}
+      \strng{authornamehash}{714ff9069af003141464f6417a3182c2}
+      \strng{authorfullhash}{714ff9069af003141464f6417a3182c2}
+      \strng{authorfullhashraw}{714ff9069af003141464f6417a3182c2}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Introduction to Modulation Transfer Function}
+      \field{urlday}{16}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.edmundoptics.es/knowledge-center/application-notes/optics/introduction-to-modulation-transfer-function/
+      \endverb
+      \verb{url}
+      \verb https://www.edmundoptics.es/knowledge-center/application-notes/optics/introduction-to-modulation-transfer-function/
+      \endverb
+    \endentry
+    \entry{Foadi2023DesigningCT}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=eeeaf82f20a697d9cc24425adca7d5c9}{%
+           family={Foadi},
+           familyi={F\bibinitperiod},
+           given={Raad\bibnamedelimb Falih\bibnamedelima Hassan},
+           giveni={R\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=5bb6ec5961addfb418c9e071ba51b75a}{%
+           family={Ahmed},
+           familyi={A\bibinitperiod},
+           given={Ahmed\bibnamedelima Kamil},
+           giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \strng{namehash}{e2ca6f0f61d8a0b2ceac9354530fcf9b}
+      \strng{fullhash}{e2ca6f0f61d8a0b2ceac9354530fcf9b}
+      \strng{fullhashraw}{e2ca6f0f61d8a0b2ceac9354530fcf9b}
+      \strng{bibnamehash}{e2ca6f0f61d8a0b2ceac9354530fcf9b}
+      \strng{authorbibnamehash}{e2ca6f0f61d8a0b2ceac9354530fcf9b}
+      \strng{authornamehash}{e2ca6f0f61d8a0b2ceac9354530fcf9b}
+      \strng{authorfullhash}{e2ca6f0f61d8a0b2ceac9354530fcf9b}
+      \strng{authorfullhashraw}{e2ca6f0f61d8a0b2ceac9354530fcf9b}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Iraqi Journal of Science}
+      \field{title}{Designing Cassegrain Telescope System with Best Obscuration Ratio of Secondary Mirror}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://api.semanticscholar.org/CorpusID:267425188
+      \endverb
+      \verb{url}
+      \verb https://api.semanticscholar.org/CorpusID:267425188
+      \endverb
+    \endentry
+    \entry{wikipedia2025snr_demonstration}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=b6aea1a416c89509a7df1cbb69249cb6}{%
+           family={{Wikipedia contributors}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{fullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{fullhashraw}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{bibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorbibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authornamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorfullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorfullhashraw}{b6aea1a416c89509a7df1cbb69249cb6}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Image file from Wikipedia article on Signal-to-noise ratio}
+      \field{note}{Demonstration of visual effects of different SNR levels in imaging}
+      \field{title}{SNR image demonstration}
+      \field{urlday}{17}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/Signal-to-noise_ratio#/media/File:SNR_image_demonstration.png
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/Signal-to-noise_ratio#/media/File:SNR_image_demonstration.png
+      \endverb
+    \endentry
+    \entry{zorita_snr_2023}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=e4a6b17ca44650d909f9d52813cf6ee6}{%
+           family={Zorita\bibnamedelima Gomez-Escolar},
+           familyi={Z\bibinitperiod\bibinitdelim G\bibinithyphendelim E\bibinitperiod},
+           given={Demetrio},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \strng{fullhash}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \strng{fullhashraw}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \strng{bibnamehash}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \strng{authorbibnamehash}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \strng{authornamehash}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \strng{authorfullhash}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \strng{authorfullhashraw}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \field{extraname}{2}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Documento tecnico sobre celculo de SNR en instrumentos opticos espaciales}
+      \field{title}{SNR (Relacion Señal Ruido)}
+      \field{type}{techreport}
+      \field{year}{2023}
+    \endentry
+    \entry{swath_fov_diagram}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=d1c3c77d6d8c4f45847eda2e5c5a2d27}{%
+           family={{Remote Sensing Educational Resource}},
+           familyi={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{d1c3c77d6d8c4f45847eda2e5c5a2d27}
+      \strng{fullhash}{d1c3c77d6d8c4f45847eda2e5c5a2d27}
+      \strng{fullhashraw}{d1c3c77d6d8c4f45847eda2e5c5a2d27}
+      \strng{bibnamehash}{d1c3c77d6d8c4f45847eda2e5c5a2d27}
+      \strng{authorbibnamehash}{d1c3c77d6d8c4f45847eda2e5c5a2d27}
+      \strng{authornamehash}{d1c3c77d6d8c4f45847eda2e5c5a2d27}
+      \strng{authorfullhash}{d1c3c77d6d8c4f45847eda2e5c5a2d27}
+      \strng{authorfullhashraw}{d1c3c77d6d8c4f45847eda2e5c5a2d27}
+      \field{extraname}{1}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Diagram showing relationship between linear array, lens system, individual detector, IFOV, FOV, IGFOV, and swath parameters}
+      \field{title}{Swath and Field of View Diagram for Remote Sensing Systems}
+      \field{year}{2025}
+      \keyw{remote sensing,swath,field of view,IFOV,linear array,detector}
+    \endentry
+    \entry{WikiLecturesSpectrum}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=c6975328b4de29288851d2650d5c163a}{%
+           family={Durant},
+           familyi={D\bibinitperiod},
+           given={Sinan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{c6975328b4de29288851d2650d5c163a}
+      \strng{fullhash}{c6975328b4de29288851d2650d5c163a}
+      \strng{fullhashraw}{c6975328b4de29288851d2650d5c163a}
+      \strng{bibnamehash}{c6975328b4de29288851d2650d5c163a}
+      \strng{authorbibnamehash}{c6975328b4de29288851d2650d5c163a}
+      \strng{authornamehash}{c6975328b4de29288851d2650d5c163a}
+      \strng{authorfullhash}{c6975328b4de29288851d2650d5c163a}
+      \strng{authorfullhashraw}{c6975328b4de29288851d2650d5c163a}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{El contenido hace referencia a conferencias de 2011}
+      \field{title}{Electromagnetic spectrum - WikiLectures}
+      \field{urlday}{16}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.wikilectures.eu/w/Electromagnetic_spectrum
+      \endverb
+      \verb{url}
+      \verb https://www.wikilectures.eu/w/Electromagnetic_spectrum
+      \endverb
+    \endentry
+    \entry{atmospheric_transmission_spectrum}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=799a38bac838ff2fa9be851ac485dc95}{%
+           family={{Atmospheric Physics Reference}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{799a38bac838ff2fa9be851ac485dc95}
+      \strng{fullhash}{799a38bac838ff2fa9be851ac485dc95}
+      \strng{fullhashraw}{799a38bac838ff2fa9be851ac485dc95}
+      \strng{bibnamehash}{799a38bac838ff2fa9be851ac485dc95}
+      \strng{authorbibnamehash}{799a38bac838ff2fa9be851ac485dc95}
+      \strng{authornamehash}{799a38bac838ff2fa9be851ac485dc95}
+      \strng{authorfullhash}{799a38bac838ff2fa9be851ac485dc95}
+      \strng{authorfullhashraw}{799a38bac838ff2fa9be851ac485dc95}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Radiation Transmitted by the Atmosphere}
+      \field{year}{2025}
+      \keyw{atmospheric transmission,solar radiation,thermal radiation,spectral absorption,greenhouse gases}
+    \endentry
+    \entry{wilber_surface_1999}{report}{}{}
+      \name{author}{3}{}{%
+        {{hash=0561b6ef6e1573eb8de3d4a1cafc0ed7}{%
+           family={Wilber},
+           familyi={W\bibinitperiod},
+           given={Anne\bibnamedelima C.},
+           giveni={A\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=3d732ddba1e8f86a4487d50088e3dda5}{%
+           family={Kratz},
+           familyi={K\bibinitperiod},
+           given={David\bibnamedelima P.},
+           giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=6f2b81fbb257512b5f0337eebb6449bc}{%
+           family={Gupta},
+           familyi={G\bibinitperiod},
+           given={Shashi\bibnamedelima K.},
+           giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {NASA Langley Research Center}%
+      }
+      \list{location}{1}{%
+        {Hampton, Virginia}%
+      }
+      \strng{namehash}{7b8f1ced16d30baac106dc6cff52654a}
+      \strng{fullhash}{fa5e3105893d94e23b1cef06de9cc392}
+      \strng{fullhashraw}{fa5e3105893d94e23b1cef06de9cc392}
+      \strng{bibnamehash}{fa5e3105893d94e23b1cef06de9cc392}
+      \strng{authorbibnamehash}{fa5e3105893d94e23b1cef06de9cc392}
+      \strng{authornamehash}{7b8f1ced16d30baac106dc6cff52654a}
+      \strng{authorfullhash}{fa5e3105893d94e23b1cef06de9cc392}
+      \strng{authorfullhashraw}{fa5e3105893d94e23b1cef06de9cc392}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{8}
+      \field{number}{NASA/TP-1999-209362}
+      \field{title}{Surface Emissivity Maps for Use in Retrievals of Longwave Radiation Satellite}
+      \field{type}{techreport}
+      \field{year}{1999}
+      \verb{urlraw}
+      \verb https://ntrs.nasa.gov/api/citations/19990100634/downloads/19990100634.pdf
+      \endverb
+      \verb{url}
+      \verb https://ntrs.nasa.gov/api/citations/19990100634/downloads/19990100634.pdf
+      \endverb
+    \endentry
+    \entry{nist2025co2_spectrum}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=057990207e82616a48ed6f74dff4ac11}{%
+           family={{NIST Chemistry WebBook}},
+           familyi={N\bibinitperiod}}}%
+      }
+      \list{institution}{2}{%
+        {National Institute of Standards}%
+        {Technology}%
+      }
+      \strng{namehash}{057990207e82616a48ed6f74dff4ac11}
+      \strng{fullhash}{057990207e82616a48ed6f74dff4ac11}
+      \strng{fullhashraw}{057990207e82616a48ed6f74dff4ac11}
+      \strng{bibnamehash}{057990207e82616a48ed6f74dff4ac11}
+      \strng{authorbibnamehash}{057990207e82616a48ed6f74dff4ac11}
+      \strng{authornamehash}{057990207e82616a48ed6f74dff4ac11}
+      \strng{authorfullhash}{057990207e82616a48ed6f74dff4ac11}
+      \strng{authorfullhashraw}{057990207e82616a48ed6f74dff4ac11}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{NIST Quantitative Infrared Database - CO2 transmittance spectrum}
+      \field{title}{Carbon Dioxide Infrared Spectrum}
+      \field{urlday}{17}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://webbook.nist.gov/chemistry/
+      \endverb
+      \verb{url}
+      \verb https://webbook.nist.gov/chemistry/
+      \endverb
+    \endentry
+    \entry{oco2_technical_specs_2024}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=e4b3a3d4681dbce70807e5868ef4f8e8}{%
+           family={{NASA JPL}},
+           familyi={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{e4b3a3d4681dbce70807e5868ef4f8e8}
+      \strng{fullhash}{e4b3a3d4681dbce70807e5868ef4f8e8}
+      \strng{fullhashraw}{e4b3a3d4681dbce70807e5868ef4f8e8}
+      \strng{bibnamehash}{e4b3a3d4681dbce70807e5868ef4f8e8}
+      \strng{authorbibnamehash}{e4b3a3d4681dbce70807e5868ef4f8e8}
+      \strng{authornamehash}{e4b3a3d4681dbce70807e5868ef4f8e8}
+      \strng{authorfullhash}{e4b3a3d4681dbce70807e5868ef4f8e8}
+      \strng{authorfullhashraw}{e4b3a3d4681dbce70807e5868ef4f8e8}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Technical documentation of OCO-2 spectral bands and measurement capabilities}
+      \field{title}{OCO-2 (Orbiting Carbon Observatory-2) Technical Specifications}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://www.eoportal.org/satellite-missions/oco-2
+      \endverb
+      \verb{url}
+      \verb https://www.eoportal.org/satellite-missions/oco-2
+      \endverb
+    \endentry
+    \entry{pmc_co2_absorption_2018}{article}{}{}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{PMC Scientific Reports}
+      \field{month}{10}
+      \field{note}{Systematic study of CO2 absorption bands at 15, 4.3, 2.7, and 2 um}
+      \field{title}{Absorption coefficient of carbon dioxide across atmospheric troposphere layer}
+      \field{year}{2018}
+      \verb{doi}
+      \verb 10.1038/s41598-018-33756-8
+      \endverb
+    \endentry
+    \entry{kuroda_essential_2014}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=3eb706d56f3340b89407131181d4df6f}{%
+           family={Kuroda},
+           familyi={K\bibinitperiod},
+           given={Takao},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {CRC Press}%
+      }
+      \strng{namehash}{3eb706d56f3340b89407131181d4df6f}
+      \strng{fullhash}{3eb706d56f3340b89407131181d4df6f}
+      \strng{fullhashraw}{3eb706d56f3340b89407131181d4df6f}
+      \strng{bibnamehash}{3eb706d56f3340b89407131181d4df6f}
+      \strng{authorbibnamehash}{3eb706d56f3340b89407131181d4df6f}
+      \strng{authornamehash}{3eb706d56f3340b89407131181d4df6f}
+      \strng{authorfullhash}{3eb706d56f3340b89407131181d4df6f}
+      \strng{authorfullhashraw}{3eb706d56f3340b89407131181d4df6f}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1st}
+      \field{isbn}{978-1-4665-5635-1}
+      \field{note}{Traducido al inglés desde la versión japonesa original}
+      \field{title}{Essential Principles of Image Sensors}
+      \field{year}{2014}
+      \field{pages}{304}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1201/b17411
+      \endverb
+    \endentry
+    \entry{ccd_operation_diagram}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=6f1f013e3c4a47e9a3c6241153880c39}{%
+           family={{CCD Technology Reference}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{6f1f013e3c4a47e9a3c6241153880c39}
+      \strng{fullhash}{6f1f013e3c4a47e9a3c6241153880c39}
+      \strng{fullhashraw}{6f1f013e3c4a47e9a3c6241153880c39}
+      \strng{bibnamehash}{6f1f013e3c4a47e9a3c6241153880c39}
+      \strng{authorbibnamehash}{6f1f013e3c4a47e9a3c6241153880c39}
+      \strng{authornamehash}{6f1f013e3c4a47e9a3c6241153880c39}
+      \strng{authorfullhash}{6f1f013e3c4a47e9a3c6241153880c39}
+      \strng{authorfullhashraw}{6f1f013e3c4a47e9a3c6241153880c39}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Cross-sectional diagram showing CCD pixel structure with three-phase electrode system (I1, i2, I3) and charge transfer process}
+      \field{title}{CCD Operation and Charge Transfer Mechanism}
+      \field{year}{2025}
+      \keyw{CCD,charge-coupled device,charge transfer,photoelectron collection}
+    \endentry
+    \entry{coatings2021_11_5_611_extended}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=78367ac52b0fef73e780584953cc5696}{%
+           family={[Autores]},
+           familyi={[\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \list{location}{1}{%
+        {Basel, Switzerland}%
+      }
+      \list{publisher}{1}{%
+        {MDPI AG}%
+      }
+      \strng{namehash}{78367ac52b0fef73e780584953cc5696}
+      \strng{fullhash}{78367ac52b0fef73e780584953cc5696}
+      \strng{fullhashraw}{78367ac52b0fef73e780584953cc5696}
+      \strng{bibnamehash}{78367ac52b0fef73e780584953cc5696}
+      \strng{authorbibnamehash}{78367ac52b0fef73e780584953cc5696}
+      \strng{authornamehash}{78367ac52b0fef73e780584953cc5696}
+      \strng{authorfullhash}{78367ac52b0fef73e780584953cc5696}
+      \strng{authorfullhashraw}{78367ac52b0fef73e780584953cc5696}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{[resumen del artículo]}
+      \field{eid}{611}
+      \field{issn}{2079-6412}
+      \field{journaltitle}{Coatings}
+      \field{month}{5}
+      \field{note}{This article is an open access article distributed under the terms and conditions of the Creative Commons Attribution (CC BY) license}
+      \field{number}{5}
+      \field{title}{[Título del artículo]}
+      \field{urlday}{17}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{volume}{11}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \field{pages}{611}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/coatings11050611
+      \endverb
+      \verb{urlraw}
+      \verb https://www.mdpi.com/2079-6412/11/5/611
+      \endverb
+      \verb{url}
+      \verb https://www.mdpi.com/2079-6412/11/5/611
+      \endverb
+      \keyw{[palabras clave del artículo]}
+    \endentry
+    \entry{capper_mercury_2010}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=cef7c8b37e982a5cf62a8ed3d396eeb0}{%
+           family={Capper},
+           familyi={C\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=b959a753470bf8108042c887b8b55d36}{%
+           family={Garland},
+           familyi={G\bibinitperiod},
+           given={James},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {John Wiley \& Sons}%
+      }
+      \strng{namehash}{ba448c22d45e96d46c901e7d607ec9ea}
+      \strng{fullhash}{ba448c22d45e96d46c901e7d607ec9ea}
+      \strng{fullhashraw}{ba448c22d45e96d46c901e7d607ec9ea}
+      \strng{bibnamehash}{ba448c22d45e96d46c901e7d607ec9ea}
+      \strng{authorbibnamehash}{ba448c22d45e96d46c901e7d607ec9ea}
+      \strng{authornamehash}{ba448c22d45e96d46c901e7d607ec9ea}
+      \strng{authorfullhash}{ba448c22d45e96d46c901e7d607ec9ea}
+      \strng{authorfullhashraw}{ba448c22d45e96d46c901e7d607ec9ea}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1st}
+      \field{isbn}{978-0-470-66946-4}
+      \field{month}{9}
+      \field{title}{Mercury Cadmium Telluride: Growth, Properties and Applications}
+      \field{year}{2010}
+      \field{pages}{696}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1002/9780470669464
+      \endverb
+    \endentry
+    \entry{everyphotoncounts2025ingaas_spad}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=85222e2f82518a4e5a2609653d0ba6d9}{%
+           family={{Every Photon Counts Research Group}},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{85222e2f82518a4e5a2609653d0ba6d9}
+      \strng{fullhash}{85222e2f82518a4e5a2609653d0ba6d9}
+      \strng{fullhashraw}{85222e2f82518a4e5a2609653d0ba6d9}
+      \strng{bibnamehash}{85222e2f82518a4e5a2609653d0ba6d9}
+      \strng{authorbibnamehash}{85222e2f82518a4e5a2609653d0ba6d9}
+      \strng{authornamehash}{85222e2f82518a4e5a2609653d0ba6d9}
+      \strng{authorfullhash}{85222e2f82518a4e5a2609653d0ba6d9}
+      \strng{authorfullhashraw}{85222e2f82518a4e5a2609653d0ba6d9}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Single Photon Avalanche Diodes for near-infrared applications (1.0-1.7 um)}
+      \field{title}{InGaAs/InP SPAD}
+      \field{urlday}{17}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb http://www.everyphotoncounts.com/device-ingaas.php
+      \endverb
+      \verb{url}
+      \verb http://www.everyphotoncounts.com/device-ingaas.php
+      \endverb
+      \keyw{InGaAs,InP,SPAD,single photon detection,near-infrared,quantum optics}
+    \endentry
+    \entry{henini_handbook_2002}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=9fa4109f0f29d2c4999e3c13d9ce42d0}{%
+           family={Henini},
+           familyi={H\bibinitperiod},
+           given={Mohamed},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{9fa4109f0f29d2c4999e3c13d9ce42d0}
+      \strng{fullhash}{9fa4109f0f29d2c4999e3c13d9ce42d0}
+      \strng{fullhashraw}{9fa4109f0f29d2c4999e3c13d9ce42d0}
+      \strng{bibnamehash}{9fa4109f0f29d2c4999e3c13d9ce42d0}
+      \strng{authorbibnamehash}{9fa4109f0f29d2c4999e3c13d9ce42d0}
+      \strng{authornamehash}{9fa4109f0f29d2c4999e3c13d9ce42d0}
+      \strng{authorfullhash}{9fa4109f0f29d2c4999e3c13d9ce42d0}
+      \strng{authorfullhashraw}{9fa4109f0f29d2c4999e3c13d9ce42d0}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-1-85617-388-9}
+      \field{month}{12}
+      \field{title}{Handbook of Infrared Detection Technologies}
+      \field{year}{2002}
+      \field{pages}{696}
+      \range{pages}{1}
+    \endentry
+    \entry{tdi_sensor2017}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=7ef7d22bbea6cf1f3e4c1c85c77c7447}{%
+           family={{SPIE Conference Proceedings}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{7ef7d22bbea6cf1f3e4c1c85c77c7447}
+      \strng{fullhash}{7ef7d22bbea6cf1f3e4c1c85c77c7447}
+      \strng{fullhashraw}{7ef7d22bbea6cf1f3e4c1c85c77c7447}
+      \strng{bibnamehash}{7ef7d22bbea6cf1f3e4c1c85c77c7447}
+      \strng{authorbibnamehash}{7ef7d22bbea6cf1f3e4c1c85c77c7447}
+      \strng{authornamehash}{7ef7d22bbea6cf1f3e4c1c85c77c7447}
+      \strng{authorfullhash}{7ef7d22bbea6cf1f3e4c1c85c77c7447}
+      \strng{authorfullhashraw}{7ef7d22bbea6cf1f3e4c1c85c77c7447}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Conference Proceedings of SPIE}
+      \field{month}{9}
+      \field{note}{TDI prototype sensor system-on-chip with 512x1024 pixel array}
+      \field{title}{High speed TDI embedded CCD in CMOS sensor}
+      \field{volume}{10562}
+      \field{year}{2017}
+      \verb{urlraw}
+      \verb https://www.spiedigitallibrary.org/conference-proceedings-of-spie/10562/105622P/High-speed-TDI-embedded-CCD-in-CMOS-sensor/10.1117/12.2296149.full
+      \endverb
+      \verb{url}
+      \verb https://www.spiedigitallibrary.org/conference-proceedings-of-spie/10562/105622P/High-speed-TDI-embedded-CCD-in-CMOS-sensor/10.1117/12.2296149.full
+      \endverb
+    \endentry
+    \entry{pushbroom_sensor_diagram}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=8ad68a4f79ec6bca5cd1da5da997a195}{%
+           family={{Remote Sensing Technology Reference}},
+           familyi={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{8ad68a4f79ec6bca5cd1da5da997a195}
+      \strng{fullhash}{8ad68a4f79ec6bca5cd1da5da997a195}
+      \strng{fullhashraw}{8ad68a4f79ec6bca5cd1da5da997a195}
+      \strng{bibnamehash}{8ad68a4f79ec6bca5cd1da5da997a195}
+      \strng{authorbibnamehash}{8ad68a4f79ec6bca5cd1da5da997a195}
+      \strng{authornamehash}{8ad68a4f79ec6bca5cd1da5da997a195}
+      \strng{authorfullhash}{8ad68a4f79ec6bca5cd1da5da997a195}
+      \strng{authorfullhashraw}{8ad68a4f79ec6bca5cd1da5da997a195}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Diagram showing pushbroom scanner with linear CCD array, optics, view plane, and swath coverage during spacecraft motion}
+      \field{title}{Pushbroom Sensor Linear CCD Array Configuration}
+      \field{year}{2025}
+      \keyw{pushbroom scanner,linear CCD,remote sensing,spacecraft motion,swath}
+    \endentry
+    \entry{whiskbroom_diagram}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=d1c3c77d6d8c4f45847eda2e5c5a2d27}{%
+           family={{Remote Sensing Educational Resource}},
+           familyi={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{d1c3c77d6d8c4f45847eda2e5c5a2d27}
+      \strng{fullhash}{d1c3c77d6d8c4f45847eda2e5c5a2d27}
+      \strng{fullhashraw}{d1c3c77d6d8c4f45847eda2e5c5a2d27}
+      \strng{bibnamehash}{d1c3c77d6d8c4f45847eda2e5c5a2d27}
+      \strng{authorbibnamehash}{d1c3c77d6d8c4f45847eda2e5c5a2d27}
+      \strng{authornamehash}{d1c3c77d6d8c4f45847eda2e5c5a2d27}
+      \strng{authorfullhash}{d1c3c77d6d8c4f45847eda2e5c5a2d27}
+      \strng{authorfullhashraw}{d1c3c77d6d8c4f45847eda2e5c5a2d27}
+      \field{extraname}{2}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Diagram showing whiskbroom scanner operation with rotating scan mirror, instantaneous field of view, and ground resolution cell}
+      \field{title}{Whiskbroom Sensor Diagram}
+      \field{year}{2025}
+      \keyw{remote sensing,whiskbroom scanner,across-track scanner}
+    \endentry
+    \entry{step_stare_system}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=346c6513ada5e4a55e4edaa7a941dfbd}{%
+           family={{Aerospace Engineering Reference}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{346c6513ada5e4a55e4edaa7a941dfbd}
+      \strng{fullhash}{346c6513ada5e4a55e4edaa7a941dfbd}
+      \strng{fullhashraw}{346c6513ada5e4a55e4edaa7a941dfbd}
+      \strng{bibnamehash}{346c6513ada5e4a55e4edaa7a941dfbd}
+      \strng{authorbibnamehash}{346c6513ada5e4a55e4edaa7a941dfbd}
+      \strng{authornamehash}{346c6513ada5e4a55e4edaa7a941dfbd}
+      \strng{authorfullhash}{346c6513ada5e4a55e4edaa7a941dfbd}
+      \strng{authorfullhashraw}{346c6513ada5e4a55e4edaa7a941dfbd}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Diagram showing step-stare operation with 3.5 degree FOV, FSI sample areas, and 14-second dwell times over 100 km distance}
+      \field{title}{Step-Stare Imaging System Configuration}
+      \field{year}{2025}
+      \keyw{step-stare,imaging system,FSI,dwell time,spacecraft motion}
+    \endentry
+    \entry{kaplan_optical_2011}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=e9879c888998db4027c449d797c2091c}{%
+           family={Kaplan},
+           familyi={K\bibinitperiod},
+           given={Herbert},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {McGraw-Hill Education}%
+      }
+      \strng{namehash}{e9879c888998db4027c449d797c2091c}
+      \strng{fullhash}{e9879c888998db4027c449d797c2091c}
+      \strng{fullhashraw}{e9879c888998db4027c449d797c2091c}
+      \strng{bibnamehash}{e9879c888998db4027c449d797c2091c}
+      \strng{authorbibnamehash}{e9879c888998db4027c449d797c2091c}
+      \strng{authornamehash}{e9879c888998db4027c449d797c2091c}
+      \strng{authorfullhash}{e9879c888998db4027c449d797c2091c}
+      \strng{authorfullhashraw}{e9879c888998db4027c449d797c2091c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1st}
+      \field{isbn}{978-0-07-175440-8}
+      \field{note}{Capítulo 6: Detectors and Focal Plane Arrays}
+      \field{title}{Optical Systems Engineering}
+      \field{year}{2011}
+      \field{pages}{464}
+      \range{pages}{1}
+    \endentry
+    \entry{entrance_pupil_diagram}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=3adc6c2d8f6755f0f47782a9678650bb}{%
+           family={{Optical Engineering Resource}},
+           familyi={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{3adc6c2d8f6755f0f47782a9678650bb}
+      \strng{fullhash}{3adc6c2d8f6755f0f47782a9678650bb}
+      \strng{fullhashraw}{3adc6c2d8f6755f0f47782a9678650bb}
+      \strng{bibnamehash}{3adc6c2d8f6755f0f47782a9678650bb}
+      \strng{authorbibnamehash}{3adc6c2d8f6755f0f47782a9678650bb}
+      \strng{authornamehash}{3adc6c2d8f6755f0f47782a9678650bb}
+      \strng{authorfullhash}{3adc6c2d8f6755f0f47782a9678650bb}
+      \strng{authorfullhashraw}{3adc6c2d8f6755f0f47782a9678650bb}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Diagram showing entrance pupil diameter, effective focal length, and f-number relationship in optical systems}
+      \field{title}{Optical System Entrance Pupil Diagram}
+      \field{year}{2025}
+      \keyw{optics,entrance pupil,focal length,aperture}
+    \endentry
+    \entry{refractor_reflector_comparison}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=0b7b7439041283647124482b7321bb6e}{%
+           family={{Optical Systems Reference}},
+           familyi={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{0b7b7439041283647124482b7321bb6e}
+      \strng{fullhash}{0b7b7439041283647124482b7321bb6e}
+      \strng{fullhashraw}{0b7b7439041283647124482b7321bb6e}
+      \strng{bibnamehash}{0b7b7439041283647124482b7321bb6e}
+      \strng{authorbibnamehash}{0b7b7439041283647124482b7321bb6e}
+      \strng{authornamehash}{0b7b7439041283647124482b7321bb6e}
+      \strng{authorfullhash}{0b7b7439041283647124482b7321bb6e}
+      \strng{authorfullhashraw}{0b7b7439041283647124482b7321bb6e}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Comparative diagram showing light path differences between refracting and reflecting telescope designs}
+      \field{title}{Refractor vs Reflector Telescope Optical Diagram}
+      \field{year}{2025}
+      \keyw{telescope,refractor,reflector,optics,light path}
+    \endentry
+    \entry{cassegrain_telescope_diagram}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=53cec82d6401c4fb4705144d5ad8414c}{%
+           family={{Classical Optics Reference}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{53cec82d6401c4fb4705144d5ad8414c}
+      \strng{fullhash}{53cec82d6401c4fb4705144d5ad8414c}
+      \strng{fullhashraw}{53cec82d6401c4fb4705144d5ad8414c}
+      \strng{bibnamehash}{53cec82d6401c4fb4705144d5ad8414c}
+      \strng{authorbibnamehash}{53cec82d6401c4fb4705144d5ad8414c}
+      \strng{authornamehash}{53cec82d6401c4fb4705144d5ad8414c}
+      \strng{authorfullhash}{53cec82d6401c4fb4705144d5ad8414c}
+      \strng{authorfullhashraw}{53cec82d6401c4fb4705144d5ad8414c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Ray diagram showing Cassegrain telescope with primary parabolic mirror, secondary hyperbolic mirror, and light path convergence}
+      \field{title}{Cassegrain Telescope Optical Configuration}
+      \field{year}{2025}
+      \keyw{Cassegrain telescope,parabolic mirror,hyperbolic mirror,reflecting telescope}
+    \endentry
+    \entry{korsch_telescope_system}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=affc46bb03ba13f35e05d6b251ec51b5}{%
+           family={{Advanced Optical Systems Reference}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{affc46bb03ba13f35e05d6b251ec51b5}
+      \strng{fullhash}{affc46bb03ba13f35e05d6b251ec51b5}
+      \strng{fullhashraw}{affc46bb03ba13f35e05d6b251ec51b5}
+      \strng{bibnamehash}{affc46bb03ba13f35e05d6b251ec51b5}
+      \strng{authorbibnamehash}{affc46bb03ba13f35e05d6b251ec51b5}
+      \strng{authornamehash}{affc46bb03ba13f35e05d6b251ec51b5}
+      \strng{authorfullhash}{affc46bb03ba13f35e05d6b251ec51b5}
+      \strng{authorfullhashraw}{affc46bb03ba13f35e05d6b251ec51b5}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Diagram showing Korsch telescope with flat mirror, four-mirror system (M1-M4), focal plane, and detector arrangement}
+      \field{title}{Korsch Telescope Optical System Configuration}
+      \field{year}{2025}
+      \keyw{Korsch telescope,four-mirror system,flat mirror,focal plane,detector}
+    \endentry
+    \entry{tma_telescope_diagram}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=17fa768fd119c22f4f5c1ef047d68b7f}{%
+           family={{Optical Engineering Reference}},
+           familyi={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{17fa768fd119c22f4f5c1ef047d68b7f}
+      \strng{fullhash}{17fa768fd119c22f4f5c1ef047d68b7f}
+      \strng{fullhashraw}{17fa768fd119c22f4f5c1ef047d68b7f}
+      \strng{bibnamehash}{17fa768fd119c22f4f5c1ef047d68b7f}
+      \strng{authorbibnamehash}{17fa768fd119c22f4f5c1ef047d68b7f}
+      \strng{authornamehash}{17fa768fd119c22f4f5c1ef047d68b7f}
+      \strng{authorfullhash}{17fa768fd119c22f4f5c1ef047d68b7f}
+      \strng{authorfullhashraw}{17fa768fd119c22f4f5c1ef047d68b7f}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Cross-sectional diagram showing TMA telescope configuration with primary, secondary, and tertiary mirrors}
+      \field{title}{Three Mirror Anastigmat (TMA) Telescope Cross Section}
+      \field{year}{2025}
+      \keyw{TMA,three mirror anastigmat,telescope optics,anastigmatic design}
+    \endentry
+    \entry{STScI_MIRI_Filters}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=c000d1c3738d0c5397f8fead87c16ff2}{%
+           family={{Space Telescope Science Institute}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{c000d1c3738d0c5397f8fead87c16ff2}
+      \strng{fullhash}{c000d1c3738d0c5397f8fead87c16ff2}
+      \strng{fullhashraw}{c000d1c3738d0c5397f8fead87c16ff2}
+      \strng{bibnamehash}{c000d1c3738d0c5397f8fead87c16ff2}
+      \strng{authorbibnamehash}{c000d1c3738d0c5397f8fead87c16ff2}
+      \strng{authornamehash}{c000d1c3738d0c5397f8fead87c16ff2}
+      \strng{authorfullhash}{c000d1c3738d0c5397f8fead87c16ff2}
+      \strng{authorfullhashraw}{c000d1c3738d0c5397f8fead87c16ff2}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Documentacion oficial del instrumento MIRI del JWST, cuya rueda de filtros se muestra en la imagen. La rueda aloja los filtros para imagen, los diafragmas para coronografia y el prisma para espectroscopia de baja resolucion.}
+      \field{title}{{MIRI Filters and Dispersers}}
+      \field{urlday}{7}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://jwst-docs.stsci.edu/jwst-mid-infrared-instrument/miri-instrumentation/miri-filters-and-dispersers
+      \endverb
+      \verb{url}
+      \verb https://jwst-docs.stsci.edu/jwst-mid-infrared-instrument/miri-instrumentation/miri-filters-and-dispersers
+      \endverb
+    \endentry
+    \entry{Reeve2024BandPass}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=b9afbf4457c62e3af96f11783eb8d642}{%
+           family={Reeve},
+           familyi={R\bibinitperiod},
+           given={Kenneth\bibnamedelima C.},
+           giveni={K\bibinitperiod\bibinitdelim C\bibinitperiod},
+           suffix={III},
+           suffixi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{b9afbf4457c62e3af96f11783eb8d642}
+      \strng{fullhash}{b9afbf4457c62e3af96f11783eb8d642}
+      \strng{fullhashraw}{b9afbf4457c62e3af96f11783eb8d642}
+      \strng{bibnamehash}{b9afbf4457c62e3af96f11783eb8d642}
+      \strng{authorbibnamehash}{b9afbf4457c62e3af96f11783eb8d642}
+      \strng{authornamehash}{b9afbf4457c62e3af96f11783eb8d642}
+      \strng{authorfullhash}{b9afbf4457c62e3af96f11783eb8d642}
+      \strng{authorfullhashraw}{b9afbf4457c62e3af96f11783eb8d642}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{8}
+      \field{title}{{Understanding Active Band Pass Filter Circuits with Formulas}}
+      \field{urlday}{7}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://electronics-formulas.com/understanding-active-band-pass-filter-circuits-with-formulas/
+      \endverb
+      \verb{url}
+      \verb https://electronics-formulas.com/understanding-active-band-pass-filter-circuits-with-formulas/
+      \endverb
+    \endentry
+    \entry{WikiElementosOrbitales}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=9f106d2f884f03381f263162d8896390}{%
+           family={{Wikipedia, la enciclopedia libre}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{9f106d2f884f03381f263162d8896390}
+      \strng{fullhash}{9f106d2f884f03381f263162d8896390}
+      \strng{fullhashraw}{9f106d2f884f03381f263162d8896390}
+      \strng{bibnamehash}{9f106d2f884f03381f263162d8896390}
+      \strng{authorbibnamehash}{9f106d2f884f03381f263162d8896390}
+      \strng{authornamehash}{9f106d2f884f03381f263162d8896390}
+      \strng{authorfullhash}{9f106d2f884f03381f263162d8896390}
+      \strng{authorfullhashraw}{9f106d2f884f03381f263162d8896390}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Elementos orbitales}
+      \field{urlday}{16}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2006}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://es.wikipedia.org/wiki/Elementos_orbitales
+      \endverb
+      \verb{url}
+      \verb https://es.wikipedia.org/wiki/Elementos_orbitales
+      \endverb
+    \endentry
+    \entry{curtis2020orbital}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=55a7280b2d9a909f02706fed0fe1f209}{%
+           family={Curtis},
+           familyi={C\bibinitperiod},
+           given={Howard\bibnamedelima D.},
+           giveni={H\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Amsterdam}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{55a7280b2d9a909f02706fed0fe1f209}
+      \strng{fullhash}{55a7280b2d9a909f02706fed0fe1f209}
+      \strng{fullhashraw}{55a7280b2d9a909f02706fed0fe1f209}
+      \strng{bibnamehash}{55a7280b2d9a909f02706fed0fe1f209}
+      \strng{authorbibnamehash}{55a7280b2d9a909f02706fed0fe1f209}
+      \strng{authornamehash}{55a7280b2d9a909f02706fed0fe1f209}
+      \strng{authorfullhash}{55a7280b2d9a909f02706fed0fe1f209}
+      \strng{authorfullhashraw}{55a7280b2d9a909f02706fed0fe1f209}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{4}
+      \field{isbn}{978-0-08-102133-0}
+      \field{note}{Incluye capitulos detallados sobre transferencia de Hohmann y la ecuacion de Tsiolkovsky}
+      \field{title}{Orbital Mechanics for Engineering Students}
+      \field{year}{2020}
+    \endentry
+    \entry{spaceacademy_orblife}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=9b200d07dae39e18c40fe9e9a94088e1}{%
+           family={{Space Academy}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{9b200d07dae39e18c40fe9e9a94088e1}
+      \strng{fullhash}{9b200d07dae39e18c40fe9e9a94088e1}
+      \strng{fullhashraw}{9b200d07dae39e18c40fe9e9a94088e1}
+      \strng{bibnamehash}{9b200d07dae39e18c40fe9e9a94088e1}
+      \strng{authorbibnamehash}{9b200d07dae39e18c40fe9e9a94088e1}
+      \strng{authornamehash}{9b200d07dae39e18c40fe9e9a94088e1}
+      \strng{authorfullhash}{9b200d07dae39e18c40fe9e9a94088e1}
+      \strng{authorfullhashraw}{9b200d07dae39e18c40fe9e9a94088e1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Accedido el 2 de mayo de 2025}
+      \field{title}{Satellite Orbital Lifetimes}
+      \field{year}{2017}
+      \verb{urlraw}
+      \verb https://www.spaceacademy.net.au/watch/debris/orblife.htm
+      \endverb
+      \verb{url}
+      \verb https://www.spaceacademy.net.au/watch/debris/orblife.htm
+      \endverb
+    \endentry
+    \entry{skoog2017principles}{book}{}{}
+      \name{author}{3}{}{%
+        {{hash=72bc754f92e26b13529ed8ee20a3124f}{%
+           family={Skoog},
+           familyi={S\bibinitperiod},
+           given={Douglas\bibnamedelima A.},
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=2ab790461f4b2cfa6782ac8243f6d47d}{%
+           family={Holler},
+           familyi={H\bibinitperiod},
+           given={F.\bibnamedelimi James},
+           giveni={F\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=bd13edf952f0825444125d7480ef3353}{%
+           family={Crouch},
+           familyi={C\bibinitperiod},
+           given={Stanley\bibnamedelima R.},
+           giveni={S\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cengage Learning}%
+      }
+      \strng{namehash}{addaa0a74663935aaf977921f321e5d2}
+      \strng{fullhash}{9ec42e8fb2a32da795dad545af1521c4}
+      \strng{fullhashraw}{9ec42e8fb2a32da795dad545af1521c4}
+      \strng{bibnamehash}{9ec42e8fb2a32da795dad545af1521c4}
+      \strng{authorbibnamehash}{9ec42e8fb2a32da795dad545af1521c4}
+      \strng{authornamehash}{addaa0a74663935aaf977921f321e5d2}
+      \strng{authorfullhash}{9ec42e8fb2a32da795dad545af1521c4}
+      \strng{authorfullhashraw}{9ec42e8fb2a32da795dad545af1521c4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{chapter}{13}
+      \field{edition}{7th}
+      \field{note}{Chapter on Optical Spectroscopy: Bandwidth considerations and signal-to-noise ratio}
+      \field{title}{Principles of Instrumental Analysis}
+      \field{year}{2017}
+      \field{pages}{339\bibrangedash 365}
+      \range{pages}{27}
+    \endentry
+    \entry{lynred_capyork}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=a65544f745951ac6a2d4fcd000500b08}{%
+           family={{LYNRED}},
+           familyi={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{a65544f745951ac6a2d4fcd000500b08}
+      \strng{fullhash}{a65544f745951ac6a2d4fcd000500b08}
+      \strng{fullhashraw}{a65544f745951ac6a2d4fcd000500b08}
+      \strng{bibnamehash}{a65544f745951ac6a2d4fcd000500b08}
+      \strng{authorbibnamehash}{a65544f745951ac6a2d4fcd000500b08}
+      \strng{authornamehash}{a65544f745951ac6a2d4fcd000500b08}
+      \strng{authorfullhash}{a65544f745951ac6a2d4fcd000500b08}
+      \strng{authorfullhashraw}{a65544f745951ac6a2d4fcd000500b08}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://lynred.com/products/capyork-1200x12}}
+      \field{note}{Ficha tecnica del detector IR CAPYORK de 1200x12 pixeles. Diseñado para satelites de observacion terrestre.}
+      \field{title}{{CAPYORK 1200x12: High Performance Infrared Detector for Earth Observation Applications}}
+      \field{year}{2022}
+      \verb{urlraw}
+      \verb https://lynred.com/products/capyork-1200x12
+      \endverb
+      \verb{url}
+      \verb https://lynred.com/products/capyork-1200x12
+      \endverb
+    \endentry
+    \entry{teledyne_hawaii2rg}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=e0e57cebdd9d936efbc994c333b952b6}{%
+           family={{Teledyne Imaging Sensors}},
+           familyi={T\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Teledyne Imaging Sensors}%
+      }
+      \strng{namehash}{e0e57cebdd9d936efbc994c333b952b6}
+      \strng{fullhash}{e0e57cebdd9d936efbc994c333b952b6}
+      \strng{fullhashraw}{e0e57cebdd9d936efbc994c333b952b6}
+      \strng{bibnamehash}{e0e57cebdd9d936efbc994c333b952b6}
+      \strng{authorbibnamehash}{e0e57cebdd9d936efbc994c333b952b6}
+      \strng{authornamehash}{e0e57cebdd9d936efbc994c333b952b6}
+      \strng{authorfullhash}{e0e57cebdd9d936efbc994c333b952b6}
+      \strng{authorfullhashraw}{e0e57cebdd9d936efbc994c333b952b6}
+      \field{extraname}{1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Publicado por Teledyne Imaging Sensors; 2048x2048 pixeles, 18 um, HgCdTe IR y tecnologia HyViSI visible, compatible con el ASIC SIDECAR™}
+      \field{title}{HAWAII‑2RG™ Visible and Infrared Focal Plane Array}
+      \field{type}{Datasheet / Technical Report}
+      \field{urlday}{13}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.teledyneimaging.com/en/aerospace-and-defense/products/sensors-overview/infrared-hgcdte-mct/hawaii-2rg/
+      \endverb
+      \verb{url}
+      \verb https://www.teledyneimaging.com/en/aerospace-and-defense/products/sensors-overview/infrared-hgcdte-mct/hawaii-2rg/
+      \endverb
+    \endentry
+    \entry{sofradir_saturn_visir_2011}{datasheet}{}{}
+      \name{author}{1}{}{%
+        {{hash=45c0a95f8ae124cba21994776471236c}{%
+           family={{Sofradir-EC}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Fairfield, NJ, USA}%
+      }
+      \list{organization}{1}{%
+        {Sofradir-EC}%
+      }
+      \strng{namehash}{45c0a95f8ae124cba21994776471236c}
+      \strng{fullhash}{45c0a95f8ae124cba21994776471236c}
+      \strng{fullhashraw}{45c0a95f8ae124cba21994776471236c}
+      \strng{bibnamehash}{45c0a95f8ae124cba21994776471236c}
+      \strng{authorbibnamehash}{45c0a95f8ae124cba21994776471236c}
+      \strng{authornamehash}{45c0a95f8ae124cba21994776471236c}
+      \strng{authorfullhash}{45c0a95f8ae124cba21994776471236c}
+      \strng{authorfullhashraw}{45c0a95f8ae124cba21994776471236c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{09-11 rev10}
+      \field{note}{Product datasheet}
+      \field{title}{Saturn VISIR - Very Large, High Performance IR Detectors for Visible and Short Wave Infrared Imaging 1000x256 HgCdTe SWIR (30um Pitch)}
+      \field{year}{2011}
+    \endentry
+    \entry{cypress_star250_2009}{datasheet}{}{}
+      \name{author}{1}{}{%
+        {{hash=34777bc131fd3049a62b5cf311adb75e}{%
+           family={{Cypress Semiconductor Corporation}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Cypress Semiconductor Corporation}%
+      }
+      \strng{namehash}{34777bc131fd3049a62b5cf311adb75e}
+      \strng{fullhash}{34777bc131fd3049a62b5cf311adb75e}
+      \strng{fullhashraw}{34777bc131fd3049a62b5cf311adb75e}
+      \strng{bibnamehash}{34777bc131fd3049a62b5cf311adb75e}
+      \strng{authorbibnamehash}{34777bc131fd3049a62b5cf311adb75e}
+      \strng{authornamehash}{34777bc131fd3049a62b5cf311adb75e}
+      \strng{authorfullhash}{34777bc131fd3049a62b5cf311adb75e}
+      \strng{authorfullhashraw}{34777bc131fd3049a62b5cf311adb75e}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Product datasheet}
+      \field{number}{38-05713}
+      \field{title}{CYIS1SM0250-AA STAR250 - 250K Pixel Radiation Hard CMOS Image Sensor}
+      \field{year}{2009}
+    \endentry
+    \entry{macleod2010}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=4514e2a54ddcefceabe4864dc7906c2e}{%
+           family={Macleod},
+           familyi={M\bibinitperiod},
+           given={H.\bibnamedelimi Angus},
+           giveni={H\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Boca Raton, FL}%
+      }
+      \list{publisher}{1}{%
+        {CRC Press}%
+      }
+      \strng{namehash}{4514e2a54ddcefceabe4864dc7906c2e}
+      \strng{fullhash}{4514e2a54ddcefceabe4864dc7906c2e}
+      \strng{fullhashraw}{4514e2a54ddcefceabe4864dc7906c2e}
+      \strng{bibnamehash}{4514e2a54ddcefceabe4864dc7906c2e}
+      \strng{authorbibnamehash}{4514e2a54ddcefceabe4864dc7906c2e}
+      \strng{authornamehash}{4514e2a54ddcefceabe4864dc7906c2e}
+      \strng{authorfullhash}{4514e2a54ddcefceabe4864dc7906c2e}
+      \strng{authorfullhashraw}{4514e2a54ddcefceabe4864dc7906c2e}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{4}
+      \field{isbn}{978-1-4200-7302-7}
+      \field{series}{Series in Optics and Optoelectronics}
+      \field{title}{Thin-Film Optical Filters}
+      \field{year}{2010}
+      \field{pages}{632}
+      \range{pages}{1}
+    \endentry
+    \entry{nasa_sso_slots_2011}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=4c9c9de04443389cac19a7c3a667861a}{%
+           family={{NASA Ames Research Center}},
+           familyi={N\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {American Institute of Aeronautics}%
+        {Astronautics}%
+      }
+      \strng{namehash}{4c9c9de04443389cac19a7c3a667861a}
+      \strng{fullhash}{4c9c9de04443389cac19a7c3a667861a}
+      \strng{fullhashraw}{4c9c9de04443389cac19a7c3a667861a}
+      \strng{bibnamehash}{4c9c9de04443389cac19a7c3a667861a}
+      \strng{authorbibnamehash}{4c9c9de04443389cac19a7c3a667861a}
+      \strng{authornamehash}{4c9c9de04443389cac19a7c3a667861a}
+      \strng{authorfullhash}{4c9c9de04443389cac19a7c3a667861a}
+      \strng{authorfullhashraw}{4c9c9de04443389cac19a7c3a667861a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{AIAA SPACE 2011 Conference \& Exposition}
+      \field{month}{9}
+      \field{number}{AIAA-2011-7184}
+      \field{title}{Slot Architecture for Separating Satellites in Sun-Synchronous Orbits}
+      \field{year}{2011}
+      \verb{urlraw}
+      \verb https://aviationsystems.arc.nasa.gov/publications/2011/AIAA-2011-7184.pdf
+      \endverb
+      \verb{url}
+      \verb https://aviationsystems.arc.nasa.gov/publications/2011/AIAA-2011-7184.pdf
+      \endverb
+    \endentry
+    \entry{Boain2004}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=2d9332e44e346eefc6c5fb5ddc7c0b75}{%
+           family={Boain},
+           familyi={B\bibinitperiod},
+           given={Ronald\bibnamedelima J.},
+           giveni={R\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \strng{namehash}{2d9332e44e346eefc6c5fb5ddc7c0b75}
+      \strng{fullhash}{2d9332e44e346eefc6c5fb5ddc7c0b75}
+      \strng{fullhashraw}{2d9332e44e346eefc6c5fb5ddc7c0b75}
+      \strng{bibnamehash}{2d9332e44e346eefc6c5fb5ddc7c0b75}
+      \strng{authorbibnamehash}{2d9332e44e346eefc6c5fb5ddc7c0b75}
+      \strng{authornamehash}{2d9332e44e346eefc6c5fb5ddc7c0b75}
+      \strng{authorfullhash}{2d9332e44e346eefc6c5fb5ddc7c0b75}
+      \strng{authorfullhashraw}{2d9332e44e346eefc6c5fb5ddc7c0b75}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Jet Propulsion Laboratory, NASA}
+      \field{title}{A-B-Cs of Sun-Synchronous Orbit Mission Design}
+      \field{urlday}{9}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2004}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://ntrs.nasa.gov/citations/20210001902
+      \endverb
+      \verb{url}
+      \verb https://ntrs.nasa.gov/citations/20210001902
+      \endverb
+    \endentry
+    \entry{gravrand_development_2017}{inproceedings}{}{}
+      \name{author}{9}{}{%
+        {{hash=7900f5ed6f1fa9fb6a38affc8c98efcd}{%
+           family={Gravrand},
+           familyi={G\bibinitperiod},
+           given={O.},
+           giveni={O\bibinitperiod}}}%
+        {{hash=6503b234d1576ef5bb435817587d204f}{%
+           family={Rothman},
+           familyi={R\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=72369229b19c64453c1e39b5ec3613f9}{%
+           family={Cervera},
+           familyi={C\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod}}}%
+        {{hash=0a54328bf5393fb64c1fccfd6d2cb27f}{%
+           family={Baier},
+           familyi={B\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod}}}%
+        {{hash=8e96374e0f821a8baeb94fcc64eccec2}{%
+           family={Lobre},
+           familyi={L\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod}}}%
+        {{hash=1373f0a329cc341beed7bf62010368c0}{%
+           family={Zanatta},
+           familyi={Z\bibinitperiod},
+           given={J.P.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=4f059163f63c405c555dd48db114a009}{%
+           family={Boulade},
+           familyi={B\bibinitperiod},
+           given={O.},
+           giveni={O\bibinitperiod}}}%
+        {{hash=682433fbbbfca450b1fe26de589a5c37}{%
+           family={Moreau},
+           familyi={M\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod}}}%
+        {{hash=68cdf1b6d3e90d220c79109b50e041e5}{%
+           family={Fieque},
+           familyi={F\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {SPIE}%
+      }
+      \strng{namehash}{69c782a881b9d3ec65249e11ad26bac2}
+      \strng{fullhash}{88d21051cf66dc04bad16d68bdfc885f}
+      \strng{fullhashraw}{88d21051cf66dc04bad16d68bdfc885f}
+      \strng{bibnamehash}{69c782a881b9d3ec65249e11ad26bac2}
+      \strng{authorbibnamehash}{69c782a881b9d3ec65249e11ad26bac2}
+      \strng{authornamehash}{69c782a881b9d3ec65249e11ad26bac2}
+      \strng{authorfullhash}{88d21051cf66dc04bad16d68bdfc885f}
+      \strng{authorfullhashraw}{88d21051cf66dc04bad16d68bdfc885f}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proc. SPIE 10563, Image Sensing Technologies: Materials, Devices, Systems, and Applications IV}
+      \field{month}{11}
+      \field{title}{Development and characterisation of MCT detectors for space astrophysics at CEA}
+      \field{volume}{10563}
+      \field{year}{2017}
+      \field{pages}{105630T}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1117/12.2304252
+      \endverb
+    \endentry
+    \entry{li2020global}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=2bb35bf59aaca26e59bbdb0d0192f3b3}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Jian},
+           giveni={J\bibinitperiod}}}%
+        {{hash=6cec726b9ec0722b2450b260f31b9064}{%
+           family={Roy},
+           familyi={R\bibinitperiod},
+           given={David\bibnamedelima P.},
+           giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MDPI}%
+      }
+      \strng{namehash}{54a4f35c4cdffc87cb826e6528d8b6f7}
+      \strng{fullhash}{54a4f35c4cdffc87cb826e6528d8b6f7}
+      \strng{fullhashraw}{54a4f35c4cdffc87cb826e6528d8b6f7}
+      \strng{bibnamehash}{54a4f35c4cdffc87cb826e6528d8b6f7}
+      \strng{authorbibnamehash}{54a4f35c4cdffc87cb826e6528d8b6f7}
+      \strng{authornamehash}{54a4f35c4cdffc87cb826e6528d8b6f7}
+      \strng{authorfullhash}{54a4f35c4cdffc87cb826e6528d8b6f7}
+      \strng{authorfullhashraw}{54a4f35c4cdffc87cb826e6528d8b6f7}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Remote Sensing}
+      \field{note}{Análisis detallado de los intervalos de revisita para Landsat-8/9 y Sentinel-2A/2B}
+      \field{number}{22}
+      \field{title}{Global Revisit Interval Analysis of Landsat-8 -9 and Sentinel-2A}
+      \field{volume}{12}
+      \field{year}{2020}
+      \field{pages}{3699}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/rs12223699
+      \endverb
+      \verb{urlraw}
+      \verb https://pmc.ncbi.nlm.nih.gov/articles/PMC7699383/
+      \endverb
+      \verb{url}
+      \verb https://pmc.ncbi.nlm.nih.gov/articles/PMC7699383/
+      \endverb
+    \endentry
+    \entry{copernicus2025sentinel}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=834de58356bb991ebdb27e3f796fc750}{%
+           family={{Copernicus Programme}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {European Space Agency}%
+      }
+      \strng{namehash}{834de58356bb991ebdb27e3f796fc750}
+      \strng{fullhash}{834de58356bb991ebdb27e3f796fc750}
+      \strng{fullhashraw}{834de58356bb991ebdb27e3f796fc750}
+      \strng{bibnamehash}{834de58356bb991ebdb27e3f796fc750}
+      \strng{authorbibnamehash}{834de58356bb991ebdb27e3f796fc750}
+      \strng{authornamehash}{834de58356bb991ebdb27e3f796fc750}
+      \strng{authorfullhash}{834de58356bb991ebdb27e3f796fc750}
+      \strng{authorfullhashraw}{834de58356bb991ebdb27e3f796fc750}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Documentación oficial de la misión Sentinel-2 con especificaciones técnicas}
+      \field{title}{S2 Mission - SentiWiki}
+      \field{urlday}{17}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://sentiwiki.copernicus.eu/web/s2-mission
+      \endverb
+      \verb{url}
+      \verb https://sentiwiki.copernicus.eu/web/s2-mission
+      \endverb
+    \endentry
+    \entry{neigh2023landsat}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=6d03439c058c7985f7a6c3de7ad4a207}{%
+           family={Neigh},
+           familyi={N\bibinitperiod},
+           given={Christopher\bibnamedelima S.R.},
+           giveni={C\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {NASA Goddard Space Flight Center}%
+      }
+      \strng{namehash}{6d03439c058c7985f7a6c3de7ad4a207}
+      \strng{fullhash}{6d03439c058c7985f7a6c3de7ad4a207}
+      \strng{fullhashraw}{6d03439c058c7985f7a6c3de7ad4a207}
+      \strng{bibnamehash}{6d03439c058c7985f7a6c3de7ad4a207}
+      \strng{authorbibnamehash}{6d03439c058c7985f7a6c3de7ad4a207}
+      \strng{authornamehash}{6d03439c058c7985f7a6c3de7ad4a207}
+      \strng{authorfullhash}{6d03439c058c7985f7a6c3de7ad4a207}
+      \strng{authorfullhashraw}{6d03439c058c7985f7a6c3de7ad4a207}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Joint Satellite Workshop 2023}
+      \field{note}{Presentación oficial sobre el estado y características de la misión Landsat Next}
+      \field{title}{Landsat Next Mission Status and Overview}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://cce-datasharing.gsfc.nasa.gov/files/conference_presentations/jsw2023/BDEC_presentations/DAY2/1450_Neigh.pdf
+      \endverb
+      \verb{url}
+      \verb https://cce-datasharing.gsfc.nasa.gov/files/conference_presentations/jsw2023/BDEC_presentations/DAY2/1450_Neigh.pdf
+      \endverb
+    \endentry
+    \entry{lou2020sar}{unpublished}{}{}
+      \name{author}{1}{}{%
+        {{hash=a71f8d1337d470faa574b7a89f69f610}{%
+           family={Lou},
+           familyi={L\bibinitperiod},
+           given={Yunling},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Jet Propulsion Laboratory, California Institute of Technology}%
+      }
+      \strng{namehash}{a71f8d1337d470faa574b7a89f69f610}
+      \strng{fullhash}{a71f8d1337d470faa574b7a89f69f610}
+      \strng{fullhashraw}{a71f8d1337d470faa574b7a89f69f610}
+      \strng{bibnamehash}{a71f8d1337d470faa574b7a89f69f610}
+      \strng{authorbibnamehash}{a71f8d1337d470faa574b7a89f69f610}
+      \strng{authornamehash}{a71f8d1337d470faa574b7a89f69f610}
+      \strng{authorfullhash}{a71f8d1337d470faa574b7a89f69f610}
+      \strng{authorfullhashraw}{a71f8d1337d470faa574b7a89f69f610}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{9}
+      \field{note}{Presentacion en el Radar Breakout Workshop, STV Incubation Study}
+      \field{title}{Synthetic Aperture Radar for STV Overview}
+      \field{year}{2020}
+      \verb{urlraw}
+      \verb https://science.nasa.gov/wp-content/uploads/2023/05/STVRadarBreakout.pdf
+      \endverb
+      \verb{url}
+      \verb https://science.nasa.gov/wp-content/uploads/2023/05/STVRadarBreakout.pdf
+      \endverb
+    \endentry
+    \entry{osullivan2023removing}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=2e91688e1d9b873f4d4ef56c493eb183}{%
+           family={O'Sullivan},
+           familyi={O\bibinitperiod},
+           given={Conor},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{2e91688e1d9b873f4d4ef56c493eb183}
+      \strng{fullhash}{2e91688e1d9b873f4d4ef56c493eb183}
+      \strng{fullhashraw}{2e91688e1d9b873f4d4ef56c493eb183}
+      \strng{bibnamehash}{2e91688e1d9b873f4d4ef56c493eb183}
+      \strng{authorbibnamehash}{2e91688e1d9b873f4d4ef56c493eb183}
+      \strng{authornamehash}{2e91688e1d9b873f4d4ef56c493eb183}
+      \strng{authorfullhash}{2e91688e1d9b873f4d4ef56c493eb183}
+      \strng{authorfullhashraw}{2e91688e1d9b873f4d4ef56c493eb183}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{note}{Publicado en TDS Archive, Medium}
+      \field{title}{Removing Clouds from Landsat Satellite Images with Python}
+      \field{urlday}{5}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://medium.com/data-science/removing-clouds-from-landsat-satellite-images-with-python-246e73494bc
+      \endverb
+      \verb{url}
+      \verb https://medium.com/data-science/removing-clouds-from-landsat-satellite-images-with-python-246e73494bc
+      \endverb
+    \endentry
+    \entry{crisp2018semi}{report}{}{}
+      \name{author}{3}{}{%
+        {{hash=46e7d8807f7209904213128c71412cd9}{%
+           family={Crisp},
+           familyi={C\bibinitperiod},
+           given={Nicholas},
+           giveni={N\bibinitperiod}}}%
+        {{hash=45ece75a8e89e19a9efa2d162fd91a34}{%
+           family={Livadiotti},
+           familyi={L\bibinitperiod},
+           given={Sabrina},
+           giveni={S\bibinitperiod}}}%
+        {{hash=5a4b7d2288618798241a591e8b3620a1}{%
+           family={Roberts},
+           familyi={R\bibinitperiod},
+           given={Peter\bibnamedelima C.E.},
+           giveni={P\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Cornell University}%
+      }
+      \list{language}{1}{%
+        {English}%
+      }
+      \strng{namehash}{efebce72040f3a20b30cc7f8b3c93f1a}
+      \strng{fullhash}{8a819f0e9b0f96f271eb7835b67079b7}
+      \strng{fullhashraw}{8a819f0e9b0f96f271eb7835b67079b7}
+      \strng{bibnamehash}{8a819f0e9b0f96f271eb7835b67079b7}
+      \strng{authorbibnamehash}{8a819f0e9b0f96f271eb7835b67079b7}
+      \strng{authornamehash}{efebce72040f3a20b30cc7f8b3c93f1a}
+      \strng{authorfullhash}{8a819f0e9b0f96f271eb7835b67079b7}
+      \strng{authorfullhashraw}{8a819f0e9b0f96f271eb7835b67079b7}
+      \field{extraname}{1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{7}
+      \field{series}{ArXiv e-prints}
+      \field{title}{A Semi-Analytical Method for Calculating Revisit Time for Satellite Constellations with Discontinuous Coverage}
+      \field{type}{WorkingPaper}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://research.manchester.ac.uk/en/publications/a-semi-analytical-method-for-calculating-revisit-time-for-satelli
+      \endverb
+      \verb{url}
+      \verb https://research.manchester.ac.uk/en/publications/a-semi-analytical-method-for-calculating-revisit-time-for-satelli
+      \endverb
+    \endentry
+    \entry{walker1991phase}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=eabc6246d9b96ca808ab8944695364c4}{%
+           family={Walker},
+           familyi={W\bibinitperiod},
+           given={J.\bibnamedelimi G.},
+           giveni={J\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Defense Technical Information Center}%
+      }
+      \strng{namehash}{eabc6246d9b96ca808ab8944695364c4}
+      \strng{fullhash}{eabc6246d9b96ca808ab8944695364c4}
+      \strng{fullhashraw}{eabc6246d9b96ca808ab8944695364c4}
+      \strng{bibnamehash}{eabc6246d9b96ca808ab8944695364c4}
+      \strng{authorbibnamehash}{eabc6246d9b96ca808ab8944695364c4}
+      \strng{authornamehash}{eabc6246d9b96ca808ab8944695364c4}
+      \strng{authorfullhash}{eabc6246d9b96ca808ab8944695364c4}
+      \strng{authorfullhashraw}{eabc6246d9b96ca808ab8944695364c4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Accedido: 17 de junio de 2025}
+      \field{number}{ADA243548}
+      \field{title}{A Phase-Based Approach to Satellite Constellation Analysis}
+      \field{type}{techreport}
+      \field{year}{1991}
+      \verb{urlraw}
+      \verb https://apps.dtic.mil/sti/tr/pdf/ADA243548.pdf
+      \endverb
+      \verb{url}
+      \verb https://apps.dtic.mil/sti/tr/pdf/ADA243548.pdf
+      \endverb
+    \endentry
+    \entry{wertz1999smad}{book}{}{}
+      \name{editor}{2}{}{%
+        {{hash=5772d44dd5bc95ef8faf8a4773563cbe}{%
+           family={Wertz},
+           familyi={W\bibinitperiod},
+           given={James\bibnamedelima R.},
+           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=696be1f32eaa0dade912db60b0bdae3e}{%
+           family={Larson},
+           familyi={L\bibinitperiod},
+           given={Wiley\bibnamedelima J.},
+           giveni={W\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{location}{2}{%
+        {El Segundo, CA}%
+        {Dordrecht, The Netherlands}%
+      }
+      \list{publisher}{2}{%
+        {Microcosm Press}%
+        {Kluwer Academic Publishers}%
+      }
+      \strng{namehash}{77585a7b8f9117c6046eef44268222bb}
+      \strng{fullhash}{77585a7b8f9117c6046eef44268222bb}
+      \strng{fullhashraw}{77585a7b8f9117c6046eef44268222bb}
+      \strng{bibnamehash}{77585a7b8f9117c6046eef44268222bb}
+      \strng{editorbibnamehash}{77585a7b8f9117c6046eef44268222bb}
+      \strng{editornamehash}{77585a7b8f9117c6046eef44268222bb}
+      \strng{editorfullhash}{77585a7b8f9117c6046eef44268222bb}
+      \strng{editorfullhashraw}{77585a7b8f9117c6046eef44268222bb}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{editor}
+      \field{labeltitlesource}{title}
+      \field{edition}{3rd}
+      \field{isbn}{978-1881883104}
+      \field{series}{Space Technology Library}
+      \field{title}{Space Mission Analysis and Design}
+      \field{year}{1999}
+    \endentry
+    \entry{zorita_dimensiones_2023}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=e4a6b17ca44650d909f9d52813cf6ee6}{%
+           family={Zorita\bibnamedelima Gomez-Escolar},
+           familyi={Z\bibinitperiod\bibinitdelim G\bibinithyphendelim E\bibinitperiod},
+           given={Demetrio},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \strng{fullhash}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \strng{fullhashraw}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \strng{bibnamehash}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \strng{authorbibnamehash}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \strng{authornamehash}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \strng{authorfullhash}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \strng{authorfullhashraw}{e4a6b17ca44650d909f9d52813cf6ee6}
+      \field{extraname}{3}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Documento tecnico sobre escalacion de dimensiones de instrumentos espaciales}
+      \field{title}{Dimensionamiento del instrumento - Volumen y peso}
+      \field{type}{techreport}
+      \field{year}{2023}
+    \endentry
+    \entry{cook1965satellite}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=e675ed15bf54846adb153c5705790b6d}{%
+           family={Cook},
+           familyi={C\bibinitperiod},
+           given={G.\bibnamedelimi E.},
+           giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Pergamon Press}%
+      }
+      \strng{namehash}{e675ed15bf54846adb153c5705790b6d}
+      \strng{fullhash}{e675ed15bf54846adb153c5705790b6d}
+      \strng{fullhashraw}{e675ed15bf54846adb153c5705790b6d}
+      \strng{bibnamehash}{e675ed15bf54846adb153c5705790b6d}
+      \strng{authorbibnamehash}{e675ed15bf54846adb153c5705790b6d}
+      \strng{authornamehash}{e675ed15bf54846adb153c5705790b6d}
+      \strng{authorfullhash}{e675ed15bf54846adb153c5705790b6d}
+      \strng{authorfullhashraw}{e675ed15bf54846adb153c5705790b6d}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Planetary and Space Science}
+      \field{number}{10}
+      \field{title}{Satellite drag coefficients}
+      \field{volume}{13}
+      \field{year}{1965}
+      \field{pages}{929\bibrangedash 946}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.1016/0032-0633(65)90150-9
+      \endverb
+    \endentry
+    \entry{usstandardatmosphere1976}{report}{}{}
+      \list{institution}{1}{%
+        {National Oceanic and Atmospheric Administration, National Aeronautics and Space Administration, U.S. Air Force}%
+      }
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{month}{10}
+      \field{note}{Accession Number: 77N16482}
+      \field{number}{NOAA-S/T-76-1562, NASA-TM-X-74335}
+      \field{title}{{U.S. Standard Atmosphere, 1976}}
+      \field{type}{Technical Memorandum}
+      \field{year}{1976}
+      \verb{urlraw}
+      \verb https://ntrs.nasa.gov/citations/19770009539
+      \endverb
+      \verb{url}
+      \verb https://ntrs.nasa.gov/citations/19770009539
+      \endverb
+    \endentry
+    \entry{vallado2013fundamentals}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=5ce77d9d427077b0792c85535de9fc7e}{%
+           family={Vallado},
+           familyi={V\bibinitperiod},
+           given={David\bibnamedelima A.},
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=aa59231effe11388dd86b7b9fd48df03}{%
+           family={McClain},
+           familyi={M\bibinitperiod},
+           given={Wayne\bibnamedelima D.},
+           giveni={W\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Hawthorne, California}%
+      }
+      \list{publisher}{1}{%
+        {Microcosm Press}%
+      }
+      \strng{namehash}{ac34030ca96a438514395fd33ff6ce06}
+      \strng{fullhash}{ac34030ca96a438514395fd33ff6ce06}
+      \strng{fullhashraw}{ac34030ca96a438514395fd33ff6ce06}
+      \strng{bibnamehash}{ac34030ca96a438514395fd33ff6ce06}
+      \strng{authorbibnamehash}{ac34030ca96a438514395fd33ff6ce06}
+      \strng{authornamehash}{ac34030ca96a438514395fd33ff6ce06}
+      \strng{authorfullhash}{ac34030ca96a438514395fd33ff6ce06}
+      \strng{authorfullhashraw}{ac34030ca96a438514395fd33ff6ce06}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{4}
+      \field{isbn}{978-1-881883-18-0}
+      \field{note}{Texto de referencia estandar para mecanica orbital y astrodinamica, con tratamiento detallado del arrastre atmosferico y sus efectos en elementos orbitales}
+      \field{number}{21}
+      \field{series}{Space Technology Library}
+      \field{title}{Fundamentals of Astrodynamics and Applications}
+      \field{year}{2013}
+    \endentry
+    \entry{nasa_deorbit_systems_2025}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=1f99771bc3e23e6097509a331544ab65}{%
+           family={{NASA}},
+           familyi={N\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {NASA Small Satellite Technology State of the Art Institute}%
+      }
+      \strng{namehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{fullhash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{fullhashraw}{1f99771bc3e23e6097509a331544ab65}
+      \strng{bibnamehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authorbibnamehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authornamehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authorfullhash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authorfullhashraw}{1f99771bc3e23e6097509a331544ab65}
+      \field{extraname}{1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{chapter}{13}
+      \field{title}{Deorbit Systems}
+      \field{type}{Technical Report}
+      \field{urlday}{16}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.nasa.gov/smallsat-institute/sst-soa/deorbit-systems/
+      \endverb
+      \verb{url}
+      \verb https://www.nasa.gov/smallsat-institute/sst-soa/deorbit-systems/
+      \endverb
+    \endentry
+    \entry{tsinas2001efficient}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=9c5b86ff0c75847b0255556149cd51b4}{%
+           family={Tsinas},
+           familyi={T\bibinitperiod},
+           given={Angelos},
+           giveni={A\bibinitperiod}}}%
+        {{hash=f9890c1c94a7afbc657c3d2f931fc3d3}{%
+           family={Welch},
+           familyi={W\bibinitperiod},
+           given={Christopher},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Utah State University}%
+      }
+      \strng{namehash}{3948c52447bb064ed7d4a7ef1fa33bbf}
+      \strng{fullhash}{3948c52447bb064ed7d4a7ef1fa33bbf}
+      \strng{fullhashraw}{3948c52447bb064ed7d4a7ef1fa33bbf}
+      \strng{bibnamehash}{3948c52447bb064ed7d4a7ef1fa33bbf}
+      \strng{authorbibnamehash}{3948c52447bb064ed7d4a7ef1fa33bbf}
+      \strng{authornamehash}{3948c52447bb064ed7d4a7ef1fa33bbf}
+      \strng{authorfullhash}{3948c52447bb064ed7d4a7ef1fa33bbf}
+      \strng{authorfullhashraw}{3948c52447bb064ed7d4a7ef1fa33bbf}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{15th Annual USU Conference on Small Satellites}
+      \field{note}{The prospect of new materials and technology can offer reductions in the overall structural mass of satellites in the region of 15-20\% which in turn can lead to significant overall mass savings and reduced launched costs}
+      \field{title}{Efficient Satellite Structural Design Optimised for Volume Production}
+      \field{year}{2001}
+      \field{pages}{SSC01-IV\bibrangedash 5}
+      \range{pages}{-1}
+    \endentry
+    \entry{satcatalog:gmat1}{online}{}{}
+      \list{organization}{1}{%
+        {Michigan Aerospace Manufacturers Association}%
+      }
+      \list{publisher}{1}{%
+        {The Satellite Catalog}%
+      }
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{note}{Ficha de producto para el magnetorquer GMAT-1}
+      \field{title}{GMAT-1}
+      \field{urlday}{16}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.satcatalog.com/component/gmat-1/
+      \endverb
+      \verb{url}
+      \verb https://www.satcatalog.com/component/gmat-1/
+      \endverb
+    \endentry
+    \entry{kulu2025nanosats}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=55eb87d35c9dc9f11f3da0152e90de83}{%
+           family={Kulu},
+           familyi={K\bibinitperiod},
+           given={Erik},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{55eb87d35c9dc9f11f3da0152e90de83}
+      \strng{fullhash}{55eb87d35c9dc9f11f3da0152e90de83}
+      \strng{fullhashraw}{55eb87d35c9dc9f11f3da0152e90de83}
+      \strng{bibnamehash}{55eb87d35c9dc9f11f3da0152e90de83}
+      \strng{authorbibnamehash}{55eb87d35c9dc9f11f3da0152e90de83}
+      \strng{authornamehash}{55eb87d35c9dc9f11f3da0152e90de83}
+      \strng{authorfullhash}{55eb87d35c9dc9f11f3da0152e90de83}
+      \strng{authorfullhashraw}{55eb87d35c9dc9f11f3da0152e90de83}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Database tracking CubeSats, pico- and nanosatellites since 2014. Over 4248 entries encompass 2714 launched nanosatellites as of 2024}
+      \field{title}{Nanosats Database}
+      \field{urlday}{16}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.nanosats.eu
+      \endverb
+      \verb{url}
+      \verb https://www.nanosats.eu
+      \endverb
+    \endentry
+    \entry{endurosat_xband_2025}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=f4786ea65c8bffc07a61c4f440117c82}{%
+           family={{EnduroSat}},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{f4786ea65c8bffc07a61c4f440117c82}
+      \strng{fullhash}{f4786ea65c8bffc07a61c4f440117c82}
+      \strng{fullhashraw}{f4786ea65c8bffc07a61c4f440117c82}
+      \strng{bibnamehash}{f4786ea65c8bffc07a61c4f440117c82}
+      \strng{authorbibnamehash}{f4786ea65c8bffc07a61c4f440117c82}
+      \strng{authornamehash}{f4786ea65c8bffc07a61c4f440117c82}
+      \strng{authorfullhash}{f4786ea65c8bffc07a61c4f440117c82}
+      \strng{authorfullhashraw}{f4786ea65c8bffc07a61c4f440117c82}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{spanish}
+      \field{note}{Transmisor X-Band para CubeSats y SmallSats, velocidad mexima de 150 Mbps, frecuencia 8.025–8.4 GHz, compatible con DVB-S2. Consultado el 10 de junio de 2025.}
+      \field{title}{Transmisor X-Band}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://www.endurosat.com/products/x-band-transmitter/
+      \endverb
+      \verb{url}
+      \verb https://www.endurosat.com/products/x-band-transmitter/
+      \endverb
+    \endentry
+    \entry{nasa2025power}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=1f99771bc3e23e6097509a331544ab65}{%
+           family={{NASA}},
+           familyi={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{fullhash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{fullhashraw}{1f99771bc3e23e6097509a331544ab65}
+      \strng{bibnamehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authorbibnamehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authornamehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authorfullhash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authorfullhashraw}{1f99771bc3e23e6097509a331544ab65}
+      \field{extraname}{2}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{2}
+      \field{note}{While Rosetta's solar cells achieved around 20\% efficiency, the latest GaAs triple-junction cells reach around 30\%}
+      \field{title}{3.0 Power - NASA SmallSat Institute}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://www.nasa.gov/smallsat-institute/sst-soa/power-subsystems/
+      \endverb
+      \verb{url}
+      \verb https://www.nasa.gov/smallsat-institute/sst-soa/power-subsystems/
+      \endverb
+    \endentry
+    \entry{hiansa2022panel}{manual}{}{}
+      \name{author}{1}{}{%
+        {{hash=e8e5da08c9b252b0ceb3d075faa6bb1c}{%
+           family={{HIANSA}},
+           familyi={H\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {HIANSA}%
+      }
+      \strng{namehash}{e8e5da08c9b252b0ceb3d075faa6bb1c}
+      \strng{fullhash}{e8e5da08c9b252b0ceb3d075faa6bb1c}
+      \strng{fullhashraw}{e8e5da08c9b252b0ceb3d075faa6bb1c}
+      \strng{bibnamehash}{e8e5da08c9b252b0ceb3d075faa6bb1c}
+      \strng{authorbibnamehash}{e8e5da08c9b252b0ceb3d075faa6bb1c}
+      \strng{authornamehash}{e8e5da08c9b252b0ceb3d075faa6bb1c}
+      \strng{authorfullhash}{e8e5da08c9b252b0ceb3d075faa6bb1c}
+      \strng{authorfullhashraw}{e8e5da08c9b252b0ceb3d075faa6bb1c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{10}
+      \field{note}{Lamina solar flexible de solo 3 kg/m² de peso. Potencia nominal 165 W, ancho panel solar flexible 358 mm, espesor panel solar flexible 2.00 mm}
+      \field{title}{Panel Cub 3GR-Slimsun - Ficha Tecnica}
+      \field{year}{2022}
+      \verb{urlraw}
+      \verb https://www.hiansa.com/wp-content/uploads/2022/10/HIANSA-Panel-Cub-3GR-Slimsun.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.hiansa.com/wp-content/uploads/2022/10/HIANSA-Panel-Cub-3GR-Slimsun.pdf
+      \endverb
+    \endentry
+    \entry{sunket2025lithium}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=1589dbea9be5f4303b386062715c4cb3}{%
+           family={{Sunket Power}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{1589dbea9be5f4303b386062715c4cb3}
+      \strng{fullhash}{1589dbea9be5f4303b386062715c4cb3}
+      \strng{fullhashraw}{1589dbea9be5f4303b386062715c4cb3}
+      \strng{bibnamehash}{1589dbea9be5f4303b386062715c4cb3}
+      \strng{authorbibnamehash}{1589dbea9be5f4303b386062715c4cb3}
+      \strng{authornamehash}{1589dbea9be5f4303b386062715c4cb3}
+      \strng{authorfullhash}{1589dbea9be5f4303b386062715c4cb3}
+      \strng{authorfullhashraw}{1589dbea9be5f4303b386062715c4cb3}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Densidad energetica de baterias de litio: 200-260 Wh/kg comparado con 50-70 Wh/kg para baterias de plomo-acido}
+      \field{title}{Ultra-detailed Lithium Battery Knowledge}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://sunketpower.com/es/ultra-detailed-lithium-battery-knowledge/
+      \endverb
+      \verb{url}
+      \verb https://sunketpower.com/es/ultra-detailed-lithium-battery-knowledge/
+      \endverb
+    \endentry
+    \entry{ECAPS_100mN_HPGP}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=fb29fcf972a62d16524fda8ce2cbbe3e}{%
+           family={{ECAPS AB}},
+           familyi={E\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {satsearch}%
+      }
+      \strng{namehash}{fb29fcf972a62d16524fda8ce2cbbe3e}
+      \strng{fullhash}{fb29fcf972a62d16524fda8ce2cbbe3e}
+      \strng{fullhashraw}{fb29fcf972a62d16524fda8ce2cbbe3e}
+      \strng{bibnamehash}{fb29fcf972a62d16524fda8ce2cbbe3e}
+      \strng{authorbibnamehash}{fb29fcf972a62d16524fda8ce2cbbe3e}
+      \strng{authornamehash}{fb29fcf972a62d16524fda8ce2cbbe3e}
+      \strng{authorfullhash}{fb29fcf972a62d16524fda8ce2cbbe3e}
+      \strng{authorfullhashraw}{fb29fcf972a62d16524fda8ce2cbbe3e}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{18}
+      \field{month}{3}
+      \field{title}{{ECAPS 100 mN HPGP Thruster}}
+      \field{urlday}{15}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://satsearch.co/products/ecaps-100-m-n-hpgp-thruster
+      \endverb
+      \verb{url}
+      \verb https://satsearch.co/products/ecaps-100-m-n-hpgp-thruster
+      \endverb
+    \endentry
+    \entry{smad2002spacecraft}{manual}{}{}
+      \name{author}{1}{}{%
+        {{hash=476b0186de9145b32abc7314ca03f148}{%
+           family={{Space Mission Engineering and Design}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Space Technology Library}%
+      }
+      \strng{namehash}{476b0186de9145b32abc7314ca03f148}
+      \strng{fullhash}{476b0186de9145b32abc7314ca03f148}
+      \strng{fullhashraw}{476b0186de9145b32abc7314ca03f148}
+      \strng{bibnamehash}{476b0186de9145b32abc7314ca03f148}
+      \strng{authorbibnamehash}{476b0186de9145b32abc7314ca03f148}
+      \strng{authornamehash}{476b0186de9145b32abc7314ca03f148}
+      \strng{authorfullhash}{476b0186de9145b32abc7314ca03f148}
+      \strng{authorfullhashraw}{476b0186de9145b32abc7314ca03f148}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{chapter}{18}
+      \field{note}{For tanks of hydrazine, the relation mass of the tank respect to the combustible is approximately 0.05 kg per kilogram of propellant}
+      \field{title}{Spacecraft Subsystems I—Propulsion}
+      \field{year}{2002}
+    \endentry
+    \entry{isisobc}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=2aa3e365a69e3db0383c33b453382ab5}{%
+           family={{ISISPACE}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Innovative Solutions In Space B.V.}%
+      }
+      \strng{namehash}{2aa3e365a69e3db0383c33b453382ab5}
+      \strng{fullhash}{2aa3e365a69e3db0383c33b453382ab5}
+      \strng{fullhashraw}{2aa3e365a69e3db0383c33b453382ab5}
+      \strng{bibnamehash}{2aa3e365a69e3db0383c33b453382ab5}
+      \strng{authorbibnamehash}{2aa3e365a69e3db0383c33b453382ab5}
+      \strng{authornamehash}{2aa3e365a69e3db0383c33b453382ab5}
+      \strng{authorfullhash}{2aa3e365a69e3db0383c33b453382ab5}
+      \strng{authorfullhashraw}{2aa3e365a69e3db0383c33b453382ab5}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Flight-proven, high-performance processing unit based around 400 MHz ARM9 processor. Mass: 94g mainboard only, 100g with EM daughter board. Power consumption: 400mW average}
+      \field{title}{ISISPACE On-Board Computer (IOBC)}
+      \field{urlday}{16}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.isispace.nl/product/isispace-iobc/
+      \endverb
+      \verb{url}
+      \verb https://www.isispace.nl/product/isispace-iobc/
+      \endverb
+    \endentry
+    \entry{guzman2025thermal}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=fe7d2e87f54776bafbefac63b816ab27}{%
+           family={Guzmen},
+           familyi={G\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=e97148d68a01918803165182e89e54f3}{%
+           family={Fernendez},
+           familyi={F\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod}}}%
+        {{hash=7430adf39a318c9d85ebeef2aaf33d4b}{%
+           family={alvarez},
+           familyi={a\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=d8317ec518773acfed75a52a498ee83d}{%
+           family={Martin},
+           familyi={M\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+        {{hash=b273f20864cfa43316162e96e285777e}{%
+           family={Garcia},
+           familyi={G\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{95efa6b9e3d630eb354391b8ea05ff0c}
+      \strng{fullhash}{1e5d5c331b23b80514ced04e87eaa22b}
+      \strng{fullhashraw}{1e5d5c331b23b80514ced04e87eaa22b}
+      \strng{bibnamehash}{1e5d5c331b23b80514ced04e87eaa22b}
+      \strng{authorbibnamehash}{1e5d5c331b23b80514ced04e87eaa22b}
+      \strng{authornamehash}{95efa6b9e3d630eb354391b8ea05ff0c}
+      \strng{authorfullhash}{1e5d5c331b23b80514ced04e87eaa22b}
+      \strng{authorfullhashraw}{1e5d5c331b23b80514ced04e87eaa22b}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Scientific Reports}
+      \field{number}{1}
+      \field{title}{Design and manufacture of CubeSat-type nanosatellite thermal control subsystem for educational and research purposes}
+      \field{volume}{15}
+      \field{year}{2025}
+      \field{pages}{12345}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1038/s41598-025-86688-3
+      \endverb
+      \verb{urlraw}
+      \verb https://www.nature.com/articles/s41598-025-86688-3
+      \endverb
+      \verb{url}
+      \verb https://www.nature.com/articles/s41598-025-86688-3
+      \endverb
+    \endentry
+    \entry{nasa2025thermal}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=1f99771bc3e23e6097509a331544ab65}{%
+           family={{NASA}},
+           familyi={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{fullhash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{fullhashraw}{1f99771bc3e23e6097509a331544ab65}
+      \strng{bibnamehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authorbibnamehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authornamehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authorfullhash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authorfullhashraw}{1f99771bc3e23e6097509a331544ab65}
+      \field{extraname}{3}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{2}
+      \field{note}{Multi-layer insulation (MLI) and thermal control coatings for spacecraft thermal management}
+      \field{title}{7.0 Thermal Control - NASA SmallSat Institute}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://www.nasa.gov/smallsat-institute/sst-soa/thermal-control/
+      \endverb
+      \verb{url}
+      \verb https://www.nasa.gov/smallsat-institute/sst-soa/thermal-control/
+      \endverb
+    \endentry
+    \entry{spacex2022}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=54d3a21ee5b8a15d2004b7350bf67e6d}{%
+           family={SpaceX},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{fullhash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{fullhashraw}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{bibnamehash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{authorbibnamehash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{authornamehash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{authorfullhash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{authorfullhashraw}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{SmallSat Rideshare Program}
+      \field{urlday}{14}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.spacex.com/rideshare/
+      \endverb
+      \verb{url}
+      \verb https://www.spacex.com/rideshare/
+      \endverb
+    \endentry
+    \entry{esa2024}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=d514c60212474a803f48a06974d89110}{%
+           family={Agency},
+           familyi={A\bibinitperiod},
+           given={European\bibnamedelima Space},
+           giveni={E\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{d514c60212474a803f48a06974d89110}
+      \strng{fullhash}{d514c60212474a803f48a06974d89110}
+      \strng{fullhashraw}{d514c60212474a803f48a06974d89110}
+      \strng{bibnamehash}{d514c60212474a803f48a06974d89110}
+      \strng{authorbibnamehash}{d514c60212474a803f48a06974d89110}
+      \strng{authornamehash}{d514c60212474a803f48a06974d89110}
+      \strng{authorfullhash}{d514c60212474a803f48a06974d89110}
+      \strng{authorfullhashraw}{d514c60212474a803f48a06974d89110}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Vega return to flight proves new rideshare service}
+      \field{urlday}{14}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.esa.int/Enabling_Support/Space_Transportation/Vega/Vega_return_to_flight_proves_new_rideshare_service
+      \endverb
+      \verb{url}
+      \verb https://www.esa.int/Enabling_Support/Space_Transportation/Vega/Vega_return_to_flight_proves_new_rideshare_service
+      \endverb
+    \endentry
+    \entry{lionnet2025}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=8a57395df0af5c54e652bc5dd9afa2d0}{%
+           family={Lionnet},
+           familyi={L\bibinitperiod},
+           given={Pierre},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{8a57395df0af5c54e652bc5dd9afa2d0}
+      \strng{fullhash}{8a57395df0af5c54e652bc5dd9afa2d0}
+      \strng{fullhashraw}{8a57395df0af5c54e652bc5dd9afa2d0}
+      \strng{bibnamehash}{8a57395df0af5c54e652bc5dd9afa2d0}
+      \strng{authorbibnamehash}{8a57395df0af5c54e652bc5dd9afa2d0}
+      \strng{authornamehash}{8a57395df0af5c54e652bc5dd9afa2d0}
+      \strng{authorfullhash}{8a57395df0af5c54e652bc5dd9afa2d0}
+      \strng{authorfullhashraw}{8a57395df0af5c54e652bc5dd9afa2d0}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Space Launch Services Prices}
+      \field{urlday}{14}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.linkedin.com/pulse/space-launch-services-prices-pierre-lionnet-bvhbe
+      \endverb
+      \verb{url}
+      \verb https://www.linkedin.com/pulse/space-launch-services-prices-pierre-lionnet-bvhbe
+      \endverb
+    \endentry
+    \entry{satellitetoday2024}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=c0c400835d7a4ccb4f10fa0b8fe47c4a}{%
+           family={Today},
+           familyi={T\bibinitperiod},
+           given={Satellite},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{c0c400835d7a4ccb4f10fa0b8fe47c4a}
+      \strng{fullhash}{c0c400835d7a4ccb4f10fa0b8fe47c4a}
+      \strng{fullhashraw}{c0c400835d7a4ccb4f10fa0b8fe47c4a}
+      \strng{bibnamehash}{c0c400835d7a4ccb4f10fa0b8fe47c4a}
+      \strng{authorbibnamehash}{c0c400835d7a4ccb4f10fa0b8fe47c4a}
+      \strng{authornamehash}{c0c400835d7a4ccb4f10fa0b8fe47c4a}
+      \strng{authorfullhash}{c0c400835d7a4ccb4f10fa0b8fe47c4a}
+      \strng{authorfullhashraw}{c0c400835d7a4ccb4f10fa0b8fe47c4a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{5 Years of SpaceX Rideshare Missions: The Spoils of Monopoly}
+      \field{urlday}{14}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://interactive.satellitetoday.com/via/september-2024/5-years-of-spacex-rideshare-missions-the-spoils-of-monopoly
+      \endverb
+      \verb{url}
+      \verb https://interactive.satellitetoday.com/via/september-2024/5-years-of-spacex-rideshare-missions-the-spoils-of-monopoly
+      \endverb
+    \endentry
+    \entry{payloadspace2023}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=9e47639de80524af1dab26a9dbe67161}{%
+           family={Space},
+           familyi={S\bibinitperiod},
+           given={Payload},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{9e47639de80524af1dab26a9dbe67161}
+      \strng{fullhash}{9e47639de80524af1dab26a9dbe67161}
+      \strng{fullhashraw}{9e47639de80524af1dab26a9dbe67161}
+      \strng{bibnamehash}{9e47639de80524af1dab26a9dbe67161}
+      \strng{authorbibnamehash}{9e47639de80524af1dab26a9dbe67161}
+      \strng{authornamehash}{9e47639de80524af1dab26a9dbe67161}
+      \strng{authorfullhash}{9e47639de80524af1dab26a9dbe67161}
+      \strng{authorfullhashraw}{9e47639de80524af1dab26a9dbe67161}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{SpaceX Increases Rideshare Prices}
+      \field{urlday}{14}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://payloadspace.com/spacex-increases-rideshare-prices/
+      \endverb
+      \verb{url}
+      \verb https://payloadspace.com/spacex-increases-rideshare-prices/
+      \endverb
+    \endentry
+    \entry{wikipedia2024}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=9c677286866aad38f8e9b660f5411814}{%
+           family={Wikipedia},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{fullhash}{9c677286866aad38f8e9b660f5411814}
+      \strng{fullhashraw}{9c677286866aad38f8e9b660f5411814}
+      \strng{bibnamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorbibnamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authornamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorfullhash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorfullhashraw}{9c677286866aad38f8e9b660f5411814}
+      \field{extraname}{1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Falcon 9}
+      \field{urlday}{14}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/Falcon_9
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/Falcon_9
+      \endverb
+    \endentry
+    \entry{fireflyspace2024}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=4d9b9be699ac36e72244e0cc1b1211c3}{%
+           family={{Firefly Aerospace}},
+           familyi={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \strng{fullhash}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \strng{fullhashraw}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \strng{bibnamehash}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \strng{authorbibnamehash}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \strng{authornamehash}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \strng{authorfullhash}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \strng{authorfullhashraw}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \field{extraname}{1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Alpha Launch Vehicle}
+      \field{urlday}{15}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://fireflyspace.com/alpha/
+      \endverb
+      \verb{url}
+      \verb https://fireflyspace.com/alpha/
+      \endverb
+    \endentry
+    \entry{semanticscholar2023}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=30d686d1eec14493860110d14d707552}{%
+           family={Scholar},
+           familyi={S\bibinitperiod},
+           given={Semantic},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{30d686d1eec14493860110d14d707552}
+      \strng{fullhash}{30d686d1eec14493860110d14d707552}
+      \strng{fullhashraw}{30d686d1eec14493860110d14d707552}
+      \strng{bibnamehash}{30d686d1eec14493860110d14d707552}
+      \strng{authorbibnamehash}{30d686d1eec14493860110d14d707552}
+      \strng{authornamehash}{30d686d1eec14493860110d14d707552}
+      \strng{authorfullhash}{30d686d1eec14493860110d14d707552}
+      \strng{authorfullhashraw}{30d686d1eec14493860110d14d707552}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Launch Vehicle High-Energy Performance Dataset}
+      \field{urlday}{14}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.semanticscholar.org/paper/606321dd750ed69e19fc445c1e24c013e4d1ce25
+      \endverb
+      \verb{url}
+      \verb https://www.semanticscholar.org/paper/606321dd750ed69e19fc445c1e24c013e4d1ce25
+      \endverb
+    \endentry
+    \entry{spaceinsider2023}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=7445c7b3b09217704c3d25482e687519}{%
+           family={Insider},
+           familyi={I\bibinitperiod},
+           given={Space},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{7445c7b3b09217704c3d25482e687519}
+      \strng{fullhash}{7445c7b3b09217704c3d25482e687519}
+      \strng{fullhashraw}{7445c7b3b09217704c3d25482e687519}
+      \strng{bibnamehash}{7445c7b3b09217704c3d25482e687519}
+      \strng{authorbibnamehash}{7445c7b3b09217704c3d25482e687519}
+      \strng{authornamehash}{7445c7b3b09217704c3d25482e687519}
+      \strng{authorfullhash}{7445c7b3b09217704c3d25482e687519}
+      \strng{authorfullhashraw}{7445c7b3b09217704c3d25482e687519}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{How Much Does It Cost to Launch a Rocket?}
+      \field{urlday}{14}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://spaceinsider.tech/2023/08/16/how-much-does-it-cost-to-launch-a-rocket/
+      \endverb
+      \verb{url}
+      \verb https://spaceinsider.tech/2023/08/16/how-much-does-it-cost-to-launch-a-rocket/
+      \endverb
+    \endentry
+    \entry{arianespace2024}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=d6637f10fe27061b199bea973980862d}{%
+           family={Arianespace},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{d6637f10fe27061b199bea973980862d}
+      \strng{fullhash}{d6637f10fe27061b199bea973980862d}
+      \strng{fullhashraw}{d6637f10fe27061b199bea973980862d}
+      \strng{bibnamehash}{d6637f10fe27061b199bea973980862d}
+      \strng{authorbibnamehash}{d6637f10fe27061b199bea973980862d}
+      \strng{authornamehash}{d6637f10fe27061b199bea973980862d}
+      \strng{authorfullhash}{d6637f10fe27061b199bea973980862d}
+      \strng{authorfullhashraw}{d6637f10fe27061b199bea973980862d}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Vega C: the lightweight, high-performance launcher by Arianespace}
+      \field{urlday}{14}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.arianespace.com/vega-c/
+      \endverb
+      \verb{url}
+      \verb https://www.arianespace.com/vega-c/
+      \endverb
+    \endentry
+    \entry{satobs2024}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=fac6b0c15e852138c196ebeb047ac5e4}{%
+           family={SatObs.org},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{fac6b0c15e852138c196ebeb047ac5e4}
+      \strng{fullhash}{fac6b0c15e852138c196ebeb047ac5e4}
+      \strng{fullhashraw}{fac6b0c15e852138c196ebeb047ac5e4}
+      \strng{bibnamehash}{fac6b0c15e852138c196ebeb047ac5e4}
+      \strng{authorbibnamehash}{fac6b0c15e852138c196ebeb047ac5e4}
+      \strng{authornamehash}{fac6b0c15e852138c196ebeb047ac5e4}
+      \strng{authorfullhash}{fac6b0c15e852138c196ebeb047ac5e4}
+      \strng{authorfullhashraw}{fac6b0c15e852138c196ebeb047ac5e4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{What Are Some Of The Ground Facilities In Use Today?}
+      \field{urlday}{14}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb http://www.satobs.org/faq/Chapter-09.txt
+      \endverb
+      \verb{url}
+      \verb http://www.satobs.org/faq/Chapter-09.txt
+      \endverb
+    \endentry
+    \entry{mdpi2024}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=9bd49f4c55bb22330226b8f028fb16c1}{%
+           family={MDPI},
+           familyi={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{9bd49f4c55bb22330226b8f028fb16c1}
+      \strng{fullhash}{9bd49f4c55bb22330226b8f028fb16c1}
+      \strng{fullhashraw}{9bd49f4c55bb22330226b8f028fb16c1}
+      \strng{bibnamehash}{9bd49f4c55bb22330226b8f028fb16c1}
+      \strng{authorbibnamehash}{9bd49f4c55bb22330226b8f028fb16c1}
+      \strng{authornamehash}{9bd49f4c55bb22330226b8f028fb16c1}
+      \strng{authorfullhash}{9bd49f4c55bb22330226b8f028fb16c1}
+      \strng{authorfullhashraw}{9bd49f4c55bb22330226b8f028fb16c1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Aerospace}
+      \field{number}{4}
+      \field{title}{Seasonal Variations in Lunar-Assisted GEO Transfer Capability for Southward Launch}
+      \field{volume}{11}
+      \field{year}{2024}
+      \field{pages}{321}
+      \range{pages}{1}
+      \verb{urlraw}
+      \verb https://www.mdpi.com/2226-4310/11/4/321
+      \endverb
+      \verb{url}
+      \verb https://www.mdpi.com/2226-4310/11/4/321
+      \endverb
+    \endentry
+    \entry{stackexchange2022}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=aa79ac055d63c011aae0cbeee69a3adf}{%
+           family={Exchange},
+           familyi={E\bibinitperiod},
+           given={Space\bibnamedelima Stack},
+           giveni={S\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{aa79ac055d63c011aae0cbeee69a3adf}
+      \strng{fullhash}{aa79ac055d63c011aae0cbeee69a3adf}
+      \strng{fullhashraw}{aa79ac055d63c011aae0cbeee69a3adf}
+      \strng{bibnamehash}{aa79ac055d63c011aae0cbeee69a3adf}
+      \strng{authorbibnamehash}{aa79ac055d63c011aae0cbeee69a3adf}
+      \strng{authornamehash}{aa79ac055d63c011aae0cbeee69a3adf}
+      \strng{authorfullhash}{aa79ac055d63c011aae0cbeee69a3adf}
+      \strng{authorfullhashraw}{aa79ac055d63c011aae0cbeee69a3adf}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Why does a launch due south not translate into a polar orbit from Vandenberg?}
+      \field{urlday}{14}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://space.stackexchange.com/questions/58565/why-does-a-launch-due-south-180-azimuth-not-translate-into-a-polar-orbit-from
+      \endverb
+      \verb{url}
+      \verb https://space.stackexchange.com/questions/58565/why-does-a-launch-due-south-180-azimuth-not-translate-into-a-polar-orbit-from
+      \endverb
+    \endentry
+    \entry{SFNow_Transporter9_2023}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=fa3e6da1a914c0cfe5a2cca3721cd02f}{%
+           family={Now},
+           familyi={N\bibinitperiod},
+           given={Spaceflight},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Spaceflight Now}%
+      }
+      \strng{namehash}{fa3e6da1a914c0cfe5a2cca3721cd02f}
+      \strng{fullhash}{fa3e6da1a914c0cfe5a2cca3721cd02f}
+      \strng{fullhashraw}{fa3e6da1a914c0cfe5a2cca3721cd02f}
+      \strng{bibnamehash}{fa3e6da1a914c0cfe5a2cca3721cd02f}
+      \strng{authorbibnamehash}{fa3e6da1a914c0cfe5a2cca3721cd02f}
+      \strng{authornamehash}{fa3e6da1a914c0cfe5a2cca3721cd02f}
+      \strng{authorfullhash}{fa3e6da1a914c0cfe5a2cca3721cd02f}
+      \strng{authorfullhashraw}{fa3e6da1a914c0cfe5a2cca3721cd02f}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{11}
+      \field{month}{11}
+      \field{title}{Live Coverage: SpaceX to Launch 90 Payloads on Transporter‑9 Falcon 9 Mission from Vandenberg}
+      \field{urlday}{14}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://spaceflightnow.com/2023/11/11/live-coverage-spacex-to-launch-90-payloads-on-transporter-9-falcon-9-mission-from-vandenberg/
+      \endverb
+      \verb{url}
+      \verb https://spaceflightnow.com/2023/11/11/live-coverage-spacex-to-launch-90-payloads-on-transporter-9-falcon-9-mission-from-vandenberg/
+      \endverb
+    \endentry
+    \entry{karabeyoglu2018lecture7}{lecture}{}{}
+      \name{author}{1}{}{%
+        {{hash=c4ae44106476aacb23433d8aebe81dd5}{%
+           family={Karabeyoglu},
+           familyi={K\bibinitperiod},
+           given={Arif},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Stanford University}%
+      }
+      \strng{namehash}{c4ae44106476aacb23433d8aebe81dd5}
+      \strng{fullhash}{c4ae44106476aacb23433d8aebe81dd5}
+      \strng{fullhashraw}{c4ae44106476aacb23433d8aebe81dd5}
+      \strng{bibnamehash}{c4ae44106476aacb23433d8aebe81dd5}
+      \strng{authorbibnamehash}{c4ae44106476aacb23433d8aebe81dd5}
+      \strng{authornamehash}{c4ae44106476aacb23433d8aebe81dd5}
+      \strng{authorfullhash}{c4ae44106476aacb23433d8aebe81dd5}
+      \strng{authorfullhashraw}{c4ae44106476aacb23433d8aebe81dd5}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eventtitle}{AA 284a: Advanced Rocket Propulsion}
+      \field{month}{10}
+      \field{note}{Also affiliated with Mechanical Engineering, KOC University}
+      \field{subtitle}{AA 284a Advanced Rocket Propulsion}
+      \field{title}{Lecture 7: Launch Trajectories}
+      \field{year}{2019}
+      \field{dateera}{ce}
+    \endentry
+    \entry{noaa_wallops_2019}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=9687cf37062735d11d9f27dc19dee999}{%
+           family={{NOAA Satellite and Information Service}},
+           familyi={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{9687cf37062735d11d9f27dc19dee999}
+      \strng{fullhash}{9687cf37062735d11d9f27dc19dee999}
+      \strng{fullhashraw}{9687cf37062735d11d9f27dc19dee999}
+      \strng{bibnamehash}{9687cf37062735d11d9f27dc19dee999}
+      \strng{authorbibnamehash}{9687cf37062735d11d9f27dc19dee999}
+      \strng{authornamehash}{9687cf37062735d11d9f27dc19dee999}
+      \strng{authorfullhash}{9687cf37062735d11d9f27dc19dee999}
+      \strng{authorfullhashraw}{9687cf37062735d11d9f27dc19dee999}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Technical Working Group Presentation}
+      \field{title}{NOAA Wallops CDA Station GOES Data Collection System}
+      \field{year}{2019}
+      \verb{urlraw}
+      \verb https://noaasis.noaa.gov/pdf/docs/TWG2019/0930\%20Wallops\%20Update.pdf
+      \endverb
+      \verb{url}
+      \verb https://noaasis.noaa.gov/pdf/docs/TWG2019/0930%5C%20Wallops%5C%20Update.pdf
+      \endverb
+    \endentry
+    \entry{eumetsat_ground_segment_2025}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=b08927634efee7efc1944e69febb5ef0}{%
+           family={{EUMETSAT}},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{b08927634efee7efc1944e69febb5ef0}
+      \strng{fullhash}{b08927634efee7efc1944e69febb5ef0}
+      \strng{fullhashraw}{b08927634efee7efc1944e69febb5ef0}
+      \strng{bibnamehash}{b08927634efee7efc1944e69febb5ef0}
+      \strng{authorbibnamehash}{b08927634efee7efc1944e69febb5ef0}
+      \strng{authornamehash}{b08927634efee7efc1944e69febb5ef0}
+      \strng{authorfullhash}{b08927634efee7efc1944e69febb5ef0}
+      \strng{authorfullhashraw}{b08927634efee7efc1944e69febb5ef0}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Last updated: 28 February 2025}
+      \field{title}{Ground Segment Infrastructure}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://www.eumetsat.int/ground-segment
+      \endverb
+      \verb{url}
+      \verb https://www.eumetsat.int/ground-segment
+      \endverb
+    \endentry
+    \entry{ASF2025_NSN}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=741f7bb4f54dd3aa65675b318f534def}{%
+           family={{Alaska Satellite Facility (ASF)}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{741f7bb4f54dd3aa65675b318f534def}
+      \strng{fullhash}{741f7bb4f54dd3aa65675b318f534def}
+      \strng{fullhashraw}{741f7bb4f54dd3aa65675b318f534def}
+      \strng{bibnamehash}{741f7bb4f54dd3aa65675b318f534def}
+      \strng{authorbibnamehash}{741f7bb4f54dd3aa65675b318f534def}
+      \strng{authornamehash}{741f7bb4f54dd3aa65675b318f534def}
+      \strng{authorfullhash}{741f7bb4f54dd3aa65675b318f534def}
+      \strng{authorfullhashraw}{741f7bb4f54dd3aa65675b318f534def}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Web page}
+      \field{note}{Consultado el 14 de junio de 2025}
+      \field{title}{{ASF–NASA Near Space Network (NSN) Satellite Tracking Stations}}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://asf.alaska.edu/asf-satellite-tracking-stations/#ASF-NASA-NSN
+      \endverb
+      \verb{url}
+      \verb https://asf.alaska.edu/asf-satellite-tracking-stations/#ASF-NASA-NSN
+      \endverb
+    \endentry
+    \entry{noaa_fairbanks_2023}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=867d9c0363928c2a50b1961b9d99dc27}{%
+           family={{NOAA Office of Satellite and Product Operations}},
+           familyi={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{867d9c0363928c2a50b1961b9d99dc27}
+      \strng{fullhash}{867d9c0363928c2a50b1961b9d99dc27}
+      \strng{fullhashraw}{867d9c0363928c2a50b1961b9d99dc27}
+      \strng{bibnamehash}{867d9c0363928c2a50b1961b9d99dc27}
+      \strng{authorbibnamehash}{867d9c0363928c2a50b1961b9d99dc27}
+      \strng{authornamehash}{867d9c0363928c2a50b1961b9d99dc27}
+      \strng{authorfullhash}{867d9c0363928c2a50b1961b9d99dc27}
+      \strng{authorfullhashraw}{867d9c0363928c2a50b1961b9d99dc27}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Accessed: 2025}
+      \field{title}{Fairbanks Command and Data Acquisition Station}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://www.ospo.noaa.gov/assets/pdf/Fairbanks_Ground_Station.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.ospo.noaa.gov/assets/pdf/Fairbanks_Ground_Station.pdf
+      \endverb
+    \endentry
+    \entry{rain_attenuation_xband_2012}{article}{}{}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Progress in Electromagnetics Research}
+      \field{note}{Estudio sobre atenuacion por lluvia en enlaces satelitales de banda X}
+      \field{title}{A Study on the Effects of Rain Attenuation for an X-Band Satellite}
+      \field{urlday}{14}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2012}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.jpier.org/issues/volume.html?paper=12083108
+      \endverb
+      \verb{url}
+      \verb https://www.jpier.org/issues/volume.html?paper=12083108
+      \endverb
+    \endentry
+    \entry{climate_data_fairbanks}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=58708d27196c5f4d0375df446878073e}{%
+           family={{Climate-Data.org}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{58708d27196c5f4d0375df446878073e}
+      \strng{fullhash}{58708d27196c5f4d0375df446878073e}
+      \strng{fullhashraw}{58708d27196c5f4d0375df446878073e}
+      \strng{bibnamehash}{58708d27196c5f4d0375df446878073e}
+      \strng{authorbibnamehash}{58708d27196c5f4d0375df446878073e}
+      \strng{authornamehash}{58708d27196c5f4d0375df446878073e}
+      \strng{authorfullhash}{58708d27196c5f4d0375df446878073e}
+      \strng{authorfullhashraw}{58708d27196c5f4d0375df446878073e}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Datos historicos del clima de Fairbanks con tablas climaticas}
+      \field{title}{Clima Fairbanks: Temperatura, Climograma y Tabla climatica}
+      \field{urlday}{14}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://es.climate-data.org/america-del-norte/estados-unidos-de-america/alaska/fairbanks-1403/
+      \endverb
+      \verb{url}
+      \verb https://es.climate-data.org/america-del-norte/estados-unidos-de-america/alaska/fairbanks-1403/
+      \endverb
+    \endentry
+    \entry{altunc_xband_cubesat_2016}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=0376114ecceec9f8f0a4ff63d8cf6282}{%
+           family={Altunc},
+           familyi={A\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {NASA}%
+      }
+      \strng{namehash}{0376114ecceec9f8f0a4ff63d8cf6282}
+      \strng{fullhash}{0376114ecceec9f8f0a4ff63d8cf6282}
+      \strng{fullhashraw}{0376114ecceec9f8f0a4ff63d8cf6282}
+      \strng{bibnamehash}{0376114ecceec9f8f0a4ff63d8cf6282}
+      \strng{authorbibnamehash}{0376114ecceec9f8f0a4ff63d8cf6282}
+      \strng{authornamehash}{0376114ecceec9f8f0a4ff63d8cf6282}
+      \strng{authorfullhash}{0376114ecceec9f8f0a4ff63d8cf6282}
+      \strng{authorfullhashraw}{0376114ecceec9f8f0a4ff63d8cf6282}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{29th Annual AIAA/USU Conference on Small Satellites}
+      \field{note}{Analysis of elevation angle effects on X-band communication performance}
+      \field{title}{X-band CubeSat Communication System Demonstration}
+      \field{urlday}{14}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2016}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/20160001365.pdf
+      \endverb
+      \verb{url}
+      \verb https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/20160001365.pdf
+      \endverb
+    \endentry
+    \entry{satellite_coordinates_look_angles}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=27b48fa1c4b77e72cea539719c3d22f2}{%
+           family={{Benha University}},
+           familyi={B\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Faculty of Engineering}%
+      }
+      \strng{namehash}{27b48fa1c4b77e72cea539719c3d22f2}
+      \strng{fullhash}{27b48fa1c4b77e72cea539719c3d22f2}
+      \strng{fullhashraw}{27b48fa1c4b77e72cea539719c3d22f2}
+      \strng{bibnamehash}{27b48fa1c4b77e72cea539719c3d22f2}
+      \strng{authorbibnamehash}{27b48fa1c4b77e72cea539719c3d22f2}
+      \strng{authornamehash}{27b48fa1c4b77e72cea539719c3d22f2}
+      \strng{authorfullhash}{27b48fa1c4b77e72cea539719c3d22f2}
+      \strng{authorfullhashraw}{27b48fa1c4b77e72cea539719c3d22f2}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Analysis of signal deterioration with elevation angles and atmospheric losses}
+      \field{title}{Satellite Coordinates and Look Angles - System Model}
+      \field{urlday}{14}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.bu.edu.eg/portal/uploads/Engineering,%20Shoubra/Electrical%20Engineering/2460/crs-13718/Files/Adv.Com.Sys_Lect_05%20Satellite%20Coordinates%20and%20Look%20Angles.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.bu.edu.eg/portal/uploads/Engineering,%20Shoubra/Electrical%20Engineering/2460/crs-13718/Files/Adv.Com.Sys_Lect_05%20Satellite%20Coordinates%20and%20Look%20Angles.pdf
+      \endverb
+    \endentry
+    \entry{cia_worldfactbook_usa_area}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=9c677286866aad38f8e9b660f5411814}{%
+           family={{Wikipedia}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{fullhash}{9c677286866aad38f8e9b660f5411814}
+      \strng{fullhashraw}{9c677286866aad38f8e9b660f5411814}
+      \strng{bibnamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorbibnamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authornamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorfullhash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorfullhashraw}{9c677286866aad38f8e9b660f5411814}
+      \field{extraname}{2}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{CIA World Factbook: 9,826,675 km² (3,794,100 sq mi) total area}
+      \field{title}{Geography of the United States}
+      \field{urlday}{14}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/Geography_of_the_United_States
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/Geography_of_the_United_States
+      \endverb
+    \endentry
+    \entry{ICSO2022}{proceedings}{}{}
+      \list{location}{1}{%
+        {Toulouse, France}%
+      }
+      \list{publisher}{1}{%
+        {SPIE}%
+      }
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of SPIE}
+      \field{eventday}{3}
+      \field{eventendday}{7}
+      \field{eventendmonth}{10}
+      \field{eventendyear}{2022}
+      \field{eventmonth}{10}
+      \field{eventyear}{2022}
+      \field{title}{International Conference on Space Optics — ICSO 2022}
+      \field{volume}{12777}
+      \field{year}{2022}
+      \field{eventenddateera}{ce}
+      \field{eventdateera}{ce}
+      \true{nocite}
+    \endentry
+    \entry{YadidPecht2000}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=ced8ba3229f2223a669c6ab0a206f435}{%
+           family={Yadid-Pecht},
+           familyi={Y\bibinithyphendelim P\bibinitperiod},
+           given={Orly},
+           giveni={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{ced8ba3229f2223a669c6ab0a206f435}
+      \strng{fullhash}{ced8ba3229f2223a669c6ab0a206f435}
+      \strng{fullhashraw}{ced8ba3229f2223a669c6ab0a206f435}
+      \strng{bibnamehash}{ced8ba3229f2223a669c6ab0a206f435}
+      \strng{authorbibnamehash}{ced8ba3229f2223a669c6ab0a206f435}
+      \strng{authornamehash}{ced8ba3229f2223a669c6ab0a206f435}
+      \strng{authorfullhash}{ced8ba3229f2223a669c6ab0a206f435}
+      \strng{authorfullhashraw}{ced8ba3229f2223a669c6ab0a206f435}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Optical Engineering}
+      \field{number}{4}
+      \field{title}{Geometrical modulation transfer function for different pixel active area shapes}
+      \field{volume}{39}
+      \field{year}{2000}
+      \true{nocite}
+      \field{pages}{859\bibrangedash 865}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1117/1.602462
+      \endverb
+      \verb{urlraw}
+      \verb https://www.spiedigitallibrary.org/journals/optical-engineering/volume-39/issue-4/0000/Geometrical-modulation-transfer-function-for-different-pixel-active-area-shapes/10.1117/1.602462.full
+      \endverb
+      \verb{url}
+      \verb https://www.spiedigitallibrary.org/journals/optical-engineering/volume-39/issue-4/0000/Geometrical-modulation-transfer-function-for-different-pixel-active-area-shapes/10.1117/1.602462.full
+      \endverb
+    \endentry
+    \entry{crisp2020revisittime}{software}{}{}
+      \name{author}{3}{}{%
+        {{hash=f18fd5b3f9eb7e9d7e8f2e5423ea72ae}{%
+           family={Crisp},
+           familyi={C\bibinitperiod},
+           given={Nicholas\bibnamedelima H.},
+           giveni={N\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=45ece75a8e89e19a9efa2d162fd91a34}{%
+           family={Livadiotti},
+           familyi={L\bibinitperiod},
+           given={Sabrina},
+           giveni={S\bibinitperiod}}}%
+        {{hash=5a4b7d2288618798241a591e8b3620a1}{%
+           family={Roberts},
+           familyi={R\bibinitperiod},
+           given={Peter\bibnamedelimb C.\bibnamedelimi E.},
+           giveni={P\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{d68b8e177b358c78fd50e6d220900343}
+      \strng{fullhash}{a2badae2101f593db1b1c50d6c142d43}
+      \strng{fullhashraw}{a2badae2101f593db1b1c50d6c142d43}
+      \strng{bibnamehash}{a2badae2101f593db1b1c50d6c142d43}
+      \strng{authorbibnamehash}{a2badae2101f593db1b1c50d6c142d43}
+      \strng{authornamehash}{d68b8e177b358c78fd50e6d220900343}
+      \strng{authorfullhash}{a2badae2101f593db1b1c50d6c142d43}
+      \strng{authorfullhashraw}{a2badae2101f593db1b1c50d6c142d43}
+      \field{extraname}{2}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{29}
+      \field{month}{10}
+      \field{note}{Accessed: 2025-06-03}
+      \field{title}{RevisitTime: MATLAB toolkit for calculating revisit time metrics}
+      \field{version}{1.0}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://github.com/nhcrisp/RevisitTime
+      \endverb
+      \verb{url}
+      \verb https://github.com/nhcrisp/RevisitTime
+      \endverb
+    \endentry
+    \entry{holst_electro_optical_2006}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=7a9ced9021ea68757bb93afeddee0b82}{%
+           family={Holst},
+           familyi={H\bibinitperiod},
+           given={Gerald\bibnamedelima C.},
+           giveni={G\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \list{location}{2}{%
+        {Winter Park, Florida USA}%
+        {Bellingham, WA}%
+      }
+      \list{publisher}{2}{%
+        {JCD Publishing}%
+        {SPIE Press}%
+      }
+      \strng{namehash}{7a9ced9021ea68757bb93afeddee0b82}
+      \strng{fullhash}{7a9ced9021ea68757bb93afeddee0b82}
+      \strng{fullhashraw}{7a9ced9021ea68757bb93afeddee0b82}
+      \strng{bibnamehash}{7a9ced9021ea68757bb93afeddee0b82}
+      \strng{authorbibnamehash}{7a9ced9021ea68757bb93afeddee0b82}
+      \strng{authornamehash}{7a9ced9021ea68757bb93afeddee0b82}
+      \strng{authorfullhash}{7a9ced9021ea68757bb93afeddee0b82}
+      \strng{authorfullhashraw}{7a9ced9021ea68757bb93afeddee0b82}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{4th}
+      \field{isbn}{0-9707749-2-3}
+      \field{title}{Electro-Optical Imaging System Performance}
+      \field{volume}{PM-160}
+      \field{year}{2006}
+      \true{nocite}
+    \endentry
+    \entry{sener_seosat_2023}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=74585e85ea95194cf1a08c4f557e4450}{%
+           family={{SENER Ingenieria y Sistemas S.A.}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {SENER Ingenieria y Sistemas S.A.}%
+      }
+      \list{location}{1}{%
+        {Getxo}%
+      }
+      \strng{namehash}{74585e85ea95194cf1a08c4f557e4450}
+      \strng{fullhash}{74585e85ea95194cf1a08c4f557e4450}
+      \strng{fullhashraw}{74585e85ea95194cf1a08c4f557e4450}
+      \strng{bibnamehash}{74585e85ea95194cf1a08c4f557e4450}
+      \strng{authorbibnamehash}{74585e85ea95194cf1a08c4f557e4450}
+      \strng{authornamehash}{74585e85ea95194cf1a08c4f557e4450}
+      \strng{authorfullhash}{74585e85ea95194cf1a08c4f557e4450}
+      \strng{authorfullhashraw}{74585e85ea95194cf1a08c4f557e4450}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Revision 0, Date: 09-10-23}
+      \field{number}{SEOS-TN-SEN-PP-065}
+      \field{title}{SEOSAT Primary Payload Instrument - Signal-to-Noise Ratio}
+      \field{type}{techreport}
+      \field{year}{2023}
+      \true{nocite}
+      \field{pages}{18\bibrangedash 38}
+      \range{pages}{21}
+    \endentry
+    \entry{teledyne2012}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=e0e57cebdd9d936efbc994c333b952b6}{%
+           family={{Teledyne Imaging Sensors}},
+           familyi={T\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Teledyne Imaging Sensors}%
+      }
+      \list{location}{1}{%
+        {Camarillo, CA}%
+      }
+      \strng{namehash}{e0e57cebdd9d936efbc994c333b952b6}
+      \strng{fullhash}{e0e57cebdd9d936efbc994c333b952b6}
+      \strng{fullhashraw}{e0e57cebdd9d936efbc994c333b952b6}
+      \strng{bibnamehash}{e0e57cebdd9d936efbc994c333b952b6}
+      \strng{authorbibnamehash}{e0e57cebdd9d936efbc994c333b952b6}
+      \strng{authornamehash}{e0e57cebdd9d936efbc994c333b952b6}
+      \strng{authorfullhash}{e0e57cebdd9d936efbc994c333b952b6}
+      \strng{authorfullhashraw}{e0e57cebdd9d936efbc994c333b952b6}
+      \field{extraname}{2}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Cleared for Public Release by the DoD's Office of Security Review, Case 12-S-1868}
+      \field{number}{TSI-0855}
+      \field{title}{H2RG™ Visible \& Infrared Focal Plane Array}
+      \field{type}{Technical Brochure}
+      \field{year}{2012}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://panic.iaa.es/sites/default/files/H2RG_Brochure_rev6_v2_2_OSR.pdf
+      \endverb
+      \verb{url}
+      \verb https://panic.iaa.es/sites/default/files/H2RG_Brochure_rev6_v2_2_OSR.pdf
+      \endverb
+    \endentry
+    \entry{blank2012}{inproceedings}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{3}{}{%
+        {{hash=268f81bd26b5d01caa0d8449c24d4d2a}{%
+           family={Blank},
+           familyi={B\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod}}}%
+        {{hash=a10ff32966b4b44beccdaa535dd5aafd}{%
+           family={Anglin},
+           familyi={A\bibinitperiod},
+           given={Selmer},
+           giveni={S\bibinitperiod}}}%
+        {{hash=d6c5761d47aeed7029ea3b8e38c75ec0}{%
+           family={Beletic},
+           familyi={B\bibinitperiod},
+           given={James\bibnamedelima W.},
+           giveni={J\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Amsterdam, Netherlands}%
+      }
+      \list{organization}{1}{%
+        {SPIE}%
+      }
+      \strng{namehash}{d124343c46b37f1e87433cbfe35df4f2}
+      \strng{fullhash}{c0f3916a8b3894ab3719332590dc4632}
+      \strng{fullhashraw}{c0f3916a8b3894ab3719332590dc4632}
+      \strng{bibnamehash}{c0f3916a8b3894ab3719332590dc4632}
+      \strng{authorbibnamehash}{c0f3916a8b3894ab3719332590dc4632}
+      \strng{authornamehash}{d124343c46b37f1e87433cbfe35df4f2}
+      \strng{authorfullhash}{c0f3916a8b3894ab3719332590dc4632}
+      \strng{authorfullhashraw}{c0f3916a8b3894ab3719332590dc4632}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of SPIE}
+      \field{note}{Performance data for H2RG arrays at various operating temperatures}
+      \field{title}{H2RG Focal Plane Array and Camera Performance Update}
+      \field{volume}{8453}
+      \field{year}{2012}
+      \true{nocite}
+    \endentry
+    \entry{fieque2018}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=a780f12ad2a3d0ba469bc44db9fccc98}{%
+           family={Fieque},
+           familyi={F\bibinitperiod},
+           given={Bruno},
+           giveni={B\bibinitperiod}}}%
+        {{hash=36b811ec8a9a1fd49a0aec363644a23f}{%
+           family={Chorier},
+           familyi={C\bibinitperiod},
+           given={Philippe},
+           giveni={P\bibinitperiod}}}%
+        {{hash=62a3429b86999c518539452887883f9c}{%
+           family={Lamoure},
+           familyi={L\bibinitperiod},
+           given={Adrien},
+           giveni={A\bibinitperiod}}}%
+        {{hash=270ecc2e1bd4db7a864088cb0d8eb05b}{%
+           family={Offranc},
+           familyi={O\bibinitperiod},
+           given={Olivier},
+           giveni={O\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Chania, Greece}%
+      }
+      \list{organization}{1}{%
+        {SPIE}%
+      }
+      \strng{namehash}{54754e0fd9b982e5e167ffcc85f9eb1e}
+      \strng{fullhash}{3e0fd20a376ecd5f6de942a08edbe38a}
+      \strng{fullhashraw}{3e0fd20a376ecd5f6de942a08edbe38a}
+      \strng{bibnamehash}{3e0fd20a376ecd5f6de942a08edbe38a}
+      \strng{authorbibnamehash}{3e0fd20a376ecd5f6de942a08edbe38a}
+      \strng{authornamehash}{54754e0fd9b982e5e167ffcc85f9eb1e}
+      \strng{authorfullhash}{3e0fd20a376ecd5f6de942a08edbe38a}
+      \strng{authorfullhashraw}{3e0fd20a376ecd5f6de942a08edbe38a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{International Conference on Space Optics (ICSO 2018)}
+      \field{month}{10}
+      \field{note}{Comprehensive overview of SOFRADIR detector portfolio including Saturn series}
+      \field{title}{Status of Space Activity and Science Detectors Development at SOFRADIR}
+      \field{volume}{11180}
+      \field{year}{2018}
+      \true{nocite}
+      \field{pages}{1118074}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1117/12.2536140
+      \endverb
+    \endentry
+    \entry{teledyne_chroma_d18_2023}{datasheet}{}{}
+      \name{author}{1}{}{%
+        {{hash=24522f6e9d88ef183e234ad0029dfe6b}{%
+           family={{Teledyne e2v}},
+           familyi={T\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Teledyne e2v Space Imaging}%
+      }
+      \strng{namehash}{24522f6e9d88ef183e234ad0029dfe6b}
+      \strng{fullhash}{24522f6e9d88ef183e234ad0029dfe6b}
+      \strng{fullhashraw}{24522f6e9d88ef183e234ad0029dfe6b}
+      \strng{bibnamehash}{24522f6e9d88ef183e234ad0029dfe6b}
+      \strng{authorbibnamehash}{24522f6e9d88ef183e234ad0029dfe6b}
+      \strng{authornamehash}{24522f6e9d88ef183e234ad0029dfe6b}
+      \strng{authorfullhash}{24522f6e9d88ef183e234ad0029dfe6b}
+      \strng{authorfullhashraw}{24522f6e9d88ef183e234ad0029dfe6b}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{9}
+      \field{note}{Product datasheet}
+      \field{title}{CHROMA-D18 SWIR HgCdTe Infrared Detector}
+      \field{version}{v1/DM/IS}
+      \field{year}{2023}
+      \true{nocite}
+    \endentry
+    \entry{crisp_semi_analytical_2018}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=f18fd5b3f9eb7e9d7e8f2e5423ea72ae}{%
+           family={Crisp},
+           familyi={C\bibinitperiod},
+           given={Nicholas\bibnamedelima H.},
+           giveni={N\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=45ece75a8e89e19a9efa2d162fd91a34}{%
+           family={Livadiotti},
+           familyi={L\bibinitperiod},
+           given={Sabrina},
+           giveni={S\bibinitperiod}}}%
+        {{hash=5a4b7d2288618798241a591e8b3620a1}{%
+           family={Roberts},
+           familyi={R\bibinitperiod},
+           given={Peter\bibnamedelimb C.\bibnamedelimi E.},
+           giveni={P\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{d68b8e177b358c78fd50e6d220900343}
+      \strng{fullhash}{a2badae2101f593db1b1c50d6c142d43}
+      \strng{fullhashraw}{a2badae2101f593db1b1c50d6c142d43}
+      \strng{bibnamehash}{a2badae2101f593db1b1c50d6c142d43}
+      \strng{authorbibnamehash}{a2badae2101f593db1b1c50d6c142d43}
+      \strng{authornamehash}{d68b8e177b358c78fd50e6d220900343}
+      \strng{authorfullhash}{a2badae2101f593db1b1c50d6c142d43}
+      \strng{authorfullhashraw}{a2badae2101f593db1b1c50d6c142d43}
+      \field{extraname}{3}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint}
+      \field{month}{7}
+      \field{title}{A Semi-Analytical Method for Calculating Revisit Time for Satellite Constellations with Discontinuous Coverage}
+      \field{volume}{arXiv:1807.02021}
+      \field{year}{2018}
+      \true{nocite}
+      \field{pages}{10}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.48550/arXiv.1807.02021
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1807.02021
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1807.02021
+      \endverb
+    \endentry
+    \entry{sofradir_ir_contract}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=cebc92f42ab66c95fc57bb1e3d28ad55}{%
+           family={{Vision Systems Design}},
+           familyi={V\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Vision Systems Design}%
+      }
+      \strng{namehash}{cebc92f42ab66c95fc57bb1e3d28ad55}
+      \strng{fullhash}{cebc92f42ab66c95fc57bb1e3d28ad55}
+      \strng{fullhashraw}{cebc92f42ab66c95fc57bb1e3d28ad55}
+      \strng{bibnamehash}{cebc92f42ab66c95fc57bb1e3d28ad55}
+      \strng{authorbibnamehash}{cebc92f42ab66c95fc57bb1e3d28ad55}
+      \strng{authornamehash}{cebc92f42ab66c95fc57bb1e3d28ad55}
+      \strng{authorfullhash}{cebc92f42ab66c95fc57bb1e3d28ad55}
+      \strng{authorfullhashraw}{cebc92f42ab66c95fc57bb1e3d28ad55}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{10}
+      \field{note}{Accedido el 13 de junio de 2025. Sofradir recibio un contrato multimillonario para proveer matrices de plano focal IR de alta resolucion para la constelacion militar MUSIS/CSO, reemplazando los satelites Helios II}
+      \field{title}{Sofradir signs infrared detector contract}
+      \field{year}{2011}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://www.vision-systems.com/cameras-accessories/article/16747004/sofradir-signs-infrared-detector-contract
+      \endverb
+      \verb{url}
+      \verb https://www.vision-systems.com/cameras-accessories/article/16747004/sofradir-signs-infrared-detector-contract
+      \endverb
+    \endentry
+    \entry{infineon_star250}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=5988993ded73114a7bf8c701b32d8b3a}{%
+           family={{Infineon Technologies / Cypress Semiconductor}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Infineon / Cypress}%
+      }
+      \strng{namehash}{5988993ded73114a7bf8c701b32d8b3a}
+      \strng{fullhash}{5988993ded73114a7bf8c701b32d8b3a}
+      \strng{fullhashraw}{5988993ded73114a7bf8c701b32d8b3a}
+      \strng{bibnamehash}{5988993ded73114a7bf8c701b32d8b3a}
+      \strng{authorbibnamehash}{5988993ded73114a7bf8c701b32d8b3a}
+      \strng{authornamehash}{5988993ded73114a7bf8c701b32d8b3a}
+      \strng{authorfullhash}{5988993ded73114a7bf8c701b32d8b3a}
+      \strng{authorfullhashraw}{5988993ded73114a7bf8c701b32d8b3a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{STAR‑250: 250 K‑pixel Radiation‑Hard CMOS Image Sensor}
+      \field{type}{Datasheet / Technical Report}
+      \field{urlday}{13}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2009}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://www.mouser.es/ProductDetail/Infineon-Cypress/STAR-250?qs=eg8mrW3YyI7j4uRE32sOuA%3D%3D
+      \endverb
+      \verb{url}
+      \verb https://www.mouser.es/ProductDetail/Infineon-Cypress/STAR-250?qs=eg8mrW3YyI7j4uRE32sOuA%3D%3D
+      \endverb
+    \endentry
+    \entry{calpoly2022cubesat}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=b20595b22eab582354e6b7e059019a65}{%
+           family={The\bibnamedelimb CubeSat\bibnamedelima Program},
+           familyi={T\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim P\bibinitperiod},
+           given={Cal\bibnamedelimb Poly\bibnamedelima SLO},
+           giveni={C\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {California Polytechnic State University, San Luis Obispo}%
+      }
+      \strng{namehash}{b20595b22eab582354e6b7e059019a65}
+      \strng{fullhash}{b20595b22eab582354e6b7e059019a65}
+      \strng{fullhashraw}{b20595b22eab582354e6b7e059019a65}
+      \strng{bibnamehash}{b20595b22eab582354e6b7e059019a65}
+      \strng{authorbibnamehash}{b20595b22eab582354e6b7e059019a65}
+      \strng{authornamehash}{b20595b22eab582354e6b7e059019a65}
+      \strng{authorfullhash}{b20595b22eab582354e6b7e059019a65}
+      \strng{authorfullhashraw}{b20595b22eab582354e6b7e059019a65}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{2}
+      \field{note}{Public Domain}
+      \field{number}{CP-CDS-R14.1}
+      \field{title}{CubeSat Design Specification (1U–12U), Revision 14.1}
+      \field{type}{techreport}
+      \field{year}{2022}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://www.nasa.gov/wp-content/uploads/2018/01/cubesatdesignspecificationrev14_12022-02-09.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.nasa.gov/wp-content/uploads/2018/01/cubesatdesignspecificationrev14_12022-02-09.pdf
+      \endverb
+    \endentry
+    \entry{aerospacelab_hydrazine_thrusters}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=83e772c1fbaa666ec70bd8e4e6f9a2ef}{%
+           family={{Aerospace Propulsion Products B.V.}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Airbus Safran Launchers}%
+      }
+      \strng{namehash}{83e772c1fbaa666ec70bd8e4e6f9a2ef}
+      \strng{fullhash}{83e772c1fbaa666ec70bd8e4e6f9a2ef}
+      \strng{fullhashraw}{83e772c1fbaa666ec70bd8e4e6f9a2ef}
+      \strng{bibnamehash}{83e772c1fbaa666ec70bd8e4e6f9a2ef}
+      \strng{authorbibnamehash}{83e772c1fbaa666ec70bd8e4e6f9a2ef}
+      \strng{authornamehash}{83e772c1fbaa666ec70bd8e4e6f9a2ef}
+      \strng{authorfullhash}{83e772c1fbaa666ec70bd8e4e6f9a2ef}
+      \strng{authorfullhashraw}{83e772c1fbaa666ec70bd8e4e6f9a2ef}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Accessed: 2025-06-10}
+      \field{title}{Hydrazine Thrusters}
+      \field{year}{2021}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://www.space-propulsion.com/brochures/hydrazine-thrusters/hydrazine-thrusters.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.space-propulsion.com/brochures/hydrazine-thrusters/hydrazine-thrusters.pdf
+      \endverb
+    \endentry
+    \entry{nanosats:freq_chart_2025}{online}{}{}
+      \list{organization}{1}{%
+        {Nanosats Database}%
+      }
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labeltitlesource}{title}
+      \field{day}{30}
+      \field{month}{4}
+      \field{note}{Diagrama de las bandas de frecuencia utilizadas por nanosatelites. La fecha se infiere del nombre del archivo.}
+      \field{title}{Nanosats Frequency}
+      \field{urlday}{16}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://www.nanosats.eu/img/fig/Nanosats_frequency_black_2025-04-30.png
+      \endverb
+      \verb{url}
+      \verb https://www.nanosats.eu/img/fig/Nanosats_frequency_black_2025-04-30.png
+      \endverb
+    \endentry
+    \entry{fireflyspace2024pug}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=4d9b9be699ac36e72244e0cc1b1211c3}{%
+           family={{Firefly Aerospace}},
+           familyi={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \strng{fullhash}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \strng{fullhashraw}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \strng{bibnamehash}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \strng{authorbibnamehash}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \strng{authornamehash}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \strng{authorfullhash}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \strng{authorfullhashraw}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \field{extraname}{2}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Payload User's Guide - Alpha Launch Vehicle}
+      \field{urlday}{15}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://fireflyspace.com/wp-content/uploads/2025/02/Alpha-PUG-5.1_2.pdf
+      \endverb
+      \verb{url}
+      \verb https://fireflyspace.com/wp-content/uploads/2025/02/Alpha-PUG-5.1_2.pdf
+      \endverb
+    \endentry
+    \entry{space2025}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=6d8d83dd5c3223d81bc7c420bbc6e2f1}{%
+           family={{Space.com}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{6d8d83dd5c3223d81bc7c420bbc6e2f1}
+      \strng{fullhash}{6d8d83dd5c3223d81bc7c420bbc6e2f1}
+      \strng{fullhashraw}{6d8d83dd5c3223d81bc7c420bbc6e2f1}
+      \strng{bibnamehash}{6d8d83dd5c3223d81bc7c420bbc6e2f1}
+      \strng{authorbibnamehash}{6d8d83dd5c3223d81bc7c420bbc6e2f1}
+      \strng{authornamehash}{6d8d83dd5c3223d81bc7c420bbc6e2f1}
+      \strng{authorfullhash}{6d8d83dd5c3223d81bc7c420bbc6e2f1}
+      \strng{authorfullhashraw}{6d8d83dd5c3223d81bc7c420bbc6e2f1}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{4}
+      \field{title}{Firefly Aerospace's Alpha rocket fails during launch, falls into the sea near Antarctica}
+      \field{urlday}{15}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://www.space.com/space-exploration/launches-spacecraft/firefly-aerospaces-alpha-rocket-fails-during-6th-ever-launch-falls-into-the-sea-near-antarctica
+      \endverb
+      \verb{url}
+      \verb https://www.space.com/space-exploration/launches-spacecraft/firefly-aerospaces-alpha-rocket-fails-during-6th-ever-launch-falls-into-the-sea-near-antarctica
+      \endverb
+    \endentry
+    \entry{flyingmag2025}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=7740d546b5dc9639de9efd9787d74617}{%
+           family={{Flying Magazine}},
+           familyi={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{7740d546b5dc9639de9efd9787d74617}
+      \strng{fullhash}{7740d546b5dc9639de9efd9787d74617}
+      \strng{fullhashraw}{7740d546b5dc9639de9efd9787d74617}
+      \strng{bibnamehash}{7740d546b5dc9639de9efd9787d74617}
+      \strng{authorbibnamehash}{7740d546b5dc9639de9efd9787d74617}
+      \strng{authornamehash}{7740d546b5dc9639de9efd9787d74617}
+      \strng{authorfullhash}{7740d546b5dc9639de9efd9787d74617}
+      \strng{authorfullhashraw}{7740d546b5dc9639de9efd9787d74617}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{4}
+      \field{title}{Firefly Alpha Rocket Grounded After In-Flight Anomaly}
+      \field{urlday}{15}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://www.flyingmag.com/firefly-alpha-rocket-grounded-after-in-flight-anomaly/
+      \endverb
+      \verb{url}
+      \verb https://www.flyingmag.com/firefly-alpha-rocket-grounded-after-in-flight-anomaly/
+      \endverb
+    \endentry
+    \entry{newspace2025}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=deb424177001c14f1b588fb2f584be5f}{%
+           family={{NewSpace Index}},
+           familyi={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{deb424177001c14f1b588fb2f584be5f}
+      \strng{fullhash}{deb424177001c14f1b588fb2f584be5f}
+      \strng{fullhashraw}{deb424177001c14f1b588fb2f584be5f}
+      \strng{bibnamehash}{deb424177001c14f1b588fb2f584be5f}
+      \strng{authorbibnamehash}{deb424177001c14f1b588fb2f584be5f}
+      \strng{authornamehash}{deb424177001c14f1b588fb2f584be5f}
+      \strng{authorfullhash}{deb424177001c14f1b588fb2f584be5f}
+      \strng{authorfullhashraw}{deb424177001c14f1b588fb2f584be5f}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{title}{Firefly - Launcher - NewSpace Index}
+      \field{urlday}{15}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://www.newspace.im/launchers/firefly
+      \endverb
+      \verb{url}
+      \verb https://www.newspace.im/launchers/firefly
+      \endverb
+    \endentry
+    \entry{nasaspaceflight2023}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=2c07ea194e277b58736e9aa018bb66b1}{%
+           family={{NASASpaceflight}},
+           familyi={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{2c07ea194e277b58736e9aa018bb66b1}
+      \strng{fullhash}{2c07ea194e277b58736e9aa018bb66b1}
+      \strng{fullhashraw}{2c07ea194e277b58736e9aa018bb66b1}
+      \strng{bibnamehash}{2c07ea194e277b58736e9aa018bb66b1}
+      \strng{authorbibnamehash}{2c07ea194e277b58736e9aa018bb66b1}
+      \strng{authornamehash}{2c07ea194e277b58736e9aa018bb66b1}
+      \strng{authorfullhash}{2c07ea194e277b58736e9aa018bb66b1}
+      \strng{authorfullhashraw}{2c07ea194e277b58736e9aa018bb66b1}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{9}
+      \field{title}{Firefly's Alpha successfully launches VICTUS NOX rapid response mission}
+      \field{urlday}{15}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://www.nasaspaceflight.com/2023/09/firefly-victus-nox/
+      \endverb
+      \verb{url}
+      \verb https://www.nasaspaceflight.com/2023/09/firefly-victus-nox/
+      \endverb
+    \endentry
+    \entry{fireflyspace2024noise}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=4d9b9be699ac36e72244e0cc1b1211c3}{%
+           family={{Firefly Aerospace}},
+           familyi={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \strng{fullhash}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \strng{fullhashraw}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \strng{bibnamehash}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \strng{authorbibnamehash}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \strng{authornamehash}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \strng{authorfullhash}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \strng{authorfullhashraw}{4d9b9be699ac36e72244e0cc1b1211c3}
+      \field{extraname}{3}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{7}
+      \field{title}{Alpha FLTA005 Noise of Summer}
+      \field{urlday}{15}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://fireflyspace.com/missions/noise-of-summer/
+      \endverb
+      \verb{url}
+      \verb https://fireflyspace.com/missions/noise-of-summer/
+      \endverb
+    \endentry
+    \entry{dtic2024}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=5c12ea2176afd63a99e0d1b017e3dbbc}{%
+           family={DTIC},
+           familyi={D\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Defense Technical Information Center}%
+      }
+      \strng{namehash}{5c12ea2176afd63a99e0d1b017e3dbbc}
+      \strng{fullhash}{5c12ea2176afd63a99e0d1b017e3dbbc}
+      \strng{fullhashraw}{5c12ea2176afd63a99e0d1b017e3dbbc}
+      \strng{bibnamehash}{5c12ea2176afd63a99e0d1b017e3dbbc}
+      \strng{authorbibnamehash}{5c12ea2176afd63a99e0d1b017e3dbbc}
+      \strng{authornamehash}{5c12ea2176afd63a99e0d1b017e3dbbc}
+      \strng{authorfullhash}{5c12ea2176afd63a99e0d1b017e3dbbc}
+      \strng{authorfullhashraw}{5c12ea2176afd63a99e0d1b017e3dbbc}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Exploiting Northern Latitudes For Efficient Space Launch}
+      \field{urlday}{14}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://apps.dtic.mil/sti/tr/pdf/AD1003726.pdf
+      \endverb
+      \verb{url}
+      \verb https://apps.dtic.mil/sti/tr/pdf/AD1003726.pdf
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

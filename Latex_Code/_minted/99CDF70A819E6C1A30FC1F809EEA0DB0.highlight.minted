@@ -1,0 +1,127 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k}{function}\PYG{+w}{ }\PYG{n+nf}{CoverageRevisitCalc}\PYG{p}{(}GSD, alturas\PYGZus{}orbitales, swaths\PYGZus{}km, Cov\PYGZus{}Requirement, current\PYGZus{}Npix, current\PYGZus{}fov\PYGZus{}limit, N\PYGZus{}sat, N\PYGZus{}telescopes, detector\PYGZus{}id, telescope\PYGZus{}name, solapamiento, cobertura\PYGZus{}nubes, max\PYGZus{}detectores\PYG{p}{)}
+
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} Constantes y Parámetros Orbitales \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{R\PYGZus{}E}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{6378.137e3}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Radio de la Tierra [m]}
+\PYG{n}{mu\PYGZus{}E}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{3.986004418e14}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Constante gravitacional terrestre [m3/s2]}
+\PYG{n}{J2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{1.082629989052e\PYGZhy{}3}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Achatamiento J2}
+\PYG{n}{SSO\PYGZus{}nodal\PYGZus{}rate}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{360}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mf}{365.2421897}\PYG{o}{*}\PYG{l+m+mi}{24}\PYG{o}{*}\PYG{l+m+mi}{3600}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{pi}\PYG{o}{/}\PYG{l+m+mi}{180}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Tasa de precesión para SSO [rad/s]}
+
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} Configuración de la Simulación \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{config\PYGZus{}name}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZpc{}dSat\PYGZus{}\PYGZpc{}dTel\PYGZus{}\PYGZpc{}s\PYGZus{}Det\PYGZpc{}d\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}sat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}telescopes}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{strrep}\PYG{p}{(}\PYG{n}{telescope\PYGZus{}name}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{detector\PYGZus{}id}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{lat}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{40}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Latitud objetivo [grados]}
+\PYG{n}{dayLimit}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Cov\PYGZus{}Requirement}\PYG{p}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Límites para el cálculo de revisita}
+
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Iniciando análisis para: \PYGZpc{}s\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{strrep}\PYG{p}{(}\PYG{n}{config\PYGZus{}name}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZus{}\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} Cálculo de Límites de Swath para Visualización \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c}{\PYGZpc{} Pre\PYGZhy{}calcula los swaths máximos alcanzables con 1, 2, ..., max\PYGZus{}detectores.}
+\PYG{c}{\PYGZpc{} Estos valores se usarán para dibujar líneas de referencia en la gráfica.}
+\PYG{n}{detector\PYGZus{}swath\PYGZus{}limits}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{max\PYGZus{}detectores}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{GSD}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{current\PYGZus{}Npix}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{1000}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} [km]}
+
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} Inicialización de la Matriz de Resultados \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{coverage\PYGZus{}days}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{zeros}\PYG{p}{(}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{swaths\PYGZus{}km}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} Bucle Principal de Cálculo \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n}{h}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{)}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{s}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{swaths\PYGZus{}km}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n+nb}{height}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{(}\PYG{n}{h}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{swath}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{swaths\PYGZus{}km}\PYG{p}{(}\PYG{n}{s}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} Verificación de Restricciones Físicas \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Límite por FOV del telescopio (se duplica si se usan 2 telescopios)}
+\PYG{+w}{        }\PYG{n}{effective\PYGZus{}fov\PYGZus{}limit}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{current\PYGZus{}fov\PYGZus{}limit}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{N\PYGZus{}telescopes}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{2}
+\PYG{+w}{            }\PYG{n}{effective\PYGZus{}fov\PYGZus{}limit}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{current\PYGZus{}fov\PYGZus{}limit}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{end}
+\PYG{+w}{        }\PYG{n}{max\PYGZus{}swath\PYGZus{}by\PYGZus{}fov}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{height}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{tand}\PYG{p}{(}\PYG{n}{effective\PYGZus{}fov\PYGZus{}limit}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Límite por el número máximo de detectores en el array}
+\PYG{+w}{        }\PYG{n}{max\PYGZus{}swath\PYGZus{}by\PYGZus{}detector}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{max\PYGZus{}detectores}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{GSD}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{current\PYGZus{}Npix}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{1000}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} [km]}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Si el swath excede cualquiera de los límites físicos, no es viable}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{swath}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{max\PYGZus{}swath\PYGZus{}by\PYGZus{}fov}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{n}{swath}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{max\PYGZus{}swath\PYGZus{}by\PYGZus{}detector}
+\PYG{+w}{            }\PYG{n}{coverage\PYGZus{}days}\PYG{p}{(}\PYG{n}{h}\PYG{p}{,}\PYG{n}{s}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{NaN}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{continue}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{end}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} Cálculo del Swath Efectivo (con solapamiento) \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{+w}{        }\PYG{n}{effective\PYGZus{}swath}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{swath}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{solapamiento}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} Parámetros Orbitales para SSO \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{+w}{        }\PYG{n}{a}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{R\PYGZus{}E}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n+nb}{height}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mi}{1000}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Semieje mayor [m]}
+\PYG{+w}{        }\PYG{n}{n}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sqrt}\PYG{p}{(}\PYG{n}{mu\PYGZus{}E}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{a}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{      }\PYG{c}{\PYGZpc{} Movimiento medio [rad/s]}
+\PYG{+w}{        }\PYG{n}{cos\PYGZus{}i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{n}{SSO\PYGZus{}nodal\PYGZus{}rate}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a}\PYG{o}{/}\PYG{n}{R\PYGZus{}E}\PYG{p}{)}\PYG{o}{\PYGZca{}}\PYG{p}{(}\PYG{l+m+mi}{7}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mf}{1.5}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{n}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{J2}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{n+nb}{abs}\PYG{p}{(}\PYG{n}{cos\PYGZus{}i}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mi}{1}
+\PYG{+w}{            }\PYG{n}{coverage\PYGZus{}days}\PYG{p}{(}\PYG{n}{h}\PYG{p}{,}\PYG{n}{s}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{NaN}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} SSO no posible a esta altura}
+\PYG{+w}{            }\PYG{k}{continue}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{end}
+\PYG{+w}{        }\PYG{n}{inc}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{acos}\PYG{p}{(}\PYG{n}{cos\PYGZus{}i}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{coes}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{a}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{inc}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} [sma, ecc, inc, RAAN, AoP]}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} Llamada a RevisitCalc \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{+w}{        }\PYG{n}{half\PYGZus{}fov\PYGZus{}angle}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{atand}\PYG{p}{(}\PYG{n}{effective\PYGZus{}swath}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{height}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} [grados]}
+\PYG{+w}{        }\PYG{k}{try}
+\PYG{+w}{            }\PYG{n}{maxRevisit}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{RevisitCalc}\PYG{p}{(}\PYG{n}{coes}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lat}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}sat}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{dayLimit}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{half\PYGZus{}fov\PYGZus{}angle}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{final\PYGZus{}revisit}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{maxRevisit}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{cobertura\PYGZus{}nubes}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{final\PYGZus{}revisit}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{Cov\PYGZus{}Requirement}
+\PYG{+w}{                }\PYG{n}{coverage\PYGZus{}days}\PYG{p}{(}\PYG{n}{h}\PYG{p}{,}\PYG{n}{s}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{NaN}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{else}
+\PYG{+w}{                }\PYG{n}{coverage\PYGZus{}days}\PYG{p}{(}\PYG{n}{h}\PYG{p}{,}\PYG{n}{s}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{final\PYGZus{}revisit}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{end}
+\PYG{+w}{        }\PYG{k}{catch}
+\PYG{+w}{            }\PYG{n}{coverage\PYGZus{}days}\PYG{p}{(}\PYG{n}{h}\PYG{p}{,}\PYG{n}{s}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{NaN}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{end}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
+
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} Generación de Gráficos y Guardado de Datos \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{output\PYGZus{}dir}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{coverage\PYGZsq{}}\PYG{p}{;}
+\PYG{k}{if}\PYG{+w}{ }\PYG{o}{\PYGZti{}}\PYG{n+nb}{exist}\PYG{p}{(}\PYG{n}{output\PYGZus{}dir}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{dir\PYGZsq{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{mkdir}\PYG{p}{(}\PYG{n}{output\PYGZus{}dir}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{k}{end}
+
+\PYG{n}{fig}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{figure}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Visible\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{off\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{custom\PYGZus{}cmap}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{n+nb}{parula}\PYG{p}{(}\PYG{l+m+mi}{256}\PYG{p}{)}\PYG{p}{]}\PYG{p}{;}
+\PYG{n+nb}{colormap}\PYG{p}{(}\PYG{n}{custom\PYGZus{}cmap}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{imagesc}\PYG{p}{(}\PYG{n}{swaths\PYGZus{}km}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{coverage\PYGZus{}days}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{n+nb}{gca}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Color\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Fondo blanco para áreas NaN}
+\PYG{n+nb}{hold}\PYG{+w}{ }\PYG{n}{on}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Dibujar líneas de referencia para los límites de swath de los detectores}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{max\PYGZus{}detectores}
+\PYG{+w}{    }\PYG{n}{swath\PYGZus{}limit}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{detector\PYGZus{}swath\PYGZus{}limits}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{swath\PYGZus{}limit}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{n+nb}{max}\PYG{p}{(}\PYG{n}{swaths\PYGZus{}km}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{n}{swath\PYGZus{}limit}\PYG{+w}{ }\PYG{o}{\PYGZgt{}=}\PYG{+w}{ }\PYG{n+nb}{min}\PYG{p}{(}\PYG{n}{swaths\PYGZus{}km}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n+nb}{xline}\PYG{p}{(}\PYG{n}{swath\PYGZus{}limit}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZhy{}\PYGZhy{}k\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1.2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{HandleVisibility\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{off\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n+nb}{text}\PYG{p}{(}\PYG{n}{swath\PYGZus{}limit}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{max}\PYG{p}{(}\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZpc{}d Det\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{            }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{HorizontalAlignment\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{left\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{VerticalAlignment\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{top\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{            }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{9}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Color\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{black\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontWeight\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{bold\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
+\PYG{n+nb}{hold}\PYG{+w}{ }\PYG{n}{off}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Formato del gráfico}
+\PYG{n}{title\PYGZus{}text}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Tiempo Revisita \PYGZhy{} \PYGZpc{}s\PYGZbs{}nBlanco: \PYGZdl{}\PYGZbs{}\PYGZbs{}geq\PYGZdl{} \PYGZpc{}d dias\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{strrep}\PYG{p}{(}\PYG{n}{config\PYGZus{}name}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZus{}\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZsq{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Cov\PYGZus{}Requirement}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{title}\PYG{p}{(}\PYG{n}{title\PYGZus{}text}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{14}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{xlabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Swath (km)\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{12}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{ylabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Altura orbital (km)\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{12}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{c}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{colorbar}\PYG{p}{;}
+\PYG{n+nb}{ylabel}\PYG{p}{(}\PYG{n}{c}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Tiempo revisita (dias)\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{clim}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{n}{Cov\PYGZus{}Requirement}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{n+nb}{gca}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{YDir\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{normal\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{axis}\PYG{+w}{ }\PYG{l+s}{tight}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Guardar archivos}
+\PYG{n}{png\PYGZus{}filename}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{fullfile}\PYG{p}{(}\PYG{n}{output\PYGZus{}dir}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{heatmap\PYGZus{}\PYGZpc{}s.png\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{config\PYGZus{}name}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{csv\PYGZus{}filename}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{fullfile}\PYG{p}{(}\PYG{n}{output\PYGZus{}dir}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{coverage\PYGZus{}\PYGZpc{}s.csv\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{config\PYGZus{}name}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{fig}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{png\PYGZus{}filename}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZhy{}dpng\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZhy{}r300\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{writematrix}\PYG{p}{(}\PYG{n}{coverage\PYGZus{}days}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{csv\PYGZus{}filename}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{close}\PYG{p}{(}\PYG{n}{fig}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Análisis completado para: \PYGZpc{}s. Archivos guardados en \PYGZsq{}}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZpc{}s\PYGZsq{}}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{.\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{strrep}\PYG{p}{(}\PYG{n}{config\PYGZus{}name}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZus{}\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZsq{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{output\PYGZus{}dir}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{k}{end}
+
+
+\end{MintedVerbatim}

@@ -1,0 +1,77 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{c}{\PYGZpc{} Configurar intérprete LaTeX por defecto}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{n+nb}{groot}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{defaultTextInterpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{n+nb}{groot}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{defaultAxesTickLabelInterpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{n+nb}{groot}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{defaultLegendInterpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Configuración de la figura}
+\PYG{n+nb}{figure}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Position\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1200}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{400}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Definición de bandas:}
+\PYG{c}{\PYGZpc{} Banda S: 2\PYGZhy{}4 GHz}
+\PYG{n}{t1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{2e9}\PYG{p}{;}
+\PYG{n}{t2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{4e9}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Banda X: 8\PYGZhy{}12 GHz}
+\PYG{n}{x1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{8e9}\PYG{p}{;}
+\PYG{n}{x2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{12e9}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Banda del detector: equivalente a 0.76\PYGZhy{}2.3 um (f = c / lambda)}
+\PYG{n}{c}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{3e8}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} velocidad de la luz}
+\PYG{n}{detector\PYGZus{}low}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{c}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mf}{2.3e\PYGZhy{}6}\PYG{p}{;}\PYG{+w}{  }\PYG{c}{\PYGZpc{} Frecuencia para 2.3 um}
+\PYG{n}{detector\PYGZus{}high}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{c}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mf}{0.76e\PYGZhy{}6}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Frecuencia para 0.76 um}
+
+\PYG{c}{\PYGZpc{} Definimos posiciones verticales para cada banda}
+\PYG{n}{pos\PYGZus{}detector}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{n}{pos\PYGZus{}banda\PYGZus{}x}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{n}{pos\PYGZus{}banda\PYGZus{}s}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{;}
+\PYG{n+nb}{height}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.8}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Crear el gráfico con escala logarítmica}
+\PYG{n+nb}{semilogx}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mf}{1e9}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1e15}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{HandleVisibility\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{off\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Línea invisible}
+\PYG{n+nb}{hold}\PYG{+w}{ }\PYG{n}{on}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Dibujar las bandas usando rectángulos}
+\PYG{n+nb}{rectangle}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Position\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{t1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{pos\PYGZus{}banda\PYGZus{}s}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{t2}\PYG{o}{\PYGZhy{}}\PYG{n}{t1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{height}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{          }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FaceColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mf}{0.12}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.47}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.71}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{EdgeColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{none\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n+nb}{rectangle}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Position\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{x1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{pos\PYGZus{}banda\PYGZus{}x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x2}\PYG{o}{\PYGZhy{}}\PYG{n}{x1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{height}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{          }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FaceColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mf}{1.0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.05}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{EdgeColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{none\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n+nb}{rectangle}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Position\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{detector\PYGZus{}low}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{pos\PYGZus{}detector}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{detector\PYGZus{}high}\PYG{o}{\PYGZhy{}}\PYG{n}{detector\PYGZus{}low}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{height}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{          }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FaceColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mf}{0.17}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.63}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.17}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{EdgeColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{none\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Crear objetos dummy para la leyenda (puntos invisibles)}
+\PYG{n}{h1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n+nb}{NaN}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{NaN}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{s\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MarkerSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MarkerFaceColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mf}{0.12}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.47}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.71}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{          }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MarkerEdgeColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{none\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{h2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n+nb}{NaN}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{NaN}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{s\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MarkerSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MarkerFaceColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mf}{1.0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.05}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{          }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MarkerEdgeColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{none\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{h3}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n+nb}{NaN}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{NaN}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{s\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MarkerSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MarkerFaceColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mf}{0.17}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.63}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.17}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{          }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MarkerEdgeColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{none\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Configuración de etiquetas y título}
+\PYG{n+nb}{xlabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Frecuencia (Hz, escala logaritmica)\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{ylabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Componentes\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Configurar etiquetas del eje Y}
+\PYG{n+nb}{yticks}\PYG{p}{(}\PYG{p}{[}\PYG{n}{pos\PYGZus{}detector}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n+nb}{height}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{pos\PYGZus{}banda\PYGZus{}x}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n+nb}{height}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{pos\PYGZus{}banda\PYGZus{}s}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n+nb}{height}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{yticklabels}\PYG{p}{(}\PYG{p}{\PYGZob{}}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Detector\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Banda X\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Banda S\PYGZsq{}}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n+nb}{title}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Ubicacion de las Bandas S, X y Detector en el Espectro de Frecuencias\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Ajustar límites}
+\PYG{n+nb}{xlim}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mf}{1e9}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1e15}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{ylim}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mf}{0.5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Grid simple}
+\PYG{n+nb}{grid}\PYG{+w}{ }\PYG{n}{on}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Leyenda usando los objetos dummy}
+\PYG{n+nb}{legend}\PYG{p}{(}\PYG{p}{[}\PYG{n}{h1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{h2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{h3}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Banda S (2\PYGZhy{}4 GHz)\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Banda X (8\PYGZhy{}12 GHz)\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Detector (0.76\PYGZhy{}2.3 \PYGZdl{}\PYGZbs{}mu\PYGZdl{}m)\PYGZsq{}}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{       }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Location\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{best\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n}{hold}\PYG{+w}{ }\PYG{l+s}{off}\PYG{p}{;}
+
+
+\end{MintedVerbatim}

@@ -1,0 +1,128 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k}{function}\PYG{+w}{ }\PYG{n+nf}{GenerateMassPlots}\PYG{p}{(}results\PYGZus{}table\PYG{p}{)}
+\PYG{c}{\PYGZpc{} GenerateMassPlots: Crea gráficos de masa para las configuraciones viables.}
+\PYG{c}{\PYGZpc{}}
+\PYG{c}{\PYGZpc{} Descripción:}
+\PYG{c}{\PYGZpc{} Esta función genera dos tipos de gráficos para cada configuración única}
+\PYG{c}{\PYGZpc{} encontrada en la tabla de resultados:}
+\PYG{c}{\PYGZpc{} 1. Comparativa de Masa Seca: Muestra la masa seca estimada. Se guarda}
+\PYG{c}{\PYGZpc{}    en la carpeta \PYGZsq{}Masa\PYGZus{}seca\PYGZsq{}.}
+\PYG{c}{\PYGZpc{} 2. Desglose de Masa vs. Altura: Muestra la masa total, seca y de}
+\PYG{c}{\PYGZpc{}    combustible. Se guarda en la carpeta \PYGZsq{}Masa\PYGZus{}total\PYGZsq{}.}
+\PYG{c}{\PYGZpc{}}
+\PYG{c}{\PYGZpc{} Input:}
+\PYG{c}{\PYGZpc{} results\PYGZus{}table \PYGZhy{} Tabla con todos los datos de las soluciones viables.}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} ========================================================================}
+\PYG{c}{\PYGZpc{} 1. CONFIGURACIÓN INICIAL}
+\PYG{c}{\PYGZpc{} ========================================================================}
+\PYG{n}{dry\PYGZus{}mass\PYGZus{}plot\PYGZus{}dir}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Masa\PYGZus{}seca\PYGZsq{}}\PYG{p}{;}
+\PYG{n}{total\PYGZus{}mass\PYGZus{}plot\PYGZus{}dir}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Masa\PYGZus{}total\PYGZsq{}}\PYG{p}{;}
+\PYG{k}{if}\PYG{+w}{ }\PYG{o}{\PYGZti{}}\PYG{n+nb}{exist}\PYG{p}{(}\PYG{n}{dry\PYGZus{}mass\PYGZus{}plot\PYGZus{}dir}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{dir\PYGZsq{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{mkdir}\PYG{p}{(}\PYG{n}{dry\PYGZus{}mass\PYGZus{}plot\PYGZus{}dir}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{k}{end}
+\PYG{k}{if}\PYG{+w}{ }\PYG{o}{\PYGZti{}}\PYG{n+nb}{exist}\PYG{p}{(}\PYG{n}{total\PYGZus{}mass\PYGZus{}plot\PYGZus{}dir}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{dir\PYGZsq{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{mkdir}\PYG{p}{(}\PYG{n}{total\PYGZus{}mass\PYGZus{}plot\PYGZus{}dir}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{k}{end}
+
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Generando gráficas de masa para las soluciones encontradas...\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} ========================================================================}
+\PYG{c}{\PYGZpc{} 2. GENERACIÓN DE GRÁFICOS POR CONFIGURACIÓN}
+\PYG{c}{\PYGZpc{} ========================================================================}
+\PYG{n}{unique\PYGZus{}configs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{unique}\PYG{p}{(}\PYG{n}{results\PYGZus{}table}\PYG{p}{(}\PYG{p}{:}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Num\PYGZus{}Satelites\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Num\PYGZus{}Telescopios\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ID\PYGZus{}Detector\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Tipo\PYGZus{}Telescopio\PYGZsq{}}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{rows\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Iterar sobre cada configuración única}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{height}\PYG{p}{(}\PYG{n}{unique\PYGZus{}configs}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{current\PYGZus{}config}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{unique\PYGZus{}configs}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{:}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{N\PYGZus{}sat}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{current\PYGZus{}config}\PYG{p}{.}\PYG{n}{Num\PYGZus{}Satelites}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{N\PYGZus{}tel}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{current\PYGZus{}config}\PYG{p}{.}\PYG{n}{Num\PYGZus{}Telescopios}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{det\PYGZus{}id}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{current\PYGZus{}config}\PYG{p}{.}\PYG{n}{ID\PYGZus{}Detector}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{tel\PYGZus{}name\PYGZus{}cell}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{current\PYGZus{}config}\PYG{p}{.}\PYG{n}{Tipo\PYGZus{}Telescopio}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{tel\PYGZus{}name}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{tel\PYGZus{}name\PYGZus{}cell}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Filtrar datos para la configuración actual}
+\PYG{+w}{    }\PYG{n}{config\PYGZus{}mask}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{results\PYGZus{}table}\PYG{p}{.}\PYG{n}{Num\PYGZus{}Satelites}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{N\PYGZus{}sat}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                  }\PYG{n}{results\PYGZus{}table}\PYG{p}{.}\PYG{n}{Num\PYGZus{}Telescopios}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{N\PYGZus{}tel}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                  }\PYG{n}{results\PYGZus{}table}\PYG{p}{.}\PYG{n}{ID\PYGZus{}Detector}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{det\PYGZus{}id}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                  }\PYG{n+nb}{strcmp}\PYG{p}{(}\PYG{n}{results\PYGZus{}table}\PYG{p}{.}\PYG{n}{Tipo\PYGZus{}Telescopio}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{tel\PYGZus{}name}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{n}{data\PYGZus{}for\PYGZus{}plot}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{results\PYGZus{}table}\PYG{p}{(}\PYG{n}{config\PYGZus{}mask}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{:}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{data\PYGZus{}for\PYGZus{}plot}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sortrows}\PYG{p}{(}\PYG{n}{data\PYGZus{}for\PYGZus{}plot}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Altura\PYGZus{}km\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{n+nb}{isempty}\PYG{p}{(}\PYG{n}{data\PYGZus{}for\PYGZus{}plot}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{continue}\PYG{p}{;}\PYG{+w}{ }\PYG{k}{end}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} GRÁFICO 1: COMPARATIVA DE MASA SECA \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{+w}{    }\PYG{n}{fig1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{figure}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Visible\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{off\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Position\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{900}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{600}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{hold}\PYG{+w}{ }\PYG{l+s}{on}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Plot de las estimaciones base (Thematic Mapper y SEOSAT)}
+\PYG{+w}{    }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{data\PYGZus{}for\PYGZus{}plot}\PYG{p}{.}\PYG{n}{Altura\PYGZus{}km}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data\PYGZus{}for\PYGZus{}plot}\PYG{p}{.}\PYG{n}{Masa\PYGZus{}Seca\PYGZus{}TM\PYGZus{}kg}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZhy{}\PYGZhy{}o\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1.5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{DisplayName\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Estimacion (Thematic Mapper)\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{data\PYGZus{}for\PYGZus{}plot}\PYG{p}{.}\PYG{n}{Altura\PYGZus{}km}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data\PYGZus{}for\PYGZus{}plot}\PYG{p}{.}\PYG{n}{Masa\PYGZus{}Seca\PYGZus{}SEOSAT\PYGZus{}kg}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZhy{}\PYGZhy{}s\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1.5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{DisplayName\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Estimacion (SEOSAT)\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Plot de la masa propuesta para la configuración actual}
+\PYG{+w}{    }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{data\PYGZus{}for\PYGZus{}plot}\PYG{p}{.}\PYG{n}{Altura\PYGZus{}km}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data\PYGZus{}for\PYGZus{}plot}\PYG{p}{.}\PYG{n}{Masa\PYGZus{}Seca\PYGZus{}Satelite\PYGZus{}kg}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZhy{}d\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MarkerSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{DisplayName\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Propuesta (\PYGZpc{}d Tel)\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}tel}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Si la configuración actual es de 2 telescopios, añade la línea de 1 telescopio para comparar}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{N\PYGZus{}tel}\PYG{+w}{ }\PYG{o}{\PYGZgt{}=}\PYG{+w}{ }\PYG{l+m+mi}{2}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Estimar la masa seca para una configuración de 1 telescopio dividiendo por 1.5}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} según la lógica de \PYGZsq{}calcularMasaSeca.m\PYGZsq{}.}
+\PYG{+w}{        }\PYG{n}{masa\PYGZus{}seca\PYGZus{}estimada\PYGZus{}1\PYGZus{}tel}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{data\PYGZus{}for\PYGZus{}plot}\PYG{p}{.}\PYG{n}{Masa\PYGZus{}Seca\PYGZus{}Satelite\PYGZus{}kg}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mf}{1.5}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Graficar la masa seca estimada para 1 telescopio con un estilo diferente}
+\PYG{+w}{        }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{data\PYGZus{}for\PYGZus{}plot}\PYG{p}{.}\PYG{n}{Altura\PYGZus{}km}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{masa\PYGZus{}seca\PYGZus{}estimada\PYGZus{}1\PYGZus{}tel}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZhy{}\PYGZhy{}p\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1.5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{DisplayName\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Propuesta (1 Telescopio)\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+
+\PYG{+w}{    }\PYG{n+nb}{hold}\PYG{+w}{ }\PYG{n}{off}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Configuración del gráfico (título, etiquetas, etc.)}
+\PYG{+w}{    }\PYG{n}{title\PYGZus{}str}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Comparativa de Masa Seca vs. Altura\PYGZbs{}nConfig: \PYGZpc{}d Sat, \PYGZpc{}d Tel, Det \PYGZpc{}d, \PYGZpc{}s\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}sat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}tel}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{det\PYGZus{}id}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{tel\PYGZus{}name}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{title}\PYG{p}{(}\PYG{n}{title\PYGZus{}str}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{none\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{xlabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Altura Orbital [km]\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{ylabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Masa Seca [kg]\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{legend}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Location\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{best\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{grid}\PYG{+w}{ }\PYG{l+s}{on}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{axis}\PYG{+w}{ }\PYG{l+s}{tight}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Guardar el gráfico}
+\PYG{+w}{    }\PYG{n}{plot\PYGZus{}filename1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MasaSeca\PYGZus{}Comparativa\PYGZus{}\PYGZpc{}dsat\PYGZus{}\PYGZpc{}dtel\PYGZus{}Det\PYGZpc{}d\PYGZus{}\PYGZpc{}s.png\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}sat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}tel}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{det\PYGZus{}id}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{strrep}\PYG{p}{(}\PYG{n}{tel\PYGZus{}name}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZus{}\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{saveas}\PYG{p}{(}\PYG{n}{fig1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{fullfile}\PYG{p}{(}\PYG{n}{dry\PYGZus{}mass\PYGZus{}plot\PYGZus{}dir}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{plot\PYGZus{}filename1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{close}\PYG{p}{(}\PYG{n}{fig1}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} GRÁFICO 2: DESGLOSE DE MASA VS ALTURA \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{+w}{    }\PYG{n}{fig2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{figure}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Visible\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{off\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Position\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{900}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{600}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{hold}\PYG{+w}{ }\PYG{l+s}{on}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Plot de las tres componentes de masa}
+\PYG{+w}{    }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{data\PYGZus{}for\PYGZus{}plot}\PYG{p}{.}\PYG{n}{Altura\PYGZus{}km}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data\PYGZus{}for\PYGZus{}plot}\PYG{p}{.}\PYG{n}{Masa\PYGZus{}Total\PYGZus{}Satelite\PYGZus{}kg}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{r\PYGZhy{}d\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{DisplayName\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Masa Total\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{data\PYGZus{}for\PYGZus{}plot}\PYG{p}{.}\PYG{n}{Altura\PYGZus{}km}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data\PYGZus{}for\PYGZus{}plot}\PYG{p}{.}\PYG{n}{Masa\PYGZus{}Seca\PYGZus{}Satelite\PYGZus{}kg}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{b\PYGZhy{}\PYGZhy{}s\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1.5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{DisplayName\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Masa Seca\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{data\PYGZus{}for\PYGZus{}plot}\PYG{p}{.}\PYG{n}{Altura\PYGZus{}km}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data\PYGZus{}for\PYGZus{}plot}\PYG{p}{.}\PYG{n}{Masa\PYGZus{}Combustible\PYGZus{}kg}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{g:p\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1.5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{DisplayName\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Masa Combustible\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Anotación para la masa total mínima}
+\PYG{+w}{    }\PYG{p}{[}\PYG{n}{min\PYGZus{}mass}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{min\PYGZus{}idx}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{min}\PYG{p}{(}\PYG{n}{data\PYGZus{}for\PYGZus{}plot}\PYG{p}{.}\PYG{n}{Masa\PYGZus{}Total\PYGZus{}Satelite\PYGZus{}kg}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{min\PYGZus{}altura}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{data\PYGZus{}for\PYGZus{}plot}\PYG{p}{.}\PYG{n}{Altura\PYGZus{}km}\PYG{p}{(}\PYG{n}{min\PYGZus{}idx}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{min\PYGZus{}altura}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{min\PYGZus{}mass}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ko\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MarkerSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MarkerFaceColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{r\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{HandleVisibility\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{off\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{text\PYGZus{}str}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Mínimo Total: \PYGZpc{}.1f kg @ \PYGZpc{}d km\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{min\PYGZus{}mass}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{min\PYGZus{}altura}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{text}\PYG{p}{(}\PYG{n}{min\PYGZus{}altura}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{min\PYGZus{}mass}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{text\PYGZus{}str}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{VerticalAlignment\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{bottom\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{         }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{HorizontalAlignment\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{center\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontWeight\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{bold\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{BackgroundColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{white\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{EdgeColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{k\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{n}{hold}\PYG{+w}{ }\PYG{l+s}{off}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Configuración del gráfico}
+\PYG{+w}{    }\PYG{n}{title\PYGZus{}str}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Desglose de Masa del Satelite vs. Altura\PYGZbs{}nConfig: \PYGZpc{}d Sat, \PYGZpc{}d Tel, Det \PYGZpc{}d, \PYGZpc{}s\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}sat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}tel}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{det\PYGZus{}id}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{tel\PYGZus{}name}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{title}\PYG{p}{(}\PYG{n}{title\PYGZus{}str}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{none\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{xlabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Altura Orbital [km]\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{ylabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Masa [kg]\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{legend}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Location\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{best\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{grid}\PYG{+w}{ }\PYG{l+s}{on}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{axis}\PYG{+w}{ }\PYG{l+s}{tight}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Guardar el gráfico}
+\PYG{+w}{    }\PYG{n}{plot\PYGZus{}filename2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MasaDesglose\PYGZus{}\PYGZpc{}dsat\PYGZus{}\PYGZpc{}dtel\PYGZus{}Det\PYGZpc{}d\PYGZus{}\PYGZpc{}s.png\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}sat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}tel}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{det\PYGZus{}id}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{strrep}\PYG{p}{(}\PYG{n}{tel\PYGZus{}name}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZus{}\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{saveas}\PYG{p}{(}\PYG{n}{fig2}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{fullfile}\PYG{p}{(}\PYG{n}{total\PYGZus{}mass\PYGZus{}plot\PYGZus{}dir}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{plot\PYGZus{}filename2}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{close}\PYG{p}{(}\PYG{n}{fig2}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{end}
+
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Gráficas de masa guardadas en las carpetas \PYGZsq{}}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZpc{}s\PYGZsq{}}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ y \PYGZsq{}}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZpc{}s\PYGZsq{}}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{.\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{dry\PYGZus{}mass\PYGZus{}plot\PYGZus{}dir}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{total\PYGZus{}mass\PYGZus{}plot\PYGZus{}dir}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{k}{end}
+
+
+\end{MintedVerbatim}

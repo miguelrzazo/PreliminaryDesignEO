@@ -1,0 +1,113 @@
+\documentclass[12pt]{report}
+\usepackage{graphicx} % para insertar imagenes
+\usepackage[utf8]{inputenc}  
+\usepackage[spanish,es-tabla]{babel}  % Traducción al español
+\usepackage{textcomp} % Para \textmu
+\usepackage{booktabs} % Para mejores tablas
+\usepackage{caption}  % Mejoras en caption
+\usepackage{siunitx}  % Para alinear números si quisieras más adelante
+\usepackage{array} % Para definir anchos de columna
+\usepackage{float} % Para usar H float en imagenes
+\usepackage{pdflscape} %landscape pdf
+\usepackage{lscape} % Landscape real en PDF
+\usepackage[margin=2.5cm]{geometry}    % Para asegurar que la página esté correctamente configurada
+\usepackage{changepage}  % Para cambiar márgenes localmente
+\usepackage{url} %% Para las url
+\usepackage{tabularx} %Entorno de tablas mas pulido, alineado
+\usepackage{amsmath, amssymb} %% Boxing de los resultados
+\usepackage{makecell} %% Para cambiar visualmente tablas
+\usepackage{hyperref} %% Para hacer hipervinculos del texto
+\usepackage{tablefootnote} % Para poder poner footnotes dentro de tablas
+\usepackage{longtable} % Formato tabla larga
+\usepackage[backend=biber, style=ieee]{biblatex} %% Para usar Biblatex en estilo ieee
+\addbibresource{Bib.bib}  %% Pone el archivo
+\numberwithin{equation}{section} %% Para num secciones en ecuaciones
+\usepackage[dvipsnames]{xcolor} % Para dar texto de colores al codigo
+\usepackage{csquotes} %% Para comillas español
+\usepackage{csquotes} %% Para comillas español
+\usepackage{fancyvrb} % Mejor verbatim mas elegante
+\usepackage{minted} %% Para mejorarar el verbatim codigo, formateo del codigo
+\usepackage{multicol}
+\usepackage{subcaption}
+\usepackage{csvsimple}
+\usepackage{longtable}
+\usepackage{pgfplotstable}
+\usepackage{footmisc}
+\usepackage{minitoc}  % Paquete necesario
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{listings}
+
+
+\dominitoc              % Activa los minitocs en todos los capítulos
+\addto\captionsspanish{
+  \renewcommand{\mtctitle}{Contenido}
+  \renewcommand{\ptctitle}{Contenido}
+  \renewcommand{\stctitle}{Contenido}
+}
+
+
+
+
+
+\usepackage[
+    left = \flqq{},% 
+    right = \frqq{},% 
+    leftsub = \flq{},% 
+    rightsub = \frq{} %
+]{dirtytalk}
+
+\RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}% Definimos el custom verbatim format
+{fontsize=\tiny,
+ %
+ frame=lines,  % top and bottom rule only
+ framesep=1em, % separación entre el marco y el texto
+ rulecolor=\color{Gray},
+ %
+ commandchars=\|\(\), % delimitadores de escape y de argumentos
+ commentchar=*        % carácter de comentario
+}
+
+
+
+\setlength{\parskip}{12pt}
+
+
+
+\begin{document}
+\pagenumbering{roman}
+\dominitoc
+
+\tableofcontents        % Índice general
+\listoftables           % Índice de tablas
+\listoffigures          % Índice de figuras
+\newpage
+
+
+%% Dedicatoria? Agradecimientos
+%Lista simbolos?
+%Palabras clave?
+
+
+\pagenumbering{arabic}
+\include{1.Introduccion/Introduccion}
+\include{2.Misiones_Semejantes/00Misiones_Semejantes}
+\include{3.Conceptos_Previos/00Conceptos_Previos}
+
+\include{4.Payload/00Payload}
+
+\include{5.Mission/00AnalisisMision}
+\include{6.Lanzadores/00Lanzador}
+\include{7.Segmento_Tierra/00Segmento_Tierra}
+\include{8.Conclusiones/00Conclusiones}
+
+
+\nocite{*} %% Pone las citas aunque no se hayan mencionado
+\addcontentsline{toc}{chapter}{Bibliografía}
+\printbibliography %% Compila la bibliografia
+
+\include{zzAnnex/zzAnexos}
+
+
+
+\end{document}

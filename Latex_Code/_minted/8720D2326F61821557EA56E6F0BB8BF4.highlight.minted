@@ -1,0 +1,234 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} 1. DEFINICIÓN DE PARÁMETROS DE SIMULACIÓN Y MISIÓN}
+\PYG{n}{startTime}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{datetime}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{28\PYGZhy{}Apr\PYGZhy{}2024 00:00:00\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{TimeZone\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{UTC\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{stopTime}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{startTime}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n+nb}{days}\PYG{p}{(}\PYG{l+m+mi}{7}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{sampleTime}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{60}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} [s]}
+
+\PYG{n}{gsName}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Fairbanks\PYGZsq{}}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{gsLat}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{64.84}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{gsLon}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{147.712}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{minElevation}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} Parámetros de la Constelación y Satélite (SSO) \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{N}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{altitude}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{520}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{earthRadius}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{6371}\PYG{p}{;}
+\PYG{n}{semiMajorAxis}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{earthRadius}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{altitude}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mi}{1000}\PYG{p}{;}
+\PYG{n}{eccentricity}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.001}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{inclination}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{97.48}\PYG{p}{;}
+\PYG{n}{argOfPeriapsis}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{n}{mu}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{3.986004418e14}\PYG{p}{;}
+\PYG{n}{orbitalPeriod\PYGZus{}s}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{pi}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{sqrt}\PYG{p}{(}\PYG{n}{semiMajorAxis}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{mu}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{LTAN\PYGZus{}target}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{6}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} [horas] LTAN de las 6:00 AM}
+
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} Parámetros de Datos y Memoria (en Gigabytes) \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{GSD}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{80}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{areaToMap\PYGZus{}km2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{8080464}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{numBands}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{bitsPerBand}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{12}\PYG{p}{;}
+\PYG{n}{bitsPerPixel}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{numBands}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{bitsPerBand}\PYG{p}{;}
+\PYG{n}{areaToMap\PYGZus{}m2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{areaToMap\PYGZus{}km2}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mf}{1e6}\PYG{p}{;}
+\PYG{n}{pixelArea\PYGZus{}m2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{GSD}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{n}{numPixels}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{areaToMap\PYGZus{}m2}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{pixelArea\PYGZus{}m2}\PYG{p}{;}
+\PYG{n}{totalDataBits}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{numPixels}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{bitsPerPixel}\PYG{p}{;}
+\PYG{n}{totalDataToMap\PYGZus{}GB}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{totalDataBits}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{8}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mf}{1e9}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{downloadRate\PYGZus{}Mbps}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{76}\PYG{p}{;}
+\PYG{n}{memoryPerSatellite\PYGZus{}GB}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Capacidad en GB}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} 2. CREACIÓN DEL ESCENARIO DE SIMULACIÓN}
+\PYG{n}{sc}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{satelliteScenario}\PYG{p}{(}\PYG{n}{startTime}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{stopTime}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{sampleTime}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} 3. DEFINICIÓN DE LA ESTACIÓN DE TIERRA Y SATÉLITES}
+\PYG{n}{gs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{groundStation}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Name\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{gsName}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Latitude\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{gsLat}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Longitude\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{gsLon}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MinElevationAngle\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{minElevation}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Calculando RAAN para un LTAN objetivo de \PYGZpc{}d:00...\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{LTAN\PYGZus{}target}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{pos\PYGZus{}sun\PYGZus{}eci}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{planetEphemeris}\PYG{p}{(}\PYG{n+nb}{juliandate}\PYG{p}{(}\PYG{n}{startTime}\PYG{p}{)}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Earth\PYGZsq{}}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Sun\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{p}{[}\PYG{n}{alpha\PYGZus{}sun\PYGZus{}rad}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZti{}}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZti{}}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{cart2sph}\PYG{p}{(}\PYG{n}{pos\PYGZus{}sun\PYGZus{}eci}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{pos\PYGZus{}sun\PYGZus{}eci}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{pos\PYGZus{}sun\PYGZus{}eci}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{alpha\PYGZus{}sun\PYGZus{}deg}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{rad2deg}\PYG{p}{(}\PYG{n}{alpha\PYGZus{}sun\PYGZus{}rad}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{raan\PYGZus{}offset}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{LTAN\PYGZus{}target}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{12}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mi}{15}\PYG{p}{;}
+\PYG{n}{raan\PYGZus{}calculated}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{alpha\PYGZus{}sun\PYGZus{}deg}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{raan\PYGZus{}offset}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{RAAN calculado: \PYGZpc{}.2f grados.\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{raan\PYGZus{}calculated}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n}{sats}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{p}{]}\PYG{p}{;}
+\PYG{n}{trueAnomalySeparation}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{360}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{N}\PYG{p}{;}
+\PYG{n}{colors}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{p}{[}\PYG{l+m+mf}{0.8500}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.3250}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.0980}\PYG{p}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mf}{0.0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.4470}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.7410}\PYG{p}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mf}{0.4660}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.6740}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.1880}\PYG{p}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mf}{0.4940}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.1840}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.5560}\PYG{p}{]}\PYG{p}{]}\PYG{p}{;}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{N}
+\PYG{+w}{    }\PYG{n}{trueAnomaly}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{i}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{trueAnomalySeparation}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{satName}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Sat \PYGZpc{}d\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{sats}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{sats}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{satellite}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{semiMajorAxis}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{eccentricity}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{inclination}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{raan\PYGZus{}calculated}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{        }\PYG{n}{argOfPeriapsis}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{trueAnomaly}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{        }\PYG{l+s}{\PYGZdq{}Name\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{satName}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{        }\PYG{l+s}{\PYGZdq{}OrbitPropagator\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}two\PYGZhy{}body\PYGZhy{}keplerian\PYGZdq{}}\PYG{p}{)}\PYG{p}{]}\PYG{p}{;}
+\PYG{k}{end}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} 4. CÁLCULO DE INTERVALOS DE ACCESO}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Pre\PYGZhy{}calculando intervalos de acceso para optimizar la simulación...\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{accessIntervalsAllSats}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{cell}\PYG{p}{(}\PYG{n}{N}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{N}
+\PYG{+w}{    }\PYG{n}{accessObject}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{access}\PYG{p}{(}\PYG{n}{sats}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{gs}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{accessIntervalsAllSats}\PYG{p}{\PYGZob{}}\PYG{n+nb}{i}\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{accessIntervals}\PYG{p}{(}\PYG{n}{accessObject}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{end}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Cálculo de acceso completado.\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} 5. ANÁLISIS DE VIABILIDAD BASADO EN TIEMPO DE DESCARGA}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}n\PYGZhy{}\PYGZhy{}\PYGZhy{} Análisis de Viabilidad basado en Tiempo de Descarga \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} Cálculo del tiempo de descarga necesario \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c}{\PYGZpc{} Se convierte el total de datos a Megabits (Mb)}
+\PYG{n}{totalDataToMap\PYGZus{}Mb}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{totalDataToMap\PYGZus{}GB}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mi}{8}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mi}{1000}\PYG{p}{;}
+\PYG{c}{\PYGZpc{} Se calcula el tiempo necesario en segundos y horas para descargar todos los datos}
+\PYG{n}{tiempoDescargaNecesario\PYGZus{}s}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{totalDataToMap\PYGZus{}Mb}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{downloadRate\PYGZus{}Mbps}\PYG{p}{;}
+\PYG{n}{tiempoDescargaNecesario\PYGZus{}h}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{tiempoDescargaNecesario\PYGZus{}s}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{3600}\PYG{p}{;}
+
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Datos totales a descargar: \PYGZpc{}.2f GB\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{totalDataToMap\PYGZus{}GB}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Tasa de descarga: \PYGZpc{}d Mbps\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{downloadRate\PYGZus{}Mbps}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Tiempo de descarga NECESARIO: \PYGZpc{}.2f horas (\PYGZpc{}.0f segundos).\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{tiempoDescargaNecesario\PYGZus{}h}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{tiempoDescargaNecesario\PYGZus{}s}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} Cálculo del tiempo de descarga total obtenido por los satélites \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{tiempoDescargaObtenido\PYGZus{}s}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{N}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{o}{\PYGZti{}}\PYG{n+nb}{isempty}\PYG{p}{(}\PYG{n}{accessIntervalsAllSats}\PYG{p}{\PYGZob{}}\PYG{n+nb}{i}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{n+nb}{height}\PYG{p}{(}\PYG{n}{accessIntervalsAllSats}\PYG{p}{\PYGZob{}}\PYG{n+nb}{i}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mi}{0}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} La duración de cada acceso es EndTime \PYGZhy{} StartTime}
+\PYG{+w}{        }\PYG{n}{durations}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{accessIntervalsAllSats}\PYG{p}{\PYGZob{}}\PYG{n+nb}{i}\PYG{p}{\PYGZcb{}}\PYG{p}{.}\PYG{n}{EndTime}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{accessIntervalsAllSats}\PYG{p}{\PYGZob{}}\PYG{n+nb}{i}\PYG{p}{\PYGZcb{}}\PYG{p}{.}\PYG{n}{StartTime}\PYG{p}{;}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Se suma la duración total (en segundos) de los accesos para toda la constelación}
+\PYG{+w}{        }\PYG{n}{tiempoDescargaObtenido\PYGZus{}s}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{tiempoDescargaObtenido\PYGZus{}s}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n+nb}{sum}\PYG{p}{(}\PYG{n+nb}{seconds}\PYG{p}{(}\PYG{n}{durations}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
+\PYG{n}{tiempoDescargaObtenido\PYGZus{}h}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{tiempoDescargaObtenido\PYGZus{}s}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{3600}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Tiempo de descarga OBTENIDO (total constelación): \PYGZpc{}.2f horas (\PYGZpc{}.0f segundos).\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{tiempoDescargaObtenido\PYGZus{}h}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{tiempoDescargaObtenido\PYGZus{}s}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} Comprobación de viabilidad basada en el tiempo \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{k}{if}\PYG{+w}{ }\PYG{n}{tiempoDescargaObtenido\PYGZus{}s}\PYG{+w}{ }\PYG{o}{\PYGZgt{}=}\PYG{+w}{ }\PYG{n}{tiempoDescargaNecesario\PYGZus{}s}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{RESULTADO (por tiempo): MISIÓN VIABLE. El tiempo de acceso total es suficiente.\PYGZbs{}n\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{else}
+\PYG{+w}{    }\PYG{n}{deficit\PYGZus{}s}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{tiempoDescargaNecesario\PYGZus{}s}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{tiempoDescargaObtenido\PYGZus{}s}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{deficit\PYGZus{}h}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{deficit\PYGZus{}s}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{3600}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{RESULTADO (por tiempo): MISIÓN NO VIABLE. Se necesita más tiempo de acceso.\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Déficit de tiempo: \PYGZpc{}.2f horas (\PYGZpc{}.0f segundos).\PYGZbs{}n\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{deficit\PYGZus{}h}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{deficit\PYGZus{}s}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{end}
+
+
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} 6. SIMULACIÓN DE MEMORIA}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Iniciando simulación de memoria en GB...\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{timeVector}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{startTime}\PYG{p}{:}\PYG{n+nb}{seconds}\PYG{p}{(}\PYG{n}{sampleTime}\PYG{p}{)}\PYG{p}{:}\PYG{n}{stopTime}\PYG{p}{;}
+\PYG{n}{memoryState}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{zeros}\PYG{p}{(}\PYG{n}{N}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{numel}\PYG{p}{(}\PYG{n}{timeVector}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{totalSimSeconds}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{seconds}\PYG{p}{(}\PYG{n}{stopTime}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{startTime}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{dataGeneratedPerSample\PYGZus{}GB}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{totalDataToMap\PYGZus{}GB}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{totalSimSeconds}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{sampleTime}\PYG{p}{;}
+\PYG{n}{downloadPerSample\PYGZus{}GB}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{downloadRate\PYGZus{}Mbps}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mf}{1e6}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{sampleTime}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{8}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mf}{1e9}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{k}{for}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{:}\PYG{n+nb}{numel}\PYG{p}{(}\PYG{n}{timeVector}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{currentTime}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{timeVector}\PYG{p}{(}\PYG{n}{t}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{N}
+\PYG{+w}{        }\PYG{n}{memoryState}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{t}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{memoryState}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{t}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{memoryState}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{t}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{min}\PYG{p}{(}\PYG{n}{memoryState}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{t}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{dataGeneratedPerSample\PYGZus{}GB}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{memoryPerSatellite\PYGZus{}GB}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{isAccess}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{any}\PYG{p}{(}\PYG{n}{currentTime}\PYG{+w}{ }\PYG{o}{\PYGZgt{}=}\PYG{+w}{ }\PYG{n}{accessIntervalsAllSats}\PYG{p}{\PYGZob{}}\PYG{n+nb}{i}\PYG{p}{\PYGZcb{}}\PYG{p}{.}\PYG{n}{StartTime}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{currentTime}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{n}{accessIntervalsAllSats}\PYG{p}{\PYGZob{}}\PYG{n+nb}{i}\PYG{p}{\PYGZcb{}}\PYG{p}{.}\PYG{n}{EndTime}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{isAccess}
+\PYG{+w}{            }\PYG{n}{memoryState}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{t}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{max}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{memoryState}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{t}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{downloadPerSample\PYGZus{}GB}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{end}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} 7. GENERACIÓN DE GRÁFICOS Y COMPROBACIÓN FINAL}
+\PYG{n}{elapsedDays}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{days}\PYG{p}{(}\PYG{n}{timeVector}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{startTime}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{figure}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Name\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Estado de Memoria de Satélites\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{hold}\PYG{+w}{ }\PYG{l+s}{on}\PYG{p}{;}
+\PYG{n+nb}{yline}\PYG{p}{(}\PYG{n}{memoryPerSatellite\PYGZus{}GB}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZhy{}\PYGZhy{}k\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Limite de Memoria\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1.5}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{N}
+\PYG{+w}{    }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{elapsedDays}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{memoryState}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,}\PYG{p}{:}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Color\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{colors}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,}\PYG{p}{:}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{DisplayName\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Satelite \PYGZpc{}d\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{end}
+\PYG{n+nb}{hold}\PYG{+w}{ }\PYG{n}{off}\PYG{p}{;}
+\PYG{n}{grid}\PYG{+w}{ }\PYG{l+s}{on}\PYG{p}{;}
+\PYG{n+nb}{xlabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Tiempo (días)\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{ylabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Memoria Ocupada (GB)\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{title}\PYG{p}{(}\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Estado de Memoria (Capacidad Maxima: \PYGZpc{}.0f GB)\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{memoryPerSatellite\PYGZus{}GB}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{legend}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{show\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Location\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{best\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{n+nb}{gca}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{TickLabelInterpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{exportgraphics}\PYG{p}{(}\PYG{n+nb}{gca}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Estado\PYGZus{}Memoria\PYGZus{}Satelites.png\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Resolution\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{300}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Comprobación de viabilidad basada en memoria (del código original)}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}n\PYGZhy{}\PYGZhy{}\PYGZhy{} Análisis de Viabilidad basado en Llenado de Memoria \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{if}\PYG{+w}{ }\PYG{n+nb}{all}\PYG{p}{(}\PYG{n+nb}{max}\PYG{p}{(}\PYG{n}{memoryState}\PYG{p}{,}\PYG{p}{[}\PYG{p}{]}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{memoryPerSatellite\PYGZus{}GB}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mf}{0.999}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{RESULTADO (por memoria): VIABLE. La memoria de los satélites nunca se llena.\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{else}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{RESULTADO (por memoria): NO VIABLE. Al menos un satélite ha llenado su memoria.\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{end}
+
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} 7. GENERACIÃ“N DE VISUALIZACIONES 3D DEL ESCENARIO}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}n\PYGZhy{}\PYGZhy{}\PYGZhy{} Generando y exportando visualizaciones 3D del escenario \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{generate3DPlot}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{sats}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{gs}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{orbitalPeriod\PYGZus{}s}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Escenario\PYGZus{}3D\PYGZus{}1\PYGZus{}Orbita\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{colors}\PYG{p}{)}\PYG{p}{;}
+\PYG{c}{\PYGZpc{}generate3DPlot(sc, sats, gs, 86400, \PYGZsq{}Escenario\PYGZus{}3D\PYGZus{}1\PYGZus{}Dia\PYGZsq{}, colors);}
+\PYG{c}{\PYGZpc{}generate3DPlot(sc, sats, gs, 7*86400, \PYGZsq{}Escenario\PYGZus{}3D\PYGZus{}1\PYGZus{}Semana\PYGZsq{}, colors);}
+\PYG{c}{\PYGZpc{}fprintf(\PYGZsq{}Se han generado 3 archivos PNG con las visualizaciones 3D.\PYGZbs{}n\PYGZsq{});}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} 8. GENERACIÃ“N DE TRAZAS 2D CON WORLDMAP}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}n\PYGZhy{}\PYGZhy{}\PYGZhy{} Generando y exportando visualizaciones 2D (worldmap) \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{load}\PYG{+w}{ }\PYG{l+s}{coastlines}\PYG{p}{;}
+\PYG{n}{generateWorldmapPlot}\PYG{p}{(}\PYG{n}{sats}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{gs}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{startTime}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{orbitalPeriod\PYGZus{}s}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Traza 2D 1 Orbita\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{colors}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{coastlat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{coastlon}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{sampleTime}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{generateWorldmapPlot}\PYG{p}{(}\PYG{n}{sats}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{gs}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{startTime}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{86400}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Traza 2D 1 Dia\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{colors}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{coastlat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{coastlon}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{sampleTime}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{generateWorldmapPlot}\PYG{p}{(}\PYG{n}{sats}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{gs}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{startTime}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{7}\PYG{o}{*}\PYG{l+m+mi}{86400}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Traza 2D 1 Semana\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{colors}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{coastlat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{coastlon}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{sampleTime}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Se han generado 3 archivos PNG con las trazas en 2D.\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} FUNCIONES AUXILIARES \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{k}{function}\PYG{+w}{ }\PYG{n+nf}{generateWorldmapPlot}\PYG{p}{(}sats, gs, startTime, duration\PYGZus{}s, title\PYGZus{}str, colors, coastlat, coastlon, sampleTime\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{fig}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{figure}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Name\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{title\PYGZus{}str}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{NumberTitle\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{off\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Visible\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{off\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{n}{worldmap}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{north america\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{geoshow}\PYG{p}{(}\PYG{n}{coastlat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{coastlon}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Color\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{black\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{hold}\PYG{+w}{ }\PYG{l+s}{on}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{n}{timeVecPlot}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{startTime}\PYG{p}{:}\PYG{n+nb}{seconds}\PYG{p}{(}\PYG{n}{sampleTime}\PYG{p}{)}\PYG{p}{:}\PYG{p}{(}\PYG{n}{startTime}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n+nb}{seconds}\PYG{p}{(}\PYG{n}{duration\PYGZus{}s}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{n}{plotHandles}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{gobjects}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{numel}\PYG{p}{(}\PYG{n}{sats}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{legendNames}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{cell}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{numel}\PYG{p}{(}\PYG{n}{sats}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{numel}\PYG{p}{(}\PYG{n}{sats}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Calculando traza 2D para \PYGZpc{}s (\PYGZpc{}s)...\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{sats}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{.}\PYG{n}{Name}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{strrep}\PYG{p}{(}\PYG{n}{title\PYGZus{}str}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZus{}\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{lat}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{zeros}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{numel}\PYG{p}{(}\PYG{n}{timeVecPlot}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{lon}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{zeros}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{numel}\PYG{p}{(}\PYG{n}{timeVecPlot}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{t\PYGZus{}idx}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{numel}\PYG{p}{(}\PYG{n}{timeVecPlot}\PYG{p}{)}
+\PYG{+w}{            }\PYG{n}{pos\PYGZus{}geo\PYGZus{}point}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{states}\PYG{p}{(}\PYG{n}{sats}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{timeVecPlot}\PYG{p}{(}\PYG{n}{t\PYGZus{}idx}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{CoordinateFrame\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{geographic\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{lat}\PYG{p}{(}\PYG{n}{t\PYGZus{}idx}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{pos\PYGZus{}geo\PYGZus{}point}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{lon}\PYG{p}{(}\PYG{n}{t\PYGZus{}idx}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{pos\PYGZus{}geo\PYGZus{}point}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{end}
+\PYG{+w}{        }\PYG{n}{plotHandles}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{geoshow}\PYG{p}{(}\PYG{n}{lat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lon}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{DisplayType\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{line\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Color\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{colors}\PYG{p}{(}\PYG{n+nb}{mod}\PYG{p}{(}\PYG{n+nb}{i}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{colors}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{p}{:}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1.5}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{legendNames}\PYG{p}{\PYGZob{}}\PYG{n+nb}{i}\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{strrep}\PYG{p}{(}\PYG{n}{sats}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{.}\PYG{n}{Name}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZus{}\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}\PYGZus{}\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+
+\PYG{+w}{    }\PYG{n}{geoshow}\PYG{p}{(}\PYG{n}{gs}\PYG{p}{.}\PYG{n}{Latitude}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{gs}\PYG{p}{.}\PYG{n}{Longitude}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{DisplayType\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{point\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Marker\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{o\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MarkerEdgeColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{r\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MarkerFaceColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{r\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MarkerSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} 1. TÃ­tulo con intÃ©rprete LaTeX. Se escapan los guiones bajos.}
+\PYG{+w}{    }\PYG{n+nb}{title}\PYG{p}{(}\PYG{n+nb}{strrep}\PYG{p}{(}\PYG{n}{title\PYGZus{}str}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZus{}\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}\PYGZus{}\PYGZsq{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{n}{gridm}\PYG{+w}{ }\PYG{l+s}{on}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{mlabel}\PYG{+w}{ }\PYG{l+s}{on}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{plabel}\PYG{+w}{ }\PYG{l+s}{on}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} 2. Se obtiene el manejador de los ejes actuales para modificar las etiquetas.}
+\PYG{+w}{    }\PYG{n}{ax}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{gca}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} 3. Se establece el intÃ©rprete LaTeX para las etiquetas de los meridianos y paralelos.}
+\PYG{+w}{    }\PYG{n}{ax}\PYG{p}{.}\PYG{n}{TickLabelInterpreter}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{n+nb}{legend}\PYG{p}{(}\PYG{n}{plotHandles}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{legendNames}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Location\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{best\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{hold}\PYG{+w}{ }\PYG{l+s}{off}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{n}{filename}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{title\PYGZus{}str}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{.png\PYGZsq{}}\PYG{p}{]}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{exportgraphics}\PYG{p}{(}\PYG{n}{fig}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{filename}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Resolution\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{300}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{close}\PYG{p}{(}\PYG{n}{fig}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{end}
+
+
+
+\PYG{k}{function}\PYG{+w}{ }\PYG{n+nf}{generate3DPlot}\PYG{p}{(}sc, sats, gs, duration\PYGZus{}s, title\PYGZus{}str, colors\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{fig}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{uifigure}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Name\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{strrep}\PYG{p}{(}\PYG{n}{title\PYGZus{}str}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZus{}\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZsq{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{NumberTitle\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{off\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Visible\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{off\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{v}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{satelliteScenarioViewer}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Parent\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{fig}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{numel}\PYG{p}{(}\PYG{n}{sats}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{groundTrack}\PYG{p}{(}\PYG{n}{sats}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LeadTime\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{duration\PYGZus{}s}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{TrailTime\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{            }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LeadLineColor\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{colors}\PYG{p}{(}\PYG{n+nb}{mod}\PYG{p}{(}\PYG{n+nb}{i}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{colors}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{p}{:}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1.5}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{+w}{    }\PYG{c}{\PYGZpc{}v.Globe.CameraTarget = [gs.Latitude, gs.Longitude, 0];}
+\PYG{+w}{    }\PYG{c}{\PYGZpc{}v.Globe.CameraPosition = [gs.Latitude, gs.Longitude, 20000e3];}
+\PYG{+w}{    }\PYG{c}{\PYGZpc{}v.Globe.CameraUpVector = [0 1 0];}
+\PYG{+w}{    }\PYG{n}{gs}\PYG{p}{.}\PYG{n}{ShowLabel}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{true}\PYG{p}{;}
+\PYG{+w}{    }\PYG{c}{\PYGZpc{}gs.LabelFontSize = 14;}
+\PYG{+w}{    }\PYG{c}{\PYGZpc{}drawnow;}
+\PYG{+w}{    }\PYG{c}{\PYGZpc{}filename = [title\PYGZus{}str, \PYGZsq{}.png\PYGZsq{}];}
+\PYG{+w}{    }\PYG{c}{\PYGZpc{}exportgraphics(fig, filename, \PYGZsq{}Resolution\PYGZsq{}, 300);}
+\PYG{+w}{    }\PYG{c}{\PYGZpc{}close(fig);}
+\PYG{k}{end}
+
+\end{MintedVerbatim}

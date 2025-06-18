@@ -1,0 +1,120 @@
+\chapter{Introducción}
+
+La capacidad de monitorizar con precisión las fuentes de emisión de CO$_2$, especialmente aquellas de origen humano (antropogénico), resulta fundamental para desarrollar estrategias efectivas de mitigación y cumplir con los acuerdos internacionales sobre cambio climático.
+Uno de los desafíos globales del siglo XXI es el cambio climático, siendo el dióxido de carbono (CO$_2$) uno de los principales gases de efecto invernadero responsables del calentamiento global. La habilidad para captar con precisión fuentes de emisión de CO$_2$ de origen humano resulta esencial para desarrollar estrategias de mitigación y revertir el proceso de cambio climático.
+
+
+En este contexto, el presente Trabajo de Fin de Grado aborda el diseño preliminar y el estudio de viabilidad de un sistema satelital destinado a la observación y monitorización precisa de las emisiones de CO$_2$  provenientes de fuentes humanas, en las principales ciudades de Estados Unidos. El proyecto responde a una necesidad específica planteada por un usuario final, cuyo enunciado se cita a continuación:
+
+
+\begin{quote}
+\textit{El usuario es el llamado U.S. Observatory Against Global Change, que quiere monitorizar con precisión las fuentes de producción de Dióxido de Carbono CO$_2$ antropogénico en las principales ciudades de los países de Estados Unidos. Quiere un mapa completo de EE.UU. una vez cada semana, teniendo en cuenta que la cobertura de nubes sobre EE.UU. es un día cubierto por cada cinco descubiertos. Para lograr mapas de calidad adecuada necesita una MTF de 0,25 (25\% de devolución de contraste) a la frecuencia de Nyquist, y una SNR de 400 a una radiancia de $100\,\mathrm{W/m^2\,sr\,\mu m}$. Deriva de estas necesidades requisitos de GSD, swath y bandas espectrales, y a partir de ellos y de las prestaciones que pide usuario, diseña una misión satelital para cumplirlas. El tiempo de misión es de 8 años.}
+\end{quote}
+
+El proceso de diseño seguirá una metodología iterativa, comenzando con un \textbf{análisis de misiones similares y del estado del arte} en observación terrestre. Posteriormente, se realizará el diseño de la \textbf{carga de pago}, definiendo los parámetros ópticos y los detectores más adecuados para la misión. Se analizarán diferentes configuraciones de telescopios y se evaluarán sus prestaciones en términos de MTF, SNR y tiempo de revisita.
+
+El estudio incluirá también una segunda fase en el cual se realizará el \textbf{análisis de misión}, escogiendo los subsistemas que nutran a nuestra carga de pago, de manera que podamos aproximar una masa total del vehículo espacial.
+
+Finalmente, se evaluarán distintas opciones en el mercado de \textbf{lanzadores} que puedan poner nuestra plataforma de observación en la órbita escogida. Este análisis incluirá tanto lanzadores existentes como emergentes, considerando factores como la capacidad de carga a la orbita deseada la fiabilidad histórica y el coste del lanzamiento aproximado. Se incluirá también un dimensionado del \textbf{segmento de Tierra} que sera necesario para operar la misión.
+
+Para los cálculos requeridos se ha desarrollado un paquete de código en MATLAB, disponible en el Anexo \ref{sec:annexcode} Los datos resultantes de la ejecución de este paquete se presentan en el Anexo \ref{sec:annexdata}.
+
+\newpage
+\section{Resumen Ejecutivo}
+
+Se muestra, en primer lugar, un resumen de los parámetros mas relevantes escogidos como solución al problema propuesto, para facilidad del lector:
+\hfill \break
+
+\begin{table}[!htbp]
+\centering
+\caption{Resumen de las especificaciones del sistema satelital y la misión.}
+\label{tab:satellite_specs}
+
+%--- Primera fila de tablas: Detector y Plataforma ---
+\begin{minipage}[t]{0.495\textwidth}
+\raggedright
+\textbf{Detector}
+\vspace{0.3em}
+\small
+\begin{tabular}{@{} l r @{}}
+\toprule
+Detector                  & 2x TeleDyne H2RG \\
+Bandas espectrales        & 0,76; 1,61; 2,01 \textmu m \\
+Ancho de banda            & 20 nm  \\
+GSD                       & 80 m  \\
+SNR                       & 717 (en $0,76\ \mu m$) \\
+MTF @ Nyquist             & 0,25 (en $2,01\ \mu  m$)\\
+Telescopio                & 2x Refractivos \\
+Diámetro de apertura      & 28 mm  \\
+Distancia focal           & 12 cm \\
+Relación focal            & F/4,2 \\
+\textit{Field of View}    & 20° \\
+\bottomrule
+\end{tabular}
+\end{minipage}%
+\begin{minipage}[t]{0.495\textwidth}
+\raggedleft
+\textbf{Plataforma Satelital}
+\vspace{0.3em}
+\small
+\begin{tabular}{@{} l r @{}}
+\toprule
+Dimensiones               & 0,26 × 0,26 × 0,26 m \\
+Volumen                   & 0,017 m\textsuperscript{3} \\
+Masa del instrumento      & 0,335 kg \\
+Masa de combustible       & 0,33 kg \\
+Masa seca                 & 1,34 kg\\
+Masa total                & 1,67 kg\\
+Consumo eléctrico         & 0,2 W \\
+Isp                       & 220 s \\
+Delta-V                   & 436 m/s \\
+Nº Impulsos               & 76 (en 8 años) \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+
+\vspace{2em}
+
+%--- Segunda fila de tablas: Órbita y Comunicaciones ---
+\begin{minipage}[t]{0.495\textwidth}
+\raggedright
+\textbf{Órbita y Misión}
+\vspace{0.3em}
+\small
+\begin{tabular}{@{} l r @{}}
+\toprule
+Tipo de órbita           & Circular, SSO \\
+LTAN                     & 06:00 (\textit{Dawn-Dusk}) \\
+Altitud                  & 520 km  \\
+Inclinación              & 97,48° \\
+Período orbital          & 97 min  \\
+Ancho de barrido (\textit{Swath}) & 183,38 km \\
+Tiempo de revisita       & 6,6 días \\
+Número de satélites      & 2 ($\Delta \nu = 180º$)\\
+\bottomrule
+\end{tabular}
+\end{minipage}%
+\begin{minipage}[t]{0.495\textwidth}
+\raggedleft
+\textbf{Lanzamiento, Comunicaciones y Datos}
+\vspace{0.3em}
+\small
+\begin{tabular}{@{} l r @{}}
+\toprule
+Lanzador                 & Falcon 9 \\
+Base de lanzamiento      & Vandenberg SFB \\
+Azimut de lanzamiento    & 198° \\
+Estación de Tierra       & Fairbanks, Alaska \\
+Frecuencias              & Banda X (datos) \\
+                         & Banda S (telemetría) \\
+Datos generados          & 6,9 GB/semana \\
+Velocidad de descarga    & 76 Mbps \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+\end{table}
+
+
+\hfill \break
+
+En los siguientes capítulos se detalla el proceso de obtención de dichos resultados, el marco teórico, la metodología, y la justificación de las decisiones tomadas a lo largo de la síntesis de este trabajo.
