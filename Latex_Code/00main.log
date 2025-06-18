@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.5.19)  18 JUN 2025 09:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.5.19)  18 JUN 2025 09:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1931,7 +1931,7 @@ Cap\'{\i }tulo 4.
 
 
 ]
-<4.Payload/workflow.jpg, id=1408, 364.2408pt x 273.1806pt>
+<4.Payload/workflow.jpg, id=1407, 364.2408pt x 273.1806pt>
 File: 4.Payload/workflow.jpg Graphic file (type jpg)
 <use 4.Payload/workflow.jpg>
 Package pdftex.def Info: 4.Payload/workflow.jpg  used on input line 13.
@@ -1946,7 +1946,7 @@ Overfull \vbox (42.06755pt too high) has occurred while \output is active []
 
 
 [53 <./4.Payload/workflow.jpg>]
-<4.Payload/Houston.jpg, id=1417, 845.1575pt x 845.1575pt>
+<4.Payload/Houston.jpg, id=1416, 845.1575pt x 845.1575pt>
 File: 4.Payload/Houston.jpg Graphic file (type jpg)
 <use 4.Payload/Houston.jpg>
 Package pdftex.def Info: 4.Payload/Houston.jpg  used on input line 33.
@@ -1956,32 +1956,32 @@ Package pdftex.def Info: 4.Payload/Houston.jpg  used on input line 33.
 [54
 
  <./4.Payload/Houston.jpg>]
-<4.Payload/Houston GSD 30.jpg, id=1423, 845.1575pt x 845.1575pt>
+<4.Payload/Houston GSD 30.jpg, id=1422, 845.1575pt x 845.1575pt>
 File: 4.Payload/Houston GSD 30.jpg Graphic file (type jpg)
 <use 4.Payload/Houston GSD 30.jpg>
 Package pdftex.def Info: 4.Payload/Houston GSD 30.jpg  used on input line 45.
 (pdftex.def)             Requested size: 141.61081pt x 141.6115pt.
-<4.Payload/HoustonGSD50.jpg, id=1424, 845.1575pt x 845.1575pt>
+<4.Payload/HoustonGSD50.jpg, id=1423, 845.1575pt x 845.1575pt>
 File: 4.Payload/HoustonGSD50.jpg Graphic file (type jpg)
 <use 4.Payload/HoustonGSD50.jpg>
 Package pdftex.def Info: 4.Payload/HoustonGSD50.jpg  used on input line 50.
 (pdftex.def)             Requested size: 141.61081pt x 141.6115pt.
-<4.Payload/HoustonGSD80.jpg, id=1425, 845.1575pt x 845.1575pt>
+<4.Payload/HoustonGSD80.jpg, id=1424, 845.1575pt x 845.1575pt>
 File: 4.Payload/HoustonGSD80.jpg Graphic file (type jpg)
 <use 4.Payload/HoustonGSD80.jpg>
 Package pdftex.def Info: 4.Payload/HoustonGSD80.jpg  used on input line 55.
 (pdftex.def)             Requested size: 141.61081pt x 141.6115pt.
-<4.Payload/HoustonGSD100.jpg, id=1426, 845.1575pt x 845.1575pt>
+<4.Payload/HoustonGSD100.jpg, id=1425, 845.1575pt x 845.1575pt>
 File: 4.Payload/HoustonGSD100.jpg Graphic file (type jpg)
 <use 4.Payload/HoustonGSD100.jpg>
 Package pdftex.def Info: 4.Payload/HoustonGSD100.jpg  used on input line 63.
 (pdftex.def)             Requested size: 141.61081pt x 141.6115pt.
-<4.Payload/Houston GSD150.jpg, id=1427, 845.1575pt x 845.1575pt>
+<4.Payload/Houston GSD150.jpg, id=1426, 845.1575pt x 845.1575pt>
 File: 4.Payload/Houston GSD150.jpg Graphic file (type jpg)
 <use 4.Payload/Houston GSD150.jpg>
 Package pdftex.def Info: 4.Payload/Houston GSD150.jpg  used on input line 68.
 (pdftex.def)             Requested size: 141.61081pt x 141.6115pt.
-<4.Payload/Houston GSD200.jpg, id=1428, 845.1575pt x 845.1575pt>
+<4.Payload/Houston GSD200.jpg, id=1427, 845.1575pt x 845.1575pt>
 File: 4.Payload/Houston GSD200.jpg Graphic file (type jpg)
 <use 4.Payload/Houston GSD200.jpg>
 Package pdftex.def Info: 4.Payload/Houston GSD200.jpg  used on input line 73.
@@ -2008,22 +2008,22 @@ LaTeX Warning: Reference `sec:MTFteoria' on page 59 undefined on input line 205.
 [59]
 
 [60]
-<4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio1_heatmap.jpg, id=1486, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio1_heatmap.jpg, id=1485, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio1_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio1_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio1_heatmap.jpg  used on input line 242.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio2_heatmap.jpg, id=1487, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio2_heatmap.jpg, id=1486, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio2_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio2_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio2_heatmap.jpg  used on input line 243.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio3_heatmap.jpg, id=1488, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio3_heatmap.jpg, id=1487, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio3_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio3_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio3_heatmap.jpg  used on input line 244.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio4_heatmap.jpg, id=1489, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio4_heatmap.jpg, id=1488, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio4_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio4_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio4_heatmap.jpg  used on input line 245.
@@ -2035,22 +2035,22 @@ LaTeX Warning: Float too large for page by 39.67969pt on input line 248.
 
 
 [61 <./4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio1_heatmap.jpg> <./4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio2_heatmap.jpg> <./4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio3_heatmap.jpg> <./4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio4_heatmap.jpg>]
-<4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio1_heatmap.jpg, id=1494, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio1_heatmap.jpg, id=1493, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio1_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio1_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio1_heatmap.jpg  used on input line 260.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio2_heatmap.jpg, id=1495, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio2_heatmap.jpg, id=1494, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio2_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio2_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio2_heatmap.jpg  used on input line 261.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio3_heatmap.jpg, id=1496, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio3_heatmap.jpg, id=1495, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio3_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio3_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio3_heatmap.jpg  used on input line 262.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio4_heatmap.jpg, id=1497, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio4_heatmap.jpg, id=1496, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio4_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio4_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio4_heatmap.jpg  used on input line 263.
@@ -2062,22 +2062,22 @@ LaTeX Warning: Float too large for page by 39.67969pt on input line 266.
 
 
 [62 <./4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio1_heatmap.jpg> <./4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio2_heatmap.jpg> <./4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio3_heatmap.jpg> <./4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio4_heatmap.jpg>]
-<4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio1_heatmap.jpg, id=1504, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio1_heatmap.jpg, id=1503, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio1_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio1_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio1_heatmap.jpg  used on input line 278.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio2_heatmap.jpg, id=1505, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio2_heatmap.jpg, id=1504, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio2_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio2_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio2_heatmap.jpg  used on input line 279.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio3_heatmap.jpg, id=1506, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio3_heatmap.jpg, id=1505, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio3_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio3_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio3_heatmap.jpg  used on input line 280.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio4_heatmap.jpg, id=1507, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio4_heatmap.jpg, id=1506, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio4_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio4_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio4_heatmap.jpg  used on input line 281.
@@ -2100,22 +2100,22 @@ LaTeX Warning: Float too large for page by 39.67969pt on input line 284.
 ]
 
 [65]
-<4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio1_heatmap.jpg, id=1529, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio1_heatmap.jpg, id=1528, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio1_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio1_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio1_heatmap.jpg  used on input line 348.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio2_heatmap.jpg, id=1530, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio2_heatmap.jpg, id=1529, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio2_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio2_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio2_heatmap.jpg  used on input line 349.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio3_heatmap.jpg, id=1531, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio3_heatmap.jpg, id=1530, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio3_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio3_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio3_heatmap.jpg  used on input line 350.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio4_heatmap.jpg, id=1532, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio4_heatmap.jpg, id=1531, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio4_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio4_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio4_heatmap.jpg  used on input line 351.
@@ -2127,22 +2127,22 @@ LaTeX Warning: Float too large for page by 56.7515pt on input line 354.
 
 
 [66 <./4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio1_heatmap.jpg> <./4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio2_heatmap.jpg> <./4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio3_heatmap.jpg> <./4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio4_heatmap.jpg>]
-<4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio1_heatmap.jpg, id=1537, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio1_heatmap.jpg, id=1536, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio1_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio1_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio1_heatmap.jpg  used on input line 368.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio2_heatmap.jpg, id=1538, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio2_heatmap.jpg, id=1537, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio2_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio2_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio2_heatmap.jpg  used on input line 369.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio3_heatmap.jpg, id=1539, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio3_heatmap.jpg, id=1538, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio3_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio3_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio3_heatmap.jpg  used on input line 370.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio4_heatmap.jpg, id=1540, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio4_heatmap.jpg, id=1539, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio4_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio4_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio4_heatmap.jpg  used on input line 371.
@@ -2154,22 +2154,22 @@ LaTeX Warning: Float too large for page by 56.7515pt on input line 374.
 
 
 [67 <./4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio1_heatmap.jpg> <./4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio2_heatmap.jpg> <./4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio3_heatmap.jpg> <./4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio4_heatmap.jpg>]
-<4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio1_heatmap.jpg, id=1545, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio1_heatmap.jpg, id=1544, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio1_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio1_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio1_heatmap.jpg  used on input line 388.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio2_heatmap.jpg, id=1546, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio2_heatmap.jpg, id=1545, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio2_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio2_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio2_heatmap.jpg  used on input line 389.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio3_heatmap.jpg, id=1547, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio3_heatmap.jpg, id=1546, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio3_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio3_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio3_heatmap.jpg  used on input line 390.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio4_heatmap.jpg, id=1548, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio4_heatmap.jpg, id=1547, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio4_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio4_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio4_heatmap.jpg  used on input line 391.
@@ -2190,12 +2190,12 @@ LaTeX Warning: Float too large for page by 56.7515pt on input line 394.
 
 
 ]
-<4.Payload/TFG_Tikz-1.jpg, id=1568, 268.3626pt x 195.8517pt>
+<4.Payload/TFG_Tikz-1.jpg, id=1567, 268.3626pt x 195.8517pt>
 File: 4.Payload/TFG_Tikz-1.jpg Graphic file (type jpg)
 <use 4.Payload/TFG_Tikz-1.jpg>
 Package pdftex.def Info: 4.Payload/TFG_Tikz-1.jpg  used on input line 435.
 (pdftex.def)             Requested size: 212.41261pt x 155.01997pt.
-<4.Payload/cloudcov.png, id=1569, 1179.40625pt x 792.9625pt>
+<4.Payload/cloudcov.png, id=1568, 1179.40625pt x 792.9625pt>
 File: 4.Payload/cloudcov.png Graphic file (type png)
 <use 4.Payload/cloudcov.png>
 Package pdftex.def Info: 4.Payload/cloudcov.png  used on input line 442.
@@ -2211,12 +2211,12 @@ Missing character: There is no º in font cmr12!
 
 
 [70 <./4.Payload/TFG_Tikz-1.jpg> <./4.Payload/cloudcov.png>]
-<4.Payload/TFG_Tikz-2.jpg, id=1588, 266.6763pt x 201.3924pt>
+<4.Payload/TFG_Tikz-2.jpg, id=1587, 266.6763pt x 201.3924pt>
 File: 4.Payload/TFG_Tikz-2.jpg Graphic file (type jpg)
 <use 4.Payload/TFG_Tikz-2.jpg>
 Package pdftex.def Info: 4.Payload/TFG_Tikz-2.jpg  used on input line 466.
 (pdftex.def)             Requested size: 212.41261pt x 160.41348pt.
-<4.Payload/TFG_Tikz-3.jpg, id=1589, 243.309pt x 216.5691pt>
+<4.Payload/TFG_Tikz-3.jpg, id=1588, 243.309pt x 216.5691pt>
 File: 4.Payload/TFG_Tikz-3.jpg Graphic file (type jpg)
 <use 4.Payload/TFG_Tikz-3.jpg>
 Package pdftex.def Info: 4.Payload/TFG_Tikz-3.jpg  used on input line 473.
@@ -2224,22 +2224,22 @@ Package pdftex.def Info: 4.Payload/TFG_Tikz-3.jpg  used on input line 473.
 
 
 [71 <./4.Payload/TFG_Tikz-2.jpg> <./4.Payload/TFG_Tikz-3.jpg>]
-<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Refractivo; Detector 1.jpg, id=1597, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Refractivo; Detector 1.jpg, id=1596, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Refractivo; Detector 1.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Refractivo; Detector 1.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Refractivo; Detector 1.jpg  used on input line 497.
 (pdftex.def)             Requested size: 313.29619pt x 235.01256pt.
-<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Korsch; Detector 1.jpg, id=1598, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Korsch; Detector 1.jpg, id=1597, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Korsch; Detector 1.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Korsch; Detector 1.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Korsch; Detector 1.jpg  used on input line 498.
 (pdftex.def)             Requested size: 313.29619pt x 235.01256pt.
-<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Cassegrain; Detector 1.jpg, id=1599, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Cassegrain; Detector 1.jpg, id=1598, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Cassegrain; Detector 1.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Cassegrain; Detector 1.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Cassegrain; Detector 1.jpg  used on input line 499.
 (pdftex.def)             Requested size: 313.29619pt x 235.01256pt.
-<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): TMA; Detector 1.jpg, id=1600, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): TMA; Detector 1.jpg, id=1599, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): TMA; Detector 1.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): TMA; Detector 1.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): TMA; Detector 1.jpg  used on input line 500.
@@ -2251,22 +2251,22 @@ LaTeX Warning: Float too large for page by 31.02977pt on input line 503.
 
 
 [72 <./4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Refractivo; Detector 1.jpg (PNG copy)> <./4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Korsch; Detector 1.jpg (PNG copy)> <./4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Cassegrain; Detector 1.jpg (PNG copy)> <./4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): TMA; Detector 1.jpg (PNG copy)>]
-<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Refractivo; Detector 2.jpg, id=1605, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Refractivo; Detector 2.jpg, id=1604, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Refractivo; Detector 2.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Refractivo; Detector 2.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Refractivo; Detector 2.jpg  used on input line 513.
 (pdftex.def)             Requested size: 313.29619pt x 235.01256pt.
-<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Korsch; Detector 2.jpg, id=1606, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Korsch; Detector 2.jpg, id=1605, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Korsch; Detector 2.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Korsch; Detector 2.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Korsch; Detector 2.jpg  used on input line 514.
 (pdftex.def)             Requested size: 313.29619pt x 235.01256pt.
-<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Cassegrain; Detector 2.jpg, id=1607, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Cassegrain; Detector 2.jpg, id=1606, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Cassegrain; Detector 2.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Cassegrain; Detector 2.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Cassegrain; Detector 2.jpg  used on input line 515.
 (pdftex.def)             Requested size: 313.29619pt x 235.01256pt.
-<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): TMA; Detector 2.jpg, id=1608, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): TMA; Detector 2.jpg, id=1607, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): TMA; Detector 2.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): TMA; Detector 2.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): TMA; Detector 2.jpg  used on input line 516.
@@ -2278,22 +2278,22 @@ LaTeX Warning: Float too large for page by 31.02977pt on input line 519.
 
 
 [73 <./4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Refractivo; Detector 2.jpg (PNG copy)> <./4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Korsch; Detector 2.jpg (PNG copy)> <./4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Cassegrain; Detector 2.jpg (PNG copy)> <./4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): TMA; Detector 2.jpg (PNG copy)>]
-<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Refractivo; Detector 3.jpg, id=1613, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Refractivo; Detector 3.jpg, id=1612, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Refractivo; Detector 3.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Refractivo; Detector 3.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Refractivo; Detector 3.jpg  used on input line 529.
 (pdftex.def)             Requested size: 313.29619pt x 235.01256pt.
-<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Korsch; Detector 3.jpg, id=1614, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Korsch; Detector 3.jpg, id=1613, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Korsch; Detector 3.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Korsch; Detector 3.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Korsch; Detector 3.jpg  used on input line 530.
 (pdftex.def)             Requested size: 313.29619pt x 235.01256pt.
-<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Cassegrain; Detector 3.jpg, id=1615, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Cassegrain; Detector 3.jpg, id=1614, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Cassegrain; Detector 3.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Cassegrain; Detector 3.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Cassegrain; Detector 3.jpg  used on input line 531.
 (pdftex.def)             Requested size: 313.29619pt x 235.01256pt.
-<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): TMA; Detector 3.jpg, id=1616, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): TMA; Detector 3.jpg, id=1615, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): TMA; Detector 3.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): TMA; Detector 3.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): TMA; Detector 3.jpg  used on input line 532.
@@ -2305,22 +2305,22 @@ LaTeX Warning: Float too large for page by 31.02977pt on input line 535.
 
 
 [74 <./4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Refractivo; Detector 3.jpg (PNG copy)> <./4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): Korsch; Detector 3.jpg (PNG copy)> <./4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Cassegrain; Detector 3.jpg (PNG copy)> <./4.Payload/Coverage/heatmap_2 Satelite(s); 2 Telescopio(s): TMA; Detector 3.jpg (PNG copy)>]
-<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Refractivo; Detector 1.jpg, id=1622, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Refractivo; Detector 1.jpg, id=1621, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Refractivo; Detector 1.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Refractivo; Detector 1.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Refractivo; Detector 1.jpg  used on input line 547.
 (pdftex.def)             Requested size: 313.29619pt x 235.01256pt.
-<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Korsch; Detector 1.jpg, id=1623, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Korsch; Detector 1.jpg, id=1622, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Korsch; Detector 1.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Korsch; Detector 1.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Korsch; Detector 1.jpg  used on input line 548.
 (pdftex.def)             Requested size: 313.29619pt x 235.01256pt.
-<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Cassegrain; Detector 1.jpg, id=1624, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Cassegrain; Detector 1.jpg, id=1623, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Cassegrain; Detector 1.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Cassegrain; Detector 1.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Cassegrain; Detector 1.jpg  used on input line 549.
 (pdftex.def)             Requested size: 313.29619pt x 235.01256pt.
-<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): TMA; Detector 1.jpg, id=1625, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): TMA; Detector 1.jpg, id=1624, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): TMA; Detector 1.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): TMA; Detector 1.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): TMA; Detector 1.jpg  used on input line 550.
@@ -2332,22 +2332,22 @@ LaTeX Warning: Float too large for page by 31.02977pt on input line 553.
 
 
 [75 <./4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Refractivo; Detector 1.jpg (PNG copy)> <./4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Korsch; Detector 1.jpg (PNG copy)> <./4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Cassegrain; Detector 1.jpg (PNG copy)> <./4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): TMA; Detector 1.jpg (PNG copy)>]
-<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Refractivo; Detector 2.jpg, id=1630, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Refractivo; Detector 2.jpg, id=1629, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Refractivo; Detector 2.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Refractivo; Detector 2.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Refractivo; Detector 2.jpg  used on input line 563.
 (pdftex.def)             Requested size: 313.29619pt x 235.01256pt.
-<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Korsch; Detector 2.jpg, id=1631, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Korsch; Detector 2.jpg, id=1630, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Korsch; Detector 2.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Korsch; Detector 2.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Korsch; Detector 2.jpg  used on input line 564.
 (pdftex.def)             Requested size: 313.29619pt x 235.01256pt.
-<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Cassegrain; Detector 2.jpg, id=1632, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Cassegrain; Detector 2.jpg, id=1631, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Cassegrain; Detector 2.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Cassegrain; Detector 2.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Cassegrain; Detector 2.jpg  used on input line 565.
 (pdftex.def)             Requested size: 313.29619pt x 235.01256pt.
-<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): TMA; Detector 2.jpg, id=1633, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): TMA; Detector 2.jpg, id=1632, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): TMA; Detector 2.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): TMA; Detector 2.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): TMA; Detector 2.jpg  used on input line 566.
@@ -2359,12 +2359,12 @@ LaTeX Warning: Float too large for page by 31.02977pt on input line 569.
 
 
 [76 <./4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Refractivo; Detector 2.jpg (PNG copy)> <./4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Korsch; Detector 2.jpg (PNG copy)> <./4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Cassegrain; Detector 2.jpg (PNG copy)> <./4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): TMA; Detector 2.jpg (PNG copy)>]
-<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Refractivo; Detector 3.jpg, id=1638, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Refractivo; Detector 3.jpg, id=1637, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Refractivo; Detector 3.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Refractivo; Detector 3.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Refractivo; Detector 3.jpg  used on input line 579.
 (pdftex.def)             Requested size: 313.29619pt x 235.01256pt.
-<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Korsch; Detector 3.jpg, id=1639, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Korsch; Detector 3.jpg, id=1638, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Korsch; Detector 3.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Korsch; Detector 3.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Korsch; Detector 3.jpg  used on input line 580.
@@ -2373,7 +2373,7 @@ File: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Cassegrain; Det
 <use 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Cassegrain; Detector 3.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Cassegrain; Detector 3.jpg  used on input line 581.
 (pdftex.def)             Requested size: 313.29619pt x 235.01256pt.
-<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): TMA; Detector 3.jpg, id=1640, 562.0197pt x 421.575pt>
+<4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): TMA; Detector 3.jpg, id=1639, 562.0197pt x 421.575pt>
 File: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): TMA; Detector 3.jpg Graphic file (type jpg)
 <use 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): TMA; Detector 3.jpg>
 Package pdftex.def Info: 4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): TMA; Detector 3.jpg  used on input line 582.
@@ -2385,7 +2385,7 @@ LaTeX Warning: Float too large for page by 31.02977pt on input line 585.
 
 
 [77 <./4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Refractivo; Detector 3.jpg (PNG copy)> <./4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): Korsch; Detector 3.jpg (PNG copy)> <./4.Payload/Coverage/heatmap_3 Satelite(s); 1 Telescopio(s): TMA; Detector 3.jpg (PNG copy)>]
-<4.Payload/HvsDmin_2sat_2tel.jpg, id=1647, 1882.03125pt x 1463.4675pt>
+<4.Payload/HvsDmin_2sat_2tel.jpg, id=1646, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/HvsDmin_2sat_2tel.jpg Graphic file (type jpg)
 <use 4.Payload/HvsDmin_2sat_2tel.jpg>
 Package pdftex.def Info: 4.Payload/HvsDmin_2sat_2tel.jpg  used on input line 607.
@@ -2406,7 +2406,7 @@ Package pdftex.def Info: 4.Payload/HvsDmin_2sat_2tel.jpg  used on input line 607
 
 
 ]
-<4.Payload/HvsDmin_Refractivo_Config_2sat_2tel.jpg, id=1653, 1463.4675pt x 1045.9075pt>
+<4.Payload/HvsDmin_Refractivo_Config_2sat_2tel.jpg, id=1652, 1463.4675pt x 1045.9075pt>
 File: 4.Payload/HvsDmin_Refractivo_Config_2sat_2tel.jpg Graphic file (type jpg)
 <use 4.Payload/HvsDmin_Refractivo_Config_2sat_2tel.jpg>
 Package pdftex.def Info: 4.Payload/HvsDmin_Refractivo_Config_2sat_2tel.jpg  used on input line 615.
@@ -2432,7 +2432,7 @@ Cap\'{\i }tulo 5.
 
 
 ]
-<5.Mission/MasaSeca_Comparativa_2sat_2tel_Det2_Refractivo.jpg, id=1680, 1882.03125pt x 1254.6875pt>
+<5.Mission/MasaSeca_Comparativa_2sat_2tel_Det2_Refractivo.jpg, id=1679, 1882.03125pt x 1254.6875pt>
 File: 5.Mission/MasaSeca_Comparativa_2sat_2tel_Det2_Refractivo.jpg Graphic file (type jpg)
 <use 5.Mission/MasaSeca_Comparativa_2sat_2tel_Det2_Refractivo.jpg>
 Package pdftex.def Info: 5.Mission/MasaSeca_Comparativa_2sat_2tel_Det2_Refractivo.jpg  used on input line 54.
@@ -2455,7 +2455,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 
 [83 <./5.Mission/MasaSeca_Comparativa_2sat_2tel_Det2_Refractivo.jpg>]
-<5.Mission/TFG_Tikz_7.jpg, id=1698, 307.3884pt x 225.7233pt>
+<5.Mission/TFG_Tikz_7.jpg, id=1697, 307.3884pt x 225.7233pt>
 File: 5.Mission/TFG_Tikz_7.jpg Graphic file (type jpg)
 <use 5.Mission/TFG_Tikz_7.jpg>
 Package pdftex.def Info: 5.Mission/TFG_Tikz_7.jpg  used on input line 103.
@@ -2463,7 +2463,7 @@ Package pdftex.def Info: 5.Mission/TFG_Tikz_7.jpg  used on input line 103.
 
 
 [84 <./5.Mission/TFG_Tikz_7.jpg>]
-<5.Mission/MasaDesglose_2sat_2tel_Det2_Refractivo.jpg, id=1711, 1882.03125pt x 1254.6875pt>
+<5.Mission/MasaDesglose_2sat_2tel_Det2_Refractivo.jpg, id=1710, 1882.03125pt x 1254.6875pt>
 File: 5.Mission/MasaDesglose_2sat_2tel_Det2_Refractivo.jpg Graphic file (type jpg)
 <use 5.Mission/MasaDesglose_2sat_2tel_Det2_Refractivo.jpg>
 Package pdftex.def Info: 5.Mission/MasaDesglose_2sat_2tel_Det2_Refractivo.jpg  used on input line 132.
@@ -2471,7 +2471,7 @@ Package pdftex.def Info: 5.Mission/MasaDesglose_2sat_2tel_Det2_Refractivo.jpg  u
 
 
 [85 <./5.Mission/MasaDesglose_2sat_2tel_Det2_Refractivo.jpg>]
-<5.Mission/TFG_Tikz-8.jpg, id=1717, 548.5293pt x 360.8682pt>
+<5.Mission/TFG_Tikz-8.jpg, id=1716, 548.5293pt x 360.8682pt>
 File: 5.Mission/TFG_Tikz-8.jpg Graphic file (type jpg)
 <use 5.Mission/TFG_Tikz-8.jpg>
 Package pdftex.def Info: 5.Mission/TFG_Tikz-8.jpg  used on input line 142.
@@ -2481,22 +2481,22 @@ Package pdftex.def Info: 5.Mission/TFG_Tikz-8.jpg  used on input line 142.
 [86
 
  <./5.Mission/TFG_Tikz-8.jpg>]
-<5.Mission/TFG_Tikz-4.jpg, id=1723, 361.5909pt x 285.7074pt>
+<5.Mission/TFG_Tikz-4.jpg, id=1722, 361.5909pt x 285.7074pt>
 File: 5.Mission/TFG_Tikz-4.jpg Graphic file (type jpg)
 <use 5.Mission/TFG_Tikz-4.jpg>
 Package pdftex.def Info: 5.Mission/TFG_Tikz-4.jpg  used on input line 152.
 (pdftex.def)             Requested size: 141.61081pt x 111.89189pt.
-<5.Mission/TFG_Tikz-5.jpg, id=1724, 361.5909pt x 285.7074pt>
+<5.Mission/TFG_Tikz-5.jpg, id=1723, 361.5909pt x 285.7074pt>
 File: 5.Mission/TFG_Tikz-5.jpg Graphic file (type jpg)
 <use 5.Mission/TFG_Tikz-5.jpg>
 Package pdftex.def Info: 5.Mission/TFG_Tikz-5.jpg  used on input line 159.
 (pdftex.def)             Requested size: 141.61081pt x 111.89189pt.
-<5.Mission/TFG_Tikz-6.jpg, id=1725, 361.5909pt x 276.3123pt>
+<5.Mission/TFG_Tikz-6.jpg, id=1724, 361.5909pt x 276.3123pt>
 File: 5.Mission/TFG_Tikz-6.jpg Graphic file (type jpg)
 <use 5.Mission/TFG_Tikz-6.jpg>
 Package pdftex.def Info: 5.Mission/TFG_Tikz-6.jpg  used on input line 166.
 (pdftex.def)             Requested size: 155.77116pt x 119.03542pt.
-<5.Mission/deorbit.jpg, id=1728, 1124.2pt x 843.15pt>
+<5.Mission/deorbit.jpg, id=1727, 1124.2pt x 843.15pt>
 File: 5.Mission/deorbit.jpg Graphic file (type jpg)
 <use 5.Mission/deorbit.jpg>
 Package pdftex.def Info: 5.Mission/deorbit.jpg  used on input line 186.
@@ -2514,7 +2514,7 @@ Cap\'{\i }tulo 6.
 [89
 
 ]
-<5.Mission/featured_image.jpg, id=1743, 732.7375pt x 429.605pt>
+<5.Mission/featured_image.jpg, id=1742, 732.7375pt x 429.605pt>
 File: 5.Mission/featured_image.jpg Graphic file (type jpg)
 <use 5.Mission/featured_image.jpg>
 Package pdftex.def Info: 5.Mission/featured_image.jpg  used on input line 245.
@@ -2522,7 +2522,7 @@ Package pdftex.def Info: 5.Mission/featured_image.jpg  used on input line 245.
 
 
 [90 <./5.Mission/featured_image.jpg>]
-<5.Mission/Nanosats_frequency_2025-04-30_large.png, id=1753, 963.6pt x 542.025pt>
+<5.Mission/Nanosats_frequency_2025-04-30_large.png, id=1752, 963.6pt x 542.025pt>
 File: 5.Mission/Nanosats_frequency_2025-04-30_large.png Graphic file (type png)
 <use 5.Mission/Nanosats_frequency_2025-04-30_large.png>
 Package pdftex.def Info: 5.Mission/Nanosats_frequency_2025-04-30_large.png  used on input line 257.
@@ -2670,12 +2670,12 @@ l.54 \end{table}
                 
 
 [97]
-<6.Lanzadores/Transporter-9_small-735101042.jpg, id=1865, 879.285pt x 1212.53pt>
+<6.Lanzadores/Transporter-9_small-735101042.jpg, id=1864, 879.285pt x 1212.53pt>
 File: 6.Lanzadores/Transporter-9_small-735101042.jpg Graphic file (type jpg)
 <use 6.Lanzadores/Transporter-9_small-735101042.jpg>
 Package pdftex.def Info: 6.Lanzadores/Transporter-9_small-735101042.jpg  used on input line 75.
 (pdftex.def)             Requested size: 181.25906pt x 249.93938pt.
-<6.Lanzadores/Copernicus_Sentinel-6_lifts_off_on_a_SpaceX_Falcon_9_rocket-3548914818.jpg, id=1868, 1370.11874pt x 2055.68pt>
+<6.Lanzadores/Copernicus_Sentinel-6_lifts_off_on_a_SpaceX_Falcon_9_rocket-3548914818.jpg, id=1867, 1370.11874pt x 2055.68pt>
 File: 6.Lanzadores/Copernicus_Sentinel-6_lifts_off_on_a_SpaceX_Falcon_9_rocket-3548914818.jpg Graphic file (type jpg)
 <use 6.Lanzadores/Copernicus_Sentinel-6_lifts_off_on_a_SpaceX_Falcon_9_rocket-3548914818.jpg>
 Package pdftex.def Info: 6.Lanzadores/Copernicus_Sentinel-6_lifts_off_on_a_SpaceX_Falcon_9_rocket-3548914818.jpg  used on input line 82.
@@ -2685,7 +2685,7 @@ Package pdftex.def Info: 6.Lanzadores/Copernicus_Sentinel-6_lifts_off_on_a_Space
 [98]
 
 [99 <./6.Lanzadores/Transporter-9_small-735101042.jpg> <./6.Lanzadores/Copernicus_Sentinel-6_lifts_off_on_a_SpaceX_Falcon_9_rocket-3548914818.jpg>]
-<6.Lanzadores/azimuth.jpg, id=1884, 562.1pt x 421.575pt>
+<6.Lanzadores/azimuth.jpg, id=1883, 562.1pt x 421.575pt>
 File: 6.Lanzadores/azimuth.jpg Graphic file (type jpg)
 <use 6.Lanzadores/azimuth.jpg>
 Package pdftex.def Info: 6.Lanzadores/azimuth.jpg  used on input line 106.
@@ -2702,7 +2702,7 @@ Overfull \hbox (10.58252pt too wide) in paragraph at lines 133--134
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-<6.Lanzadores/phasing.jpg, id=1892, 697.60625pt x 565.11125pt>
+<6.Lanzadores/phasing.jpg, id=1891, 697.60625pt x 565.11125pt>
 File: 6.Lanzadores/phasing.jpg Graphic file (type jpg)
 <use 6.Lanzadores/phasing.jpg>
 Package pdftex.def Info: 6.Lanzadores/phasing.jpg  used on input line 140.
@@ -2726,7 +2726,7 @@ Cap\'{\i }tulo 8.
 
 
 ]
-<7.Segmento_Tierra/AS3_oct-4-2022-1-scaled.png, id=1921, 1541.76pt x 2055.68pt>
+<7.Segmento_Tierra/AS3_oct-4-2022-1-scaled.png, id=1920, 1541.76pt x 2055.68pt>
 File: 7.Segmento_Tierra/AS3_oct-4-2022-1-scaled.png Graphic file (type png)
 <use 7.Segmento_Tierra/AS3_oct-4-2022-1-scaled.png>
 Package pdftex.def Info: 7.Segmento_Tierra/AS3_oct-4-2022-1-scaled.png  used on input line 20.
@@ -2744,22 +2744,22 @@ Missing character: There is no º in font cmr12!
 
 
 [104 <./7.Segmento_Tierra/AS3_oct-4-2022-1-scaled.png>]
-<7.Segmento_Tierra/analisis_contacto.jpg, id=1942, 2890.8pt x 1806.75pt>
+<7.Segmento_Tierra/analisis_contacto.jpg, id=1941, 2890.8pt x 1806.75pt>
 File: 7.Segmento_Tierra/analisis_contacto.jpg Graphic file (type jpg)
 <use 7.Segmento_Tierra/analisis_contacto.jpg>
 Package pdftex.def Info: 7.Segmento_Tierra/analisis_contacto.jpg  used on input line 34.
 (pdftex.def)             Requested size: 472.03123pt x 295.01318pt.
-<7.Segmento_Tierra/Traza 2D 1 Orbita.jpg, id=1943, 1822.81pt x 1373.13pt>
+<7.Segmento_Tierra/Traza 2D 1 Orbita.jpg, id=1942, 1822.81pt x 1373.13pt>
 File: 7.Segmento_Tierra/Traza 2D 1 Orbita.jpg Graphic file (type jpg)
 <use 7.Segmento_Tierra/Traza 2D 1 Orbita.jpg>
 Package pdftex.def Info: 7.Segmento_Tierra/Traza 2D 1 Orbita.jpg  used on input line 42.
 (pdftex.def)             Requested size: 141.61081pt x 106.6679pt.
-<7.Segmento_Tierra/Traza 2D 1 Dia.jpg, id=1944, 1822.81pt x 1373.13pt>
+<7.Segmento_Tierra/Traza 2D 1 Dia.jpg, id=1943, 1822.81pt x 1373.13pt>
 File: 7.Segmento_Tierra/Traza 2D 1 Dia.jpg Graphic file (type jpg)
 <use 7.Segmento_Tierra/Traza 2D 1 Dia.jpg>
 Package pdftex.def Info: 7.Segmento_Tierra/Traza 2D 1 Dia.jpg  used on input line 49.
 (pdftex.def)             Requested size: 141.61081pt x 106.6679pt.
-<7.Segmento_Tierra/Traza 2D 1 Semana.jpg, id=1945, 1822.81pt x 1373.13pt>
+<7.Segmento_Tierra/Traza 2D 1 Semana.jpg, id=1944, 1822.81pt x 1373.13pt>
 File: 7.Segmento_Tierra/Traza 2D 1 Semana.jpg Graphic file (type jpg)
 <use 7.Segmento_Tierra/Traza 2D 1 Semana.jpg>
 Package pdftex.def Info: 7.Segmento_Tierra/Traza 2D 1 Semana.jpg  used on input line 56.
@@ -2771,7 +2771,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 105--105
 []|\OT1/cmr/bx/n/12 Tormentas
  []
 
-<7.Segmento_Tierra/velmediasemanal.png, id=1955, 1003.75pt x 602.25pt>
+<7.Segmento_Tierra/velmediasemanal.png, id=1954, 1003.75pt x 602.25pt>
 File: 7.Segmento_Tierra/velmediasemanal.png Graphic file (type png)
 <use 7.Segmento_Tierra/velmediasemanal.png>
 Package pdftex.def Info: 7.Segmento_Tierra/velmediasemanal.png  used on input line 113.
@@ -2779,7 +2779,7 @@ Package pdftex.def Info: 7.Segmento_Tierra/velmediasemanal.png  used on input li
 
 
 [106]
-<7.Segmento_Tierra/veldiariabandax.png, id=1961, 1003.75pt x 602.25pt>
+<7.Segmento_Tierra/veldiariabandax.png, id=1960, 1003.75pt x 602.25pt>
 File: 7.Segmento_Tierra/veldiariabandax.png Graphic file (type png)
 <use 7.Segmento_Tierra/veldiariabandax.png>
 Package pdftex.def Info: 7.Segmento_Tierra/veldiariabandax.png  used on input line 119.
@@ -2798,7 +2798,7 @@ LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
 [108 <./7.Segmento_Tierra/veldiariabandax.png (PNG copy)>]
 
 [109]
-<7.Segmento_Tierra/memoria.jpg, id=1985, 3922.655pt x 3216.015pt>
+<7.Segmento_Tierra/memoria.jpg, id=1984, 3922.655pt x 3216.015pt>
 File: 7.Segmento_Tierra/memoria.jpg Graphic file (type jpg)
 <use 7.Segmento_Tierra/memoria.jpg>
 Package pdftex.def Info: 7.Segmento_Tierra/memoria.jpg  used on input line 179.
@@ -2968,22 +2968,22 @@ l.12 \begin{landscape}
                        [2
 
 ]
-<4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio1_heatmap.jpg, id=2267, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio1_heatmap.jpg, id=2266, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio1_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio1_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio1_heatmap.jpg  used on input line 19.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio2_heatmap.jpg, id=2268, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio2_heatmap.jpg, id=2267, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio2_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio2_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio2_heatmap.jpg  used on input line 20.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio3_heatmap.jpg, id=2269, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio3_heatmap.jpg, id=2268, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio3_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio3_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio3_heatmap.jpg  used on input line 21.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio4_heatmap.jpg, id=2270, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio4_heatmap.jpg, id=2269, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio4_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio4_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio4_heatmap.jpg  used on input line 22.
@@ -3000,22 +3000,22 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has b
                    \relax 
 l.27 \end{landscape}
                      [3 <./4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio1_heatmap.jpg> <./4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio2_heatmap.jpg> <./4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio3_heatmap.jpg> <./4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio4_heatmap.jpg>]
-<4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio1_heatmap.jpg, id=2275, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio1_heatmap.jpg, id=2274, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio1_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio1_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio1_heatmap.jpg  used on input line 38.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio2_heatmap.jpg, id=2276, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio2_heatmap.jpg, id=2275, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio2_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio2_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio2_heatmap.jpg  used on input line 39.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio3_heatmap.jpg, id=2277, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio3_heatmap.jpg, id=2276, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio3_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio3_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio3_heatmap.jpg  used on input line 40.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio4_heatmap.jpg, id=2278, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio4_heatmap.jpg, id=2277, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio4_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio4_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio4_heatmap.jpg  used on input line 41.
@@ -3032,22 +3032,22 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has b
                    \relax 
 l.45 \end{landscape}
                      [4 <./4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio1_heatmap.jpg> <./4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio2_heatmap.jpg> <./4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio3_heatmap.jpg> <./4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio4_heatmap.jpg>]
-<4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio1_heatmap.jpg, id=2283, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio1_heatmap.jpg, id=2282, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio1_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio1_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio1_heatmap.jpg  used on input line 56.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio2_heatmap.jpg, id=2284, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio2_heatmap.jpg, id=2283, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio2_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio2_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio2_heatmap.jpg  used on input line 57.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio3_heatmap.jpg, id=2285, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio3_heatmap.jpg, id=2284, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio3_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio3_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio3_heatmap.jpg  used on input line 58.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio4_heatmap.jpg, id=2286, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio4_heatmap.jpg, id=2285, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio4_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio4_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio4_heatmap.jpg  used on input line 59.
@@ -3064,22 +3064,22 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has b
                    \relax 
 l.64 \end{landscape}
                      [5 <./4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio1_heatmap.jpg> <./4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio2_heatmap.jpg> <./4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio3_heatmap.jpg> <./4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio4_heatmap.jpg>]
-<4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio1_heatmap.jpg, id=2290, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio1_heatmap.jpg, id=2289, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio1_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio1_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio1_heatmap.jpg  used on input line 80.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio2_heatmap.jpg, id=2291, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio2_heatmap.jpg, id=2290, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio2_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio2_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio2_heatmap.jpg  used on input line 81.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio3_heatmap.jpg, id=2292, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio3_heatmap.jpg, id=2291, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio3_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio3_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio3_heatmap.jpg  used on input line 82.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio4_heatmap.jpg, id=2293, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio4_heatmap.jpg, id=2292, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio4_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio4_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio4_heatmap.jpg  used on input line 83.
@@ -3096,22 +3096,22 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.6}) has b
                    \relax 
 l.88 \end{landscape}
                      [6 <./4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio1_heatmap.jpg> <./4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio2_heatmap.jpg> <./4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio3_heatmap.jpg> <./4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio4_heatmap.jpg>]
-<4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio1_heatmap.jpg, id=2298, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio1_heatmap.jpg, id=2297, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio1_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio1_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio1_heatmap.jpg  used on input line 99.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio2_heatmap.jpg, id=2299, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio2_heatmap.jpg, id=2298, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio2_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio2_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio2_heatmap.jpg  used on input line 100.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio3_heatmap.jpg, id=2300, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio3_heatmap.jpg, id=2299, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio3_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio3_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio3_heatmap.jpg  used on input line 101.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio4_heatmap.jpg, id=2301, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio4_heatmap.jpg, id=2300, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio4_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio4_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio4_heatmap.jpg  used on input line 102.
@@ -3128,22 +3128,22 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.7}) has b
                    \relax 
 l.107 \end{landscape}
                       [7 <./4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio1_heatmap.jpg> <./4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio2_heatmap.jpg> <./4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio3_heatmap.jpg> <./4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio4_heatmap.jpg>]
-<4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio1_heatmap.jpg, id=2305, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio1_heatmap.jpg, id=2304, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio1_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio1_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio1_heatmap.jpg  used on input line 118.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio2_heatmap.jpg, id=2306, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio2_heatmap.jpg, id=2305, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio2_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio2_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio2_heatmap.jpg  used on input line 119.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio3_heatmap.jpg, id=2307, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio3_heatmap.jpg, id=2306, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio3_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio3_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio3_heatmap.jpg  used on input line 120.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio4_heatmap.jpg, id=2308, 1882.03125pt x 1463.4675pt>
+<4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio4_heatmap.jpg, id=2307, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio4_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio4_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio4_heatmap.jpg  used on input line 121.
@@ -3354,22 +3354,22 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.15}) has 
                    \relax 
 l.252 \end{landscape}
                       [15]
-<4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio1_heatmap.jpg, id=2338, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio1_heatmap.jpg, id=2337, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio1_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio1_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio1_heatmap.jpg  used on input line 267.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio2_heatmap.jpg, id=2339, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio2_heatmap.jpg, id=2338, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio2_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio2_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio2_heatmap.jpg  used on input line 268.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio3_heatmap.jpg, id=2340, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio3_heatmap.jpg, id=2339, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio3_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio3_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio3_heatmap.jpg  used on input line 269.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio4_heatmap.jpg, id=2341, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio4_heatmap.jpg, id=2340, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio4_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio4_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio4_heatmap.jpg  used on input line 270.
@@ -3386,22 +3386,22 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.16}) has 
                    \relax 
 l.275 \end{landscape}
                       [16 <./4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio1_heatmap.jpg> <./4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio2_heatmap.jpg> <./4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio3_heatmap.jpg> <./4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio4_heatmap.jpg>]
-<4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio1_heatmap.jpg, id=2347, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio1_heatmap.jpg, id=2346, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio1_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio1_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio1_heatmap.jpg  used on input line 287.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio2_heatmap.jpg, id=2348, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio2_heatmap.jpg, id=2347, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio2_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio2_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio2_heatmap.jpg  used on input line 288.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio3_heatmap.jpg, id=2349, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio3_heatmap.jpg, id=2348, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio3_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio3_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio3_heatmap.jpg  used on input line 289.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio4_heatmap.jpg, id=2350, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio4_heatmap.jpg, id=2349, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio4_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio4_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio4_heatmap.jpg  used on input line 290.
@@ -3418,22 +3418,22 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.17}) has 
                    \relax 
 l.295 \end{landscape}
                       [17 <./4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio1_heatmap.jpg> <./4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio2_heatmap.jpg> <./4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio3_heatmap.jpg> <./4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio4_heatmap.jpg>]
-<4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio1_heatmap.jpg, id=2355, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio1_heatmap.jpg, id=2354, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio1_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio1_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio1_heatmap.jpg  used on input line 307.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio2_heatmap.jpg, id=2356, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio2_heatmap.jpg, id=2355, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio2_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio2_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio2_heatmap.jpg  used on input line 308.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio3_heatmap.jpg, id=2357, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio3_heatmap.jpg, id=2356, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio3_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio3_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio3_heatmap.jpg  used on input line 309.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio4_heatmap.jpg, id=2358, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio4_heatmap.jpg, id=2357, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio4_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio4_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio4_heatmap.jpg  used on input line 310.
@@ -3450,22 +3450,22 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.18}) has 
                    \relax 
 l.315 \end{landscape}
                       [18 <./4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio1_heatmap.jpg> <./4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio2_heatmap.jpg> <./4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio3_heatmap.jpg> <./4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio4_heatmap.jpg>]
-<4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio1_heatmap.jpg, id=2363, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio1_heatmap.jpg, id=2362, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio1_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio1_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio1_heatmap.jpg  used on input line 330.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio2_heatmap.jpg, id=2364, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio2_heatmap.jpg, id=2363, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio2_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio2_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio2_heatmap.jpg  used on input line 331.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio3_heatmap.jpg, id=2365, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio3_heatmap.jpg, id=2364, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio3_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio3_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio3_heatmap.jpg  used on input line 332.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio4_heatmap.jpg, id=2366, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio4_heatmap.jpg, id=2365, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio4_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio4_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio4_heatmap.jpg  used on input line 333.
@@ -3482,22 +3482,22 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.19}) has 
                    \relax 
 l.337 \end{landscape}
                       [19 <./4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio1_heatmap.jpg> <./4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio2_heatmap.jpg> <./4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio3_heatmap.jpg> <./4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio4_heatmap.jpg>]
-<4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio1_heatmap.jpg, id=2371, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio1_heatmap.jpg, id=2370, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio1_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio1_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio1_heatmap.jpg  used on input line 349.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio2_heatmap.jpg, id=2372, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio2_heatmap.jpg, id=2371, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio2_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio2_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio2_heatmap.jpg  used on input line 350.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio3_heatmap.jpg, id=2373, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio3_heatmap.jpg, id=2372, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio3_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio3_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio3_heatmap.jpg  used on input line 351.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio4_heatmap.jpg, id=2374, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio4_heatmap.jpg, id=2373, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio4_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio4_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio4_heatmap.jpg  used on input line 352.
@@ -3514,22 +3514,22 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.20}) has 
                    \relax 
 l.356 \end{landscape}
                       [20 <./4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio1_heatmap.jpg> <./4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio2_heatmap.jpg> <./4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio3_heatmap.jpg> <./4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio4_heatmap.jpg>]
-<4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio1_heatmap.jpg, id=2380, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio1_heatmap.jpg, id=2379, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio1_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio1_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio1_heatmap.jpg  used on input line 368.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio2_heatmap.jpg, id=2381, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio2_heatmap.jpg, id=2380, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio2_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio2_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio2_heatmap.jpg  used on input line 369.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio3_heatmap.jpg, id=2382, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio3_heatmap.jpg, id=2381, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio3_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio3_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio3_heatmap.jpg  used on input line 370.
 (pdftex.def)             Requested size: 313.29619pt x 243.60547pt.
-<4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio4_heatmap.jpg, id=2383, 1882.03125pt x 1463.4675pt>
+<4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio4_heatmap.jpg, id=2382, 1882.03125pt x 1463.4675pt>
 File: 4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio4_heatmap.jpg Graphic file (type jpg)
 <use 4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio4_heatmap.jpg>
 Package pdftex.def Info: 4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio4_heatmap.jpg  used on input line 371.
@@ -3654,10 +3654,10 @@ Ap\'{e}ndice B.
 \pydata@fh@_3B4AE418C31FC1B7E75C4E1D2D9F6BBC.data.minted=\write12
 \openout12 = `_3B4AE418C31FC1B7E75C4E1D2D9F6BBC.data.minted'.
 
-runsystem(latexminted config  --timestamp 20250618094604 3B4AE418C31FC1B7E75C4E1D2D9F6BBC)...executed safely (allowed).
+runsystem(latexminted config  --timestamp 20250618094932 3B4AE418C31FC1B7E75C4E1D2D9F6BBC)...executed safely (allowed).
 
  (./_3B4AE418C31FC1B7E75C4E1D2D9F6BBC.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20250618094604 3B4AE418C31FC1B7E75C4E1D2D9F6BBC)...executed safely (allowed).
+runsystem(latexminted cleanconfig  --timestamp 20250618094932 3B4AE418C31FC1B7E75C4E1D2D9F6BBC)...executed safely (allowed).
 
  (./_minted/default.style.minted) (./_minted/AF83C94768A977F94E1349AA417EF708.highlight.minted
 
@@ -3981,7 +3981,7 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `00main.out' has not changed.
-(rerunfilecheck)             Checksum: B8B70151C0914CFF1CC7A137746E15BF;22303.
+(rerunfilecheck)             Checksum: 76D115B07EE224C200136526CD047DA2;22303.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                00main
@@ -3994,16 +3994,16 @@ Package logreq Info: Writing requests to '00main.run.xml'.
 Here is how much of TeX's memory you used:
  58950 strings out of 473190
  1420698 string characters out of 5715800
- 2338300 words of memory out of 5000000
+ 2338306 words of memory out of 5000000
  80626 multiletter control sequences out of 15000+600000
  579648 words of font info for 112 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  111i,17n,115p,1592b,2997s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/latxfont/lasy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfit0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb>
-Output written on 00main.pdf (205 pages, 46242373 bytes).
+Output written on 00main.pdf (205 pages, 46242116 bytes).
 PDF statistics:
- 2808 PDF objects out of 2984 (max. 8388607)
- 2297 compressed objects within 23 object streams
+ 2807 PDF objects out of 2984 (max. 8388607)
+ 2296 compressed objects within 23 object streams
  596 named destinations out of 1000 (max. 500000)
  1695 words of extra memory for PDF output out of 10000 (max. 10000000)
 

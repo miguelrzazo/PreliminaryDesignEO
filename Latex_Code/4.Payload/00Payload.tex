@@ -402,7 +402,7 @@ De la interpretación de estos gráficos se obtienen las siguientes apreciacione
     \item Se puede descartar la incorporación de TDI, ya que con una integración simple se captura una relación señal ruido que cumple holgadamente con el requisito de la misión para todos los casos. 
 \end{itemize}
 
-\section{Cobertura de la región de interés: Swath, FoV y tiempo de revisita}
+\section{Cobertura de la región de interés: \textit{Swath}, FoV y tiempo de revisita}
 
 Otro de los requerimientos impuestos por el cliente es el obtener un mapa cada 7 días en la región, o lo que es lo mismo, un tiempo de revisita de 7 días o menor. Si se comparan con otras misiones de observación similares, se puede observar que es un tiempo exigente que requiere habitualmente de una constelación por lo que será de los parámetros más limitantes a la hora de encontrar la solución óptima:
 
@@ -424,7 +424,7 @@ Sentinel-2  \cite{neigh2023landsat} & 2                & 290                 & 5
 
 Además, se tendrán en cuenta 2 factores adicionales para el cálculo:
 \begin{itemize}
-    \item \textbf{Solapamiento del swath}: Para asegurar la cobertura completa de la región entre pasadas, se establece un \textbf{factor de solapamiento del swath mínimo del 5\%} que compensa posibles desviaciones en la proyección del swath y pérdidas de altura del satélite antes de la reinyección orbital.
+    \item \textbf{Solapamiento del \textit{swath}}: Para asegurar la cobertura completa de la región entre pasadas, se establece un \textbf{factor de solapamiento del \textit{swath} mínimo del 5\%} que compensa posibles desviaciones en la proyección del swath y pérdidas de altura del satélite antes de la reinyección orbital.
     \item \textbf{Cobertura de nubes}: A diferencia de otros sistemas de observación, como el SAR (Radar de Apertura Sintética, o \textit{Synthetic Aperture Radar}, \cite{lou2020sar}), los detectores SWIR pasivos no son capaces de capturar la señal de la superficie terrestre a través de los cúmulos nubosos. Según el enunciado impuesto, \say{\textit{la cobertura de nubes sobre EE. UU. es un día cubierto por cada cinco descubiertos}}, por lo que se considera un \textbf{factor de 1/6 de pasadas del satélite no efectivas}.
 \end{itemize}
 
@@ -433,7 +433,7 @@ Además, se tendrán en cuenta 2 factores adicionales para el cálculo:
     \begin{subfigure}[t]{0.45\textwidth}
         \centering
         \includegraphics[width=\linewidth]{4.Payload/TFG_Tikz-1.jpg}
-        \caption{Solapamiento del swath. \\ Fuente: Elaboración propia}
+        \caption{Solapamiento del \textit{swath}. \\ Fuente: Elaboración propia}
         \label{fig:img3}
     \end{subfigure}
     \hspace{0.05\textwidth}
@@ -443,7 +443,7 @@ Además, se tendrán en cuenta 2 factores adicionales para el cálculo:
         \caption{Datos no válidos debido a cobertura de nubes de la misión Landsat, en rojo. \\ Fuente: \cite{osullivan2023removing}}
         \label{fig:img4}
     \end{subfigure}
-    \caption{Factores de limitación del swath en el problema de la cobertura}
+    \caption{Factores de limitación del \textit{swath} en el problema de la cobertura}
 \end{figure}
 
 
@@ -480,7 +480,7 @@ En todas las constelaciones, los satélites se dispondrán desfasados en anomal�
 
 Se consideran dos limitaciones al \textit{swath}:
 \begin{itemize}
-    \item El FoV de cada telescopio, definido en la tabla \ref{tab:tabla_telescopios}, que limita el swath en función de la altura, mediante la relación \ref{fov}
+    \item El FoV de cada telescopio, definido en la tabla \ref{tab:tabla_telescopios}, que limita el \textit{swath} en función de la altura, mediante la relación \ref{fov}
     \item El array del detector, mediante la ecuación \ref{swath}. Para ampliarlo y dar más flexibilidad a esta restricción, se considera el uso de hasta 3 detectores en linea.
 \end{itemize}
 

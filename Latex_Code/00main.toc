@@ -71,7 +71,7 @@
 \contentsline {section}{\numberline {4.4}Tipo de órbita. Altura orbital. Hora de paso local}{59}{section.4.4}%
 \contentsline {section}{\numberline {4.5}Cálculo de la MTF}{59}{section.4.5}%
 \contentsline {section}{\numberline {4.6}Cálculo de la SNR}{64}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Cobertura de la región de interés: Swath, FoV y tiempo de revisita}{69}{section.4.7}%
+\contentsline {section}{\numberline {4.7}Cobertura de la región de interés: \textit {Swath}, FoV y tiempo de revisita}{69}{section.4.7}%
 \contentsline {section}{\numberline {4.8}Posibles soluciones. Cruce de los datos}{78}{section.4.8}%
 \contentsline {chapter}{\numberline {5}Determinación de la solución óptima}{81}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Estimación de la masa seca }{82}{section.5.1}%
@@ -149,8 +149,8 @@
 \contentsline {section}{Calculo de la SNR}{40}{section*.161}%
 \contentsline {subsubsection}{\textit {Wrapper} para el cálculo del tiempo de revisita}{42}{section*.162}%
 \contentsline {section}{\textit {Wrapper} para el cálculo del tiempo de revisita}{42}{section*.162}%
-\contentsline {subsubsection}{Determinación de mínimos. $H$ vs $D_{min}$}{44}{section*.163}%
-\contentsline {section}{Determinación de mínimos. $H$ vs $D_{min}$}{44}{section*.163}%
+\contentsline {subsubsection}{Determinación de mínimos. $h$ vs $D_{min}$}{44}{section*.163}%
+\contentsline {section}{Determinación de mínimos. $h$ vs $D_{min}$}{44}{section*.163}%
 \contentsline {subsubsection}{Cálculo de masa seca}{48}{section*.164}%
 \contentsline {section}{Cálculo de masa seca}{48}{section*.164}%
 \contentsline {subsubsection}{Calculo de masa total}{49}{section*.165}%
