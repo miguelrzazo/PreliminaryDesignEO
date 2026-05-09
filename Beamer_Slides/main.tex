@@ -1,371 +1,1248 @@
-\documentclass[10pt]{beamer}
-% ========================
-% OPCIONES DE PRESENTADOR
-% ========================
-%\setbeameroption{show notes on second screen=right} % Mostrar notas en segunda pantalla
+%% ============================================================
+%% Diseño Preliminar de un Satélite de Observación de la Tierra
+%% TFG Defence Presentation — Beamer/XeLaTeX
+%%
+%% Compile with:  xelatex -shell-escape main.tex
+%% Fonts required: Fraunces, Instrument Serif, Alegreya Sans
+%%   Install from Google Fonts or brew install --cask font-fraunces
+%%                                brew install --cask font-instrument-serif
+%%                                brew install --cask font-alegreya-sans
+%%
+%% Videos: frames/phasing/  (phasing orbit.mp4, 8 fps)
+%%         frames/contact/   (ContactSim.mp4, 5 fps, 20 s clip)
+%% Animations play automatically in Adobe Acrobat (animate package).
+%% ============================================================
 
-% ========================
-% PAQUETES
-% ========================
+\documentclass[10pt, aspectratio=169]{beamer}
+
+% ------ Presenter notes (uncomment for presenter mode) ------
+%\setbeameroption{show notes on second screen=right}
+
+% ============================================================
+% PACKAGES
+% ============================================================
+\usepackage{fontspec}
 \usepackage[spanish]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[backend=biber,style=authoryear]{biblatex}
-\addbibresource{referencias.bib} % Usa el mismo archivo que tu trabajo
-% Fuentes recomendadas: Alegreya Sans e Inconsolata
-\usepackage[sfdefault]{AlegreyaSans} %
-\usepackage[scaled=0.85]{inconsolata}
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{tikz}
-\usetikzlibrary{positioning, arrows.meta, calc}
-% ========================
-% COLORES PERSONALIZADOS
-% ========================
-\definecolor{mybackground}{RGB}{252,248,244} % Color crema
-\definecolor{mytitle}{RGB}{40,40,40} % Gris oscuro para título
-\definecolor{myaccent}{RGB}{217,85,59} % Naranja acento
-\definecolor{mycode}{RGB}{175,30,45} % Rojo apagado para código o enlaces
+\usetikzlibrary{positioning, arrows.meta, calc, shapes.geometric}
+\usepackage{booktabs}
+\usepackage{amsmath, amssymb}
+\usepackage{animate}       % for looping frame-based video
+\usepackage{siunitx}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{url}
 
-\setbeamercolor{background canvas}{bg=mybackground}
-\setbeamercolor{frametitle}{fg=mytitle}
-\setbeamercolor{title}{fg=mytitle}
-\setbeamercolor{normal text}{fg=mytitle}
-\setbeamercolor{structure}{fg=myaccent}
-
-% ========================
-% TÍTULO
-% ========================
-% Datos de portada
-\title{Diseño Preliminar de un Satélite de Observación de la Tierra}
-\author{Miguel Rosa Zazo \\ \footnotesize Tutor: Demetrio Zorita Gómez-Escolar }
-\institute{Grado en Ingeniería Aeroespacial\\ \textbf{Universidad Politécnica de Madrid}}
-\date{Julio 2025}
-
-% ========================
-% DOCUMENTO
-% ========================
-\begin{document}
-
-% ===== SLIDE 1: TÍTULO =====
-\begin{frame}[plain]
-  \titlepage
-  \begin{tikzpicture}[remember picture,overlay]
-    % Logo derecho
-    \node[anchor=south east,xshift=-0.5cm,yshift=0.5cm] at (current page.south east) {
-      \includegraphics[width=3cm]{1959339-1955144650.png}
-    };
-    % Logo izquierdo (reemplaza este archivo por el logo de la escuela)
-    \node[anchor=south west,xshift=0.5cm,yshift=0.5cm] at (current page.south west) {
-      \includegraphics[width=3cm]{etsiae-1959139697.png}
-    };
-  \end{tikzpicture}
-  \note[item]{Bienvenida a la audiencia.}
-  \note[item]{Este proyecto es mi TFG para el grado en Ingeniería Aeroespacial.}
-  \note[item]{Vamos a ver cómo diseñar un satélite de observación desde cero.}
-\end{frame}
-
-% ===== SLIDE 2: OBJETIVOS =====
-\begin{frame}
-  \frametitle{Introducción. Objetivos del Proyecto}
-  \begin{itemize}
-    \item Detección del CO$_{2}$ antropogénico: Bandas características.
-    \item Requerimiento de MTF @ Nyquist $\geq$ 0,25 
-    \item Requerimiento de SNR $\geq$ 400
-    \item Cumplir una cobertura semanal sobre EE. UU (continental) con 1 dia cubierto por nubes, por cada 5 descubiertos.
-    \item Minimizar la masa total puesta en orbita, con el fin de optimizar el coste de la misión
-  \end{itemize}
-  \note[item]{En esta sección explicamos el alcance del proyecto.}
-  \note[item]{El objetivo no es fabricar el satélite, sino establecer un diseño preliminar.}
-  
-\end{frame}
-
-
-% ===== SLIDE CAPÍTULO: Misiones semejantes =====
-\begin{frame}[plain]
-  \begin{center}
-    \vspace{1.5cm}
-    {\usebeamerfont{title}\color{myaccent}\Huge Misiones semejantes}
-    
-    \vspace{0.5cm}
-    \rule{0.6\linewidth}{1pt}
-    
-    \vspace{1.5cm}
-    {\Large\textit{Análisis comparativo de misiones existentes}}
-  \end{center}
-
-
-  \note[item]{Inicio del bloque dedicado a la carga útil del satélite.}
-  \note[item]{Se introduce el diseño óptico, elección del detector y consideraciones espectrales.}
-\end{frame}
-
-
-
-% ===== SLIDE CAPÍTULO: CARGA DE PAGO =====
-\begin{frame}[plain]
-  \begin{center}
-    \vspace{1.5cm}
-    {\usebeamerfont{title}\color{myaccent}\Huge Carga de Pago}
-    
-    \vspace{0.5cm}
-    \rule{0.6\linewidth}{1pt}
-    
-    \vspace{1.5cm}
-    {\Large\textit{Diseño del sistema óptico y elección del detector}}
-  \end{center}
-
-
-
-  \note[item]{Inicio del bloque dedicado a la carga útil del satélite.}
-  \note[item]{Se introduce el diseño óptico, elección del detector y consideraciones espectrales.}
-\end{frame}
-
-
-\begin{frame}{Diagrama}
-%Llamada a funciones y entrada de parámetros: Master.m
-\scriptsize
-\hspace*{-1cm}
-\begin{tikzpicture}[
-    node distance=0.3cm and 1cm,
-    box/.style={draw, rounded corners, minimum width=1cm, minimum height=1cm, align=center},
-    ->, >=Stealth
+% ============================================================
+% FONTS (XeLaTeX + fontspec)
+% Fallback: if fonts not installed, comment out fontspec block
+% and uncomment the pdflatex fallback below.
+% ============================================================
+\setmainfont{Fraunces}[
+  UprightFont     = *-Regular,
+  BoldFont        = *-SemiBold,
+  ItalicFont      = *-Italic,
+]
+\setsansfont{Alegreya Sans}[
+  UprightFont  = *-Regular,
+  BoldFont     = *-Bold,
+  ItalicFont   = *-Italic,
+]
+\newfontfamily\titlefont{Instrument Serif}[
+  UprightFont = *-Regular,
+  ItalicFont  = *-Italic,
 ]
 
-% Nodos
-\node[box] (mtf) at (-25,5) {MTF Calc.m};
-\coordinate (puntoImagen) at ($(mtf.north west) + (-0.3cm,0.3cm)$);
-\draw[->] (mtf.north west) -- (puntoImagen);
-\node at ($(mtf.north west)+(-0.5cm,0.5cm)$) {
-  \includegraphics[width=0.3cm]{png_filetype_icon_227876.png}%
-  \hspace{0.1cm}
-  \includegraphics[width=0.3cm]{txt_filetype_icon_227883.png}
-};
+% pdflatex fallback (delete fontspec block above and uncomment):
+%\usepackage[sfdefault]{AlegreyaSans}
+%\usepackage{EB Garamond}  % approximates Fraunces/Instrument Serif
 
-\node[box, below=of mtf] (snr) {SNR Calc.m};
-\coordinate (snrimg) at ($(snr.north west) + (-0.3cm,0.3cm)$);
-\draw[->] (snr.north west) -- (snrimg);
-\node at ($(snr.north west)+(-0.5cm,0.5cm)$) {
-  \includegraphics[width=0.3cm]{png_filetype_icon_227876.png}%
-  \hspace{0.1cm}
-  \includegraphics[width=0.3cm]{txt_filetype_icon_227883.png}
-};
+% ============================================================
+% COLORS — UPM navy palette + warm accent
+% ============================================================
+\definecolor{upmnavy}    {RGB}{0,  55, 120}   % UPM primary blue
+\definecolor{upmlblue}   {RGB}{0, 150, 214}   % UPM secondary blue
+\definecolor{warmaccent} {RGB}{217, 85,  59}   % warm orange accent
+\definecolor{bgwhite}    {RGB}{252,250,248}   % near-white background
+\definecolor{textdark}   {RGB}{ 22,  22,  30}  % near-black text
+\definecolor{midgray}    {RGB}{120,120,130}   % muted annotation text
 
-\node[box, below=of snr] (coverage) {Coverage.m\\(\textit{wrapper})};
-\coordinate (puntoImagen) at ($(coverage.north west) + (-0.3cm,0.3cm)$);
-\draw[->] (coverage.north west) -- (puntoImagen);
-\node at ($(coverage.north west)+(-0.5cm,0.5cm)$) {
-  \includegraphics[width=0.3cm]{png_filetype_icon_227876.png}%
-  \hspace{0.1cm}
-  \includegraphics[width=0.3cm]{txt_filetype_icon_227883.png}
-};
+% ============================================================
+% BEAMER THEME — fully custom
+% ============================================================
+\usetheme{default}
+\usecolortheme{default}
 
-\node[box, below=of coverage] (revisit) {RevisitCalc.m};
+\setbeamercolor{background canvas}  {bg=bgwhite}
+\setbeamercolor{frametitle}         {fg=upmnavy}
+\setbeamercolor{title}              {fg=upmnavy}
+\setbeamercolor{subtitle}           {fg=midgray}
+\setbeamercolor{author}             {fg=textdark}
+\setbeamercolor{institute}          {fg=midgray}
+\setbeamercolor{date}               {fg=midgray}
+\setbeamercolor{normal text}        {fg=textdark}
+\setbeamercolor{structure}          {fg=upmnavy}
+\setbeamercolor{item}               {fg=warmaccent}
+\setbeamercolor{subitem}            {fg=upmnavy}
+\setbeamercolor{block title}        {bg=upmnavy,   fg=white}
+\setbeamercolor{block body}         {bg=upmnavy!8, fg=textdark}
+\setbeamercolor{alerted text}       {fg=warmaccent}
+\setbeamercolor{footline}           {fg=midgray}
 
+% Frame title font
+\setbeamerfont{frametitle}{family=\titlefont, size=\large, series=\mdseries}
+\setbeamerfont{title}     {family=\titlefont, size=\LARGE, series=\mdseries}
+\setbeamerfont{subtitle}  {family=\sffamily,  size=\normalsize}
+\setbeamerfont{author}    {family=\sffamily,  size=\small}
+\setbeamerfont{institute} {family=\sffamily,  size=\scriptsize}
+\setbeamerfont{date}      {family=\sffamily,  size=\scriptsize}
+\setbeamerfont{footline}  {size=\tiny}
+\setbeamerfont{block title}{series=\bfseries, size=\normalsize}
 
-\node[box, right=1cmof snr] (crossdata) {Cross Data.m};
-\coordinate (puntoImagen) at ($(crossdata.north east) + (0.3cm,0.3cm)$);
-\draw[->] (crossdata.north east) -- (puntoImagen);
-\node at ($(crossdata.north east)+(0.5cm,0.5cm)$) {
-  \includegraphics[width=0.3cm]{png_filetype_icon_227876.png}
-  \hspace{0.1cm}
-  \includegraphics[width=0.3cm]{txt_filetype_icon_227883.png}
-};
+% Remove navigation symbols
+\setbeamertemplate{navigation symbols}{}
 
+% Frame title template — navy text + orange underrule
+\setbeamertemplate{frametitle}{%
+  \vskip0.4em
+  {\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle}%
+  \par\vskip0.15em
+  {\color{warmaccent}\hrule height 0.8pt}%
+  \vskip0.3em
+}
 
-\node[box, right=1cm of crossdata] (masa seca) {Masa Seca.m};
-\coordinate (puntoImagen) at ($(masa seca.north east) + (0.3cm,0.3cm)$);
-\draw[->] (masa seca.north east) -- (puntoImagen);
-\node at ($(masa seca.north east)+(0.5cm,0.5cm)$) {
-  \includegraphics[width=0.3cm]{png_filetype_icon_227876.png}
-  \hspace{0.1cm}
-  \includegraphics[width=0.3cm]{txt_filetype_icon_227883.png}
-};
+% Footline — slide number on right, logo on left
+\setbeamertemplate{footline}{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.2ex,dp=1.4ex]{footline}%
+    \hspace{0.8em}%
+    \raisebox{-0.5ex}{\includegraphics[height=2ex]{etsiae-1959139697.png}}%
+    \hfill
+    {\color{midgray}\scriptsize\sffamily\insertframenumber\,/\,\inserttotalframenumber}%
+    \hspace{0.8em}%
+  \end{beamercolorbox}%
+}
 
+% Itemize bullet — warm orange dot
+\setbeamertemplate{itemize item}   {\color{warmaccent}$\bullet$}
+\setbeamertemplate{itemize subitem}{\color{upmnavy}\small$\circ$}
 
-\node[box, right=1cm of masa seca] (masa total) {Masa Total.m};
-\coordinate (puntoImagen) at ($(mtf.north west) + (-0.3cm,0.3cm)$);
-\draw[->] (mtf.north west) -- (puntoImagen);
-\node at ($(mtf.north west)+(-0.5cm,0.5cm)$) {
-  \includegraphics[width=0.3cm]{png_filetype_icon_227876.png}%
-  \hspace{0.1cm}
-  \includegraphics[width=0.3cm]{txt_filetype_icon_227883.png}
-};
+% Block template — rounded
+\setbeamertemplate{blocks}[rounded][shadow=false]
 
+% ============================================================
+% HELPER MACROS
+% ============================================================
+% Section-divider slide
+\newcommand{\sectionslide}[2]{%
+  \begin{frame}[plain]
+    \begin{tikzpicture}[remember picture, overlay]
+      \fill[upmnavy] (current page.south west) rectangle
+        ([yshift=0.28\paperheight]current page.south east);
+    \end{tikzpicture}
+    \vspace{0.15\paperheight}
+    \begin{center}
+      {\usebeamerfont{title}\color{upmnavy}\Huge #1}\\[0.5em]
+      {\color{warmaccent}\rule{0.55\linewidth}{1pt}}\\[0.8em]
+      {\large\sffamily\color{midgray}\textit{#2}}
+    \end{center}
+  \end{frame}
+}
 
+% Result highlight box
+\newcommand{\resultbox}[1]{%
+  \begin{block}{Resultado clave}#1\end{block}
+}
 
-\node[box, right=1cm of masa total] (config) {ConfigAnalysis.m};
-\coordinate (puntoImagen) at ($(config.south) + (-0.0cm,-0.3cm)$);
-\draw[->] (config.south) -- (puntoImagen);
-\node at ($(config.south)+(-0.cm,-0.7cm)$) {
-  \parbox{2.5cm}{%
-    \centering
-    \includegraphics[width=0.3cm]{csv_filetype_icon_227881-375492084.png} \hspace{0.1cm}
-    \includegraphics[width=0.3cm]{txt_filetype_icon_227883.png} \\
-    Lista de configuraciones
-  }
-};
+% ============================================================
+% METADATA
+% ============================================================
+\title{Diseño Preliminar de un Satélite\\de Observación de la Tierra}
+\subtitle{Trabajo de Fin de Grado · Grado en Ingeniería Aeroespacial}
+\author{Miguel Rosa Zazo}
+\institute{Universidad Politécnica de Madrid · ETSIAE\\
+  \medskip
+  Tutor: Demetrio Zorita Gómez-Escolar \quad Cotutora: Ana Laverón Simavilla}
+\date{Febrero 2026}
 
+% ============================================================
+% DOCUMENT
+% ============================================================
+\begin{document}
 
-
-% Flechas
-\draw (mtf.east) -- (crossdata);
-\node at ($ (mtf.east)!0.3!(crossdata) + (0,0.3) $) 
-  {\includegraphics[width=0.3cm]{csv_filetype_icon_227881-375492084.png}};
-  
-\draw (snr) -- (crossdata);
-\node at ($ (snr.east)!0.3!(crossdata) + (0,0.3) $) 
-  {\includegraphics[width=0.3cm]{csv_filetype_icon_227881-375492084.png}};
-  
-\draw (coverage.east) -- (crossdata);
-\node at ($ (coverage.east)!0.3!(crossdata) + (0,0.3) $) 
-  {\includegraphics[width=0.3cm]{csv_filetype_icon_227881-375492084.png}};
-\draw (crossdata) -- (masa seca);
-\node at ($ (crossdata.east)!0.3!(masa seca) + (0,0.3) $) 
-  {\includegraphics[width=0.3cm]{csv_filetype_icon_227881-375492084.png}};
-\draw (masa seca) -- (masa total);
-\node at ($ (masa seca.east)!0.3!(masa total) + (0,0.3) $) 
-  {\includegraphics[width=0.3cm]{csv_filetype_icon_227881-375492084.png}};
-  
-
-\draw (masa total) -- (config);
-\node at ($ (masa total.east)!0.3!(config) + (0,0.3) $) 
-  {\includegraphics[width=0.3cm]{csv_filetype_icon_227881-375492084.png}};
-  
-
-\draw[->] ([xshift=2pt]coverage.south) -- ([xshift=2pt]revisit.north);
-    \node[left=0.5cm of $(coverage.south)!0.5!(revisit.north)$] {max  days};
-\draw[->] ([xshift=-2pt]revisit.north) -- ([xshift=-2pt]coverage.south);
-\node at ($ ([xshift=-2pt]revisit.north)!0.5!([xshift=-1pt]coverage.south) + (1cm, 0) $) {Input data};
-\end{tikzpicture}
-
-\end{frame}
-
-% ===== SLIDE CAPÍTULO: CARGA DE PAGO =====
+% ------------------------------------------------------------------
+% SLIDE 1 — TITLE
+% ------------------------------------------------------------------
 \begin{frame}[plain]
-  \begin{center}
-    \vspace{1.5cm}
-    {\usebeamerfont{title}\color{myaccent}\Huge Optimización de la masa}
-    
-    \vspace{0.5cm}
-    \rule{0.6\linewidth}{1pt}
-    
-    \vspace{1.5cm}
-    {\Large\textit{Selección de la altura órbital}}
-  \end{center}
-
-
-
-  \note[item]{Inicio del bloque dedicado a la carga útil del satélite.}
-  \note[item]{Se introduce el diseño óptico, elección del detector y consideraciones espectrales.}
-\end{frame}
-
-
-% ===== SLIDE CAPÍTULO: CARGA DE PAGO =====
-\begin{frame}[plain]
-  \begin{center}
-    \vspace{1.5cm}
-    {\usebeamerfont{title}\color{myaccent}\Huge Subsistemas}
-    
-    \vspace{0.5cm}
-    \rule{0.6\linewidth}{1pt}
-    
-    \vspace{1.5cm}
-    {\Large\textit{XXXX}}
-  \end{center}
-
-
-
-  \note[item]{Inicio del bloque dedicado a la carga útil del satélite.}
-  \note[item]{Se introduce el diseño óptico, elección del detector y consideraciones espectrales.}
-\end{frame}
-
-% ===== SLIDE CAPÍTULO: CARGA DE PAGO =====
-\begin{frame}[plain]
-  \begin{center}
-    \vspace{1.5cm}
-    {\usebeamerfont{title}\color{myaccent}\Huge Lanzadores}
-    
-    \vspace{0.5cm}
-    \rule{0.6\linewidth}{1pt}
-    
-    \vspace{1.5cm}
-    {\Large\textit{Lanzamiento y puesta en orbita de los satélites}}
-  \end{center}
-
-
-
-  \note[item]{Inicio del bloque dedicado a la carga útil del satélite.}
-  \note[item]{Se introduce el diseño óptico, elección del detector y consideraciones espectrales.}
-\end{frame}
-
-% ===== SLIDE CAPÍTULO: CARGA DE PAGO =====
-\begin{frame}[plain]
-  \begin{center}
-    \vspace{1.5cm}
-    {\usebeamerfont{title}\color{myaccent}\Huge Lanzadores}
-    
-    \vspace{0.5cm}
-    \rule{0.6\linewidth}{1pt}
-    
-    \vspace{1.5cm}
-    {\Large\textit{Lanzamiento y puesta en orbita de los satélites}}
-  \end{center}
-
-
-  \note[item]{Inicio del bloque dedicado a la carga útil del satélite.}
-  \note[item]{Se introduce el diseño óptico, elección del detector y consideraciones espectrales.}
-\end{frame}
-
-% ===== SLIDE CAPÍTULO: CARGA DE PAGO =====
-\begin{frame}[plain]
-  \begin{center}
-    \vspace{1.5cm}
-    {\usebeamerfont{title}\color{myaccent}\Huge Segmento Tierra}
-    
-    \vspace{0.5cm}
-    \rule{0.6\linewidth}{1pt}
-    
-    \vspace{1.5cm}
-    {\Large\textit{Generación y descarga de los datos}}
-  \end{center}
-
-
-  \note[item]{Inicio del bloque dedicado a la carga útil del satélite.}
-  \note[item]{Se introduce el diseño óptico, elección del detector y consideraciones espectrales.}
-\end{frame}
-
-% ===== SLIDE FINAL: GRACIAS =====
-\begin{frame}[plain]
-  \begin{center}
-    \vspace{2cm}
-    {\usebeamerfont{title}\color{myaccent}\Huge ¡Gracias!}
-    
-    \vspace{1cm}
-    {\Large\textit{¿Preguntas?}}
-
-    \vfill
-    \texttt{\textcolor{mycode}{tunombre.github.io/tfg-observacion}}
-  \end{center}
-  
-  \begin{tikzpicture}[remember picture,overlay]
-    % Logo derecho
-    \node[anchor=south east,xshift=-0.5cm,yshift=0.5cm] at (current page.south east) {
-      \includegraphics[width=3cm]{1959339-1955144650.png}
-    };
-    % Logo izquierdo
-    \node[anchor=south west,xshift=0.5cm,yshift=0.5cm] at (current page.south west) {
-      \includegraphics[width=3cm]{etsiae-1959139697.png}
-    };
+  \begin{tikzpicture}[remember picture, overlay]
+    % Navy strip across top
+    \fill[upmnavy] ([yshift=-0.22\paperheight]current page.north west)
+      rectangle (current page.north east);
+    % Logos on top strip
+    \node[anchor=north west, xshift=1cm, yshift=-0.4em]
+      at ([yshift=-0.01\paperheight]current page.north west)
+      {\includegraphics[height=0.15\paperheight]{etsiae-1959139697.png}};
+    \node[anchor=north east, xshift=-1cm, yshift=-0.4em]
+      at ([yshift=-0.01\paperheight]current page.north east)
+      {\includegraphics[height=0.13\paperheight]{1959339-1955144650.png}};
   \end{tikzpicture}
 
-  \note[item]{Agradecer la atención del tribunal y la audiencia.}
-  \note[item]{Recordar que el repositorio contiene simulaciones y memoria completa.}
-  \note[item]{Momento para responder preguntas.}
+  \vspace{0.22\paperheight}
+  \vskip1.5em
+  \begin{center}
+    {\usebeamerfont{title}\usebeamercolor[fg]{title}%
+      Diseño Preliminar de un Satélite\\[0.25em]
+      de Observación de la Tierra}\\[1em]
+    {\color{warmaccent}\rule{0.6\linewidth}{0.8pt}}\\[0.8em]
+    {\sffamily\small\color{midgray}Trabajo de Fin de Grado · Grado en Ingeniería Aeroespacial}\\[1.8em]
+    {\sffamily\normalsize\color{textdark}\textbf{Miguel Rosa Zazo}}\\[0.3em]
+    {\sffamily\scriptsize\color{midgray}
+      Tutor: Demetrio Zorita Gómez-Escolar \quad
+      Cotutora: Ana Laverón Simavilla\\[0.2em]
+      Universidad Politécnica de Madrid · ETSIAE · Febrero 2026}
+  \end{center}
+
+  \note[item]{Presentación del TFG: diseño preliminar de misión de OT.}
+  \note[item]{Duración prevista: 15--20 min + preguntas.}
 \end{frame}
 
-\begin{frame}[allowframebreaks]
-  \frametitle{Referencias}
-  \printbibliography
+% ------------------------------------------------------------------
+% SLIDE 2 — OBJETIVOS
+% ------------------------------------------------------------------
+\begin{frame}{Introducción. Objetivos del Proyecto}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      \textbf{Misión:} diseñar una constelación de nanosatélites capaz de monitorizar
+      el CO\textsubscript{2} y O\textsubscript{2} atmosférico sobre EE.\,UU.
+      continental con mayor resolución espacial que los instrumentos actuales.
+
+      \bigskip
+      \textbf{Requerimientos de la misión:}
+      \begin{itemize}
+        \item Bandas espectrales CO\textsubscript{2}: 1,61\,µm y 2,01\,µm;
+              banda O\textsubscript{2}: 0,76\,µm
+        \item MTF @ Nyquist $\geq 0{,}25$
+        \item SNR $\geq 400$
+        \item Cobertura semanal sobre EE.\,UU. ($\leq$ 7 días)
+              con factor de nubosidad $\nicefrac{1}{6}$
+        \item \textbf{Minimizar la masa} total puesta en órbita
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \resultbox{%
+        GSD = 80\,m · SSO amanecer-anochecer\\
+        2 satélites + 2 telescopios\\
+        Masa total: \textbf{1,71\,kg/satélite}
+      }
+    \end{column}
+  \end{columns}
+  \note[item]{El proyecto no fabrica el satélite: establece un diseño preliminar verificable.}
+  \note[item]{El GSD de 80 m supera en ×20 la resolución de OCO-2 (2,25 km).}
+\end{frame}
+
+% ------------------------------------------------------------------
+\sectionslide{Misiones Semejantes}{Análisis comparativo de misiones existentes}
+% ------------------------------------------------------------------
+
+% ------------------------------------------------------------------
+% SLIDE 4 — MISIONES COMPARATIVA
+% ------------------------------------------------------------------
+\begin{frame}{Misiones de monitorización de gases de efecto invernadero}
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      \includegraphics[width=\textwidth]{media/image13.png}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \small
+      \begin{tabular}{@{}lcc@{}}
+        \toprule
+        \textbf{Misión} & \textbf{GSD} & \textbf{Masa} \\
+        \midrule
+        OCO-2   & 2,25 km & 465 kg \\
+        GOSAT   & 10,5 km & 1750 kg \\
+        TanSat  & 2 km    & 620 kg \\
+        CO2M    & 4 km    & 500 kg \\
+        GHGSat  & 25 m    & 15 kg \\
+        MicroCarb & 4 km  & 200 kg \\
+        \midrule
+        \textbf{Este TFG} & \textbf{80 m} & \textbf{1,71 kg} \\
+        \bottomrule
+      \end{tabular}
+
+      \bigskip
+      {\color{warmaccent}\small No existe una única solución al
+      problema propuesto. Este diseño ocupa un nicho de alta
+      resolución + masa ultra-baja.}
+    \end{column}
+  \end{columns}
+  \note[item]{Ninguna misión combina resolución sub-100 m con masa < 2 kg.}
+\end{frame}
+
+% ------------------------------------------------------------------
+\sectionslide{Carga de Pago}{Diseño del sistema óptico y elección del detector}
+% ------------------------------------------------------------------
+
+% ------------------------------------------------------------------
+% SLIDE 6 — FLUJO DE TRABAJO DEL CÓDIGO
+% ------------------------------------------------------------------
+\begin{frame}{Flujo de trabajo del modelo analítico}
+  \centering
+  \scriptsize
+  \begin{tikzpicture}[
+    node distance=0.7cm and 1.2cm,
+    box/.style={draw=upmnavy, rounded corners=3pt, minimum width=1.8cm,
+                minimum height=0.65cm, align=center, fill=upmnavy!8,
+                font=\sffamily\tiny},
+    io/.style={draw=warmaccent, rounded corners=3pt, minimum width=1.5cm,
+               minimum height=0.55cm, align=center, fill=warmaccent!10,
+               font=\sffamily\tiny},
+    ->, >=Stealth, thick, color=upmnavy
+  ]
+    \node[box] (mtf)      {MTF\\Calc.m};
+    \node[box, below=of mtf] (snr) {SNR\\Calc.m};
+    \node[box, below=of snr] (cov) {Coverage.m\\(\textit{wrapper})};
+    \node[box, below=of cov] (rev) {RevisitCalc.m};
+
+    \node[box, right=2.2cm of snr]  (cross) {Cross\\Data.m};
+    \node[box, right=2.2cm of cross](mseca) {Masa\\Seca.m};
+    \node[box, right=2.2cm of mseca](mtot)  {Masa\\Total.m};
+    \node[box, right=2.2cm of mtot] (cfg)   {Config\\Analysis.m};
+
+    \node[io, above=0.4cm of mtf]   (params){Parámetros\\de entrada};
+    \node[io, below=0.4cm of cfg]   (output){Lista de\\configuraciones};
+
+    \draw (params) -- (mtf);
+    \draw (mtf)    -- (snr);
+    \draw (snr)    -- (cov);
+    \draw[<->]([xshift=2pt]cov.south)  -- ([xshift=2pt]rev.north)
+      node[midway,right,font=\tiny\sffamily,color=midgray]{max days};
+    \draw([xshift=-2pt]rev.north) -- ([xshift=-2pt]cov.south);
+
+    \draw (mtf.east)  -| ++(0.6,0) |- (cross.west);
+    \draw (snr.east)  -- (cross.west);
+    \draw (cov.east)  -| ++(0.6,0) |- (cross.west);
+    \draw (cross)     -- (mseca);
+    \draw (mseca)     -- (mtot);
+    \draw (mtot)      -- (cfg);
+    \draw (cfg.south) -- (output);
+  \end{tikzpicture}
+  \note[item]{El modelo analítico corre en minutos. El numérico (propagación) se usa para validar la cobertura.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 7 — GSD
+% ------------------------------------------------------------------
+\begin{frame}{GSD — Ground Sampling Distance}
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      \includegraphics[width=\textwidth]{media/image14.jpg}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \[
+        \text{GSD} = \frac{p \cdot h}{f} \qquad f = \frac{p \cdot h}{\text{GSD}}
+      \]
+      donde $p$ es el tamaño de píxel, $h$ la altura orbital
+      y $f$ la distancia focal.
+
+      \bigskip
+      \begin{block}{Elección: GSD = 80\,m}
+        \begin{itemize}
+          \item Balance entre resolución y tamaño de telescopio
+          \item $\times$20 mejor que OCO-2 (2,25\,km)
+          \item Permite atribución de emisiones a escala de ciudad
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+  \note[item]{El GSD determina la focal: a 520 km con p=15 µm → f = 97,5 mm.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 8 — BANDAS ESPECTRALES
+% ------------------------------------------------------------------
+\begin{frame}{Bandas espectrales seleccionadas}
+  \begin{columns}[c]
+    \begin{column}{0.48\textwidth}
+      \includegraphics[width=\textwidth]{media/image18.jpg}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{tabular}{@{}llc@{}}
+        \toprule
+        \textbf{Banda} & \textbf{Gas} & $\lambda$ (\textmu m) \\
+        \midrule
+        CO\textsubscript{2}-1 & CO\textsubscript{2} & 1,61 \\
+        CO\textsubscript{2}-2 & CO\textsubscript{2} & 2,01 \\
+        O\textsubscript{2}-A  & O\textsubscript{2}  & 0,76 \\
+        \bottomrule
+      \end{tabular}
+      \bigskip
+
+      La banda O\textsubscript{2}-A se usa como referencia de presión
+      de columna, permitiendo corregir los efectos de scattering y
+      calibrar las medidas de CO\textsubscript{2}.
+
+      \medskip
+      $\Delta\lambda = 20\,\text{nm}$ por banda.
+    \end{column}
+  \end{columns}
+  \note[item]{Las 3 bandas son las mismas que OCO-2 y CO2M — permiten comparación directa.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 9 — DETECTORES
+% ------------------------------------------------------------------
+\begin{frame}{Detectores evaluados}
+  \includegraphics[width=\textwidth]{media/image15.jpg}
+  \note[item]{Se evalúan 6 detectores. El H2RG resulta óptimo en la solución final.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 10 — FILTROS Y ESCANEO
+% ------------------------------------------------------------------
+\begin{frame}{Modo de escaneo: Pushbroom}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=\textwidth]{media/image30.jpg}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \begin{itemize}
+        \item Modo de escaneo \textbf{pushbroom} con array lineal CCD/InGaAs
+        \item Sin partes móviles → mayor fiabilidad en el espacio
+        \item Cada columna de píxeles observa una franja del terreno
+        \item Swath $= N_\text{pix} \cdot \text{GSD}$
+        \item Se pueden combinar múltiples detectores (\textit{staggered})
+              para ampliar el swath
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \note[item]{El modo pushbroom es el estándar en instrumentos EO modernos (Sentinel-2, DESIS).}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 11 — TIPO DE ÓRBITA Y LTAN
+% ------------------------------------------------------------------
+\begin{frame}{Tipo de órbita y hora de paso local}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=\textwidth]{media/image43.jpg}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \textbf{Órbita seleccionada: SSO amanecer-anochecer}
+      \begin{itemize}
+        \item LTAN = 06:00 h (amanecer local)
+        \item Ángulo $\beta$ elevado → eclipses mínimos
+        \item Iluminación solar casi constante → mejor SNR
+        \item La precesión del RAAN compensa la rotación solar
+      \end{itemize}
+      \bigskip
+      \begin{block}{Resultado}
+        Rango altitudes estudiado: 200–1000\,km
+      \end{block}
+    \end{column}
+  \end{columns}
+  \note[item]{La órbita amanecer-anochecer es la más usada en misiones EO de OT (Sentinel-5P, OCO-2).}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 12 — CÁLCULO MTF (TEORÍA)
+% ------------------------------------------------------------------
+\begin{frame}{Cálculo de MTF — Modelo}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      La MTF del sistema es el producto de los factores individuales:
+      \[
+        \text{MTF}_\text{sistema} = \text{MTF}_\text{difrac} \cdot
+        \text{MTF}_\text{alin} \cdot \text{MTF}_\text{det} \cdot
+        \text{MTF}_\text{margen}
+      \]
+      donde la MTF de difracción para una pupila circular con
+      oscurecimiento central $R$ se calcula analíticamente
+      (ecuaciones 6-10 a 6-15 de la memoria).
+
+      \medskip
+      \textbf{Parámetros de entrada:}
+      \begin{itemize}
+        \item $\lambda$, $D$, $p$ (tamaño de píxel)
+        \item $f/D$ (número focal)
+        \item $R$ (oscurecimiento), MTF\textsubscript{detector}, MTF\textsubscript{alineamiento}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \begin{block}{Requisito}
+        MTF @ Nyquist $\geq 0{,}25$
+      \end{block}
+      \bigskip
+      Frecuencia de Nyquist: $f_N = \dfrac{1}{2p}$ cy/m
+
+      Frecuencia de corte óptico: $f_c = \dfrac{D}{\lambda}$ cy/m
+
+      \medskip
+      La MTF se evalúa en la frecuencia de Nyquist normalizada
+      $u = f_N / f_c$.
+    \end{column}
+  \end{columns}
+  \note[item]{La MTF cuantifica la degradación del contraste espacial — un valor < 0,25 implica imágenes borrosas.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 13 — MTF GRÁFICAS
+% ------------------------------------------------------------------
+\begin{frame}{Cálculo de MTF — Mapas de calor}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      \includegraphics[width=\textwidth]{media/image31.jpg}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \includegraphics[width=\textwidth]{media/image16.jpg}
+
+      \medskip
+      {\small Mapa MTF en función de altura orbital $h$ y diámetro de
+      pupila $D$. En \textbf{blanco}: combinaciones que no cumplen
+      MTF $\geq 0{,}25$.}
+    \end{column}
+  \end{columns}
+  \note[item]{Cada celda del mapa es una combinación h-D. La región válida (coloreada) define los diseños aceptables.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 14 — SNR (TEORÍA)
+% ------------------------------------------------------------------
+\begin{frame}{Cálculo de SNR — Modelo}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \[
+        \text{SNR} = \frac{N_e}{\sqrt{N_e + N_\text{ruido}^2}}
+      \]
+      donde $N_e$ (electrones de señal):
+      \[
+        N_e = \frac{E \cdot A_\text{pix} \cdot \eta \cdot \lambda \cdot t_\text{int}}{hc}
+      \]
+      y la irradiancia en el detector:
+      \[
+        E = \frac{\pi \tau \Delta\lambda L_\text{ref}}{1 + 4(f/D)^2}
+      \]
+
+      \textbf{Ruidos del sistema} ($N_\text{ruido}$):
+      \begin{itemize}
+        \item Térmico (dark), lectura, jitter, EMC, cuantización
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \begin{block}{Requisito}
+        SNR $\geq 400$
+      \end{block}
+      \bigskip
+      \textbf{Parámetros clave:}
+      \begin{itemize}
+        \item $\eta$: eficiencia cuántica del detector
+        \item $\tau$: transmitancia del telescopio
+        \item $t_\text{int} = \text{GSD}/v_\text{orb}$
+        \item $L_\text{ref} = 100\,\text{W m}^{-2}\text{sr}^{-1}\mu\text{m}^{-1}$
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \note[item]{El tiempo de integración es muy corto (~10 ms a 520 km) — por eso el SNR es el factor limitante.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 15 — SNR GRÁFICAS
+% ------------------------------------------------------------------
+\begin{frame}{Cálculo de SNR — Mapas de calor}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      \includegraphics[width=\textwidth]{media/image25.jpg}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \includegraphics[width=\textwidth]{media/image22.jpg}
+
+      \medskip
+      {\small Mapa SNR en función de $h$ y $D$. En \textbf{blanco}:
+      combinaciones con SNR $< 400$.\\
+      La zona válida reduce notablemente el espacio de diseño.}
+    \end{column}
+  \end{columns}
+  \note[item]{Los mapas de SNR y MTF se superponen para encontrar la intersección de diseños válidos.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 16 — TIEMPO DE REVISITA (METODOLOGÍA)
+% ------------------------------------------------------------------
+\begin{frame}{Tiempo de revisita — Metodología de cobertura}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      El modelo analítico emplea el \textbf{RevisitTime Toolkit}
+      (Crisp \& Livadiotti, Univ. Manchester, 2017) para calcular
+      el tiempo hasta cubrir el 100\,\% de EE.\,UU. continental.
+
+      \medskip
+      \textbf{Parámetros de entrada:}
+      \begin{itemize}
+        \item $h$: altura orbital
+        \item SW: swath (km) = $N_\text{pix} \cdot \text{GSD}$
+        \item $N_\text{sat}$, $N_\text{tel}$: configuración
+        \item Factor de nubosidad: $\frac{1}{6}$
+        \item Factor de solapamiento: 5\,\%
+      \end{itemize}
+
+      \medskip
+      Un modelo numérico de propagación de traza terrestre
+      valida estos resultados simulando la cobertura sobre
+      una malla de EE.\,UU.
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{block}{Requisito}
+        Cobertura completa $\leq 7$ días
+      \end{block}
+
+      \bigskip
+      \includegraphics[width=\textwidth]{media/image46.jpg}
+
+      {\scriptsize\color{midgray}Fuente: Crisp \& Livadiotti (2017).
+       \texttt{github.com/miguelrzazo/PreliminaryDesignEO}}
+    \end{column}
+  \end{columns}
+  \note[item]{El wrapper llama a RevisitCalc.m iterando sobre h y swath. Es el cálculo más lento del pipeline analítico.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 17 — REVISITA GRÁFICAS
+% ------------------------------------------------------------------
+\begin{frame}{Tiempo de revisita — Resultados}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      \includegraphics[width=\textwidth]{media/image27.jpg}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \includegraphics[width=\textwidth]{media/image40.jpg}
+
+      \medskip
+      {\small Mapa de revisita (días) en función de $h$ y swath para
+      distintas configuraciones. En \textbf{blanco}: no cumple $\leq 7$ días.}
+    \end{column}
+  \end{columns}
+  \note[item]{La configuración 2 sat + 2 tel ofrece el mejor compromiso entre cobertura y masa.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 18 — CRUCE DE DATOS h vs Dmin
+% ------------------------------------------------------------------
+\begin{frame}{Cruce de datos — Relación $h$ vs $D_\text{min}$}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      \includegraphics[width=\textwidth]{media/image17.jpg}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      La función \texttt{CrossData.m} intersecta los mapas de
+      MTF, SNR y cobertura para extraer el \textbf{diámetro de
+      pupila mínimo} $D_\text{min}$ que satisface todos los
+      requerimientos a cada altura $h$.
+
+      \medskip
+      Esta relación $h \mapsto D_\text{min}(h)$ es la entrada
+      al modelo de masa.
+
+      \begin{block}{Resultado clave}
+        A menor $h$ → menor $D_\text{min}$ → menor masa seca
+        del instrumento. Pero mayor $\Delta V$ para mantenimiento.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \note[item]{El cruce de datos es el núcleo de la optimización: encuentra el diseño que minimiza la masa a cada altitud.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 19 — COMPARATIVA DETECTORES
+% ------------------------------------------------------------------
+\begin{frame}{Comparativa de detectores con telescopio Refractivo}
+  \includegraphics[width=\textwidth]{media/image15.jpg}
+  \note[item]{El detector H2RG (InSb) ofrece el mejor compromiso SNR/MTF/masa para la banda CO2.}
+\end{frame}
+
+% ------------------------------------------------------------------
+\sectionslide{Optimización de la Masa}{Selección final de parámetros y altura orbital}
+% ------------------------------------------------------------------
+
+% ------------------------------------------------------------------
+% SLIDE 21 — MASA SECA (TEORÍA)
+% ------------------------------------------------------------------
+\begin{frame}{Cálculo de la Masa Seca — Método de escalado}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      Método de escalado por similitud geométrica
+      (SMAD, Wertz 1999, Cap. 9.5):
+      \[
+        R = \frac{A_i}{A_o}; \quad
+        W_i = K \cdot R^3 \cdot W_o; \quad
+        P_i = K \cdot R^3 \cdot P_o
+      \]
+      donde $K = 1$ si $R \geq 0{,}5$, $K = 2$ en caso contrario.
+
+      \medskip
+      \textbf{Misiones de referencia:}
+      \begin{itemize}
+        \item Thematic Mapper: 0,4\,m pupila · 240\,kg
+        \item SEOSAT: 0,25\,m pupila · 100\,kg
+      \end{itemize}
+      Se interpola entre ambas.
+
+      \medskip
+      La masa del instrumento representa el \textbf{25\,\%}
+      de la masa seca total del satélite.
+      Un telescopio adicional añade un \textbf{50\,\%} a la masa del instrumento.
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{block}{Entrada}
+        Relación $h \mapsto D_\text{min}(h)$\\
+        del cruce de datos
+      \end{block}
+      \bigskip
+      \begin{block}{Salida}
+        $m_\text{seca}(h)$ para cada\\
+        combinación de configuración
+      \end{block}
+    \end{column}
+  \end{columns}
+  \note[item]{El escalado geométrico es un método estándar en diseño preliminar cuando no hay datos de masa precisos.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 22 — MASA SECA RESULTADO
+% ------------------------------------------------------------------
+\begin{frame}{Cálculo de la Masa Seca — Resultado}
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      \includegraphics[width=\textwidth]{media/image31.jpg}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      {\small Estimación de masa seca interpolada entre Thematic Mapper
+      (azul) y SEOSAT (naranja), con promedio (verde).
+      La configuración de 2\,tel añade un 50\,\% (amarillo).}
+
+      \medskip
+      \begin{block}{Mínimo de masa seca}
+        $m_\text{seca} \approx 1{,}38\,\text{kg}$ a 520\,km\\
+        $D_\text{min} = 28\,\text{mm}$
+      \end{block}
+    \end{column}
+  \end{columns}
+  \note[item]{A 520 km se da el mínimo: el arrastre atmosférico todavía es bajo y el telescopio no necesita ser grande.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 23 — MASA TOTAL (TEORÍA)
+% ------------------------------------------------------------------
+\begin{frame}{Cálculo de la Masa Total — Modelo de decaimiento}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      \textbf{Modelo de arrastre atmosférico} (USSA76):
+      \[
+        \frac{\mathrm{d}a}{\mathrm{d}t} = -\frac{C_d A \rho(h)\sqrt{\mu a}}{m}
+      \]
+      Resuelto numéricamente con \texttt{ode45} durante 8 años.
+      Cuando $h < 0{,}98\,h_0$ se realiza un \textbf{impulso de Hohmann}:
+      \[
+        \Delta v = \sqrt{\frac{\mu}{r_1}}\!\left[\sqrt{\frac{2r_2}{r_1+r_2}}-1\right]
+                 + \sqrt{\frac{\mu}{r_2}}\!\left[1-\sqrt{\frac{2r_1}{r_1+r_2}}\right]
+      \]
+
+      Masa de propelente (Tsiolkovsky, $I_{sp}=209\,\text{s}$):
+      \[
+        m_\text{prop} = 1{,}1 \cdot m_\text{seca}
+        \left(\mathrm{e}^{\Delta v_\text{tot}/(I_{sp}g_0)}-1\right)
+      \]
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \includegraphics[width=\textwidth]{media/image26.jpg}
+      {\scriptsize Transferencia de Hohmann para reimpulso orbital.}
+    \end{column}
+  \end{columns}
+  \note[item]{El modelo numérico de decaimiento calcula el ΔV acumulado en 8 años para cada altitud.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 24 — MASA TOTAL RESULTADO
+% ------------------------------------------------------------------
+\begin{frame}{Cálculo de la Masa Total — Resultado}
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      \includegraphics[width=\textwidth]{media/image16.jpg}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      {\small Desglose de masa seca, combustible y masa total en
+      función de la altura orbital para la configuración óptima
+      (2\,sat · 2\,tel · Detector H2RG · Telescopio Refractivo).}
+
+      \medskip
+      \begin{block}{Mínimo absoluto}
+        \textbf{520\,km · $D=28$\,mm}\\
+        $m_\text{seca} = 1{,}38\,\text{kg}$\\
+        $m_\text{comb} = 0{,}33\,\text{kg}$\\
+        $m_\text{total} = \mathbf{1{,}71\,\text{kg}}$
+      \end{block}
+    \end{column}
+  \end{columns}
+  \note[item]{La constelación completa: 2 × 1,71 = 3,42 kg en órbita.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 25 — OTRAS SOLUCIONES
+% ------------------------------------------------------------------
+\begin{frame}{Otras soluciones — Verificación del mínimo absoluto}
+  \includegraphics[width=\textwidth]{media/image44.jpg}
+  \note[item]{El mínimo de 1,71 kg es el absoluto entre todas las combinaciones detector-telescopio-configuración.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 26 — DISPOSICIÓN FINAL DEL INSTRUMENTO
+% ------------------------------------------------------------------
+\begin{frame}{Disposición final del instrumento}
+  \includegraphics[width=\textwidth]{media/image20.jpg}
+  \note[item]{El instrumento cabe en un volumen ~10×10×15 cm, compatible con 1,5U CubeSat.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 27 — PUNTO DE DISEÑO
+% ------------------------------------------------------------------
+\begin{frame}{Punto de diseño final}
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      \includegraphics[width=\textwidth]{media/image22.jpg}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \small
+      \begin{tabular}{@{}ll@{}}
+        \toprule
+        \textbf{Parámetro} & \textbf{Valor} \\
+        \midrule
+        Altura orbital        & 520\,km \\
+        Pupila                & 28\,mm \\
+        GSD                   & 80\,m \\
+        Detector              & H2RG \\
+        Telescopio            & Refractivo \\
+        Satélites             & 2 \\
+        Telescopios/sat.      & 2 \\
+        Swath final           & 183\,km \\
+        MTF @ Nyquist         & $\geq 0{,}25$ \\
+        SNR                   & $\geq 400$ \\
+        Revisita              & 7 días \\
+        Masa/satélite         & \textbf{1,71\,kg} \\
+        \bottomrule
+      \end{tabular}
+    \end{column}
+  \end{columns}
+  \note[item]{El swath de 183 km supera el mínimo requerido (170 km) con un 10% de solapamiento adicional.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 28 — DEORBITACIÓN
+% ------------------------------------------------------------------
+\begin{frame}{Deorbitación natural al fin de misión}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=\textwidth]{media/image34.jpg}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \begin{itemize}
+        \item Estándar NASA/ESA: reentrada $< 1$ año tras fin de misión
+        \item A 520\,km, la simulación de decaimiento natural indica
+              una reentrada en \textbf{257 días} sin maniobras adicionales
+        \item No es necesario propelente extra para deorbitación
+        \item Cumple el estándar de debris mitigation
+      \end{itemize}
+      \begin{block}{Sostenibilidad espacial}
+        Masa de combustible dimensionada\\
+        sólo para mantenimiento orbital.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \note[item]{257 días < 365 días = cumple el estándar. Sin deorbit kit adicional.}
+\end{frame}
+
+% ------------------------------------------------------------------
+\sectionslide{Subsistemas}{Selección de componentes comerciales (COTS)}
+% ------------------------------------------------------------------
+
+% ------------------------------------------------------------------
+% SLIDE 30 — SUBSISTEMAS COMPONENTES
+% ------------------------------------------------------------------
+\begin{frame}{Subsistemas — Componentes seleccionados}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{tabular}{@{}lll@{}}
+        \toprule
+        \textbf{Subsistema} & \textbf{Componente} & \textbf{Masa} \\
+        \midrule
+        Instrumento & H2RG + Refractivo & 0,335\,kg \\
+        Estructura  & Al 6061-T6 (15\,\%)& 0,251\,kg \\
+        ADCS        & GMAT-1 + grad.grav.& 0,050\,kg \\
+        Propulsión  & ECAPS 100mN HPGP  & 0,057\,kg \\
+        Eléctrico   & Panel flex + LiIon & 0,242\,kg \\
+        Comms       & EnduroSat X-Band  & 0,270\,kg \\
+        OBC         & iOBC ISISPACE     & 0,094\,kg \\
+        Térmico     & Pasivo            & 0,050\,kg \\
+        \midrule
+        \textbf{Masa seca} & & \textbf{1,349\,kg} \\
+        \textbf{Combustible} & & \textbf{0,361\,kg} \\
+        \textbf{Total} & & \textbf{1,710\,kg} \\
+        \bottomrule
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{ADCS:} Magnetopares GMAT-1 + barra de gradiente gravitatorio
+      \begin{itemize}
+        \item Apuntamiento nadir $\leq 1°$
+        \item Sin rueda de reacción → menor masa
+        \item SSO amanecer-anochecer favorece la controlabilidad
+      \end{itemize}
+      \medskip
+      \textbf{Propulsión:} ECAPS HPGP 100\,mN
+      \begin{itemize}
+        \item $I_{sp} = 209\,\text{s}$, combustible verde LMP-103S
+        \item Sin hidracina tóxica
+      \end{itemize}
+      \medskip
+      \textbf{Comms:} Banda X, 150\,Mbps, 22\,W consumo
+    \end{column}
+  \end{columns}
+  \note[item]{Todos los componentes son COTS disponibles comercialmente.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 31 — DESGLOSE DE MASA
+% ------------------------------------------------------------------
+\begin{frame}{Desglose de masa por subsistema}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      \includegraphics[width=\textwidth]{media/image35.jpg}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \begin{itemize}
+        \item Instrumento: 19,6\,\%
+        \item Comms (X-band): 15,8\,\% ← dominante tras instrumento
+        \item Estructura: 14,7\,\%
+        \item Eléctrico: 14,2\,\%
+        \item Propelente: 21,1\,\%
+      \end{itemize}
+      \bigskip
+      {\color{midgray}\small Las baterías se dimensionan para
+      15\,min de transmisión continua:
+      $E = 10{,}38\,\text{W} \times 0{,}25\,\text{h} = 2{,}6\,\text{Wh}$
+      $\to m_\text{bat} = 13\,\text{g}$.}
+    \end{column}
+  \end{columns}
+  \note[item]{El subsistema de comunicaciones es el 2º más pesado — la antena de banda X domina.}
+\end{frame}
+
+% ------------------------------------------------------------------
+\sectionslide{Lanzadores}{Lanzamiento y puesta en órbita}
+% ------------------------------------------------------------------
+
+% ------------------------------------------------------------------
+% SLIDE 33 — LANZADORES EVALUADOS
+% ------------------------------------------------------------------
+\begin{frame}{Lanzadores evaluados}
+  \includegraphics[width=\textwidth]{media/image50.jpg}
+  \note[item]{Se comparan 6 lanzadores por fiabilidad, precio/kg, compatibilidad SSO y disponibilidad rideshare.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 34 — BASES DE LANZAMIENTO
+% ------------------------------------------------------------------
+\begin{frame}{Bases de lanzamiento evaluadas}
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      \includegraphics[width=\textwidth]{media/image48.jpg}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{tabular}{@{}ll@{}}
+        \toprule
+        \textbf{Base} & \textbf{Azimut SSO} \\
+        \midrule
+        Kennedy SC (FL)   & ~180° \\
+        Vandenberg SFB (CA) & 198° ✓ \\
+        Kourou (FR)         & ~10° (no SSO) \\
+        \bottomrule
+      \end{tabular}
+      \bigskip
+
+      Vandenberg SFB es la única base que permite
+      el azimut requerido para SSO sin sobrevolar
+      tierra habitada.
+    \end{column}
+  \end{columns}
+  \note[item]{Vandenberg es la referencia para todos los lanzadores SSO de baja inclinación.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 35 — LANZADOR SELECCIONADO
+% ------------------------------------------------------------------
+\begin{frame}{Selección final del lanzador — Falcon 9}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      \includegraphics[width=\textwidth]{media/image50.jpg}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \textbf{Falcon 9 (SpaceX)} desde Vandenberg SFB
+      \begin{itemize}
+        \item Fiabilidad: \textbf{99,5\,\%} (>300 vuelos)
+        \item Programa \textbf{Transporter rideshare}: $\sim$\$6\,500/kg
+        \item Compatibilidad con desplegadores PPOD/SHERPA
+        \item Experiencia en nanosatélites + SSO probada
+        \item Autonomía estratégica EE.\,UU.
+      \end{itemize}
+      \bigskip
+      \begin{block}{Coste estimado}
+        $\sim$\$22\,000 por los 2 satélites (3,42\,kg)
+      \end{block}
+    \end{column}
+  \end{columns}
+  \note[item]{El coste de lanzamiento domina el presupuesto de misión — mantener la masa baja es crítico.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 36 — BASE SELECCIONADA
+% ------------------------------------------------------------------
+\begin{frame}{Base de lanzamiento — Vandenberg SFB, California}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      \includegraphics[width=\textwidth]{media/image33.jpg}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \begin{itemize}
+        \item Azimut compatible con SSO: \textbf{198°}
+        \item Infraestructura Falcon 9 SLC-4E dedicada
+        \item Historial de misiones SSO de EO
+        \item Evita sobrevuelo de territorio habitado en ascenso
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \note[item]{El azimut de 198° garantiza la inclinación de 97,6° necesaria para SSO a 520 km.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 37 — PUESTA EN ÓRBITA (vídeo animado)
+% ------------------------------------------------------------------
+\begin{frame}{Puesta en órbita — Maniobra de \textit{phasing}}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      \centering
+      % Animated phasing orbit video (loop, autoplay in Acrobat)
+      % Frames: 314 frames at 8 fps (~39 s total loop)
+      \animategraphics[
+        loop, autoplay, width=\textwidth,
+        controls
+      ]{8}{frames/phasing/frame_}{0001}{0314}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      Los dos satélites se inyectan en la misma órbita
+      y se separan mediante una \textbf{maniobra de phasing}:
+
+      \medskip
+      \begin{enumerate}
+        \item Sat-1 permanece en órbita objetivo (520\,km)
+        \item Sat-2 realiza un impulso a órbita de \textit{drift} más baja
+        \item La diferencia de periodo orbital hace que Sat-2
+              avance $180°$ en anomalía media
+        \item Sat-2 realiza un segundo impulso para volver a 520\,km
+      \end{enumerate}
+
+      \medskip
+      {\small$\Delta V_\text{phasing} \approx 2 \times 1{,}5\,\text{m/s}$
+      (ya incluido en el presupuesto de combustible).}
+    \end{column}
+  \end{columns}
+  \note[item]{La separación de 180° maximiza la cobertura temporal: mientras uno observa, el otro está al otro lado.}
+\end{frame}
+
+% ------------------------------------------------------------------
+\sectionslide{Segmento Tierra}{Generación y descarga de los datos}
+% ------------------------------------------------------------------
+
+% ------------------------------------------------------------------
+% SLIDE 39 — ESTACIONES EVALUADAS
+% ------------------------------------------------------------------
+\begin{frame}{Estaciones terrestres evaluadas}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      \includegraphics[width=\textwidth]{media/image39.jpg}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \begin{tabular}{@{}ll@{}}
+        \toprule
+        \textbf{Estación} & \textbf{Red} \\
+        \midrule
+        Fairbanks (AK)     & NOAA \\
+        Wallops (VA)       & NOAA \\
+        Red EUMETSAT       & EUMETSAT \\
+        Estación propia    & — \\
+        \bottomrule
+      \end{tabular}
+      \bigskip
+
+      \textbf{Criterios de selección:}
+      \begin{itemize}
+        \item Alta latitud → más pases por día
+        \item Banda X disponible
+        \item Infraestructura existente (sin CAPEX)
+        \item Territorio EE.\,UU. para autonomía
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \note[item]{Una estación de alta latitud captura hasta 6 pases/día para órbitas polares.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 40 — FAIRBANKS + SIMULACIÓN (vídeo animado)
+% ------------------------------------------------------------------
+\begin{frame}{Selección de Fairbanks — Simulación de contacto}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      \centering
+      % Animated contact simulation (loop, autoplay in Acrobat)
+      % Frames: 100 frames at 5 fps (20 s clip from 87 s video)
+      \animategraphics[
+        loop, autoplay, width=\textwidth,
+        controls
+      ]{5}{frames/contact/frame_}{0001}{0100}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \textbf{Fairbanks NOAA, Alaska}
+
+      \begin{itemize}
+        \item Latitud: 64,8°N → múltiples pases diarios
+        \item Elevación mínima de enlace: 10°
+        \item Tiempo de contacto semanal: \textbf{22,1\,h} (constelación)
+        \item Infraestructura banda X existente
+        \item Territorio nacional EE.\,UU.
+      \end{itemize}
+
+      \bigskip
+      La simulación muestra las ventanas de visibilidad
+      de los dos satélites sobre Fairbanks durante una semana.
+    \end{column}
+  \end{columns}
+  \note[item]{22,1 h/semana de contacto es más que suficiente para descargar los 6,9 GB semanales de datos.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 41 — VELOCIDAD DE DESCARGA
+% ------------------------------------------------------------------
+\begin{frame}{Velocidad de descarga de datos}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      \includegraphics[width=\textwidth]{media/image28.png}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \textbf{Enlace de datos (Link Budget):}
+      \begin{itemize}
+        \item Transmisor: EnduroSat X-Band, 2\,W RF
+        \item Frecuencia: 8,025–8,4\,GHz (banda X)
+        \item Tasa de descarga: \textbf{150\,Mbps}
+        \item Tiempo contacto semanal: 22,1\,h
+      \end{itemize}
+
+      \bigskip
+      \textbf{Datos generados/semana:}
+      \[
+        6{,}9\,\text{GB} \ll 150\,\text{Mbps} \times 22{,}1\,\text{h}
+      \]
+      Margen de descarga \textbf{amplio} — memoria a bordo de
+      512\,GB suficiente para almacenar varios días.
+    \end{column}
+  \end{columns}
+  \note[item]{La banda X da un factor de margen ×100 en descarga. No es el cuello de botella de la misión.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 42 — DESCARGA DE DATOS
+% ------------------------------------------------------------------
+\begin{frame}{Gestión de datos a bordo}
+  \includegraphics[width=\textwidth]{media/image49.png}
+  \note[item]{El pipeline de datos: instrumento → compresión a bordo (OBC) → descarga en Fairbanks → procesamiento en tierra.}
+\end{frame}
+
+% ------------------------------------------------------------------
+\sectionslide{Conclusiones}{Resultados y líneas futuras}
+% ------------------------------------------------------------------
+
+% ------------------------------------------------------------------
+% SLIDE 44 — CONCLUSIONES
+% ------------------------------------------------------------------
+\begin{frame}{Conclusiones}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{Resultados obtenidos:}
+      \begin{itemize}
+        \item Metodología de diseño iterativa implementada en
+              MATLAB (código abierto en GitHub)
+        \item Configuración óptima: \textbf{2\,sat · 2\,tel ·
+              520\,km · H2RG · Refractivo}
+        \item Masa total: \textbf{1,71\,kg/satélite} (3,42\,kg constelación)
+        \item GSD = 80\,m — ×20 mejor que OCO-2
+        \item Cobertura: 7 días sobre EE.\,UU.
+        \item SNR $\geq 400$, MTF $\geq 0{,}25$ verificados
+        \item Deorbitación natural en 257 días $<$ 1 año (NASA)
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{Líneas futuras:}
+      \begin{itemize}
+        \item Completar el modelo de propagación numérica
+              de cobertura (Propagation ver 2.0)
+        \item Diseño detallado del instrumento óptico
+              (tolerancias, calibración en vuelo)
+        \item Estudio de arquitectura de procesamiento
+              de datos en tierra
+        \item Validación del presupuesto de enlace completo
+        \item Puerto del modelo analítico a Python
+              (\texttt{eo-mission} package, en desarrollo)
+      \end{itemize}
+
+      \medskip
+      \begin{block}{Código abierto}
+        \texttt{\small github.com/miguelrzazo/PreliminaryDesignEO}
+      \end{block}
+    \end{column}
+  \end{columns}
+  \note[item]{El modelo Python está en PR#2 del repositorio.}
+  \note[item]{La línea más importante: el modelo numérico de cobertura necesita completarse.}
+\end{frame}
+
+% ------------------------------------------------------------------
+% SLIDE 45 — GRACIAS
+% ------------------------------------------------------------------
+\begin{frame}[plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[upmnavy] ([yshift=-0.22\paperheight]current page.north west)
+      rectangle (current page.north east);
+    \node[anchor=north west, xshift=1cm, yshift=-0.4em]
+      at ([yshift=-0.01\paperheight]current page.north west)
+      {\includegraphics[height=0.15\paperheight]{etsiae-1959139697.png}};
+    \node[anchor=north east, xshift=-1cm, yshift=-0.4em]
+      at ([yshift=-0.01\paperheight]current page.north east)
+      {\includegraphics[height=0.13\paperheight]{1959339-1955144650.png}};
+  \end{tikzpicture}
+
+  \vspace{0.22\paperheight}
+  \vskip2em
+  \begin{center}
+    {\fontsize{48}{52}\selectfont\titlefont\color{upmnavy}¡Gracias!}
+
+    \vskip1.2em
+    {\color{warmaccent}\rule{0.5\linewidth}{0.8pt}}
+    \vskip1.2em
+
+    {\Large\sffamily\color{midgray}\textit{¿Preguntas?}}
+
+    \vskip2em
+    {\small\ttfamily\color{upmnavy}%
+      \href{https://github.com/miguelrzazo/PreliminaryDesignEO}%
+           {github.com/miguelrzazo/PreliminaryDesignEO}}
+  \end{center}
+
+  \note[item]{Agradecer al tribunal y a la audiencia.}
+  \note[item]{Recordar que el repositorio contiene simulaciones, memoria completa y código Python.}
 \end{frame}
 
 \end{document}
