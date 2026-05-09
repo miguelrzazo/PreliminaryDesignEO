@@ -1,0 +1,90 @@
+% Front matter: portada, página en blanco, dedicatoria, frase célebre, agradecimientos,
+% lista de símbolos y palabras clave / glosario
+
+% Portada
+\begin{titlepage}
+\centering
+    \vspace*{1cm}
+    \noindent
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{PNG_-_ETSIAE_logo_ETSIAE_COLOR.png.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{SFS24600.png}
+    \end{minipage}
+    \par
+    \vfill
+        {\LARGE\bfseries UNIVERSIDAD POLITÉCNICA DE MADRID}\par
+        {\LARGE\bfseries ESCUELA TÉCNICA SUPERIOR DE INGENIERÍA AERONÁUTICA Y DEL ESPACIO}\par
+
+    {\Large\bfseries TRABAJO DE FIN DE GRADO}\par
+
+    {\LARGE\bfseries Diseño Preliminar de un Satélite de Observación de la Tierra}\par
+
+    \begin{flushright}
+        {\bfseries AUTOR: Miguel Rosa Zazo}\par
+        {\bfseries ESPECIALIDAD: Ciencias y Tecnologías Aeroespaciales}\par
+        {\bfseries COTUTOR: Demetrio Zorita Gómez-Escolar}\par
+        {\bfseries TUTOR: Ana Laverón Simavilla}\par
+    \end{flushright}
+    \vspace{0.5cm}
+    {\bfseries Febrero de 2026}\par
+\end{titlepage}
+
+% Página intencionalmente en blanco
+\clearpage
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+    \begin{flushright}
+        {\small\textit{Página intencionadamente en blanco}}
+    \end{flushright}
+\end{center}
+\vspace*{\fill}
+\clearpage
+
+% Dedicatoria
+
+\addcontentsline{toc}{chapter}{Dedicatoria}
+\thispagestyle{plain}
+A mis seres queridos, por su apoyo incondicional y paciencia durante este proyecto.
+\clearpage
+
+% Frase célebre
+\chapter*{Frase célebre}
+\addcontentsline{toc}{chapter}{Frase célebre}
+\thispagestyle{plain}
+\emph{"La imaginación es más importante que el conocimiento."} --- Albert Einstein
+\clearpage
+
+% Agradecimientos
+\chapter*{Agradecimientos}
+\addcontentsline{toc}{chapter}{Agradecimientos}
+\thispagestyle{plain}
+Quiero agradecer a mi director de TFG, compañeros y familia por su apoyo y orientación.
+\clearpage
+
+% Lista de símbolos (ejemplo - sustituir por los símbolos reales)
+\chapter*{Lista de símbolos}
+\addcontentsline{toc}{chapter}{Lista de símbolos}
+\thispagestyle{plain}
+\begin{description}
+  \item[$a$] Aceleración (m/s$^2$)
+  \item[$c$] Velocidad de la luz (m/s)
+  \item[$R$] Radio (m)
+\end{description}
+\clearpage
+
+% Palabras clave / Glosario
+\chapter*{Palabras clave y glosario}
+\addcontentsline{toc}{chapter}{Palabras clave y glosario}
+\thispagestyle{plain}
+\begin{description}
+  \item[Resolución espacial] Capacidad de un sensor para distinguir dos objetos próximos.
+  \item[MTF] Función de Transferencia de Modulación, medida de la respuesta espacial del sistema óptico.
+  \item[SNR] Relación señal-ruido, indicador de calidad de la señal recibida.
+\end{description}
+\clearpage

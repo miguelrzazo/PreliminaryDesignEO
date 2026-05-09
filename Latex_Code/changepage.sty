@@ -1,0 +1,17 @@
+% Minimal local replacement for changepage package
+% This provides a lightweight `adjustwidth` environment for local use.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{changepage}[2025/12/25 Local minimal changepage]
+\newlength{\cp@leftmargin}
+\newlength{\cp@rightmargin}
+\newenvironment{adjustwidth}[2]{%
+  \setlength{\cp@leftmargin}{#1}%
+  \setlength{\cp@rightmargin}{#2}%
+  \list{}{
+    \setlength{\leftmargin}{\cp@leftmargin}
+    \setlength{\rightmargin}{\cp@rightmargin}
+    \setlength{\topsep}{0pt}
+    \setlength{\parsep}{0pt}
+    \setlength{\itemsep}{0pt}
+  }\item[]
+}{\endlist}

@@ -54,11 +54,11 @@ N_pix_12 = [N_pix1, N_pix2, N_pix3];
 pixel_size_12 = [pixel_size1, pixel_size2, pixel_size3];
 
 %% O2 Band
-% Detector 4 CMOS
-eta4 = 0.35;
-MTF_detector4 = 0.36;
-N_pix4 = 512;
-pixel_size4 = 25e-6;
+% Detector 4 CCD98-50
+eta4 = 0.65;
+MTF_detector4 = 0.5;
+N_pix4 = 6000;
+pixel_size4 = 13e-6;
 
 
 % Detector 5 H2RG
