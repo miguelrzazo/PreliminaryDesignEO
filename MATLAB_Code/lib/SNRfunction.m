@@ -50,7 +50,7 @@ for i = 1:length(altitudes)
             Njitter^2 + Nemc^2 + Nquant^2 + Nnonlin^2 + Ne);
         
         % SNR
-        SNR_value = Ne / N_total;
+        SNR_value = 0.9 * Ne / N_total;
         
         % Aplicar requirement: valores < 400 se convierten a NaN
         if SNR_value < SNR_req
@@ -71,7 +71,7 @@ set(gca, 'Color', [1 1 1]); % Fondo blanco
 
 % Configurar paleta y límites
 colormap(parula);
-caxis([400 2000]); % Límites optimizados para SNR
+clim([400 2000]); 
 
 % Configuración de ejes
 axis xy;
@@ -92,7 +92,7 @@ yticks_vals = altitudes(1:5:end);
 set(gca, 'XTick', xticks_vals, 'YTick', yticks_vals);
 
 % Guardar heatmap
-saveas(fig, [filename_prefix '_heatmap.png']);
+saveas(fig, [filename_prefix '_heatmap.jpg']);
 close(fig);
 
 %% Guardar datos en CSV

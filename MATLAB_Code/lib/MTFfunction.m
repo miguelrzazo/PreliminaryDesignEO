@@ -105,9 +105,6 @@ xlabel('Di\''ametro de Pupila (mm)', 'FontSize', 12, 'Interpreter', 'latex');
 title(sprintf('MTF - %s - Detector %d\n($\\lambda$ = %.2f $\\mu$m, Blanco: MTF $< 0.25$)', ...
     telescope_name, detector_idx, lambda*1e6), 'FontSize', 14, 'FontWeight', 'bold', 'Interpreter', 'latex');
 
-%title('MTF - Refractivo - Detector 1 ($\lambda = 1.61\,\mu m$, MTF $< 0.25$)', 'Interpreter', 'latex')
-
-
 % Colorbar
 cb = colorbar;
 cb.Label.String = 'MTF';
@@ -121,7 +118,7 @@ yticks_vals = alturas_orbitales(1:5:end);
 set(gca, 'XTick', xticks_vals, 'YTick', yticks_vals);
 
 % Guardar heatmap
-saveas(fig, [filename_prefix '_heatmap.png']);
+saveas(fig, [filename_prefix '_heatmap.jpg']);
 close(fig);
 
 %% Guardar datos en CSV
