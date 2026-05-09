@@ -16,7 +16,7 @@
 \documentclass[10pt, aspectratio=169]{beamer}
 
 % ------ Presenter notes (uncomment for presenter mode) ------
-%\setbeameroption{show notes on second screen=right}
+\setbeameroption{show notes on second screen=right}
 
 % ============================================================
 % PACKAGES
@@ -203,8 +203,21 @@
       Universidad Politécnica de Madrid · ETSIAE · Febrero 2026}
   \end{center}
 
-  \note[item]{Presentación del TFG: diseño preliminar de misión de OT.}
-  \note[item]{Duración prevista: 15--20 min + preguntas.}
+  \note{
+    Buenos días a todos los miembros del tribunal. Me llamo Miguel Rosa Zazo y presento
+    mi Trabajo de Fin de Grado: \emph{Diseño Preliminar de un Satélite de Observación de la Tierra}.
+
+    El trabajo aborda el reto de monitorizar gases de efecto invernadero desde el espacio
+    usando nanosatélites de muy baja masa. La presentación dura aproximadamente 20 minutos
+    seguidos de un turno de preguntas.
+
+    \medskip\textbf{Puntos de entrada:}
+    \begin{itemize}
+      \item Misión: monitorizar CO$_2$ y O$_2$ sobre EE.\,UU. con GSD de 80\,m
+      \item Objetivo de masa: minimizar la masa total puesta en órbita
+      \item Todo el código está disponible en GitHub bajo licencia abierta
+    \end{itemize}
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -237,8 +250,24 @@
       }
     \end{column}
   \end{columns}
-  \note[item]{El proyecto no fabrica el satélite: establece un diseño preliminar verificable.}
-  \note[item]{El GSD de 80 m supera en ×20 la resolución de OCO-2 (2,25 km).}
+  \note{
+    El objetivo principal es demostrar que es posible monitorizar CO$_2$ y O$_2$ atmosférico
+    sobre EE.\,UU. con un GSD de 80\,m ---~20 veces mejor que OCO-2 de la NASA~--- usando
+    satélites con una masa total de tan solo 1,71\,kg.
+
+    \medskip
+    Importante: el proyecto no fabrica el satélite. Establece un diseño preliminar analítico
+    verificable, con código abierto, que puede servir de punto de partida para una misión real.
+    La restricción de masa es la que guía todas las decisiones de diseño.
+
+    \medskip\textbf{Los tres requisitos técnicos fundamentales:}
+    \begin{itemize}
+      \item MTF @ Nyquist $\geq 0{,}25$ --- calidad óptica mínima
+      \item SNR $\geq 400$ --- relación señal-ruido para detectar concentraciones
+      \item Cobertura EE.\,UU. completa en $\leq 7$ días (con nubosidad $\nicefrac{1}{6}$)
+      \item Minimizar masa total en órbita
+    \end{itemize}
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -276,7 +305,19 @@
       resolución + masa ultra-baja.}
     \end{column}
   \end{columns}
-  \note[item]{Ninguna misión combina resolución sub-100 m con masa < 2 kg.}
+  \note{
+    Antes de justificar las elecciones de diseño, es útil ver dónde se sitúa este trabajo
+    respecto a las misiones existentes. OCO-2, GOSAT, TanSat y CO$_2$M tienen masas entre
+    200 y 1750\,kg con resoluciones entre 2 y 10\,km.
+
+    \medskip
+    GHGSat llega a 25\,m de GSD pero pesa 15\,kg. Este diseño ocupa un nicho que no existe
+    todavía: alta resolución espacial (80\,m) con masa ultra-baja (1,71\,kg). Es posible gracias
+    al uso de nanosatélites en órbita baja y detectors modernos de bajo ruido.
+
+    \medskip\textbf{Mensaje clave:} ninguna misión operativa combina resolución sub-100\,m con
+    masa menor de 2\,kg. Este TFG sitúa esa capacidad al alcance de un microsatélite comercial.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -327,7 +368,20 @@
     \draw (mtot)      -- (cfg);
     \draw (cfg.south) -- (output);
   \end{tikzpicture}
-  \note[item]{El modelo analítico corre en minutos. El numérico (propagación) se usa para validar la cobertura.}
+  \note{
+    El corazón del trabajo es el modelo analítico implementado en MATLAB, disponible en GitHub.
+    El pipeline sigue esta secuencia: a partir de los parámetros de entrada (GSD, bandas,
+    detectores, altitudes), se calculan MTF y SNR, luego se calcula la cobertura con el toolkit
+    RevisitTime, y finalmente se estiman la masa seca y la masa total.
+
+    \medskip
+    La función CrossData intersecta los mapas de MTF, SNR y cobertura para extraer el espacio
+    de diseño válido. El modelo analítico completo tarda pocos minutos en un portátil estándar.
+
+    \medskip
+    Como validación, existe un modelo numérico de propagación de trazas terrestres sobre una
+    malla de EE.\,UU., más lento pero más preciso para la geometría de cobertura real.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -355,7 +409,21 @@
       \end{block}
     \end{column}
   \end{columns}
-  \note[item]{El GSD determina la focal: a 520 km con p=15 µm → f = 97,5 mm.}
+  \note{
+    El GSD es el parámetro de entrada más importante del diseño, porque determina directamente
+    la distancia focal del telescopio: $f = p \cdot h / \text{GSD}$. Con GSD=80\,m, $h=520$\,km
+    y $p=15\,\mu$m, la focal resulta ser 97,5\,mm --- valor razonable para un telescopio miniaturizado.
+
+    \medskip
+    La elección de 80\,m es deliberada y ha pasado por un proceso de optimización. Se probaron
+    valores menores, como GSD~=~30\,m, pero no dieron \textbf{ninguna solución válida} en todo
+    el espacio de diseño: los telescopios necesarios eran demasiado grandes o la SNR era
+    insuficiente para cumplir el requisito de 400 con los detectores disponibles.
+
+    \medskip
+    80\,m es 20 veces mejor que OCO-2 y permite atribuir emisiones a escala de ciudad o
+    instalación industrial, que es la escala de interés para inventarios de emisiones.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -386,7 +454,22 @@
       $\Delta\lambda = 20\,\text{nm}$ por banda.
     \end{column}
   \end{columns}
-  \note[item]{Las 3 bandas son las mismas que OCO-2 y CO2M — permiten comparación directa.}
+  \note{
+    Se monitorizan tres bandas: CO$_2$ a 1,61\,$\mu$m y 2,01\,$\mu$m, y O$_2$-A a 0,76\,$\mu$m.
+    Estas son exactamente las mismas bandas que OCO-2 y CO$_2$M, lo que permite la comparación
+    directa con misiones existentes y el intercalibrado en vuelo.
+
+    \medskip
+    El ancho de banda de 20\,nm por banda es el valor \textbf{óptimo}: suficientemente estrecho
+    para la precisión espectral requerida en la recuperación de columnas de CO$_2$, y no tan
+    estrecho como para perder señal. Se probaron valores de 10\,nm, pero la SNR caía por debajo
+    del umbral de 400 en buena parte del espacio de diseño.
+
+    \medskip
+    La banda O$_2$-A actúa como referencia de presión de columna para corregir los efectos de
+    scattering atmosférico y calibrar las medidas de CO$_2$ --- es la misma técnica que usan OCO-2
+    y GOSAT.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -394,7 +477,22 @@
 % ------------------------------------------------------------------
 \begin{frame}{Detectores evaluados}
   \includegraphics[width=\textwidth]{media/image15.jpg}
-  \note[item]{Se evalúan 6 detectores. El H2RG resulta óptimo en la solución final.}
+  \note{
+    Se evaluaron 6 tipos de detectores distintos: InGaAs, H2RG (HgCdTe), CCD estándar,
+    CMOS backside-illuminated, entre otros. El criterio de selección principal fue la
+    eficiencia cuántica en las tres bandas de interés --- especialmente a 1,61 y 2,01\,$\mu$m
+    donde solo los detectores de InGaAs o HgCdTe son eficientes.
+
+    \medskip
+    El detector H2RG (Hawaii-2RG) de Teledyne es el resultado de la optimización: ofrece
+    la mejor combinación de eficiencia cuántica, ruido de lectura bajo y tamaño de píxel
+    de 15\,$\mu$m adecuado para las tres bandas. Se usa en instrumentos espaciales como NIRSpec
+    del JWST.
+
+    \medskip
+    Los detectores CCD estándar se descartaron porque no son sensibles en el infrarrojo de onda
+    corta (SWIR) donde están las bandas de CO$_2$.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -416,7 +514,22 @@
       \end{itemize}
     \end{column}
   \end{columns}
-  \note[item]{El modo pushbroom es el estándar en instrumentos EO modernos (Sentinel-2, DESIS).}
+  \note{
+    El modo pushbroom es el estándar en todos los instrumentos de observación de la Tierra
+    modernos: Sentinel-2, DESIS, OCO-2, PRISMA. En pushbroom, un array lineal de píxeles
+    observa una franja perpendicular al movimiento orbital. No hay partes móviles, lo que
+    aumenta la fiabilidad en el espacio.
+
+    \medskip
+    El swath total es el producto del número de píxeles por el GSD: con 2288 píxeles y
+    GSD=80\,m, el swath es 183\,km. Este valor cubre el requisito de cobertura semanal con
+    la configuración de 2 satélites.
+
+    \medskip
+    Se pueden combinar múltiples detectores en configuración \textit{staggered} (desfasados
+    transversalmente) para ampliar el swath sin aumentar la distancia focal ni el tamaño
+    del óptico --- técnica usada en Sentinel-2 con 12 detectores por banda.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -441,7 +554,25 @@
       \end{block}
     \end{column}
   \end{columns}
-  \note[item]{La órbita amanecer-anochecer es la más usada en misiones EO de OT (Sentinel-5P, OCO-2).}
+  \note{
+    La órbita seleccionada es una SSO de amanecer-anochecer con LTAN de 6\,h. Esta elección
+    maximiza la exposición solar: el panel solar ve el sol casi continuamente, lo que minimiza
+    los requisitos de batería y simplifica el sistema eléctrico.
+
+    \medskip
+    El ángulo beta elevado también minimiza los eclipses. Para esta órbita, los eclipses son
+    breves (menos de 15 min/órbita en los peores casos del ciclo anual), y a 520\,km la
+    deorbitación natural ocurre en 257 días sin necesidad de propelente de deorbitación.
+
+    \medskip
+    Se exploró el rango completo de altitudes de 200 a 1000\,km para encontrar el óptimo de
+    masa total. El modelo de decaimiento atmosférico (USSA76, integrado con ode45) calcula
+    el $\Delta V$ necesario para mantener la órbita durante 8 años de vida útil de la misión.
+
+    \medskip
+    La órbita amanecer-anochecer es la estándar en misiones EO de monitorización atmosférica:
+    Sentinel-5P, OCO-2 y GOSAT-2 la utilizan.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -482,7 +613,22 @@
       $u = f_N / f_c$.
     \end{column}
   \end{columns}
-  \note[item]{La MTF cuantifica la degradación del contraste espacial — un valor < 0,25 implica imágenes borrosas.}
+  \note{
+    La MTF (Función de Transferencia de Modulación) cuantifica la capacidad del sistema óptico
+    de reproducir detalles espaciales. El requisito es MTF $\geq$ 0,25 a la frecuencia de
+    Nyquist. Un valor menor de 0,25 implica imágenes con contraste insuficiente para distinguir
+    emisores adyacentes.
+
+    \medskip
+    El modelo factoriza la MTF total en cuatro componentes multiplicativos: difracción óptica,
+    factor del detector, alineamiento mecánico y margen de degradación en vuelo. La componente
+    dominante es la difracción cuando la pupila es pequeña.
+
+    \medskip
+    El parámetro crítico es la relación entre la frecuencia de Nyquist del detector y la
+    frecuencia de corte óptica: si la pupila es muy pequeña ($D$ pequeño), el sistema no puede
+    resolver el píxel y la MTF cae. Esto crea un límite inferior en $D$ para cada altitud.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -502,7 +648,25 @@
       MTF $\geq 0{,}25$.}
     \end{column}
   \end{columns}
-  \note[item]{Cada celda del mapa es una combinación h-D. La región válida (coloreada) define los diseños aceptables.}
+  \note{
+    Estos mapas de calor muestran el valor de MTF en función de la altura orbital (eje Y) y
+    el diámetro de pupila (eje X), para cada detector. Cada celda del mapa es una combinación
+    $(h, D)$ distinta --- hay miles de combinaciones evaluadas.
+
+    \medskip
+    Las celdas en blanco son combinaciones que no cumplen MTF $\geq$ 0,25 --- son diseños
+    descartados. La región coloreada define el conjunto de diseños aceptables desde el punto
+    de vista óptico.
+
+    \medskip
+    Se observa que a altitudes bajas (200--400\,km) se puede usar una pupila más pequeña y
+    aun así cumplir el requisito, porque la frecuencia de Nyquist es menor relativa a la
+    frecuencia de corte óptica. Esto favorece la miniaturización a altitudes bajas.
+
+    \medskip
+    El mapa de la izquierda es para la banda de CO$_2$ (1,61\,$\mu$m) y el de la derecha
+    para O$_2$-A (0,76\,$\mu$m) --- la diferencia de longitud de onda desplaza la curva límite.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -542,7 +706,22 @@
       \end{itemize}
     \end{column}
   \end{columns}
-  \note[item]{El tiempo de integración es muy corto (~10 ms a 520 km) — por eso el SNR es el factor limitante.}
+  \note{
+    La SNR es el factor limitante más importante de este diseño: con tiempos de integración
+    muy cortos, la señal recogida por cada píxel es pequeña. A 520\,km, el satélite se mueve
+    a 7,6\,km/s, y con GSD=80\,m el tiempo de integración es solo 10,5\,ms.
+
+    \medskip
+    La SNR se calcula como la raíz cuadrada del número de electrones de señal dividido por
+    la suma cuadrática de todos los ruidos: \textit{shot noise}, corriente oscura, ruido de
+    lectura, jitter de apuntamiento, EMC y cuantización del ADC.
+
+    \medskip
+    La irradiancia de referencia es 100\,W\,m$^{-2}$\,sr$^{-1}$\,$\mu$m$^{-1}$, que
+    corresponde a una escena terrestre típica bajo iluminación solar normalizada. La
+    órbita amanecer-anochecer garantiza que esta irradiancia se mantiene a lo largo de
+    toda la vida de la misión sin degradación por ángulo solar.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -562,7 +741,22 @@
       La zona válida reduce notablemente el espacio de diseño.}
     \end{column}
   \end{columns}
-  \note[item]{Los mapas de SNR y MTF se superponen para encontrar la intersección de diseños válidos.}
+  \note{
+    Estos mapas de SNR son análogos a los de MTF pero muestran la relación señal-ruido en
+    función de $(h, D)$. La zona válida (SNR $\geq$ 400) es más restrictiva que la de MTF:
+    requiere pupilas mayores, especialmente a altitudes altas donde la escena aparece más
+    pequeña.
+
+    \medskip
+    La intersección de las zonas válidas de MTF y SNR define un subespacio de diseño más
+    reducido. A este hay que añadir el tercer filtro: el mapa de revisita. La función
+    CrossData hace esta intersección de los tres criterios simultáneamente.
+
+    \medskip
+    El mapa de la derecha corresponde a la banda CO$_2$-2 (2,01\,$\mu$m), donde la SNR
+    es más baja que en la banda O$_2$-A porque la luminancia de referencia es menor en el
+    SWIR. Eso hace que sea la banda limitante en el diseño.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -602,7 +796,23 @@
        \texttt{github.com/miguelrzazo/PreliminaryDesignEO}}
     \end{column}
   \end{columns}
-  \note[item]{El wrapper llama a RevisitCalc.m iterando sobre h y swath. Es el cálculo más lento del pipeline analítico.}
+  \note{
+    El tercer requisito es la cobertura: cubrir el 100\,\% de EE.\,UU. continental en 7 días
+    o menos, incorporando un factor de nubosidad de $\nicefrac{1}{6}$. Este factor significa
+    que solo 1 de cada 6 pasadas se asume libre de nubes, multiplicando por 6 el tiempo
+    efectivo de revisita.
+
+    \medskip
+    Se usa el RevisitTime Toolkit de la Universidad de Manchester (Crisp \& Livadiotti, 2017),
+    que calcula analíticamente el tiempo de revisita para una constelación SSO en función de
+    altura orbital, swath y número de satélites. Es el cálculo más lento del pipeline: puede
+    tardar varios minutos por la iteración sobre el espacio $(h, \text{swath})$.
+
+    \medskip
+    Como complemento y validación, se desarrolló un modelo numérico de propagación de trazas
+    terrestres que simula la cobertura sobre una malla de puntos de EE.\,UU., más lento pero
+    más preciso para geometrías reales. Los resultados de ambos modelos son consistentes.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -621,7 +831,22 @@
       distintas configuraciones. En \textbf{blanco}: no cumple $\leq 7$ días.}
     \end{column}
   \end{columns}
-  \note[item]{La configuración 2 sat + 2 tel ofrece el mejor compromiso entre cobertura y masa.}
+  \note{
+    Los mapas de revisita muestran el número de días necesarios para cubrir EE.\,UU. completo.
+    El blanco indica que no se cumple el requisito de 7 días para esa combinación de altura
+    y swath.
+
+    \medskip
+    La configuración óptima es 2 satélites con 2 telescopios cada uno. Con 2 satélites separados
+    180° en la órbita, el tiempo de revisita se reduce aproximadamente a la mitad. Con 2
+    telescopios por satélite, el swath total es $2 \times 91{,}5 = 183$\,km, suficiente para
+    cubrir EE.\,UU. en 7 días desde 520\,km.
+
+    \medskip
+    A altitudes bajas (200--400\,km), el swath es insuficiente y no se puede cubrir EE.\,UU.
+    en 7 días con esta configuración. A altitudes mayores ($> 700$\,km), el telescopio necesario
+    es demasiado grande para cumplir simultáneamente MTF y SNR con la masa objetivo.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -648,7 +873,22 @@
       \end{block}
     \end{column}
   \end{columns}
-  \note[item]{El cruce de datos es el núcleo de la optimización: encuentra el diseño que minimiza la masa a cada altitud.}
+  \note{
+    La función CrossData es el núcleo de la optimización: intersecta los tres mapas de MTF,
+    SNR y cobertura para extraer, para cada altura orbital $h$, el diámetro mínimo de pupila
+    $D_\text{min}(h)$ que satisface \emph{simultáneamente} los tres criterios.
+
+    \medskip
+    La curva $h \mapsto D_\text{min}(h)$ resultante muestra que a altitudes menores se necesita
+    una pupila más pequeña --- lo que favorece la masa del instrumento. Pero la altitud también
+    afecta a la masa de propelente: a menor altitud, el arrastre atmosférico es mayor y se
+    necesita más combustible para mantener la órbita 8 años.
+
+    \medskip
+    Existe por tanto una altitud óptima que minimiza la masa \emph{total}: la combinación
+    de masa del instrumento (que decrece con $h$) y masa de combustible (que crece con
+    altitudes bajas). Este equilibrio aparece a $h = 520$\,km.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -656,7 +896,21 @@
 % ------------------------------------------------------------------
 \begin{frame}{Comparativa de detectores con telescopio Refractivo}
   \includegraphics[width=\textwidth]{media/image15.jpg}
-  \note[item]{El detector H2RG (InSb) ofrece el mejor compromiso SNR/MTF/masa para la banda CO2.}
+  \note{
+    Esta tabla compara el rendimiento de todos los detectores evaluados con el telescopio
+    refractivo, mostrando SNR, MTF y masa para cada combinación. Es el paso de selección
+    final del detector: se elige el que da el menor $D_\text{min}$ y por tanto la menor masa
+    del instrumento.
+
+    \medskip
+    El H2RG (HgCdTe) resulta el detector óptimo para todas las bandas, especialmente en el
+    infrarrojo de onda corta (SWIR). El detector InGaAs es la segunda opción pero da una
+    masa ligeramente mayor.
+
+    \medskip
+    Los CCD estándar se descartan porque no son sensibles a 1,61 y 2,01\,$\mu$m. El CMOS
+    backside-illuminated tampoco alcanza la eficiencia cuántica necesaria en SWIR.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -703,7 +957,22 @@
       \end{block}
     \end{column}
   \end{columns}
-  \note[item]{El escalado geométrico es un método estándar en diseño preliminar cuando no hay datos de masa precisos.}
+  \note{
+    El método de escalado geométrico extrae la masa del instrumento interpolando entre dos
+    misiones de referencia con pupila y masa conocidas: el Thematic Mapper (pupila 0,4\,m,
+    240\,kg) y SEOSAT (0,25\,m, 100\,kg). Es el método estándar del SMAD para diseño
+    preliminar cuando no hay datos de masa precisos.
+
+    \medskip
+    El coeficiente $K=2$ cuando $R < 0{,}5$ refleja que miniaturizar mucho dispara el coste
+    específico de masa: los componentes ultra-pequeños son más caros y masivos por unidad
+    de apertura. Para nuestros diámetros ($D \approx 28$\,mm $\ll$ las referencias), $K=2$.
+
+    \medskip
+    La masa total del satélite se estima como 4$\times$ la masa del instrumento, que es la
+    relación estándar para pequeños satélites de observación según el SMAD. Los subsistemas
+    (estructura, electrónica, etc.) escalan con el instrumento.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -726,7 +995,22 @@
       \end{block}
     \end{column}
   \end{columns}
-  \note[item]{A 520 km se da el mínimo: el arrastre atmosférico todavía es bajo y el telescopio no necesita ser grande.}
+  \note{
+    El gráfico muestra la masa seca del instrumento en función de la altura orbital, para las
+    dos misiones de referencia (azul y naranja) y su promedio (verde). La línea amarilla añade
+    el 50\,\% extra por el segundo telescopio.
+
+    \medskip
+    El mínimo de masa seca aparece a 520\,km con $D_\text{min} = 28$\,mm: la pupila es
+    suficientemente pequeña para que el instrumento sea ligero y el arrastre no requiere
+    demasiado combustible. Con la configuración de 2 telescopios, la masa seca total es
+    1,349\,kg.
+
+    \medskip
+    Por debajo de 400\,km, la pupila necesaria sigue siendo pequeña, pero el factor $K=2$
+    del escalado penaliza la masa. Por encima de 600\,km, la pupila crece para cumplir MTF
+    y SNR, y la masa del instrumento aumenta significativamente.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -757,7 +1041,22 @@
       {\scriptsize Transferencia de Hohmann para reimpulso orbital.}
     \end{column}
   \end{columns}
-  \note[item]{El modelo numérico de decaimiento calcula el ΔV acumulado en 8 años para cada altitud.}
+  \note{
+    El modelo de decaimiento calcula el $\Delta V$ acumulado necesario para mantener la órbita
+    durante 8 años de vida útil. Se usa el modelo atmosférico estándar USSA76 para calcular
+    la densidad en función de la altitud, y la ecuación de decaimiento se integra numéricamente
+    con \texttt{ode45} durante 8 años.
+
+    \medskip
+    Cuando la altitud cae un 2\,\% respecto a la órbita objetivo, se aplica un impulso de
+    Hohmann para recuperarla. Este proceso se repite a lo largo de los 8 años, acumulando
+    el $\Delta V$ total. El $C_d = 2{,}2$ y la relación área/masa del satélite son los
+    parámetros de entrada del modelo de arrastre.
+
+    \medskip
+    La masa de combustible se calcula con la ecuación de Tsiolkovsky usando $I_{sp}=209$\,s
+    del motor ECAPS HPGP con combustible verde LMP-103S, y un margen del 10\,\%.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -782,7 +1081,21 @@
       \end{block}
     \end{column}
   \end{columns}
-  \note[item]{La constelación completa: 2 × 1,71 = 3,42 kg en órbita.}
+  \note{
+    El gráfico de masa total muestra el mínimo absoluto a 520\,km: 1,71\,kg por satélite.
+    La constelación completa de 2 satélites pesa 3,42\,kg en órbita --- un resultado notable
+    para una misión de monitorización atmosférica de alta resolución.
+
+    \medskip
+    A altitudes menores (200--400\,km), la masa de combustible sube exponencialmente porque
+    el arrastre atmosférico es mucho mayor. A altitudes mayores ($> 700$\,km), la masa del
+    instrumento sube porque se necesita una pupila más grande para cumplir MTF y SNR.
+
+    \medskip
+    El mínimo en 520\,km es robusto: el rango 480--560\,km da masas dentro del 5\,\% del
+    valor óptimo. Hay margen de diseño si otros criterios (como disponibilidad de lanzador
+    o restricciones de debris) obligan a ajustar la altitud.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -790,7 +1103,22 @@
 % ------------------------------------------------------------------
 \begin{frame}{Otras soluciones — Verificación del mínimo absoluto}
   \includegraphics[width=\textwidth]{media/image44.jpg}
-  \note[item]{El mínimo de 1,71 kg es el absoluto entre todas las combinaciones detector-telescopio-configuración.}
+  \note{
+    Esta diapositiva verifica que el mínimo de 1,71\,kg es el \textbf{mínimo absoluto global},
+    no un mínimo local. Se muestran todas las combinaciones evaluadas: distintos detectores,
+    tipos de telescopio (refractivo vs. reflectivo) y configuraciones de constelación.
+
+    \medskip
+    La configuración H2RG + refractivo + 2\,sat/2\,tel es la ganadora en todas las comparaciones.
+    Las configuraciones con 1 telescopio por satélite requieren más satélites para cumplir
+    cobertura, aumentando la masa total. Las reflectivas son $\sim$15\,\% más pesadas por
+    el oscurecimiento central que penaliza la MTF.
+
+    \medskip
+    Si el tribunal pregunta si se ha considerado otro número de satélites: sí. Con 3 satélites
+    y 1 telescopio, la masa total es mayor. Con 4 satélites, también. El óptimo global es
+    2 satélites + 2 telescopios.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -798,7 +1126,21 @@
 % ------------------------------------------------------------------
 \begin{frame}{Disposición final del instrumento}
   \includegraphics[width=\textwidth]{media/image20.jpg}
-  \note[item]{El instrumento cabe en un volumen ~10×10×15 cm, compatible con 1,5U CubeSat.}
+  \note{
+    La disposición física del instrumento muestra cómo los dos telescopios refractivos y el
+    detector H2RG se integran en la estructura del satélite. Los dos telescopios están
+    orientados en paralelo con separación angular mínima para cubrir el swath total de 183\,km.
+
+    \medskip
+    El volumen total del instrumento es compatible con un formato 1,5U CubeSat
+    ($10 \times 10 \times 15$\,cm). El satélite completo entraría en una carcasa 3U con
+    espacio para los subsistemas de apoyo.
+
+    \medskip
+    Esta disposición es conceptual --- el diseño mecánico detallado de integración, las
+    tolerancias de alineamiento entre los dos telescopios y la calibración geométrica
+    quedan como trabajo futuro. El enfoque de este TFG es el diseño a nivel de sistema.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -831,7 +1173,20 @@
       \end{tabular}
     \end{column}
   \end{columns}
-  \note[item]{El swath de 183 km supera el mínimo requerido (170 km) con un 10% de solapamiento adicional.}
+  \note{
+    Esta tabla resume el punto de diseño final con todos los parámetros optimizados. Es la
+    diapositiva central de la presentación: aquí se puede ver de un vistazo que todos los
+    requisitos se cumplen simultáneamente.
+
+    \medskip
+    El swath de 183\,km supera en un 8\,\% el mínimo necesario para cubrir EE.\,UU. en 7 días
+    desde 520\,km con la configuración de 2 satélites. Hay margen para, por ejemplo, reducir
+    ligeramente el swath y ganar aún más en masa si fuera necesario.
+
+    \medskip
+    La masa de 1,71\,kg por satélite incluye ya el propelente para 8 años de vida útil y la
+    maniobra de phasing de separación. No hay sorpresas ocultas en el presupuesto de masa.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -856,7 +1211,21 @@
       \end{block}
     \end{column}
   \end{columns}
-  \note[item]{257 días < 365 días = cumple el estándar. Sin deorbit kit adicional.}
+  \note{
+    La normativa NASA/ESA de mitigación de basura espacial exige que un satélite reingrese
+    en menos de 25 años tras el fin de misión; el estándar práctico para LEO es menos de 1 año.
+
+    \medskip
+    A 520\,km, la simulación de decaimiento natural del modelo USSA76 muestra que el satélite
+    reingresará en \textbf{257 días} sin ninguna maniobra activa. Esto es significativamente
+    inferior al año límite, y significa que no se necesita un kit de deorbitación ni propelente
+    adicional.
+
+    \medskip
+    Este resultado es una ventaja directa de operar a 520\,km en vez de altitudes más altas:
+    a 700\,km el tiempo de decaimiento sería de varios años y haría falta maniobra activa.
+    El diseño cumple la normativa de debris mitigation de forma natural.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -905,7 +1274,28 @@
       \textbf{Comms:} Banda X, 150\,Mbps, 22\,W consumo
     \end{column}
   \end{columns}
-  \note[item]{Todos los componentes son COTS disponibles comercialmente.}
+  \note{
+    Pasamos ahora al diseño de los subsistemas de apoyo al instrumento. Todos los componentes
+    seleccionados son COTS --- comerciales, disponibles en catálogo --- para minimizar riesgo
+    de desarrollo y coste. Esta es una decisión de diseño deliberada para una primera misión.
+
+    \medskip
+    Quiero ser explícito sobre el \textbf{alcance del diseño de subsistemas}: es preliminar.
+    La gestión térmica, el presupuesto de potencia detallado y el ADCS se han dimensionado
+    con criterios de primer orden, no con un diseño de ingeniería completo de vuelo. Sin
+    embargo, los números son internamente coherentes y demuestran la viabilidad del concepto.
+
+    \medskip
+    El punto más importante del ADCS: se eligió gradiente gravitatorio más magnetopares en
+    lugar de ruedas de reacción. El gradiente gravitatorio proporciona apuntamiento nadir
+    pasivo a unos 3--5° y los magnetopares GMAT-1 amortiguan las oscilaciones hasta $\leq 1°$.
+    Esta combinación pesa solo 50\,g frente a los 200+ gramos de un sistema con ruedas.
+
+    \medskip
+    Para las bandas de CO$_2$ y O$_2$, un error de apuntamiento de 1° equivale a un error
+    de geolocalización de $\sim$9\,km a 520\,km, aceptable para análisis de tendencias
+    atmosféricas con corrección geométrica en tierra.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -931,7 +1321,21 @@
       $\to m_\text{bat} = 13\,\text{g}$.}
     \end{column}
   \end{columns}
-  \note[item]{El subsistema de comunicaciones es el 2º más pesado — la antena de banda X domina.}
+  \note{
+    El diagrama de tarta muestra que el propelente (21\,\%) y el instrumento (20\,\%) son
+    los dos subsistemas dominantes. El subsistema de comunicaciones en banda X es el tercero
+    más pesado (15,8\,\%) --- la antena y el transmisor de 22\,W son los componentes más masivos.
+
+    \medskip
+    La batería pesa solo 13\,g porque se dimensiona únicamente para cubrir el déficit de
+    potencia durante las ventanas de transmisión: $10{,}38\,\text{W} \times 0{,}25\,\text{h}
+    = 2{,}6\,\text{Wh}$. La órbita amanecer-anochecer hace que en la mayor parte del tiempo
+    el panel solar genera energía suficiente sin necesitar la batería.
+
+    \medskip
+    La estructura (14,7\,\%) se dimensiona como el 15\,\% de la masa seca del instrumento más
+    subsistemas, que es la estimación estándar para estructuras de CubeSat en aluminio 6061-T6.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -943,7 +1347,21 @@
 % ------------------------------------------------------------------
 \begin{frame}{Lanzadores evaluados}
   \includegraphics[width=\textwidth]{media/image50.jpg}
-  \note[item]{Se comparan 6 lanzadores por fiabilidad, precio/kg, compatibilidad SSO y disponibilidad rideshare.}
+  \note{
+    Se evaluaron 6 lanzadores candidatos considerando cuatro criterios: fiabilidad histórica,
+    precio por kilogramo en SSO, compatibilidad con el formato CubeSat/PPOD, y disponibilidad
+    de programas rideshare para cargas de menos de 5\,kg.
+
+    \medskip
+    Los candidatos incluyen Falcon 9 Transporter (SpaceX), PSLV-CA (ISRO), Vega-C (Arianespace),
+    Electron (Rocket Lab), LauncherOne (Virgin Orbit) y Starship SXRS. La fiabilidad y el
+    coste son los factores determinantes para una misión académica con presupuesto limitado.
+
+    \medskip
+    La comparación se hace en términos absolutos (coste total por los 3,42\,kg) no en
+    precio/kg, porque para cargas tan pequeñas lo relevante es el precio mínimo del slot
+    rideshare, no la tarifa por kilogramo que aplica a cargas grandes.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -971,7 +1389,20 @@
       tierra habitada.
     \end{column}
   \end{columns}
-  \note[item]{Vandenberg es la referencia para todos los lanzadores SSO de baja inclinación.}
+  \note{
+    Las bases de lanzamiento se filtran por su capacidad de alcanzar la inclinación SSO
+    necesaria: 97,6° para 520\,km. El azimut de lanzamiento determina la inclinación orbital.
+
+    \medskip
+    Kennedy Space Center en Florida tiene restricciones de sobrevuelo que impiden alcanzar
+    inclinaciones polares directamente. Kourou en Guayana Francesa es incapaz de alcanzar
+    inclinaciones polares por su latitud baja de 5°N.
+
+    \medskip
+    Vandenberg SFB en California, con azimut 198°, es la única base que permite la inclinación
+    necesaria sin sobrevolar tierra habitada durante el ascenso. Todas las misiones SSO del
+    Falcon 9 --- Sentinel-6, Planet Labs, Transporter rideshare --- se lanzan desde aquí.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -997,7 +1428,22 @@
       \end{block}
     \end{column}
   \end{columns}
-  \note[item]{El coste de lanzamiento domina el presupuesto de misión — mantener la masa baja es crítico.}
+  \note{
+    El Falcon 9 con el programa Transporter de SpaceX es la selección final por sus tres
+    ventajas decisivas: máxima fiabilidad (99,5\,\% en más de 300 vuelos), precio rideshare
+    más competitivo ($\sim$6.500\,\$/kg), y compatibilidad total con desplegadores PPOD
+    para nanosatélites.
+
+    \medskip
+    El coste estimado para los dos satélites (3,42\,kg) es de aproximadamente 22.000\,\$.
+    Este es un coste de lanzamiento excepcionalmente bajo para una misión EO --- posible
+    precisamente porque la masa es mínima. \textbf{Cada gramo adicional cuesta dinero real.}
+
+    \medskip
+    El programa Transporter lanza regularmente a SSO desde Vandenberg. La frecuencia de
+    lanzamiento (aproximadamente cada 6 meses) da flexibilidad para ajustar la ventana
+    de lanzamiento sin coste adicional.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -1017,7 +1463,20 @@
       \end{itemize}
     \end{column}
   \end{columns}
-  \note[item]{El azimut de 198° garantiza la inclinación de 97,6° necesaria para SSO a 520 km.}
+  \note{
+    Vandenberg Space Force Base está situada en la costa de California a 34,7°N. El complejo
+    SLC-4E está dedicado al Falcon 9 y tiene historial probado de misiones SSO.
+
+    \medskip
+    El azimut de lanzamiento de 198° (casi al sur) garantiza la inclinación de 97,6° necesaria
+    para SSO a 520\,km. Este azimut evita el sobrevuelo de Los Ángeles y San Francisco durante
+    el ascenso, pasando sobre el Pacífico.
+
+    \medskip
+    Misiones emblemáticas que han salido desde aquí: Planet Labs (constelación Dove, 88
+    satélites rideshare), Sentinel-6 Michael Freilich, SMAP de la NASA. Es la base de
+    referencia mundial para misiones EO en SSO.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -1052,7 +1511,22 @@
       (ya incluido en el presupuesto de combustible).}
     \end{column}
   \end{columns}
-  \note[item]{La separación de 180° maximiza la cobertura temporal: mientras uno observa, el otro está al otro lado.}
+  \note{
+    Los dos satélites se lanzan juntos en el mismo lanzador y luego se separan usando una
+    maniobra de phasing. La animación muestra cómo Sat-1 permanece en la órbita objetivo
+    (520\,km) mientras Sat-2 baja temporalmente a una órbita de drift, avanza 180° en
+    anomalía media y vuelve a subir.
+
+    \medskip
+    La separación de 180° maximiza la cobertura temporal: cuando el Sat-1 observa una zona,
+    el Sat-2 está exactamente al otro lado de la órbita, reduciendo el tiempo de revisita
+    a la mitad respecto a un solo satélite.
+
+    \medskip
+    El $\Delta V$ total de la maniobra de phasing es de aproximadamente 3\,m/s --- ya
+    incluido en el presupuesto de combustible calculado. El tiempo para completar la separación
+    a 180° desde la órbita compartida es de aproximadamente 3 semanas.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -1089,7 +1563,22 @@
       \end{itemize}
     \end{column}
   \end{columns}
-  \note[item]{Una estación de alta latitud captura hasta 6 pases/día para órbitas polares.}
+  \note{
+    Para el segmento tierra, se evaluaron cuatro opciones: Fairbanks (Alaska, NOAA), Wallops
+    (Virginia, NOAA), la red EUMETSAT y una estación propia. El criterio principal es la
+    latitud alta: una estación polar puede ver hasta 6 pases por día para una órbita SSO,
+    porque la traza terrestre siempre pasa cerca del polo.
+
+    \medskip
+    La banda X disponible en la estación es necesaria para recibir los 150\,Mbps del
+    transmisor EnduroSat. Las redes NOAA en Fairbanks y Wallops ya tienen receptores banda X
+    operativos y se pueden arrendar por hora de contacto.
+
+    \medskip
+    Una estación propia se descartó por el CAPEX elevado (antena, instalación, licencias) ---
+    para una primera misión es más económico usar infraestructura existente y escalar solo
+    si la misión se convierte en operacional.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -1122,7 +1611,21 @@
       de los dos satélites sobre Fairbanks durante una semana.
     \end{column}
   \end{columns}
-  \note[item]{22,1 h/semana de contacto es más que suficiente para descargar los 6,9 GB semanales de datos.}
+  \note{
+    Fairbanks, Alaska fue seleccionada como estación principal. Con latitud 64,8°N, es
+    perfecta para capturar pases de una órbita SSO a 520\,km. La elevación mínima de
+    enlace de 10° garantiza suficiente tiempo de contacto por pase.
+
+    \medskip
+    La animación muestra las ventanas de visibilidad de los dos satélites sobre Fairbanks
+    durante una semana completa. Se puede ver claramente la cadencia de pases, con múltiples
+    contactos diarios por satélite.
+
+    \medskip
+    El tiempo de contacto semanal total de la constelación es 22,1 horas --- más que
+    suficiente para descargar los 6,9\,GB semanales de datos. La infraestructura NOAA banda X
+    en Fairbanks existe y opera actualmente para otras misiones, lo que simplifica el acceso.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -1151,7 +1654,21 @@
       512\,GB suficiente para almacenar varios días.
     \end{column}
   \end{columns}
-  \note[item]{La banda X da un factor de margen ×100 en descarga. No es el cuello de botella de la misión.}
+  \note{
+    El enlace de datos usa el transmisor EnduroSat X-Band a 8\,GHz con tasa de 150\,Mbps y
+    2\,W de potencia RF. Es un transmisor COTS que pesa 270\,g --- el componente más pesado
+    del subsistema de comunicaciones.
+
+    \medskip
+    El satélite genera 6,9\,GB de datos por semana (imágenes comprimidas de las tres bandas
+    sobre EE.\,UU.). Con 22,1 horas de contacto y 150\,Mbps, la capacidad de descarga semanal
+    supera los 14\,TB --- un factor de margen de más de 2000× sobre los datos generados.
+
+    \medskip
+    La memoria a bordo de 512\,GB del OBC puede almacenar casi un mes de datos no comprimidos.
+    La descarga de datos \textbf{no es el cuello de botella} de esta misión --- lo es la tasa
+    de cobertura terrestre y la nubosidad.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -1159,7 +1676,21 @@
 % ------------------------------------------------------------------
 \begin{frame}{Gestión de datos a bordo}
   \includegraphics[width=\textwidth]{media/image49.png}
-  \note[item]{El pipeline de datos: instrumento → compresión a bordo (OBC) → descarga en Fairbanks → procesamiento en tierra.}
+  \note{
+    El pipeline de datos completo va desde el instrumento hasta los usuarios finales en cuatro
+    etapas: captura a bordo, compresión y almacenamiento, descarga en Fairbanks, y procesamiento
+    en tierra hasta productos científicos de nivel 2.
+
+    \medskip
+    A bordo, el OBC iSPACE recibe las imágenes en bruto, aplica compresión sin pérdida (factor
+    $\sim$3$\times$) y las almacena en la memoria flash de 512\,GB. Durante el pase sobre
+    Fairbanks, el OBC transmite los datos comprimidos en tiempo real a la estación terrena.
+
+    \medskip
+    En tierra, la cadena de procesamiento aplica corrección geométrica (usando los datos de
+    apuntamiento del ADCS), calibración radiométrica y corrección atmosférica para producir
+    los productos de concentración de columna de CO$_2$ y O$_2$.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -1205,8 +1736,29 @@
       \end{block}
     \end{column}
   \end{columns}
-  \note[item]{El modelo Python está en PR#2 del repositorio.}
-  \note[item]{La línea más importante: el modelo numérico de cobertura necesita completarse.}
+  \note{
+    En resumen, el trabajo demuestra que es posible diseñar una constelación de 2 nanosatélites
+    capaz de monitorizar CO$_2$ y O$_2$ sobre EE.\,UU. con GSD=80\,m ---~20 veces mejor que
+    OCO-2~--- con una masa total de solo 1,71\,kg por satélite. Todos los requisitos técnicos
+    se cumplen simultáneamente.
+
+    \medskip
+    El código está completamente disponible en GitHub, incluyendo el modelo analítico MATLAB,
+    el puerto Python (paquete \texttt{eo-mission}), los datos de salida en CSV y esta memoria.
+    La transparencia es uno de los valores del trabajo.
+
+    \medskip
+    Las principales líneas futuras son: completar el modelo numérico de cobertura (Propagation
+    ver 2.0), el diseño detallado del instrumento óptico con tolerancias y calibración en vuelo,
+    y la validación del presupuesto de enlace completo con un modelo de propagación de señal.
+
+    \medskip
+    Por último, quiero agradecer explícitamente las herramientas de inteligencia artificial
+    utilizadas en este TFG: \textbf{Claude Sonnet/Thinking 3.7 y 4.0} y \textbf{Claude Opus}
+    para redacción y código; \textbf{Perplexity Deep Research} para revisión bibliográfica;
+    y \textbf{Google Gemini Pro 2} para síntesis de documentación técnica. Estas herramientas
+    permitieron completar el trabajo en aproximadamente \textbf{287 horas}.
+  }
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -1241,8 +1793,20 @@
            {github.com/miguelrzazo/PreliminaryDesignEO}}
   \end{center}
 
-  \note[item]{Agradecer al tribunal y a la audiencia.}
-  \note[item]{Recordar que el repositorio contiene simulaciones, memoria completa y código Python.}
+  \note{
+    Muchas gracias por su atención. Quedo a disposición del tribunal para responder preguntas.
+
+    \medskip
+    El repositorio de GitHub contiene todos los ficheros: código MATLAB con el modelo analítico
+    y el numérico, el paquete Python \texttt{eo-mission}, la memoria completa en \LaTeX{},
+    los datos de salida en CSV y estas diapositivas.
+
+    \medskip
+    \textbf{Si preguntan por el tiempo de trabajo:} el TFG supuso aproximadamente 287 horas
+    distribuidas entre revisión bibliográfica ($\sim$30\,h), desarrollo del modelo MATLAB
+    ($\sim$80\,h), redacción de la memoria ($\sim$90\,h), análisis de resultados ($\sim$50\,h)
+    y preparación de la presentación ($\sim$37\,h).
+  }
 \end{frame}
 
 \end{document}
