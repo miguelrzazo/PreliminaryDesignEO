@@ -115,7 +115,7 @@ m_{\text{prop}} = m_{\text{seca}}
 \left(\exp\!\Bigl[\frac{\Delta v_{\text{tot}}}{I_{sp}\,g_{0}}\Bigr]-1\right),
 \label{eq:tsiolkovsky}
 \end{equation}
-donde se estima el impulso específico inicial\(I_{sp}= 220s\)  y
+donde se emplea el impulso específico nominal del propulsor HPGP seleccionado \(I_{sp}= 209\ \mathrm{s}\) \cite{ECAPS_100mN_HPGP}  y
 \(g_{0}=9.80665\ \mathrm{m\,s^{-2}}\).
 Además, se añade un margen del 10\% para contingencias:
 \(
@@ -133,7 +133,7 @@ Una vez calculada la masa de combustible para todos los posibles puntos de altur
     \caption{Desglose de masa seca, masa combustible y masa total. \\Fuente: Elaboración propia.}
 \end{figure}
 
-Apreciando en esta gráfica el mínimo de masa a poner en orbita por satélite de \textbf{1,67 kg} (distribuidos como: $m_{seca}= 1,34\ kg; \quad m_{comb}= 0,33 kg$) a una altura orbital de \textbf{520 km}, correspondiente a un diámetro de pupila de \textbf{28 mm}. Dado que la constelación estará formada por dos satélites, la masa total a inyectar en orbita será de \textbf{3,34 kg}.
+Apreciando en esta gráfica el mínimo de masa a poner en orbita por satélite de \textbf{1,71 kg} (distribuidos como: $m_{seca}= 1,38\ \text{kg}; \quad m_{comb}= 0,33\ \text{kg}$) a una altura orbital de \textbf{520 km}, correspondiente a un diámetro de pupila de \textbf{28 mm}. Dado que la constelación estará formada por dos satélites, la masa total a inyectar en orbita será de \textbf{3,42 kg}.
 
 Las instrumentación del satélite final, calculando los parámetros restantes descritos previamente, será dispuesto de la siguiente manera:
 \begin{landscape}
@@ -202,26 +202,26 @@ En este capítulo, una vez definido el instrumento, se va a desarrollar brevemen
     \toprule
     Subsistema                               & {Masa (kg)} & {Porcentaje (\%)} \\
     \midrule
-    Instrumento de observación               & 0,335    & 20,1        \\
-    Subsistema eléctrico                     & 0,269    & 16,1           \\
+    Instrumento de observación               & 0,335    & 19,6        \\
+    Subsistema eléctrico                     & 0,242    & 14,2           \\
     \midrule
-    \quad Paneles solares                    & 0,229    & 13,7         \\
-    \quad Baterías                           & 0,040    & 2,4          \\
+    \quad Paneles solares                    & 0,229    & 13,4         \\
+    \quad Baterías                           & 0,013    & 0,8          \\
     \midrule
-    Comunicaciones (banda X)                 & 0,270    & 16,2          \\
-    Estructura                               & 0,251    & 15,0          \\
-    Control de actitud                       & 0,050    & 3,0           \\
-    Propulsión                               & 0,057    & 3,4          \\
+    Comunicaciones (banda X)                 & 0,270    & 15,8          \\
+    Estructura                               & 0,251    & 14,7          \\
+    Control de actitud                       & 0,050    & 2,9           \\
+    Propulsión                               & 0,057    & 3,3          \\
     \midrule
-    \quad Motor                          & 0,040    & 2,4         \\
+    \quad Motor                          & 0,040    & 2,3         \\
     \quad Depósito                           & 0,017    & 1,0           \\
     \midrule
-    Ordenador de a bordo (OBC)               & 0,094    & 5,6          \\
-    Gestión térmica                          & 0,050    & 3,0          \\
+    Ordenador de a bordo (OBC)               & 0,094    & 5,5          \\
+    Gestión térmica                          & 0,050    & 2,9          \\
     \midrule
-    \textbf{Total masa seca}                 & \textbf{1,336} & \textbf{80,0}  \\
-    \textbf{Combustible}                     & \textbf{0,334} & \textbf{20,0}  \\
-    \textbf{Masa total}                      & \textbf{1,670}  & \textbf{100,0} \\
+    \textbf{Total masa seca}                 & \textbf{1,349} & \textbf{78,9}  \\
+    \textbf{Combustible}                     & \textbf{0,361} & \textbf{21,1}  \\
+    \textbf{Masa total}                      & \textbf{1,710}  & \textbf{100,0} \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -233,12 +233,33 @@ En este capítulo, una vez definido el instrumento, se va a desarrollar brevemen
 
 La estructura forma el elemento estructural del satélite, donde se acoplarán el resto de módulos. Su diseño debe permitir soportar las cargas mecánicas durante el lanzamiento, tanto en fuerzas de aceleración longitudinales, laterales, como en vibraciones, a medida que el lanzador asciende. Una de las opciones más comunes para su fabricación en este tipo de satélites supone usar un chasis de aleaciones de aluminio como 6061-T6 y 7075-T6.
 
-La masa estructural representa típicamente entre 15-20 \% de la masa total del satélite \cite{tsinas2001efficient}. Este porcentaje se mantiene relativamente constante debido a la escalabilidad de las cargas estructurales. Por tanto, se puede asumir que la masa estructural del satélite será de 0,251 kg (15\%).
+La masa estructural representa típicamente entre 15--20\,\% de la masa total del satélite \cite{tsinas2001efficient}. Este porcentaje se mantiene relativamente constante debido a la escalabilidad de las cargas estructurales. Por tanto, se puede asumir que la masa estructural del satélite será de 0,251\,kg (14,7\,\%).
+
+El diseño estructural se plantea conforme al estándar CubeSat \cite{calpoly2022cubesat}, con interfaz compatible con desplegadores PPOD, lo que garantiza compatibilidad con la mayoría de proveedores de lanzamiento en \textit{rideshare}. La envolvente de cargas de lanzamiento típica para cargas secundarias en este estándar es de 12\,g en dirección axial y 8\,g lateral (cuasi-estáticos), con niveles de vibración aleatoria de hasta 14,1\,g\,rms en el rango 20--2000\,Hz \cite{calpoly2022cubesat}. El bajo coeficiente de dilatación térmica del aluminio seleccionado ($\alpha \approx 23\ \mu\text{m}/(\text{m·K})$) minimiza las deformaciones termo-elásticas en órbita, lo que contribuye a mantener la alineación del instrumento óptico.
 
 
 \section{Control de Actitud}
 
 El subsistema de control de actitud (ADCS) tiene como misión mantener la orientación del satélite en todo momento, para que el instrumento siempre apunte al nadir y los paneles solares queden siempre correctamente orientados. También debe compensar perturbaciones externas como el gradiente gravitatorio, la presión de radiación solar, el arrastre atmosférico y las variaciones del campo magnético terrestre; además de realizar el apuntamiento del motor en las maniobras de propulsión.
+
+\subsection*{Requerimiento de apuntamiento}
+
+A una altura orbital de 520\,km con GSD\,=\,80\,m, el tamaño angular de un píxel es:
+\[
+\theta_{\text{pix}} = \frac{\text{GSD}}{h} = \frac{80}{520\,000} = 1{,}54 \times 10^{-4}\ \text{rad} \approx 0{,}53\ \text{arcmin}.
+\]
+Para una misión de monitorización de CO$_2$/O$_2$ en la que la geolocalización se refina en postproceso, se adopta un requisito de apuntamiento de $\leq 1°$, equivalente a un error de geolocalización de $\approx 9$\,km en tierra. Este margen es coherente con la resolución de los instrumentos de referencia (OCO-2, TROPOMI) y con las necesidades de detección de tendencias climáticas a escala regional.
+
+\subsection*{Sistema seleccionado}
+
+Los magnetopares son la tecnología más eficiente en masa y consumo para nanosatélites en LEO, pero presentan una limitación fundamental: solo pueden generar par perpendicular al campo magnético local, lo que deja un eje sin control en cada instante. Para compensar esta limitación y garantizar el apuntamiento nadir, se propone combinar dos elementos pasivos/activos:
+
+\begin{enumerate}
+    \item \textbf{Barra de gradiente gravitatorio} (masa $\approx 10$\,g): proporciona estabilización pasiva en la dirección nadir mediante el par diferencial gravitatorio. Logra apuntamiento de 3--5° sin consumo eléctrico. Ampliamente utilizado en nanosatélites de observación como las misiones QB50 \cite{QB50_2017}.
+    \item \textbf{Magnetopares triaxiales GMAT-1} (masa\,=\,40\,g, consumo máx.\,=\,0,25\,W): actúan como amortiguador activo de las oscilaciones residuales y controlan la velocidad de balanceo. Para la órbita SSO amanecer-anochecer (LTAN\,=\,06:00\,h), el campo magnético es aproximadamente perpendicular al plano orbital durante la mayor parte de la órbita, lo que favorece la controlabilidad triaxial \cite{satcatalog:gmat1}.
+\end{enumerate}
+
+La combinación de ambos sistemas logra un apuntamiento final de $\sim1$--$2°$, cumpliendo el requisito establecido. Si en versiones futuras se requiere un apuntamiento $< 0{,}1°$ (cartografía de precisión), se deberá incorporar una rueda de reacción o un sistema ADCS más avanzado, como el CubeADCS Nano de CubeSpace o el iADCS de ISISPACE.
 
 \begin{figure}[H]
     \centering
@@ -246,7 +267,7 @@ El subsistema de control de actitud (ADCS) tiene como misión mantener la orient
     \caption{Magnetotorque GMAT-1. \\Fuente: \cite{satcatalog:gmat1}}
 \end{figure}
 
-Para satisfacer estos requisitos, se selecciona un sistema de control basado exclusivamente en magnetopares triaxiales, integrados en un único módulo: \textbf{GMAT-1}, del fabricante\textbf{ Michigan Aerospace Manufacturers Association}. Este sistema incluye un magnetómetro para la medición precisa del campo magnético terrestre y algoritmos de control embebidos. La elección de magnetopares responde a criterios de simplicidad, bajo consumo, mínimo volumen y masa, y capacidad suficiente para mantener el apuntamiento nadir. Su consumo máximo es de 0,25 W, y con una masa de 0,05 kg, representa aproximadamente el 6\% de la masa total del satélite \cite{satcatalog:gmat1}.
+La masa total del subsistema ADCS (barra de gradiente + magnetopares + margen) es de 0,05\,kg, representando el 2,9\,\% de la masa total del satélite.
 
 \section{Comunicaciones}
 
@@ -261,16 +282,16 @@ El subsistema de comunicaciones se basa exclusivamente en usar una de la bandas 
 
  Para las comunicaciones, se ha seleccionado un transmisor en banda X modelo \textbf{X-Band del fabricante EnduroSat}. Este dispositivo opera en el rango de frecuencias comprendido entre 8,000y 8,400 GHz, permitiendo una tasa de transmisión de datos media de 150 Mbps. La potencia de salida es de 2 W, con un consumo eléctrico en transmisión de 22 W y una masa aproximada de 270 g \cite{endurosat_xband_2025}.
 
-Por tanto, el sistema de comunicaciones suma 270 g, o un \% de la masa total.
+Por tanto, el sistema de comunicaciones suma 270 g, o un 15,8\,\% de la masa total del satélite.
 
 \section{Subsistema eléctrico}
 
 El subsistema eléctrico, se encarga de generar, almacenar, acondicionar y distribuir la energía eléctrica que requieren todos los componentes del satélite para su operación. Para dimensionarlo, se puede realizar un presupuesto de potencia. En él, se considerarán 3 modos de operación:
 
 \begin{itemize}
-    \item Toma de datos activa: Corresponde a la operación nominal del instrumento. Los consumos son: instrumento (\SI{0,2}{W}), sistema de control de actitud o ACDS (\SI{0,25}{W}) y el ordenador de a bordo u OBC\footnote{El \textit{On Board Computer} (Ordenador de Abordo), se define más adelante.} (\SI{0,4}{W}). El consumo total en este modo es de \textbf{\SI{0,85}{W}}
-    \item \textit{Standby} o hibernación: Modo de bajo consumo para los periodos de inactividad. Los sistemas activos son: ACDS en modo mantenimiento (\SI{0,05}{W}) y OBC (\SI{0,4}{W}). El consumo total en este modo es de \textbf{\SI{0,45}{W}}.
-    \item Transmisión de datos: Es el modo de mayor demanda energética, activado para la descarga de datos a la estación de Tierra. Los consumos son: transmisor EnduroSat X-Band (\SI{20}{W}), instrumento (\SI{0,2}{W}), ACDS (\SI{0,25}{W}) y OBC (\SI{0,4}{W}). El consumo total en este modo asciende a \textbf{\SI{20,85}{W}}.
+    \item Toma de datos activa: Corresponde a la operación nominal del instrumento. Los consumos son: instrumento (\SI{0,2}{W}), sistema de control de actitud o ADCS (\SI{0,25}{W}) y el ordenador de a bordo u OBC\footnote{El \textit{On Board Computer} (Ordenador de Abordo), se define más adelante.} (\SI{0,4}{W}). El consumo total en este modo es de \textbf{\SI{0,85}{W}}
+    \item \textit{Standby} o hibernación: Modo de bajo consumo para los periodos de inactividad. Los sistemas activos son: ADCS en modo mantenimiento (\SI{0,05}{W}) y OBC (\SI{0,4}{W}). El consumo total en este modo es de \textbf{\SI{0,45}{W}}.
+    \item Transmisión de datos: Es el modo de mayor demanda energética, activado para la descarga de datos a la estación de Tierra. Los consumos son: transmisor EnduroSat X-Band (\SI{22}{W}) \cite{endurosat_xband_2025}, instrumento (\SI{0,2}{W}), ADCS (\SI{0,25}{W}) y OBC (\SI{0,4}{W}). El consumo total en este modo asciende a \textbf{\SI{22,85}{W}}.
 \end{itemize}
 
 \subsubsection{Dimensionado de los paneles}
@@ -287,11 +308,17 @@ Esta potencia es suficiente para alimentar los modos de operación nominales y p
 
 \subsubsection{Dimensionado de baterías}
 
-Las baterías de iones de litio se dimensionan para suplir el déficit energético durante el modo de transmisión, que presenta el mayor consumo. El déficit de potencia a cubrir es de \(\SI{20,85}{W} - \SI{12,47}{W} = \SI{8,38}{W}\).
+Las baterías de iones de litio se dimensionan para suplir el déficit energético durante el modo de transmisión, que presenta el mayor consumo. El déficit de potencia a cubrir es:
+\[
+P_{\text{déficit}} = \SI{22,85}{W} - \SI{12,47}{W} = \SI{10,38}{W}.
+\]
+Teniendo en cuenta que, según el análisis del segmento tierra (Cap.~\ref{tierra}), el tiempo de contacto máximo por paso es de 15 minutos, la energía requerida de la batería es:
+\[
+E_{\text{bat}} = \SI{10,38}{W} \times 0{,}25\ \text{h} = \SI{2,60}{Wh}.
+\]
+Con una densidad energética de \(\SI{200}{Wh/kg}\) \cite{sunket2025lithium}, la masa mínima para el almacenamiento es de $2{,}60/200 = 0{,}013$\,kg. Se adopta \textbf{\SI{0,013}{kg}} como valor de diseño.
 
-Considerando una duración de transmisión acumulada de 1 hora por día aproximadamente, la energía requerida de la batería es de aproximadamente \SI{8,38}{Wh}. Con una densidad energética de \(\SI{200}{Wh/kg}\), la masa necesaria para el almacenamiento es de \textbf{\SI{0,029}{kg}}\cite{sunket2025lithium}.
-
-La masa total del subsistema eléctrico resultante (\(m_{\text{panel}} + m_{\text{batería}}\)) asciende a \SI{0,258}{kg}. Este valor es consistente con la asignación inicial del presupuesto de masas, validando la configuración propuesta. Considerando que los requerimientos de potencia son laxos, pues el tiempo de transmisión de datos en continuo nunca superará más de los 15 minutos, y el satélite nunca entrará en un eclipse, el dimensionado supone una aproximación favorable a lo esperado en la práctica.
+La masa total del subsistema eléctrico resultante (\(m_{\text{panel}} + m_{\text{batería}}\)) asciende a \SI{0,242}{kg}. Este valor es consistente con la asignación del presupuesto de masas, validando la configuración propuesta. Considerando que los requerimientos de potencia son laxos, pues el tiempo de transmisión de datos en continuo nunca superará más de los 15 minutos, y que para una órbita SSO amanecer-anochecer (LTAN\,=\,06:00\,h) el ángulo $\beta$ es elevado durante la mayor parte del año, los eclipses son breves o inexistentes en la mayoría de las fases de la misión, el dimensionado supone una aproximación favorable a lo esperado en la práctica.
 
 
 \section{Dimensionado de la planta de potencia}
