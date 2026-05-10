@@ -1,14 +1,14 @@
 \begin{lstlisting}[language=Matlab]
 
-% Configurar intérprete LaTeX por defecto
+% Configurar interprete LaTeX por defecto
 set(groot, 'defaultTextInterpreter', 'latex');
 set(groot, 'defaultAxesTickLabelInterpreter', 'latex');
 set(groot, 'defaultLegendInterpreter', 'latex');
 
-% Configuración de la figura
+% Configuracion de la figura
 figure('Position', [100, 100, 1200, 400]);
 
-% Definición de bandas:
+% Definicion de bandas:
 % Banda S: 2-4 GHz
 t1 = 2e9;
 t2 = 4e9;
@@ -28,11 +28,11 @@ pos_banda_x = 2;
 pos_banda_s = 3;
 height = 0.8;
 
-% Crear el gráfico con escala logarítmica
-semilogx([1e9, 1e15], [0, 0], 'HandleVisibility', 'off'); % Línea invisible
+% Crear el grafico con escala logaritmica
+semilogx([1e9, 1e15], [0, 0], 'HandleVisibility', 'off'); % Linea invisible
 hold on;
 
-% Dibujar las bandas usando rectángulos 
+% Dibujar las bandas usando rectangulos 
 rectangle('Position', [t1, pos_banda_s, t2-t1, height], ...
           'FaceColor', [0.12, 0.47, 0.71], 'EdgeColor', 'none');
 
@@ -50,7 +50,7 @@ h2 = plot(NaN, NaN, 's', 'MarkerSize', 15, 'MarkerFaceColor', [1.0, 0.5, 0.05], 
 h3 = plot(NaN, NaN, 's', 'MarkerSize', 15, 'MarkerFaceColor', [0.17, 0.63, 0.17], ...
           'MarkerEdgeColor', 'none');
 
-% Configuración de etiquetas y título
+% Configuracion de etiquetas y titulo
 xlabel('Frecuencia (Hz, escala logaritmica)');
 ylabel('Componentes');
 
@@ -60,7 +60,7 @@ yticklabels({'Detector', 'Banda X', 'Banda S'});
 
 title('Ubicacion de las Bandas S, X y Detector en el Espectro de Frecuencias');
 
-% Ajustar límites
+% Ajustar limites
 xlim([1e9, 1e15]);
 ylim([0.5, 4]);
 

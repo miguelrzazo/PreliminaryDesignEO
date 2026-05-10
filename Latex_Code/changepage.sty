@@ -2,6 +2,8 @@
 % This provides a lightweight `adjustwidth` environment for local use.
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{changepage}[2025/12/25 Local minimal changepage]
+\DeclareOption{strict}{}  % accept but ignore: not needed for this stub
+\ProcessOptions\relax
 \newlength{\cp@leftmargin}
 \newlength{\cp@rightmargin}
 \newenvironment{adjustwidth}[2]{%
@@ -15,3 +17,5 @@
     \setlength{\itemsep}{0pt}
   }\item[]
 }{\endlist}
+% starred variant: identical to non-starred for single-sided documents
+\newenvironment{adjustwidth*}[2]{\begin{adjustwidth}{#1}{#2}}{\end{adjustwidth}}

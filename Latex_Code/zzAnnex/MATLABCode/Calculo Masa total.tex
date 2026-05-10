@@ -1,13 +1,13 @@
 \begin{lstlisting}[language=Matlab]
 
-function [total_mass, fuel_mass, num_impulses, total_delta_v] = calcularMasaTotal(h0_array, masa_seca, Am)    %% ParÃ¡metros iniciales
+function [total_mass, fuel_mass, num_impulses, total_delta_v] = calcularMasaTotal(h0_array, masa_seca, Am)    %% ParA!metros iniciales
     %% Paraimetros iniciales
     mu = 3.986004418e14; % Parametro gravitacional
     R_earth = 6378e3; % Radio terrestre (m)
     Cd = 2.5; % Coeficiente de arrastre
-    Isp = 220; % Impulso espec­fico (s)
+    Isp = 220; % Impulso especfico (s)
     g0 = 9.80665; % Gravedad 
-    mission_duration = 8 * 365.25 * 24 * 3600; % duracion mision, 8 años en seg
+    mission_duration = 8 * 365.25 * 24 * 3600; % duracion mision, 8 anos en seg
     
     %% Prealocar resultados
     num_impulses = zeros(size(h0_array));
@@ -32,7 +32,7 @@ function [total_mass, fuel_mass, num_impulses, total_delta_v] = calcularMasaTota
             h_threshold = 0.98 * h_target; % 98% de la altura objetivo ORIGINAL
             a_target = R_earth + h_threshold;
             
-            % Configurar opciones con tolerancias mÃ¡s estrictas y MaxStep
+            % Configurar opciones con tolerancias mA!s estrictas y MaxStep
             options = odeset('Events', @(t,a) decayEvent(t,a,a_target), ...
                            'RelTol', 1e-8, 'AbsTol', 1e-10, ...
                            'MaxStep', 86400); % 1 dia como paso maximo
@@ -48,7 +48,7 @@ function [total_mass, fuel_mass, num_impulses, total_delta_v] = calcularMasaTota
                 % Si hay un error, usar integracion paso a paso
                 fprintf('Error en ode45 para altura %d km: %s\n', h0, ME.message);
                 
-                % Enfoque alternativo con pasos pequeños
+                % Enfoque alternativo con pasos pequenos
                 dt_manual = 3600; % Paso de 1 hora
                 t_elapsed = 0;
                 a_current = a_initial;

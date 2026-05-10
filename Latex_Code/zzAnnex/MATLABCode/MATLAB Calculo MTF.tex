@@ -2,7 +2,7 @@
 
 function MTFfunction(lambda, pixel_size, MTF_Detector, MTF_alineamiento, GSD, R, alturas_orbitales, diametros_pupila, filename_prefix, telescope_name, detector_idx,MTF_req)
 
-%% Parámetros MTF adicionales
+%% Parametros MTF adicionales
 MTF_aberraciones = 0.95;
 MTF_fabricacion = 0.98;
 MTF_vibraciones = 0.99;
@@ -13,7 +13,7 @@ MTF_resto = MTF_Margen * MTF_vibraciones * MTF_fabricacion * MTF_Termoelastico *
 %% Inicializar matriz MTF
 MTF_total = zeros(length(alturas_orbitales), length(diametros_pupila));
 
-%% Cálculo MTF para cada combinación altura-diámetro
+%% Calculo MTF para cada combinacion altura-diametro
 for i = 1:length(alturas_orbitales)
     for j = 1:length(diametros_pupila)
         altura_m = alturas_orbitales(i) * 1e3;
@@ -31,32 +31,32 @@ for i = 1:length(alturas_orbitales)
             f_x = f_co;
         end
         
-        % Cálculo para sistema con obscuración central (ecuaciones 6-10 a 6-15)
+        % Calculo para sistema con obscuracion central (ecuaciones 6-10 a 6-15)
         X = f_x / f_co;
         Y = X / R;
         
-        % Cálculo de alpha según la ecuación 6-12
+        % Calculo de alpha segun la ecuacion 6-12
         if (1 + R^2 - 4*X^2) / (2*R) >= -1 && (1 + R^2 - 4*X^2) / (2*R) <= 1
             alpha = acos((1 + R^2 - 4*X^2) / (2*R));
         else
             alpha = 0;
         end
         
-        % Cálculo de A (ecuación 6-13)
+        % Calculo de A (ecuacion 6-13)
         if 0 <= X && X <= 1
             A = (2/pi) * (acos(X) - X*sqrt(1 - X^2));
         else
             A = 0;
         end
         
-        % Cálculo de B (ecuación 6-14)
+        % Calculo de B (ecuacion 6-14)
         if 0 <= Y && Y <= 1
             B = (2*R^2/pi) * (acos(Y) - Y*sqrt(1 - Y^2));
         else
             B = 0;
         end
         
-        % Cálculo de C (ecuaciones 6-15)
+        % Calculo de C (ecuaciones 6-15)
         if 0 < X && X <= (1-R)/2
             C = -2*R^2;
         elseif (1-R)/2 < X && X < (1+R)/2
@@ -67,7 +67,7 @@ for i = 1:length(alturas_orbitales)
             C = 0;
         end
         
-        % Cálculo del OTF difracción según ecuación 6-10
+        % Calculo del OTF difraccion segun ecuacion 6-10
         MTF_difraccion = (A + B + C) / (1 - R^2);
         
         % Si el valor es negativo o NaN, ajustarlo a 0
@@ -87,19 +87,19 @@ for i = 1:length(alturas_orbitales)
     end
 end
 
-%% Generar heatmap con paleta parula y límites optimizados
+%% Generar heatmap con paleta parula y limites optimizados
 fig = figure('Visible', 'off', 'Position', [100, 100, 900, 700]);
 h = imagesc(diametros_pupila, alturas_orbitales, MTF_total);
 
-% Aplicar técnica AlphaData para mostrar NaN como blanco
+% Aplicar tecnica AlphaData para mostrar NaN como blanco
 set(h, 'AlphaData', ~isnan(MTF_total));
 set(gca, 'Color', [1 1 1]); % Fondo blanco
 
-% Configurar paleta y límites
+% Configurar paleta y limites
 colormap(parula);
-clim([0.25 0.35]); % Límites optimizados para MTF
+clim([0.25 0.35]); % Limites optimizados para MTF
 
-% Configuración de ejes
+% Configuracion de ejes
 axis xy;
 
 ylabel('Altura Orbital (km)', 'FontSize', 12, 'Interpreter', 'latex');
@@ -138,35 +138,35 @@ end
 MTF_table = array2table(MTF_total, 'RowNames', row_names, 'VariableNames', col_names);
 writetable(MTF_table, [filename_prefix '_resultados.csv'], 'WriteRowNames', true);
 
-%% Generar archivo de estadísticas TXT
+%% Generar archivo de estadisticas TXT
 fid = fopen([filename_prefix '_estadisticas.txt'], 'w');
-fprintf(fid, '=== ANÁLISIS MTF ===\n\n');
+fprintf(fid, '=== ANALISIS MTF ===\n\n');
 fprintf(fid, 'Telescopio: %s\n', telescope_name);
 fprintf(fid, 'Detector: %d\n', detector_idx);
 fprintf(fid, 'Longitud de onda: %.2f um\n', lambda*1e6);
 fprintf(fid, 'GSD: %d m\n', GSD);
 fprintf(fid, 'Requirement MTF: => 0.25\n\n');
 
-% Estadísticas de valores válidos (no NaN)
+% Estadisticas de valores validos (no NaN)
 valid_mtf = MTF_total(~isnan(MTF_total));
 if ~isempty(valid_mtf)
-    fprintf(fid, 'Estadísticas de valores válidos (MTF => 0.25):\n');
-    fprintf(fid, 'Valores válidos: %d de %d (%.1f%%)\n', length(valid_mtf), numel(MTF_total), 100*length(valid_mtf)/numel(MTF_total));
-    fprintf(fid, 'MTF mínimo: %.4f\n', min(valid_mtf));
-    fprintf(fid, 'MTF máximo: %.4f\n', max(valid_mtf));
+    fprintf(fid, 'Estadisticas de valores validos (MTF => 0.25):\n');
+    fprintf(fid, 'Valores validos: %d de %d (%.1f%%)\n', length(valid_mtf), numel(MTF_total), 100*length(valid_mtf)/numel(MTF_total));
+    fprintf(fid, 'MTF minimo: %.4f\n', min(valid_mtf));
+    fprintf(fid, 'MTF maximo: %.4f\n', max(valid_mtf));
     fprintf(fid, 'MTF promedio: %.4f\n', mean(valid_mtf));
     fprintf(fid, 'MTF mediana: %.4f\n', median(valid_mtf));
 else
-    fprintf(fid, 'No hay valores válidos que cumplan el requirement MTF => 0.25\n');
+    fprintf(fid, 'No hay valores validos que cumplan el requirement MTF => 0.25\n');
 end
 
-fprintf(fid, '\nParámetros del análisis:\n');
+fprintf(fid, '\nParametros del analisis:\n');
 fprintf(fid, 'Rango alturas: %d - %d km\n', min(alturas_orbitales), max(alturas_orbitales));
-fprintf(fid, 'Rango diámetros: %d - %d mm\n', min(diametros_pupila), max(diametros_pupila));
-fprintf(fid, 'Obscuración central: %.1f\n', R);
+fprintf(fid, 'Rango diametros: %d - %d mm\n', min(diametros_pupila), max(diametros_pupila));
+fprintf(fid, 'Obscuracion central: %.1f\n', R);
 fprintf(fid, 'MTF alineamiento: %.2f\n', MTF_alineamiento);
 fprintf(fid, 'MTF detector: %.2f\n', MTF_Detector);
-fprintf(fid, 'Tamaño pixel: %.1f um\n', pixel_size*1e6);
+fprintf(fid, 'Tamano pixel: %.1f um\n', pixel_size*1e6);
 
 fclose(fid);
 

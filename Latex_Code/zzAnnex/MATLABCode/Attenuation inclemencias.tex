@@ -1,36 +1,36 @@
 \begin{lstlisting}[language=Matlab]
 
-%% Modelado de Atenuación por Inclemencias del Tiempo en Banda X
+%% Modelado de Atenuacion por Inclemencias del Tiempo en Banda X
 % Este script simula la velocidad de descarga en banda X bajo diferentes
-% condiciones meteorológicas durante un año completo
+% condiciones meteorologicas durante un ano completo
 
-%% Configuración inicial
+%% Configuracion inicial
 clear; clc; close all;
 
 % Establecer semilla para reproducibilidad
 rng(42);
 
-% Configurar intérprete LaTeX por defecto
+% Configurar interprete LaTeX por defecto
 set(groot, 'defaultAxesTickLabelInterpreter', 'latex');
 set(groot, 'defaultTextInterpreter', 'latex');
 set(groot, 'defaultLegendInterpreter', 'latex');
 
-% Parámetros de simulación
-dias_simulacion = 365; % Un año completo
+% Parametros de simulacion
+dias_simulacion = 365; % Un ano completo
 
-% Parámetros de velocidad (Mbps) - [min, max]
+% Parametros de velocidad (Mbps) - [min, max]
 VELOCIDADES = containers.Map(...
     {'Cielo despejado', 'Lluvia moderada', 'Tormenta extrema', 'Nubes densas'}, ...
     {[120, 150], [75, 100], [22, 38], [90, 110]});
 
-% Probabilidades de condiciones meteorológicas por estación (%)
+% Probabilidades de condiciones meteorologicas por estacion (%)
 PROBABILIDADES_ESTACION = containers.Map(...
     {'Primavera', 'Verano', 'Otono', 'Invierno'}, ...
     {[60, 30, 5, 5], [50, 40, 5, 5], [70, 20, 5, 5], [80, 15, 3, 2]});
 
 condiciones_nombres = {'Cielo despejado', 'Lluvia moderada', 'Tormenta extrema', 'Nubes densas'};
 
-%% Función para asignar estación
+%% Funcion para asignar estacion
 function estacion = asignar_estacion(dia)
     if dia >= 80 && dia <= 172
         estacion = 'Primavera';
@@ -43,7 +43,7 @@ function estacion = asignar_estacion(dia)
     end
 end
 
-%% Generar datos meteorológicos diarios
+%% Generar datos meteorologicos diarios
 condiciones_diarias = cell(dias_simulacion, 1);
 velocidades_diarias = zeros(dias_simulacion, 1);
 
@@ -51,7 +51,7 @@ for dia = 1:dias_simulacion
     estacion = asignar_estacion(dia);
     probabilidades = PROBABILIDADES_ESTACION(estacion);
     
-    % Generar condición meteorológica según probabilidades
+    % Generar condicion meteorologica segun probabilidades
     rand_val = rand() * 100;
     if rand_val <= probabilidades(1)
         condicion = condiciones_nombres{1};
@@ -63,7 +63,7 @@ for dia = 1:dias_simulacion
         condicion = condiciones_nombres{4};
     end
     
-    % Generar velocidad según la condición
+    % Generar velocidad segun la condicion
     rango_velocidad = VELOCIDADES(condicion);
     velocidad = rango_velocidad(1) + rand() * (rango_velocidad(2) - rango_velocidad(1));
     
@@ -71,7 +71,7 @@ for dia = 1:dias_simulacion
     velocidades_diarias(dia) = velocidad;
 end
 
-%% Cálculo de velocidad promedio semanal
+%% Calculo de velocidad promedio semanal
 num_semanas = floor(dias_simulacion / 7);
 semanas = 1:num_semanas;
 velocidades_semanales = zeros(1, num_semanas);
@@ -83,18 +83,18 @@ for i = 1:num_semanas
 end
 media_anual = mean(velocidades_semanales);
 
-%% Gráfica de velocidad promedio semanal
+%% Grafica de velocidad promedio semanal
 figure('Position', [100, 100, 1000, 600]);
 hold on;
 
-% Usar colores más visibles y contrastantes
-color_principal = [0, 0.4470, 0.7410]; % Azul más visible
+% Usar colores mas visibles y contrastantes
+color_principal = [0, 0.4470, 0.7410]; % Azul mas visible
 color_media = [0.8500, 0.3250, 0.0980]; % Naranja para contraste
 
 plot(semanas, velocidades_semanales, 'o-', 'Color', color_principal, ...
     'LineWidth', 2.5, 'MarkerSize', 8, 'MarkerFaceColor', color_principal);
 
-% Línea de media anual con color contrastante
+% Linea de media anual con color contrastante
 yline(media_anual, '--', 'Color', color_media, 'LineWidth', 3, ...
     'DisplayName', sprintf('Media anual (%.1f Mbps)', media_anual));
 
@@ -111,11 +111,11 @@ legend({'Velocidad promedio semanal', sprintf('Media anual (%.1f Mbps)', media_a
 hold off;
 
 
-%% Gráfica de velocidad diaria
+%% Grafica de velocidad diaria
 figure('Position', [150, 150, 1000, 600]);
 hold on;
 
-% Definir colores más visibles y diferenciables
+% Definir colores mas visibles y diferenciables
 colores_visibles = [
     0, 0.4470, 0.7410;      % Azul para cielo despejado
     0.8500, 0.3250, 0.0980; % Naranja para lluvia moderada  
@@ -127,7 +127,7 @@ colores_map = containers.Map(condiciones_nombres, ...
     {colores_visibles(1,:), colores_visibles(2,:), ...
      colores_visibles(3,:), colores_visibles(4,:)});
 
-% Graficar puntos por condición con mayor tamaño
+% Graficar puntos por condicion con mayor tamano
 for i = 1:length(condiciones_nombres)
     condicion = condiciones_nombres{i};
     indices = strcmp(condiciones_diarias, condicion);
@@ -140,7 +140,7 @@ for i = 1:length(condiciones_nombres)
         'DisplayName', condicion);
 end
 
-% Línea de media anual en negro para mejor contraste
+% Linea de media anual en negro para mejor contraste
 media_anual_diaria = mean(velocidades_diarias);
 yline(media_anual_diaria, '--', 'Color', 'k', 'LineWidth', 3, ...
     'DisplayName', sprintf('Media anual (%.1f Mbps)', media_anual_diaria));
@@ -154,9 +154,9 @@ legend('Location', 'best', 'FontSize', 11);
 hold off;
 
 
-%% Resumen estadístico
-fprintf('\nResumen Estadístico:\n');
-fprintf('%-20s %-10s %-10s %-12s\n', 'Condición', 'Media', 'Días', 'Porcentaje');
+%% Resumen estadistico
+fprintf('\nResumen Estadistico:\n');
+fprintf('%-20s %-10s %-10s %-12s\n', 'Condicion', 'Media', 'Dias', 'Porcentaje');
 fprintf('%-20s %-10s %-10s %-12s\n', repmat('-', 1, 20), repmat('-', 1, 10), ...
         repmat('-', 1, 10), repmat('-', 1, 12));
 
@@ -173,7 +173,7 @@ for i = 1:length(condiciones_nombres)
             num_dias, porcentaje);
 end
 
-fprintf('\nTotal de días simulados: %d\n', dias_simulacion);
+fprintf('\nTotal de dias simulados: %d\n', dias_simulacion);
 fprintf('Velocidad promedio general: %.1f Mbps\n', mean(velocidades_diarias));
 
 

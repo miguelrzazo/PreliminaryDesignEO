@@ -2,17 +2,17 @@
 
 function ConfigAnalysis(params)
 
-% ConfigAnalysis: Realiza un análisis exhaustivo de todas las
-% configuraciones viables, integrando rendimiento, coste y parámetros orbitales.
+% ConfigAnalysis: Realiza un analisis exhaustivo de todas las
+% configuraciones viables, integrando rendimiento, coste y parametros orbitales.
 
 %% ========================================================================
-% 1. INICIALIZACIÓN Y DESEMPAQUETADO DE PARÁMETROS
+% 1. INICIALIZACION Y DESEMPAQUETADO DE PARAMETROS
 % ========================================================================
 fprintf('\n==========================================================\n');
-fprintf('INICIANDO ANÁLISIS EXHAUSTIVO DE CONFIGURACIONES...\n');
+fprintf('INICIANDO ANALISIS EXHAUSTIVO DE CONFIGURACIONES...\n');
 fprintf('==========================================================\n\n');
 
-% --- Desempaquetar el struct de parámetros
+% --- Desempaquetar el struct de parametros
 satellite_configs = params.satellite_configs;
 telescope_names = params.telescope_names;
 alturas_orbitales = params.alturas_orbitales;
@@ -22,17 +22,17 @@ GSD = params.GSD;
 Pixel_size = params.Pixel_size;
 LTAN_hour = params.LTAN_hour;
 
-% --- Constantes físicas y orbitales
+% --- Constantes fisicas y orbitales
 R_E_m = 6378.137 * 1000;
 mu_E = 3.986004418e14;
 J2 = 1.08262668e-3;
 
-% --- Configuración de salida
+% --- Configuracion de salida
 output_dir = 'OptimumConfigs';
 if ~exist(output_dir, 'dir'), mkdir(output_dir); end
 
 %% ========================================================================
-% 2. PROCESAMIENTO DE SOLUCIONES Y CÁLCULO DE PARÁMETROS
+% 2. PROCESAMIENTO DE SOLUCIONES Y CALCULO DE PARAMETROS
 % ========================================================================
 results_data = {};
 global_best.mass = Inf;
@@ -140,13 +140,13 @@ for config_idx = 1:size(satellite_configs, 1)
     end
 end
 
-fprintf('Análisis detallado completado. Se encontraron %d soluciones viables.\n', size(results_data,1));
+fprintf('Analisis detallado completado. Se encontraron %d soluciones viables.\n', size(results_data,1));
 
 %% ========================================================================
-% 3. EXPORTACIÓN DE RESULTADOS (CSV Y TXT)
+% 3. EXPORTACION DE RESULTADOS (CSV Y TXT)
 % ========================================================================
 if isempty(results_data)
-    fprintf('ADVERTENCIA: No se encontraron soluciones válidas.\n');
+    fprintf('ADVERTENCIA: No se encontraron soluciones validas.\n');
     return;
 end
 
@@ -174,37 +174,37 @@ fprintf('Reporte CSV completo guardado en: %s\n', csv_filename);
 txt_filename = fullfile(output_dir, 'reporte_resumen_configuraciones.txt');
 fileID = fopen(txt_filename, 'w');
 fprintf(fileID, '==========================================================\n');
-fprintf(fileID, ' INFORME DE ANÁLISIS DE CONFIGURACIONES\n');
+fprintf(fileID, ' INFORME DE ANALISIS DE CONFIGURACIONES\n');
 fprintf(fileID, '==========================================================\n\n');
 
 if ~isinf(global_best.mass)
-    fprintf(fileID, '--- ÓPTIMO GLOBAL (Masa Mínima de Constelación) ---\n');
+    fprintf(fileID, '--- OPTIMO GLOBAL (Masa Minima de Constelacion) ---\n');
     data = global_best.data;
-    fprintf(fileID, 'Masa Total de la Constelación: %.2f kg\n\n', global_best.mass);
-    fprintf(fileID, ' > Configuración: %d Satélite(s), %d Telescopio(s)/sat, %d Detector(es) Necesario(s), ID Detector %d con %s\n', data{1}, data{2}, data{3}, data{4}, data{5});
-    fprintf(fileID, ' > Órbita: %d km, %.2f° inc, Desfase Anom. %.1f°\n', data{6}, data{13}, data{15});
-    fprintf(fileID, ' > Rendimiento: Swath Requerido=%.1f km (Real=%.1f km, Excedente=%.1f%%) | Cobertura=%.1f días\n', data{8}, data{10}, data{12}, data{9});
-    fprintf(fileID, ' > Parámetros Ópticos: D=%.1f mm, F=%.2f m (f/%.1f) | MTF@Nyquist=%.3f, SNR=%.1f\n', data{7}, data{18}, data{19}, data{16}, data{17});
-    fprintf(fileID, ' > Prop. Físicas (Instrumento): Masa=%.2f kg, Long=%.2f m, Área=%.2f m^2, Vol=%.6f m^3, Potencia=%.1f W\n', data{20}, data{21}, data{22}, data{23}, data{24});
-    fprintf(fileID, ' > Prop. Físicas (Satélite): Long=%.2f m, Área=%.2f m^2, Vol=%.6f m^3, Estándar U=%.2f U\n', data{33}, data{34}, data{35}, data{36});
-    fprintf(fileID, ' > Masa Satélite: Total=%.2f kg (Seca=%.2f kg, Combustible=%.2f kg)\n', data{27}, data{25}, data{26});
+    fprintf(fileID, 'Masa Total de la Constelacion: %.2f kg\n\n', global_best.mass);
+    fprintf(fileID, ' > Configuracion: %d Satelite(s), %d Telescopio(s)/sat, %d Detector(es) Necesario(s), ID Detector %d con %s\n', data{1}, data{2}, data{3}, data{4}, data{5});
+    fprintf(fileID, ' > Orbita: %d km, %.2fdeg inc, Desfase Anom. %.1fdeg\n', data{6}, data{13}, data{15});
+    fprintf(fileID, ' > Rendimiento: Swath Requerido=%.1f km (Real=%.1f km, Excedente=%.1f%%) | Cobertura=%.1f dias\n', data{8}, data{10}, data{12}, data{9});
+    fprintf(fileID, ' > Parametros Opticos: D=%.1f mm, F=%.2f m (f/%.1f) | MTF@Nyquist=%.3f, SNR=%.1f\n', data{7}, data{18}, data{19}, data{16}, data{17});
+    fprintf(fileID, ' > Prop. Fisicas (Instrumento): Masa=%.2f kg, Long=%.2f m, Area=%.2f m^2, Vol=%.6f m^3, Potencia=%.1f W\n', data{20}, data{21}, data{22}, data{23}, data{24});
+    fprintf(fileID, ' > Prop. Fisicas (Satelite): Long=%.2f m, Area=%.2f m^2, Vol=%.6f m^3, Estandar U=%.2f U\n', data{33}, data{34}, data{35}, data{36});
+    fprintf(fileID, ' > Masa Satelite: Total=%.2f kg (Seca=%.2f kg, Combustible=%.2f kg)\n', data{27}, data{25}, data{26});
     fprintf(fileID, ' > Mantenimiento: %d impulsos, Delta-V Total %.1f m/s\n\n', data{29}, data{30});
 end
 
 fprintf(fileID, '\n==========================================================\n');
-fprintf(fileID, ' LISTADO DE TODAS LAS CONFIGURACIONES VÁLIDAS\n');
-fprintf(fileID, ' (Ordenadas por masa total de la constelación)\n');
+fprintf(fileID, ' LISTADO DE TODAS LAS CONFIGURACIONES VALIDAS\n');
+fprintf(fileID, ' (Ordenadas por masa total de la constelacion)\n');
 fprintf(fileID, '==========================================================\n\n');
 
 for i = 1:height(results_table)
     row = table2cell(results_table(i,:));
-    fprintf(fileID, '--- Solución #%d ---\n', i);
-    fprintf(fileID, 'Masa Constelación: %.2f kg | Masa Satélite Total: %.2f kg (Seca: %.2f kg, Comb: %.2f kg)\n', row{28}, row{27}, row{25}, row{26});
-    fprintf(fileID, ' > Configuración: %d Sat, %d Tel, %d Dets | ID Detector: %d | Telescopio: %s\n', row{1}, row{2}, row{3}, row{4}, row{5});
-    fprintf(fileID, ' > Órbita: %.0f km alt, %.2f° inc (SSO), LTAN %d h, Desfase Anom. %.1f°\n', row{6}, row{13}, row{14}, row{15});
-    fprintf(fileID, ' > Rendimiento: Swath Requerido=%.1f km (Real=%.1f km, Excedente=%.1f%%) | Cobertura=%.1f días\n', row{8}, row{10}, row{12}, row{9});
-    fprintf(fileID, ' > Parámetros Ópticos: D=%.1f mm, F=%.2f m (f/%.1f) | MTF@Nyquist=%.3f, SNR=%.1f\n', row{7}, row{18}, row{19}, row{16}, row{17});
-    fprintf(fileID, ' > Prop. Físicas (Satélite): Long=%.2f m, Área=%.2f m^2, Vol=%.6f m^3, Estándar U=%.2f U\n', row{33}, row{34}, row{35}, row{36});
+    fprintf(fileID, '--- Solucion #%d ---\n', i);
+    fprintf(fileID, 'Masa Constelacion: %.2f kg | Masa Satelite Total: %.2f kg (Seca: %.2f kg, Comb: %.2f kg)\n', row{28}, row{27}, row{25}, row{26});
+    fprintf(fileID, ' > Configuracion: %d Sat, %d Tel, %d Dets | ID Detector: %d | Telescopio: %s\n', row{1}, row{2}, row{3}, row{4}, row{5});
+    fprintf(fileID, ' > Orbita: %.0f km alt, %.2fdeg inc (SSO), LTAN %d h, Desfase Anom. %.1fdeg\n', row{6}, row{13}, row{14}, row{15});
+    fprintf(fileID, ' > Rendimiento: Swath Requerido=%.1f km (Real=%.1f km, Excedente=%.1f%%) | Cobertura=%.1f dias\n', row{8}, row{10}, row{12}, row{9});
+    fprintf(fileID, ' > Parametros Opticos: D=%.1f mm, F=%.2f m (f/%.1f) | MTF@Nyquist=%.3f, SNR=%.1f\n', row{7}, row{18}, row{19}, row{16}, row{17});
+    fprintf(fileID, ' > Prop. Fisicas (Satelite): Long=%.2f m, Area=%.2f m^2, Vol=%.6f m^3, Estandar U=%.2f U\n', row{33}, row{34}, row{35}, row{36});
     fprintf(fileID, '\n');
 end
 
@@ -212,11 +212,11 @@ fclose(fileID);
 fprintf('Reporte TXT detallado guardado en: %s\n', txt_filename);
 
 %% ========================================================================
-% 4. GENERACIÓN DE GRÁFICAS DE MASA
+% 4. GENERACION DE GRAFICAS DE MASA
 % ========================================================================
-fprintf('\nIniciando la generación de gráficas de desglose de masa...\n');
+fprintf('\nIniciando la generacion de graficas de desglose de masa...\n');
 GenerateMassPlots(results_table);
-fprintf('\nAnálisis finalizado.\n');
+fprintf('\nAnalisis finalizado.\n');
 end
 
 

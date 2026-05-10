@@ -1,5 +1,5 @@
 \begin{lstlisting}[language=Matlab]
-% Parámetros de lanzamiento
+% Parametros de lanzamiento
 lat_vafb = 34.7; % Latitud de Vandenberg
 lon_vafb = -120.6; % Longitud de Vandenberg
 
@@ -11,12 +11,12 @@ hold on;
 load coastlines;
 plot(coastlon, coastlat, 'k-', 'LineWidth', 0.5);
 
-% LÍMITES DE AZIMUT WTR (170° a 300°)
+% LIMITES DE AZIMUT WTR (170deg a 300deg)
 azimut_min = 170; 
 azimut_max = 300; 
 radio_linea = 15; 
 
-% Líneas de límite
+% Lineas de limite
 az_min_rad = deg2rad(azimut_min);
 lat_limite_min = lat_vafb + radio_linea * cos(az_min_rad);
 lon_limite_min = lon_vafb + radio_linea * sin(az_min_rad) / cosd(lat_vafb);
@@ -35,7 +35,7 @@ lats_arco = lat_vafb + radio_arco * cos(azimuts_arco_rad);
 lons_arco = lon_vafb + radio_arco * sin(azimuts_arco_rad) ./ cosd(lat_vafb);
 plot(lons_arco, lats_arco, 'k-', 'LineWidth', 1.5);
 
-% Trayectoria de lanzamiento (azimut 198°)
+% Trayectoria de lanzamiento (azimut 198deg)
 azimut = 198;
 azimut_rad = deg2rad(azimut);
 alcance_horizontal = 800;
@@ -54,7 +54,7 @@ plot(longitudes, latitudes, 'r-', 'LineWidth', 3);
 scatter(lon_vafb, lat_vafb, 150, 'g', 'filled');
 text(lon_vafb, lat_vafb + 1, 'Vandenberg SFB', 'FontSize', 12, 'FontWeight', 'bold', 'Interpreter', 'latex');
 
-% Etiquetas con símbolo de grados en LaTeX
+% Etiquetas con simbolo de grados en LaTeX
 text(lon_limite_min-1, lat_limite_min, '$170^{\circ}$', 'FontSize', 12, 'Color', 'black', 'Interpreter', 'latex');
 text(lon_limite_max-1, lat_limite_max, '$300^{\circ}$', 'FontSize', 12, 'Color', 'black', 'Interpreter', 'latex');
 text(lon_vafb-5, lat_vafb-4, 'WTR Allowable Range', 'FontSize', 10, 'Color', 'black', 'Interpreter', 'latex');
@@ -68,7 +68,7 @@ ylabel('Latitud ($^{\circ}$)', 'Interpreter', 'latex', 'FontSize', 12);
 title('L\''imites de Azimut WTR - Vandenberg SFB', 'Interpreter', 'latex', 'FontSize', 14);
 grid on;
 
-% Límites del mapa
+% Limites del mapa
 xlim([-130 -90]);
 ylim([20 50]);
 

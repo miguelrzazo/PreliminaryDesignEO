@@ -1,17 +1,17 @@
 \begin{lstlisting}[language=Matlab]
 
 function CrossDataFunction(alturas_orbitales, swaths_km, diametros_pupila, telescope_names, fov_limit, configs,MTF_Requirement,SNR_Requirement,Cov_Requirement)
-% CrossDataFunction: Analiza datos de MTF, SNR y cobertura para encontrar el diámetro
-% mínimo de pupila (Dmin) para diversas configuraciones de satélites,
+% CrossDataFunction: Analiza datos de MTF, SNR y cobertura para encontrar el diametro
+% minimo de pupila (Dmin) para diversas configuraciones de satelites,
 % telescopios, detectores y alturas orbitales.
 %
 % Inputs:
 %   alturas_orbitales - Vector con las alturas orbitales a analizar (km).
 %   swaths_km         - Vector con los anchos de barrido (swaths) a considerar (km).
-%   diametros_pupila  - Vector con los diámetros de pupila a evaluar (mm).
+%   diametros_pupila  - Vector con los diametros de pupila a evaluar (mm).
 %   telescope_names   - Cell array con los nombres de los telescopios.
-%   fov_limit         - Vector con los límites de campo de visión (FOV) para cada telescopio (grados).
-%   configs           - Matriz donde cada fila define una configuración [N_sat, N_telescopes].
+%   fov_limit         - Vector con los limites de campo de vision (FOV) para cada telescopio (grados).
+%   configs           - Matriz donde cada fila define una configuracion [N_sat, N_telescopes].
 
 % Crear directorio para resultados si no existe
 output_dir = 'HvsDmin';
@@ -19,16 +19,16 @@ if ~exist(output_dir, 'dir')
     mkdir(output_dir);
 end
 
-% Generar nombres para configuraciones dinámicamente para los nombres de archivo
+% Generar nombres para configuraciones dinamicamente para los nombres de archivo
 config_names = cell(1, size(configs, 1));
 for idx = 1:size(configs, 1)
     config_names{idx} = sprintf('%dsat_%dtel', configs(idx,1), configs(idx,2));
 end
 
-% Procesar cada configuración (combinación de número de satélites y telescopios por satélite)
+% Procesar cada configuracion (combinacion de numero de satelites y telescopios por satelite)
 for config_idx = 1:size(configs, 1)
-    N_sat = configs(config_idx, 1);        % Número de satélites en la constelación
-    N_telescopes = configs(config_idx, 2); % Número de telescopios por satélite
+    N_sat = configs(config_idx, 1);        % Numero de satelites en la constelacion
+    N_telescopes = configs(config_idx, 2); % Numero de telescopios por satelite
 
     % Inicializar matriz para almacenar los resultados de Dmin
     % Dimensiones: (alturas, telescopios, detectores)
@@ -39,7 +39,7 @@ for config_idx = 1:size(configs, 1)
         % Iterar sobre cada tipo de telescopio
         for telescopio_idx = 1:length(telescope_names)
             % Construir nombres de archivo para MTF y SNR
-            % Nota: detector_idx+3 para SNR_Lambda3 es específico de la estructura de nombres de archivo del usuario
+            % Nota: detector_idx+3 para SNR_Lambda3 es especifico de la estructura de nombres de archivo del usuario
             mtf_file = sprintf('MTF/MTF_Lambda2_Detector%d_Telescopio%d_resultados.csv', detector_idx, telescopio_idx);
             snr_file = sprintf('SNR/SNR_Lambda3_Detector%d_Telescopio%d_resultados.csv', detector_idx + 3, telescopio_idx);
 
@@ -55,7 +55,7 @@ for config_idx = 1:size(configs, 1)
                 fprintf('  MTF file: %s (Existe: %d)\n', mtf_file, exist(mtf_file, 'file'));
                 fprintf('  SNR file: %s (Existe: %d)\n', snr_file, exist(snr_file, 'file'));
                 fprintf('  Coverage file: %s (Existe: %d)\n', coverage_file, exist(coverage_file, 'file'));
-                continue; % Saltar a la siguiente iteración de telescopio
+                continue; % Saltar a la siguiente iteracion de telescopio
             end
 
             % Leer archivos CSV
@@ -72,7 +72,7 @@ for config_idx = 1:size(configs, 1)
                 for alt_idx = 1:length(alturas_orbitales)
                     altura = alturas_orbitales(alt_idx);
 
-                    % Validar que alt_idx no exceda las dimensiones de las matrices leídas
+                    % Validar que alt_idx no exceda las dimensiones de las matrices leidas
                     if alt_idx > size(mtf_matrix, 1) || alt_idx > size(snr_matrix, 1) || alt_idx > size(coverage_data, 1)
                         fprintf('Advertencia: alt_idx %d excede las dimensiones de los datos para H=%.1f km, Det %d, Tel %d.\n', ...
                                 alt_idx, altura, detector_idx, telescopio_idx);
@@ -84,16 +84,16 @@ for config_idx = 1:size(configs, 1)
                     snr_row = snr_matrix(alt_idx, :);
                     coverage_row = coverage_data(alt_idx, :); % Asume que las columnas corresponden a swaths_km
 
-                    % 1. Encontrar swath óptimo: el mayor swath que cumpla cobertura <= 7 días
+                    % 1. Encontrar swath optimo: el mayor swath que cumpla cobertura <= 7 dias
                     valid_swath_indices = find(coverage_row <= Cov_Requirement & ~isnan(coverage_row));
                     if isempty(valid_swath_indices)
-                        continue; % No hay swaths válidos para esta altura y configuración de cobertura
+                        continue; % No hay swaths validos para esta altura y configuracion de cobertura
                     end
-                    % Seleccionar el índice del swath más grande (asumiendo que swaths_km y las columnas de coverage_data están ordenados ascendentemente)
+                    % Seleccionar el indice del swath mas grande (asumiendo que swaths_km y las columnas de coverage_data estan ordenados ascendentemente)
                     selected_swath_col_idx = valid_swath_indices(1);
                     selected_swath_km = swaths_km(selected_swath_col_idx);
 
-                    % 2. Verificar si el FOV del swath seleccionado excede el límite del telescopio
+                    % 2. Verificar si el FOV del swath seleccionado excede el limite del telescopio
                     % FOV (full angle) = 2 * atan( (Swath/2) / Altura )
                     current_fov_limit = fov_limit(telescopio_idx);
                     if N_telescopes == 2
@@ -103,28 +103,28 @@ for config_idx = 1:size(configs, 1)
                     end
                     fov_actual_deg = 2 * atand(selected_swath_km / (2 * altura));
                     if fov_actual_deg > effective_fov_limit
-                        continue; % FOV excede el límite para este telescopio y swath
+                        continue; % FOV excede el limite para este telescopio y swath
                     end
 
-                    % 3. Encontrar el diámetro mínimo que cumple MTF >= 0.25 y SNR >= 400 para el swath seleccionado
+                    % 3. Encontrar el diametro minimo que cumple MTF >= 0.25 y SNR >= 400 para el swath seleccionado
                     % Se asume que las columnas de mtf_row y snr_row corresponden a diametros_pupila
                     valid_diameter_indices = find(mtf_row >= MTF_Requirement & snr_row >= SNR_Requirement);
                     if isempty(valid_diameter_indices)
-                        continue; % No hay diámetros válidos que cumplan MTF y SNR para esta altura
+                        continue; % No hay diametros validos que cumplan MTF y SNR para esta altura
                     end
-                    % Seleccionar el índice del diámetro mínimo (asumiendo diametros_pupila y las columnas de mtf/snr están ordenados ascendentemente)
+                    % Seleccionar el indice del diametro minimo (asumiendo diametros_pupila y las columnas de mtf/snr estan ordenados ascendentemente)
                     min_diam_col_idx = valid_diameter_indices(1);
                     
-                    % Asegurar que el índice del diámetro no exceda las dimensiones de diametros_pupila
+                    % Asegurar que el indice del diametro no exceda las dimensiones de diametros_pupila
                     if min_diam_col_idx > length(diametros_pupila)
-                        fprintf('Advertencia: Índice de diámetro %d excede la longitud de diametros_pupila (%d).\n', min_diam_col_idx, length(diametros_pupila));
+                        fprintf('Advertencia: Indice de diametro %d excede la longitud de diametros_pupila (%d).\n', min_diam_col_idx, length(diametros_pupila));
                         continue;
                     end
                     
                     selected_dmin_mm = diametros_pupila(min_diam_col_idx);
 
-                    % 4. Condición específica para telescopio Refractivo (asumiendo telescopio_idx == 1)
-                    % Si es Refractivo y el diámetro es > 90mm, no es una solución válida.
+                    % 4. Condicion especifica para telescopio Refractivo (asumiendo telescopio_idx == 1)
+                    % Si es Refractivo y el diametro es > 90mm, no es una solucion valida.
                     if telescopio_idx == 1 && selected_dmin_mm > 200
                         continue; 
                     end
@@ -140,7 +140,7 @@ for config_idx = 1:size(configs, 1)
         end % Fin loop telescopios
     end % Fin loop detectores
 
-    % --- Generación de Gráficos para la configuración actual ---
+    % --- Generacion de Graficos para la configuracion actual ---
     main_fig = figure('Position', [100, 100, 900, 700], 'Visible', 'off'); % Crear invisible para no interrumpir
     config_title_tex = sprintf('Configuracion: %d satelite(s), %d telescopio(s) por satelite', N_sat, N_telescopes);
 
@@ -151,7 +151,7 @@ for config_idx = 1:size(configs, 1)
         for telescopio_idx = 1:length(telescope_names)
             dmin_values = Dmin_results(:, telescopio_idx, detector_idx);
             valid_indices = ~isnan(dmin_values);
-            if any(valid_indices) % Graficar solo si hay datos válidos
+            if any(valid_indices) % Graficar solo si hay datos validos
                 plot(alturas_orbitales(valid_indices), dmin_values(valid_indices), 'LineWidth', 2);
                 legend_entries{end+1} = telescope_names{telescopio_idx};
             end
@@ -209,7 +209,7 @@ for config_idx = 1:size(configs, 1)
         close(refractivo_fig);
     end
 
-    % --- Exportar resultados a CSV y TXT para la configuración actual ---
+    % --- Exportar resultados a CSV y TXT para la configuracion actual ---
     for detector_idx = 1:3
         % Crear nombres de variable para la tabla basados en telescope_names
         variable_names_table = [{'Altura_km'}, cellfun(@(x) sprintf('Dmin_%s_mm', strrep(x,' ','_')), telescope_names, 'UniformOutput', false)];
@@ -246,7 +246,7 @@ for config_idx = 1:size(configs, 1)
         fclose(fileID);
     end
 
-    % --- Generar archivo de resumen para la configuración actual ---
+    % --- Generar archivo de resumen para la configuracion actual ---
     summary_filename = sprintf('%s/RESUMEN_Config_%s.txt', output_dir, config_names{config_idx});
     fileID = fopen(summary_filename, 'w');
     fprintf(fileID, '=== RESUMEN DE ANALISIS CRUZADO ===\n\n');
