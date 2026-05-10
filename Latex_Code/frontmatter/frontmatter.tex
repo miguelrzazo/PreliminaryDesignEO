@@ -1,90 +1,242 @@
 % Front matter: portada, página en blanco, dedicatoria, frase célebre, agradecimientos,
-% lista de símbolos y palabras clave / glosario
+% abstract, lista de símbolos, palabras clave / glosario
 
-% Portada
+% ============================================================
+% PORTADA
+% ============================================================
 \begin{titlepage}
 \centering
     \vspace*{1cm}
-    \noindent
-    \begin{minipage}{0.3\textwidth}
+    % Logos — ETSIAE left, UPM right
+    \begin{minipage}{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{PNG_-_ETSIAE_logo_ETSIAE_COLOR.png.png}
     \end{minipage}
     \hfill
-    \begin{minipage}{0.3\textwidth}
+    \begin{minipage}{0.22\textwidth}
         \centering
         \includegraphics[width=\textwidth]{SFS24600.png}
     \end{minipage}
     \par
+    \vspace{1.8cm}
+
+    % Institution names
+    {\Large\bfseries UNIVERSIDAD POLITÉCNICA DE MADRID}\par
+    \vspace{0.4cm}
+    {\large\bfseries ESCUELA TÉCNICA SUPERIOR DE INGENIERÍA AERONÁUTICA Y DEL ESPACIO}\par
+    \vspace{1.2cm}
+
+    % Document type
+    {\large\bfseries TRABAJO DE FIN DE GRADO}\par
+    \vspace{1.0cm}
+
+    % Thesis title
+    {\LARGE\bfseries Diseño Preliminar de un Satélite\\[0.3em]de Observación de la Tierra}\par
+
     \vfill
-        {\LARGE\bfseries UNIVERSIDAD POLITÉCNICA DE MADRID}\par
-        {\LARGE\bfseries ESCUELA TÉCNICA SUPERIOR DE INGENIERÍA AERONÁUTICA Y DEL ESPACIO}\par
 
-    {\Large\bfseries TRABAJO DE FIN DE GRADO}\par
-
-    {\LARGE\bfseries Diseño Preliminar de un Satélite de Observación de la Tierra}\par
-
+    % Author and supervisors block
     \begin{flushright}
-        {\bfseries AUTOR: Miguel Rosa Zazo}\par
-        {\bfseries ESPECIALIDAD: Ciencias y Tecnologías Aeroespaciales}\par
-        {\bfseries COTUTOR: Demetrio Zorita Gómez-Escolar}\par
-        {\bfseries TUTOR: Ana Laverón Simavilla}\par
+        {\bfseries AUTOR:}\ \ Miguel Rosa Zazo\par
+        \vspace{0.3cm}
+        {\bfseries ESPECIALIDAD:}\ \ Ciencias y Tecnologías Aeroespaciales\par
+        \vspace{0.3cm}
+        {\bfseries COTUTOR:}\ \ Demetrio Zorita Gómez-Escolar\par
+        \vspace{0.3cm}
+        {\bfseries TUTOR:}\ \ Ana Laverón Simavilla\par
     \end{flushright}
-    \vspace{0.5cm}
+
+    \vspace{1.2cm}
     {\bfseries Febrero de 2026}\par
+    \vspace{1cm}
 \end{titlepage}
 
-% Página intencionalmente en blanco
+% ============================================================
+% PÁGINA INTENCIONALMENTE EN BLANCO
+% ============================================================
 \clearpage
 \thispagestyle{empty}
 \vspace*{\fill}
 \begin{center}
-    \begin{flushright}
-        {\small\textit{Página intencionadamente en blanco}}
-    \end{flushright}
+    {\small\textit{Página intencionadamente en blanco}}
 \end{center}
 \vspace*{\fill}
 \clearpage
 
-% Dedicatoria
-
-\addcontentsline{toc}{chapter}{Dedicatoria}
-\thispagestyle{plain}
-A mis seres queridos, por su apoyo incondicional y paciencia durante este proyecto.
+% ============================================================
+% DEDICATORIA — sin heading, solo texto en cursiva centrado
+% ============================================================
+\clearpage
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+    \emph{A mis seres queridos,\\
+    por su apoyo incondicional y paciencia\\
+    durante este proyecto.}
+\end{center}
+\vspace*{\fill}
 \clearpage
 
-% Frase célebre
-\chapter*{Frase célebre}
-\addcontentsline{toc}{chapter}{Frase célebre}
-\thispagestyle{plain}
-\emph{"La imaginación es más importante que el conocimiento."} --- Albert Einstein
+% ============================================================
+% FRASE CÉLEBRE — sin heading, solo texto en cursiva
+% ============================================================
+\clearpage
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{flushright}
+    \emph{``La imaginación es más importante que el conocimiento.''}\\[0.5em]
+    --- Albert Einstein
+\end{flushright}
+\vspace*{\fill}
 \clearpage
 
-% Agradecimientos
+% ============================================================
+% AGRADECIMIENTOS
+% ============================================================
 \chapter*{Agradecimientos}
-\addcontentsline{toc}{chapter}{Agradecimientos}
-\thispagestyle{plain}
-Quiero agradecer a mi director de TFG, compañeros y familia por su apoyo y orientación.
+\thispagestyle{empty}
+Quiero agradecer a mi director de TFG, Demetrio Zorita Gómez-Escolar, y a mi tutora Ana Laverón Simavilla, por su orientación y dedicación a lo largo de este proyecto. También a mis compañeros y familia, cuyo apoyo incondicional ha sido fundamental.
 \clearpage
 
-% Lista de símbolos (ejemplo - sustituir por los símbolos reales)
+% ============================================================
+% ABSTRACT (English)
+% ============================================================
+\chapter*{Abstract}
+\thispagestyle{empty}
+
+This thesis presents the preliminary design of a nanosatellite mission for atmospheric monitoring of carbon dioxide (CO\textsubscript{2}) and molecular oxygen (O\textsubscript{2}) over the continental United States. The proposed system targets a ground sampling distance (GSD) of 80\,m, offering substantially higher spatial resolution than existing operational instruments such as OCO-2 (2.25\,km footprint) or TROPOMI (3.5\,km), enabling city-scale attribution of greenhouse gas emission sources.
+
+The mission concept consists of a two-satellite constellation in a dawn-dusk Sun-Synchronous Orbit (SSO) at 520\,km altitude. Each satellite carries an optical pushbroom instrument operating in three spectral bands: two CO\textsubscript{2} absorption bands (1.61\,\textmu m and 2.01\,\textmu m) and the O\textsubscript{2} A-band (0.76\,\textmu m). Optical performance was evaluated by computing Signal-to-Noise Ratio (SNR) and Modulation Transfer Function (MTF) maps across a multidimensional trade space of orbital altitudes (200–1000\,km), pupil diameters (20–200\,mm), detector types (CAPYORK, H2RG, SATURN VISIR, CCD98-50), and telescope configurations (Refractivo, Korsch, Cassegrain, TMA). Coverage revisit time was assessed using an analytical orbital mechanics model based on the RevisitTime toolkit, and independently cross-validated using a numerical ground-track propagation simulation over a geographic grid.
+
+The optimal satellite configuration was determined to be two satellites each carrying two telescopes, with an H2RG infrared detector and a Refractivo telescope. At an orbital altitude of 520\,km, an effective pupil diameter of 28\,mm satisfies the minimum requirements of SNR\,$\geq$\,400 and MTF\,$\geq$\,0.25, while achieving a continental coverage revisit time of 7\,days. The resulting satellite has a total launch mass of 1.71\,kg per unit. The attitude control subsystem combines a passive gravity gradient boom with triaxial magnetorquers (GMAT-1), meeting a $\leq$\,1° nadir pointing requirement adequate for climate-scale monitoring. Eight-year propellant budgets for orbit maintenance and end-of-life deorbit (within 257\,days at 520\,km) are derived from a numerical atmospheric drag model based on the US Standard Atmosphere 1976, applying the Tsiolkovsky rocket equation with the ECAPS HPGP thruster ($I_{sp}=209$\,s).
+
+The complete analytical and numerical MATLAB design tool is released as open-source software.
+
+\textbf{Keywords:} Earth observation, nanosatellite, CO\textsubscript{2} monitoring, SNR, MTF, Sun-Synchronous Orbit, preliminary design.
+\clearpage
+
+% ============================================================
+% LISTA DE SÍMBOLOS
+% ============================================================
 \chapter*{Lista de símbolos}
-\addcontentsline{toc}{chapter}{Lista de símbolos}
-\thispagestyle{plain}
-\begin{description}
-  \item[$a$] Aceleración (m/s$^2$)
-  \item[$c$] Velocidad de la luz (m/s)
-  \item[$R$] Radio (m)
+\thispagestyle{empty}
+
+\subsubsection*{Símbolos ópticos y de carga útil}
+\begin{description}[leftmargin=4.5cm, labelwidth=4cm, labelsep=0.5cm]
+  \item[$\lambda$]          Longitud de onda (m)
+  \item[$\Delta\lambda$]    Ancho de banda espectral (m)
+  \item[$D$]                Diámetro de la pupila (m o mm)
+  \item[$f$]                Distancia focal (m)
+  \item[$f/D$]              Número focal (\textit{F-number}) (adim.)
+  \item[$R$]                Relación de oscurecimiento central de la pupila (adim.)
+  \item[$\eta$]             Eficiencia cuántica del detector (adim.)
+  \item[$\tau$]             Transmitancia del telescopio (adim.)
+  \item[GSD]                Resolución espacial en tierra (\textit{Ground Sampling Distance}) (m)
+  \item[$p$]                Tamaño de píxel del detector (m)
+  \item[$N_\text{pix}$]     Número de píxeles del detector (adim.)
+  \item[$t_\text{int}$]     Tiempo de integración (s)
+  \item[$N_e$]              Número de electrones generados por el detector (e$^-$)
+  \item[$L_\text{ref}$]     Radiancia de referencia (W\,m$^{-2}$\,sr$^{-1}$\,\textmu m$^{-1}$)
+  \item[MTF]                Función de Transferencia de Modulación (\textit{Modulation Transfer Function}) (adim.)
+  \item[SNR]                Relación Señal-Ruido (\textit{Signal-to-Noise Ratio}) (adim.)
+  \item[TDI]                Integración con Retardo Temporal (\textit{Time Delay Integration}) (adim.)
+  \item[$f_\text{co}$]      Frecuencia de corte óptica (cy\,m$^{-1}$)
+  \item[$f_\text{Nyq}$]     Frecuencia de Nyquist del detector (cy\,m$^{-1}$)
+  \item[SW]                 Swath (ancho de franja observada) (km)
+\end{description}
+
+\subsubsection*{Símbolos orbitales y de misión}
+\begin{description}[leftmargin=4.5cm, labelwidth=4cm, labelsep=0.5cm]
+  \item[$h$]                Altura orbital (km)
+  \item[$a$]                Semieje mayor de la órbita (km)
+  \item[$v_\text{orb}$]     Velocidad orbital (m\,s$^{-1}$)
+  \item[$T_\text{orb}$]     Periodo orbital (s)
+  \item[$\mu$]              Parámetro gravitacional terrestre, $3{,}986\times10^{14}$ (m$^3$\,s$^{-2}$)
+  \item[$R_T$]              Radio terrestre medio, $6\,371$ (km)
+  \item[$N_\text{sat}$]     Número de satélites en la constelación (adim.)
+  \item[$N_\text{tel}$]     Número de telescopios por satélite (adim.)
+  \item[$T_\text{rev}$]     Tiempo de revisita (días)
+  \item[LTAN]               Hora local del nodo ascendente (\textit{Local Time of Ascending Node}) (h)
+  \item[$\beta$]            Ángulo beta sol-órbita (°)
+  \item[$C_d$]              Coeficiente de arrastre aerodinámico (adim.)
+  \item[$\rho$]             Densidad atmosférica (kg\,m$^{-3}$)
+  \item[$H$]                Altura de escala atmosférica (km)
+  \item[$A$]                Área frontal del satélite (m$^2$)
+\end{description}
+
+\subsubsection*{Símbolos de masa y propulsión}
+\begin{description}[leftmargin=4.5cm, labelwidth=4cm, labelsep=0.5cm]
+  \item[$m_\text{seca}$]    Masa en seco del satélite (kg)
+  \item[$m_\text{prop}$]    Masa de propelente (kg)
+  \item[$m_\text{total}$]   Masa total del satélite (kg)
+  \item[$\Delta v$]         Variación de velocidad por impulso (m\,s$^{-1}$)
+  \item[$\Delta v_\text{tot}$] Variación de velocidad total acumulada (m\,s$^{-1}$)
+  \item[$I_{sp}$]           Impulso específico (s)
+  \item[$g_0$]              Aceleración de la gravedad estándar, $9{,}80665$ (m\,s$^{-2}$)
+\end{description}
+
+\subsubsection*{Símbolos del subsistema eléctrico}
+\begin{description}[leftmargin=4.5cm, labelwidth=4cm, labelsep=0.5cm]
+  \item[$P_\text{gen}$]     Potencia generada por los paneles solares (W)
+  \item[$P_\text{modo}$]    Consumo total en un modo de operación (W)
+  \item[$E_\text{bat}$]     Energía almacenada en las baterías (Wh)
+  \item[$h$]                Constante de Planck, $6{,}626\times10^{-34}$ (J\,s)
+  \item[$c$]                Velocidad de la luz, $3\times10^{8}$ (m\,s$^{-1}$)
 \end{description}
 \clearpage
 
-% Palabras clave / Glosario
+% ============================================================
+% PALABRAS CLAVE Y GLOSARIO
+% ============================================================
 \chapter*{Palabras clave y glosario}
-\addcontentsline{toc}{chapter}{Palabras clave y glosario}
-\thispagestyle{plain}
-\begin{description}
-  \item[Resolución espacial] Capacidad de un sensor para distinguir dos objetos próximos.
-  \item[MTF] Función de Transferencia de Modulación, medida de la respuesta espacial del sistema óptico.
-  \item[SNR] Relación señal-ruido, indicador de calidad de la señal recibida.
+\thispagestyle{empty}
+
+\subsubsection*{Palabras clave}
+Observación de la Tierra, nanosatélite, monitorización de CO\textsubscript{2}, SNR, MTF, órbita heliosíncrona, diseño preliminar, constelación de satélites, instrumento óptico pushbroom.
+
+\vspace{1em}
+\subsubsection*{Glosario}
+
+\begin{description}[leftmargin=5cm, labelwidth=4.5cm, labelsep=0.5cm]
+
+  \item[GSD (\textit{Ground Sampling Distance})]
+    Distancia en tierra correspondiente al tamaño de un píxel del detector. Determina la resolución espacial del instrumento.
+
+  \item[MTF (\textit{Modulation Transfer Function})]
+    Función de Transferencia de Modulación. Mide la capacidad del sistema óptico para reproducir el contraste de objetos en función de su frecuencia espacial.
+
+  \item[SNR (\textit{Signal-to-Noise Ratio})]
+    Relación Señal-Ruido. Indicador de la calidad de la señal detectada respecto al ruido total del sistema electrónico y óptico.
+
+  \item[SSO (\textit{Sun-Synchronous Orbit})]
+    Órbita heliosíncrona. Órbita polar cuyo plano precesa a la misma velocidad angular que la Tierra alrededor del Sol, manteniendo un ángulo de iluminación solar constante.
+
+  \item[LEO (\textit{Low Earth Orbit})]
+    Órbita terrestre baja. Órbita con altitudes entre aproximadamente 200 y 2\,000\,km.
+
+  \item[LTAN (\textit{Local Time of Ascending Node})]
+    Hora local del nodo ascendente. Hora solar local en el momento en que el satélite cruza el ecuador en dirección norte.
+
+  \item[TDI (\textit{Time Delay Integration})]
+    Técnica de integración por retardo temporal. Permite acumular señal en detectores de barrido progresivo para mejorar el SNR.
+
+  \item[Nanosatélite]
+    Satélite artificial de masa comprendida entre 1 y 10\,kg, habitualmente del estándar CubeSat.
+
+  \item[Swath (franja de observación)]
+    Ancho de la franja de terreno observada por el instrumento en una pasada del satélite.
+
+  \item[Tiempo de revisita]
+    Intervalo de tiempo entre dos observaciones sucesivas del mismo punto geográfico.
+
+  \item[Carga útil (\textit{Payload})]
+    Conjunto de instrumentos y subsistemas del satélite dedicados a la misión científica o de observación.
+
+  \item[HPGP (\textit{High Performance Green Propulsion})]
+    Sistema de propulsión monopropelente de combustible verde de alto rendimiento desarrollado por ECAPS. Usa LMP-103S en lugar de hidrazina tóxica.
+
+  \item[ADCS (\textit{Attitude Determination and Control System})]
+    Subsistema de determinación y control de actitud. Mantiene la orientación del satélite en la dirección nadir y compensa perturbaciones externas.
+
 \end{description}
 \clearpage

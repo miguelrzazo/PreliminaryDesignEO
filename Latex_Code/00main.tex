@@ -45,6 +45,7 @@
 \usepackage{minitoc}  % Paquete necesario
 \usepackage{textcomp}
 \usepackage{gensymb}
+\usepackage{enumitem}  % custom description list formatting
 
 
 \dominitoc              % Activa los minitocs en todos los capítulos
@@ -83,9 +84,11 @@
 
 
 \begin{document}
-\pagenumbering{roman}
+\pagenumbering{gobble}
 \dominitoc
 \input{frontmatter/frontmatter}
+\pagenumbering{roman}
+\setcounter{page}{1}
 \tableofcontents        % Índice general
 \listoftables           % Índice de tablas
 \listoffigures          % Índice de figuras
