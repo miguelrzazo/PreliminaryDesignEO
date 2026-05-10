@@ -39,3 +39,7 @@ Coverage revisit-time calculations use the **RevisitTime toolkit** by Crisp & Li
 
 Open MATLAB, navigate to the desired model directory, and run the `master*.m` script.
 Results (PNG heatmaps, CSV tables) are saved to the model's output subdirectories.
+
+---
+Date: 11/05/2026
+Also a version refactored in Python, improving some functions on MATLAB as well using Claude Code, just for fun
