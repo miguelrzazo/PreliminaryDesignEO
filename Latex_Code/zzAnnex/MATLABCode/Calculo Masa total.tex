@@ -1,4 +1,4 @@
-\begin{minted}[fontsize=\tiny, frame=lines, framesep=1em]{matlab}
+\begin{lstlisting}[language=Matlab]
 
 function [total_mass, fuel_mass, num_impulses, total_delta_v] = calcularMasaTotal(h0_array, masa_seca, Am)    %% ParÃ¡metros iniciales
     %% Paraimetros iniciales
@@ -185,4 +185,4 @@ end
         rho = rho0 * exp(-(h_km - floor(h_km/50)*50) / (H / 1e3));
     end
 
-\end{minted}
+\end{lstlisting}

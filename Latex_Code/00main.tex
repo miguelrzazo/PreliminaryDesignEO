@@ -11,7 +11,7 @@
 \usepackage{pdflscape} %landscape pdf
 \usepackage{lscape} % Landscape real en PDF
 \usepackage[margin=2.5cm]{geometry}    % Para asegurar que la página esté correctamente configurada
-\usepackage{changepage}  % Para cambiar márgenes localmente
+\usepackage[strict]{changepage}  % Para cambiar márgenes localmente
 \usepackage{url} %% Para las url
 \usepackage{tabularx} %Entorno de tablas mas pulido, alineado
 \usepackage{amsmath, amssymb} %% Boxing de los resultados
@@ -26,7 +26,16 @@
 \usepackage{csquotes} %% Para comillas español
 \usepackage{csquotes} %% Para comillas español
 \usepackage{fancyvrb} % Mejor verbatim mas elegante
-\usepackage{minted} %% Para mejorarar el verbatim codigo, formateo del codigo
+% minted replaced by listings (minted v3.7 generates 150k+ PDF objects via pygmentize)
+\usepackage{listings}
+\lstset{
+  basicstyle=\tiny\ttfamily,
+  frame=lines,
+  framesep=1em,
+  breaklines=true,
+  keepspaces=true,
+  columns=flexible,
+}
 \usepackage{multicol}
 \usepackage{subcaption}
 \usepackage{csvsimple}
@@ -36,7 +45,6 @@
 \usepackage{minitoc}  % Paquete necesario
 \usepackage{textcomp}
 \usepackage{gensymb}
-\usepackage{listings}
 \usepackage{enumitem}  % custom description list formatting
 
 
