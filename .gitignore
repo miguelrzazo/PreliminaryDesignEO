@@ -30,3 +30,12 @@ MATLAB_Code/*/OptimumConfigs/
 
 # LaTeX minted cache
 *.data.minted
+
+# Python build artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.pytest_cache/
