@@ -33,8 +33,8 @@
       \strng{authornamehash}{5ba947ee90480b37ef5400bf37d8827e}
       \strng{authorfullhash}{5ba947ee90480b37ef5400bf37d8827e}
       \strng{authorfullhashraw}{5ba947ee90480b37ef5400bf37d8827e}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://photojournal.jpl.nasa.gov/catalog/PIA18610}}
@@ -58,8 +58,8 @@
       \strng{authorfullhash}{1f71b100224fb1b54ae14e751c4b40fa}
       \strng{authorfullhashraw}{1f71b100224fb1b54ae14e751c4b40fa}
       \field{extraname}{1}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://www.eoportal.org/satellite-missions/oco-2}}
@@ -110,8 +110,8 @@
       \strng{authornamehash}{44d7f7eb1097d1a5beb9942377fb7e16}
       \strng{authorfullhash}{44d7f7eb1097d1a5beb9942377fb7e16}
       \strng{authorfullhashraw}{44d7f7eb1097d1a5beb9942377fb7e16}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Consultado: 2025}
@@ -145,8 +145,8 @@
       \strng{authornamehash}{d9c5186ae95d6e94f1ddf4f457dd2470}
       \strng{authorfullhash}{d9c5186ae95d6e94f1ddf4f457dd2470}
       \strng{authorfullhashraw}{d9c5186ae95d6e94f1ddf4f457dd2470}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Carbon Balance and Management}
@@ -175,8 +175,8 @@
       \strng{authorfullhash}{1f71b100224fb1b54ae14e751c4b40fa}
       \strng{authorfullhashraw}{1f71b100224fb1b54ae14e751c4b40fa}
       \field{extraname}{3}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Consultado: 2025}
@@ -210,8 +210,8 @@
       \strng{authornamehash}{d69c10d9c394eddba0a449bb8e5d06a8}
       \strng{authorfullhash}{d69c10d9c394eddba0a449bb8e5d06a8}
       \strng{authorfullhashraw}{d69c10d9c394eddba0a449bb8e5d06a8}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Proc. SPIE}
@@ -238,8 +238,8 @@
       \strng{authornamehash}{547b62a6dcf0bf03f2e0439af3a0236e}
       \strng{authorfullhash}{547b62a6dcf0bf03f2e0439af3a0236e}
       \strng{authorfullhashraw}{547b62a6dcf0bf03f2e0439af3a0236e}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Consultado: 2025}
@@ -267,8 +267,8 @@
       \strng{authorfullhash}{bae2fd785a6950de3bbfc069f0c22341}
       \strng{authorfullhashraw}{bae2fd785a6950de3bbfc069f0c22341}
       \field{extraname}{1}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Consultado: 2025}
@@ -295,8 +295,8 @@
       \strng{authornamehash}{b110aa10dc3e3aa939ba099440938e65}
       \strng{authorfullhash}{b110aa10dc3e3aa939ba099440938e65}
       \strng{authorfullhashraw}{b110aa10dc3e3aa939ba099440938e65}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Consultado: 2025}
@@ -323,8 +323,8 @@
       \strng{authornamehash}{b77c20a31a186fab97dbc3b04574342e}
       \strng{authorfullhash}{b77c20a31a186fab97dbc3b04574342e}
       \strng{authorfullhashraw}{b77c20a31a186fab97dbc3b04574342e}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Consultado: 2025}
@@ -352,8 +352,8 @@
       \strng{authorfullhash}{bae2fd785a6950de3bbfc069f0c22341}
       \strng{authorfullhashraw}{bae2fd785a6950de3bbfc069f0c22341}
       \field{extraname}{2}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Consultado: 2025}
@@ -380,8 +380,8 @@
       \strng{authornamehash}{8ad9aa44c59582391efd93ec8bfbb056}
       \strng{authorfullhash}{8ad9aa44c59582391efd93ec8bfbb056}
       \strng{authorfullhashraw}{8ad9aa44c59582391efd93ec8bfbb056}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Consultado: 2025}
@@ -411,8 +411,8 @@
       \strng{authornamehash}{89022b66711b7c95df9c0801ef741150}
       \strng{authorfullhash}{89022b66711b7c95df9c0801ef741150}
       \strng{authorfullhashraw}{89022b66711b7c95df9c0801ef741150}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Guia sobre el efecto moire en actuacion y cinematografia}
@@ -445,8 +445,8 @@
       \strng{authornamehash}{bd3c4b2e63d9e1c7b4eb84924826f174}
       \strng{authorfullhash}{bd3c4b2e63d9e1c7b4eb84924826f174}
       \strng{authorfullhashraw}{bd3c4b2e63d9e1c7b4eb84924826f174}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Figure 4.2 in PhD thesis: Developing an integrated approach to seaweed resource assessment}
@@ -464,8 +464,8 @@
       \list{organization}{1}{%
         {Universidad}%
       }
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labeltitlesource}{title}
       \field{note}{Material didectico para el diseño de instrumentos opticos de observacion terrestre}
       \field{title}{Design Workshop of an Optical Earth Observation Instrument}
@@ -488,8 +488,8 @@
       \strng{authorfullhash}{e4a6b17ca44650d909f9d52813cf6ee6}
       \strng{authorfullhashraw}{e4a6b17ca44650d909f9d52813cf6ee6}
       \field{extraname}{1}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Documento tecnico sobre MTF en instrumentos opticos espaciales}
@@ -511,8 +511,8 @@
       \strng{authornamehash}{714ff9069af003141464f6417a3182c2}
       \strng{authorfullhash}{714ff9069af003141464f6417a3182c2}
       \strng{authorfullhashraw}{714ff9069af003141464f6417a3182c2}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Introduction to Modulation Transfer Function}
@@ -549,8 +549,8 @@
       \strng{authornamehash}{e2ca6f0f61d8a0b2ceac9354530fcf9b}
       \strng{authorfullhash}{e2ca6f0f61d8a0b2ceac9354530fcf9b}
       \strng{authorfullhashraw}{e2ca6f0f61d8a0b2ceac9354530fcf9b}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Iraqi Journal of Science}
@@ -577,8 +577,8 @@
       \strng{authornamehash}{b6aea1a416c89509a7df1cbb69249cb6}
       \strng{authorfullhash}{b6aea1a416c89509a7df1cbb69249cb6}
       \strng{authorfullhashraw}{b6aea1a416c89509a7df1cbb69249cb6}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Image file from Wikipedia article on Signal-to-noise ratio}
@@ -613,8 +613,8 @@
       \strng{authorfullhash}{e4a6b17ca44650d909f9d52813cf6ee6}
       \strng{authorfullhashraw}{e4a6b17ca44650d909f9d52813cf6ee6}
       \field{extraname}{2}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Documento tecnico sobre celculo de SNR en instrumentos opticos espaciales}
@@ -637,8 +637,8 @@
       \strng{authorfullhash}{d1c3c77d6d8c4f45847eda2e5c5a2d27}
       \strng{authorfullhashraw}{d1c3c77d6d8c4f45847eda2e5c5a2d27}
       \field{extraname}{1}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Diagram showing relationship between linear array, lens system, individual detector, IFOV, FOV, IGFOV, and swath parameters}
@@ -662,8 +662,8 @@
       \strng{authornamehash}{c6975328b4de29288851d2650d5c163a}
       \strng{authorfullhash}{c6975328b4de29288851d2650d5c163a}
       \strng{authorfullhashraw}{c6975328b4de29288851d2650d5c163a}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{El contenido hace referencia a conferencias de 2011}
@@ -693,8 +693,8 @@
       \strng{authornamehash}{799a38bac838ff2fa9be851ac485dc95}
       \strng{authorfullhash}{799a38bac838ff2fa9be851ac485dc95}
       \strng{authorfullhashraw}{799a38bac838ff2fa9be851ac485dc95}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Radiation Transmitted by the Atmosphere}
@@ -733,8 +733,8 @@
       \strng{authornamehash}{7b8f1ced16d30baac106dc6cff52654a}
       \strng{authorfullhash}{fa5e3105893d94e23b1cef06de9cc392}
       \strng{authorfullhashraw}{fa5e3105893d94e23b1cef06de9cc392}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{month}{8}
@@ -767,8 +767,8 @@
       \strng{authornamehash}{057990207e82616a48ed6f74dff4ac11}
       \strng{authorfullhash}{057990207e82616a48ed6f74dff4ac11}
       \strng{authorfullhashraw}{057990207e82616a48ed6f74dff4ac11}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{NIST Quantitative Infrared Database - CO2 transmittance spectrum}
@@ -799,8 +799,8 @@
       \strng{authornamehash}{e4b3a3d4681dbce70807e5868ef4f8e8}
       \strng{authorfullhash}{e4b3a3d4681dbce70807e5868ef4f8e8}
       \strng{authorfullhashraw}{e4b3a3d4681dbce70807e5868ef4f8e8}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Technical documentation of OCO-2 spectral bands and measurement capabilities}
@@ -814,8 +814,8 @@
       \endverb
     \endentry
     \entry{pmc_co2_absorption_2018}{article}{}{}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labeltitlesource}{title}
       \field{journaltitle}{PMC Scientific Reports}
       \field{month}{10}
@@ -845,8 +845,8 @@
       \strng{authornamehash}{3eb706d56f3340b89407131181d4df6f}
       \strng{authorfullhash}{3eb706d56f3340b89407131181d4df6f}
       \strng{authorfullhashraw}{3eb706d56f3340b89407131181d4df6f}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{1st}
@@ -874,8 +874,8 @@
       \strng{authornamehash}{6f1f013e3c4a47e9a3c6241153880c39}
       \strng{authorfullhash}{6f1f013e3c4a47e9a3c6241153880c39}
       \strng{authorfullhashraw}{6f1f013e3c4a47e9a3c6241153880c39}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Cross-sectional diagram showing CCD pixel structure with three-phase electrode system (I1, i2, I3) and charge transfer process}
@@ -906,8 +906,8 @@
       \strng{authornamehash}{78367ac52b0fef73e780584953cc5696}
       \strng{authorfullhash}{78367ac52b0fef73e780584953cc5696}
       \strng{authorfullhashraw}{78367ac52b0fef73e780584953cc5696}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{[resumen del artículo]}
@@ -961,8 +961,8 @@
       \strng{authornamehash}{ba448c22d45e96d46c901e7d607ec9ea}
       \strng{authorfullhash}{ba448c22d45e96d46c901e7d607ec9ea}
       \strng{authorfullhashraw}{ba448c22d45e96d46c901e7d607ec9ea}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{1st}
@@ -990,8 +990,8 @@
       \strng{authornamehash}{85222e2f82518a4e5a2609653d0ba6d9}
       \strng{authorfullhash}{85222e2f82518a4e5a2609653d0ba6d9}
       \strng{authorfullhashraw}{85222e2f82518a4e5a2609653d0ba6d9}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Single Photon Avalanche Diodes for near-infrared applications (1.0-1.7 um)}
@@ -1028,8 +1028,8 @@
       \strng{authornamehash}{9fa4109f0f29d2c4999e3c13d9ce42d0}
       \strng{authorfullhash}{9fa4109f0f29d2c4999e3c13d9ce42d0}
       \strng{authorfullhashraw}{9fa4109f0f29d2c4999e3c13d9ce42d0}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{isbn}{978-1-85617-388-9}
@@ -1053,8 +1053,8 @@
       \strng{authornamehash}{7ef7d22bbea6cf1f3e4c1c85c77c7447}
       \strng{authorfullhash}{7ef7d22bbea6cf1f3e4c1c85c77c7447}
       \strng{authorfullhashraw}{7ef7d22bbea6cf1f3e4c1c85c77c7447}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Conference Proceedings of SPIE}
@@ -1084,8 +1084,8 @@
       \strng{authornamehash}{8ad68a4f79ec6bca5cd1da5da997a195}
       \strng{authorfullhash}{8ad68a4f79ec6bca5cd1da5da997a195}
       \strng{authorfullhashraw}{8ad68a4f79ec6bca5cd1da5da997a195}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Diagram showing pushbroom scanner with linear CCD array, optics, view plane, and swath coverage during spacecraft motion}
@@ -1108,8 +1108,8 @@
       \strng{authorfullhash}{d1c3c77d6d8c4f45847eda2e5c5a2d27}
       \strng{authorfullhashraw}{d1c3c77d6d8c4f45847eda2e5c5a2d27}
       \field{extraname}{2}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Diagram showing whiskbroom scanner operation with rotating scan mirror, instantaneous field of view, and ground resolution cell}
@@ -1131,8 +1131,8 @@
       \strng{authornamehash}{346c6513ada5e4a55e4edaa7a941dfbd}
       \strng{authorfullhash}{346c6513ada5e4a55e4edaa7a941dfbd}
       \strng{authorfullhashraw}{346c6513ada5e4a55e4edaa7a941dfbd}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Diagram showing step-stare operation with 3.5 degree FOV, FSI sample areas, and 14-second dwell times over 100 km distance}
@@ -1159,8 +1159,8 @@
       \strng{authornamehash}{e9879c888998db4027c449d797c2091c}
       \strng{authorfullhash}{e9879c888998db4027c449d797c2091c}
       \strng{authorfullhashraw}{e9879c888998db4027c449d797c2091c}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{1st}
@@ -1185,8 +1185,8 @@
       \strng{authornamehash}{3adc6c2d8f6755f0f47782a9678650bb}
       \strng{authorfullhash}{3adc6c2d8f6755f0f47782a9678650bb}
       \strng{authorfullhashraw}{3adc6c2d8f6755f0f47782a9678650bb}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Diagram showing entrance pupil diameter, effective focal length, and f-number relationship in optical systems}
@@ -1208,8 +1208,8 @@
       \strng{authornamehash}{0b7b7439041283647124482b7321bb6e}
       \strng{authorfullhash}{0b7b7439041283647124482b7321bb6e}
       \strng{authorfullhashraw}{0b7b7439041283647124482b7321bb6e}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Comparative diagram showing light path differences between refracting and reflecting telescope designs}
@@ -1231,8 +1231,8 @@
       \strng{authornamehash}{53cec82d6401c4fb4705144d5ad8414c}
       \strng{authorfullhash}{53cec82d6401c4fb4705144d5ad8414c}
       \strng{authorfullhashraw}{53cec82d6401c4fb4705144d5ad8414c}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Ray diagram showing Cassegrain telescope with primary parabolic mirror, secondary hyperbolic mirror, and light path convergence}
@@ -1254,8 +1254,8 @@
       \strng{authornamehash}{affc46bb03ba13f35e05d6b251ec51b5}
       \strng{authorfullhash}{affc46bb03ba13f35e05d6b251ec51b5}
       \strng{authorfullhashraw}{affc46bb03ba13f35e05d6b251ec51b5}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Diagram showing Korsch telescope with flat mirror, four-mirror system (M1-M4), focal plane, and detector arrangement}
@@ -1277,8 +1277,8 @@
       \strng{authornamehash}{17fa768fd119c22f4f5c1ef047d68b7f}
       \strng{authorfullhash}{17fa768fd119c22f4f5c1ef047d68b7f}
       \strng{authorfullhashraw}{17fa768fd119c22f4f5c1ef047d68b7f}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Cross-sectional diagram showing TMA telescope configuration with primary, secondary, and tertiary mirrors}
@@ -1300,8 +1300,8 @@
       \strng{authornamehash}{c000d1c3738d0c5397f8fead87c16ff2}
       \strng{authorfullhash}{c000d1c3738d0c5397f8fead87c16ff2}
       \strng{authorfullhashraw}{c000d1c3738d0c5397f8fead87c16ff2}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Documentacion oficial del instrumento MIRI del JWST, cuya rueda de filtros se muestra en la imagen. La rueda aloja los filtros para imagen, los diafragmas para coronografia y el prisma para espectroscopia de baja resolucion.}
@@ -1336,8 +1336,8 @@
       \strng{authornamehash}{b9afbf4457c62e3af96f11783eb8d642}
       \strng{authorfullhash}{b9afbf4457c62e3af96f11783eb8d642}
       \strng{authorfullhashraw}{b9afbf4457c62e3af96f11783eb8d642}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{month}{8}
@@ -1368,8 +1368,8 @@
       \strng{authornamehash}{9f106d2f884f03381f263162d8896390}
       \strng{authorfullhash}{9f106d2f884f03381f263162d8896390}
       \strng{authorfullhashraw}{9f106d2f884f03381f263162d8896390}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Elementos orbitales}
@@ -1407,8 +1407,8 @@
       \strng{authornamehash}{55a7280b2d9a909f02706fed0fe1f209}
       \strng{authorfullhash}{55a7280b2d9a909f02706fed0fe1f209}
       \strng{authorfullhashraw}{55a7280b2d9a909f02706fed0fe1f209}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{4}
@@ -1431,8 +1431,8 @@
       \strng{authornamehash}{9b200d07dae39e18c40fe9e9a94088e1}
       \strng{authorfullhash}{9b200d07dae39e18c40fe9e9a94088e1}
       \strng{authorfullhashraw}{9b200d07dae39e18c40fe9e9a94088e1}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Accedido el 2 de mayo de 2025}
@@ -1474,8 +1474,8 @@
       \strng{authornamehash}{addaa0a74663935aaf977921f321e5d2}
       \strng{authorfullhash}{9ec42e8fb2a32da795dad545af1521c4}
       \strng{authorfullhashraw}{9ec42e8fb2a32da795dad545af1521c4}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{chapter}{13}
@@ -1500,8 +1500,8 @@
       \strng{authornamehash}{a65544f745951ac6a2d4fcd000500b08}
       \strng{authorfullhash}{a65544f745951ac6a2d4fcd000500b08}
       \strng{authorfullhashraw}{a65544f745951ac6a2d4fcd000500b08}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://lynred.com/products/capyork-1200x12}}
@@ -1533,8 +1533,8 @@
       \strng{authorfullhash}{e0e57cebdd9d936efbc994c333b952b6}
       \strng{authorfullhashraw}{e0e57cebdd9d936efbc994c333b952b6}
       \field{extraname}{1}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Publicado por Teledyne Imaging Sensors; 2048x2048 pixeles, 18 um, HgCdTe IR y tecnologia HyViSI visible, compatible con el ASIC SIDECAR™}
@@ -1572,8 +1572,8 @@
       \strng{authornamehash}{45c0a95f8ae124cba21994776471236c}
       \strng{authorfullhash}{45c0a95f8ae124cba21994776471236c}
       \strng{authorfullhashraw}{45c0a95f8ae124cba21994776471236c}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{09-11 rev10}
@@ -1598,8 +1598,8 @@
       \strng{authornamehash}{34777bc131fd3049a62b5cf311adb75e}
       \strng{authorfullhash}{34777bc131fd3049a62b5cf311adb75e}
       \strng{authorfullhashraw}{34777bc131fd3049a62b5cf311adb75e}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Product datasheet}
@@ -1629,8 +1629,8 @@
       \strng{authornamehash}{4514e2a54ddcefceabe4864dc7906c2e}
       \strng{authorfullhash}{4514e2a54ddcefceabe4864dc7906c2e}
       \strng{authorfullhashraw}{4514e2a54ddcefceabe4864dc7906c2e}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{4}
@@ -1659,8 +1659,8 @@
       \strng{authornamehash}{4c9c9de04443389cac19a7c3a667861a}
       \strng{authorfullhash}{4c9c9de04443389cac19a7c3a667861a}
       \strng{authorfullhashraw}{4c9c9de04443389cac19a7c3a667861a}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{AIAA SPACE 2011 Conference \& Exposition}
@@ -1691,8 +1691,8 @@
       \strng{authornamehash}{2d9332e44e346eefc6c5fb5ddc7c0b75}
       \strng{authorfullhash}{2d9332e44e346eefc6c5fb5ddc7c0b75}
       \strng{authorfullhashraw}{2d9332e44e346eefc6c5fb5ddc7c0b75}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Jet Propulsion Laboratory, NASA}
@@ -2209,6 +2209,43 @@
       \field{title}{Fundamentals of Astrodynamics and Applications}
       \field{year}{2013}
     \endentry
+    \entry{ECAPS_100mN_HPGP}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=fb29fcf972a62d16524fda8ce2cbbe3e}{%
+           family={{ECAPS AB}},
+           familyi={E\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {satsearch}%
+      }
+      \strng{namehash}{fb29fcf972a62d16524fda8ce2cbbe3e}
+      \strng{fullhash}{fb29fcf972a62d16524fda8ce2cbbe3e}
+      \strng{fullhashraw}{fb29fcf972a62d16524fda8ce2cbbe3e}
+      \strng{bibnamehash}{fb29fcf972a62d16524fda8ce2cbbe3e}
+      \strng{authorbibnamehash}{fb29fcf972a62d16524fda8ce2cbbe3e}
+      \strng{authornamehash}{fb29fcf972a62d16524fda8ce2cbbe3e}
+      \strng{authorfullhash}{fb29fcf972a62d16524fda8ce2cbbe3e}
+      \strng{authorfullhashraw}{fb29fcf972a62d16524fda8ce2cbbe3e}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{18}
+      \field{month}{3}
+      \field{title}{{ECAPS 100 mN HPGP Thruster}}
+      \field{urlday}{15}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://satsearch.co/products/ecaps-100-m-n-hpgp-thruster
+      \endverb
+      \verb{url}
+      \verb https://satsearch.co/products/ecaps-100-m-n-hpgp-thruster
+      \endverb
+    \endentry
     \entry{nasa_deorbit_systems_2025}{report}{}{}
       \name{author}{1}{}{%
         {{hash=1f99771bc3e23e6097509a331544ab65}{%
@@ -2280,6 +2317,118 @@
       \field{year}{2001}
       \field{pages}{SSC01-IV\bibrangedash 5}
       \range{pages}{-1}
+    \endentry
+    \entry{calpoly2022cubesat}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=b20595b22eab582354e6b7e059019a65}{%
+           family={The\bibnamedelimb CubeSat\bibnamedelima Program},
+           familyi={T\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim P\bibinitperiod},
+           given={Cal\bibnamedelimb Poly\bibnamedelima SLO},
+           giveni={C\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {California Polytechnic State University, San Luis Obispo}%
+      }
+      \strng{namehash}{b20595b22eab582354e6b7e059019a65}
+      \strng{fullhash}{b20595b22eab582354e6b7e059019a65}
+      \strng{fullhashraw}{b20595b22eab582354e6b7e059019a65}
+      \strng{bibnamehash}{b20595b22eab582354e6b7e059019a65}
+      \strng{authorbibnamehash}{b20595b22eab582354e6b7e059019a65}
+      \strng{authornamehash}{b20595b22eab582354e6b7e059019a65}
+      \strng{authorfullhash}{b20595b22eab582354e6b7e059019a65}
+      \strng{authorfullhashraw}{b20595b22eab582354e6b7e059019a65}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{2}
+      \field{note}{Public Domain}
+      \field{number}{CP-CDS-R14.1}
+      \field{title}{CubeSat Design Specification (1U–12U), Revision 14.1}
+      \field{type}{techreport}
+      \field{year}{2022}
+      \verb{urlraw}
+      \verb https://www.nasa.gov/wp-content/uploads/2018/01/cubesatdesignspecificationrev14_12022-02-09.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.nasa.gov/wp-content/uploads/2018/01/cubesatdesignspecificationrev14_12022-02-09.pdf
+      \endverb
+    \endentry
+    \entry{QB50_2017}{article}{}{}
+      \name{author}{10}{}{%
+        {{hash=f9942e268202335e3124b3286b09e641}{%
+           family={Muylaert},
+           familyi={M\bibinitperiod},
+           given={Jean-Marie},
+           giveni={J\bibinithyphendelim M\bibinitperiod}}}%
+        {{hash=ec733279d1d11b103d554b5f04c43027}{%
+           family={Reinhard},
+           familyi={R\bibinitperiod},
+           given={Rainer},
+           giveni={R\bibinitperiod}}}%
+        {{hash=42a281c98fa9fdffed03df6cca60c727}{%
+           family={Asma},
+           familyi={A\bibinitperiod},
+           given={Cihan},
+           giveni={C\bibinitperiod}}}%
+        {{hash=26ff032b1b26943c5a500803f238e930}{%
+           family={Buchlin},
+           familyi={B\bibinitperiod},
+           given={Jean-Marie},
+           giveni={J\bibinithyphendelim M\bibinitperiod}}}%
+        {{hash=b95a3e36c922f88f825a90e5b9951ca4}{%
+           family={Rambaud},
+           familyi={R\bibinitperiod},
+           given={Patric},
+           giveni={P\bibinitperiod}}}%
+        {{hash=677107fea43dd6ebaed6bacedd7ad8ce}{%
+           family={Vetrano},
+           familyi={V\bibinitperiod},
+           given={Maria-Rita},
+           giveni={M\bibinithyphendelim R\bibinitperiod}}}%
+        {{hash=9d0656f3a4adcd5752e2142c22eb8ade}{%
+           family={Abderrahmane},
+           familyi={A\bibinitperiod},
+           given={Benaim},
+           giveni={B\bibinitperiod}}}%
+        {{hash=1b0a3851b8232bb29bbf0b001ea0b4a2}{%
+           family={Bertrand},
+           familyi={B\bibinitperiod},
+           given={Rik},
+           giveni={R\bibinitperiod}}}%
+        {{hash=2a666ceb35520e72e3b259e938f530cb}{%
+           family={Brussee},
+           familyi={B\bibinitperiod},
+           given={Norbert},
+           giveni={N\bibinitperiod}}}%
+        {{hash=2be7b2f648bc75c9ff74b0260585b762}{%
+           family={Thoemel},
+           familyi={T\bibinitperiod},
+           given={Jan},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{45797e88fb290e2b9d18f012c3abcf20}
+      \strng{fullhash}{c2c2db8e517bfc8f9e1f3a6dcb75f4a6}
+      \strng{fullhashraw}{c2c2db8e517bfc8f9e1f3a6dcb75f4a6}
+      \strng{bibnamehash}{45797e88fb290e2b9d18f012c3abcf20}
+      \strng{authorbibnamehash}{45797e88fb290e2b9d18f012c3abcf20}
+      \strng{authornamehash}{45797e88fb290e2b9d18f012c3abcf20}
+      \strng{authorfullhash}{c2c2db8e517bfc8f9e1f3a6dcb75f4a6}
+      \strng{authorfullhashraw}{c2c2db8e517bfc8f9e1f3a6dcb75f4a6}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Acta Astronautica}
+      \field{note}{Red de nanosatélites 2U en órbita SSO con magnetopares y barras de gradiente gravitatorio para estabilización nadir}
+      \field{title}{QB50: An International Network of 50 CubeSats in Lower Thermosphere}
+      \field{volume}{132}
+      \field{year}{2017}
+      \field{pages}{258\bibrangedash 264}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1016/j.actaastro.2016.10.050
+      \endverb
     \endentry
     \entry{satcatalog:gmat1}{online}{}{}
       \list{organization}{1}{%
@@ -2455,43 +2604,6 @@
       \endverb
       \verb{url}
       \verb https://sunketpower.com/es/ultra-detailed-lithium-battery-knowledge/
-      \endverb
-    \endentry
-    \entry{ECAPS_100mN_HPGP}{online}{}{}
-      \name{author}{1}{}{%
-        {{hash=fb29fcf972a62d16524fda8ce2cbbe3e}{%
-           family={{ECAPS AB}},
-           familyi={E\bibinitperiod}}}%
-      }
-      \list{organization}{1}{%
-        {satsearch}%
-      }
-      \strng{namehash}{fb29fcf972a62d16524fda8ce2cbbe3e}
-      \strng{fullhash}{fb29fcf972a62d16524fda8ce2cbbe3e}
-      \strng{fullhashraw}{fb29fcf972a62d16524fda8ce2cbbe3e}
-      \strng{bibnamehash}{fb29fcf972a62d16524fda8ce2cbbe3e}
-      \strng{authorbibnamehash}{fb29fcf972a62d16524fda8ce2cbbe3e}
-      \strng{authornamehash}{fb29fcf972a62d16524fda8ce2cbbe3e}
-      \strng{authorfullhash}{fb29fcf972a62d16524fda8ce2cbbe3e}
-      \strng{authorfullhashraw}{fb29fcf972a62d16524fda8ce2cbbe3e}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{day}{18}
-      \field{month}{3}
-      \field{title}{{ECAPS 100 mN HPGP Thruster}}
-      \field{urlday}{15}
-      \field{urlmonth}{6}
-      \field{urlyear}{2025}
-      \field{year}{2025}
-      \field{dateera}{ce}
-      \field{urldateera}{ce}
-      \verb{urlraw}
-      \verb https://satsearch.co/products/ecaps-100-m-n-hpgp-thruster
-      \endverb
-      \verb{url}
-      \verb https://satsearch.co/products/ecaps-100-m-n-hpgp-thruster
       \endverb
     \endentry
     \entry{smad2002spacecraft}{manual}{}{}
@@ -3120,8 +3232,8 @@
       \strng{authornamehash}{c4ae44106476aacb23433d8aebe81dd5}
       \strng{authorfullhash}{c4ae44106476aacb23433d8aebe81dd5}
       \strng{authorfullhashraw}{c4ae44106476aacb23433d8aebe81dd5}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{eventtitle}{AA 284a: Advanced Rocket Propulsion}
@@ -3146,8 +3258,8 @@
       \strng{authornamehash}{9687cf37062735d11d9f27dc19dee999}
       \strng{authorfullhash}{9687cf37062735d11d9f27dc19dee999}
       \strng{authorfullhashraw}{9687cf37062735d11d9f27dc19dee999}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Technical Working Group Presentation}
@@ -3174,8 +3286,8 @@
       \strng{authornamehash}{b08927634efee7efc1944e69febb5ef0}
       \strng{authorfullhash}{b08927634efee7efc1944e69febb5ef0}
       \strng{authorfullhashraw}{b08927634efee7efc1944e69febb5ef0}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Last updated: 28 February 2025}
@@ -3202,8 +3314,8 @@
       \strng{authornamehash}{741f7bb4f54dd3aa65675b318f534def}
       \strng{authorfullhash}{741f7bb4f54dd3aa65675b318f534def}
       \strng{authorfullhashraw}{741f7bb4f54dd3aa65675b318f534def}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Web page}
@@ -3231,8 +3343,8 @@
       \strng{authornamehash}{867d9c0363928c2a50b1961b9d99dc27}
       \strng{authorfullhash}{867d9c0363928c2a50b1961b9d99dc27}
       \strng{authorfullhashraw}{867d9c0363928c2a50b1961b9d99dc27}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Accessed: 2025}
@@ -3246,8 +3358,8 @@
       \endverb
     \endentry
     \entry{rain_attenuation_xband_2012}{article}{}{}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Progress in Electromagnetics Research}
       \field{note}{Estudio sobre atenuacion por lluvia en enlaces satelitales de banda X}
@@ -3278,8 +3390,8 @@
       \strng{authornamehash}{58708d27196c5f4d0375df446878073e}
       \strng{authorfullhash}{58708d27196c5f4d0375df446878073e}
       \strng{authorfullhashraw}{58708d27196c5f4d0375df446878073e}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Datos historicos del clima de Fairbanks con tablas climaticas}
@@ -3314,8 +3426,8 @@
       \strng{authornamehash}{0376114ecceec9f8f0a4ff63d8cf6282}
       \strng{authorfullhash}{0376114ecceec9f8f0a4ff63d8cf6282}
       \strng{authorfullhashraw}{0376114ecceec9f8f0a4ff63d8cf6282}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{29th Annual AIAA/USU Conference on Small Satellites}
@@ -3350,8 +3462,8 @@
       \strng{authornamehash}{27b48fa1c4b77e72cea539719c3d22f2}
       \strng{authorfullhash}{27b48fa1c4b77e72cea539719c3d22f2}
       \strng{authorfullhashraw}{27b48fa1c4b77e72cea539719c3d22f2}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Analysis of signal deterioration with elevation angles and atmospheric losses}
@@ -3382,8 +3494,8 @@
       \strng{authorfullhash}{9c677286866aad38f8e9b660f5411814}
       \strng{authorfullhashraw}{9c677286866aad38f8e9b660f5411814}
       \field{extraname}{2}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{CIA World Factbook: 9,826,675 km² (3,794,100 sq mi) total area}
@@ -3859,43 +3971,6 @@
       \verb https://www.mouser.es/ProductDetail/Infineon-Cypress/STAR-250?qs=eg8mrW3YyI7j4uRE32sOuA%3D%3D
       \endverb
     \endentry
-    \entry{calpoly2022cubesat}{report}{}{}
-      \name{author}{1}{}{%
-        {{hash=b20595b22eab582354e6b7e059019a65}{%
-           family={The\bibnamedelimb CubeSat\bibnamedelima Program},
-           familyi={T\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim P\bibinitperiod},
-           given={Cal\bibnamedelimb Poly\bibnamedelima SLO},
-           giveni={C\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
-      }
-      \list{institution}{1}{%
-        {California Polytechnic State University, San Luis Obispo}%
-      }
-      \strng{namehash}{b20595b22eab582354e6b7e059019a65}
-      \strng{fullhash}{b20595b22eab582354e6b7e059019a65}
-      \strng{fullhashraw}{b20595b22eab582354e6b7e059019a65}
-      \strng{bibnamehash}{b20595b22eab582354e6b7e059019a65}
-      \strng{authorbibnamehash}{b20595b22eab582354e6b7e059019a65}
-      \strng{authornamehash}{b20595b22eab582354e6b7e059019a65}
-      \strng{authorfullhash}{b20595b22eab582354e6b7e059019a65}
-      \strng{authorfullhashraw}{b20595b22eab582354e6b7e059019a65}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{month}{2}
-      \field{note}{Public Domain}
-      \field{number}{CP-CDS-R14.1}
-      \field{title}{CubeSat Design Specification (1U–12U), Revision 14.1}
-      \field{type}{techreport}
-      \field{year}{2022}
-      \true{nocite}
-      \verb{urlraw}
-      \verb https://www.nasa.gov/wp-content/uploads/2018/01/cubesatdesignspecificationrev14_12022-02-09.pdf
-      \endverb
-      \verb{url}
-      \verb https://www.nasa.gov/wp-content/uploads/2018/01/cubesatdesignspecificationrev14_12022-02-09.pdf
-      \endverb
-    \endentry
     \entry{aerospacelab_hydrazine_thrusters}{online}{}{}
       \name{author}{1}{}{%
         {{hash=83e772c1fbaa666ec70bd8e4e6f9a2ef}{%
@@ -3968,8 +4043,8 @@
       \strng{authorfullhash}{4d9b9be699ac36e72244e0cc1b1211c3}
       \strng{authorfullhashraw}{4d9b9be699ac36e72244e0cc1b1211c3}
       \field{extraname}{2}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Payload User's Guide - Alpha Launch Vehicle}
@@ -4000,8 +4075,8 @@
       \strng{authornamehash}{6d8d83dd5c3223d81bc7c420bbc6e2f1}
       \strng{authorfullhash}{6d8d83dd5c3223d81bc7c420bbc6e2f1}
       \strng{authorfullhashraw}{6d8d83dd5c3223d81bc7c420bbc6e2f1}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{month}{4}
@@ -4033,8 +4108,8 @@
       \strng{authornamehash}{7740d546b5dc9639de9efd9787d74617}
       \strng{authorfullhash}{7740d546b5dc9639de9efd9787d74617}
       \strng{authorfullhashraw}{7740d546b5dc9639de9efd9787d74617}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{month}{4}
@@ -4066,8 +4141,8 @@
       \strng{authornamehash}{deb424177001c14f1b588fb2f584be5f}
       \strng{authorfullhash}{deb424177001c14f1b588fb2f584be5f}
       \strng{authorfullhashraw}{deb424177001c14f1b588fb2f584be5f}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{month}{5}
@@ -4099,8 +4174,8 @@
       \strng{authornamehash}{2c07ea194e277b58736e9aa018bb66b1}
       \strng{authorfullhash}{2c07ea194e277b58736e9aa018bb66b1}
       \strng{authorfullhashraw}{2c07ea194e277b58736e9aa018bb66b1}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{month}{9}
@@ -4133,8 +4208,8 @@
       \strng{authorfullhash}{4d9b9be699ac36e72244e0cc1b1211c3}
       \strng{authorfullhashraw}{4d9b9be699ac36e72244e0cc1b1211c3}
       \field{extraname}{3}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{month}{7}
@@ -4169,8 +4244,8 @@
       \strng{authornamehash}{5c12ea2176afd63a99e0d1b017e3dbbc}
       \strng{authorfullhash}{5c12ea2176afd63a99e0d1b017e3dbbc}
       \strng{authorfullhashraw}{5c12ea2176afd63a99e0d1b017e3dbbc}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Exploiting Northern Latitudes For Efficient Space Launch}
