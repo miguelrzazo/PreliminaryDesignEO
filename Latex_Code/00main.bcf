@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bcf:controlfile version="3.11" bltxversion="3.20" xmlns:bcf="https://sourceforge.net/projects/biblatex">
+<bcf:controlfile version="3.11" bltxversion="3.21" xmlns:bcf="https://sourceforge.net/projects/biblatex">
   <!-- BIBER OPTIONS -->
   <bcf:options component="biber" type="global">
     <bcf:option type="singlevalued">
@@ -514,6 +514,7 @@
     <bcf:option datatype="string">alphaothers</bcf:option>
     <bcf:option datatype="string">sortalphaothers</bcf:option>
     <bcf:option datatype="string">presort</bcf:option>
+    <bcf:option datatype="string">citepagerange</bcf:option>
     <bcf:option datatype="string">texencoding</bcf:option>
     <bcf:option datatype="string">bibencoding</bcf:option>
     <bcf:option datatype="string">sortingtemplatename</bcf:option>
@@ -2420,155 +2421,4 @@
     <bcf:citekey order="85" intorder="1">kuroda_essential_2014</bcf:citekey>
     <bcf:citekey order="86" intorder="1">ccd_operation_diagram</bcf:citekey>
     <bcf:citekey order="87" intorder="1">ccd_operation_diagram</bcf:citekey>
-    <bcf:citekey order="88" intorder="1">kuroda_essential_2014</bcf:citekey>
-    <bcf:citekey order="89" intorder="1">ccd_operation_diagram</bcf:citekey>
-    <bcf:citekey order="90" intorder="1">ccd_operation_diagram</bcf:citekey>
-    <bcf:citekey order="91" intorder="1">kuroda_essential_2014</bcf:citekey>
-    <bcf:citekey order="92" intorder="1">coatings2021_11_5_611_extended</bcf:citekey>
-    <bcf:citekey order="93" intorder="1">coatings2021_11_5_611_extended</bcf:citekey>
-    <bcf:citekey order="94" intorder="1">capper_mercury_2010</bcf:citekey>
-    <bcf:citekey order="95" intorder="1">everyphotoncounts2025ingaas_spad</bcf:citekey>
-    <bcf:citekey order="96" intorder="1">everyphotoncounts2025ingaas_spad</bcf:citekey>
-    <bcf:citekey order="97" intorder="1">henini_handbook_2002</bcf:citekey>
-    <bcf:citekey order="98" intorder="1">tdi_sensor2017</bcf:citekey>
-    <bcf:citekey order="99" intorder="1">tdi_sensor2017</bcf:citekey>
-    <bcf:citekey order="100" intorder="1">design_workshop_optical_2023</bcf:citekey>
-    <bcf:citekey order="101" intorder="1">design_workshop_optical_2023</bcf:citekey>
-    <bcf:citekey order="102" intorder="1">pushbroom_sensor_diagram</bcf:citekey>
-    <bcf:citekey order="103" intorder="1">pushbroom_sensor_diagram</bcf:citekey>
-    <bcf:citekey order="104" intorder="1">whiskbroom_diagram</bcf:citekey>
-    <bcf:citekey order="105" intorder="1">whiskbroom_diagram</bcf:citekey>
-    <bcf:citekey order="106" intorder="1">step_stare_system</bcf:citekey>
-    <bcf:citekey order="107" intorder="1">step_stare_system</bcf:citekey>
-    <bcf:citekey order="108" intorder="1">kaplan_optical_2011</bcf:citekey>
-    <bcf:citekey order="109" intorder="1">design_workshop_optical_2023</bcf:citekey>
-    <bcf:citekey order="110" intorder="1">design_workshop_optical_2023</bcf:citekey>
-    <bcf:citekey order="111" intorder="1">entrance_pupil_diagram</bcf:citekey>
-    <bcf:citekey order="112" intorder="1">entrance_pupil_diagram</bcf:citekey>
-    <bcf:citekey order="113" intorder="1">refractor_reflector_comparison</bcf:citekey>
-    <bcf:citekey order="114" intorder="1">refractor_reflector_comparison</bcf:citekey>
-    <bcf:citekey order="115" intorder="1">cassegrain_telescope_diagram</bcf:citekey>
-    <bcf:citekey order="116" intorder="1">cassegrain_telescope_diagram</bcf:citekey>
-    <bcf:citekey order="117" intorder="1">korsch_telescope_system</bcf:citekey>
-    <bcf:citekey order="118" intorder="1">korsch_telescope_system</bcf:citekey>
-    <bcf:citekey order="119" intorder="1">tma_telescope_diagram</bcf:citekey>
-    <bcf:citekey order="120" intorder="1">tma_telescope_diagram</bcf:citekey>
-    <bcf:citekey order="121" intorder="1">STScI_MIRI_Filters</bcf:citekey>
-    <bcf:citekey order="122" intorder="1">STScI_MIRI_Filters</bcf:citekey>
-    <bcf:citekey order="123" intorder="1">Reeve2024BandPass</bcf:citekey>
-    <bcf:citekey order="124" intorder="1">Reeve2024BandPass</bcf:citekey>
-    <bcf:citekey order="125" intorder="1">WikiElementosOrbitales</bcf:citekey>
-    <bcf:citekey order="126" intorder="1">WikiElementosOrbitales</bcf:citekey>
-    <bcf:citekey order="127" intorder="1">curtis2020orbital</bcf:citekey>
-    <bcf:citekey order="128" intorder="1">spaceacademy_orblife</bcf:citekey>
-    <bcf:citekey order="129" intorder="1">spaceacademy_orblife</bcf:citekey>
-    <bcf:citekey order="130" intorder="1">skoog2017principles</bcf:citekey>
-    <bcf:citekey order="131" intorder="1">lynred_capyork</bcf:citekey>
-    <bcf:citekey order="132" intorder="1">teledyne_hawaii2rg</bcf:citekey>
-    <bcf:citekey order="133" intorder="1">sofradir_saturn_visir_2011</bcf:citekey>
-    <bcf:citekey order="134" intorder="1">cypress_star250_2009</bcf:citekey>
-    <bcf:citekey order="135" intorder="1">teledyne_hawaii2rg</bcf:citekey>
-    <bcf:citekey order="136" intorder="1">sofradir_saturn_visir_2011</bcf:citekey>
-    <bcf:citekey order="137" intorder="1">macleod2010</bcf:citekey>
-    <bcf:citekey order="138" intorder="1">nasa_sso_slots_2011</bcf:citekey>
-    <bcf:citekey order="139" intorder="1">Boain2004</bcf:citekey>
-    <bcf:citekey order="140" intorder="1">zorita_mtf_2023</bcf:citekey>
-    <bcf:citekey order="141" intorder="1">zorita_mtf_2023</bcf:citekey>
-    <bcf:citekey order="142" intorder="1">gravrand_development_2017</bcf:citekey>
-    <bcf:citekey order="143" intorder="1">li2020global</bcf:citekey>
-    <bcf:citekey order="144" intorder="1">copernicus2025sentinel</bcf:citekey>
-    <bcf:citekey order="145" intorder="1">neigh2023landsat</bcf:citekey>
-    <bcf:citekey order="146" intorder="1">lou2020sar</bcf:citekey>
-    <bcf:citekey order="147" intorder="1">osullivan2023removing</bcf:citekey>
-    <bcf:citekey order="148" intorder="1">osullivan2023removing</bcf:citekey>
-    <bcf:citekey order="149" intorder="1">crisp2018semi</bcf:citekey>
-    <bcf:citekey order="150" intorder="1">walker1991phase</bcf:citekey>
-    <bcf:citekey order="151" intorder="1">wertz1999smad</bcf:citekey>
-    <bcf:citekey order="152" intorder="1">zorita_dimensiones_2023</bcf:citekey>
-    <bcf:citekey order="153" intorder="1">zorita_dimensiones_2023</bcf:citekey>
-    <bcf:citekey order="154" intorder="1">zorita_dimensiones_2023</bcf:citekey>
-    <bcf:citekey order="155" intorder="1">cook1965satellite</bcf:citekey>
-    <bcf:citekey order="156" intorder="1">usstandardatmosphere1976</bcf:citekey>
-    <bcf:citekey order="157" intorder="1">vallado2013fundamentals</bcf:citekey>
-    <bcf:citekey order="158" intorder="1">curtis2020orbital</bcf:citekey>
-    <bcf:citekey order="159" intorder="1">curtis2020orbital</bcf:citekey>
-    <bcf:citekey order="160" intorder="1">nasa_deorbit_systems_2025</bcf:citekey>
-    <bcf:citekey order="161" intorder="1">tsinas2001efficient</bcf:citekey>
-    <bcf:citekey order="162" intorder="1">satcatalog:gmat1</bcf:citekey>
-    <bcf:citekey order="163" intorder="1">satcatalog:gmat1</bcf:citekey>
-    <bcf:citekey order="164" intorder="1">satcatalog:gmat1</bcf:citekey>
-    <bcf:citekey order="165" intorder="1">kulu2025nanosats</bcf:citekey>
-    <bcf:citekey order="166" intorder="1">kulu2025nanosats</bcf:citekey>
-    <bcf:citekey order="167" intorder="1">endurosat_xband_2025</bcf:citekey>
-    <bcf:citekey order="168" intorder="1">nasa2025power</bcf:citekey>
-    <bcf:citekey order="169" intorder="1">hiansa2022panel</bcf:citekey>
-    <bcf:citekey order="170" intorder="1">sunket2025lithium</bcf:citekey>
-    <bcf:citekey order="171" intorder="1">ECAPS_100mN_HPGP</bcf:citekey>
-    <bcf:citekey order="172" intorder="1">smad2002spacecraft</bcf:citekey>
-    <bcf:citekey order="173" intorder="1">isisobc</bcf:citekey>
-    <bcf:citekey order="174" intorder="1">guzman2025thermal</bcf:citekey>
-    <bcf:citekey order="175" intorder="1">nasa2025thermal</bcf:citekey>
-    <bcf:citekey order="176" intorder="1">spacex2022</bcf:citekey>
-    <bcf:citekey order="177" intorder="1">esa2024</bcf:citekey>
-    <bcf:citekey order="178" intorder="1">lionnet2025</bcf:citekey>
-    <bcf:citekey order="179" intorder="1">satellitetoday2024</bcf:citekey>
-    <bcf:citekey order="180" intorder="1">spacex2022</bcf:citekey>
-    <bcf:citekey order="180" intorder="2">payloadspace2023</bcf:citekey>
-    <bcf:citekey order="181" intorder="1">wikipedia2024</bcf:citekey>
-    <bcf:citekey order="182" intorder="1">fireflyspace2024</bcf:citekey>
-    <bcf:citekey order="183" intorder="1">semanticscholar2023</bcf:citekey>
-    <bcf:citekey order="184" intorder="1">spaceinsider2023</bcf:citekey>
-    <bcf:citekey order="185" intorder="1">wikipedia2024</bcf:citekey>
-    <bcf:citekey order="186" intorder="1">esa2024</bcf:citekey>
-    <bcf:citekey order="187" intorder="1">arstechnica2023</bcf:citekey>
-    <bcf:citekey order="188" intorder="1">esa2024</bcf:citekey>
-    <bcf:citekey order="189" intorder="1">arianespace2024</bcf:citekey>
-    <bcf:citekey order="190" intorder="1">esa2024</bcf:citekey>
-    <bcf:citekey order="191" intorder="1">satobs2024</bcf:citekey>
-    <bcf:citekey order="192" intorder="1">satobs2024</bcf:citekey>
-    <bcf:citekey order="193" intorder="1">mdpi2024</bcf:citekey>
-    <bcf:citekey order="194" intorder="1">satobs2024</bcf:citekey>
-    <bcf:citekey order="195" intorder="1">stackexchange2022</bcf:citekey>
-    <bcf:citekey order="196" intorder="1">satobs2024</bcf:citekey>
-    <bcf:citekey order="197" intorder="1">wikipedia2024</bcf:citekey>
-    <bcf:citekey order="198" intorder="1">arianespace2024</bcf:citekey>
-    <bcf:citekey order="199" intorder="1">SFNow_Transporter9_2023</bcf:citekey>
-    <bcf:citekey order="200" intorder="1">SFNow_Transporter9_2023</bcf:citekey>
-    <bcf:citekey order="201" intorder="1">wikipedia2024</bcf:citekey>
-    <bcf:citekey order="202" intorder="1">wikipedia2024</bcf:citekey>
-    <bcf:citekey order="203" intorder="1">karabeyoglu2018lecture7</bcf:citekey>
-    <bcf:citekey order="204" intorder="1">noaa_wallops_2019</bcf:citekey>
-    <bcf:citekey order="205" intorder="1">eumetsat_ground_segment_2025</bcf:citekey>
-    <bcf:citekey order="206" intorder="1">ASF2025_NSN</bcf:citekey>
-    <bcf:citekey order="207" intorder="1">ASF2025_NSN</bcf:citekey>
-    <bcf:citekey order="208" intorder="1">noaa_fairbanks_2023</bcf:citekey>
-    <bcf:citekey order="209" intorder="1">rain_attenuation_xband_2012</bcf:citekey>
-    <bcf:citekey order="210" intorder="1">rain_attenuation_xband_2012</bcf:citekey>
-    <bcf:citekey order="211" intorder="1">climate_data_fairbanks</bcf:citekey>
-    <bcf:citekey order="212" intorder="1">climate_data_fairbanks</bcf:citekey>
-    <bcf:citekey order="213" intorder="1">altunc_xband_cubesat_2016</bcf:citekey>
-    <bcf:citekey order="214" intorder="1">satellite_coordinates_look_angles</bcf:citekey>
-    <bcf:citekey order="215" intorder="1">cia_worldfactbook_usa_area</bcf:citekey>
-    <bcf:citekey order="216" intorder="1" nocite="1">*</bcf:citekey>
-  </bcf:section>
-  <!-- SORTING TEMPLATES -->
-  <bcf:sortingtemplate name="none">
-    <bcf:sort order="1">
-      <bcf:sortitem order="1">citeorder</bcf:sortitem>
-    </bcf:sort>
-    <bcf:sort order="2">
-      <bcf:sortitem order="1">intciteorder</bcf:sortitem>
-    </bcf:sort>
-  </bcf:sortingtemplate>
-  <!-- DATALISTS -->
-  <bcf:datalist section="0"
-                name="none/global//global/global/global"
-                type="entry"
-                sortingtemplatename="none"
-                sortingnamekeytemplatename="global"
-                labelprefix=""
-                uniquenametemplatename="global"
-                labelalphanametemplatename="global"
-                namehashtemplatename="global">
-  </bcf:datalist>
-</bcf:controlfile>
+    <bcf:ci

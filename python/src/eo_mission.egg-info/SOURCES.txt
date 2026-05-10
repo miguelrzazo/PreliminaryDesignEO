@@ -1,0 +1,13 @@
+pyproject.toml
+src/eo_mission/__init__.py
+src/eo_mission/analysis.py
+src/eo_mission/coverage.py
+src/eo_mission/electrical.py
+src/eo_mission/mass.py
+src/eo_mission/optics.py
+src/eo_mission.egg-info/PKG-INFO
+src/eo_mission.egg-info/SOURCES.txt
+src/eo_mission.egg-info/dependency_links.txt
+src/eo_mission.egg-info/requires.txt
+src/eo_mission.egg-info/top_level.txt
+tests/test_optics.py
