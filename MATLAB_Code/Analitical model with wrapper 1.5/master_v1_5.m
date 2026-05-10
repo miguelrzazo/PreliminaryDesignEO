@@ -1,6 +1,7 @@
 
 clear; clc; close all;
-                
+addpath(fullfile(fileparts(mfilename('fullpath')), '..', 'lib'));
+
 lambda1 = 1.61e-6;                 % Banda 1 Co2
 lambda2 = 2.01e-6;                  % Banda 2 CO2
 lambda3 = 0.76e-6;                  % Banda Visible O2 A-band

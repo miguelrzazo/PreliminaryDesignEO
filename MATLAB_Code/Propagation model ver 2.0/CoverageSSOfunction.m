@@ -13,28 +13,25 @@ swath_limit = min(swath_max_detector, swath_max_telescope);
 %% Inicializar matriz de resultados
 revisitMap = NaN(length(altitudes), length(swaths));
 
-for i = 1:length(altitudes)
+% Pre-filter swath indices to skip those that exceed the limit (parfor compatibility)
+valid_swath_mask = swaths <= swath_limit;
+
+parfor i = 1:length(altitudes)
     h = altitudes(i);
+    row = NaN(1, length(swaths));
     for j = 1:length(swaths)
+        if ~valid_swath_mask(j), continue; end
         sw = swaths(j);
 
-        % Verificar si el swath cumple los requisitos
-        if sw > swath_limit
-            continue;
-        end
-
-        fprintf('  Simulando h = %d km, swath = %d km...\n', h, sw);
-
-        % Simulación de cobertura
+        % Ground-track simulation for this altitude/swath combination
         daysToCover = simulateCoverage(h, sw, latGrid, lonGrid, maskUSA, ...
-                                           overlapFactor, clearSkyFraction, Cov_Requirement,LTAN_hour);
+                                       overlapFactor, clearSkyFraction, Cov_Requirement, LTAN_hour);
 
         if daysToCover <= Cov_Requirement
-            revisitMap(i,j) = daysToCover;
-        else
-            revisitMap(i,j) = NaN; % Para que quede blanco en el heatmap
+            row(j) = daysToCover;
         end
     end
+    revisitMap(i, :) = row;
 end
 
 %% Guardar CSV
@@ -60,7 +57,7 @@ coverage = array2table(revisitMap, 'RowNames', row_names, 'VariableNames', col_n
 % Guardar tabla como CSV con nombres de filas
 writetable(coverage, fullfile('Coverage', [filename_base '_resultados.csv']), 'WriteRowNames', true);
 
-fid = fopen(filename_base, 'w');
+fid = fopen(fullfile('Coverage', [filename_base '.txt']), 'w');
 fprintf(fid, 'Resultados cobertura\n');
 fprintf(fid, 'Detector: %d\nTelescopio: %d (%s)\n', idx_detector, idx_telescopio, telescope_name);
 fprintf(fid, 'Nº Satélites: %d\nNº Telescopios: %d\n', N_sat, N_telescopes);
