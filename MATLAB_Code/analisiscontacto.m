@@ -22,7 +22,7 @@ pixelArea_m2 = GSD^2;
 numPixels = areaToMap_m2 / pixelArea_m2;
 totalDataBits = numPixels * bitsPerPixel;
 totalDataToMap_GB = totalDataBits / (8 * 1e9); 
-downloadRate_Mbps = 76;
+downloadRate_Mbps = 86;
 memoryPerSatellite_GB = 1; % Capacidad en GB
 
 %% 2. CREACIÓN DEL ESCENARIO DE SIMULACIÓN

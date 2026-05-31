@@ -70,76 +70,21 @@ Primeramente se establecen los parámetros temporales de la simulación, definie
 
 El transmisor de banda X permite velocidades de descarga teóricas de hasta 150 Mbps, según especificaciones del fabricante. Esto se produce en condiciones óptimas, pero diversos factores ambientales y operativos reducen este valor en la práctica.
 
-\subsubsection{Balance de enlace (Link Budget)}
-
-La capacidad máxima del enlace de descarga en banda X se fundamenta en la ecuación de Friis para la potencia recibida:
-\begin{equation}
-    P_r\,[\text{dBW}] = P_t + G_t - L_{\text{FSPL}} - L_{\text{atm}} + G_r - L_{\text{sys}}
-\end{equation}
-donde $P_t$ es la potencia de transmisión, $G_t$ y $G_r$ las ganancias de antena del satélite y la estación terrestre respectivamente, $L_{\text{FSPL}}$ la pérdida de espacio libre, $L_{\text{atm}}$ la atenuación atmosférica y $L_{\text{sys}}$ las pérdidas de sistema.
-
-La \textbf{pérdida de espacio libre} (FSPL) para una frecuencia $f$ y una distancia $d$ es:
-\begin{equation}
-    L_{\text{FSPL}}\,[\text{dB}] = 20\log_{10}\!\left(\frac{4\pi d f}{c}\right)
-\end{equation}
-Para la geometría de paso a elevación media ($\approx 60°$), la distancia satélite-estación es $d \approx 700\,\text{km}$, lo que a 8,1\,GHz produce $L_{\text{FSPL}} = 167\,\text{dB}$.
-
-La figura de mérito de la estación receptora se define como la relación antena-temperatura de ruido, $G/T$. Para la antena de 13\,m de Fairbanks operando en banda X, la ganancia se estima mediante:
-\begin{equation}
-    G_r\,[\text{dBi}] = 10\log_{10}\!\left[\eta\left(\frac{\pi D}{\lambda}\right)^2\right]
-\end{equation}
-con eficiencia $\eta = 0{,}55$ y diámetro $D = 13\,\text{m}$, lo que da $G_r \approx 58\,\text{dBi}$. Con una temperatura de sistema $T_{\text{sys}} \approx 50\,\text{K}$, se obtiene $G/T \approx 41\,\text{dB/K}$.
-
-A partir de estos valores se construye el \textbf{balance de enlace} (Tabla~\ref{tab:link_budget}), que evalúa la relación $E_b/N_0$ obtenida frente a la requerida por la modulación empleada (QPSK, BER $= 10^{-6}$):
-
-\begin{table}[H]
-\centering
-\caption{Balance de enlace del canal de descarga en banda X (escenario nominal, elevación $60°$).\\ Fuente: Elaboración propia.}
-\label{tab:link_budget}
-\begin{tabular}{lcc}
-\hline
-\textbf{Parámetro} & \textbf{Símbolo} & \textbf{Valor} \\
-\hline
-Potencia de transmisión                       & $P_t$                 & 5 dBW           \\
-Ganancia antena satélite (banda X, parche)    & $G_t$                 & 8 dBi           \\
-\textbf{EIRP}                                 &                       & \textbf{13 dBW} \\
-\hline
-Pérdida de espacio libre (700 km, 8,1 GHz)   & $L_\text{FSPL}$       & $-167$ dB       \\
-Atenuación atmosférica (nominal)              & $L_\text{atm}$        & $-0{,}5$ dB     \\
-\hline
-Ganancia antena terrestre (Fairbanks, 13 m)   & $G_r$                 & 58 dBi          \\
-Temperatura de ruido del sistema              & $T_\text{sys}$        & 50 K            \\
-Figura de mérito                              & $G/T$                 & 41 dB/K         \\
-\hline
-Constante de Boltzmann                        & $k$                   & $-228{,}6$ dBW/Hz \\
-\textbf{Densidad portadora-ruido}             & $C/N_0$               & \textbf{115,1 dB·Hz} \\
-\hline
-Velocidad de datos                            & $R_b$                 & 150 Mbps (81,8 dB·Hz) \\
-$E_b/N_0$ obtenida                           &                       & 33,3 dB         \\
-$E_b/N_0$ requerida (QPSK, BER $10^{-6}$)   &                       & 10,5 dB         \\
-\hline
-\textbf{Margen de enlace}                     &                       & \textbf{22,8 dB} \\
-\hline
-\end{tabular}
-\end{table}
-
-El margen de 22,8\,dB obtenido en condiciones nominales confirma que la tasa de 150\,Mbps indicada por el fabricante es alcanzable y que el enlace dispone de un margen holgado para absorber las pérdidas operativas analizadas en los apartados siguientes.
-
 \subsubsection{Atenuamiento por inclemencias meteorológicas}
 
-Las gotas de agua y cristales de hielo dispersan y absorben las ondas electromagnéticas, reduciendo la intensidad de la señal que llega a la estación terrestre. Este efecto es más pronunciado en frecuencias más altas como la banda X, donde las longitudes de onda son comparables al tamaño de las gotas. Primeramente se plantean las velocidades que esperables en función de la inclemencia meteorológica de un día cualquiera:
+Las principales fuentes de atenuación atmosférica en banda X son las precipitaciones líquidas. La nieve seca y el hielo presentan atenuaciones inferiores a 0,05\,dB en torno a 8\,GHz, despreciables frente al margen de enlace de 22,8\,dB, de modo que los días con precipitación sólida se clasifican como condiciones favorables para la transmisión. La atenuación específica por lluvia se calcula mediante el modelo \textbf{ITU-R P.838-3} ($\gamma_R = k \cdot R^\alpha$, con $k = 0{,}00425$ y $\alpha = 1{,}32$ a 8,1\,GHz), resultando en pérdidas inferiores a 0,1\,dB para tasas de lluvia moderada (5\,mm/h) características de Fairbanks \cite{ITU-R_P838_3}. Las velocidades esperables en función de las condiciones meteorológicas son:
 
 \begin{table}[H]
 \centering
-\caption{Velocidades de transmisión aproximadas en función de las condiciones meteorológicas. \\ Fuente:\cite{rain_attenuation_xband_2012}.}
+\caption{Velocidades de transmisión aproximadas en función de las condiciones meteorológicas. \\ Fuente: \cite{ITU-R_P838_3}.}
 \begin{tabular}{ll}
 \hline
 \textbf{Condición Meteorológica} & \textbf{Velocidades (Mbps)} \\
 \hline
-Cielo despejado & 120 - 150 \\
-Lluvia moderada & 75 - 100 \\
-Tormenta extrema & 22 - 38 \\
-Nubes densas & 90 - 110 \\
+Cond.\ favorables (despejado/nieve) & 130 -- 150 \\
+Lluvia moderada & 120 -- 140 \\
+Lluvia intensa & 90 -- 120 \\
+Nubes densas & 125 -- 145 \\
 \hline
 \end{tabular}
 
@@ -148,18 +93,21 @@ Nubes densas & 90 - 110 \\
 Se debe considerar la estacionalidad a lo largo del año, teniendo en cuenta por ejemplo, que el verano de Alaska es mas lluvioso que el invierno. Con ello, se puede representar gráficamente las velocidades que  esperables a lo largo del año, así como sacar una velocidad media anual. Tomando las siguientes probabilidades:
 
 \begin{table}[H]
-\caption{Distribución estacional de condiciones meteorológicas en Fairbanks. \\Fuente: \cite{climate_data_fairbanks}.}
+\caption{Distribución estacional de condiciones meteorológicas en Fairbanks. \\Fuente: \cite{climate_data_fairbanks} (NOAA Climate Normals 1991-2020, estación USW00026411).}
 \centering
 \begin{tabularx}{\textwidth}{X X X X X}
 \toprule
-\textbf{Estación} & \textbf{Cielo despejado (\%)} & \textbf{Lluvia moderada (\%)} & \textbf{Tormentas extremas (\%)} & \textbf{Nubes densas (\%)} \\
+\textbf{Estación} & \textbf{Cond.\ favorables$^*$ (\%)} & \textbf{Lluvia moderada (\%)} & \textbf{Lluvia intensa (\%)} & \textbf{Nubes densas (\%)} \\
 \midrule
-Invierno  & 80 & 15 & 1  & 4  \\
-Primavera & 65 & 25 & 5  & 5  \\
-Verano    & 55 & 30 & 10 & 5  \\
-Otoño     & 70 & 20 & 5  & 5  \\
+Invierno  & 82 & 1  & 0  & 17 \\
+Primavera & 76 & 12 & 3  & 9  \\
+Verano    & 52 & 36 & 7  & 5  \\
+Otoño     & 64 & 22 & 5  & 9  \\
 \bottomrule
 \end{tabularx}
+\smallskip
+
+\noindent\footnotesize $^*$ Incluye días despejados y con precipitación sólida (nieve/aguanieve). En banda X (8,1\,GHz), la nieve seca introduce $<$0,05\,dB de atenuación, despreciable frente al margen de enlace de 22,8\,dB. Lluvia moderada: $R < 10$\,mm/h; lluvia intensa: $R \geq 10$\,mm/h (clasificación OMM).
 
 \end{table}
 
@@ -177,7 +125,7 @@ Se modela la simulación en MATLAB y representando gráficamente se extrae:
     \caption{Velocidad de descarga diaria estimada en función de condiciones climáticas.\\ Fuente: Elaboración Propia}
 \end{figure}
 
-Se aprecia una velocidad media anual de \textbf{116,8 Mbps}, lo cual supone una pérdida del 22,13\% debido a las condiciones climáticas.
+Se aprecia una velocidad media anual de \textbf{131 Mbps}, lo cual supone una pérdida del 12,7\% respecto al máximo teórico, debida principalmente a los episodios de lluvia en verano.
 
 
 \textbf{Otros factores correctores.}
@@ -187,28 +135,12 @@ De este ultimo valor, se aplican dos factores correctores adicionales:
     \item \textbf{Factor corrector por hardware}: El hardware introduce una reducción del \textbf{12.5\%} en la velocidad debido a pérdidas en componentes como antenas, cables y receptores. Las antenas tienen una eficiencia operativa del 65-70\%, lo que genera pérdidas inherentes en la captación y transmisión de la señal. Además, factores como desadaptación de impedancia (~1 dB) y ruido térmico (~0.5 dB) contribuyen a esta disminución \cite{altunc_xband_cubesat_2016}.
     \item \textbf{Factor corrector por paso baja elevación}:
     Los pases de baja elevación (\textless 30°) afectan la velocidad debido a la mayor distancia que debe atravesar la señal y su exposición prolongada a interferencias atmosféricas. Esto genera un aumento significativo en la atenuación y reduce los tiempos de contacto efectivos. Este factor introduce una reducción adicional del \textbf{25\% \cite{satellite_coordinates_look_angles}}.
-    \item \textbf{Efecto Doppler}: El movimiento orbital del satélite a $v \approx 7{,}6\,\text{km/s}$ produce un desplazamiento en frecuencia de la portadora según:
-    \begin{equation}
-        \Delta f = f_0 \cdot \frac{v_r}{c}
-    \end{equation}
-    donde $v_r$ es la componente radial de la velocidad relativa satélite-estación. Para la banda X ($f_0 = 8{,}1\,\text{GHz}$) el desplazamiento máximo, producido cuando el satélite asciende o desciende por el horizonte, alcanza $|\Delta f|_\text{máx} \approx \pm\,205\,\text{kHz}$. La tasa de variación máxima, en el instante de máxima elevación (\textit{TCA}), es aproximadamente $3{,}1\,\text{kHz/s}$. La Figura~\ref{fig:doppler} muestra el perfil de desplazamiento Doppler a lo largo de un pase representativo. El receptor de la estación incorpora un \textit{phase-locked loop} (PLL) de seguimiento que compensa este barrido de frecuencia en tiempo real; el efecto queda recogido dentro del margen de enlace calculado previamente y no supone una penalización adicional sobre la velocidad de descarga.
-
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.85\linewidth]{7.Segmento_Tierra/doppler_profile.pdf}
-        \caption{Perfil de desplazamiento Doppler en banda X durante un pase representativo. \\ Fuente: Elaboración propia (MATLAB, \texttt{calcularDoppler.m})}
-        \label{fig:doppler}
-    \end{figure}
-
-    \item \textbf{Polarización}: La antena transmisora del satélite (típicamente una \textit{turnstile} de polarización circular) y la antena receptora de Fairbanks (plato parabólico con alimentación de polarización circular) están alineadas en polarización, por lo que la pérdida por desadaptación es $\approx 0\,\text{dB}$. En misiones futuras que utilicen antenas de polarización lineal en tierra, esta pérdida puede alcanzar los 3\,dB y deberá incluirse como partida explícita en el balance de enlace.
 \end{itemize}
 
 Por lo que la velocidad de transmisión de datos real será:
 $$
-\text{Velocidad real} = 116\ \text{Mbps} \times 0.875 \times 0.75 = \boxed{76.1\ \text{Mbps}}
+\text{Velocidad real} = 131\ \text{Mbps} \times 0{,}875 \times 0{,}75 = \boxed{86\ \text{Mbps}}
 $$
-
-Los efectos Doppler y de polarización quedan englobados dentro del margen de enlace calculado y del factor corrector de hardware, dado que el receptor incorpora compensación activa de frecuencia y la estación de Fairbanks opera con antenas de polarización circular. Existen otros fenómenos que pueden hacer fluctuar la velocidad real de descarga, pero en este trabajo se han considerado los de mayor peso.
 
 \subsection{Generación de datos. Viabilidad de la estación. Memoria de a bordo}
 
@@ -250,7 +182,7 @@ V_{\text{semanal}} = 6{,}909\ \text{GB} \times \frac{7}{T_{\text{rev,física}}} 
 
 Por último, una vez calculados estos factores, resulta sencillo evaluar la viabilidad del sistema en función de la capacidad de descarga de la estación de Tierra. El tiempo mínimo necesario para transferir todos los datos generados durante la semana es:
 \begin{equation}
-t_{\text{descarga}} = \frac{8{,}843\ \text{GB}}{76{,}1\ \text{Mbps} \times \frac{1}{8}\ \text{MB/s}} = \frac{8843}{9{,}5} = \boxed{931\ \text{segundos}}
+t_{\text{descarga}} = \frac{8{,}843\ \text{GB}}{86\ \text{Mbps} \times \frac{1}{8}\ \text{MB/s}} = \frac{8843}{10{,}75} = \boxed{823\ \text{segundos}}
 \end{equation}
 
 Teniendo en cuenta que el tiempo total de contacto disponible entre el satélite y la estación de Tierra durante ese mismo periodo es, calculado previamente, es  $t_{\text{contacto, semana}} = 79620\ \text{segundos}$, se verifica que $t_{\text{descarga}} < t_{\text{contacto, semana}}$. Por tanto, la configuración propuesta es viable desde el punto de vista de la capacidad de descarga, ya que existe un margen más que suficiente para completar la transferencia incluso considerando posibles interrupciones o ineficiencias del enlace.

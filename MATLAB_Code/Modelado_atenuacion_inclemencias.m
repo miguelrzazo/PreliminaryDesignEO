@@ -17,16 +17,23 @@ set(groot, 'defaultLegendInterpreter', 'latex');
 dias_simulacion = 365; % Un año completo
 
 % Parámetros de velocidad (Mbps) - [min, max]
+% Rangos basados en ITU-R P.838-3 a 8.1 GHz: gamma_R = k*R^alpha, k=0.00425, alpha=1.32
+% Atenuación en trayecto oblicuo (elev. 60°, altura lluvia 2 km): L_eff = 2/sin(60°) = 2.31 km
+% Lluvia moderada (5 mm/h): ~0.08 dB; Lluvia intensa (30 mm/h): ~0.74 dB
+% Margen de enlace disponible: 22.8 dB >> atenuaciones anteriores
 VELOCIDADES = containers.Map(...
-    {'Cielo despejado', 'Lluvia moderada', 'Tormenta extrema', 'Nubes densas'}, ...
-    {[120, 150], [75, 100], [22, 38], [90, 110]});
+    {'Cond. favorables', 'Lluvia moderada', 'Lluvia intensa', 'Nubes densas'}, ...
+    {[130, 150], [120, 140], [90, 120], [125, 145]});
 
 % Probabilidades de condiciones meteorológicas por estación (%)
+% Fuente: NOAA Climate Normals 1991-2020, Fairbanks Intl Airport (USW00026411)
+% Días de lluvia real: invierno ~0, primavera ~4, verano ~37, otoño ~9 (total año ~103 precip.)
+% Nieve y nubes sin lluvia = "Cond. favorables" a efectos de enlace en banda X
 PROBABILIDADES_ESTACION = containers.Map(...
     {'Primavera', 'Verano', 'Otono', 'Invierno'}, ...
-    {[60, 30, 5, 5], [50, 40, 5, 5], [70, 20, 5, 5], [80, 15, 3, 2]});
+    {[76, 12, 3, 9], [52, 36, 7, 5], [64, 22, 5, 9], [82, 1, 0, 17]});
 
-condiciones_nombres = {'Cielo despejado', 'Lluvia moderada', 'Tormenta extrema', 'Nubes densas'};
+condiciones_nombres = {'Cond. favorables', 'Lluvia moderada', 'Lluvia intensa', 'Nubes densas'};
 
 %% Función para asignar estación
 function estacion = asignar_estacion(dia)
@@ -115,9 +122,9 @@ hold on;
 
 % Definir colores más visibles y diferenciables
 colores_visibles = [
-    0, 0.4470, 0.7410;      % Azul para cielo despejado
-    0.8500, 0.3250, 0.0980; % Naranja para lluvia moderada  
-    0.6350, 0.0780, 0.1840; % Rojo oscuro para tormenta extrema
+    0, 0.4470, 0.7410;      % Azul para cond. favorables
+    0.8500, 0.3250, 0.0980; % Naranja para lluvia moderada
+    0.6350, 0.0780, 0.1840; % Rojo oscuro para lluvia intensa
     0.4660, 0.6740, 0.1880  % Verde para nubes densas
 ];
 
