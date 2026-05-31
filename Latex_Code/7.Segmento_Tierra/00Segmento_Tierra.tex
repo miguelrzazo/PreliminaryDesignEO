@@ -229,14 +229,28 @@ El volumen de datos se calcula mediante la ecuación:
 
 Sustituyendo los valores:
 \begin{equation}
-\text{Volumen de datos (GB)} = \frac{3 \times 12 \times 9.826.675 \times 10^6}{80^2 \times 8 \times 10^9} = \boxed{6{,}909\ \text{GB}}
+\text{Volumen por cobertura (GB)} = \frac{3 \times 12 \times 9.826.675 \times 10^6}{80^2 \times 8 \times 10^9} = \boxed{6{,}909\ \text{GB}}
+\end{equation}
+
+No obstante, a diferencia del cálculo de revisita efectiva —que descuenta los pasos en los que la cobertura nubosa impide la observación útil—, el satélite captura y almacena datos en \textbf{todos} los pasos orbitales, incluidos los nublados, ya que el sensor registra la señal disponible con independencia de las condiciones atmosféricas. El volumen semanal real debe calcularse a partir de la \textbf{revisita física}: el tiempo necesario para que la constelación cubra geométricamente el área de interés una vez, al margen de las condiciones meteorológicas.
+
+A partir de la revisita efectiva obtenida por simulación para la configuración seleccionada ($T_{\text{rev,ef}} = 6{,}56$~días), la revisita física se obtiene deshaciendo la corrección por nubes (fracción de pasos no efectivos $f_{\text{nubes}} = 1/6$):
+
+\begin{equation}
+T_{\text{rev,física}} = T_{\text{rev,ef}} \times \left(1 - f_{\text{nubes}}\right) = 6{,}56 \times \frac{5}{6} \approx 5{,}47\ \text{días}
+\end{equation}
+
+El número de coberturas completas por semana es $7 / 5{,}47 \approx 1{,}28$, por lo que el volumen de datos generado semanalmente es:
+
+\begin{equation}
+V_{\text{semanal}} = 6{,}909\ \text{GB} \times \frac{7}{T_{\text{rev,física}}} = 6{,}909 \times \frac{7}{5{,}47} = \boxed{8{,}843\ \text{GB}}
 \end{equation}
 
 \subsubsection{Viabilidad de la estación}
 
 Por último, una vez calculados estos factores, resulta sencillo evaluar la viabilidad del sistema en función de la capacidad de descarga de la estación de Tierra. El tiempo mínimo necesario para transferir todos los datos generados durante la semana es:
 \begin{equation}
-t_{\text{descarga}} = \frac{6,909\ \text{GB}}{76,1\ \text{Mbps} \times \frac{1}{8}\ \text{MBps}} = \frac{5681,6}{9,5} = 727\ \text{segundos}
+t_{\text{descarga}} = \frac{8{,}843\ \text{GB}}{76{,}1\ \text{Mbps} \times \frac{1}{8}\ \text{MB/s}} = \frac{8843}{9{,}5} = \boxed{931\ \text{segundos}}
 \end{equation}
 
 Teniendo en cuenta que el tiempo total de contacto disponible entre el satélite y la estación de Tierra durante ese mismo periodo es, calculado previamente, es  $t_{\text{contacto, semana}} = 79620\ \text{segundos}$, se verifica que $t_{\text{descarga}} < t_{\text{contacto, semana}}$. Por tanto, la configuración propuesta es viable desde el punto de vista de la capacidad de descarga, ya que existe un margen más que suficiente para completar la transferencia incluso considerando posibles interrupciones o ineficiencias del enlace.
