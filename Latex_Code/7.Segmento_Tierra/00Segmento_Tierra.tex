@@ -125,7 +125,7 @@ Se modela la simulación en MATLAB y representando gráficamente se extrae:
     \caption{Velocidad de descarga diaria estimada en función de condiciones climáticas.\\ Fuente: Elaboración Propia}
 \end{figure}
 
-Se aprecia una velocidad media anual de \textbf{131 Mbps}, lo cual supone una pérdida del 12,7\% respecto al máximo teórico, debida principalmente a los episodios de lluvia en verano.
+Se aprecia una velocidad media anual de \textbf{137 Mbps}, lo cual supone una pérdida del 8,7\% respecto al máximo teórico, debida principalmente a los episodios de lluvia en verano.
 
 
 \textbf{Otros factores correctores.}
@@ -139,7 +139,7 @@ De este ultimo valor, se aplican dos factores correctores adicionales:
 
 Por lo que la velocidad de transmisión de datos real será:
 $$
-\text{Velocidad real} = 131\ \text{Mbps} \times 0{,}875 \times 0{,}75 = \boxed{86\ \text{Mbps}}
+\text{Velocidad real} = 137\ \text{Mbps} \times 0{,}875 \times 0{,}75 = \boxed{90\ \text{Mbps}}
 $$
 
 \subsection{Generación de datos. Viabilidad de la estación. Memoria de a bordo}
@@ -182,7 +182,7 @@ V_{\text{semanal}} = 6{,}909\ \text{GB} \times \frac{7}{T_{\text{rev,física}}} 
 
 Por último, una vez calculados estos factores, resulta sencillo evaluar la viabilidad del sistema en función de la capacidad de descarga de la estación de Tierra. El tiempo mínimo necesario para transferir todos los datos generados durante la semana es:
 \begin{equation}
-t_{\text{descarga}} = \frac{8{,}843\ \text{GB}}{86\ \text{Mbps} \times \frac{1}{8}\ \text{MB/s}} = \frac{8843}{10{,}75} = \boxed{823\ \text{segundos}}
+t_{\text{descarga}} = \frac{8{,}843\ \text{GB}}{90\ \text{Mbps} \times \frac{1}{8}\ \text{MB/s}} = \frac{8843}{11{,}25} = \boxed{786\ \text{segundos}}
 \end{equation}
 
 Teniendo en cuenta que el tiempo total de contacto disponible entre el satélite y la estación de Tierra durante ese mismo periodo es, calculado previamente, es  $t_{\text{contacto, semana}} = 79620\ \text{segundos}$, se verifica que $t_{\text{descarga}} < t_{\text{contacto, semana}}$. Por tanto, la configuración propuesta es viable desde el punto de vista de la capacidad de descarga, ya que existe un margen más que suficiente para completar la transferencia incluso considerando posibles interrupciones o ineficiencias del enlace.

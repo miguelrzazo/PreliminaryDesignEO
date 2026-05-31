@@ -115,6 +115,9 @@ legend({'Velocidad promedio semanal', sprintf('Media anual (%.1f Mbps)', media_a
     'Location', 'best', 'FontSize', 11);
 hold off;
 
+out_dir = '/Users/miguelrosa/Desktop/UPM/TFG/Preliminary DesignEO github/PreliminaryDesignEO/Latex_Code/7.Segmento_Tierra';
+exportgraphics(gcf, fullfile(out_dir, 'velmediasemanal.png'), 'Resolution', 150);
+
 
 %% Gráfica de velocidad diaria
 figure('Position', [150, 150, 1000, 600]);
@@ -158,6 +161,7 @@ grid on; grid minor;
 legend('Location', 'best', 'FontSize', 11);
 hold off;
 
+exportgraphics(gcf, fullfile(out_dir, 'veldiariabandax.png'), 'Resolution', 150);
 
 %% Resumen estadístico
 fprintf('\nResumen Estadístico:\n');
