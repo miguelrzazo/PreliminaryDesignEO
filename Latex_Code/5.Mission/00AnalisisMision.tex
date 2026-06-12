@@ -30,7 +30,7 @@ W_i = K \cdot R^3 \cdot W_o; \quad P_i = K \cdot R^3 \cdot P_o
 \end{itemize}
 Usando datos de otras misiones proporcionadas por el tutor (THEMATIC MAPPER Y SEOSAT) se realizará el cálculo interpolando los resultados de las estimaciones entre ambas misiones.
 
-\begin{table}[H]
+\begin{table}[h!]
     \centering
     \caption{Instrumentos de referencia para la estimación por escalado. \\ Fuente: \cite{zorita_dimensiones_2023}.}
     \begin{tabular}{@{}lll@{}}
@@ -192,46 +192,44 @@ En el caso analizado, la simulación del tiempo de reentrada a la altitud selecc
 
 \chapter{Subsistemas}
 
-Definido el instrumento, este capítulo desarrolla el resto del satélite. En base a los datos de masa y volumen totales se podrá definir los subsistemas que acompañan a la carga de pago y hacen posible la misión. Se elegirán componentes comercialmente disponibles (\textit{off-the-shelf}) para así validar nuestra solución. Ya que el satélite entra en la categoría de nanosatélites (entre 1 y 10 kg), se tomarán referencias y documentaciones previas sobre este tipo de vehículos. A continuación se presenta el desglose de masas. En las secciones subsiguientes, se procederá al análisis pormenorizado de cada uno de los subsistemas que componen el vehículo: 
+Definido el instrumento, este capítulo desarrolla el resto del satélite. A partir de los datos de masa y volumen totales se dimensionan los subsistemas que acompañan a la carga de pago y hacen posible la misión. Para ello se seleccionan componentes comercialmente disponibles (\textit{off-the-shelf}) con el fin de validar la viabilidad de la solución propuesta. Dado que el satélite se sitúa en la categoría de nanosatélites (entre 1 y 10 kg), se emplean como referencia misiones y documentaciones previas de esta clase de vehículos. La Tabla~\ref{tab:masa-subsistemas} resume el desglose de masas que servirá de base para el análisis posterior de cada subsistema.
 
 %% TABLA
-\begin{table}[h]
+\begin{table}[!htbp]
   \centering
   \caption{Distribución de masa por subsistema}
-  \begin{tabular}{@{}l S[table-format=1.3] S[table-format=2.1]@{}}
+  \label{tab:masa-subsistemas}
+  \begingroup
+  \setlength{\tabcolsep}{3pt}
+  \renewcommand{\arraystretch}{0.93}
+  \footnotesize
+  \captionsetup{skip=4pt}
+  \begin{tabular}{@{}p{0.60\linewidth} S[table-format=1.3] S[table-format=2.1]@{}}
     \toprule
-    Subsistema                               & {Masa (kg)} & {Porcentaje (\%)} \\
+    Subsistema & {Masa (kg)} & {Porcentaje (\%)} \\
     \midrule
-    Instrumento de observación               & 0,335    & 19,6        \\
-    Subsistema eléctrico                     & 0,219    & 12,8           \\
+    Instrumento de observación & 0,335 & 19,6 \\
+    Subsistema eléctrico & 0,219 & 12,8 \\
+    \quad Paneles solares & 0,212 & 12,4 \\
+    \quad Baterías & 0,007 & 0,4 \\
+    Comunicaciones & 0,285 & 16,7 \\
+    \quad Transmisor X-Band (IQ Spacecom XLink-X) & 0,200 & 11,7 \\
+    \quad Transceptor UHF TM/TC (EnduroSat) & 0,085 & 5,0 \\
+    Estructura & 0,258 & 15,1 \\
+    Control de actitud & 0,050 & 2,9 \\
+    Propulsión & 0,058 & 3,4 \\
+    \quad Motor & 0,040 & 2,3 \\
+    \quad Depósito & 0,018 & 1,1 \\
+    Ordenador de a bordo (OBC) & 0,094 & 5,5 \\
+    Gestión térmica & 0,050 & 2,9 \\
     \midrule
-    \quad Paneles solares                    & 0,212    & 12,4         \\
-    \quad Baterías                           & 0,007    & 0,4          \\
-    \midrule
-    Comunicaciones                           & 0,285    & 16,7          \\
-    \midrule
-    \quad Transmisor X-Band (IQ Spacecom XLink-X) & 0,200 & 11,7          \\
-    \quad Transceptor UHF TM/TC (EnduroSat)  & 0,085    & 5,0           \\
-    \midrule
-    Estructura                               & 0,258    & 15,1          \\
-    Control de actitud                       & 0,050    & 2,9           \\
-    Propulsión                               & 0,058    & 3,4          \\
-    \midrule
-    \quad Motor                              & 0,040    & 2,3         \\
-    \quad Depósito                           & 0,018    & 1,1           \\
-    \midrule
-    Ordenador de a bordo (OBC)               & 0,094    & 5,5          \\
-    Gestión térmica                          & 0,050    & 2,9          \\
-    \midrule
-    \textbf{Total masa seca}                 & \textbf{1,349} & \textbf{78,9}  \\
-    \textbf{Combustible}                     & \textbf{0,361} & \textbf{21,1}  \\
-    \textbf{Masa total}                      & \textbf{1,710}  & \textbf{100,0} \\
+    \textbf{Total masa seca} & \textbf{1,349} & \textbf{78,9} \\
+    \textbf{Combustible} & \textbf{0,361} & \textbf{21,1} \\
+    \textbf{Masa total} & \textbf{1,710} & \textbf{100,0} \\
     \bottomrule
   \end{tabular}
+  \endgroup
 \end{table}
-
-
-
 
 \section{Estructura}
 
@@ -278,9 +276,6 @@ El lazo de control requiere, además de los actuadores, sensores que proporcione
     \item \textbf{Sensor solar MEMS SSOC-D60} \cite{solarmems_ssoc} (masa\,$\approx 5$\,g, consumo\,$<$\,0,1\,W): determina la dirección Sol--satélite con una precisión de $\pm 0{,}5°$. Se utiliza para la detección del ciclo sol/eclipse y como referencia de actitud gruesa en el algoritmo de determinación.
 \end{enumerate}
 
-\subsection*{Modo detumbling}
-
-Tras la separación del desplegador, el satélite presentará una velocidad angular residual que debe ser eliminada antes de iniciar el apuntamiento nadir. El controlador \textbf{B-dot} gestiona esta fase: genera pares magnéticos proporcionales a $\dot{\mathbf{B}}$, disipando la energía de rotación. La estabilización completa se logra típicamente en 1--3 órbitas, tras lo cual el sistema transita al modo nominal de seguimiento nadir.
 
 La masa total del subsistema ADCS (barra de gradiente + magnetopares + sensor solar + margen) es de 0,05\,kg, representando el 2,9\,\% de la masa total del satélite.
 
@@ -295,7 +290,7 @@ El subsistema de comunicaciones emplea una arquitectura de doble canal: un enlac
 \end{figure}
 
 
-Para el enlace de descarga se ha seleccionado el \textbf{transceptor X-Band IQ Spacecom XLink-X}, un radio definido por software (SDR) de alta tasa. Opera entre 8,025 y 8,400\,GHz con una tasa de transmisión de hasta 200\,Mbps, potencia de salida de 1\,W y consumo en transmisión de 16\,W. Su masa es de 200\,g \cite{iqspacecom_xlinkx_2024}.
+Para el enlace de descarga se ha seleccionado el \textbf{transceptor X-Band IQ Spacecom XLink-X}. Opera entre 8,025 y 8,400\,GHz con una tasa de transmisión de hasta 200\,Mbps, potencia de salida de 1\,W y consumo en transmisión de 16\,W. Su masa es de 200\,g \cite{iqspacecom_xlinkx_2024}.
 
 Para el canal de telemetría y telecomando se ha seleccionado el \textbf{transceptor UHF II de EnduroSat}, que opera en 437\,MHz con una tasa de hasta 9,6\,kbps, consumo en recepción de 0,9\,W y en transmisión de 1\,W, y una masa de 85\,g \cite{endurosat_uhf_2025}.
 
