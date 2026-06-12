@@ -1,7 +1,18 @@
 \documentclass[12pt]{report}
-\usepackage[T1]{fontenc}
+\usepackage{iftex}
+\ifPDFTeX
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\else
+  \usepackage{fontspec}
+  \setmainfont{Latin Modern Roman}
+  \setsansfont{Latin Modern Sans}
+  \setmonofont{Latin Modern Mono}
+\fi
 \usepackage{graphicx} % para insertar imagenes
-\usepackage[utf8]{inputenc}
 \usepackage[spanish,es-tabla]{babel}  % Traducción al español
 \usepackage{textcomp} % Para \textmu
 \usepackage{booktabs} % Para mejores tablas
