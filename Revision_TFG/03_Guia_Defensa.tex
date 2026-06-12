@@ -1,0 +1,51 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{parskip}
+
+\definecolor{Accent}{HTML}{1F3A5F}
+\definecolor{Rule}{HTML}{C9D3E0}
+
+\setlist[itemize]{leftmargin=1.4em, itemsep=0.25em, topsep=0.35em}
+\setlist[enumerate]{leftmargin=1.6em, itemsep=0.25em, topsep=0.35em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.45em}
+\setlength{\headheight}{24pt}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0.2em}%
+  \setlength{\parskip}{0pt}%
+}
+
+\titleformat{\section}{\Large\bfseries\color{Accent}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\color{Accent}}{}{0pt}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{1.2em}{0.5em}
+\titlespacing*{\subsection}{0pt}{0.9em}{0.35em}
+\titlespacing*{\subsubsection}{0pt}{0.8em}{0.25em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textcolor{Accent}{Guía rápida de defensa}}
+\rhead{\textcolor{Accent}{Miguel Rosa Zazo}}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{Rule}\leaders\hrule height \headrulewidth\hfill}}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=Accent,
+  urlcolor=Accent
+}
+
+\begin{document}
+\input{03_Guia_Defensa.generated.tex}
+\end{document}

@@ -1,165 +1,362 @@
-# Guía de defensa — Diseño Preliminar de un Satélite de Observación de la Tierra
+# Guía rápida de defensa
 
-> Guion hablado por diapositiva (2–4 frases) + banco de preguntas del tribunal.
-> **Todos los números usan los valores YA corregidos** (ver `05_Cambios_para_Defensa.md` para actualizar el .pptx).
-> Tiempo objetivo típico: ~15–20 min. Marca con ⏱️ las diapositivas donde puedes acelerar si vas justo.
+## Chuleta de una hoja
 
----
+### Qué problema resuelvo
+- Diseñé una misión preliminar para medir CO2 antropogénico sobre Estados Unidos continental.
+- El cliente pide cobertura semanal, MTF mayor o igual que 0,25 y SNR mayor o igual que 400.
+- La variable que más aprieta el diseño no es la SNR. Es la cobertura.
 
-## Cifras maestras (ten estas en la cabeza)
-- Constelación: **2 satélites**, SSO *dawn-dusk*, **520 km**, LTAN 06:00, i = **97,48°**, periodo **95 min**.
-- Carga útil: GSD **80 m**; bandas **0,76 / 1,61 / 2,01 µm**, ancho 20 nm; detector **Teledyne H2RG**; telescopio **refractivo** D = **28 mm**, f = 12 cm, **F/4,2**, FoV combinado 20°.
-- Calidad: **MTF ≥ 0,25** (banda restrictiva 2,01 µm); **SNR ≥ 400** (se obtiene 717 en 0,76 µm).
-- Revisita: efectiva **6,6 días**, física **5,47 días**.
-- Masa/satélite: seca **1,349 kg** + combustible **0,361 kg** = **1,710 kg** → constelación **3,42 kg**.
-- Propulsión: ECAPS HPGP, **Isp 209 s**, **Δv 436 m/s**, 76 impulsos, deorbitado natural **257 días**.
-- Comms: **IQ Spacecom XLink-X** banda X (200 g, 16 W, 200 Mbps) + UHF EnduroSat (85 g).
-- Lanzador: **Falcon 9** desde **Vandenberg**, rideshare **6 500 USD/kg**; fase 180° en 37 h (órbita 520×720 km).
-- Segmento tierra: **Fairbanks**, **79 620 s/semana** (22,1 h) de contacto, **90 Mbps** reales; datos **6,9 GB/cobertura → 8,8 GB/semana**, descarga 786 s, memoria 512 MB.
+### Solución final
+- Constelación: 2 satélites.
+- Órbita: SSO dawn-dusk.
+- Altura: 520 km.
+- LTAN: 06:00.
+- Inclinación: 97,48 grados.
+- GSD: 80 m.
+- Bandas: 0,76 / 1,61 / 2,01 micras.
+- Ancho de banda: 20 nm.
+- Detector: Teledyne H2RG.
+- Telescopio: refractivo.
+- Pupila: 28 mm.
+- Masa por satélite: 1,710 kg.
+- Masa total en órbita: 3,42 kg.
 
----
+### Prestaciones que tengo que decir de memoria
+- MTF de diseño: 0,25 en 2,01 micras.
+- SNR de diseño: 717 en 0,76 micras.
+- Revisita física: 5,47 días.
+- Revisita efectiva con nubes: 6,6 días.
+- Swath requerido: 170 km.
+- Swath logrado: 183 km.
+- Deorbitación natural: 257 días.
+
+### Segmento tierra y datos
+- Estación elegida: Fairbanks.
+- Tiempo de contacto semanal: 79 620 s, unas 22,1 h.
+- Velocidad teórica en banda X: 150 Mbps.
+- Velocidad media anual: 137 Mbps.
+- Velocidad final con pérdidas: 90 Mbps.
+- Datos por cobertura: 6,9 GB.
+- Datos por semana: 8,8 GB.
+- Tiempo necesario de descarga: 786 s.
+
+### Decisiones que tengo que defender
+- 80 m porque separa zona industrial y residencial sin disparar masa.
+- Dos satélites porque con uno no llego a la cobertura semanal.
+- 520 km porque minimiza la masa total.
+- H2RG porque cubre las tres bandas y da el menor diámetro de pupila.
+- Refractivo porque evita obscuración central y reduce el diámetro necesario.
+- Fairbanks porque maximiza contactos en órbita polar y ya tiene banda X.
+- Falcon 9 porque combina fiabilidad, rideshare y compatibilidad con SSO.
+
+### Frases de cierre
+- Este trabajo no entrega un satélite listo para fabricar. Entrega una solución preliminar coherente y defendible.
+- La aportación fuerte no es una cifra aislada. Es el método para cruzar carga útil, órbita, cobertura y masa.
+- El resultado demuestra viabilidad a nivel preliminar. El siguiente paso sería subir detalle en propagación, subsistemas y costes.
 
 ## Guion por diapositiva
 
-**1. Portada.** Preséntate y enmarca: «Diseño preliminar de un satélite de observación de la Tierra para monitorizar CO₂ antropogénico sobre EE. UU.». Nombra tutores.
+### 1. Portada
+Presento el diseño preliminar de una misión de observación de la Tierra para monitorizar CO2 antropogénico sobre Estados Unidos continental. El objetivo del trabajo no es cerrar un diseño de detalle, sino demostrar viabilidad técnica con una solución ligera.
 
-**2. Objetivos.** «El cliente —U.S. Observatory Against Global Change— pide un mapa semanal de CO₂ sobre EE. UU. continental, con MTF ≥ 0,25 y SNR ≥ 400, minimizando la masa puesta en órbita.» Menciona el factor de nubes (1 día cubierto por cada 5).
+### 2. Objetivos del proyecto
+El cliente pide tres cosas al mismo tiempo: calidad óptica, sensibilidad radiométrica y cobertura. En números, eso significa MTF mayor o igual que 0,25, SNR mayor o igual que 400 y cobertura semanal de Estados Unidos continental.
 
-**3. Misiones semejantes (portadilla).** «Antes de diseñar, reviso el estado del arte para inspirar la solución.»
+### 3. Misiones semejantes
+Antes de diseñar, revisé qué hacen las misiones existentes. Me interesaba ver qué compromisos aceptan entre masa, resolución y cobertura.
 
-**4. Comparativa de misiones.** «Ninguna misión existente resuelve directamente el problema: van de satélites grandes (GOSAT-2, ~1 800 kg) a constelaciones de nanosatélites (GHGSat). Todas usan SSO. Esto orienta hacia una constelación ligera.»
+### 4. Comparativa de misiones
+La conclusión es que no existe una solución única. Hay misiones grandes con mucha capacidad y misiones pequeñas con mucha agilidad, pero ninguna resuelve exactamente este problema con esta combinación de resolución y cobertura. Eso justifica hacer un proceso iterativo de diseño.
 
-**5. Conceptos previos (portadilla).** ⏱️ «Defino los conceptos que sustentan los requisitos: calidad de imagen, detectores, óptica y órbitas.»
+### 5. Conceptos previos
+Aquí solo fijo la base teórica. No me paro mucho porque lo importante viene después, cuando esos conceptos entran en el espacio de diseño real.
 
-### Carga de pago (Payload) — slides 6–27 (núcleo técnico)
+### 6. Carga de pago
+Empiezo por la carga de pago porque condiciona casi todo lo demás. Si aquí cambias GSD, bandas o detector, cambias también cobertura, masa y subsistemas.
 
-**6. Carga de pago (portadilla).** «Diseño el sistema óptico y elijo el detector partiendo de los requisitos del cliente.»
+### 7. GSD
+Probé varios GSD sobre una imagen de Houston. El punto de diseño es 80 m porque sigue permitiendo distinguir zonas industriales de residenciales y, al mismo tiempo, evita penalizar el swath y la masa.
 
-**7. GSD.** «El GSD lo fija implícitamente el cliente: hay que distinguir fuentes puntuales. Pixelando una imagen de Houston a distintos GSD, **80 m** distingue zonas industriales de residenciales sin gastar masa de más.» Es la justificación visual clave.
+### 8. Bandas espectrales y ancho de banda
+Trabajo con tres bandas. La de 0,76 micras sirve para calibrar la columna de aire con O2, y las de 1,61 y 2,01 micras atacan la absorción de CO2 en SWIR. Elegí 20 nm porque da un equilibrio razonable entre selectividad espectral y SNR.
 
-**8. Bandas espectrales.** «Elijo tres bandas: **O₂ a 0,76 µm** para calibrar la columna de aire (el O₂ tiene concentración conocida, 20,95 %), y **CO₂ a 1,61 y 2,01 µm**. Ancho de banda 20 nm: equilibrio entre resolución espectral y SNR.»
+### 9. Detectores y telescopios
+Comparé varios detectores y varias arquitecturas ópticas. No elegí una solución por intuición, sino por el cruce posterior entre MTF, SNR, revisita y masa.
 
-**9. Detectores y telescopios.** «Evalúo tres detectores SWIR (CAPYORK, H2RG, Saturn VISIR) y cuatro telescopios (refractivo, Cassegrain, Korsch, TMA), cada uno con su MTF de alineamiento y FoV.»
+### 10. Filtros y escaneo
+Elegí pushbroom porque evita mecanismos móviles y mejora el tiempo de integración. Elegí filtros microstrip porque reducen masa y riesgo mecánico, y permiten adquirir bandas de forma simultánea.
 
-**10. Filtros y escaneo.** «Escaneo **pushbroom**: sin partes móviles, mayor tiempo de integración → mejor SNR. Filtros **microstrip** integrados en el detector: sin mecanismos, robustos para los 8 años.»
+### 11. Tipo de órbita y LTAN
+La misión pide observación con iluminación estable, así que la opción natural es una órbita heliosíncrona. La seleccioné en configuración dawn-dusk, LTAN 06:00, para mantener condiciones de iluminación consistentes y reducir eclipses.
 
-**11. Órbita y hora de paso.** «SSO por iluminación constante (los detectores dependen de la luz solar reflejada). **Dawn-dusk (LTAN 06:00)**: el satélite bordea el terminador, evita eclipses y maximiza potencia.»
+### 12. Flujo de trabajo de scripts
+Desarrollé una cadena de scripts en MATLAB para recorrer el espacio de diseño. Ese bloque calcula MTF, SNR, cobertura, masa seca, combustible y masa total, y luego cruza todo para encontrar soluciones viables.
 
-**12. Flujo de scripts.** «Desarrollé un paquete propio en MATLAB: a partir de los requisitos del cliente y el espacio de diseño (alturas y diámetros), calcula MTF, SNR, revisita, masa seca y total, y cruza los datos para dar las soluciones óptimas.» (open-source en GitHub).
+### 13. Cálculo de MTF
+Aquí calculo la MTF total del sistema. La banda más restrictiva es la de 2,01 micras porque la difracción penaliza más al crecer la longitud de onda.
 
-**13–14. Cálculo de MTF.** «La MTF total es el producto de difracción, aberraciones, fabricación, alineamiento, vibraciones, termoelástico y detector, con un margen del 10 %. La banda más restrictiva es la de mayor λ, **2,01 µm**. Los mapas de calor muestran qué combinaciones altura–diámetro cumplen ≥ 0,25.»
+### 14. Gráficas de MTF
+Estas gráficas muestran, para cada combinación, qué pares altura-diámetro cumplen el requisito. La idea clave es que no todas las arquitecturas pagan el mismo coste en pupila.
 
-**15–16. Cálculo de SNR.** «Modelo la señal (electrones por píxel vía radiancia, transmisión óptica y eficiencia cuántica) y todas las fuentes de ruido. La banda restrictiva aquí es la de menor λ, **0,76 µm**. Es el requisito menos exigente: se cumple con holgura (717 > 400), así que descarto el TDI.»
+### 15. Cálculo de SNR
+La SNR la calculo con señal y ruido a nivel de detector. En este caso el requisito de SNR no es el cuello de botella del diseño. Se cumple con margen.
 
-**17–18. Revisita.** «La revisita de 7 días es lo más limitante. Uso un código semianalítico (con *wrapper* propio) que, para cada altura y *swath*, da la revisita sobre EE. UU., descontando un 1/6 de pasadas por nubes y un 5 % de solapamiento.»
+### 16. Gráficas de SNR
+La lectura buena aquí es que la SNR no me gobierna la solución final. Me sirve para descartar configuraciones pobres, pero el filtro fuerte aparece cuando meto cobertura.
 
-**19. Cruce de datos (h vs Dmin).** «Para cada altura, busco el **diámetro mínimo** que cumple MTF, SNR y revisita simultáneamente.»
+### 17. Tiempo de revisita
+La cobertura semanal es el requisito más duro. Por eso necesitaba un modelo específico de revisita y no solo una intuición geométrica.
 
-**20. Comparativa de detectores (refractivo).** «Con telescopio refractivo, el **H2RG** da el menor diámetro para todas las alturas → es el elegido. El TMA necesitaría diámetros casi 3× mayores.»
+### 18. Gráficas de revisita
+Estas curvas dejan claro que con un solo satélite no llego. La constelación de dos satélites aparece porque la cobertura obliga, no porque yo la quisiera desde el principio.
 
-**21. Optimización de masa.** «Con la relación h–Dmin, estimo la masa de cada solución para elegir la altura que minimiza la masa total.»
+### 19. Cruce de los datos
+Aquí junto MTF, SNR y cobertura. Para cada altura busco el diámetro mínimo que cumple todo a la vez.
 
-**22. Masa seca.** «Estimo la masa seca por escalado a partir de dos misiones de referencia (Thematic Mapper y SEOSAT), asumiendo instrumento = 25 % del satélite y +50 % por el segundo telescopio.»
+### 20. Comparativa de detectores con refractivo
+Con telescopio refractivo, el H2RG sale mejor parado que el resto. Me permite cumplir antes y con menos pupila.
 
-**23. Masa de combustible.** «Modelo el arrastre atmosférico (densidad exponencial USSA76, Cd = 2,5), integro con ode45, y cuando la altura cae un 2 % aplico un impulso tipo Hohmann. Con Tsiolkovski (**Isp 209 s**) obtengo el combustible para 8 años.» ⚠️ *La diapositiva pone Isp 220 s en un sitio: corrige a 209.*
+### 21. Optimización de la masa
+Una vez tengo la relación entre altura y diámetro mínimo, traduzco eso a masa. Ese paso convierte una solución óptica viable en una solución de misión defendible.
 
-**24. Masa total.** «El mínimo de masa total está en **520 km**: seca 1,349 kg + combustible 0,361 kg = **1,710 kg/satélite**, diámetro de pupila 28 mm.»
+### 22. Masa seca
+La masa seca la estimo por escalado con dos referencias de misión. No vendo esto como un cálculo de detalle. Lo uso como una aproximación preliminar consistente.
 
-**25. Disposición del instrumento.** «Dos telescopios refractivos embarcados, dispuestos para duplicar el FoV; *swath* final 183 km sobre 170 km requeridos.»
+### 23. Masa de combustible
+Modelo el arrastre atmosférico durante ocho años y aplico impulsos de reposición cuando la altura cae un 2 por ciento. A partir del delta-v acumulado calculo la masa de combustible con Tsiolkovski.
 
-**26. Punto de diseño.** «Aquí se ve el punto final cumpliendo las tres restricciones: MTF en 2,01 µm, SNR en 0,76 µm y cobertura.»
+### 24. Masa total
+El mínimo de masa total aparece a 520 km. Ese es el punto donde el compromiso entre arrastre y apertura óptica sale mejor.
 
-**27. Deorbitación.** «Tras fin de misión, el satélite reentra de forma natural en **257 días**, muy por debajo del año que me impuse → no hace falta combustible extra de deorbitado.»
+### 25. Disposición final del instrumento
+Aquí cierro la disposición física del instrumento. Dos telescopios me permiten alcanzar el swath necesario sin disparar el resto del sistema.
 
-### Subsistemas — slides 28–29
+### 26. Punto de diseño
+Esta es la slide que resume el proyecto. En el punto final cumplo MTF, SNR y cobertura con una constelación de dos satélites de 1,71 kg cada uno.
 
-**28. Subsistemas (portadilla).** «Con la masa y volumen definidos, dimensiono los subsistemas con componentes comerciales (*off-the-shelf*).»
+### 27. Deorbitación natural
+No necesito reservar combustible adicional para fin de vida porque el satélite reentra de forma natural en 257 días. Eso me deja dentro del criterio de sostenibilidad que fijé.
 
-**29. Componentes.** «Desglose para 1,710 kg: instrumento, eléctrico, comunicaciones, estructura (15 %), ADCS, propulsión, OBC y térmica.» ⚠️ *La diapositiva tiene datos antiguos (comms en banda S, 40 g; combustible 0,334): actualiza a **XLink-X banda X 200 g / 16 W**, UHF 85 g, combustible 0,361 kg.* (ver `05_Cambios_para_Defensa.md`).
+### 28. Subsistemas
+Con la carga útil ya cerrada, paso a validar si el resto del satélite cabe en masa y volumen. La idea aquí es demostrar factibilidad, no cerrar ingeniería de detalle.
 
-### Lanzadores — slides 30–35
+### 29. Componentes
+Seleccioné componentes comerciales para comprobar que la solución se puede materializar. El mensaje importante es que la suma cuadra con la masa estimada y no aparece ninguna incoherencia gruesa.
 
-**30. Lanzadores (portadilla).** «Selecciono el vehículo y la base de lanzamiento.»
+### 30. Lanzadores
+Con una masa total tan baja, el factor dominante no es capacidad de carga. Es acceso fiable y barato a una SSO.
 
-**31. Lanzadores evaluados.** «Comparo seis: Falcon 9, Firefly Alpha, Electron, Vulcan, Vega-C, Ariane 6, por fiabilidad, coste/kg y rideshare.»
+### 31. Lanzadores evaluados
+Comparé varias opciones de rideshare. No basta con mirar coste por kilo. También miré fiabilidad y compatibilidad operativa.
 
-**32. Bases de lanzamiento.** «Tres bases: Kennedy (azimuts no aptos para SSO), Vandenberg y Kourou.»
+### 32. Bases de lanzamiento
+La base importa porque necesito un azimut compatible con SSO. No todas las bases sirven aunque el lanzador sí sirva.
 
-**33. Selección del lanzador.** «**Falcon 9**: fiabilidad 99,35 %, programa rideshare a ~6 500 USD/kg, reignición de 6 h para afinar la órbita, y autonomía estratégica de EE. UU.»
+### 33. Selección final del lanzador
+El Falcon 9 sale mejor por fiabilidad, precio, experiencia en rideshare y compatibilidad con la órbita objetivo. Para esta misión, es la opción más limpia.
 
-**34. Base de lanzamiento.** «**Vandenberg**: azimut compatible con SSO y operaciones previas con F9.»
+### 34. Selección de la base
+Vandenberg encaja porque permite el azimut requerido y ya opera este tipo de misiones. No necesito forzar una solución rara.
 
-**35. Puesta en órbita.** «Despliego los dos satélites con una maniobra de fase: la etapa superior sube a una órbita 520×720 km y, tras alcanzar 180° de desfase (**37 h**), recircula y suelta el segundo satélite.» *Azimut **189°** (corregido; antes figuraba 198° por error de transcripción). Compatible con el rango WTR de Vandenberg. Regenera la figura corriendo `Azimuth.m`.*
+### 35. Puesta en órbita
+Los dos satélites se despliegan con una maniobra de fase hasta quedar separados 180 grados. Eso me da la geometría que necesito para la cobertura.
 
-### Segmento tierra — slides 36–41
+### 36. Segmento tierra
+No basta con captar datos. También tengo que demostrar que puedo descargarlos.
 
-**36. Segmento tierra (portadilla).** «Genero y descargo los datos.»
+### 37. Estaciones evaluadas
+Comparé varias opciones y me quedé con las que tenían sentido por latitud e infraestructura.
 
-**37. Estaciones evaluadas.** «Fairbanks, Wallops, red EUMETSAT o estación propia.»
+### 38. Selección de Fairbanks
+Fairbanks gana porque multiplica el número de contactos en órbita polar y ya cuenta con infraestructura de banda X. La simulación me da 22,1 horas de contacto a la semana.
 
-**38. Selección de Fairbanks.** «**Fairbanks**: latitud alta → muchos contactos para órbita polar; banda X; territorio EE. UU. Simulación con Aerospace Toolbox: **22,1 h/semana** de contacto (elevación mínima 10°).»
+### 39. Generación de datos
+La constelación genera 6,9 GB por cobertura y unos 8,8 GB por semana. La cifra importante es la semanal, porque es la que después comparo con la capacidad de descarga.
 
-**39. Generación de datos.** «3 bandas × 12 bits sobre 9,83 M km² a 80 m → **6,9 GB por cobertura**; con revisita física 5,47 días, **8,8 GB/semana**.»
+### 40. Velocidad de descarga
+Parto de 150 Mbps teóricos en banda X y los bajo con un modelo meteorológico anual. La media queda en 137 Mbps antes de pérdidas adicionales.
 
-**40. Velocidad de descarga.** «Banda X ~150 Mbps teóricos; con el modelo meteorológico (ITU-R P.838-3) la media anual es **137 Mbps**.» ⚠️ *La tabla de la diapositiva tiene cifras antiguas (lluvia 75–100, tormenta 22–38): actualiza a las de la memoria.*
+### 41. Descarga de datos
+Aplicando pérdidas de hardware y baja elevación, la velocidad final útil queda en 90 Mbps. Con ese valor, descargar la producción semanal lleva solo 786 segundos, así que hay margen de sobra.
 
-**41. Descarga.** «Con factores correctores de hardware (12,5 %) y baja elevación (25 %) → **90 Mbps reales**. Descargar 8,8 GB lleva 786 s frente a 79 620 s de contacto: **sobra margen**. Una memoria de 512 MB basta.»
+### 42. Conclusiones
+La solución final cumple los requisitos del cliente con una constelación muy ligera. El resultado fuerte del trabajo no es solo el número final, sino el método para cruzar óptica, órbita, cobertura, masa y operaciones. El paso siguiente sería profundizar en propagación, nubes, potencia, térmico, ADCS y coste.
 
-### Cierre — slides 42–43
+### 43. Cierre
+Gracias por la atención. El código está disponible en GitHub y ahora quedo a disposición del tribunal.
 
-**42. Conclusiones.** → *Contenido propuesto abajo (la diapositiva está vacía).*
+## Preguntas probables y respuestas
 
-**43. ¡Gracias!** «Gracias. El código está disponible en GitHub. Quedo a su disposición para preguntas.»
+### Objetivo y alcance
 
----
+**¿Qué aporta este TFG si no es un diseño final?**  
+Aporta una solución preliminar coherente y un método reproducible para llegar a ella. En esta fase, eso es más valioso que cerrar detalle falso.
 
-## Contenido para la diapositiva 42 (Conclusiones) — actualmente vacía
+**¿Por qué centrarte en Estados Unidos continental?**  
+Porque el cliente fija esa región como zona de interés y porque concentra emisiones antropogénicas relevantes. Eso define cobertura, órbita y segmento tierra.
 
-Puntos para rellenar la diapositiva y para el cierre hablado:
+**¿Por qué cobertura semanal?**  
+Porque es el requisito operativo del cliente. Además, obliga a introducir constelación y hace el problema interesante.
 
-**Cumplimiento de requisitos del cliente:**
-- ✅ Cobertura semanal de EE. UU. continental (constelación de 2 satélites, revisita efectiva 6,6 días con nubes).
-- ✅ **MTF ≥ 0,25** y **SNR ≥ 400** (se alcanza 717), con márgenes del 10 %.
-- ✅ Masa minimizada: **1,71 kg/satélite**, 3,42 kg la constelación — un orden de magnitud por debajo de las misiones comparables.
+**¿Qué partes consideras dentro y fuera de alcance?**  
+Dentro: carga útil, órbita, cobertura, masa, lanzador y descarga. Fuera: diseño estructural detallado, térmico detallado, link budget completo y coste de programa cerrado.
 
-**Lecciones / valor del trabajo:**
-- Metodología **iterativa** y herramienta MATLAB propia que recorre el espacio de diseño y da la solución óptima.
-- Síntesis **multidisciplinar**: óptica, mecánica orbital, propulsión, potencia, comunicaciones.
+### Carga útil
 
-**Limitaciones (diseño preliminar):**
-- Apuntamiento ≤ 2° (geolocalización refinada en postproceso); aberración cromática del refractivo; modelo de arrastre simplificado; sin análisis estructural/térmico detallado.
+**¿Por qué 80 m y no 50 m?**  
+Porque 50 m mejora el detalle, pero castiga swath, revisita y masa. A 80 m sigo distinguiendo fuentes industriales con una solución mucho más ligera.
 
-**Líneas futuras:**
-- Rueda de reacción para cartografía de precisión (<0,1°); validación óptica con software de trazado de rayos; análisis de costes y de ciclo de vida.
+**¿Por qué 80 m y no 100 m?**  
+Porque a 100 m empiezo a perder capacidad para separar zonas industriales y residenciales. 80 m es el punto donde el compromiso sigue siendo útil.
 
----
+**¿Por qué tres bandas y no una sola de CO2?**  
+Porque necesito calibrar la columna de aire con O2 y además comparar dos bandas de CO2 para robustez y recuperación de concentración.
 
-## Banco de preguntas del tribunal (con respuesta)
+**¿Por qué 2,01 micras?**  
+Porque es una banda útil de absorción de CO2 en SWIR y es la que usé de forma coherente en el cálculo de MTF y en la memoria final.
 
-**P1. ¿Por qué 80 m de GSD?** Lo fija el cliente implícitamente: hay que distinguir fuentes puntuales. El análisis visual sobre Houston muestra que 80 m separa instalaciones industriales de zonas residenciales; más resolución gastaría masa sin aportar al objetivo.
+**¿Por qué 20 nm?**  
+Porque un ancho más estrecho mejora selectividad, pero castiga señal. Un ancho mayor mete radiación no deseada. Con 20 nm consigo un equilibrio razonable.
 
-**P2. ¿Por qué el detector H2RG y no un CCD?** El H2RG (HgCdTe) cubre las tres bandas (0,4–2,5 µm), tiene la mejor MTF (0,5) y, en el cruce de datos, da el **menor diámetro de pupila** para todas las alturas. Un CCD de silicio no llega al SWIR (1,61 y 2,01 µm).
+**¿Por qué H2RG?**  
+Porque cubre visible y SWIR con buen rendimiento y, en el cruce de datos, minimiza el diámetro de pupila necesario.
 
-**P3. ¿Por qué telescopio refractivo y no TMA/Cassegrain?** El refractivo no tiene obscuración central → mayor MTF de difracción, y su penalización de alineamiento es baja (0,90). El TMA exigiría diámetros casi 3× mayores. La aberración cromática no penaliza porque las bandas son estrechas (20 nm) y se filtran por separado.
+**¿Por qué telescopio refractivo?**  
+Porque evita obscuración central y mejora el comportamiento de MTF para este caso. El precio es la aberración cromática, pero aquí las bandas son estrechas y separadas.
 
-**P4. Justifique SNR ≥ 400 y MTF ≥ 0,25.** Son requisitos del cliente. La MTF es el requisito **limitante** (banda 2,01 µm, mayor λ → menor frecuencia de corte). La SNR se cumple con holgura (717 en 0,76 µm), por eso descarto el TDI.
+**¿Por qué pushbroom?**  
+Porque simplifica mecánica, mejora SNR y es una arquitectura natural para esta misión.
 
-**P5. ¿Por qué SSO dawn-dusk a 520 km?** SSO para iluminación solar constante (imprescindible para detectores pasivos). Dawn-dusk (LTAN 06:00) evita eclipses y maximiza generación. 520 km es el **mínimo de la curva masa–altitud**: más bajo dispara el combustible por arrastre, más alto exige mayor pupila.
+**¿Por qué filtros microstrip?**  
+Porque evitan mecanismos móviles, reducen masa y permiten adquirir bandas a la vez.
 
-**P6. ¿Por qué dos satélites?** La revisita de 7 días es inalcanzable con uno (las configuraciones de 1 satélite no bajan de 7 días en simulación). La configuración mínima viable es 2 satélites con 2 telescopios cada uno, desfasados 180° en anomalía verdadera.
+**¿Por qué dos telescopios?**  
+Porque con uno no llego al swath necesario de forma limpia. Dos telescopios cierran el requisito de cobertura.
 
-**P7. ¿Por qué Falcon 9 desde Vandenberg?** Fiabilidad 99,35 %, rideshare a ~6 500 USD/kg, etapa superior con reignición de 6 h para afinar la órbita, y autonomía estratégica de EE. UU. Vandenberg da azimut compatible con SSO e infraestructura existente para F9.
+### Prestaciones
 
-**P8. ¿Por qué Fairbanks?** Latitud alta (64,8°N) → múltiples contactos diarios con órbita cuasi-polar; antenas de banda X; en territorio EE. UU. La simulación da 22,1 h/semana de contacto, frente a los 786 s necesarios para descargar.
+**¿Qué requisito manda de verdad?**  
+La cobertura. La SNR se cumple con margen y la MTF condiciona el diámetro, pero la revisita es lo que fuerza constelación y swath.
 
-**P9. Supuestos del modelo de arrastre.** Densidad exponencial por capas basada en USSA76, Cd = 2,5, integración con ode45; impulso (Hohmann) cuando la altura cae un 2 %; combustible por Tsiolkovski con Isp = 209 s y margen del 10 %.
+**¿Por qué MTF 0,25?**  
+Porque es el requisito del cliente. No lo inventé yo.
 
-**P10. ¿Qué márgenes tiene el diseño?** 10 % en MTF, SNR y combustible; componentes comerciales con datos de fabricante; la suma bottom-up de subsistemas coincide con la estimación por escalado (1,71 kg).
+**¿Por qué la banda restrictiva para MTF es la de 2,01 micras?**  
+Porque al aumentar la longitud de onda baja la frecuencia de corte por difracción. Esa banda castiga más la transmisión de detalle espacial.
 
-**P11. Banda 2,01 vs 2,06 µm.** El diseño se computó a 2,01 µm (próxima a la de MicroCarb). OCO-2/GOSAT usan 2,06 µm; ambas están en la región de absorción del CO₂ en SWIR. *(Si el tutor prefiere 2,06, habría que recomputar la MTF.)*
+**¿Por qué la SNR no gobierna el diseño final?**  
+Porque sale holgada en las configuraciones viables. El filtro fuerte llega cuando cruzo cobertura y masa.
 
-**P12. ¿Por qué no hay análisis de enlace (link budget) ni Doppler?** Se consideró fuera del alcance de un diseño **preliminar**; las pérdidas relevantes (meteorología, hardware, baja elevación) se cubren con los factores correctores aplicados a la velocidad de descarga.
+### Órbita y cobertura
 
-**P13. ¿Es realista una masa de 1,71 kg?** Es coherente con nanosatélites de 1–10 kg; cada subsistema usa componentes off-the-shelf reales (XLink-X, EnduroSat UHF, ECAPS, iOBC, GMAT-1). El instrumento (28 mm de pupila) es pequeño porque el GSD es modesto (80 m).
+**¿Por qué SSO?**  
+Porque necesito observación con iluminación consistente. Es la elección natural para sensores pasivos de este tipo.
 
-**P14. ¿Cómo se controla la actitud con tan poco ADCS?** Estabilización pasiva por gradiente gravitatorio + magnetopares triaxiales (B-dot para detumbling), magnetómetro y sensor solar. Logra ~1–2°, suficiente porque la geolocalización se refina en postproceso.
+**¿Por qué dawn-dusk?**  
+Porque mantiene mejor estabilidad de iluminación y reduce eclipses, lo que también simplifica la parte eléctrica.
+
+**¿Por qué 520 km?**  
+Porque ahí aparece el mínimo de masa total. Más abajo crece el coste en combustible. Más arriba crece la pupila óptica.
+
+**¿Por qué dos satélites y no tres?**  
+Porque dos ya cumplen el requisito. Tres añadirían coste sin necesidad para este objetivo.
+
+**¿Por qué no vale un satélite?**  
+Porque no alcanza la revisita semanal exigida sobre la región de interés.
+
+**¿Qué limita tu modelo de revisita?**  
+Es un modelo válido para diseño preliminar, pero no sustituye una propagación numérica completa a largo plazo con más perturbaciones.
+
+**¿Cómo metiste las nubes?**  
+Como una corrección simple sobre la revisita efectiva. Es útil para primera aproximación, pero se puede mejorar con un modelo probabilístico espacial y temporal.
+
+**¿Por qué no aplicaste repeating ground track?**  
+Porque quise resolver primero la factibilidad general. Sería una mejora clara en trabajo futuro.
+
+### Masa y subsistemas
+
+**¿Cómo sacas la masa seca?**  
+Por escalado con dos referencias de misión y con hipótesis explícitas. No es un presupuesto de detalle. Es una estimación preliminar.
+
+**¿Es creíble una masa de 1,71 kg?**  
+Sí, porque la apertura óptica es pequeña y el resto del sistema usa componentes comerciales ligeros. Aun así, esa cifra debe validarse con más detalle en fases posteriores.
+
+**¿No falta análisis térmico?**  
+Sí. Lo reconozco como limitación. Aquí solo cierro factibilidad global.
+
+**¿No falta análisis de potencia?**  
+Sí, aunque sí comprobé que el orden de magnitud encaja con la masa asignada al subsistema eléctrico.
+
+**¿No falta ADCS detallado?**  
+Sí. Hice una validación preliminar de requerimiento y arquitectura, no una simulación fina de control.
+
+**¿Cómo justificas el volumen del instrumento?**  
+Con la disposición preliminar y el escalado geométrico. En la siguiente fase tocaría pasar a CAD y empaquetado real.
+
+### Lanzamiento y operaciones
+
+**¿Por qué Falcon 9?**  
+Porque combina fiabilidad alta, coste bajo en rideshare y experiencia operativa en SSO.
+
+**¿Por qué Vandenberg?**  
+Porque permite el azimut requerido para la órbita heliosíncrona y ya tiene experiencia con el lanzador elegido.
+
+**¿Cómo separas 180 grados los satélites?**  
+Con una maniobra de fase: subes temporalmente el apogeo, dejas derivar el segundo y recircularizas al alcanzar el desfase.
+
+**¿Cuál es el coste aproximado de lanzamiento?**  
+Con el dato de rideshare de Falcon 9, la masa total de la constelación sale muy baja. En esta fase me interesa más la viabilidad que cerrar una cifra contractual.
+
+### Segmento tierra y datos
+
+**¿Por qué Fairbanks y no Wallops?**  
+Porque la latitud alta da más pases útiles para una órbita casi polar. Eso mejora mucho el margen de descarga.
+
+**¿Cómo justificas 90 Mbps finales?**  
+Parto de la capacidad teórica, aplico un modelo meteorológico anual y luego dos correctores prácticos: hardware y pases de baja elevación.
+
+**¿Qué margen real tienes en descarga?**  
+Muchísimo. Necesito 786 segundos por semana y dispongo de 79 620 segundos de contacto.
+
+**¿No te preocupa la memoria a bordo?**  
+No en esta configuración. Con 512 MB ya cierro el caso y con 1 GB gano robustez.
+
+### Metodología
+
+**¿Qué validaste y qué estimaste?**  
+Validé coherencia física del resultado y la parte de cobertura y contactos con herramientas numéricas. Estimé lo que corresponde a una fase preliminar: masa seca, detalle de subsistemas y parte de operaciones.
+
+**¿Qué software usaste?**  
+MATLAB para la cadena de diseño, Aerospace Toolbox para escenarios orbitales y simulación de contactos, y herramientas de apoyo para la memoria y la defensa.
+
+**¿Qué harías si tuvieras tres meses más?**  
+Primero mejoraría propagación y cobertura. Después cerraría potencia, térmico, ADCS y coste.
+
+### Críticas difíciles
+
+**Esto parece una misión demasiado pequeña para medir CO2. ¿No es optimista?**  
+La masa es muy baja, sí. Por eso presento el resultado como diseño preliminar y no como misión lista para fabricar. El valor del trabajo está en demostrar que el orden de magnitud no es absurdo y en señalar dónde hace falta profundizar.
+
+**Si el modelo de nubes es simple, ¿cómo confías en la cobertura?**  
+La cobertura geométrica sí está bien capturada. Lo que simplifico es la degradación meteorológica. Para una fase preliminar me sirve para ver si el concepto vive o muere.
+
+**¿No estás mezclando precisión climática con una arquitectura demasiado pequeña?**  
+Lo que demuestro aquí es capacidad de observación preliminar y cierre de requisitos de misión. La precisión final de producto geofísico exigiría una cadena de calibración y validación más profunda.
+
+**¿Tu resultado depende demasiado del escalado de masa?**  
+Sí, depende de esa hipótesis, y lo digo de forma explícita. Por eso acompaño el valor final con un desglose de subsistemas y con referencias comerciales.
+
+### IA y declaración responsable
+
+**¿Usaste IA?**  
+Sí. La usé como apoyo de redacción, revisión y organización.
+
+**¿Para qué no la usaste?**  
+No la usé para sustituir el criterio técnico ni para aceptar números sin comprobación.
+
+**¿Qué validaste tú?**  
+Las decisiones de diseño, las cifras finales, las ecuaciones, las comparaciones y la coherencia global del trabajo.
+
+**Si te preguntan por ética o autoría, qué dices?**  
+Que la IA fue una herramienta de apoyo, igual que un corrector, un editor o un asistente de búsqueda. La responsabilidad técnica y académica del contenido final es mía.
