@@ -5,7 +5,7 @@ Para asegurar el cumplimiento de los objetivos de la misión, resulta imprescind
 \newpage
 \section{Elección del emplazamiento}
 
-Primeramente, se evaluan las posibles opciones de estaciones terrestres que puedan utilizarse para la presente misión. Dichas opciónes son:
+Se evalúan primero las posibles opciones de estaciones terrestres para la presente misión. Dichas opciones son:
 
 
 \begin{enumerate}
@@ -22,19 +22,19 @@ Primeramente, se evaluan las posibles opciones de estaciones terrestres que pued
     Fuente: \cite{ASF2025_NSN}.}
 \end{figure}
 
-Tras exponer estas opciones, \textbf{la Estación de Fairbanks, Alaska}, emerge como la opción idónea. Esto se fundamenta en su ubicación geográfica óptima, situada a una latitud elevada (64.9°N), lo que posibilita numerosos contactos diarios con satélites en órbitas cuasi-polares, maximizando el tiempo de descarga. La estación cuenta con infraestructura necesaria, integrada por antenas de 26 metros y varias de 13 metros, todas ellas con capacidad en banda X, requeridas para esta misión. Además, la estación de Fairbanks actúa como nodo central de la Red Ártica de Comunicaciones Satelitales, interconectada con otras estaciones de alta latitud, como ESTRACK (ESA), con estaciones en Svalbard (Noruega) y Kiruna (Suecia); y  Near Space Network (NASA) con enlaces a Wallops (Virginia) y McMurdo (Antártida) \cite{noaa_fairbanks_2023}.
+Tras exponer estas opciones, \textbf{la Estación de Fairbanks, Alaska}, emerge como la opción idónea. Esto se fundamenta en su ubicación geográfica óptima, situada a una latitud elevada (64,84°N), lo que posibilita numerosos contactos diarios con satélites en órbitas cuasi-polares, maximizando el tiempo de descarga. La estación cuenta con infraestructura necesaria, integrada por antenas de 26 metros y varias de 13 metros, todas ellas con capacidad en banda X, requeridas para esta misión. Además, la estación de Fairbanks actúa como nodo central de la Red Ártica de Comunicaciones Satelitales, interconectada con otras estaciones de alta latitud, como ESTRACK (ESA), con estaciones en Svalbard (Noruega) y Kiruna (Suecia); y  Near Space Network (NASA) con enlaces a Wallops (Virginia) y McMurdo (Antártida) \cite{noaa_fairbanks_2023}.
 
 \section{Descarga de los datos generados. Viabilidad.}
 
-La misión emplea dos canales de comunicaciones diferenciados. El canal de descarga de datos de observación opera en \textbf{banda X} (8\,GHz) y constituye el enlace principal de alta velocidad estudiado en este apartado. El canal de telemetría y telecomando (TM/TC), de baja tasa, funciona en banda UHF (437\,MHz) o S y es el soporte operativo de la misión: a través de él se envían comandos al satélite y se recibe información de estado durante cada pase. Este enlace de control se rige por el protocolo \textbf{CSP (\textit{CubeSat Space Protocol})} \cite{gomspace_csp_2023}, estándar \textit{de facto} en misiones de pequeños satélites: un protocolo de red ligero y direccionable —análogo funcional de IP/TCP— que permite la gestión de servicios a bordo (ping, transferencia de archivos, ejecución de comandos) con un \textit{overhead} mínimo, compatible con los recursos limitados de los microcontroladores embarcados en CubeSats.
+La misión emplea dos canales de comunicaciones diferenciados. El canal de descarga de datos de observación opera en \textbf{banda X} (8\,GHz) y constituye el enlace principal de alta velocidad estudiado en este apartado. El canal de telemetría y telecomando (TM/TC), de baja tasa, funciona en banda UHF (437\,MHz) o S y es el soporte operativo de la misión: a través de él se envían comandos al satélite y se recibe información de estado durante cada pase.
 
-Para validar la elección del emplazamiento, se realiza una simulación en MATLAB cuya función sera analizar el tiempo de contacto semanal de los satélites con la estación de Tierra. Para ello, se implementará un escenario de Aerospace Toolbox. 
-Primeramente se establecen los parámetros temporales de la simulación, definiendo una semana de observación con un muestreo de un minuto. Se especifica la localización de la estación de Tierra (64,84º, -147,712º) y una elevación mínima de contacto $\epsilon = 10º$, así como las características orbitales de la constelación. Con ello, se determina el conjunto de intervalos de acceso, es decir, los periodos en los que existe visibilidad suficiente (elevación mayor al umbral) para la transmisión de datos hacia la estación de Tierra. El resultado, a lo largo de una semana, es de \textbf{79620 segundos, o 22,12 h para la constelación}.
+Para validar la elección del emplazamiento, se realiza una simulación en MATLAB cuya función será analizar el tiempo de contacto semanal de los satélites con la estación de Tierra. Para ello, se implementará un escenario de Aerospace Toolbox. 
+Se establecen primero los parámetros temporales de la simulación, definiendo una semana de observación con un muestreo de un minuto. Se especifica la localización de la estación de Tierra (64,84º, -147,712º) y una elevación mínima de contacto $\epsilon = 10º$, así como las características orbitales de la constelación. Con ello, se determina el conjunto de intervalos de acceso, es decir, los periodos en los que existe visibilidad suficiente (elevación mayor al umbral) para la transmisión de datos hacia la estación de Tierra. El resultado, a lo largo de una semana, es de \textbf{79620 segundos, o 22,12 h para la constelación}.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{7.Segmento_Tierra/analisis_contacto.jpg}
-    \caption{Escenario de simulación creado con \textit{Aerospace Toobox}. \\Fuente: Elaboración Propia}
+    \caption{Escenario de simulación creado con \textit{Aerospace Toolbox}. \\Fuente: Elaboración Propia}
 \end{figure}
 
 \begin{figure}[H]
@@ -70,9 +70,9 @@ Primeramente se establecen los parámetros temporales de la simulación, definie
 
 El transmisor de banda X permite velocidades de descarga teóricas de hasta 150 Mbps, según especificaciones del fabricante. Esto se produce en condiciones óptimas, pero diversos factores ambientales y operativos reducen este valor en la práctica.
 
-\subsubsection{Atenuamiento por inclemencias meteorológicas}
+\subsubsection{Atenuación por inclemencias meteorológicas}
 
-Las principales fuentes de atenuación atmosférica en banda X son las precipitaciones líquidas. La nieve seca y el hielo presentan atenuaciones inferiores a 0,05\,dB en torno a 8\,GHz, despreciables frente al margen de enlace de 22,8\,dB, de modo que los días con precipitación sólida se clasifican como condiciones favorables para la transmisión. La atenuación específica por lluvia se calcula mediante el modelo \textbf{ITU-R P.838-3} ($\gamma_R = k \cdot R^\alpha$, con $k = 0{,}00425$ y $\alpha = 1{,}32$ a 8,1\,GHz), resultando en pérdidas inferiores a 0,1\,dB para tasas de lluvia moderada (5\,mm/h) características de Fairbanks \cite{ITU-R_P838_3}. Las velocidades esperables en función de las condiciones meteorológicas son:
+Las principales fuentes de atenuación atmosférica en banda X son las precipitaciones líquidas. La nieve seca y el hielo presentan atenuaciones inferiores a 0,05\,dB en torno a 8\,GHz, despreciables a efectos prácticos, de modo que los días con precipitación sólida se clasifican como condiciones favorables para la transmisión. La atenuación específica por lluvia se calcula mediante el modelo \textbf{ITU-R P.838-3} ($\gamma_R = k \cdot R^\alpha$, con $k = 0{,}00425$ y $\alpha = 1{,}32$ a 8,1\,GHz), resultando en pérdidas inferiores a 0,1\,dB para tasas de lluvia moderada (5\,mm/h) características de Fairbanks \cite{ITU-R_P838_3}. Las velocidades esperables en función de las condiciones meteorológicas son:
 
 \begin{table}[H]
 \centering
@@ -90,7 +90,7 @@ Nubes densas & 125 -- 145 \\
 
 \end{table}
 
-Se debe considerar la estacionalidad a lo largo del año, teniendo en cuenta por ejemplo, que el verano de Alaska es mas lluvioso que el invierno. Con ello, se puede representar gráficamente las velocidades que  esperables a lo largo del año, así como sacar una velocidad media anual. Tomando las siguientes probabilidades:
+Se debe considerar la estacionalidad a lo largo del año, teniendo en cuenta por ejemplo, que el verano de Alaska es más lluvioso que el invierno. Con ello, se puede representar gráficamente las velocidades que  esperables a lo largo del año, así como sacar una velocidad media anual. Tomando las siguientes probabilidades:
 
 \begin{table}[H]
 \caption{Distribución estacional de condiciones meteorológicas en Fairbanks. \\Fuente: \cite{climate_data_fairbanks} (NOAA Climate Normals 1991-2020, estación USW00026411).}
@@ -107,7 +107,7 @@ Otoño     & 64 & 22 & 5  & 9  \\
 \end{tabularx}
 \smallskip
 
-\noindent\footnotesize $^*$ Incluye días despejados y con precipitación sólida (nieve/aguanieve). En banda X (8,1\,GHz), la nieve seca introduce $<$0,05\,dB de atenuación, despreciable frente al margen de enlace de 22,8\,dB. Lluvia moderada: $R < 10$\,mm/h; lluvia intensa: $R \geq 10$\,mm/h (clasificación OMM).
+\noindent\footnotesize $^*$ Incluye días despejados y con precipitación sólida (nieve/aguanieve). En banda X (8,1\,GHz), la nieve seca introduce $<$0,05\,dB de atenuación, despreciable a efectos prácticos. Lluvia moderada: $R < 10$\,mm/h; lluvia intensa: $R \geq 10$\,mm/h (clasificación OMM).
 
 \end{table}
 
@@ -130,7 +130,7 @@ Se aprecia una velocidad media anual de \textbf{137 Mbps}, lo cual supone una p�
 
 \textbf{Otros factores correctores.}
 
-De este ultimo valor, se aplican dos factores correctores adicionales:
+De este último valor, se aplican dos factores correctores adicionales:
 \begin{itemize}
     \item \textbf{Factor corrector por hardware}: El hardware introduce una reducción del \textbf{12.5\%} en la velocidad debido a pérdidas en componentes como antenas, cables y receptores. Las antenas tienen una eficiencia operativa del 65-70\%, lo que genera pérdidas inherentes en la captación y transmisión de la señal. Además, factores como desadaptación de impedancia (~1 dB) y ruido térmico (~0.5 dB) contribuyen a esta disminución \cite{altunc_xband_cubesat_2016}.
     \item \textbf{Factor corrector por paso baja elevación}:
@@ -156,7 +156,7 @@ Una vez evaluada la velocidad de descarga, se debe conocer también el volumen d
 El volumen de datos se calcula mediante la ecuación:
 
 \begin{equation}
-\text{Volumen de datos} = \frac{N_{\text{bandas}} \times \text{bitsPerBand} \times \text{Area}_{\text{Map}} \times 10^6}{\text{GSD}^2 \times 8 \times 10^9}
+\text{Volumen de datos} = \frac{N_{\text{bandas}} \times \text{bitsPerBand} \times \text{Área}_{\text{Map}} \times 10^6}{\text{GSD}^2 \times 8 \times 10^9}
 \end{equation}
 
 Sustituyendo los valores:

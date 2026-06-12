@@ -1,7 +1,6 @@
 \chapter{Introducción}
 
-La capacidad de monitorizar con precisión las fuentes de emisión de CO$_2$, especialmente aquellas de origen humano (antropogénico), resulta fundamental para desarrollar estrategias efectivas de mitigación y cumplir con los acuerdos internacionales sobre cambio climático.
-Uno de los desafíos globales del siglo XXI es el cambio climático, siendo el dióxido de carbono (CO$_2$) uno de los principales gases de efecto invernadero responsables del calentamiento global. La habilidad para captar con precisión fuentes de emisión de CO$_2$ de origen humano resulta esencial para desarrollar estrategias de mitigación y revertir el proceso de cambio climático.
+El cambio climático es uno de los grandes desafíos del siglo XXI, y el dióxido de carbono (CO$_2$) uno de los principales gases de efecto invernadero responsables del calentamiento global. Monitorizar con precisión las fuentes antropogénicas de CO$_2$ es esencial para diseñar estrategias de mitigación y cumplir los acuerdos internacionales sobre el clima.
 
 
 En este contexto, el presente Trabajo de Fin de Grado aborda el diseño preliminar y el estudio de viabilidad de un sistema satelital destinado a la observación y monitorización precisa de las emisiones de CO$_2$  provenientes de fuentes humanas, en las principales ciudades de Estados Unidos. El proyecto responde a una necesidad específica planteada por un usuario final, cuyo enunciado se cita a continuación:
@@ -15,14 +14,14 @@ El proceso de diseño seguirá una metodología iterativa, comenzando con un \te
 
 El estudio incluirá también una segunda fase en el cual se realizará el \textbf{análisis de misión}, escogiendo los subsistemas que nutran a nuestra carga de pago, de manera que podamos aproximar una masa total del vehículo espacial.
 
-Finalmente, se evaluarán distintas opciones en el mercado de \textbf{lanzadores} que puedan poner nuestra plataforma de observación en la órbita escogida. Este análisis incluirá tanto lanzadores existentes como emergentes, considerando factores como la capacidad de carga a la orbita deseada la fiabilidad histórica y el coste del lanzamiento aproximado. Se incluirá también un dimensionado del \textbf{segmento de Tierra} que sera necesario para operar la misión.
+Finalmente, se evaluarán distintas opciones en el mercado de \textbf{lanzadores} que puedan poner nuestra plataforma de observación en la órbita escogida. Este análisis incluirá tanto lanzadores existentes como emergentes, considerando la capacidad de carga a la órbita deseada, la fiabilidad histórica y el coste aproximado de lanzamiento. Se incluirá también un dimensionado del \textbf{segmento de Tierra} que será necesario para operar la misión.
 
 Para los cálculos requeridos se ha desarrollado un paquete de código en MATLAB, disponible en el Anexo \ref{sec:annexcode} Los datos resultantes de la ejecución de este paquete se presentan en el Anexo \ref{sec:annexdata}.
 
 \newpage
 \section{Resumen Ejecutivo}
 
-Se muestra, en primer lugar, un resumen de los parámetros mas relevantes escogidos como solución al problema propuesto, para facilidad del lector:
+Se muestra, en primer lugar, un resumen de los parámetros más relevantes escogidos como solución al problema propuesto, para facilidad del lector:
 \hfill \break
 
 \begin{table}[!htbp]
@@ -38,7 +37,7 @@ Se muestra, en primer lugar, un resumen de los parámetros mas relevantes escogi
 \small
 \begin{tabular}{@{} l r @{}}
 \toprule
-Detector                  & 2x TeleDyne H2RG \\
+Detector                  & 2x Teledyne H2RG \\
 Bandas espectrales        & 0,76; 1,61; 2,01 \textmu m \\
 Ancho de banda            & 20 nm  \\
 GSD                       & 80 m  \\
@@ -87,7 +86,7 @@ Tipo de órbita           & Circular, SSO \\
 LTAN                     & 06:00 (\textit{Dawn-Dusk}) \\
 Altitud                  & 520 km  \\
 Inclinación              & 97,48° \\
-Período orbital          & 97 min  \\
+Período orbital          & 95 min  \\
 Ancho de barrido (\textit{Swath}) & 183,38 km \\
 Tiempo de revisita       & 6,6 días \\
 Número de satélites      & 2 ($\Delta \nu = 180º$)\\
@@ -103,11 +102,11 @@ Número de satélites      & 2 ($\Delta \nu = 180º$)\\
 \toprule
 Lanzador                 & Falcon 9 \\
 Base de lanzamiento      & Vandenberg SFB \\
-Azimut de lanzamiento    & 198° \\
+Azimut de lanzamiento    & 189° \\
 Estación de Tierra       & Fairbanks, Alaska \\
 Frecuencias              & Banda X (datos) \\
-                         & Banda S (telemetría) \\
-Datos generados          & 6,9 GB/semana \\
+                         & Banda UHF (telemetría) \\
+Datos generados          & 8,8 GB/semana \\
 Velocidad de descarga    & 90 Mbps \\
 \bottomrule
 \end{tabular}

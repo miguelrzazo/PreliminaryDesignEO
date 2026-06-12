@@ -9,7 +9,7 @@ Los lanzamientos \textit{rideshare} han revolucionado el acceso al espacio para 
 
 \subsection{Falcon 9}
 
-Falcon 9 de SpaceX domina el mercado de \textit{rideshare} con su programa SmallSat Rideshare. Con 468 lanzamientos hasta abril de 2025 y una fiabilidad del 99.35\%, su desempeño supera ampliamente a competidores \cite{satellitetoday2024}. El programa Transporter ofrece lanzamientos dedicados a órbitas heliosíncronas con un coste de 6,500 USD por kilogramo \cite{spacex2022, payloadspace2023}. Su arquitectura de 9 motores Merlin proporciona redundancia crítica, mientras que su segunda etapa criogénica permite ajustes orbitales precisos para inserción en órbitas de hasta 700 km \cite{wikipedia2024}.
+Falcon 9 de SpaceX domina el mercado de \textit{rideshare} con su programa SmallSat Rideshare. Con 468 lanzamientos hasta abril de 2025 y una fiabilidad del 99.35\%, su desempeño supera ampliamente a competidores \cite{satellitetoday2024}. El programa Transporter ofrece lanzamientos dedicados a órbitas heliosíncronas con un coste de 6,500 USD por kilogramo \cite{spacex2022, payloadspace2023}. Su arquitectura de 9 motores Merlin proporciona redundancia crítica, mientras que su etapa superior (LOX/RP-1, con capacidad de reignición) permite ajustes orbitales precisos para inserción en órbitas de hasta 700 km \cite{wikipedia2024}.
 
 \subsection{Firefly Alpha}
 
@@ -25,7 +25,7 @@ El Electron se especializa en cargas útiles ligeras con lanzamientos rápidos d
 
 \subsection{Ariane 6}
 
-El Ariane 6 representa la autonomía estratégica europea en acceso al espacio. Sus variantes Ariane 62 y Ariane 64 ofrecen capacidades de 6,500 kg y 15,000 kg a SSO respectivamente \cite{esa2024}. Los servicios \textit{rideshare} permiten costes aproximados de 11.164,55 USD por kilogramo \cite{arstechnica2023}. Su etapa superior con capacidad de reinicio múltiple optimiza la inserción orbital para múltiples cargas útiles \cite{esa2024}.
+El Ariane 6 representa la autonomía estratégica europea en acceso al espacio. Sus variantes Ariane 62 y Ariane 64 ofrecen capacidades de 6,500 kg y 15,000 kg a SSO respectivamente \cite{esa2024}. Los servicios \textit{rideshare} permiten costes aproximados de 11.164,55 USD por kilogramo \cite{spaceinsider2023}. Su etapa superior con capacidad de reinicio múltiple optimiza la inserción orbital para múltiples cargas útiles \cite{esa2024}.
 
 \subsection{Vega-C}
 
@@ -34,13 +34,14 @@ El Vega-C es el lanzador ligero más avanzado de Europa, optimizado para el segm
 \begin{table}[h]
 \centering
 \caption{Comparativa de lanzadores espaciales para misiones \textit{rideshare}.}
+\begin{threeparttable}
 \begin{tabularx}{\linewidth}{l X X X X X}
 \toprule
-\textbf{Lanzador} & 
-\textbf{Fiabilidad\tablefootnote{Considerando solo exito total de mision} (2025)} & 
-\textbf{Coste por kg (USD)} & 
-\textbf{Capacidad a LEO/SSO} & 
-\textbf{Rideshare} & 
+\textbf{Lanzador} &
+\textbf{Fiabilidad\tnote{a} (2025)} &
+\textbf{Coste por kg (USD)} &
+\textbf{Capacidad a LEO/SSO} &
+\textbf{Rideshare} &
 \textbf{Ubicaciones de lanzamiento} \\
 \midrule
 Falcon 9         & 99.35\%         & 6,500   & 17,400 kg         & Sí & Vandenberg SFB, Cabo Cañaveral \\
@@ -48,9 +49,16 @@ Firefly Alpha    & 33.3\%          & 26,984  & 630 kg            & Sí & Vandenb
 Vulcan Centaur   & 100\%           & 4,044   & 14,400 kg         & No & Vandenberg SFB, Cabo Cañaveral \\
 Electron         & 95\%            & 25,000  & 300 kg            & Sí & Mahia (Nueva Zelanda) \\
 Ariane 6         & Activo          & 5,500   & Hasta 15,000 kg   & Sí & Centro Espacial de Guayana \\
-Vega-C           & 90.9\%\tablefootnote{Fiabilidad del programa Vega, no solo el lanzador actual} & 19,565 & 2,300 kg & Sí & Centro Espacial de Guayana \\
+Vega-C           & 90.9\%\tnote{b} & 19,565 & 2,300 kg & Sí & Centro Espacial de Guayana \\
 \bottomrule
 \end{tabularx}
+\begin{tablenotes}
+\small
+\item[a] Considerando solo exito total de misión
+\item[b] Fiabilidad del programa Vega, no solo el lanzador actual
+\item Los costes por kg son estimaciones aproximadas a partir de fuentes públicas; varían según la configuración y el año.
+\end{tablenotes}
+\end{threeparttable}
 \end{table}
 \section{Bases de lanzamiento y azimuts posibles}
 
@@ -85,7 +93,7 @@ El Centro Espacial de Guayana ofrece azimuts de lanzamiento entre -11° y 90°, 
     \end{minipage}
 \end{figure}
 
-La decisión final recae en el \textbf{Falcon 9} no solo por factores económicos, sino también operativos. Su segunda etapa criogénica ofrece una ventana de reignición de hasta 6 horas, permitiendo ajustes finos de la órbita para optimizar el \textit{swath} de cobertura, así como poner en la orbita deseada ambos satélites. Además, la reutilización de la primera etapa reduce el coste marginal por misión. La alta fiabilidad, así como el programa de \textit{rideshare} y compatibilidad de \textit{dispensers}, permite bajar el coste de lanzamiento en torno a los 26.000 USD, haciendo del lanzador la mejor opción.
+La decisión final recae en el \textbf{Falcon 9} no solo por factores económicos, sino también operativos. Su etapa superior (LOX/RP-1) ofrece una ventana de reignición de hasta 6 horas, permitiendo ajustes finos de la órbita para optimizar el \textit{swath} de cobertura, así como poner en la órbita deseada ambos satélites. Además, la reutilización de la primera etapa reduce el coste marginal por misión. La alta fiabilidad, así como el programa de \textit{rideshare} y compatibilidad de \textit{dispensers}, permite situar el coste de lanzamiento en torno a los 6.500 USD/kg, haciendo del lanzador la mejor opción.
 
 La base de lanzamiento de \textbf{Vandenberg SFB} permitirá lanzar dicho vehículo a la órbita requerida, muy utilizada para órbitas polares o heliosíncronas, y que ya está adaptada para el lanzador elegido. Esto nos ayuda a evitar el sobrecoste al existir ya en el lugar la infraestructura, logística, \textit{supply chain}, y personal cualificado para el lanzamiento del Falcon 9.
 \newpage
@@ -100,7 +108,7 @@ Para validar este lanzamiento se puede calcular el azimut de lanzamiento, y comp
     cos (i) = sin(Az) \cdot \cos(\theta)
 \end{equation}
 
-Siendo $i= 97,48 \degree$ la inclinación de interés, $\theta=34,7 \degree$, la latitud a la que se sitúa la base de lanzamiento de Vanderberg SFB, se obtiene un azimut $Az = 198 \degree$. Esto es compatible con los rangos disponibles de la base de lanzamiento \cite{karabeyoglu2018lecture7}.
+Siendo $i= 97,48 \degree$ la inclinación de interés, $\theta=34,7 \degree$, la latitud a la que se sitúa la base de lanzamiento de Vanderberg SFB, se obtiene un azimut $Az = 189 \degree$. Esto es compatible con los rangos disponibles de la base de lanzamiento \cite{karabeyoglu2018lecture7}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{6.Lanzadores/azimuth.jpg}
@@ -119,18 +127,18 @@ El despliegue de dos satélites en la misma órbita requiere una estrategia de m
     \item Re-circularización y segundo despliegue: Una vez alcanzada la separación angular de 180°, la etapa superior realiza una nueva maniobra para regresar a la órbita original de 520 km, igualando así todos los elementos orbitales al del primer satélite. Tras estabilizar la órbita, se procede al despliegue del segundo satélite.
 \end{enumerate}
 
-A continuación se presenta una simulación en el que, mediante esta maniobra, se consigue el desfase deseado en 37 horas, por medio de una orbita de fase con perigeo en 520 km y apogeo ligeramente más elevado, en 720 km:
+A continuación se presenta una simulación en el que, mediante esta maniobra, se consigue el desfase deseado en 37 horas, por medio de una órbita de fase con perigeo en 520 km y apogeo ligeramente más elevado, en 720 km:
 \begin{figure}[H]
     \centering
     \begin{minipage}[t]{0.48\textwidth}
         \centering
         \begin{lstlisting}[basicstyle=\tiny\ttfamily]
             >> phaseinjection
-            --- Analisis de la Maniobra de Fase ---
-            Periodo de la orbita final: 94.88 minutos
-            Periodo de la orbita de fase: 96.95 minutos
+            --- Análisis de la Maniobra de Fase ---
+            Periodo de la órbita final: 94.88 minutos
+            Periodo de la órbita de fase: 96.95 minutos
             Tiempo requerido para un desfase de 180: 36.98 horas
-            Numero de orbitas en la trayectoria de fase: 22.89
+            Número de órbitas en la trayectoria de fase: 22.89
             -------------------------------------------
         \end{lstlisting}
     \end{minipage}

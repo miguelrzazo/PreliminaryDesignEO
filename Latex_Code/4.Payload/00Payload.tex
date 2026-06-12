@@ -1,7 +1,7 @@
 \chapter{Definición del instrumento}
 \minitoc
 
-Una vez definidos los fundamentos teóricos que rigen el problema planteado en el presente trabajo, se comienza a definir las variables que cumplan los requisitos impuestos.
+Definidos los fundamentos teóricos, se determinan las variables que cumplen los requisitos impuestos.
 
 Se ha creado para el trabajo un paquete de códigos disponible en el anexo \ref{sec:annexcode} que, en base a los \textit{inputs} iniciales, calcula los requerimientos y exporta las soluciones óptimas listas a interpretar por el usuario. El código maestro, que aloja dichos parámetros de entrada y las llamadas a las funciones, alberga el siguiente flujo de trabajo:
 
@@ -21,10 +21,10 @@ Se ha creado para el trabajo un paquete de códigos disponible en el anexo \ref{
 
 Se comenzará por definir el GSD, ya que es un parámetro que implícitamente viene dado por las condiciones del cliente. Según el requerimiento debemos ser capaces de poder diferenciar fuentes puntuales de CO2 en las ciudades estadounidenses.
 
-Primeramente se extrae una imagen satélite del cinturón industrial de Houston para escoger de una manera mas visual la selección de GSD. Mediante el software \textit{open source} GIMP se puede pixelar esta imagen para visualizar la elección del GSD. Dicha foto tiene 1673 pixeles de ancho, y mediante el software Google Earth, proporciona el dato del ancho de la imagen en la realidad, correspondiente a 14251 m. Por tanto, el GSD de esta captura será: 
+Se parte de una imagen de satélite del cinturón industrial de Houston como referencia para la selección del GSD. Con el software \textit{open source} GIMP se pixela esta imagen para apoyar visualmente la elección del GSD. Dicha foto tiene 1673 pixeles de ancho, y mediante el software Google Earth, proporciona el dato del ancho de la imagen en la realidad, correspondiente a 14251 m. Por tanto, el GSD de esta captura será: 
 
 \begin{equation}
-\frac{14251\ m}{1673\ pix} \approx 8.516
+\frac{14251\ m}{1673\ pix} \approx 8.518
 \end{equation}
 
 
@@ -87,9 +87,9 @@ La selección de bandas espectrales se fundamenta en las características de abs
 
 La banda de absorción del oxígeno atmosférico a 0,76 \textmu m se emplea para la calibración de la columna de aire. El oxígeno presenta una concentración atmosférica estable y conocida (20,95\%), lo que permite determinar con precisión la masa de aire atravesada por la radiación solar. Esta referencia resulta esencial para normalizar las mediciones de CO\textsubscript{2} y corregir variaciones debidas a diferencias en el camino óptico atmosférico.
 
-\subsubsection{Bandas CO\textsubscript{2} SWIR (1,61 y 2,06 \textmu m)}
+\subsubsection{Bandas CO\textsubscript{2} SWIR (1,61 y 2,01 \textmu m)}
 
-Las bandas de 1610 nm y 2060 nm corresponden a las principales regiones de absorción del CO\textsubscript{2} en el infrarrojo de onda corta, como se vio en el capítulo \ref{cap3}. La utilización de dos bandas independientes permite implementar algoritmos de validación cruzada y mejora el calculo de estimaciones de concentración.
+Las bandas de 1610 nm y 2010 nm corresponden a las principales regiones de absorción del CO\textsubscript{2} en el infrarrojo de onda corta, como se vio en el capítulo \ref{cap3}. La utilización de dos bandas independientes permite implementar algoritmos de validación cruzada y mejora el cálculo de estimaciones de concentración.
 
 \subsubsection{Ancho de banda}
 
@@ -105,7 +105,7 @@ En cuanto al ancho de banda espectral, se ha seleccionado un valor de 20 nm para
 \midrule
 O$_2$ A-Band       & 0,76  & 20    & Calibración columna aire \\
 CO$_2$ SWIR 1      & 1,61  & 20    & Absorción principal de CO$_2$ \\
-CO$_2$ SWIR 2      & 2,06  & 20    & Absorción secundaria de CO$_2$ \\
+CO$_2$ SWIR 2      & 2,01  & 20    & Absorción secundaria de CO$_2$ \\
 \bottomrule
 \end{tabular}
 
@@ -120,7 +120,7 @@ CO$_2$ SWIR 2      & 2,06  & 20    & Absorción secundaria de CO$_2$ \\
 
 \subsection{Elección de detectores}
 
-Una vez definidas las bandas de interés se procederá a buscar el detector que sea capaz de cubrir dichos rangos de detección para la misión. Para ello, se elabora una lista de detectores disponibles en mercado de los cuales se escogerán mas adelante, el más apropiado según sus especificaciones. Para las bandas 1,61 \textmu m y 2,01 \textmu m se evaluaran los siguientes detectores:
+Definidas las bandas de interés, se busca el detector capaz de cubrir dichos rangos de detección para la misión. Para ello, se elabora una lista de detectores disponibles en mercado de los cuales se escogerán más adelante, el más apropiado según sus especificaciones. Para las bandas 1,61 \textmu m y 2,01 \textmu m se evaluaran los siguientes detectores:
 
 %% TABLA
 \begin{table}[H]
@@ -177,9 +177,9 @@ Más adelante se determinará el número de detectores a utilizar, así como su 
 
 El escaneo \textbf{\textit{pushbroom}} se elige sobre alternativas como \textit{whiskbroom} o \textit{step and stare} por su fiabilidad, simplicidad mecánica y optimización de la relación señal-ruido. A diferencia del \textit{whiskbroom}, que utiliza espejos oscilantes para barrer transversalmente la franja de observación, el \textit{pushbroom} emplea un array lineal de detectores fijos que captura toda la franja simultáneamente. Esto elimina componentes mecánicos, reduce el riesgo de desgaste y simplifica el diseño.
 
-Además, el \textit{pushbroom} ofrece un mayor tiempo de integración por píxel, lo que incrementa la SNR al permitir que los detectores acumulen más fotones. En comparación, el \textit{step and stare} limita la cobertura continua y exige maniobras satelitales complejas, añadiendo dificultad a las operaciones de mantenimiento en orbita, incrementando el peso para el control de actitud y limitando el tiempo de revisita.
+Además, el \textit{pushbroom} ofrece un mayor tiempo de integración por píxel, lo que incrementa la SNR al permitir que los detectores acumulen más fotones. En comparación, el \textit{step and stare} limita la cobertura continua y exige maniobras satelitales complejas, añadiendo dificultad a las operaciones de mantenimiento en órbita, incrementando el peso para el control de actitud y limitando el tiempo de revisita.
 
-\subsection{Eleccion de filtros}
+\subsection{Elección de filtros}
 
 Se escogen filtros \textit{\textbf{microstrip}} integrados en el mismo detector. La principal ventaja de los filtros microstrip frente a alternativas como la rueda de filtros reside en su baja masa y fiabilidad mecánica, ya que carecen completamente de partes móviles que pudieran fallar durante los 8 años de misión. Esta característica es crucial considerando el entorno espacial con sus ciclos térmicos extremos y vibraciones durante el lanzamiento. Además, permiten la adquisición simultánea de todas las bandas espectrales necesarias, lo que resulta fundamental para asegurar la correcta corregistración espacial de los datos.
 
@@ -196,7 +196,7 @@ Como se ha expuesto en el capítulo \ref{semejantes}, las misiones de observaci�
 
 Una limitación inherente a estos sistemas es su incapacidad para operar eficazmente en condiciones de penumbra. Por tanto, resulta esencial que la trayectoria orbital proporcione una iluminación solar directa y estable en cada pasada del satélite. La órbita heliosíncrona cumple precisamente este requisito, ya que su precesión mantiene el ángulo entre el plano orbital y el Sol constante a lo largo del año, asegurando que cada observación sobre una misma región se realice a una hora solar local fija. Esta estabilidad favorece la coherencia radiométrica de las imágenes y mejora la comparabilidad temporal de los datos adquiridos. Por ello se computarán soluciones de órbita \textbf{heliosíncrona entre los 350 km y los 1400 km de altitud}, con un discretización de 10 km de paso \cite{nasa_sso_slots_2011}.
 
-Otras opciones de órbita compatibles con el requerimiento de iluminación podrían ser órbitas geoestacionarias o una constelación en orbitas Molniya. Estas no son consideradas en el trabajo, pues las alturas necesarias para este tipo de configuración orbital obliga a instalar diámetros de pupila mucho mayores a las requeridas en satélites en órbita LEO, aumentando el peso, el delta-V requerido para la inyección y por ende, el coste total de la misión.
+Otras opciones de órbita compatibles con el requerimiento de iluminación podrían ser órbitas geoestacionarias o una constelación en órbitas Molniya. Estas no son consideradas en el trabajo, pues las alturas necesarias para este tipo de configuración orbital obliga a instalar diámetros de pupila mucho mayores a las requeridas en satélites en órbita LEO, aumentando el peso, el delta-V requerido para la inyección y por ende, el coste total de la misión.
 
 Para la presente misión se ha seleccionado una \textbf{hora de paso ascendente local (LTAN) de 06:00}, lo que proporciona una configuración \textit{Dawn-Dusk}. En este tipo de órbita, el satélite cruza el ecuador terrestre cerca de la línea del línea crepuscular, donde la transición entre el día y la noche es continua. Esta disposición asegura que el satélite permanezca próximo al límite entre la zona iluminada y la zona en sombra de la Tierra, evitando así la entrada en el cono de sombra terrestre y garantizando la exposición solar durante toda la órbita. Como resultado, se obtienen condiciones de iluminación homogéneas tanto en las pasadas ascendentes como en las descendentes, maximizando las pasadas útiles\cite{Boain2004}.
 
@@ -208,7 +208,7 @@ Los valores a usar para la computación son:
 
 \begin{table}[H]
 \centering
-\caption{Parámetros iniciales para el calculo de MTF. \\ Fuente: \cite{zorita_mtf_2023}.}
+\caption{Parámetros iniciales para el cálculo de MTF. \\ Fuente: \cite{zorita_mtf_2023}.}
 \begin{tabular}{l r}
 \hline
 \textbf{Parámetro} & \textbf{Valor} \\
@@ -244,7 +244,7 @@ Por lo tanto, la banda más restrictiva corresponde a la mayor longitud de onda 
 \includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio3_heatmap.jpg} &
 \includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio4_heatmap.jpg} \\
 \end{tabular}
-\caption{Mapas de calor resultantes del calculo de MTF: Banda 2,01 \textmu m; Detector 1}
+\caption{Mapas de calor resultantes del cálculo de MTF: Banda 2,01 \textmu m; Detector 1}
 \end{figure}
 \end{landscape}
 
@@ -262,7 +262,7 @@ Por lo tanto, la banda más restrictiva corresponde a la mayor longitud de onda 
 \includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio3_heatmap.jpg} &
 \includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio4_heatmap.jpg} \\
 \end{tabular}
-\caption{Mapas de calor resultantes del calculo de MTF: Banda 2,01 \textmu m; Detector 2}
+\caption{Mapas de calor resultantes del cálculo de MTF: Banda 2,01 \textmu m; Detector 2}
 \end{figure}
 \end{landscape}
 
@@ -280,7 +280,7 @@ Por lo tanto, la banda más restrictiva corresponde a la mayor longitud de onda 
 \includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio3_heatmap.jpg} &
 \includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio4_heatmap.jpg} \\
 \end{tabular}
-\caption{Mapas de calor resultantes del calculo de MTF: Banda 2,01 \textmu m; Detector 3}
+\caption{Mapas de calor resultantes del cálculo de MTF: Banda 2,01 \textmu m; Detector 3}
 \end{figure}
 \end{landscape}
 
@@ -328,9 +328,9 @@ $N_{nonlin}$ & 2 $e^-$  \\
 
 De igual manera que en la computación del MTF total, se añade al \textbf{SNR un margen del 10\%} en calidad de reserva de diseño. En las etapas iniciales, los parámetros contribuyentes experimentan variaciones que pueden degradar el rendimiento del sistema. Este margen de seguridad permite absorber dichas desviaciones y garantizar el cumplimiento de los requisitos establecidos.
 
-De nuevo, solo se presenta la banda más restrictiva. En este caso, será la de menor longitud de onda: la banda $0,76 \mu m$, ya que la longitud de onda es directamente proporcional a la irradiancia, y por ello, al número de electrones que recibe el detector. El resto se encuentran de nuevo en el anexo \ref{sec:annexdata}. A continuación se presentan las gráficas correspondientes, que muestran la variación de la SNR en función del diámetro de pupila y la altura orbital para las distintas opciones de detectores y telescopios evaluados:
+De nuevo, solo se presenta la banda más restrictiva. En este caso, será la de menor longitud de onda: la banda $0,76\ \mu m$, ya que el número de electrones generados es proporcional a la longitud de onda (para una misma radiancia espectral) y, por tanto, resulta menor cuanto menor es $\lambda$. El resto se encuentran de nuevo en el anexo \ref{sec:annexdata}. A continuación se presentan las gráficas correspondientes, que muestran la variación de la SNR en función del diámetro de pupila y la altura orbital para las distintas opciones de detectores y telescopios evaluados:
 
-%% GRAFICAS SNR
+%% Gráficas SNR
 
 %% Lambda 3
 
@@ -350,7 +350,7 @@ De nuevo, solo se presenta la banda más restrictiva. En este caso, será la de 
 \includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio3_heatmap.jpg} &
 \includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio4_heatmap.jpg} \\
 \end{tabular}
-\caption{Mapas de calor resultantes del calculo de SNR: Banda 0,76 \textmu m; Detector 1}
+\caption{Mapas de calor resultantes del cálculo de SNR: Banda 0,76 \textmu m; Detector 4 (STAR250)}
 \end{figure}
 \end{landscape}
 
@@ -370,7 +370,7 @@ De nuevo, solo se presenta la banda más restrictiva. En este caso, será la de 
 \includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio3_heatmap.jpg} &
 \includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio4_heatmap.jpg} \\
 \end{tabular}
-\caption{Mapas de calor resultantes del calculo de SNR: Banda 0,76 \textmu m; Detector 2}
+\caption{Mapas de calor resultantes del cálculo de SNR: Banda 0,76 \textmu m; Detector 5 (H2RG)}
 \end{figure}
 \end{landscape}
 
@@ -390,7 +390,7 @@ De nuevo, solo se presenta la banda más restrictiva. En este caso, será la de 
 \includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio3_heatmap.jpg} &
 \includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio4_heatmap.jpg} \\
 \end{tabular}
-\caption{Mapas de calor resultantes del calculo de SNR: Banda 0,76 \textmu m; Detector 3}
+\caption{Mapas de calor resultantes del cálculo de SNR: Banda 0,76 \textmu m; Detector 6 (SATURN VISIR)}
 \end{figure}
 \end{landscape}
 
@@ -398,7 +398,7 @@ De nuevo, solo se presenta la banda más restrictiva. En este caso, será la de 
 De la interpretación de estos gráficos se obtienen las siguientes apreciaciones:
 
 \begin{itemize}
-    \item Este es, con diferencia, el requisito de misión menos restrictivo para el trabajo, pues, con los grandes tamaños de pixel y buenas eficiencias cuánticas del detector, junto con longitudes de onda mayores al visible, es sencillo conseguir altos valores de SNR.
+    \item Es el requisito menos restrictivo: con píxeles grandes, alta eficiencia cuántica y longitudes de onda por encima del visible, se alcanzan valores de SNR elevados con facilidad.
     \item Se puede descartar la incorporación de TDI, ya que con una integración simple se captura una relación señal ruido que cumple holgadamente con el requisito de la misión para todos los casos. 
 \end{itemize}
 
@@ -447,7 +447,7 @@ Además, se tendrán en cuenta 2 factores adicionales para el cálculo:
 \end{figure}
 
 
-Para realizar la computación de la cobertura en la región de interés, se va a utilizar un software \textit{open-source} desarrollado en el paper \textit{A Semi-Analytical Method for Calculating Revisit Time for Satellite Constellations with Discontinuous Coverage} \cite{crisp2018semi}. Para aplicar dicho código al presente trabajo, se ha desarrollado un \textit{wrapper}, es decir, una función que actúa como interfaz de adaptación entre los parámetros específicos del presente estudio y las funciones originales del software mencionado. Con ello, se pueden extraer mapas de calor que expongan, en función de la altura orbital y el \textit{swath}\footnote{Discretizados ambos en pasos de 10 km}, los tiempos de revisita necesarios para la región de interés. Evaluaremos distintas configuraciones:
+Para la computación de la cobertura en la región de interés, se utiliza un software \textit{open-source} desarrollado en el paper \textit{A Semi-Analytical Method for Calculating Revisit Time for Satellite Constellations with Discontinuous Coverage} \cite{crisp2018semi}. Para aplicar dicho código al presente trabajo, se ha desarrollado un \textit{wrapper}, es decir, una función que actúa como interfaz de adaptación entre los parámetros específicos del presente estudio y las funciones originales del software mencionado. Con ello, se pueden extraer mapas de calor que expongan, en función de la altura orbital y el \textit{swath}\footnote{Discretizados ambos en pasos de 10 km}, los tiempos de revisita necesarios para la región de interés. Evaluaremos distintas configuraciones:
 
 \begin{itemize}
     \item Configuración (i): 1 único satélite con 1 telescopio embarcado.
@@ -481,12 +481,12 @@ En todas las constelaciones, los satélites se dispondrán desfasados en anomal�
 Se consideran dos limitaciones al \textit{swath}:
 \begin{itemize}
     \item El FoV de cada telescopio, definido en la tabla \ref{tab:tabla_telescopios}, que limita el \textit{swath} en función de la altura, mediante la relación \ref{fov}
-    \item El array del detector, mediante la ecuación \ref{swath}. Para ampliarlo y dar más flexibilidad a esta restricción, se considera el uso de hasta 3 detectores en linea.
+    \item El array del detector, mediante la ecuación \ref{swath}. Para ampliarlo y dar más flexibilidad a esta restricción, se considera el uso de hasta 3 detectores en línea.
 \end{itemize}
 
 Además, solo se considerará el territorio EE. UU. continental, con una \textbf{latitud inferior límite de 25º N}. Ya que el interés del cliente reside en el mapeo de las principales ciudades, se pueden excluir, por simplicidad de cálculo, otros territorios del país como Hawaii, Puerto Rico y otros territorios de ultramar. Con ello, se procede a realizar la computación y exponer los resultados en las siguientes páginas:
 
-%% Graficas 2 SAT 2TEL
+%% Gráficas 2 SAT 2TEL
 \begin{landscape}
 \begin{figure}[p]
 \centering
@@ -536,7 +536,7 @@ Además, solo se considerará el territorio EE. UU. continental, con una \textbf
 \end{landscape}
 
 
-%% Graficas 3 SAT
+%% Gráficas 3 SAT
 \begin{landscape}
 \begin{figure}[p]
 \centering
@@ -591,7 +591,7 @@ De ello, se pueden extraer las siguientes consideraciones:
     \item Los casos (i), (ii) y (iii) no generaron en la simulación en ningún caso tiempos menores a 7 días, por lo que son descartados. Consecuentemente, será necesaria una constelación de satélites para satisfacer la condición de tiempo de revisita.
     
     \item Ambos casos (iv) y (v) sí ofrecen soluciones posibles al problema. Debido al coste adicional que supone desarrollar, fabricar y validar un satélite adicional, se priorizará la solución con el menor número de satélites posibles.
-    \item Los telescopios Korsch y Cassegrein, debido a su limitado ángulo de visión, deben ser descartados, pues no ofrecen soluciones viables.
+    \item Los telescopios Korsch y Cassegrain, debido a su limitado ángulo de visión, deben ser descartados, pues no ofrecen soluciones viables.
 \end{itemize}
 
 En la siguiente sección, por los motivos expuestos, solo se evalúa la configuración (iv), comparando los telescopios refractivos y TMA, para los distintos detectores. Los resultados de masa total para la configuración (v) pueden consultarse en el Anexo~\ref{sec:annexdata}, evidenciando de igual manera mayor masa total frente a la config.\ (iv).
@@ -601,7 +601,7 @@ En la siguiente sección, por los motivos expuestos, solo se evalúa la configur
 
 Para identificar las soluciones viables que satisfacen los requisitos del cliente, se ha desarrollado un \textit{script} adicional que integra los resultados de MTF, SNR y cobertura. El algoritmo determina, para cada altura orbital y configuración, el diámetro de pupila mínimo que cumple simultáneamente los requerimientos del cliente en cada banda ($MTF \geq 0,25;\ SNR \geq 400; $ tiempo de revisita $\leq 7$ días.):
 
-%% GRAFICAS
+%% Gráficas
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{4.Payload/HvsDmin_2sat_2tel.jpg}
@@ -616,7 +616,7 @@ A la vista de este gráfico, se puede concluir que el \textbf{telescopio refract
     \caption{Comparativa del rendimiento de detectores con telescopio refractivo. \\Fuente: Elaboración propia.}
 \end{figure}
 
-Se puede comprobar que el \textbf{detector 2: TeleDyne H2RG} ofrece el mejor rendimiento para cuales quiera de las alturas, siendo esta la opción elegida.
+Se puede comprobar que el \textbf{detector 2: Teledyne H2RG} ofrece el mejor rendimiento para cualesquiera de las alturas, siendo esta la opción elegida.
 
 
 

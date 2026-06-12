@@ -34,8 +34,8 @@ lats_arco = lat_vafb + radio_arco * cos(azimuts_arco_rad);
 lons_arco = lon_vafb + radio_arco * sin(azimuts_arco_rad) ./ cosd(lat_vafb);
 plot(lons_arco, lats_arco, 'k-', 'LineWidth', 1.5);
 
-% Trayectoria de lanzamiento (azimut 198°)
-azimut = 198;
+% Trayectoria de lanzamiento (azimut 189°)
+azimut = 189;
 azimut_rad = deg2rad(azimut);
 alcance_horizontal = 800;
 distancia = linspace(0, alcance_horizontal, 50);
@@ -59,7 +59,7 @@ text(lon_limite_max-1, lat_limite_max, '$300^{\circ}$', 'FontSize', 12, 'Color',
 text(lon_vafb-5, lat_vafb-4, 'WTR Allowable Range', 'FontSize', 10, 'Color', 'black', 'Interpreter', 'latex');
 
 % Etiqueta del azimut de lanzamiento
-text(longitudes(25), latitudes(25)+0.5, '$198^{\circ}$', 'FontSize', 11, 'Color', 'red', 'Interpreter', 'latex', 'FontWeight', 'bold');
+text(longitudes(25), latitudes(25)+0.5, '$189^{\circ}$', 'FontSize', 11, 'Color', 'red', 'Interpreter', 'latex', 'FontWeight', 'bold');
 
 % Configurar ejes
 xlabel('Longitud ($^{\circ}$)', 'Interpreter', 'latex', 'FontSize', 12);
@@ -73,7 +73,7 @@ ylim([20 50]);
 
 % Leyenda
 legend('Costas', 'L\''imites WTR', '', 'Rango Permitido', ...
-       'Trayectoria ($198^{\circ}$)', 'Vandenberg SFB', ...
+       'Trayectoria ($189^{\circ}$)', 'Vandenberg SFB', ...
        'Location', 'northeast', 'Interpreter', 'latex');
 
 axis equal;

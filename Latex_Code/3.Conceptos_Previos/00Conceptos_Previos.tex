@@ -1,7 +1,7 @@
 \chapter{Conceptos Previos}\label{cap3}
 \minitoc
 
-En este apartado del trabajo se van a asentar las bases teóricas y conceptos necesarios para poder, partiendo de esta base definir las necesidades de nuestra carga de pago, así como buscar la solución optima para satisfacer la solución de diseño.
+Este apartado asienta las bases teóricas necesarias para definir la carga de pago y buscar la solución de diseño.
 
 
 \newpage
@@ -40,7 +40,6 @@ La \textbf{Ground Sampling Distance (GSD)} es la distancia en terreno que corres
 La \textbf{frecuencia de Nyquist} es un concepto fundamental en la teoría de muestreo que define la máxima frecuencia espacial que un sistema de imagen puede capturar sin distorsión por \textit{aliasing}. En el contexto de un satélite de observación terrestre, esta frecuencia está directamente ligada a la resolución espacial (GSD) y determina la capacidad del sistema para preservar detalles finos en la escena observada.
 
 La frecuencia de Nyquist (\( f_{\text{Nyquist}} \)) se calcula como:
-s
 \begin{align}
 f_{\text{Nyquist}} = \frac{1}{2 \cdot p}
 \end{align}
@@ -58,7 +57,7 @@ La Función de Transferencia de Modulación (MTF) es una herramienta matemática
     \label{fig:MTF}
 \end{figure}
 
-En términos simples, la MTF determina cómo un sistema óptico transfiere el contraste desde el objeto hasta la imagen final. Cuando se observa un patrón de franjas blancas y negras (alto contraste), la MTF indica qué porcentaje de ese contraste se preserva en la imagen final. A medida que aumenta la frecuencia espacial (franjas más densas), el contraste tiende a disminuir.
+En términos simples, la MTF determina cómo un sistema óptico transfiere el contraste desde el objeto hasta la imagen final. Cuando se observa un patrón de franjas blancas y negras (alto contraste), la MTF indica qué porcentaje de ese contraste se preserva en la imagen final. Al aumentar la frecuencia espacial (franjas más densas), el contraste disminuye.
 
 
 La MTF total del sistema es el producto de las MTF de cada uno de los subsistemas ópticos y electrónicos relevantes. Los principales contribuyentes son:
@@ -153,13 +152,13 @@ donde la señal y el ruido se expresan en número de electrones generados ($e^-$
 
 Se considera una radiancia de referencia \( L_{\mathrm{ref}} \) expresada en \( \si{\watt\per\metre\squared\per\steradian\per\micro\metre} \), centrada en una longitud de onda \( \lambda_c \) con un ancho de banda espectral \( \Delta \lambda \). La radiancia incidente se transmite a través del sistema óptico con una eficiencia total condicionada por la transmisión óptica del telescopio \( \tau \) y la eficiencia cuántica del detector \( \eta \). 
 
-La irradiancia \( I \) en el plano focal se estima mediante:
+La irradiancia \( E \) en el plano focal se estima mediante:
 
 \begin{equation}
-I = \frac{\pi \cdot \tau \cdot \Delta \lambda \cdot L_{\mathrm{ref}}}{1 + 4F\#}
+E = \frac{\pi \cdot \tau \cdot \Delta \lambda \cdot L_{\mathrm{ref}}}{1 + 4\,T\#^{2}}
 \end{equation}
 
-donde \( F\# = \frac{f}{D} \) es la relación focal del sistema, con \( f \) la distancia focal y \( D \) el diámetro de la apertura.\footnote{Para los sistemas obscurados se utilizará la relación focal equivalente $T\#$, definida mas adelante en la ecuación \ref{relfoc}}.
+donde \( F\# = \frac{f}{D} \) es la relación focal del sistema, con \( f \) la distancia focal y \( D \) el diámetro de la apertura.\footnote{Para los sistemas obscurados se utilizará la relación focal equivalente $T\#$, definida más adelante en la ecuación \ref{relfoc}}.
 
 La cantidad de electrones generados por píxel durante el tiempo de integración se calcula como:
 
@@ -170,7 +169,7 @@ N_e = \frac{E \cdot A_p \cdot \eta \cdot \lambda_c \cdot TDI \cdot t_{\mathrm{in
 donde:
 \begin{itemize}
     \item \( A_p = d_x \cdot d_y \) es el área de un píxel en el detector.
-    \item \( TDI \) es el número de etapas del sistema Time Delay Integration.\footnote{Dicho concepto se explicará mas adelante en \ref{sec:tdi}}.
+    \item \( TDI \) es el número de etapas del sistema Time Delay Integration.\footnote{Dicho concepto se explicará más adelante en \ref{sec:tdi}}.
     \item \( t_{\mathrm{int}} = \frac{\mathrm{GSD}}{v_{\mathrm{orb}}} \) es el tiempo de integración basado en la velocidad del satélite sobre el suelo.
     \item \( h \) es la constante de Planck.
     \item \( c \) es la velocidad de la luz.
@@ -188,7 +187,7 @@ La velocidad orbital del satélite a una altitud \( H\) se estima aplicando la t
 v_{\mathrm{orb}} = \sqrt{\frac{\mu}{R_T + H}}
 \end{equation}
 
-donde \( \mu = 3.986 \times 10^{14} \, \si{m^3/s^2} \) es el parámetro gravitacional estándar de la Tierra y \( R_T = 6371 \, \si{km} \) es el radio medio terrestre. Este tiempo de integración se utiliza directamente en el cálculo de \( N_e \), y representa el tiempo efectivo durante el cual se acumulan fotones en cada píxel del detector.
+donde \( \mu = 3.986 \times 10^{14} \, \si{m^3/s^2} \) es el parámetro gravitacional estándar de la Tierra y \( R_T = 6371 \, \si{km} \) es el radio medio terrestre. Este tiempo de integración se utiliza directamente en el cálculo de \( N_e \), y representa el tiempo efectivo durante el cual se acumulan fotones en cada píxel del detector. Se emplea la velocidad orbital, ligeramente superior a la velocidad de la traza sobre el suelo, lo que proporciona un tiempo de integración conservador.
 
 \subsubsection{Cálculo del Ruido Total}
 
@@ -233,7 +232,7 @@ El \textit{\textbf{swath}} se define como la anchura de la franja de terreno que
 Swath = GSD \cdot N_{pix} 
 \end{equation}
 
-Siendo $N_{pix}$ el numero de píxeles situados en linea perpendicular al sentido de movimiento del satélite.
+Siendo $N_{pix}$ el número de píxeles situados en línea perpendicular al sentido de movimiento del satélite.
 
 \textbf{\textit{Field of View} (FoV)} es el ángulo total que abarca el sistema óptico del instrumento, es decir, el ángulo desde el cual la óptica puede captar luz y formar imagen sobre el detector. El FoV se mide en grados o milirradianes y determina, junto con la altura orbital, el swath en tierra.
 
@@ -268,7 +267,7 @@ El espectro electromagnético abarca todas las formas de radiación, desde los r
     \label{fig:atm_transmission}
 \end{figure}
 
-La atmósfera terrestre no es transparente a todas las longitudes de onda. Gases como el CO$_2$, el vapor de agua y el ozono absorben fuertemente en regiones específicas, creando "bandas de absorción" que bloquean la radiación. Por ejemplo, el vapor de agua absorbe en el infrarrojo medio (6–8 $\mu$m) y el ozono en el ultravioleta (200–300 nm). Sin embargo, existen "ventanas atmosféricas" donde la radiación atraviesa con menor interferencia, como la región de 8–12 $\mu$m (infrarrojo térmico) y 14–16 $\mu$m (infrarrojo lejano). Estas ventanas son críticas para la teledetección, ya que permiten a los satélites capturar la radiación emitida o reflejada por la superficie terrestre \cite{wilber_surface_1999}.
+La atmósfera terrestre no es transparente a todas las longitudes de onda. Gases como el CO$_2$, el vapor de agua y el ozono absorben fuertemente en regiones específicas, creando "bandas de absorción" que bloquean la radiación. Por ejemplo, el vapor de agua absorbe en el infrarrojo medio (6–8 $\mu$m) y el ozono en el ultravioleta (200–300 nm). Sin embargo, existen "ventanas atmosféricas" donde la radiación atraviesa con menor interferencia, como la región de 8–12 $\mu$m (infrarrojo térmico). Estas ventanas son críticas para la teledetección, ya que permiten a los satélites capturar la radiación emitida o reflejada por la superficie terrestre \cite{wilber_surface_1999}.
 
 \subsubsection{Bandas de absorción del CO\textsubscript{2}}
 
@@ -279,7 +278,7 @@ La atmósfera terrestre no es transparente a todas las longitudes de onda. Gases
     \label{fig:co2trans}
 \end{figure}
 
-El CO$_2$ presenta bandas de absorción características en diferentes regiones espectrales. Las bandas de 1,6 $\mu$m y 2,01 $\mu$m en el infrarrojo cercano son utilizadas por satélites como OCO-2 y GOSAT para medir la concentración columnar de CO$_2$ (XCO$_2$) mediante análisis de reflectancia solar. Estas bandas permiten la detección de CO$_2$ atmosférico aprovechando la absorción en la radiación solar reflejada por la superficie terrestre \cite{oco2_technical_specs_2024}.
+El CO$_2$ presenta bandas de absorción características en diferentes regiones espectrales. Las bandas en torno a 1,6 $\mu$m y 2,0 $\mu$m en el infrarrojo cercano son utilizadas por satélites como OCO-2 y GOSAT para medir la concentración columnar de CO$_2$ (XCO$_2$) mediante análisis de reflectancia solar. Estas bandas permiten la detección de CO$_2$ atmosférico aprovechando la absorción en la radiación solar reflejada por la superficie terrestre \cite{oco2_technical_specs_2024}.
 
 
 La banda de 14--16 $\mu$m, aunque presenta fuerte absorción de CO$_2$, resulta inadecuada para mediciones de concentración desde plataformas espaciales. Esta banda mide principalmente temperatura atmosférica en lugar de concentraciones de CO$_2$, ya que la opacidad atmosférica impide la penetración hasta niveles superficiales donde ocurren las emisiones antropogénicas. Los algoritmos de recuperación requieren perfiles de temperatura extremadamente precisos, introduciendo incertidumbres que complican la separación entre efectos térmicos y variaciones de concentración. La fuerte absorción del CO$_2$ en 15 $\mu$m genera opacidad atmosférica elevada que limita la radiación detectada a niveles de la alta atmósfera, reduciendo significativamente la sensibilidad a las concentraciones cerca de la superficie terrestre \cite{pmc_co2_absorption_2018}.
@@ -453,7 +452,7 @@ La relación focal se define como el cociente entre la distancia focal y el diá
 \end{align}
 
 Siendo $R_{obs}$ la misma relación de obscuración en la ecuación \ref{mtfrobs}
-Es un parámetro clave ya que in número $F\#$ bajo (óptica “rápida”) implica una apertura grande respecto a la distancia focal, lo que permite captar más luz y mejora la SNR, pero puede aumentar las aberraciones ópticas y reducir la profundidad de campo. Un número $F\#$ alto (óptica “lenta”) reduce la cantidad de luz captada, pero suele simplificar el diseño y controlar mejor las aberraciones. La relación focal afecta directamente a la MTF, la SNR y la saturación del detector.
+Es un parámetro clave ya que un número $F\#$ bajo (óptica “rápida”) implica una apertura grande respecto a la distancia focal, lo que permite captar más luz y mejora la SNR, pero puede aumentar las aberraciones ópticas y reducir la profundidad de campo. Un número $F\#$ alto (óptica “lenta”) reduce la cantidad de luz captada, pero suele simplificar el diseño y controlar mejor las aberraciones. La relación focal afecta directamente a la MTF, la SNR y la saturación del detector.
 
 
 \subsection{Tipos de telescopio}
@@ -468,7 +467,7 @@ Es un parámetro clave ya que in número $F\#$ bajo (óptica “rápida”) impl
     \label{fig:Refractive}
 \end{figure}
 
-El telescopio refractivo utiliza lentes para enfocar la luz sobre el detector. Su principal ventaja es la ausencia de obscuración, ya que toda la apertura está disponible para captar luz. Esto se traduce en una MTF de difracción más alta, especialmente a frecuencias espaciales elevadas, y en una penalización por alineamiento relativamente baja ($MTF_{alineamiento} \approx 0,90$), pues el sistema es sencillo de montar y ajustar. Sin embargo, los telescopios refractivos presentan aberraciones cromáticas, lo que limita su uso en aplicaciones multiespectrales o en longitudes de onda fuera del visible. Además, para grandes aperturas (entre 80 y 100 mm), las lentes se vuelven pesadas y difíciles de fabricar, lo que desincentiva su uso en satélites de observación de alta resolución, o de orbitas mayores a LEO (\textit{Low Earth Orbit}).
+El telescopio refractivo utiliza lentes para enfocar la luz sobre el detector. Su principal ventaja es la ausencia de obscuración, ya que toda la apertura está disponible para captar luz. Esto se traduce en una MTF de difracción más alta, especialmente a frecuencias espaciales elevadas, y en una penalización por alineamiento relativamente baja ($MTF_{alineamiento} \approx 0,90$), pues el sistema es sencillo de montar y ajustar. Sin embargo, los telescopios refractivos presentan aberraciones cromáticas, lo que limita su uso en aplicaciones multiespectrales o en longitudes de onda fuera del visible. Además, para grandes aperturas (entre 80 y 100 mm), las lentes se vuelven pesadas y difíciles de fabricar, lo que desincentiva su uso en satélites de observación de alta resolución, o de órbitas mayores a LEO (\textit{Low Earth Orbit}).
 
 
 \subsubsection{Cassegrain}
@@ -502,7 +501,7 @@ El telescopio Korsch es un reflector de tres espejos, también con obscuración 
     \label{fig:Tma}
 \end{figure}
 
-El telescopio de tres espejos anastigmático es un reflector de tres espejos sin obscuración central, ya que el haz óptico se desvía fuera del eje óptico principal (diseño off-axis). Esto permite un campo de visión mas amplio, del orden de $8º$, y una calidad de imagen homogénea en todo el campo, sin penalización por la presencia de elementos que bloqueen la apertura. Sin embargo, el alineamiento de un TMA es extremadamente exigente, con una penalización en la MTF de alineamiento significativa ($MTF_{alineamiento} \approx 0,70$). Además, la fabricación y verificación de estos sistemas es más compleja y costosa.
+El telescopio de tres espejos anastigmático es un reflector de tres espejos sin obscuración central, ya que el haz óptico se desvía fuera del eje óptico principal (diseño off-axis). Esto permite un campo de visión más amplio, del orden de $8º$, y una calidad de imagen homogénea en todo el campo, sin penalización por la presencia de elementos que bloqueen la apertura. Sin embargo, el alineamiento de un TMA es extremadamente exigente, con una penalización en la MTF de alineamiento significativa ($MTF_{alineamiento} \approx 0,70$). Además, la fabricación y verificación de estos sistemas es más compleja y costosa.
 
 \subsubsection*{Tabla comparativa de Telescopios}
 
@@ -596,7 +595,7 @@ donde \( b \) es el semieje menor. La excentricidad determina varios tipos de ó
     \item \( e > 1 \): Trayectoria hiperbólica
 \end{itemize}
 
-\noindent Estos parámetros no tendrán mucha relevancia en este trabajo como veremos más adelante, ya que por simplicidad escogeremos una orbita circular$(e\approx0)$. El semieje mayor se podrá resumir en la altura orbital,
+\noindent Estos parámetros no tendrán mucha relevancia en este trabajo como veremos más adelante, ya que por simplicidad escogeremos una órbita circular$(e\approx0)$. El semieje mayor se podrá resumir en la altura orbital,
 definida como $h= a- R_T$, siendo $R_T$ el radio de la Tierra.
 
 \subsection{Inclinación ($i$)}
@@ -690,7 +689,7 @@ El problema del tercer cuerpo se refiere a la dinámica gravitacional que surge 
 
 Cuando solo dos cuerpos interactúan gravitacionalmente, sus movimientos forman órbitas estables y predecibles. Sin embargo, cuando se introduce un tercer cuerpo, este genera perturbaciones en las órbitas que serían estables en el caso de dos cuerpos.
 
-El tratamiento analítico de este problema es extraordinariamente difícil porque la perturbación depende explícitamente del tiempo. Las ecuaciones diferenciales que describen este sistema no tienen una solución cerrada o analítica exacta, lo que ha lleva al desarrollo de métodos numéricos para aproximar las soluciones.
+El tratamiento analítico de este problema es extraordinariamente difícil porque la perturbación depende explícitamente del tiempo. Las ecuaciones diferenciales que describen este sistema no tienen una solución cerrada o analítica exacta, lo que ha llevado al desarrollo de métodos numéricos para aproximar las soluciones.
 
 El sistema de tres cuerpos es intrínsecamente caótico, lo que significa que es extremadamente sensible a las condiciones iniciales. Pequeñas variaciones en la posición o velocidad inicial de cualquiera de los cuerpos pueden resultar en trayectorias completamente diferentes a largo plazo. Esto imposibilita predicciones precisas sin conocer con exactitud absoluta las condiciones iniciales.\\
 
@@ -713,7 +712,7 @@ El efecto del achatamiento terrestre es clave para lograr esta sincronización. 
     \item \( r \) es el radio orbital (radio de la Tierra + altitud del satélite),
     \item \( \omega_{\text{sol}} \approx 1.991 \times 10^{-7} \ \text{rad/s} \) es la velocidad angular aparente del Sol respecto a la Tierra,
     \item \( J_2 \approx 1.08263 \times 10^{-3} \) es el coeficiente zonal que representa el achatamiento terrestre,
-    \item \( R_T \approx 6378.1 \ \text{km} \) es el radio medio de la Tierra,
+    \item \( R_T \approx 6378.1 \ \text{km} \) es el radio ecuatorial de la Tierra,
     \item \( \mu \approx 3.986 \times 10^{14} \ \text{m}^3/\text{s}^2 \) es la constante gravitacional estándar de la Tierra.
 \end{itemize}
 
@@ -750,4 +749,4 @@ De este modo, se obtiene la altitud \( H \) que satisface la condición de repet
 \subsection{Consideración de las perturbaciones orbitales}
 
 
-Para el presente trabajo no se considera la radiación solar ni el problema del tercer cuerpo, a fin de simplificar los cálculos necesarios. Esto no es descabellado, ya que, como se verá mas adelante, se evaluará una órbita baja (\textit{Low Earth Orbit}, o LEO ) en la cual la influencia de la gravedad terrestre será en ordenes de magnitud mayores a cualquier otro cuerpo celeste cercano (como la Luna o el Sol). También significa que el telescopio no será excesivamente grande, ni, por ende, el resto de subsistemas, por lo que la fuerza generada por la presión de radiación será de un valor ínfimo. No obstante, esta proximidad a la Tierra hará que la fricción con la atmósfera si sea una perturbación a considerar en el diseño de la misión. Así mismo, el achatamiento terrestre también será fundamental a la hora de considerar órbitas heliosíncronas.
+Para el presente trabajo no se considera la radiación solar ni el problema del tercer cuerpo, a fin de simplificar los cálculos necesarios. Esto no es descabellado, ya que, como se verá más adelante, se evaluará una órbita baja (\textit{Low Earth Orbit}, o LEO ) en la cual la influencia de la gravedad terrestre será en ordenes de magnitud mayores a cualquier otro cuerpo celeste cercano (como la Luna o el Sol). También significa que el telescopio no será excesivamente grande, ni, por ende, el resto de subsistemas, por lo que la fuerza generada por la presión de radiación será de un valor ínfimo. No obstante, esta proximidad a la Tierra hará que la fricción con la atmósfera si sea una perturbación a considerar en el diseño de la misión. Así mismo, el achatamiento terrestre también será fundamental a la hora de considerar órbitas heliosíncronas.

@@ -1,12 +1,12 @@
 \chapter{Determinación de la solución óptima}
 \minitoc
 
-Para poder evaluar la mejor de las soluciones, así como determinar la altura orbital óptima para nuestra misión, se va a realizar una simulación que estime la masa total de las posibles soluciones de satélite. 
+Para evaluar la mejor solución y determinar la altura orbital óptima, se realiza una simulación que estima la masa total de las posibles soluciones de satélite. 
 El procedimiento es el siguiente:
 
 \begin{enumerate}
     \item Se estimará la masa en seco del satélite (es decir, sin contar con su combustible), así como volumen, superficie y potencia eléctrica requerida por el instrumento. 
-    \item Se establecerá un modelo de decaimiento orbital que calcule el numero de impulsos, Delta-V y combustible total utilizado para el mantenimiento de la órbita
+    \item Se establecerá un modelo de decaimiento orbital que calcule el número de impulsos, Delta-V y combustible total utilizado para el mantenimiento de la órbita
     \item Se agregarán ambos resultados que, cruzados, darán la masa mínima del satélite necesario, que será la solución óptima.
 \end{enumerate}
 
@@ -133,9 +133,9 @@ Una vez calculada la masa de combustible para todos los posibles puntos de altur
     \caption{Desglose de masa seca, masa combustible y masa total. \\Fuente: Elaboración propia.}
 \end{figure}
 
-Apreciando en esta gráfica el mínimo de masa a poner en orbita por satélite de \textbf{1,710 kg} (distribuidos como: $m_{\text{seca}}= 1{,}349\ \text{kg}; \quad m_{\text{comb}}= 0{,}361\ \text{kg}$) a una altura orbital de \textbf{520 km}, correspondiente a un diámetro de pupila de \textbf{28 mm}. Dado que la constelación estará formada por dos satélites, la masa total a inyectar en orbita será de \textbf{3,42 kg}.
+Apreciando en esta gráfica el mínimo de masa a poner en órbita por satélite de \textbf{1,710 kg} (distribuidos como: $m_{\text{seca}}= 1{,}349\ \text{kg}; \quad m_{\text{comb}}= 0{,}361\ \text{kg}$) a una altura orbital de \textbf{520 km}, correspondiente a un diámetro de pupila de \textbf{28 mm}. Dado que la constelación estará formada por dos satélites, la masa total a inyectar en órbita será de \textbf{3,42 kg}.
 
-Las instrumentación del satélite final, calculando los parámetros restantes descritos previamente, será dispuesto de la siguiente manera:
+La instrumentación del satélite final, calculando los parámetros restantes descritos previamente, será dispuesta de la siguiente manera:
 \begin{landscape}
 \begin{figure}[H]
     \centering
@@ -171,7 +171,7 @@ Las instrumentación del satélite final, calculando los parámetros restantes d
     \label{fig:puntodiseno}
 \end{figure}
 
-Dado que el swath requerido es de 170 km, mientras el swath final obtenido es de 183 km, se consigue un solapamiento final del 10\%, añadiendo a nuestro requerimiento mínimo. La restricción es impuesta por el fov combinado de los telescopios. Debido a que el \textit{swath} completo de un detector individual es de $2048*80= 163 km$, y el fov de un telescopio único limita a $ 91 km$, solo podrán usarse 1146 pixeles de ancho.
+Dado que el swath requerido es de 170 km, mientras el swath final obtenido es de 183 km, se consigue un solapamiento final cercano al 8\%, por encima de nuestro requerimiento mínimo. La restricción es impuesta por el fov combinado de los telescopios. Debido a que el \textit{swath} completo de un detector individual es de $2048*80= 163 km$, y el fov de un telescopio único limita a $ 91 km$, solo podrán usarse 1146 pixeles de ancho.
 
 En el anexo \ref{sec:annexdata}, se podrán encontrar las masas totales de las soluciones viables que aporta cada combinación de configuración, telescopio y detector, siendo la presentada en este capitulo el mínimo de masa absoluto a poner en órbita.
 
@@ -192,7 +192,7 @@ En el caso analizado, la simulación del tiempo de reentrada a la altitud selecc
 
 \chapter{Subsistemas}
 
-En este capítulo, una vez definido el instrumento, se va a desarrollar brevemente el conjunto del satélite. En base a los datos de masa y volumen totales se podrá definir los subsistemas que acompañan a la carga de pago y hacen posible la misión. Se elegirán componentes comercialmente disponibles (\textit{off-the-shelf}) para así validar nuestra solución. Ya que el satélite entra en la categoría de nanosatélites (entre 1 y 10 kg), se tomarán referencias y documentaciones previas sobre este tipo de vehículos. A continuación se presenta el desglose de masas. En las secciones subsiguientes, se procederá al análisis pormenorizado de cada uno de los subsistemas que componen el vehículo: 
+Definido el instrumento, este capítulo desarrolla el resto del satélite. En base a los datos de masa y volumen totales se podrá definir los subsistemas que acompañan a la carga de pago y hacen posible la misión. Se elegirán componentes comercialmente disponibles (\textit{off-the-shelf}) para así validar nuestra solución. Ya que el satélite entra en la categoría de nanosatélites (entre 1 y 10 kg), se tomarán referencias y documentaciones previas sobre este tipo de vehículos. A continuación se presenta el desglose de masas. En las secciones subsiguientes, se procederá al análisis pormenorizado de cada uno de los subsistemas que componen el vehículo: 
 
 %% TABLA
 \begin{table}[h]
@@ -203,18 +203,22 @@ En este capítulo, una vez definido el instrumento, se va a desarrollar brevemen
     Subsistema                               & {Masa (kg)} & {Porcentaje (\%)} \\
     \midrule
     Instrumento de observación               & 0,335    & 19,6        \\
-    Subsistema eléctrico                     & 0,242    & 14,2           \\
+    Subsistema eléctrico                     & 0,219    & 12,8           \\
     \midrule
-    \quad Paneles solares                    & 0,229    & 13,4         \\
-    \quad Baterías                           & 0,013    & 0,8          \\
+    \quad Paneles solares                    & 0,212    & 12,4         \\
+    \quad Baterías                           & 0,007    & 0,4          \\
     \midrule
-    Comunicaciones (banda X)                 & 0,270    & 15,8          \\
-    Estructura                               & 0,251    & 14,7          \\
+    Comunicaciones                           & 0,285    & 16,7          \\
+    \midrule
+    \quad Transmisor X-Band (IQ Spacecom XLink-X) & 0,200 & 11,7          \\
+    \quad Transceptor UHF TM/TC (EnduroSat)  & 0,085    & 5,0           \\
+    \midrule
+    Estructura                               & 0,258    & 15,1          \\
     Control de actitud                       & 0,050    & 2,9           \\
-    Propulsión                               & 0,057    & 3,3          \\
+    Propulsión                               & 0,058    & 3,4          \\
     \midrule
-    \quad Motor                          & 0,040    & 2,3         \\
-    \quad Depósito                           & 0,017    & 1,0           \\
+    \quad Motor                              & 0,040    & 2,3         \\
+    \quad Depósito                           & 0,018    & 1,1           \\
     \midrule
     Ordenador de a bordo (OBC)               & 0,094    & 5,5          \\
     Gestión térmica                          & 0,050    & 2,9          \\
@@ -233,9 +237,7 @@ En este capítulo, una vez definido el instrumento, se va a desarrollar brevemen
 
 La estructura forma el elemento estructural del satélite, donde se acoplarán el resto de módulos. Su diseño debe permitir soportar las cargas mecánicas durante el lanzamiento, tanto en fuerzas de aceleración longitudinales, laterales, como en vibraciones, a medida que el lanzador asciende. Una de las opciones más comunes para su fabricación en este tipo de satélites supone usar un chasis de aleaciones de aluminio como 6061-T6 y 7075-T6.
 
-La masa estructural representa típicamente entre 15--20\,\% de la masa total del satélite \cite{tsinas2001efficient}. Este porcentaje se mantiene relativamente constante debido a la escalabilidad de las cargas estructurales. Por tanto, se puede asumir que la masa estructural del satélite será de 0,251\,kg (14,7\,\%).
-
-El diseño estructural se plantea conforme al estándar CubeSat \cite{calpoly2022cubesat}, con interfaz compatible con desplegadores PPOD, lo que garantiza compatibilidad con la mayoría de proveedores de lanzamiento en \textit{rideshare}. La envolvente de cargas de lanzamiento típica para cargas secundarias en este estándar es de 12\,g en dirección axial y 8\,g lateral (cuasi-estáticos), con niveles de vibración aleatoria de hasta 14,1\,g\,rms en el rango 20--2000\,Hz \cite{calpoly2022cubesat}. El bajo coeficiente de dilatación térmica del aluminio seleccionado ($\alpha \approx 23\ \mu\text{m}/(\text{m·K})$) minimiza las deformaciones termo-elásticas en órbita, lo que contribuye a mantener la alineación del instrumento óptico.
+La masa estructural representa típicamente entre 15--20\,\% de la masa total del satélite \cite{tsinas2001efficient}. Este porcentaje se mantiene relativamente constante debido a la escalabilidad de las cargas estructurales. Por tanto, se puede asumir que la masa estructural del satélite será de 0,258\,kg (15,1\,\%).
 
 
 \section{Control de Actitud}
@@ -248,7 +250,7 @@ A una altura orbital de 520\,km con GSD\,=\,80\,m, el tamaño angular de un píx
 \[
 \theta_{\text{pix}} = \frac{\text{GSD}}{h} = \frac{80}{520\,000} = 1{,}54 \times 10^{-4}\ \text{rad} \approx 0{,}53\ \text{arcmin}.
 \]
-Para una misión de monitorización de CO$_2$/O$_2$ en la que la geolocalización se refina en postproceso, se adopta un requisito de apuntamiento de $\leq 1°$, equivalente a un error de geolocalización de $\approx 9$\,km en tierra. Este margen es coherente con la resolución de los instrumentos de referencia (OCO-2, TROPOMI) y con las necesidades de detección de tendencias climáticas a escala regional.
+Para una misión de monitorización de CO$_2$/O$_2$ en la que la geolocalización se refina en postproceso, se adopta un requisito de apuntamiento de $\leq 2°$, equivalente a un error de geolocalización de $\approx 18$\,km en tierra. Este margen es coherente con la resolución de los instrumentos de referencia (OCO-2, TROPOMI) y con las necesidades de detección de tendencias climáticas a escala regional.
 
 \subsection*{Sistema seleccionado}
 
@@ -267,22 +269,37 @@ La combinación de ambos sistemas logra un apuntamiento final de $\sim1$--$2°$,
     \caption{Magnetotorque GMAT-1. \\Fuente: \cite{satcatalog:gmat1}}
 \end{figure}
 
-La masa total del subsistema ADCS (barra de gradiente + magnetopares + margen) es de 0,05\,kg, representando el 2,9\,\% de la masa total del satélite.
+\subsection*{Determinación de actitud}
+
+El lazo de control requiere, además de los actuadores, sensores que proporcionen la medida de la orientación actual del satélite. Se emplean dos elementos:
+
+\begin{enumerate}
+    \item \textbf{Magnetómetro triaxial} (integrado en el módulo GMAT-1, sin masa adicional): mide el vector del campo magnético terrestre en el sistema de referencia del satélite. Es el sensor primario para el controlador B-dot y para los algoritmos de determinación de actitud como TRIAD.
+    \item \textbf{Sensor solar MEMS SSOC-D60} \cite{solarmems_ssoc} (masa\,$\approx 5$\,g, consumo\,$<$\,0,1\,W): determina la dirección Sol--satélite con una precisión de $\pm 0{,}5°$. Se utiliza para la detección del ciclo sol/eclipse y como referencia de actitud gruesa en el algoritmo de determinación.
+\end{enumerate}
+
+\subsection*{Modo detumbling}
+
+Tras la separación del desplegador, el satélite presentará una velocidad angular residual que debe ser eliminada antes de iniciar el apuntamiento nadir. El controlador \textbf{B-dot} gestiona esta fase: genera pares magnéticos proporcionales a $\dot{\mathbf{B}}$, disipando la energía de rotación. La estabilización completa se logra típicamente en 1--3 órbitas, tras lo cual el sistema transita al modo nominal de seguimiento nadir.
+
+La masa total del subsistema ADCS (barra de gradiente + magnetopares + sensor solar + margen) es de 0,05\,kg, representando el 2,9\,\% de la masa total del satélite.
 
 \section{Comunicaciones}
 
-El subsistema de comunicaciones se basa exclusivamente en usar una de la bandas más comunes para este tipo de aplicaciones, la banda X. Este protocolo tiene capacidad suficiente para la descarga de las imágenes captadas por el instrumento de observación, así como recibir y envíar datos de telemetría y telecomando. La selección de componentes se basa en módulos comerciales de alta fiabilidad. Mientras otras configuraciones ofrecen soluciones multibanda (Ka, Ku, S y X), la restricción de peso obliga a utilizar un solo transmisor lo más liviano posible. Como se detalla en el capítulo \ref{tierra}, esta banda será más que suficiente para cumplir la misión.
+El subsistema de comunicaciones emplea una arquitectura de doble canal: un enlace de alta velocidad en \textbf{banda X} dedicado a la descarga de datos de observación, y un canal de baja tasa en \textbf{banda UHF} para la telemetría y telecomando (TM/TC). Esta separación funcional es el estándar de facto en misiones de nanosatélites y garantiza que el control operativo del satélite no depende de la disponibilidad del enlace de datos. La selección de componentes se basa en módulos comerciales de alta fiabilidad (\textit{off-the-shelf}). Como se detalla en el capítulo \ref{tierra}, esta configuración es más que suficiente para cumplir los objetivos de la misión.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{5.Mission/Nanosats_frequency_2025-04-30_large.png}
-    \caption{Bandas de de comunicaciones de uso típico en nanosatélites.  \\Fuente: \cite{kulu2025nanosats}}
+    \caption{Bandas de comunicaciones de uso típico en nanosatélites.  \\Fuente: \cite{kulu2025nanosats}}
 \end{figure}
 
 
- Para las comunicaciones, se ha seleccionado un transmisor en banda X modelo \textbf{X-Band del fabricante EnduroSat}. Este dispositivo opera en el rango de frecuencias comprendido entre 8,000y 8,400 GHz, permitiendo una tasa de transmisión de datos media de 150 Mbps. La potencia de salida es de 2 W, con un consumo eléctrico en transmisión de 22 W y una masa aproximada de 270 g \cite{endurosat_xband_2025}.
+Para el enlace de descarga se ha seleccionado el \textbf{transceptor X-Band IQ Spacecom XLink-X}, un radio definido por software (SDR) de alta tasa. Opera entre 8,025 y 8,400\,GHz con una tasa de transmisión de hasta 200\,Mbps, potencia de salida de 1\,W y consumo en transmisión de 16\,W. Su masa es de 200\,g \cite{iqspacecom_xlinkx_2024}.
 
-Por tanto, el sistema de comunicaciones suma 270 g, o un 15,8\,\% de la masa total del satélite.
+Para el canal de telemetría y telecomando se ha seleccionado el \textbf{transceptor UHF II de EnduroSat}, que opera en 437\,MHz con una tasa de hasta 9,6\,kbps, consumo en recepción de 0,9\,W y en transmisión de 1\,W, y una masa de 85\,g \cite{endurosat_uhf_2025}.
+
+Por tanto, el subsistema de comunicaciones suma en conjunto 285\,g, representando el 16,7\,\% de la masa total del satélite.
 
 \section{Subsistema eléctrico}
 
@@ -291,7 +308,7 @@ El subsistema eléctrico, se encarga de generar, almacenar, acondicionar y distr
 \begin{itemize}
     \item Toma de datos activa: Corresponde a la operación nominal del instrumento. Los consumos son: instrumento (\SI{0,2}{W}), sistema de control de actitud o ADCS (\SI{0,25}{W}) y el ordenador de a bordo u OBC\footnote{El \textit{On Board Computer} (Ordenador de Abordo), se define más adelante.} (\SI{0,4}{W}). El consumo total en este modo es de \textbf{\SI{0,85}{W}}
     \item \textit{Standby} o hibernación: Modo de bajo consumo para los periodos de inactividad. Los sistemas activos son: ADCS en modo mantenimiento (\SI{0,05}{W}) y OBC (\SI{0,4}{W}). El consumo total en este modo es de \textbf{\SI{0,45}{W}}.
-    \item Transmisión de datos: Es el modo de mayor demanda energética, activado para la descarga de datos a la estación de Tierra. Los consumos son: transmisor EnduroSat X-Band (\SI{22}{W}) \cite{endurosat_xband_2025}, instrumento (\SI{0,2}{W}), ADCS (\SI{0,25}{W}) y OBC (\SI{0,4}{W}). El consumo total en este modo asciende a \textbf{\SI{22,85}{W}}.
+    \item Transmisión de datos: Es el modo de mayor demanda energética, activado para la descarga de datos a la estación de Tierra. Los consumos son: transceptor X-Band XLink-X (\SI{16}{W}) \cite{iqspacecom_xlinkx_2024}, instrumento (\SI{0,2}{W}), ADCS (\SI{0,25}{W}) y OBC (\SI{0,4}{W}). El consumo total en este modo asciende a \textbf{\SI{16,85}{W}}.
 \end{itemize}
 
 \subsubsection{Dimensionado de los paneles}
@@ -300,9 +317,9 @@ La generación de potencia se basa en la conversión de la energía solar median
 \[
 P_{\text{específica}} = \SI{1361}{W/m^2} \times 0,20 \times 0,8 = \SI{217,8}{W/m^2}
 \]
-Para minimizar la masa, se opta por una tecnología de paneles solares flexibles, que presentan una menor densidad másica. Conforme al presupuesto de masas, se asigna un total de \textbf{\SI{0,229}{kg}} para los paneles. Considerando una densidad de \(\SI{4}{kg/m^2}\) para este tipo de tecnología, el área disponible es de \SI{0,057}{m^2}\cite{hiansa2022panel}. A partir de esta superficie, la potencia total generada por el subsistema es:
+Para minimizar la masa, se opta por una tecnología de paneles solares flexibles, que presentan una menor densidad másica. Conforme al presupuesto de masas, se asigna un total de \textbf{\SI{0,212}{kg}} para los paneles. Considerando una densidad de \(\SI{4}{kg/m^2}\) para este tipo de tecnología, el área disponible es de \SI{0,053}{m^2}\cite{hiansa2022panel}. A partir de esta superficie, la potencia total generada por el subsistema es:
 \[
-P_{\text{generada}} = P_{\text{específica}} \times A_{\text{panel}} = \SI{217,8}{W/m^2} \times \SI{0,057}{m^2} \approx \textbf{\SI{12,47}{W}}
+P_{\text{generada}} = P_{\text{específica}} \times A_{\text{panel}} = \SI{217,8}{W/m^2} \times \SI{0,053}{m^2} \approx \textbf{\SI{11,54}{W}}
 \]
 Esta potencia es suficiente para alimentar los modos de operación nominales y permitir la recarga de las baterías.
 
@@ -310,24 +327,24 @@ Esta potencia es suficiente para alimentar los modos de operación nominales y p
 
 Las baterías de iones de litio se dimensionan para suplir el déficit energético durante el modo de transmisión, que presenta el mayor consumo. El déficit de potencia a cubrir es:
 \[
-P_{\text{déficit}} = \SI{22,85}{W} - \SI{12,47}{W} = \SI{10,38}{W}.
+P_{\text{déficit}} = \SI{16,85}{W} - \SI{11,54}{W} = \SI{5,31}{W}.
 \]
 Teniendo en cuenta que, según el análisis del segmento tierra (Cap.~\ref{tierra}), el tiempo de contacto máximo por paso es de 15 minutos, la energía requerida de la batería es:
 \[
-E_{\text{bat}} = \SI{10,38}{W} \times 0{,}25\ \text{h} = \SI{2,60}{Wh}.
+E_{\text{bat}} = \SI{5,31}{W} \times 0{,}25\ \text{h} = \SI{1,33}{Wh}.
 \]
-Con una densidad energética de \(\SI{200}{Wh/kg}\) \cite{sunket2025lithium}, la masa mínima para el almacenamiento es de $2{,}60/200 = 0{,}013$\,kg. Se adopta \textbf{\SI{0,013}{kg}} como valor de diseño.
+Con una densidad energética de \(\SI{200}{Wh/kg}\) \cite{sunket2025lithium}, la masa mínima para el almacenamiento es de $1{,}33/200 = 0{,}007$\,kg. Se adopta \textbf{\SI{0,007}{kg}} como valor de diseño.
 
-La masa total del subsistema eléctrico resultante (\(m_{\text{panel}} + m_{\text{batería}}\)) asciende a \SI{0,242}{kg}. Este valor es consistente con la asignación del presupuesto de masas, validando la configuración propuesta. Considerando que los requerimientos de potencia son laxos, pues el tiempo de transmisión de datos en continuo nunca superará más de los 15 minutos, y que para una órbita SSO amanecer-anochecer (LTAN\,=\,06:00\,h) el ángulo $\beta$ es elevado durante la mayor parte del año, los eclipses son breves o inexistentes en la mayoría de las fases de la misión, el dimensionado supone una aproximación favorable a lo esperado en la práctica.
+La masa total del subsistema eléctrico resultante (\(m_{\text{panel}} + m_{\text{batería}}\)) asciende a \SI{0,219}{kg}. Este valor es consistente con la asignación del presupuesto de masas, validando la configuración propuesta. Considerando que los requerimientos de potencia son laxos, pues el tiempo de transmisión de datos en continuo nunca superará más de los 15 minutos, y que para una órbita SSO amanecer-anochecer (LTAN\,=\,06:00\,h) el ángulo $\beta$ es elevado durante la mayor parte del año, los eclipses son breves o inexistentes en la mayoría de las fases de la misión, el dimensionado supone una aproximación favorable a lo esperado en la práctica.
 
 
-\section{Dimensionado de la planta de potencia}
+\section{Sistema de propulsión}
 
-El subsistema de propulsión constituye un elemento critico para el mantenimiento orbital. La selección del sistema propulsivo debe considerar tanto los requerimientos de impulso especifico como las limitaciones de masa y volumen propias de los nanosatélites. Una de las opciones m\'as innovadoras que comprenden este tipo de vehículos es el uso de motores monopropelentes de combustible verde no toxico. Esto simplifica el diseño al no necesitar 2 depósitos, reduce los riesgos de manipulación y consigue re-encendidos tras a\~nos en \'orbita, manteniendo un impulso especifico competitivo. Por tanto, se escoge el propulsor \textbf{100mN HPGP THRUSTER} desarrollado por ECAPS. Este sistema presenta las características técnicas que satisfacen los requerimientos operacionales:
+El subsistema de propulsión mantiene la órbita frente al arrastre atmosférico durante los 8 años de misión. La selección del sistema propulsivo debe considerar tanto los requerimientos de impulso específico como las limitaciones de masa y volumen propias de los nanosatélites. Una de las opciones más innovadoras que comprenden este tipo de vehículos es el uso de motores monopropelentes de combustible verde no tóxico. Esto simplifica el diseño al no necesitar 2 depósitos, reduce los riesgos de manipulación y consigue re-encendidos tras años en órbita, manteniendo un impulso específico competitivo. Por tanto, se escoge el propulsor \textbf{100mN HPGP THRUSTER} desarrollado por ECAPS. Este sistema presenta las características técnicas que satisfacen los requerimientos operacionales:
 
 \begin{itemize}
     \item Empuje nominal: 100 mN con rango operacional de 30-100 mN
-    \item Impulso especifico: 209 s nominal
+    \item Impulso específico: 209 s nominal
     \item Masa del propulsor: 40 g
 \end{itemize}
 
@@ -336,23 +353,23 @@ El sistema incorpora combustible LMP-103S, que proporciona hasta 30\% mejor rend
 \subsubsection{Depósito de combustible}
 
 El dimensionado del sistema de almacenamiento de combustible se basa en análisis de relaciones masa-combustible establecidas para sistemas espaciales. Para tanques de hidrazina, la relación masa del tanque respecto al combustible es aproximadamente 0,05 kg por kilogramo de combustible \cite{smad2002spacecraft}.
-Con una masa de combustible de 0,334 kg, el tanque requerido presenta:
+Con una masa de combustible de 0,361 kg, el tanque requerido presenta:
 \begin{equation}
-M_{\text{tanque}} = 0,334 \times 0,05 = 0,0167\text{kg}
+M_{\text{tanque}} = 0,361 \times 0,05 = 0,0181\ \text{kg}
 \end{equation}
 
 Por tanto la masa total del subsistema será de: 
 \begin{align}
-    0,014 + 0,040 = 0,0567\ kg
+    0,0181 + 0,040 = 0,0581\ kg
 \end{align}
-Esto supone aproximadamente un 4 \% de la masa total del satélite.
+Esto supone aproximadamente un 3,1\,\% de la masa total del satélite.
 
 \subsection{Otros subsistemas adicionales}
 \subsubsection{Ordenador de Abordo (\textit{On Board Computer}, OBC)}
 
-El ordenador de a bordo (OBC) se encarga de la gestión centralizada de datos, el control de los subsistemas y la ejecución de los algoritmos de misión, garantizando la fiabilidad mediante redundancias y arquitectura tolerante a fallos. El seleccionado para el satélite es el modelo \textbf{iOBC de ISISPACE}. Este equipo presenta una masa de 0,094 kg y un consumo medio de potencia de 0,4 W. Su peso supone aproximadamente un 3\% de la masa total del satélite \cite{isisobc}.
+El ordenador de a bordo (OBC) se encarga de la gestión centralizada de datos, el control de los subsistemas y la ejecución de los algoritmos de misión, garantizando la fiabilidad mediante redundancias y arquitectura tolerante a fallos. El seleccionado para el satélite es el modelo \textbf{iOBC de ISISPACE}. Este equipo presenta una masa de 0,094 kg y un consumo medio de potencia de 0,4 W. Su peso supone aproximadamente un 5,2\,\% de la masa total del satélite \cite{isisobc}.
 
 
 \subsubsection{Gestión térmica}
 
-El subsistema de gestión térmica se basa en una arquitectura pasiva, empleando recubrimientos de control térmico, disipadores y aislamiento. Esta solución minimiza el consumo energético y el numero de componentes. La masa total estimada es de un 3\% o  0,05 kg, incluyendo recubrimientos, adhesivos, aislamiento y elementos de interfaz térmica \cite{guzman2025thermal} \cite{nasa2025thermal}.
+El subsistema de gestión térmica se basa en una arquitectura pasiva, empleando recubrimientos de control térmico, disipadores y aislamiento. Esta solución minimiza el consumo energético y el número de componentes. La masa total estimada es de un 2,8\,\% o 0,05\,kg, incluyendo recubrimientos, adhesivos, aislamiento y elementos de interfaz térmica \cite{guzman2025thermal} \cite{nasa2025thermal}.
