@@ -16,6 +16,7 @@ A constellation of two satellites in a 520 km Sun-synchronous orbit, each carryi
 | `MATLAB_Code/` | The design pipeline: `master.m` + `lib/` (authoritative) |
 | `MATLAB_Code/legacy/` | Archived earlier model versions, kept for traceability only |
 | `Compiled data/` | Final simulation outputs (MTF, SNR, coverage, h–D_min, mass) and the GSD sensitivity summary |
+| `python/` | Python port of the analysis pipeline |
 | `Defence/` | Final defence material (simulation videos) |
 
 ## Running the MATLAB pipeline
@@ -30,6 +31,17 @@ TFG_GSD=80 TFG_OUTPUT_ROOT="Compiled data" \
 `TFG_GSD` sets the required ground sample distance in metres, so the whole study can be repeated for a different resolution requirement. `TFG_OUTPUT_ROOT` sets where results are written.
 
 The revisit computation uses the RevisitTime toolkit (Crisp & Livadiotti, University of Manchester), which must be on the MATLAB path.
+
+## Python port
+
+`python/` contains a NumPy/SciPy port of the MATLAB pipeline (optics, coverage, mass, and electrical modules) with tests:
+
+```bash
+cd python
+pip install -e ".[dev]"
+pytest
+python scripts/run_analysis.py
+```
 
 ## Building the thesis
 
