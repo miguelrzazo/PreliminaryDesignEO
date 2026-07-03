@@ -132,7 +132,7 @@ Definidas las bandas de interés, se busca el detector capaz de cubrir dichos ra
 \toprule
 & \textbf{Detector 1} \cite{lynred_capyork} & \textbf{Detector 2} \cite{teledyne_hawaii2rg} & \textbf{Detector 3} \cite{sofradir_saturn_visir_2011}\\
 \midrule
-\textbf{Nombre} & LYNRED CAPYORK  & Teledyne H2RG   & Saturn VISIR \\
+\textbf{Nombre} & LYNRED CAPYORK  & \textbf{Teledyne H2RG}   & Saturn VISIR \\
 \textbf{Tamaño píxel} & 15 × 15 \textmu m & 18 × 18 \textmu m & 30 × 30 \textmu m \\
 \textbf{Array} & 1200 × 12 & 2048 × 2048 &  1000 × 256 \\
 \textbf{Canales\tablefootnote{Evaluar los canales de salida permite evaluar cuántas bandas independientes es capaz de capturar un detector}} & 4 & 4 & 4 ó 8 \\
@@ -158,7 +158,7 @@ Se aprecia que los detectores 2 y 3 tienen un rango válido para evaluarse tambi
 \toprule
 & \textbf{Detector 4} \cite{cypress_star250_2009}  & \textbf{Detector 5}\cite{teledyne_hawaii2rg} & \textbf{Detector 6} \cite{sofradir_saturn_visir_2011} \\
 \midrule
-\textbf{Nombre} & STAR250 & Teledyne H2RG & SATURN VISIR \\
+\textbf{Nombre} & STAR250 & \textbf{Teledyne H2RG} & SATURN VISIR \\
 \textbf{Tamaño píxel} & 25 × 25 \textmu m & 18 × 18 \textmu m & 30 × 30 \textmu m \\
 \textbf{Array} & 512 × 512 & 2048 × 2048 & 1000 × 256 \\
 \textbf{Canales} & 4 & 4 & 4 ó 8 \\
@@ -223,7 +223,7 @@ MTF Margen & 10\% \\
 
 \end{table}
 
-Dado que el proyecto se encuentra en una etapa temprana de diseño, se establece un margen del 10\% en el cálculo con el fin de cubrir posibles desviaciones asociadas a incertidumbres en los parámetros de entrada, tolerancias de fabricación, o variaciones operacionales. Este margen permite mantener una estimación conservadora sin comprometer la viabilidad preliminar del sistema.
+Dado que el proyecto se encuentra en una etapa temprana de diseño, se establece un margen del \textbf{10\%} en el cálculo con el fin de cubrir posibles desviaciones asociadas a incertidumbres en los parámetros de entrada, tolerancias de fabricación, o variaciones operacionales. Este margen permite mantener una estimación conservadora sin comprometer la viabilidad preliminar del sistema.
 
 Mediante un análisis dimensional, puede demostrarse que la función de transferencia de modulación (MTF, por sus siglas en inglés) es inversamente proporcional a la longitud de onda $\lambda$. Al aumentar $\lambda$, disminuye la frecuencia de corte $f_{co}$ y, en consecuencia, la capacidad del sistema para transmitir detalles de alta frecuencia espacial se ve reducida.
 
@@ -393,7 +393,7 @@ De la interpretación de estos gráficos se extraen las siguientes observaciones
 
 \section{Cobertura de la región de interés: \textit{Swath}, FoV y tiempo de revisita}
 
-Otro de los requerimientos impuestos por el cliente es el obtener un mapa cada 7 días en la región, o lo que es lo mismo, un tiempo de revisita de 7 días o menor. Si se comparan con otras misiones de observación similares, se puede observar que es un tiempo exigente que requiere habitualmente una constelación por lo que será de los parámetros más limitantes para encontrar la solución óptima:
+Otro de los requerimientos impuestos por el cliente es el obtener un mapa cada \textbf{7 días} en la región, o lo que es lo mismo, un tiempo de revisita de \textbf{7 días} o menor. Si se comparan con otras misiones de observación similares, se puede observar que es un tiempo exigente que requiere habitualmente una constelación por lo que será de los parámetros más limitantes para encontrar la solución óptima:
 
 %% Ejemplos cobertura
 \begin{table}[H]
@@ -413,8 +413,8 @@ Sentinel-2  \cite{copernicus2025sentinel} & 2                & 290              
 
 Además, se tendrán en cuenta 2 factores adicionales para el cálculo:
 \begin{itemize}
-    \item \textbf{Solapamiento del \textit{swath}}: Para asegurar la cobertura completa de la región entre pasadas, se establece un \textbf{factor de solapamiento del \textit{swath} mínimo del 5\%} que compensa posibles desviaciones en la proyección del swath y pérdidas de altura del satélite antes de la reinyección orbital.
-    \item \textbf{Cobertura de nubes}: A diferencia de otros sistemas de observación, como el SAR (Radar de Apertura Sintética, o \textit{Synthetic Aperture Radar}, \cite{lou2020sar}), los detectores SWIR pasivos no son capaces de capturar la señal de la superficie terrestre a través de los cúmulos nubosos. Según el enunciado impuesto, \say{\textit{la cobertura de nubes sobre EE. UU. es un día cubierto por cada cinco descubiertos}}, por lo que se considera un \textbf{factor de 1/6 de pasadas del satélite no efectivas}.
+    \item \textbf{Solapamiento del \textit{swath}}: Para asegurar la cobertura completa de la región entre pasadas, se establece un factor de solapamiento del \textit{swath} mínimo del \textbf{5\%} que compensa posibles desviaciones en la proyección del swath y pérdidas de altura del satélite antes de la reinyección orbital.
+    \item \textbf{Cobertura de nubes}: A diferencia de otros sistemas de observación, como el SAR (Radar de Apertura Sintética, o \textit{Synthetic Aperture Radar}, \cite{lou2020sar}), los detectores SWIR pasivos no son capaces de capturar la señal de la superficie terrestre a través de los cúmulos nubosos. Según el enunciado impuesto, \say{\textit{la cobertura de nubes sobre EE. UU. es un día cubierto por cada cinco descubiertos}}, por lo que se considera un \textbf{factor de 1/6 de pasadas del satélite no efectivas}. La imagen de nubosidad se emplea como motivación de este margen de diseño, no como una simulación meteorológica píxel a píxel.
 \end{itemize}
 
 \begin{figure}[H]
@@ -438,9 +438,16 @@ Además, se tendrán en cuenta 2 factores adicionales para el cálculo:
 
 Para el cálculo de la cobertura en la región de interés, se utiliza un software \textit{open-source} desarrollado en el artículo \textit{A Semi-Analytical Method for Calculating Revisit Time for Satellite Constellations with Discontinuous Coverage} \cite{crisp2018semi}. Para aplicar dicho código al presente trabajo, se ha desarrollado una función de interfaz (\textit{wrapper}) que actúa como adaptador entre los parámetros específicos del presente estudio y las funciones originales del software mencionado.
 
-A diferencia de un barrido geográfico punto a punto, el método semianalítico caracteriza la revisita mediante una \textbf{latitud representativa} de la franja continental de EE. UU. ($\phi_0 = 40^\circ$ N, dentro del rango de interés 25\textendash49$^\circ$ N). Para esa latitud se calcula, mediante trigonometría esférica sobre un elipsoide terrestre, el semiancho angular en longitud que cubre el \textit{swath} del sensor en cada paso del satélite. La traza subsatelital se propaga después con movimiento kepleriano circular corregido por la deriva secular del nodo debida al J2 y por la rotación terrestre, obteniendo los instantes sucesivos en que dicha traza vuelve a cruzar $\phi_0$ dentro del campo de visión del instrumento. El tiempo de revisita de cada configuración es el mayor hueco temporal entre dos cruces consecutivos dentro de la ventana simulada, es decir, el peor caso observado.
+A diferencia de un barrido geográfico punto a punto, el método semianalítico caracteriza la revisita mediante la \textbf{latitud inferior de EE.\,UU. continental}. Se adopta \(\phi=25^\circ\ \mathrm{N}\) (\textbf{25° N}), ya que en esa latitud el radio del paralelo terrestre es mayor dentro del territorio continental y, por tanto, la franja horizontal que debe cubrirse es la más ancha del dominio:
 
-El sensor observa exclusivamente al \textbf{nadir}, con barrido \textit{pushbroom} centrado en la traza subsatelital: no existe apuntamiento transversal ni maniobra de \textit{roll}. En consecuencia, el \textit{swath} queda determinado únicamente por la altura orbital y el campo de visión (FoV) del telescopio, o bien por el número de detectores dispuestos en línea, lo que primero se alcance:
+\begin{equation}
+\phi_{\mathrm{inf}} = 25^\circ\ \mathrm{N}
+\label{eq:lat_crit}
+\end{equation}
+
+En esa latitud se calcula, mediante trigonometría esférica sobre un elipsoide terrestre, el semiancho angular en longitud que cubre el \textit{swath} del sensor en cada paso del satélite. La traza subsatelital se propaga después con movimiento kepleriano circular corregido por la deriva secular del nodo debida al J2 y por la rotación terrestre, obteniendo los instantes sucesivos en que dicha traza vuelve a cruzar \(\phi_{\mathrm{inf}}\) dentro del campo de visión del instrumento. El tiempo de revisita de cada configuración es el mayor hueco temporal entre dos cruces consecutivos sobre esa franja continental dentro de la ventana simulada.
+
+El sensor observa exclusivamente al \textbf{nadir}, con barrido \textit{pushbroom} centrado en la traza subsatelital: no existe apuntamiento transversal ni maniobra de \textit{roll}. Por tanto, el ángulo central de observación fuera de nadir es nulo; el parámetro \(\psi\) usado más abajo no representa apuntamiento, sino el semiángulo geométrico desde el nadir hasta el borde del \textit{swath}. En consecuencia, el \textit{swath} queda determinado únicamente por la altura orbital y el campo de visión (FoV) del telescopio, o bien por el número de detectores dispuestos en línea, lo que primero se alcance:
 
 \begin{equation}
 W_{\text{FoV}} = 2\,h \tan\!\left(\frac{\text{FoV}}{2}\right)
@@ -459,21 +466,30 @@ W_{\text{ef}} = W\,(1-f_{\text{ov}}), \qquad
 \end{equation}
 
 \begin{equation}
-T_{\text{rev}} = \max_{k}\left(t_{k+1}-t_k\right)
+T_{\mathrm{rev,geom}} = \max_{k}\left(t_{k+1}-t_{k}\right)_{\phi=25^\circ}
 \label{eq:trev}
 \end{equation}
 
-donde $h$ es la altura orbital, $\text{FoV}$ el campo de visión total del telescopio (duplicado si se embarcan dos telescopios), $N_{\text{det}}$ el número de detectores alineados (hasta 3), $N_{\text{pix}}$ los píxeles por detector, $GSD$ la distancia de muestreo en tierra, $W=\min(W_{\text{FoV}},W_{\text{det}})$ el \textit{swath} resultante, $f_{\text{ov}}$ la fracción de solapamiento (5\%) y $\psi$ el semiángulo fuera de nadir equivalente que recibe el software de revisita. La ecuación \ref{eq:trev} expresa el tiempo de revisita como el mayor intervalo entre dos instantes de paso consecutivos $t_k$ sobre $\phi_0$; este valor, dividido entre $(1-\text{cobertura de nubes})$, es el que finalmente se compara con el requisito de 7 días.
+donde $h$ es la altura orbital, $\text{FoV}$ el campo de visión total del telescopio (duplicado si se embarcan dos telescopios), $N_{\text{det}}$ el número de detectores alineados (hasta 3), $N_{\text{pix}}$ los píxeles por detector, $GSD$ la distancia de muestreo en tierra, $W=\min(W_{\text{FoV}},W_{\text{det}})$ el \textit{swath} resultante, $f_{\text{ov}}$ la fracción de solapamiento (5\%) y $\psi$ el semiángulo hasta el borde del \textit{swath} que recibe el software de revisita. La ecuación \ref{eq:trev} expresa el tiempo de revisita geométrico como el mayor intervalo entre dos instantes de paso consecutivos sobre la latitud inferior de EE.\,UU. continental.
 
-El método se apoya en las siguientes hipótesis: propagación kepleriana circular con corrección secular J2 en el nodo, Tierra modelada como elipsoide para el radio local en la latitud de cálculo, observación estrictamente al nadir, y caracterización de la revisita mediante una latitud representativa en lugar de un mapa punto a punto de todo el territorio. El adaptador desarrollado en este proyecto (\textit{wrapper}) parametriza la altitud, el número de satélites y telescopios, el ancho de barrido y el solapamiento, encadenando las ecuaciones \ref{eq:swath_fov}--\ref{eq:trev} con las funciones originales del software para automatizar el barrido paramétrico completo sobre el espacio de diseño.
+Primero se calcula este tiempo de revisita geométrico. Después se aplica una penalización por nubosidad: se considera que una de cada seis pasadas no produce una adquisición útil. Por tanto, el tiempo de revisita usado en el dimensionado no es el geométrico, sino el efectivo:
 
-Cada configuración evaluada (combinación de número de satélites, telescopios y detector, que fija el \textit{swath} disponible) se simula de forma independiente: el \textit{wrapper} obtiene la inclinación heliosíncrona correspondiente a cada altura, aplica las ecuaciones anteriores para cada par (altura, \textit{swath}) del barrido paramétrico y llama a las funciones del software original para obtener el tiempo de revisita resultante. El resultado de cada configuración se escribe en un archivo \texttt{coverage\_*.csv} con el tiempo de revisita para cada par (altura, \textit{swath}); de esos archivos salen los mapas de calor de esta sección y el filtro de cobertura empleado más adelante en el cruce de datos. Los mapas de calor muestran ese tiempo de revisita: el eje horizontal representa el \textit{swath}, el eje vertical la altura orbital y el color el tiempo de revisita en días. La discretización de altura y \textit{swath} se realiza en pasos de 10 km. Se evalúan distintas configuraciones:
+\begin{equation}
+T_{\mathrm{rev,eff}}=\frac{T_{\mathrm{rev,geom}}}{1-1/6}=1{,}2\,T_{\mathrm{rev,geom}}
+\label{eq:trev_eff}
+\end{equation}
+
+Este valor efectivo es el que se guarda en los ficheros de cobertura, se representa en los mapas de calor y se compara con el requisito de \textbf{7 días}.
+
+El método se apoya en las siguientes hipótesis: propagación kepleriana circular con corrección secular J2 en el nodo, Tierra modelada como elipsoide para el radio local de la latitud de cálculo y observación estrictamente al nadir. El adaptador desarrollado en este proyecto (\textit{wrapper}) parametriza la altitud, el número de satélites y telescopios, el ancho de barrido y el solapamiento, encadenando las ecuaciones \ref{eq:swath_fov}--\ref{eq:trev} con las funciones originales del software para automatizar el barrido paramétrico completo sobre el espacio de diseño.
+
+Cada configuración evaluada (combinación de número de satélites, telescopios y detector, que fija el \textit{swath} disponible) se simula de forma independiente. El \textit{wrapper} obtiene la inclinación heliosíncrona correspondiente a cada altura, calcula el tiempo de revisita efectivo y lo escribe en un archivo \texttt{coverage\_*.csv}. De esos archivos salen los mapas de calor de esta sección y el filtro de cobertura empleado más adelante en el cruce de datos. La discretización de altura y \textit{swath} se realiza en pasos de 10 km. Se evalúan distintas configuraciones:
 
 \begin{itemize}
     \item Configuración (i): 1 único satélite con 1 telescopio embarcado.
     \item Config. (ii): 1 satélite con 2 telescopios embarcados. Los telescopios serán dispuestos según la Figura \ref{fig:img1}, duplicando el ancho de barrido efectivo.
     \item Config. (iii): Constelación de 2 satélites ($i:2/1/0$\footnote{Escrito en notación de Walker \cite{walker1991phase}}).
-    \item Config. (iv): Constelación de 2 satélites, con 2 telescopios embarcados en cada uno. ($i:2/1/0$).
+    \item Config. (iv): Constelación de \textbf{2 satélites}, con \textbf{2 telescopios} embarcados en cada uno. ($i:2/1/0$).
     \item Config. (v): Constelación de 3 satélites ($i:3/1/0$).
 \end{itemize}
 
@@ -504,7 +520,7 @@ Se consideran dos limitaciones al \textit{swath}:
     \item El array del detector, mediante la ecuación \ref{swath}. Para ampliarlo y dar más flexibilidad a esta restricción, se considera el uso de hasta 3 detectores en línea.
 \end{itemize}
 
-Además, solo se considerará el territorio EE. UU. continental, con una \textbf{latitud inferior límite de 25º N}. Ya que el interés del cliente reside en la elaboración del mapa de las principales ciudades, se pueden excluir, por simplicidad de cálculo, otros territorios del país como Hawaii, Puerto Rico y otros territorios de ultramar. A continuación se presentan los resultados del cálculo en las siguientes páginas. Cada figura agrupa cuatro arquitecturas ópticas para el mismo detector; las zonas de color más bajo corresponden a combinaciones de altura y \textit{swath} que cumplen antes el requisito de revisita.
+Además, solo se considerará el territorio EE. UU. continental, representado en el cálculo por la latitud inferior de la ecuación \ref{eq:lat_crit}. Ya que el interés del cliente reside en la elaboración del mapa de las principales ciudades, se pueden excluir, por simplicidad de cálculo, otros territorios del país como Hawaii, Puerto Rico y otros territorios de ultramar. A continuación se presentan los resultados del cálculo en las siguientes páginas. Cada figura agrupa cuatro arquitecturas ópticas para el mismo detector; las zonas de color más bajo corresponden a combinaciones de altura y \textit{swath} que cumplen antes el requisito de revisita.
 
 %% Gráficas 2 SAT 2TEL
 \begin{landscape}
@@ -613,12 +629,12 @@ En la siguiente sección, por los motivos expuestos, solo se evalúa la configur
 
 \section{Posibles soluciones. Cruce de los datos}
 
-Para identificar las soluciones viables que satisfacen los requisitos del cliente, se ha desarrollado un \textit{script} adicional que integra los resultados de MTF, SNR y cobertura, filtrando las combinaciones que satisfacen simultáneamente los requisitos de MTF, SNR, FoV y tiempo de revisita. La primera solución defendible desde misión aparece a 520 km, donde se satisfacen todos los filtros con el menor diámetro de pupila posible.
+Para identificar las soluciones viables que satisfacen los requisitos del cliente, se ha desarrollado un \textit{script} adicional que integra los resultados de MTF, SNR y cobertura, filtrando las combinaciones que satisfacen simultáneamente los requisitos de MTF, SNR y tiempo de revisita. La primera solución defendible desde misión aparece a 630 km, donde se satisfacen todos los filtros con el menor diámetro de pupila posible.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{4.Payload/HvsDmin_Viable_2sat_2tel.pdf}
-    \caption{Diámetro mínimo viable al imponer MTF, SNR, cobertura, FoV y revisita. \\Fuente: Elaboración propia.}
+    \caption{Diámetro mínimo viable al imponer MTF, SNR, cobertura y revisita. \\Fuente: Elaboración propia.}
     \label{fig:hvsdmin_viable}
 \end{figure}
 
@@ -633,4 +649,4 @@ A la vista de este gráfico, se puede concluir que el \textbf{telescopio refract
 
 El \textbf{detector 2: Teledyne H2RG} ofrece el menor diámetro de pupila en todo el rango de alturas viables, por lo que se selecciona como detector de la carga de pago. La altura de operación definitiva se fija en el capítulo siguiente, al incorporar el combustible de mantenimiento y buscar el mínimo de masa total.
 
-Con ello queda fijada la configuración del instrumento: telescopio refractivo, detector Teledyne H2RG, dos telescopios y dos detectores por satélite, y una constelación de dos satélites, junto con la frontera h-D\textsubscript{min} de soluciones viables que resulta de imponer simultáneamente los requisitos de MTF, SNR, FoV y revisita. La altitud orbital definitiva, el mínimo dentro de dicha frontera, se selecciona en el capítulo de análisis de misión una vez incorporada la masa de combustible de mantenimiento y minimizada la masa total del sistema.
+Con ello queda fijada la configuración del instrumento: \textbf{telescopio refractivo}, detector \textbf{Teledyne H2RG}, \textbf{2 telescopios} y \textbf{2 detectores por satélite}, y una constelación de \textbf{2 satélites}, junto con la frontera h-D\textsubscript{min} de soluciones viables que resulta de imponer simultáneamente los requisitos de MTF, SNR y revisita. La altitud orbital definitiva, el mínimo dentro de dicha frontera, se selecciona en el capítulo de análisis de misión una vez incorporada la masa de combustible de mantenimiento y minimizada la masa total del sistema.

@@ -8,7 +8,7 @@ SSO_nodal_rate = 360/(365.2421897*24*3600) * (pi/180); % Tasa de precesión para
 
 % --- Configuración de la Simulación ---
 config_name = sprintf('%d Satelite(s); %d Telescopio(s): %s; Detector %d', N_sat, N_telescopes, strrep(telescope_name, ' ', ''), detector_id);
-lat = 40; % Latitud objetivo [grados]
+lat = 25; % Latitud critica de EE. UU. continental por maxima anchura de franja [grados]
 dayLimit = [1, Cov_Requirement]; % Límites para el cálculo de revisita
 fprintf('Iniciando análisis para: %s\n', strrep(config_name, '_', ' '));
 warning_state = warning;

@@ -43,6 +43,15 @@ pytest
 python scripts/run_analysis.py
 ```
 
+It was vibecoded after the thesis, for fun, to re-validate the sizing study in a friendlier stack (frozen dataclasses, NumPy, PyYAML, matplotlib) and to play with packaging. The configuration is a single YAML file (`python/config/portfolio.yaml`) that defines the design space — bands, detectors, telescopes, constellations, altitudes, swaths, GSDs — and each module sweeps over it, returning a `LabeledTensor` (a self-describing `np.ndarray` with named axes) so the 6-D result grid stays easy to slice.
+
+A couple of small improvements over the MATLAB original snuck in:
+
+- **Vectorisation.** The MATLAB scripts loop cell-by-cell and write results to disk. The Python port keeps the same physics but operates on whole `np.ndarray`s, so SNR/MTF/coverage/mass are evaluated as broadcasts over the full grid in one go. The `LabeledTensor` (`python/src/eo_mission/tensor.py`) keeps the axis names and coordinates alongside the array, so downstream code can do `snr.values[g_i, b_i, d_i, t_i, h_i, dia_i]` without losing track of what each index means.
+- **Portfolio sweep.** The original MATLAB pipeline picks a single configuration and sizes it. The Python port is portfolio-first: `rank_feasible_solutions` (`python/src/eo_mission/analysis.py:159`) enumerates *every* (band, detector, telescope, constellation, altitude, diameter, swath) cell that satisfies SNR, MTF, coverage and aperture thresholds, then sorts the feasible set by dry mass → revisit → altitude, and `best_solution_per_gsd` keeps the lightest one per GSD. The result is `tables/ranked_solutions.csv` and `tables/best_per_gsd.csv` — a ranked design catalogue rather than a single point.
+
+The coverage module is the interesting one: the MATLAB version (`CoverageSSOAnaliticalfunction.m`) is a closed-form expression for revisit time. Here, the same computation is wrapped behind `OrekitCoverageAdapter` (`python/src/eo_mission/coverage.py:103`), which lazily starts a JVM via JPype, points it at an `orekit-data` directory, and pulls the orbital period from an `org.orekit.orbits.KeplerianOrbit` (SSO inclination, J2000 epoch, EME2000 frame) instead of a hand-coded `2π·sqrt(r³/μ)`. The pure-analytical path stays as a fallback for unit tests and for environments where the JVM/orekit-data aren't installed, so the rest of the pipeline is unaware of Orekit. Revisit values are also memoised to a small JSON cache so grid sweeps don't recompute identical cells. A small smoke test (`python/tests/test_orekit_integration.py`) only runs inside the Docker Orekit runtime (`EO_MISSION_RUN_OREKIT_TESTS=1`).
+
 ## Building the thesis
 
 Requires a TeX distribution with `latexmk` and `biber`:

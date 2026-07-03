@@ -1,15 +1,15 @@
 % --- 1. CONSTANTES Y PARÁMETROS ORBITALES ---
 mu = 3.986004418e14; % Parámetro gravitacional estándar de la Tierra (m^3/s^2)
-R_tierra = 6371e3;   % Radio de la Tierra (m)
+R_tierra = 6378.137e3;   % Radio de la Tierra (m)
 
 % Órbita final (circular)
-altitud_final = 520e3;
+altitud_final = 630e3;
 r_final = R_tierra + altitud_final;
 T_final = 2 * pi * sqrt(r_final^3 / mu); % Periodo para el print
 n_final = 2 * pi / T_final;             % Movimiento medio
 
 % Órbita de fase (elíptica)
-altitud_apogeo_fase = 720e3;
+altitud_apogeo_fase = 830e3;
 r_apogeo_fase = R_tierra + altitud_apogeo_fase;
 r_perigeo_fase = r_final;
 a_fase = (r_perigeo_fase + r_apogeo_fase) / 2;
@@ -40,15 +40,15 @@ grid on;
 [x, y, z] = sphere;
 surf(x*R_tierra/1e3, y*R_tierra/1e3, z*R_tierra/1e3, 'FaceColor', '#0077be', 'EdgeColor', 'none', 'DisplayName', 'Tierra');
 ang = linspace(0, 2*pi, 300);
-plot(r_final/1e3 * cos(ang), r_final/1e3 * sin(ang), 'g--', 'LineWidth', 1.5, 'DisplayName', 'Orbita Final (520 km)');
+plot(r_final/1e3 * cos(ang), r_final/1e3 * sin(ang), 'g--', 'LineWidth', 1.5, 'DisplayName', 'Orbita Final (630 km)');
 r_fase_plot = (a_fase*(1-e_fase^2))./(1+e_fase*cos(ang));
-plot(r_fase_plot/1e3 .* cos(ang), r_fase_plot/1e3 .* sin(ang), 'b', 'LineWidth', 1.5, 'DisplayName', 'Orbita de Fase(520 x 720 km)');
+plot(r_fase_plot/1e3 .* cos(ang), r_fase_plot/1e3 .* sin(ang), 'b', 'LineWidth', 1.5, 'DisplayName', 'Orbita de Fase(630 x 830 km)');
 
 % Inicializar objetos gráficos
 h_sat1 = plot(NaN, NaN, 'go', 'MarkerFaceColor', 'g', 'MarkerSize', 8, 'DisplayName', 'Satelite 1');
 h_etapa = plot(NaN, NaN, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 8, 'DisplayName', 'Etapa/Satelite 2');
 h_sat2 = plot(NaN, NaN, 'mo', 'MarkerFaceColor', 'm', 'MarkerSize', 8, 'DisplayName', 'Satelite 2 (Desplegado)');
-title_handle = title('Inicio de Misión', 'Interpreter', 'latex', 'FontSize', 14);
+title_handle = title('Inicio de Mision', 'Interpreter', 'none', 'FontSize', 14);
 legend('Location', 'northeastoutside', 'AutoUpdate', 'off', 'Interpreter', 'latex');
 xlim([-1.2*r_apogeo_fase/1e3, 1.2*r_apogeo_fase/1e3]);
 ylim([-1.2*r_apogeo_fase/1e3, 1.2*r_apogeo_fase/1e3]);
@@ -76,20 +76,22 @@ while desfase_acumulado_rad < pi
     desfase_acumulado_rad = delta_n * t;
     
     % Actualizar título
-    title_handle.String = sprintf('Fase de Deriva | Tiempo: %.1f h | Desfase: %.1f°', t / 3600, rad2deg(desfase_acumulado_rad));
+    title_handle.String = sprintf('Fase de Deriva | Tiempo: %.1f h | Desfase: %.1f deg', t / 3600, rad2deg(desfase_acumulado_rad));
     
     % Actualizar posiciones
     set(h_sat1, 'XData', x1/1e3, 'YData', y1/1e3);
     set(h_etapa, 'XData', x_etapa/1e3, 'YData', y_etapa/1e3);
     
-    drawnow;
-    pause(0.01);
+    drawnow limitrate;
     t = t + dt;
 end
 
 % --- 5. FASE FINAL: DESPLIEGUE ---
-title_handle.String = sprintf('Desfase de 180° alcanzado en %.1f horas. Desplegando Satelite 2.', t / 3600);
+title_handle.String = sprintf('Desfase de 180 deg alcanzado en %.1f horas. Desplegando Satelite 2.', t / 3600);
 set(h_sat2, 'XData', x_etapa/1e3, 'YData', y_etapa/1e3, 'Visible', 'on');
 set(h_etapa, 'Visible', 'off');
 
 hold off;
+
+script_dir = fileparts(mfilename('fullpath'));
+exportgraphics(gcf, fullfile(script_dir, '..', 'Latex_Code', '6.Lanzadores', 'phasing.jpg'), 'Resolution', 300);

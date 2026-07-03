@@ -39,14 +39,15 @@ for k = 1:n_h
     rho_vals(k) = exp(interp1(h_rho, log(rho_ref), h, 'linear', 'extrap'));
 end
 
-% --- print 520 km results ---
-idx520 = find(h_vals == 520);
-fprintf('--- Frozen condition at 520 km ---\n');
-fprintf('e_frozen  = %.2e\n', e_f_vals(idx520));
-fprintf('Delta h   = %.1f km\n', dh_vals(idx520));
-fprintf('Deadband  = %.1f km\n', deadband_vals(idx520));
-fprintf('i_SSO     = %.2f deg\n', i_vals(idx520));
-fprintf('Density   = %.1e kg/m^3\n', rho_vals(idx520));
+% --- print selected-altitude results ---
+h_selected = 630;
+idx_selected = find(h_vals == h_selected);
+fprintf('--- Frozen condition at %.0f km ---\n', h_selected);
+fprintf('e_frozen  = %.2e\n', e_f_vals(idx_selected));
+fprintf('Delta h   = %.1f km\n', dh_vals(idx_selected));
+fprintf('Deadband  = %.1f km\n', deadband_vals(idx_selected));
+fprintf('i_SSO     = %.2f deg\n', i_vals(idx_selected));
+fprintf('Density   = %.1e kg/m^3\n', rho_vals(idx_selected));
 fprintf('\n');
 
 % --- altitudes where frozen IS compatible ---
@@ -65,9 +66,9 @@ end
 fprintf('\n--- Density comparison ---\n');
 idx800 = find(h_vals == 800);
 if ~isempty(idx800)
-    fprintf('Density at 520 km = %.1e kg/m^3\n', rho_vals(idx520));
+    fprintf('Density at %.0f km = %.1e kg/m^3\n', h_selected, rho_vals(idx_selected));
     fprintf('Density at 800 km = %.1e kg/m^3\n', rho_vals(idx800));
-    fprintf('Ratio (520/800)  = %.1f\n', rho_vals(idx520)/rho_vals(idx800));
+    fprintf('Ratio (%.0f/800)  = %.1f\n', h_selected, rho_vals(idx_selected)/rho_vals(idx800));
 end
 
 % --- plot ---
@@ -76,7 +77,7 @@ yyaxis left;
 plot(h_vals, e_f_vals, 'b-', 'LineWidth', 1.2);
 ylabel('e_{frozen}');
 hold on;
-xline(520, 'r--', 'LineWidth', 1.2);
+xline(h_selected, 'r--', 'LineWidth', 1.2);
 ylim auto;
 
 yyaxis right;
@@ -87,7 +88,7 @@ ylabel('Altura [km]');
 
 xlabel('Altitud [km]');
 title('Condición frozen para órbita SSO');
-legend('e_f', 'h = 520 km', '\Delta h', 'Deadband (2% h)', 'Location', 'northwest');
+legend('e_f', sprintf('h = %.0f km', h_selected), '\Delta h', 'Deadband (2% h)', 'Location', 'northwest');
 grid on;
 set(gca, 'FontSize', 11);
 exportgraphics(gcf, 'Frozen_e_vs_h.pdf', 'ContentType', 'vector');

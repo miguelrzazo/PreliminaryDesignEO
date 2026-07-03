@@ -1,80 +1,72 @@
-% Parámetros de lanzamiento
-lat_vafb = 34.7; % Latitud de Vandenberg
+% Parametros de lanzamiento
+lat_vafb = 34.7;   % Latitud de Vandenberg
 lon_vafb = -120.6; % Longitud de Vandenberg
 
-% Crear figura 2D
-figure;
-hold on;
+% Limites de azimut WTR (170 a 300 grados)
+azimut_min = 170;
+azimut_max = 300;
+radio_linea_deg = 8;
 
-% Cargar datos de costas
-load coastlines;
-plot(coastlon, coastlat, 'k-', 'LineWidth', 0.5);
-
-% LÍMITES DE AZIMUT WTR (170° a 300°)
-azimut_min = 170; 
-azimut_max = 300; 
-radio_linea = 15; 
-
-% Líneas de límite
 az_min_rad = deg2rad(azimut_min);
-lat_limite_min = lat_vafb + radio_linea * cos(az_min_rad);
-lon_limite_min = lon_vafb + radio_linea * sin(az_min_rad) / cosd(lat_vafb);
-plot([lon_vafb, lon_limite_min], [lat_vafb, lat_limite_min], 'k--', 'LineWidth', 2);
+lat_limite_min = lat_vafb + radio_linea_deg * cos(az_min_rad);
+lon_limite_min = lon_vafb + radio_linea_deg * sin(az_min_rad) / cosd(lat_vafb);
 
 az_max_rad = deg2rad(azimut_max);
-lat_limite_max = lat_vafb + radio_linea * cos(az_max_rad);
-lon_limite_max = lon_vafb + radio_linea * sin(az_max_rad) / cosd(lat_vafb);
-plot([lon_vafb, lon_limite_max], [lat_vafb, lat_limite_max], 'k--', 'LineWidth', 2);
+lat_limite_max = lat_vafb + radio_linea_deg * cos(az_max_rad);
+lon_limite_max = lon_vafb + radio_linea_deg * sin(az_max_rad) / cosd(lat_vafb);
 
-% Arco de rango permitido
-azimuts_arco = linspace(azimut_min, azimut_max, 50);
-azimuts_arco_rad = deg2rad(azimuts_arco);
-radio_arco = 8;
-lats_arco = lat_vafb + radio_arco * cos(azimuts_arco_rad);
-lons_arco = lon_vafb + radio_arco * sin(azimuts_arco_rad) ./ cosd(lat_vafb);
-plot(lons_arco, lats_arco, 'k-', 'LineWidth', 1.5);
+azimuts_arco = linspace(azimut_min, azimut_max, 80);
+radio_arco_deg = 5.5;
+lats_arco = lat_vafb + radio_arco_deg * cosd(azimuts_arco);
+lons_arco = lon_vafb + radio_arco_deg * sind(azimuts_arco) ./ cosd(lat_vafb);
 
-% Trayectoria de lanzamiento (azimut 189°)
-azimut = 189;
-azimut_rad = deg2rad(azimut);
-alcance_horizontal = 800;
-distancia = linspace(0, alcance_horizontal, 50);
+% Trayectoria de lanzamiento para la inclinacion de diseno.
+azimut = 190;
+distancia_km = linspace(0, 900, 90);
+latitudes = lat_vafb + (distancia_km .* cosd(azimut)) / 111;
+longitudes = lon_vafb + (distancia_km .* sind(azimut)) ./ (111 * cosd(lat_vafb));
 
-delta_lat = (distancia .* cos(azimut_rad)) / 111;
-delta_lon = (distancia .* sin(azimut_rad)) ./ (111 * cosd(lat_vafb));
+fig = figure('Color', 'white', 'Position', [100 100 900 650]);
+gx = geoaxes(fig);
+hold(gx, 'on');
+geolimits(gx, [27 42], [-128 -115]);
 
-latitudes = lat_vafb + delta_lat;
-longitudes = lon_vafb + delta_lon;
+try
+    geobasemap(gx, 'grayland');
+catch
+    geobasemap(gx, 'streets-light');
+end
 
-% Dibujar la trayectoria en 2D
-plot(longitudes, latitudes, 'r-', 'LineWidth', 3);
+gx.Grid = 'on';
+gx.FontSize = 11;
 
-% Punto de lanzamiento
-scatter(lon_vafb, lat_vafb, 150, 'g', 'filled');
-text(lon_vafb, lat_vafb + 1, 'Vandenberg SFB', 'FontSize', 12, 'FontWeight', 'bold', 'Interpreter', 'latex');
+geoplot(gx, [lat_vafb lat_limite_min], [lon_vafb lon_limite_min], ...
+    'k--', 'LineWidth', 1.8, 'DisplayName', 'Limites WTR');
+geoplot(gx, [lat_vafb lat_limite_max], [lon_vafb lon_limite_max], ...
+    'k--', 'LineWidth', 1.8, 'HandleVisibility', 'off');
+geoplot(gx, lats_arco, lons_arco, 'k-', 'LineWidth', 1.6, ...
+    'DisplayName', 'Rango permitido');
+geoplot(gx, latitudes, longitudes, 'r-', 'LineWidth', 3.0, ...
+    'DisplayName', 'Trayectoria 190$^\circ$');
+geoscatter(gx, lat_vafb, lon_vafb, 120, [0 0.65 0.15], 'filled', ...
+    'MarkerEdgeColor', 'white', 'LineWidth', 1.2, 'DisplayName', 'Vandenberg SFB');
 
-% Etiquetas con símbolo de grados en LaTeX
-text(lon_limite_min-1, lat_limite_min, '$170^{\circ}$', 'FontSize', 12, 'Color', 'black', 'Interpreter', 'latex');
-text(lon_limite_max-1, lat_limite_max, '$300^{\circ}$', 'FontSize', 12, 'Color', 'black', 'Interpreter', 'latex');
-text(lon_vafb-5, lat_vafb-4, 'WTR Allowable Range', 'FontSize', 10, 'Color', 'black', 'Interpreter', 'latex');
+text(gx, lat_vafb + 0.35, lon_vafb + 0.2, 'Vandenberg SFB', ...
+    'FontSize', 12, 'FontWeight', 'bold', 'Color', 'black', 'Interpreter', 'latex');
+text(gx, lat_limite_min - 0.15, lon_limite_min + 0.15, '$170^\circ$', ...
+    'FontSize', 11, 'Color', 'black', 'Interpreter', 'latex');
+text(gx, lat_limite_max + 0.2, lon_limite_max - 0.85, '$300^\circ$', ...
+    'FontSize', 11, 'Color', 'black', 'Interpreter', 'latex');
+text(gx, latitudes(42), longitudes(42) + 0.15, '$190^\circ$', ...
+    'FontSize', 12, 'Color', 'red', 'Interpreter', 'latex', 'FontWeight', 'bold');
 
-% Etiqueta del azimut de lanzamiento
-text(longitudes(25), latitudes(25)+0.5, '$189^{\circ}$', 'FontSize', 11, 'Color', 'red', 'Interpreter', 'latex', 'FontWeight', 'bold');
+title(gx, 'Azimut de lanzamiento desde Vandenberg SFB', ...
+    'Interpreter', 'latex', 'FontSize', 14, 'Color', 'black');
+lgd = legend(gx, 'Location', 'northeast', 'Interpreter', 'latex');
+lgd.Color = 'white';
+lgd.TextColor = 'black';
 
-% Configurar ejes
-xlabel('Longitud ($^{\circ}$)', 'Interpreter', 'latex', 'FontSize', 12);
-ylabel('Latitud ($^{\circ}$)', 'Interpreter', 'latex', 'FontSize', 12);
-title('L\''imites de Azimut WTR - Vandenberg SFB', 'Interpreter', 'latex', 'FontSize', 14);
-grid on;
-
-% Límites del mapa
-xlim([-130 -90]);
-ylim([20 50]);
-
-% Leyenda
-legend('Costas', 'L\''imites WTR', '', 'Rango Permitido', ...
-       'Trayectoria ($189^{\circ}$)', 'Vandenberg SFB', ...
-       'Location', 'northeast', 'Interpreter', 'latex');
-
-axis equal;
-hold off;
+script_dir = fileparts(mfilename('fullpath'));
+exportgraphics(fig, fullfile(script_dir, '..', 'Latex_Code', '6.Lanzadores', 'azimuth.jpg'), ...
+    'Resolution', 300);
+close(fig);

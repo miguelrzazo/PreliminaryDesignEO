@@ -12,19 +12,19 @@ Criterios aplicados para Dmin:
 Resultados (Dmin en mm) por detector y telescopio:
 
 Detector 1:
-  Refractivo: Alturas validas [520-1000 km], Diametros resultantes [39.0-74.0 mm]
+  Refractivo: Alturas validas [630-920 km], Diametros resultantes [47.0-68.0 mm]
   Korsch: No se encontraron combinaciones validas que cumplan todos los criterios.
   Cassegrain: No se encontraron combinaciones validas que cumplan todos los criterios.
   TMA: No se encontraron combinaciones validas que cumplan todos los criterios.
 
 Detector 2:
-  Refractivo: Alturas validas [520-1000 km], Diametros resultantes [28.0-54.0 mm]
+  Refractivo: Alturas validas [630-1000 km], Diametros resultantes [34.0-54.0 mm]
   Korsch: No se encontraron combinaciones validas que cumplan todos los criterios.
   Cassegrain: No se encontraron combinaciones validas que cumplan todos los criterios.
-  TMA: Alturas validas [700-1000 km], Diametros resultantes [120.0-171.0 mm]
+  TMA: Alturas validas [770-920 km], Diametros resultantes [132.0-158.0 mm]
 
 Detector 3:
-  Refractivo: Alturas validas [520-1000 km], Diametros resultantes [32.0-60.0 mm]
+  Refractivo: Alturas validas [630-920 km], Diametros resultantes [38.0-55.0 mm]
   Korsch: No se encontraron combinaciones validas que cumplan todos los criterios.
   Cassegrain: No se encontraron combinaciones validas que cumplan todos los criterios.
   TMA: No se encontraron combinaciones validas que cumplan todos los criterios.
