@@ -1,0 +1,31 @@
+=== RESUMEN DE ANALISIS CRUZADO ===
+
+Configuracion: 2sat_2tel (2 satelite(s), 2 telescopio(s) por satelite)
+
+Criterios aplicados para Dmin:
+- MTF (Lambda2) >= 0.25
+- SNR (Lambda3) >= 400
+- Dias de cobertura <= 7
+- FOV actual <= Limite FOV del telescopio
+- Para telescopio Refractivo (si idx=1): Diametro <= 90mm
+
+Resultados (Dmin en mm) por detector y telescopio:
+
+Detector 1:
+  Refractivo: Alturas validas [520-1000 km], Diametros resultantes [39.0-74.0 mm]
+  Korsch: No se encontraron combinaciones validas que cumplan todos los criterios.
+  Cassegrain: No se encontraron combinaciones validas que cumplan todos los criterios.
+  TMA: No se encontraron combinaciones validas que cumplan todos los criterios.
+
+Detector 2:
+  Refractivo: Alturas validas [520-1000 km], Diametros resultantes [28.0-54.0 mm]
+  Korsch: No se encontraron combinaciones validas que cumplan todos los criterios.
+  Cassegrain: No se encontraron combinaciones validas que cumplan todos los criterios.
+  TMA: Alturas validas [700-1000 km], Diametros resultantes [120.0-171.0 mm]
+
+Detector 3:
+  Refractivo: Alturas validas [520-1000 km], Diametros resultantes [32.0-60.0 mm]
+  Korsch: No se encontraron combinaciones validas que cumplan todos los criterios.
+  Cassegrain: No se encontraron combinaciones validas que cumplan todos los criterios.
+  TMA: No se encontraron combinaciones validas que cumplan todos los criterios.
+
