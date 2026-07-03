@@ -1,0 +1,135 @@
+\documentclass[12pt]{report}
+\usepackage{iftex}
+\ifPDFTeX
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\else
+  \usepackage{fontspec}
+  \setmainfont{Latin Modern Roman}
+  \setsansfont{Latin Modern Sans}
+  \setmonofont{Latin Modern Mono}
+\fi
+\usepackage{graphicx} % para insertar imagenes
+\usepackage[spanish,es-tabla]{babel}  % Traducción al español
+\usepackage{textcomp} % Para \textmu
+\usepackage{booktabs} % Para mejores tablas
+\usepackage{caption}  % Mejoras en caption
+\usepackage{siunitx}  % Para alinear números si quisieras más adelante
+\usepackage{array} % Para definir anchos de columna
+\usepackage{float} % Para usar H float en imagenes
+\usepackage{pdflscape} %landscape pdf
+\usepackage{lscape} % Landscape real en PDF
+\usepackage[margin=2.5cm]{geometry}    % Para asegurar que la página esté correctamente configurada
+\usepackage{changepage}  % Para cambiar márgenes localmente
+\usepackage{url} %% Para las url
+\usepackage{tabularx} %Entorno de tablas mas pulido, alineado
+\usepackage{amsmath, amssymb} %% Boxing de los resultados
+\usepackage{makecell} %% Para cambiar visualmente tablas
+\usepackage{hyperref} %% Para hacer hipervinculos del texto
+\usepackage{tablefootnote} % Para poder poner footnotes dentro de tablas
+\usepackage{threeparttable} % Para notas al pie de tablas sin conflicto con tabularx
+\usepackage{longtable} % Formato tabla larga
+\usepackage[backend=biber, style=ieee]{biblatex} %% Para usar Biblatex en estilo ieee
+\addbibresource{Bib.bib}  %% Pone el archivo
+\numberwithin{equation}{section} %% Para num secciones en ecuaciones
+\usepackage[dvipsnames,table]{xcolor} % Para dar texto de colores al codigo
+\usepackage{csquotes} %% Para comillas español
+\usepackage{fancyvrb} % Mejor verbatim mas elegante
+% minted replaced by listings (minted v3.7 generates 150k+ PDF objects via pygmentize)
+\usepackage{listings}
+\lstset{
+  basicstyle=\tiny\ttfamily,
+  frame=lines,
+  framesep=1em,
+  breaklines=true,
+  keepspaces=true,
+  columns=flexible,
+  extendedchars=true,
+  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {Ñ}{{\~N}}1 {ü}{{\"u}}1 {Ü}{{\"U}}1 {º}{{\textordmasculine}}1 {°}{{\textdegree}}1 {¿}{{?`}}1 {¡}{{!`}}1,
+}
+\usepackage{multicol}
+\usepackage{subcaption}
+\usepackage{csvsimple}
+\usepackage{pgfplotstable}
+\usepackage{footmisc}
+\usepackage{minitoc}  % Paquete necesario
+\usepackage{gensymb}
+\usepackage{enumitem}  % custom description list formatting
+
+
+\dominitoc              % Activa los minitocs en todos los capítulos
+\addto\captionsspanish{
+  \renewcommand{\mtctitle}{Contenido}
+  \renewcommand{\ptctitle}{Contenido}
+  \renewcommand{\stctitle}{Contenido}
+}
+
+
+
+
+
+\usepackage[
+    left = \flqq{},% 
+    right = \frqq{},% 
+    leftsub = \flq{},% 
+    rightsub = \frq{} %
+]{dirtytalk}
+
+\RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}% Definimos el custom verbatim format
+{fontsize=\tiny,
+ %
+ frame=lines,  % top and bottom rule only
+ framesep=1em, % separación entre el marco y el texto
+ rulecolor=\color{Gray},
+ %
+ commandchars=\|\(\), % delimitadores de escape y de argumentos
+ commentchar=*        % carácter de comentario
+}
+
+
+
+\setlength{\parskip}{12pt}
+
+
+
+\begin{document}
+\pagenumbering{roman}
+\dominitoc
+\input{frontmatter/frontmatter}
+\setcounter{page}{1}
+\tableofcontents        % Índice general
+\listoftables           % Índice de tablas
+\listoffigures          % Índice de figuras
+\newpage
+
+
+%% Dedicatoria? Agradecimientos
+%Lista simbolos?
+%Palabras clave?
+
+
+\pagenumbering{arabic}
+\include{1.Introduccion/Introduccion}
+\include{2.Misiones_Semejantes/00Misiones_Semejantes}
+\include{3.Conceptos_Previos/00Conceptos_Previos}
+
+\include{4.Payload/00Payload}
+
+\include{5.Mission/00AnalisisMision}
+\include{6.Lanzadores/00Lanzador}
+\include{7.Segmento_Tierra/00Segmento_Tierra}
+\include{8.Conclusiones/00Conclusiones}
+
+
+\nocite{*} %% Pone las citas aunque no se hayan mencionado
+\addcontentsline{toc}{chapter}{Bibliografía}
+\printbibliography %% Compila la bibliografia
+
+\include{zzAnnex/zzAnexos}
+
+
+
+\end{document}

@@ -1,0 +1,164 @@
+\chapter{Lanzadores}
+\minitoc
+
+La selección del vehículo de lanzamiento para misiones de pequeños satélites requiere priorizar la viabilidad económica mediante servicios de lanzamiento compartido. Esta modalidad permite distribuir los costes de lanzamiento entre múltiples operadores, reduciendo los gastos para cargas útiles pequeñas \cite{spacex2022}.
+
+Los lanzamientos compartidos han reducido la barrera de entrada para satélites de masa reducida. Utilizan adaptadores especializados y dispensadores para integrar múltiples cargas útiles en la etapa superior del cohete \cite{esa2024}. El coste fijo del vehículo se reparte entre las cargas útiles, lo que se traduce en un coste de lanzamiento por kilogramo muy inferior al de un lanzamiento dedicado.
+
+\section{Lanzadores Operativos}
+
+\subsection{Falcon 9}
+
+Falcon 9 de SpaceX domina el mercado de lanzamiento compartido con su programa SmallSat Rideshare (programa de lanzamiento compartido para satélites pequeños). Con 468 lanzamientos hasta abril de 2025 y una fiabilidad del 99{,}35\,\%, su rendimiento supera ampliamente al de sus competidores \cite{satellitetoday2024}. El programa \textit{Transporter} ofrece lanzamientos dedicados a órbitas heliosíncronas con un coste de 6\,500 USD por kilogramo \cite{spacex2022, payloadspace2023}. Su arquitectura de 9 motores Merlin proporciona redundancia, mientras que su etapa superior (LOX/RP-1, con capacidad de reencendido) permite ajustes orbitales precisos para inserción en órbitas de hasta 700 km \cite{wikipedia2024}.
+
+\subsection{Firefly Alpha}
+
+El Firefly Alpha es un lanzador de dos etapas desarrollado por Firefly Aerospace para el mercado de satélites pequeños. Con una capacidad de 630 kg a órbitas heliosíncronas de 500 km y 1\,030 kg a LEO, ocupa un nicho intermedio en el mercado. Firefly representa una empresa emergente y disruptiva dentro del acceso dedicado para cargas ligeras. El coste de lanzamiento oscila entre 15--19 millones USD, resultando en aproximadamente 24\,000--30\,000 USD por kilogramo. Opera desde Vandenberg Space Force Base y ofrece opciones limitadas de lanzamiento compartido \cite{fireflyspace2024}.
+
+\subsection{Vulcan Centaur}
+
+El Vulcan Centaur es el sucesor estadounidense del Atlas V y Delta IV Heavy. Aunque proyecta una fiabilidad del 100\% basada en pruebas iniciales, carece de historial operativo extenso en 2025 \cite{semanticscholar2023}. Su capacidad de 14\,400 kg a SSO y coste aproximado de 110 millones USD lo posicionan fuera del segmento económico para satélites pequeños. La ausencia de servicios de lanzamiento compartido establecidos limita su competitividad.
+
+\subsection{Electron}
+
+El Electron se especializa en cargas útiles ligeras con lanzamientos rápidos desde Nueva Zelanda. Su coste de 7{,}5 millones USD por lanzamiento resulta en aproximadamente 25\,000 USD por kilogramo \cite{spaceinsider2023}. Con capacidad máxima de 300 kg a SSO, ofrece servicios de lanzamiento compartido limitados y flexibilidad operativa elevada con varias ventanas de lanzamiento \cite{wikipedia2024}. No se adopta como opción principal porque obliga a desplazar la campaña a Mahia y no mejora el coste por kilogramo frente a Falcon~9 ni la compatibilidad logística de Vandenberg.
+
+\subsection{Ariane 6}
+
+El Ariane 6 representa la autonomía estratégica europea en acceso al espacio. Sus variantes Ariane 62 y Ariane 64 ofrecen capacidades de 6\,500 kg y 15\,000 kg a SSO respectivamente \cite{esa2024}. Los servicios de lanzamiento compartido permiten costes aproximados de 11\,164{,}55 USD por kilogramo \cite{spaceinsider2023}. Su etapa superior con capacidad de reinicio múltiple optimiza la inserción orbital para múltiples cargas útiles \cite{esa2024}.
+
+\subsection{Vega-C}
+
+El Vega-C es el lanzador ligero más avanzado de Europa, optimizado para el segmento de satélites pequeños y medianos. Con capacidad de 2\,300 kg a órbitas de 700 km, utiliza el adaptador SSMS (Small Spacecraft Mission Service) para facilitar misiones de lanzamiento compartido \cite{arianespace2024}. Los costes aproximados de 20\,000 USD por kilogramo reflejan su especialización en el mercado europeo \cite{esa2024}.
+\\
+\begin{table}[h]
+\centering
+\caption{Comparativa de lanzadores espaciales para misiones de lanzamiento compartido.}
+\begin{threeparttable}
+\begin{tabularx}{\linewidth}{l X X X X X}
+\toprule
+\textbf{Lanzador} &
+\textbf{Fiabilidad\tnote{a} (2025)} &
+\textbf{Coste por kg (USD)} &
+\textbf{Capacidad a LEO/SSO} &
+\textbf{Lanzamiento compartido} &
+\textbf{Ubicaciones de lanzamiento} \\
+\midrule
+Falcon 9         & 99{,}35\,\%         & 6\,500   & 17\,400 kg         & Sí & Vandenberg SFB, Cabo Cañaveral \\
+Firefly Alpha    & 57{,}1\,\%\tnote{c} & 26\,984  & 630 kg            & Sí & Vandenberg SFB \\
+Vulcan Centaur   & 100\%           & 4\,044   & 14\,400 kg         & No & Vandenberg SFB, Cabo Cañaveral \\
+Electron         & 95\%            & 25\,000  & 300 kg            & Sí & Mahia (Nueva Zelanda) \\
+Ariane 6         & Activo          & 5\,500   & Hasta 15\,000 kg   & Sí & Centro Espacial de Guayana \\
+Vega-C           & 90{,}9\,\%\tnote{b} & 19\,565 & 2\,300 kg & Sí & Centro Espacial de Guayana \\
+\bottomrule
+\end{tabularx}
+\begin{tablenotes}
+\small
+\item[a] Considerando solo éxito total de misión
+\item[b] Fiabilidad del programa Vega, no solo el lanzador actual
+\item[c] Fiabilidad estimada a marzo de 2026 (4 éxitos en 7 lanzamientos).
+\item Los costes por kg son estimaciones aproximadas a partir de fuentes públicas; varían según la configuración y el año.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\section{Bases de lanzamiento y azimuts posibles}
+
+\subsection{Vandenberg Space Force Base (California, EE.UU.)}
+
+Vandenberg SFB constituye la instalación óptima para órbitas heliosíncronas desde territorio estadounidense \cite{satobs2024}. Su ubicación a 34{,}4°\,N permite azimuts de lanzamiento entre 147° y 201°, facilitando inclinaciones orbitales de 56° a 104° \cite{satobs2024}. Las trayectorias despejadas sobre el océano Pacífico minimizan riesgos operativos, mientras que su infraestructura avanzada optimiza las operaciones tanto del Falcon 9 como del Firefly Alpha \cite{mdpi2024}.
+
+\subsection{Cape Canaveral Space Force Station (Florida, EE.UU.)}
+
+Cabo Cañaveral opera con azimuts restringidos entre 35° y 120° debido a limitaciones de sobrevuelo terrestre. Estas restricciones limitan las inclinaciones orbitales alcanzables a 28{,}5°--59°, inadecuadas para órbitas heliosíncronas \cite{satobs2024}. La infraestructura avanzada y soporte técnico compensan parcialmente estas limitaciones geográficas \cite{stackexchange2022}.
+
+\subsection{Centro Espacial de Guayana (Guayana Francesa)}
+
+El Centro Espacial de Guayana ofrece azimuts de lanzamiento entre -11° y 90°, permitiendo inclinaciones de 5{,}2° a 100{,}5° \cite{satobs2024}. Su proximidad ecuatorial (5{,}2°\,N) proporciona ventajas energéticas significativas, aunque requiere adaptaciones de trayectoria para órbitas heliosíncronas \cite{wikipedia2024}. Las operaciones Ariane 6 y Vega-C se benefician de trayectorias despejadas sobre el Atlántico \cite{arianespace2024}.
+
+\section{Selección Final}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=0.8\linewidth]{6.Lanzadores/Transporter-9_small-735101042.jpg}
+        \caption{Programa de lanzamiento compartido de SpaceX\\ Fuente: \cite{SFNow_Transporter9_2023}.}
+        \label{fig:imagen1}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.8\linewidth]{6.Lanzadores/Copernicus_Sentinel-6_lifts_off_on_a_SpaceX_Falcon_9_rocket-3548914818.jpg}
+        \caption{Falcon 9 de SpaceX despegando.\\ Fuente: \cite{wikipedia2024}.}
+        \label{fig:imagen2}
+    \end{minipage}
+\end{figure}
+
+La decisión final recae en el \textbf{Falcon 9} como lanzador principal por precio publicado, disponibilidad de misiones \textit{Transporter} a SSO, historial operativo y compatibilidad con dispensadores para cargas pequeñas. Su etapa superior (LOX/RP-1) ofrece una ventana de reencendido de hasta 6 horas, permitiendo ajustes finos de la órbita y el despliegue secuencial de ambos satélites. El programa de lanzamiento compartido permite situar el coste de lanzamiento en torno a los 6\,500 USD/kg \cite{spacex2022, payloadspace2023}.
+
+La base de lanzamiento de \textbf{Vandenberg SFB}, que es una base muy utilizada para lanzamientos a órbitas polares o heliosíncronas, permitirá lanzar dicho vehículo a la órbita requerida, y ya está adaptada para el lanzador elegido. Esto evita sobrecostes al existir ya en el lugar la infraestructura, logística, cadena de suministro y personal cualificado para el lanzamiento del Falcon 9.
+\newpage
+
+Como lanzador de respaldo se selecciona el \textbf{Firefly Alpha}. Opera desde Vandenberg SFB, compartiendo base de lanzamiento con el Falcon~9 principal. Es un lanzador estadounidense y un proveedor emergente con servicios de lanzamiento compartido.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{6.Lanzadores/90-350018129.jpg}
+    \caption{Firefly Alpha en la plataforma de lanzamiento de Vandenberg SFB. \\ Fuente: Firefly Aerospace.}
+    \label{fig:firefly}
+\end{figure}
+
+\subsubsection{Azimut de lanzamiento}
+
+Para validar este lanzamiento se puede calcular el azimut inicial de lanzamiento y comprobar que es viable desde Vandenberg. Se usa la convención de azimut \(Az\) medido en el plano local desde el norte geográfico, positivo hacia el este; \(i\) es la inclinación orbital y \(\theta\) la latitud de la base. Mediante la ecuación:
+
+\begin{equation}
+    \cos (i) = \sin(Az) \cdot \cos(\theta)
+\end{equation}
+
+Siendo $i= 97,48 \degree$ la inclinación de interés, $\theta=34,7 \degree$, la latitud a la que se sitúa la base de lanzamiento de Vandenberg SFB, se obtiene un azimut $Az = 189 \degree$. Este valor es compatible con los rangos disponibles de la base de lanzamiento \cite{karabeyoglu2018lecture7} y aplica por igual al Falcon 9 y al Firefly Alpha, puesto que ambos parten de Vandenberg hacia la misma órbita SSO y comparten, por tanto, la misma inclinación.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{6.Lanzadores/azimuth.jpg}
+    \caption{Azimut de lanzamiento desde Vandenberg SFB. \\Fuente: Elaboración propia.}
+    \label{fig:azimut}
+\end{figure}
+
+\subsubsection{Despliegue de dos satélites en órbita}
+
+Ambos satélites comparten el mismo plano orbital SSO y los mismos parámetros orbitales, y solo se diferencian en su anomalía, con un desfase de 180° sobre la órbita. Para lograr esta configuración, la etapa superior del lanzador ejecuta una estrategia de fase en tres maniobras:
+\begin{enumerate}
+    \item Inserción orbital y primer despliegue. El lanzador coloca la etapa superior y los satélites en la órbita objetivo, que en este caso es una SSO circular a 520 km de altitud. Inmediatamente tras alcanzar la órbita, se procede al despliegue del primer satélite, que comienza su operación en la trayectoria planificada.
+
+    \item Maniobra de fase: tras el primer despliegue, la etapa superior ejecuta una maniobra para elevar temporalmente el apogeo de su órbita. Al aumentar el apogeo aumenta también el semieje mayor y, por tanto, el periodo orbital de la etapa respecto al del satélite ya desplegado. Esta diferencia de periodo hace que la etapa acumule, en cada revolución, un desfase angular
+    \begin{equation}
+        \Delta\varphi = 2\pi\,\frac{T_{\text{fase}} - T_{\text{circular}}}{T_{\text{circular}}}
+    \end{equation}
+    respecto al primer satélite, hasta alcanzar la separación de 180° buscada.
+
+    \item Recircularización y segundo despliegue: una vez alcanzada la separación angular de 180°, la etapa superior realiza una nueva maniobra para regresar a la órbita circular original de 520 km. Esta recircularización iguala el periodo del segundo satélite con el del primero y evita que el desfase siga creciendo durante la operación nominal.
+\end{enumerate}
+
+A continuación se presenta una simulación en la que, mediante esta maniobra, se consigue el desfase deseado en 37 horas, por medio de una órbita de fase con perigeo en 520 km y apogeo ligeramente más elevado, en 720 km:
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \begin{lstlisting}[basicstyle=\tiny\ttfamily]
+            >> phaseinjection
+            --- Análisis de la Maniobra de Fase ---
+            Periodo de la órbita final: 94.88 minutos
+            Periodo de la órbita de fase: 96.95 minutos
+            Tiempo requerido para un desfase de 180: 36.98 horas
+            Número de órbitas en la trayectoria de fase: 22.89
+            -------------------------------------------
+        \end{lstlisting}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{6.Lanzadores/phasing.jpg}
+        \caption{Órbita de fase para el despliegue de los satélites.\\Fuente: Elaboración propia.}
+        \label{fig:phasing}
+    \end{minipage}
+\end{figure}

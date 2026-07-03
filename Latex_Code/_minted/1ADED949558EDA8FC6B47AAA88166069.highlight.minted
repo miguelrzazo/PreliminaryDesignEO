@@ -1,0 +1,177 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k}{function}\PYG{+w}{ }\PYG{n+nf}{MTFfunction}\PYG{p}{(}lambda, pixel\PYGZus{}size, MTF\PYGZus{}Detector, MTF\PYGZus{}alineamiento, GSD, R, alturas\PYGZus{}orbitales, diametros\PYGZus{}pupila, filename\PYGZus{}prefix, telescope\PYGZus{}name, detector\PYGZus{}idx,MTF\PYGZus{}req\PYG{p}{)}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} Parámetros MTF adicionales}
+\PYG{n}{MTF\PYGZus{}aberraciones}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.95}\PYG{p}{;}
+\PYG{n}{MTF\PYGZus{}fabricacion}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.98}\PYG{p}{;}
+\PYG{n}{MTF\PYGZus{}vibraciones}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.99}\PYG{p}{;}
+\PYG{n}{MTF\PYGZus{}Termoelastico}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.95}\PYG{p}{;}
+\PYG{n}{MTF\PYGZus{}Margen}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.9}\PYG{p}{;}
+\PYG{n}{MTF\PYGZus{}resto}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}Margen}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}vibraciones}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}fabricacion}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}Termoelastico}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}aberraciones}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}Detector}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} Inicializar matriz MTF}
+\PYG{n}{MTF\PYGZus{}total}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{zeros}\PYG{p}{(}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{diametros\PYGZus{}pupila}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} Cálculo MTF para cada combinación altura\PYGZhy{}diámetro}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{)}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{diametros\PYGZus{}pupila}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{altura\PYGZus{}m}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mf}{1e3}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{diametro\PYGZus{}m}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{diametros\PYGZus{}pupila}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mf}{1e\PYGZhy{}3}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Distancia focal}
+\PYG{+w}{        }\PYG{n}{distancia\PYGZus{}focal}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{altura\PYGZus{}m}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{pixel\PYGZus{}size}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{GSD}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Frecuencias de corte}
+\PYG{+w}{        }\PYG{n}{f\PYGZus{}co}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{diametro\PYGZus{}m}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{lambda}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{f\PYGZus{}Nyquist}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{pixel\PYGZus{}size}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{f\PYGZus{}x}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{f\PYGZus{}Nyquist}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{distancia\PYGZus{}focal}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{f\PYGZus{}x}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{f\PYGZus{}co}
+\PYG{+w}{            }\PYG{n}{f\PYGZus{}x}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{f\PYGZus{}co}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{end}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Cálculo para sistema con obscuración central (ecuaciones 6\PYGZhy{}10 a 6\PYGZhy{}15)}
+\PYG{+w}{        }\PYG{n}{X}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{f\PYGZus{}x}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{f\PYGZus{}co}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{Y}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{X}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{R}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Cálculo de alpha según la ecuación 6\PYGZhy{}12}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{R}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{o}{*}\PYG{n}{X}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{R}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZgt{}=}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{R}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{o}{*}\PYG{n}{X}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{R}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{l+m+mi}{1}
+\PYG{+w}{            }\PYG{n+nb}{alpha}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{acos}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{R}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{o}{*}\PYG{n}{X}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{R}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{else}
+\PYG{+w}{            }\PYG{n+nb}{alpha}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{end}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Cálculo de A (ecuación 6\PYGZhy{}13)}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{n}{X}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{n}{X}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{l+m+mi}{1}
+\PYG{+w}{            }\PYG{n}{A}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{o}{/}\PYG{n+nb}{pi}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{acos}\PYG{p}{(}\PYG{n}{X}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{X}\PYG{o}{*}\PYG{n+nb}{sqrt}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{X}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{else}
+\PYG{+w}{            }\PYG{n}{A}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{end}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Cálculo de B (ecuación 6\PYGZhy{}14)}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{n}{Y}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{n}{Y}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{l+m+mi}{1}
+\PYG{+w}{            }\PYG{n}{B}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{R}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{o}{/}\PYG{n+nb}{pi}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{acos}\PYG{p}{(}\PYG{n}{Y}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{Y}\PYG{o}{*}\PYG{n+nb}{sqrt}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{Y}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{else}
+\PYG{+w}{            }\PYG{n}{B}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{end}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Cálculo de C (ecuaciones 6\PYGZhy{}15)}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{X}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{n}{X}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{R}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{2}
+\PYG{+w}{            }\PYG{n}{C}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{R}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{elseif}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{R}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{X}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{n}{X}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{+}\PYG{n}{R}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{2}
+\PYG{+w}{            }\PYG{n}{C}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{R}\PYG{o}{/}\PYG{n+nb}{pi}\PYG{p}{)}\PYG{o}{*}\PYG{n+nb}{sin}\PYG{p}{(}\PYG{n+nb}{alpha}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{+}\PYG{n}{R}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{o}{/}\PYG{n+nb}{pi}\PYG{p}{)}\PYG{o}{*}\PYG{n+nb}{alpha}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{R}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{)}\PYG{o}{/}\PYG{n+nb}{pi}\PYG{p}{)}\PYG{o}{*}\PYG{n+nb}{atan}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{+}\PYG{n}{R}\PYG{p}{)}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{R}\PYG{p}{)}\PYG{o}{*}\PYG{n+nb}{tan}\PYG{p}{(}\PYG{n+nb}{alpha}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{R}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{elseif}\PYG{+w}{ }\PYG{n}{X}\PYG{+w}{ }\PYG{o}{\PYGZgt{}=}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{+}\PYG{n}{R}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{2}
+\PYG{+w}{            }\PYG{n}{C}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{else}
+\PYG{+w}{            }\PYG{n}{C}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{end}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Cálculo del OTF difracción según ecuación 6\PYGZhy{}10}
+\PYG{+w}{        }\PYG{n}{MTF\PYGZus{}difraccion}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{A}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{B}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{C}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{R}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Si el valor es negativo o NaN, ajustarlo a 0}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{n+nb}{isnan}\PYG{p}{(}\PYG{n}{MTF\PYGZus{}difraccion}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}difraccion}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{0}
+\PYG{+w}{            }\PYG{n}{MTF\PYGZus{}difraccion}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{end}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} MTF total}
+\PYG{+w}{        }\PYG{n}{MTF\PYGZus{}value}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}difraccion}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}alineamiento}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}resto}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Aplicar requirement: valores \PYGZlt{} 0.25 se convierten a NaN}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}value}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}req}
+\PYG{+w}{            }\PYG{n}{MTF\PYGZus{}total}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{NaN}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{else}
+\PYG{+w}{            }\PYG{n}{MTF\PYGZus{}total}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}value}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{end}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} Generar heatmap con paleta parula y límites optimizados}
+\PYG{n}{fig}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{figure}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Visible\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{off\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Position\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{900}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{700}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{h}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{imagesc}\PYG{p}{(}\PYG{n}{diametros\PYGZus{}pupila}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}total}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Aplicar técnica AlphaData para mostrar NaN como blanco}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{n}{h}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{AlphaData\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZti{}}\PYG{n+nb}{isnan}\PYG{p}{(}\PYG{n}{MTF\PYGZus{}total}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{n+nb}{gca}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Color\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Fondo blanco}
+
+\PYG{c}{\PYGZpc{} Configurar paleta y límites}
+\PYG{n+nb}{colormap}\PYG{p}{(}\PYG{n+nb}{parula}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{clim}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mf}{0.25}\PYG{+w}{ }\PYG{l+m+mf}{0.35}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Límites optimizados para MTF}
+
+\PYG{c}{\PYGZpc{} Configuración de ejes}
+\PYG{n+nb}{axis}\PYG{+w}{ }\PYG{n}{xy}\PYG{p}{;}
+
+\PYG{n+nb}{ylabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Altura Orbital (km)\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{xlabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Di\PYGZbs{}\PYGZsq{}}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ametro de Pupila (mm)\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{title}\PYG{p}{(}\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MTF \PYGZhy{} \PYGZpc{}s \PYGZhy{} Detector \PYGZpc{}d\PYGZbs{}n(\PYGZdl{}\PYGZbs{}\PYGZbs{}lambda\PYGZdl{} = \PYGZpc{}.2f \PYGZdl{}\PYGZbs{}\PYGZbs{}mu\PYGZdl{}m, Blanco: MTF \PYGZdl{}\PYGZlt{} 0.25\PYGZdl{})\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{    }\PYG{n}{telescope\PYGZus{}name}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{detector\PYGZus{}idx}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lambda}\PYG{o}{*}\PYG{l+m+mf}{1e6}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontSize\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{14}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FontWeight\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{bold\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Colorbar}
+\PYG{n}{cb}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{colorbar}\PYG{p}{;}
+\PYG{n}{cb}\PYG{p}{.}\PYG{n}{Label}\PYG{p}{.}\PYG{n}{String}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MTF\PYGZsq{}}\PYG{p}{;}
+\PYG{n}{cb}\PYG{p}{.}\PYG{n}{Label}\PYG{p}{.}\PYG{n}{FontSize}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{12}\PYG{p}{;}
+\PYG{n}{cb}\PYG{p}{.}\PYG{n}{Label}\PYG{p}{.}\PYG{n}{Interpreter}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{latex\PYGZsq{}}\PYG{p}{;}
+
+
+\PYG{c}{\PYGZpc{} Configurar ticks}
+\PYG{n}{xticks\PYGZus{}vals}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{diametros\PYGZus{}pupila}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{50}\PYG{p}{:}\PYG{k}{end}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{yticks\PYGZus{}vals}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{5}\PYG{p}{:}\PYG{k}{end}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{n+nb}{gca}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{XTick\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{xticks\PYGZus{}vals}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{YTick\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{yticks\PYGZus{}vals}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Guardar heatmap}
+\PYG{n+nb}{saveas}\PYG{p}{(}\PYG{n}{fig}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{filename\PYGZus{}prefix}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZus{}heatmap.png\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{close}\PYG{p}{(}\PYG{n}{fig}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} Guardar datos en CSV}
+\PYG{c}{\PYGZpc{} Crear tabla con nombres de filas y columnas}
+\PYG{n}{row\PYGZus{}names}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{cell}\PYG{p}{(}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{row\PYGZus{}names}\PYG{p}{\PYGZob{}}\PYG{n+nb}{i}\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Alt\PYGZus{}\PYGZpc{}d\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{end}
+
+\PYG{n}{col\PYGZus{}names}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{cell}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{diametros\PYGZus{}pupila}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{diametros\PYGZus{}pupila}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{col\PYGZus{}names}\PYG{p}{\PYGZob{}}\PYG{n+nb}{j}\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Diam\PYGZus{}\PYGZpc{}d\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{diametros\PYGZus{}pupila}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{end}
+
+\PYG{n}{MTF\PYGZus{}table}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{array2table}\PYG{p}{(}\PYG{n}{MTF\PYGZus{}total}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{RowNames\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row\PYGZus{}names}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{VariableNames\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{col\PYGZus{}names}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{writetable}\PYG{p}{(}\PYG{n}{MTF\PYGZus{}table}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{filename\PYGZus{}prefix}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZus{}resultados.csv\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{WriteRowNames\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{true}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} Generar archivo de estadísticas TXT}
+\PYG{n}{fid}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{fopen}\PYG{p}{(}\PYG{p}{[}\PYG{n}{filename\PYGZus{}prefix}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZus{}estadisticas.txt\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{w\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{=== ANÁLISIS MTF ===\PYGZbs{}n\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Telescopio: \PYGZpc{}s\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{telescope\PYGZus{}name}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Detector: \PYGZpc{}d\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{detector\PYGZus{}idx}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Longitud de onda: \PYGZpc{}.2f um\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lambda}\PYG{o}{*}\PYG{l+m+mf}{1e6}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{GSD: \PYGZpc{}d m\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{GSD}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Requirement MTF: =\PYGZgt{} 0.25\PYGZbs{}n\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} Estadísticas de valores válidos (no NaN)}
+\PYG{n}{valid\PYGZus{}mtf}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}total}\PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n+nb}{isnan}\PYG{p}{(}\PYG{n}{MTF\PYGZus{}total}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{if}\PYG{+w}{ }\PYG{o}{\PYGZti{}}\PYG{n+nb}{isempty}\PYG{p}{(}\PYG{n}{valid\PYGZus{}mtf}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Estadísticas de valores válidos (MTF =\PYGZgt{} 0.25):\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Valores válidos: \PYGZpc{}d de \PYGZpc{}d (\PYGZpc{}.1f\PYGZpc{}\PYGZpc{})\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{valid\PYGZus{}mtf}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{numel}\PYG{p}{(}\PYG{n}{MTF\PYGZus{}total}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{o}{*}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{valid\PYGZus{}mtf}\PYG{p}{)}\PYG{o}{/}\PYG{n+nb}{numel}\PYG{p}{(}\PYG{n}{MTF\PYGZus{}total}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MTF mínimo: \PYGZpc{}.4f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{min}\PYG{p}{(}\PYG{n}{valid\PYGZus{}mtf}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MTF máximo: \PYGZpc{}.4f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{max}\PYG{p}{(}\PYG{n}{valid\PYGZus{}mtf}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MTF promedio: \PYGZpc{}.4f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{mean}\PYG{p}{(}\PYG{n}{valid\PYGZus{}mtf}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MTF mediana: \PYGZpc{}.4f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{median}\PYG{p}{(}\PYG{n}{valid\PYGZus{}mtf}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{else}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{No hay valores válidos que cumplan el requirement MTF =\PYGZgt{} 0.25\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{end}
+
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}nParámetros del análisis:\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Rango alturas: \PYGZpc{}d \PYGZhy{} \PYGZpc{}d km\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{min}\PYG{p}{(}\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{max}\PYG{p}{(}\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Rango diámetros: \PYGZpc{}d \PYGZhy{} \PYGZpc{}d mm\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{min}\PYG{p}{(}\PYG{n}{diametros\PYGZus{}pupila}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{max}\PYG{p}{(}\PYG{n}{diametros\PYGZus{}pupila}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Obscuración central: \PYGZpc{}.1f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{R}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MTF alineamiento: \PYGZpc{}.2f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}alineamiento}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MTF detector: \PYGZpc{}.2f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{MTF\PYGZus{}Detector}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Tamaño pixel: \PYGZpc{}.1f um\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{pixel\PYGZus{}size}\PYG{o}{*}\PYG{l+m+mf}{1e6}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n+nb}{fclose}\PYG{p}{(}\PYG{n}{fid}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MTF calculado para \PYGZpc{}s, Detector \PYGZpc{}d\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{telescope\PYGZus{}name}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{detector\PYGZus{}idx}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{k}{end}
+
+\end{MintedVerbatim}

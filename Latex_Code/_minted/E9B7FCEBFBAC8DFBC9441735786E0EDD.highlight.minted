@@ -1,0 +1,76 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k}{function}\PYG{+w}{ }\PYG{n+nf}{[masa\PYGZus{}seca, masa\PYGZus{}seca\PYGZus{}TM, masa\PYGZus{}seca\PYGZus{}SEOSAT, Li\PYGZus{}instrumento, Si\PYGZus{}instrumento, Vi\PYGZus{}instrumento, Wi\PYGZus{}instrumento, Pi\PYGZus{}instrumento, V\PYGZus{}sat, L\PYGZus{}sat, S\PYGZus{}sat, U\PYGZus{}sat] = calcularMasaSeca}\PYG{p}{(}diametros\PYGZus{}mm, N\PYGZus{}telescopes\PYG{p}{)}
+\PYG{c}{\PYGZpc{} calcularMasaSeca: Calcula las propiedades de la masa seca de forma vectorizada.}
+
+\PYG{c}{\PYGZpc{} Entradas:}
+\PYG{c}{\PYGZpc{}   diametros\PYGZus{}mm \PYGZhy{} Vector de diámetros de pupila [mm].}
+\PYG{c}{\PYGZpc{}   N\PYGZus{}telescopes \PYGZhy{} Número de telescopios en la configuración (1 o 2).}
+
+\PYG{c}{\PYGZpc{} Salidas (Instrumento):}
+\PYG{c}{\PYGZpc{}   Li\PYGZus{}instrumento, Si\PYGZus{}instrumento, Vi\PYGZus{}instrumento, Wi\PYGZus{}instrumento, Pi\PYGZus{}instrumento}
+\PYG{c}{\PYGZpc{} Salidas (Satélite):}
+\PYG{c}{\PYGZpc{}   masa\PYGZus{}seca \PYGZhy{} Masa seca total del satélite [kg].}
+\PYG{c}{\PYGZpc{}   V\PYGZus{}sat, L\PYGZus{}sat, S\PYGZus{}sat \PYGZhy{} Volumen, longitud y área del satélite.}
+\PYG{c}{\PYGZpc{}   U\PYGZus{}sat \PYGZhy{} Estándar CubeSat \PYGZsq{}U\PYGZsq{}.}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} Parámetros base de los instrumentos de referencia}
+\PYG{n}{TM\PYGZus{}aperture}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{400}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Diámetro Thematic Mapper [mm]}
+\PYG{n}{TM\PYGZus{}length}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Longitud normalizada}
+\PYG{n}{TM\PYGZus{}weight}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{240}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Masa Thematic Mapper [kg]}
+\PYG{n}{TM\PYGZus{}power}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{280}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Potencia Thematic Mapper [W]}
+
+\PYG{n}{SEOSAT\PYGZus{}aperture}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{250}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Diámetro SEOSAT [mm]}
+\PYG{n}{SEOSAT\PYGZus{}length}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Longitud normalizada}
+\PYG{n}{SEOSAT\PYGZus{}weight}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Masa SEOSAT [kg]}
+\PYG{n}{SEOSAT\PYGZus{}power}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Potencia SEOSAT [W]}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} Escalado vectorizado de propiedades del instrumento}
+\PYG{p}{[}\PYG{n}{Li\PYGZus{}TM}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Si\PYGZus{}TM}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Vi\PYGZus{}TM}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Wi\PYGZus{}TM}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Pi\PYGZus{}TM}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{scaleInstrument}\PYG{p}{(}\PYG{n}{diametros\PYGZus{}mm}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{TM\PYGZus{}aperture}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{TM\PYGZus{}length}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{TM\PYGZus{}weight}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{TM\PYGZus{}power}\PYG{p}{)}\PYG{p}{;}
+\PYG{p}{[}\PYG{n}{Li\PYGZus{}SEOSAT}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Si\PYGZus{}SEOSAT}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Vi\PYGZus{}SEOSAT}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Wi\PYGZus{}SEOSAT}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Pi\PYGZus{}SEOSAT}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{scaleInstrument}\PYG{p}{(}\PYG{n}{diametros\PYGZus{}mm}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{SEOSAT\PYGZus{}aperture}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{SEOSAT\PYGZus{}length}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{SEOSAT\PYGZus{}weight}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{SEOSAT\PYGZus{}power}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} Promedio de las propiedades de los instrumentos escalados}
+\PYG{n}{Li\PYGZus{}instrumento}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Li\PYGZus{}TM}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{Li\PYGZus{}SEOSAT}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{n}{Si\PYGZus{}instrumento}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Si\PYGZus{}TM}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{Si\PYGZus{}SEOSAT}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{n}{Vi\PYGZus{}instrumento}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Vi\PYGZus{}TM}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{Vi\PYGZus{}SEOSAT}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{n}{Wi\PYGZus{}instrumento}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Wi\PYGZus{}TM}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{Wi\PYGZus{}SEOSAT}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{n}{Pi\PYGZus{}instrumento}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Pi\PYGZus{}TM}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{Pi\PYGZus{}SEOSAT}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} Ajuste por configuración de múltiples telescopios}
+\PYG{k}{if}\PYG{+w}{ }\PYG{n}{N\PYGZus{}telescopes}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{2}
+\PYG{+w}{    }\PYG{n}{Wi\PYGZus{}instrumento}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{Wi\PYGZus{}instrumento}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mf}{1.5}\PYG{p}{;}
+\PYG{k}{end}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} Cálculo de masa seca del satélite}
+\PYG{c}{\PYGZpc{} Se estima que la masa de la carga útil (instrumento) es un 25\PYGZpc{} de la masa seca total.}
+\PYG{n}{masa\PYGZus{}seca\PYGZus{}TM}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{Wi\PYGZus{}TM}\PYG{p}{;}
+\PYG{n}{masa\PYGZus{}seca\PYGZus{}SEOSAT}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{Wi\PYGZus{}SEOSAT}\PYG{p}{;}
+\PYG{n}{masa\PYGZus{}seca}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{Wi\PYGZus{}instrumento}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} NUEVOS CÁLCULOS: Propiedades del Satélite \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c}{\PYGZpc{} Se asume una densidad para el satélite y se calculan sus dimensiones como un CubeSat.}
+\PYG{n}{densidad\PYGZus{}sat}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{79}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Densidad del satélite [kg/m\PYGZca{}3]}
+
+\PYG{n}{V\PYGZus{}sat}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{masa\PYGZus{}seca}\PYG{+w}{ }\PYG{o}{./}\PYG{+w}{ }\PYG{n}{densidad\PYGZus{}sat}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Volumen del satélite [m\PYGZca{}3]}
+\PYG{n}{L\PYGZus{}sat}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{V\PYGZus{}sat}\PYG{o}{.\PYGZca{}}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{/}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Longitud del satélite (lado del cubo) [m]}
+\PYG{n}{S\PYGZus{}sat}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{L\PYGZus{}sat}\PYG{o}{.\PYGZca{}}\PYG{l+m+mi}{2}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Área de la sección transversal del satélite [m\PYGZca{}2]}
+\PYG{n}{U\PYGZus{}sat}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{V\PYGZus{}sat}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Estándar \PYGZsq{}U\PYGZsq{} del satélite (1U = 10x10x10 cm)}
+
+\PYG{k}{end}
+
+\PYG{k}{function}\PYG{+w}{ }\PYG{n+nf}{[Li, Si, Vi, Wi, Pi] = scaleInstrument}\PYG{p}{(}Ai, Ao, Lo, Wo, Po\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{R}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{Ai}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{Ao}\PYG{p}{;}\PYG{+w}{       }\PYG{c}{\PYGZpc{} Ratio de aperturas}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} Definir K según la condición de R}
+\PYG{+w}{    }\PYG{n}{K}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{ones}\PYG{p}{(}\PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{R}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Inicializa K en 1}
+\PYG{+w}{    }\PYG{n}{K}\PYG{p}{(}\PYG{n}{R}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{l+m+mf}{0.5}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}\PYG{+w}{   }\PYG{c}{\PYGZpc{} Asigna K=2 donde R\PYGZlt{}=0.5}
+
+\PYG{+w}{    }\PYG{n}{Li}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{R}\PYG{+w}{ }\PYG{o}{.*}\PYG{+w}{ }\PYG{n}{Lo}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{Si}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{Li}\PYG{o}{.\PYGZca{}}\PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{Vi}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{Li}\PYG{o}{.\PYGZca{}}\PYG{l+m+mi}{3}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{Wi}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{R}\PYG{o}{.\PYGZca{}}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{.*}\PYG{+w}{ }\PYG{n}{Wo}\PYG{+w}{ }\PYG{o}{.*}\PYG{+w}{ }\PYG{n}{K}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Multiplica por K la masa}
+\PYG{+w}{    }\PYG{n}{Pi}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{R}\PYG{o}{.\PYGZca{}}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{.*}\PYG{+w}{ }\PYG{n}{Po}\PYG{+w}{ }\PYG{o}{.*}\PYG{+w}{ }\PYG{n}{K}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Multiplica por K la potencia}
+\PYG{k}{end}
+
+
+\end{MintedVerbatim}

@@ -1,0 +1,188 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k}{function}\PYG{+w}{ }\PYG{n+nf}{[total\PYGZus{}mass, fuel\PYGZus{}mass, num\PYGZus{}impulses, total\PYGZus{}delta\PYGZus{}v] = calcularMasaTotal}\PYG{p}{(}h0\PYGZus{}array, masa\PYGZus{}seca, Am\PYG{p}{)}\PYG{+w}{    }\PYG{c}{\PYGZpc{}\PYGZpc{} ParÃ¡metros iniciales}
+\PYG{+w}{    }\PYG{c}{\PYGZpc{}\PYGZpc{} Paraimetros iniciales}
+\PYG{+w}{    }\PYG{n}{mu}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{3.986004418e14}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Parametro gravitacional}
+\PYG{+w}{    }\PYG{n}{R\PYGZus{}earth}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{6378e3}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Radio terrestre (m)}
+\PYG{+w}{    }\PYG{n}{Cd}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{2.5}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Coeficiente de arrastre}
+\PYG{+w}{    }\PYG{n}{Isp}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{220}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Impulso espec­fico (s)}
+\PYG{+w}{    }\PYG{n}{g0}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{9.80665}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Gravedad}
+\PYG{+w}{    }\PYG{n}{mission\PYGZus{}duration}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{8}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mf}{365.25}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mi}{24}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mi}{3600}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} duracion mision, 8 años en seg}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{}\PYGZpc{} Prealocar resultados}
+\PYG{+w}{    }\PYG{n}{num\PYGZus{}impulses}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{zeros}\PYG{p}{(}\PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{h0\PYGZus{}array}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{total\PYGZus{}delta\PYGZus{}v}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{zeros}\PYG{p}{(}\PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{h0\PYGZus{}array}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{fuel\PYGZus{}mass}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{zeros}\PYG{p}{(}\PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{h0\PYGZus{}array}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{total\PYGZus{}mass}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{zeros}\PYG{p}{(}\PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{h0\PYGZus{}array}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{h0\PYGZus{}array}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{h0}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{h0\PYGZus{}array}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{h\PYGZus{}target}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{h0}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mf}{1e3}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Altura objetivo original en metros}
+\PYG{+w}{        }\PYG{n}{h\PYGZus{}current}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{h\PYGZus{}target}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Iniciar en la altura objetivo}
+
+\PYG{+w}{        }\PYG{n}{t}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{total\PYGZus{}dv}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{impulses}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{dry\PYGZus{}mass}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{masa\PYGZus{}seca}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{A}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{Am}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mf}{1.2}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{k}{while}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{mission\PYGZus{}duration}
+\PYG{+w}{            }\PYG{c}{\PYGZpc{} Calcular el tiempo de decaimiento hasta el 98\PYGZpc{} de la altura OBJETIVO ORIGINAL}
+\PYG{+w}{            }\PYG{n}{a\PYGZus{}initial}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{R\PYGZus{}earth}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{h\PYGZus{}current}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{h\PYGZus{}threshold}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.98}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{h\PYGZus{}target}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} 98\PYGZpc{} de la altura objetivo ORIGINAL}
+\PYG{+w}{            }\PYG{n}{a\PYGZus{}target}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{R\PYGZus{}earth}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{h\PYGZus{}threshold}\PYG{p}{;}
+
+\PYG{+w}{            }\PYG{c}{\PYGZpc{} Configurar opciones con tolerancias mÃ¡s estrictas y MaxStep}
+\PYG{+w}{            }\PYG{n}{options}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{odeset}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Events\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{@}\PYG{p}{(}\PYG{n}{t}\PYG{p}{,}\PYG{n}{a}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{decayEvent}\PYG{p}{(}\PYG{n}{t}\PYG{p}{,}\PYG{n}{a}\PYG{p}{,}\PYG{n}{a\PYGZus{}target}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                           }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{RelTol\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1e\PYGZhy{}8}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{AbsTol\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1e\PYGZhy{}10}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                           }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MaxStep\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{86400}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} 1 dia como paso maximo}
+
+\PYG{+w}{            }\PYG{k}{try}
+\PYG{+w}{                }\PYG{p}{[}\PYG{n}{t\PYGZus{}ode}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{a\PYGZus{}ode}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{ode45}\PYG{p}{(}\PYG{p}{@}\PYG{p}{(}\PYG{n}{t}\PYG{p}{,}\PYG{n}{a}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{decayODE}\PYG{p}{(}\PYG{n}{t}\PYG{p}{,}\PYG{n}{a}\PYG{p}{,}\PYG{n}{R\PYGZus{}earth}\PYG{p}{,}\PYG{n}{mu}\PYG{p}{,}\PYG{n}{Cd}\PYG{p}{,}\PYG{n}{A}\PYG{p}{,}\PYG{n}{dry\PYGZus{}mass}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                                    }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mission\PYGZus{}duration}\PYG{o}{\PYGZhy{}}\PYG{n}{t}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{a\PYGZus{}initial}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{options}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{                }\PYG{c}{\PYGZpc{} Actualizar tiempo y altitud}
+\PYG{+w}{                }\PYG{n}{t}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{t\PYGZus{}ode}\PYG{p}{(}\PYG{k}{end}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{h\PYGZus{}current}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{a\PYGZus{}ode}\PYG{p}{(}\PYG{k}{end}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{R\PYGZus{}earth}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Altura despues del decaimiento}
+\PYG{+w}{            }\PYG{k}{catch}\PYG{+w}{ }\PYG{n}{ME}
+\PYG{+w}{                }\PYG{c}{\PYGZpc{} Si hay un error, usar integracion paso a paso}
+\PYG{+w}{                }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Error en ode45 para altura \PYGZpc{}d km: \PYGZpc{}s\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{h0}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ME}\PYG{p}{.}\PYG{n}{message}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{                }\PYG{c}{\PYGZpc{} Enfoque alternativo con pasos pequeños}
+\PYG{+w}{                }\PYG{n}{dt\PYGZus{}manual}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{3600}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Paso de 1 hora}
+\PYG{+w}{                }\PYG{n}{t\PYGZus{}elapsed}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{a\PYGZus{}current}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{a\PYGZus{}initial}\PYG{p}{;}
+
+\PYG{+w}{                }\PYG{k}{while}\PYG{+w}{ }\PYG{n}{a\PYGZus{}current}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{a\PYGZus{}target}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{t\PYGZus{}elapsed}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{mission\PYGZus{}duration}
+\PYG{+w}{                    }\PYG{c}{\PYGZpc{} Calcular derivada}
+\PYG{+w}{                    }\PYG{n}{dadt}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{decayODE}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{a\PYGZus{}current}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{R\PYGZus{}earth}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mu}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Cd}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{A}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{dry\PYGZus{}mass}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{                    }\PYG{c}{\PYGZpc{} Actualizar con paso de Euler}
+\PYG{+w}{                    }\PYG{n}{a\PYGZus{}current}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{a\PYGZus{}current}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{dadt}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{dt\PYGZus{}manual}\PYG{p}{;}
+\PYG{+w}{                    }\PYG{n}{t\PYGZus{}elapsed}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{t\PYGZus{}elapsed}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{dt\PYGZus{}manual}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{end}
+
+\PYG{+w}{                }\PYG{c}{\PYGZpc{} Actualizar tiempo y altitud}
+\PYG{+w}{                }\PYG{n}{t}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{t\PYGZus{}elapsed}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{h\PYGZus{}current}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{a\PYGZus{}current}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{R\PYGZus{}earth}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{end}
+
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{o}{\PYGZgt{}=}\PYG{+w}{ }\PYG{n}{mission\PYGZus{}duration}
+\PYG{+w}{                }\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{end}
+
+\PYG{+w}{            }\PYG{c}{\PYGZpc{} Calcular delta\PYGZhy{}V para el impulso (Hohmann transfer)}
+\PYG{+w}{            }\PYG{n}{r1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{R\PYGZus{}earth}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{h\PYGZus{}current}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Radio despues del decaimiento}
+\PYG{+w}{            }\PYG{n}{r2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{R\PYGZus{}earth}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{h\PYGZus{}target}\PYG{p}{;}\PYG{+w}{  }\PYG{c}{\PYGZpc{} Radio de la altura objetivo ORIGINAL}
+\PYG{+w}{            }\PYG{n}{dv}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{hohmannDeltaV}\PYG{p}{(}\PYG{n}{r1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{r2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mu}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{            }\PYG{c}{\PYGZpc{} Acumular delta\PYGZhy{}V y combustible}
+\PYG{+w}{            }\PYG{n}{total\PYGZus{}dv}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{total\PYGZus{}dv}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{dv}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{impulses}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{impulses}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+
+\PYG{+w}{            }\PYG{c}{\PYGZpc{} Restaurar altura a la altura objetivo original}
+\PYG{+w}{            }\PYG{n}{h\PYGZus{}current}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{h\PYGZus{}target}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{end}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Calculo masa}
+\PYG{+w}{        }\PYG{n}{num\PYGZus{}impulses}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{impulses}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{total\PYGZus{}delta\PYGZus{}v}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{total\PYGZus{}dv}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{fuel}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{dry\PYGZus{}mass}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{exp}\PYG{p}{(}\PYG{n}{total\PYGZus{}dv}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Isp}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{g0}\PYG{p}{)}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{fuel\PYGZus{}mass}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{fuel}\PYG{o}{*}\PYG{l+m+mf}{1.1}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{total\PYGZus{}mass}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{fuel\PYGZus{}mass}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{masa\PYGZus{}seca}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Aplicar filtro para valores extremos}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{total\PYGZus{}mass}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mi}{100000}
+\PYG{+w}{            }\PYG{n}{total\PYGZus{}mass}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{NaN}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{fuel\PYGZus{}mass}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{NaN}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{end}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
+
+\PYG{+w}{    }\PYG{c}{\PYGZpc{}\PYGZpc{} Funciones internas}
+\PYG{+w}{    }\PYG{k}{function}\PYG{+w}{ }dadt\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nf}{decayODE}\PYG{p}{(}\PYGZti{}, a, R\PYGZus{}earth, mu, Cd, A, mass\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{h}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{a}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{R\PYGZus{}earth}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{rho}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{getAtmosphericDensity}\PYG{p}{(}\PYG{n}{h}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{dadt}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{n}{Cd}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{A}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{rho}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{sqrt}\PYG{p}{(}\PYG{n}{mu}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{mass}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+
+\PYG{+w}{    }\PYG{k}{function}\PYG{+w}{ }\PYG{n+nf}{[value, isterminal, direction] = decayEvent}\PYG{p}{(}\PYGZti{}, a, a\PYGZus{}target\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{value}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{a}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{a\PYGZus{}target}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{isterminal}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Detener integracion}
+\PYG{+w}{        }\PYG{n}{direction}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Detectar decrecimiento}
+\PYG{+w}{    }\PYG{k}{end}
+
+\PYG{+w}{    }\PYG{k}{function}\PYG{+w}{ }dv\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nf}{hohmannDeltaV}\PYG{p}{(}r1, r2, mu\PYG{p}{)}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Calcular delta\PYGZhy{}V para transferencia Hohmann (m/s)}
+\PYG{+w}{        }\PYG{n}{a\PYGZus{}transfer}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{r1}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{r2}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{v1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sqrt}\PYG{p}{(}\PYG{n}{mu}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{r1}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{v\PYGZus{}p}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sqrt}\PYG{p}{(}\PYG{n}{mu}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{o}{/}\PYG{n}{r1}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{o}{/}\PYG{n}{a\PYGZus{}transfer}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{dv1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{v\PYGZus{}p}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{v1}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{v2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sqrt}\PYG{p}{(}\PYG{n}{mu}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{r2}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{v\PYGZus{}a}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sqrt}\PYG{p}{(}\PYG{n}{mu}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{o}{/}\PYG{n}{r2}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{o}{/}\PYG{n}{a\PYGZus{}transfer}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{dv2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{v2}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{v\PYGZus{}a}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{dv}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{dv1}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{dv2}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+
+\PYG{+w}{    }\PYG{k}{function}\PYG{+w}{ }rho\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nf}{getAtmosphericDensity}\PYG{p}{(}h\PYG{p}{)}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Modelo exponencial}
+\PYG{+w}{        }\PYG{n}{h\PYGZus{}km}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{h}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mf}{1e3}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Altura en kilometros}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{h\PYGZus{}km}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{100}
+\PYG{+w}{            }\PYG{n}{H}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{6.7e3}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Escala de altura (m)}
+\PYG{+w}{            }\PYG{n}{rho0}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{1.225}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{elseif}\PYG{+w}{ }\PYG{n}{h\PYGZus{}km}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{150}
+\PYG{+w}{            }\PYG{n}{H}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{9.5e3}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{rho0}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{4.79e\PYGZhy{}7}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{elseif}\PYG{+w}{ }\PYG{n}{h\PYGZus{}km}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{200}
+\PYG{+w}{            }\PYG{n}{H}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{25.5e3}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{rho0}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{1.81e\PYGZhy{}9}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{elseif}\PYG{+w}{ }\PYG{n}{h\PYGZus{}km}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{250}
+\PYG{+w}{            }\PYG{n}{H}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{37.5e3}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{rho0}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{2.53e\PYGZhy{}10}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{elseif}\PYG{+w}{ }\PYG{n}{h\PYGZus{}km}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{300}
+\PYG{+w}{            }\PYG{n}{H}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{44.8e3}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{rho0}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{6.24e\PYGZhy{}11}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{elseif}\PYG{+w}{ }\PYG{n}{h\PYGZus{}km}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{350}
+\PYG{+w}{            }\PYG{n}{H}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{50.3e3}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{rho0}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{7.40e\PYGZhy{}9}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{elseif}\PYG{+w}{ }\PYG{n}{h\PYGZus{}km}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{400}
+\PYG{+w}{            }\PYG{n}{H}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{54.8e3}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{rho0}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{6.98e\PYGZhy{}12}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{elseif}\PYG{+w}{ }\PYG{n}{h\PYGZus{}km}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{450}
+\PYG{+w}{            }\PYG{n}{H}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{58.2e3}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{rho0}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{2.72e\PYGZhy{}12}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{elseif}\PYG{+w}{ }\PYG{n}{h\PYGZus{}km}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{500}
+\PYG{+w}{            }\PYG{n}{H}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{61.3e3}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{rho0}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{1.13e\PYGZhy{}12}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{elseif}\PYG{+w}{ }\PYG{n}{h\PYGZus{}km}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{600}
+\PYG{+w}{            }\PYG{n}{H}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{70e3}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{rho0}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{5e\PYGZhy{}13}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{elseif}\PYG{+w}{ }\PYG{n}{h\PYGZus{}km}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{700}
+\PYG{+w}{            }\PYG{n}{H}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{80e3}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{rho0}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{1e\PYGZhy{}13}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{elseif}\PYG{+w}{ }\PYG{n}{h\PYGZus{}km}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{800}
+\PYG{+w}{            }\PYG{n}{H}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{90e3}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{rho0}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{2e\PYGZhy{}14}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{elseif}\PYG{+w}{ }\PYG{n}{h\PYGZus{}km}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{900}
+\PYG{+w}{            }\PYG{n}{H}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{100e3}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{rho0}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{5e\PYGZhy{}15}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{elseif}\PYG{+w}{ }\PYG{n}{h\PYGZus{}km}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{1000}
+\PYG{+w}{            }\PYG{n}{H}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{110e3}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{rho0}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{1e\PYGZhy{}15}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{elseif}\PYG{+w}{ }\PYG{n}{h\PYGZus{}km}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{1500}
+\PYG{+w}{            }\PYG{n}{H}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{150e3}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{rho0}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{1e\PYGZhy{}16}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{elseif}\PYG{+w}{ }\PYG{n}{h\PYGZus{}km}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{2000}
+\PYG{+w}{            }\PYG{n}{H}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{200e3}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{rho0}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{1e\PYGZhy{}17}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{else}
+\PYG{+w}{            }\PYG{n}{rho}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{1e\PYGZhy{}18}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Densidad insignificante para alturas \PYGZgt{}2000 km}
+\PYG{+w}{            }\PYG{k}{return}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{end}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Ajuste fino usando la formula exponencial por tramos}
+\PYG{+w}{        }\PYG{n}{rho}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{rho0}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{exp}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{p}{(}\PYG{n}{h\PYGZus{}km}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n+nb}{floor}\PYG{p}{(}\PYG{n}{h\PYGZus{}km}\PYG{o}{/}\PYG{l+m+mi}{50}\PYG{p}{)}\PYG{o}{*}\PYG{l+m+mi}{50}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{H}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mf}{1e3}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+
+\end{MintedVerbatim}

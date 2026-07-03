@@ -1,0 +1,223 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k}{function}\PYG{+w}{ }\PYG{n+nf}{ConfigAnalysis}\PYG{p}{(}params\PYG{p}{)}
+
+\PYG{c}{\PYGZpc{} ConfigAnalysis: Realiza un análisis exhaustivo de todas las}
+\PYG{c}{\PYGZpc{} configuraciones viables, integrando rendimiento, coste y parámetros orbitales.}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} ========================================================================}
+\PYG{c}{\PYGZpc{} 1. INICIALIZACIÓN Y DESEMPAQUETADO DE PARÁMETROS}
+\PYG{c}{\PYGZpc{} ========================================================================}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}n==========================================================\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{INICIANDO ANÁLISIS EXHAUSTIVO DE CONFIGURACIONES...\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{==========================================================\PYGZbs{}n\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} Desempaquetar el struct de parámetros}
+\PYG{n}{satellite\PYGZus{}configs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{params}\PYG{p}{.}\PYG{n}{satellite\PYGZus{}configs}\PYG{p}{;}
+\PYG{n}{telescope\PYGZus{}names}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{params}\PYG{p}{.}\PYG{n}{telescope\PYGZus{}names}\PYG{p}{;}
+\PYG{n}{alturas\PYGZus{}orbitales}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{params}\PYG{p}{.}\PYG{n}{alturas\PYGZus{}orbitales}\PYG{p}{;}
+\PYG{n}{swaths\PYGZus{}km}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{params}\PYG{p}{.}\PYG{n}{swaths\PYGZus{}km}\PYG{p}{;}
+\PYG{n}{Cov\PYGZus{}Requirement}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{params}\PYG{p}{.}\PYG{n}{Cov\PYGZus{}Requirement}\PYG{p}{;}
+\PYG{n}{GSD}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{params}\PYG{p}{.}\PYG{n}{GSD}\PYG{p}{;}
+\PYG{n}{Pixel\PYGZus{}size}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{params}\PYG{p}{.}\PYG{n}{Pixel\PYGZus{}size}\PYG{p}{;}
+\PYG{n}{LTAN\PYGZus{}hour}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{params}\PYG{p}{.}\PYG{n}{LTAN\PYGZus{}hour}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} Constantes físicas y orbitales}
+\PYG{n}{R\PYGZus{}E\PYGZus{}m}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{6378.137}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mi}{1000}\PYG{p}{;}
+\PYG{n}{mu\PYGZus{}E}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{3.986004418e14}\PYG{p}{;}
+\PYG{n}{J2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{1.08262668e\PYGZhy{}3}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} Configuración de salida}
+\PYG{n}{output\PYGZus{}dir}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{OptimumConfigs\PYGZsq{}}\PYG{p}{;}
+\PYG{k}{if}\PYG{+w}{ }\PYG{o}{\PYGZti{}}\PYG{n+nb}{exist}\PYG{p}{(}\PYG{n}{output\PYGZus{}dir}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{dir\PYGZsq{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{mkdir}\PYG{p}{(}\PYG{n}{output\PYGZus{}dir}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{k}{end}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} ========================================================================}
+\PYG{c}{\PYGZpc{} 2. PROCESAMIENTO DE SOLUCIONES Y CÁLCULO DE PARÁMETROS}
+\PYG{c}{\PYGZpc{} ========================================================================}
+\PYG{n}{results\PYGZus{}data}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+\PYG{n}{global\PYGZus{}best}\PYG{p}{.}\PYG{n}{mass}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{Inf}\PYG{p}{;}
+
+\PYG{k}{for}\PYG{+w}{ }\PYG{n}{config\PYGZus{}idx}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{satellite\PYGZus{}configs}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{N\PYGZus{}sat}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{satellite\PYGZus{}configs}\PYG{p}{(}\PYG{n}{config\PYGZus{}idx}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{N\PYGZus{}telescopes}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{satellite\PYGZus{}configs}\PYG{p}{(}\PYG{n}{config\PYGZus{}idx}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{config\PYGZus{}name}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZpc{}dsat\PYGZus{}\PYGZpc{}dtel\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}sat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}telescopes}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{detector\PYGZus{}idx}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{3}
+\PYG{+w}{        }\PYG{n}{h\PYGZus{}vs\PYGZus{}dmin\PYGZus{}filename}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{HvsDmin/HvsDmin\PYGZus{}\PYGZpc{}s\PYGZus{}Detector\PYGZpc{}d.csv\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{config\PYGZus{}name}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{detector\PYGZus{}idx}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{o}{\PYGZti{}}\PYG{n+nb}{exist}\PYG{p}{(}\PYG{n}{h\PYGZus{}vs\PYGZus{}dmin\PYGZus{}filename}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{file\PYGZsq{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{continue}\PYG{p}{;}\PYG{+w}{ }\PYG{k}{end}
+
+\PYG{+w}{        }\PYG{n}{datos\PYGZus{}validos\PYGZus{}h\PYGZus{}dmin}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{readtable}\PYG{p}{(}\PYG{n}{h\PYGZus{}vs\PYGZus{}dmin\PYGZus{}filename}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{telescopio\PYGZus{}idx}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{telescope\PYGZus{}names}\PYG{p}{)}
+\PYG{+w}{            }\PYG{n}{diam\PYGZus{}col\PYGZus{}name}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Dmin\PYGZus{}\PYGZpc{}s\PYGZus{}mm\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{strrep}\PYG{p}{(}\PYG{n}{telescope\PYGZus{}names}\PYG{p}{\PYGZob{}}\PYG{n}{telescopio\PYGZus{}idx}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZsq{}}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZus{}\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{o}{\PYGZti{}}\PYG{n+nb}{ismember}\PYG{p}{(}\PYG{n}{diam\PYGZus{}col\PYGZus{}name}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{datos\PYGZus{}validos\PYGZus{}h\PYGZus{}dmin}\PYG{p}{.}\PYG{n}{Properties}\PYG{p}{.}\PYG{n}{VariableNames}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{continue}\PYG{p}{;}\PYG{+w}{ }\PYG{k}{end}
+
+\PYG{+w}{            }\PYG{k}{try}
+\PYG{+w}{                }\PYG{n}{mtf\PYGZus{}data\PYGZus{}table}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{readtable}\PYG{p}{(}\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MTF/MTF\PYGZus{}Lambda2\PYGZus{}Detector\PYGZpc{}d\PYGZus{}Telescopio\PYGZpc{}d\PYGZus{}resultados.csv\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{detector\PYGZus{}idx}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{telescopio\PYGZus{}idx}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ReadRowNames\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{true}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{snr\PYGZus{}data\PYGZus{}table}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{readtable}\PYG{p}{(}\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{SNR/SNR\PYGZus{}Lambda3\PYGZus{}Detector\PYGZpc{}d\PYGZus{}Telescopio\PYGZpc{}d\PYGZus{}resultados.csv\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{detector\PYGZus{}idx}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{telescopio\PYGZus{}idx}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ReadRowNames\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{true}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{catch}
+\PYG{+w}{                }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Advertencia: No se pudieron cargar archivos MTF/SNR para Det \PYGZpc{}d, Tel \PYGZpc{}d. Saltando...\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{detector\PYGZus{}idx}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{telescopio\PYGZus{}idx}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{continue}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{end}
+
+\PYG{+w}{            }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{sol\PYGZus{}idx}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{height}\PYG{p}{(}\PYG{n}{datos\PYGZus{}validos\PYGZus{}h\PYGZus{}dmin}\PYG{p}{)}
+\PYG{+w}{                }\PYG{n}{h\PYGZus{}km}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{datos\PYGZus{}validos\PYGZus{}h\PYGZus{}dmin}\PYG{p}{.}\PYG{n}{Altura\PYGZus{}km}\PYG{p}{(}\PYG{n}{sol\PYGZus{}idx}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{D\PYGZus{}mm}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{datos\PYGZus{}validos\PYGZus{}h\PYGZus{}dmin}\PYG{p}{.}\PYG{p}{(}\PYG{n}{diam\PYGZus{}col\PYGZus{}name}\PYG{p}{)}\PYG{p}{(}\PYG{n}{sol\PYGZus{}idx}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{n+nb}{isnan}\PYG{p}{(}\PYG{n}{D\PYGZus{}mm}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{continue}\PYG{p}{;}\PYG{+w}{ }\PYG{k}{end}
+
+\PYG{+w}{                }\PYG{n}{coverage\PYGZus{}matrix}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{readmatrix}\PYG{p}{(}\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{coverage/coverage\PYGZus{}\PYGZpc{}d Satelite(s); \PYGZpc{}d Telescopio(s): \PYGZpc{}s; Detector \PYGZpc{}d.csv\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}sat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}telescopes}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{strrep}\PYG{p}{(}\PYG{n}{telescope\PYGZus{}names}\PYG{p}{\PYGZob{}}\PYG{n}{telescopio\PYGZus{}idx}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{detector\PYGZus{}idx}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{alt\PYGZus{}idx\PYGZus{}coverage}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{find}\PYG{p}{(}\PYG{n}{alturas\PYGZus{}orbitales}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{h\PYGZus{}km}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{n+nb}{isempty}\PYG{p}{(}\PYG{n}{alt\PYGZus{}idx\PYGZus{}coverage}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{continue}\PYG{p}{;}\PYG{+w}{ }\PYG{k}{end}
+
+\PYG{+w}{                }\PYG{n}{coverage\PYGZus{}row}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{coverage\PYGZus{}matrix}\PYG{p}{(}\PYG{n}{alt\PYGZus{}idx\PYGZus{}coverage}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{:}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{valid\PYGZus{}swath\PYGZus{}indices}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{find}\PYG{p}{(}\PYG{n}{coverage\PYGZus{}row}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{n}{Cov\PYGZus{}Requirement}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{o}{\PYGZti{}}\PYG{n+nb}{isnan}\PYG{p}{(}\PYG{n}{coverage\PYGZus{}row}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{n+nb}{isempty}\PYG{p}{(}\PYG{n}{valid\PYGZus{}swath\PYGZus{}indices}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{continue}\PYG{p}{;}\PYG{+w}{ }\PYG{k}{end}
+
+\PYG{+w}{                }\PYG{n}{selected\PYGZus{}swath\PYGZus{}km}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{swaths\PYGZus{}km}\PYG{p}{(}\PYG{n}{valid\PYGZus{}swath\PYGZus{}indices}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{dias\PYGZus{}cobertura}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{coverage\PYGZus{}row}\PYG{p}{(}\PYG{n}{valid\PYGZus{}swath\PYGZus{}indices}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{                }\PYG{n}{current\PYGZus{}Npix}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{params}\PYG{p}{.}\PYG{n}{Npix\PYGZus{}detectors}\PYG{p}{(}\PYG{n}{detector\PYGZus{}idx}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{num\PYGZus{}detectores\PYGZus{}necesarios}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{ceil}\PYG{p}{(}\PYG{n}{selected\PYGZus{}swath\PYGZus{}km}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{GSD}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{current\PYGZus{}Npix}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{1000}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{                }\PYG{n}{swath\PYGZus{}real\PYGZus{}sistema\PYGZus{}km}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{num\PYGZus{}detectores\PYGZus{}necesarios}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{GSD}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{current\PYGZus{}Npix}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{1000}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{excedente\PYGZus{}swath\PYGZus{}km}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{swath\PYGZus{}real\PYGZus{}sistema\PYGZus{}km}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{selected\PYGZus{}swath\PYGZus{}km}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{excedente\PYGZus{}swath\PYGZus{}porc}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{excedente\PYGZus{}swath\PYGZus{}km}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{selected\PYGZus{}swath\PYGZus{}km}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{p}{;}
+
+\PYG{+w}{                }\PYG{n}{row\PYGZus{}name\PYGZus{}perf}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Alt\PYGZus{}\PYGZpc{}d\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{h\PYGZus{}km}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{col\PYGZus{}name\PYGZus{}perf}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Diam\PYGZus{}\PYGZpc{}d\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{round}\PYG{p}{(}\PYG{n}{D\PYGZus{}mm}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{                }\PYG{k}{try}
+\PYG{+w}{                    }\PYG{n}{mtf\PYGZus{}val}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{mtf\PYGZus{}data\PYGZus{}table}\PYG{p}{\PYGZob{}}\PYG{n}{row\PYGZus{}name\PYGZus{}perf}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{col\PYGZus{}name\PYGZus{}perf}\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+\PYG{+w}{                    }\PYG{n}{snr\PYGZus{}val}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{snr\PYGZus{}data\PYGZus{}table}\PYG{p}{\PYGZob{}}\PYG{n}{row\PYGZus{}name\PYGZus{}perf}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{col\PYGZus{}name\PYGZus{}perf}\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{catch}
+\PYG{+w}{                    }\PYG{n}{mtf\PYGZus{}val}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{NaN}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{snr\PYGZus{}val}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{NaN}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{end}
+
+\PYG{+w}{                }\PYG{n}{h\PYGZus{}m}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{h\PYGZus{}km}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mi}{1000}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{pixel\PYGZus{}size\PYGZus{}m}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{Pixel\PYGZus{}size}\PYG{p}{(}\PYG{n}{detector\PYGZus{}idx}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{D\PYGZus{}m}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{D\PYGZus{}mm}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{1000}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{focal\PYGZus{}length\PYGZus{}m}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{pixel\PYGZus{}size\PYGZus{}m}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{h\PYGZus{}m}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{GSD}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{focal\PYGZus{}ratio}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{focal\PYGZus{}length\PYGZus{}m}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{D\PYGZus{}m}\PYG{p}{;}
+
+\PYG{+w}{                }\PYG{p}{[}\PYG{n}{masa\PYGZus{}seca}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{masa\PYGZus{}seca\PYGZus{}TM}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{masa\PYGZus{}seca\PYGZus{}SEOSAT}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{L\PYGZus{}instrumento}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{S\PYGZus{}instrumento}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                }\PYG{n}{V\PYGZus{}instrumento}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{W\PYGZus{}instrumento}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{P\PYGZus{}instrumento}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{V\PYGZus{}sat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{L\PYGZus{}sat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{S\PYGZus{}sat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{U\PYGZus{}sat}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{calcularMasaSeca}\PYG{p}{(}\PYG{n}{D\PYGZus{}mm}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}telescopes}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{                }\PYG{p}{[}\PYG{n}{masa\PYGZus{}total\PYGZus{}satelite}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{masa\PYGZus{}comb}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{num\PYGZus{}impulsos}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{delta\PYGZus{}v}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{calcularMasaTotal}\PYG{p}{(}\PYG{n}{h\PYGZus{}km}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{masa\PYGZus{}seca}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{S\PYGZus{}sat}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{n+nb}{isnan}\PYG{p}{(}\PYG{n}{masa\PYGZus{}total\PYGZus{}satelite}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{continue}\PYG{p}{;}\PYG{+w}{ }\PYG{k}{end}
+
+\PYG{+w}{                }\PYG{n}{masa\PYGZus{}total\PYGZus{}constelacion}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{masa\PYGZus{}total\PYGZus{}satelite}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{N\PYGZus{}sat}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{a\PYGZus{}m}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{h\PYGZus{}km}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mi}{1000}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{R\PYGZus{}E\PYGZus{}m}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{SSO\PYGZus{}nodal\PYGZus{}rate\PYGZus{}rad\PYGZus{}s}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{pi}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mf}{365.2422}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mi}{86400}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{cos\PYGZus{}i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{SSO\PYGZus{}nodal\PYGZus{}rate\PYGZus{}rad\PYGZus{}s}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{a\PYGZus{}m}\PYG{o}{\PYGZca{}}\PYG{p}{(}\PYG{l+m+mf}{3.5}\PYG{p}{)}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{J2}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{R\PYGZus{}E\PYGZus{}m}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{sqrt}\PYG{p}{(}\PYG{n}{mu\PYGZus{}E}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{cos\PYGZus{}i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{min}\PYG{p}{(}\PYG{n+nb}{max}\PYG{p}{(}\PYG{n}{cos\PYGZus{}i}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{inclinacion\PYGZus{}deg}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{acosd}\PYG{p}{(}\PYG{n}{cos\PYGZus{}i}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{desfase\PYGZus{}anomalia}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{360}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{N\PYGZus{}sat}\PYG{p}{;}
+
+\PYG{+w}{                }\PYG{n}{solution\PYGZus{}data}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                    }\PYG{n}{N\PYGZus{}sat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N\PYGZus{}telescopes}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{num\PYGZus{}detectores\PYGZus{}necesarios}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{detector\PYGZus{}idx}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{telescope\PYGZus{}names}\PYG{p}{\PYGZob{}}\PYG{n}{telescopio\PYGZus{}idx}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{h\PYGZus{}km}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{D\PYGZus{}mm}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                    }\PYG{n}{selected\PYGZus{}swath\PYGZus{}km}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{dias\PYGZus{}cobertura}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                    }\PYG{n}{swath\PYGZus{}real\PYGZus{}sistema\PYGZus{}km}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{excedente\PYGZus{}swath\PYGZus{}km}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{excedente\PYGZus{}swath\PYGZus{}porc}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                    }\PYG{n}{inclinacion\PYGZus{}deg}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{LTAN\PYGZus{}hour}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{desfase\PYGZus{}anomalia}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                    }\PYG{n}{mtf\PYGZus{}val}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{snr\PYGZus{}val}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                    }\PYG{n}{focal\PYGZus{}length\PYGZus{}m}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{focal\PYGZus{}ratio}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                    }\PYG{n}{W\PYGZus{}instrumento}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{L\PYGZus{}instrumento}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{S\PYGZus{}instrumento}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{V\PYGZus{}instrumento}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{P\PYGZus{}instrumento}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                    }\PYG{n}{masa\PYGZus{}seca}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{masa\PYGZus{}comb}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{masa\PYGZus{}total\PYGZus{}satelite}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{masa\PYGZus{}total\PYGZus{}constelacion}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                    }\PYG{n}{num\PYGZus{}impulsos}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{delta\PYGZus{}v}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                    }\PYG{n}{masa\PYGZus{}seca\PYGZus{}TM}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{masa\PYGZus{}seca\PYGZus{}SEOSAT}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                    }\PYG{n}{L\PYGZus{}sat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{S\PYGZus{}sat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{V\PYGZus{}sat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{U\PYGZus{}sat}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+
+\PYG{+w}{                }\PYG{n}{results\PYGZus{}data}\PYG{p}{(}\PYG{k}{end}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{:}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{solution\PYGZus{}data}\PYG{p}{;}
+
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{masa\PYGZus{}total\PYGZus{}constelacion}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{global\PYGZus{}best}\PYG{p}{.}\PYG{n}{mass}
+\PYG{+w}{                    }\PYG{n}{global\PYGZus{}best}\PYG{p}{.}\PYG{n}{mass}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{masa\PYGZus{}total\PYGZus{}constelacion}\PYG{p}{;}
+\PYG{+w}{                    }\PYG{n}{global\PYGZus{}best}\PYG{p}{.}\PYG{n}{data}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{solution\PYGZus{}data}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{end}
+\PYG{+w}{            }\PYG{k}{end}
+\PYG{+w}{        }\PYG{k}{end}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
+
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Análisis detallado completado. Se encontraron \PYGZpc{}d soluciones viables.\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{results\PYGZus{}data}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} ========================================================================}
+\PYG{c}{\PYGZpc{} 3. EXPORTACIÓN DE RESULTADOS (CSV Y TXT)}
+\PYG{c}{\PYGZpc{} ========================================================================}
+\PYG{k}{if}\PYG{+w}{ }\PYG{n+nb}{isempty}\PYG{p}{(}\PYG{n}{results\PYGZus{}data}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ADVERTENCIA: No se encontraron soluciones válidas.\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{return}\PYG{p}{;}
+\PYG{k}{end}
+
+\PYG{n}{headers}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Num\PYGZus{}Satelites\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Num\PYGZus{}Telescopios\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Detectores\PYGZus{}Necesarios\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ID\PYGZus{}Detector\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Tipo\PYGZus{}Telescopio\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Altura\PYGZus{}km\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Diametro\PYGZus{}Pupila\PYGZus{}mm\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{    }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Swath\PYGZus{}Requerido\PYGZus{}km\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Dias\PYGZus{}Cobertura\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{    }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Swath\PYGZus{}Real\PYGZus{}Sistema\PYGZus{}km\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Excedente\PYGZus{}Swath\PYGZus{}km\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Excedente\PYGZus{}Swath\PYGZus{}porc\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{    }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Inclinacion\PYGZus{}SSO\PYGZus{}deg\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{LTAN\PYGZus{}h\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Desfase\PYGZus{}Anomalia\PYGZus{}Verdadera\PYGZus{}deg\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{    }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MTF\PYGZus{}a\PYGZus{}Nyquist\PYGZus{}lambda2\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{SNR\PYGZus{}lambda3\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{    }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Longitud\PYGZus{}Focal\PYGZus{}m\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Relacion\PYGZus{}Focal\PYGZus{}f\PYGZus{}num\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{    }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Masa\PYGZus{}Instrumento\PYGZus{}kg\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Longitud\PYGZus{}Instrumento\PYGZus{}m\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Area\PYGZus{}Instrumento\PYGZus{}m2\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Volumen\PYGZus{}Instrumento\PYGZus{}m3\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Potencia\PYGZus{}Electrica\PYGZus{}Instrumento\PYGZus{}W\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{    }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Masa\PYGZus{}Seca\PYGZus{}Satelite\PYGZus{}kg\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Masa\PYGZus{}Combustible\PYGZus{}kg\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Masa\PYGZus{}Total\PYGZus{}Satelite\PYGZus{}kg\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Masa\PYGZus{}Total\PYGZus{}Constelacion\PYGZus{}kg\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{    }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Num\PYGZus{}Impulsos\PYGZus{}Mantenimiento\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{DeltaV\PYGZus{}Total\PYGZus{}ms\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{    }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Masa\PYGZus{}Seca\PYGZus{}TM\PYGZus{}kg\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Masa\PYGZus{}Seca\PYGZus{}SEOSAT\PYGZus{}kg\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{    }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Longitud\PYGZus{}Satelite\PYGZus{}m\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Area\PYGZus{}Satelite\PYGZus{}m2\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Volumen\PYGZus{}Satelite\PYGZus{}m3\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Estandar\PYGZus{}U\PYGZsq{}}
+\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+
+\PYG{n}{results\PYGZus{}table}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{cell2table}\PYG{p}{(}\PYG{n}{results\PYGZus{}data}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{VariableNames\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{headers}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{results\PYGZus{}table}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sortrows}\PYG{p}{(}\PYG{n}{results\PYGZus{}table}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Masa\PYGZus{}Total\PYGZus{}Constelacion\PYGZus{}kg\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ascend\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n}{csv\PYGZus{}filename}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{fullfile}\PYG{p}{(}\PYG{n}{output\PYGZus{}dir}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{reporte\PYGZus{}completo\PYGZus{}configuraciones.csv\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{writetable}\PYG{p}{(}\PYG{n}{results\PYGZus{}table}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{csv\PYGZus{}filename}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Reporte CSV completo guardado en: \PYGZpc{}s\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{csv\PYGZus{}filename}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n}{txt\PYGZus{}filename}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{fullfile}\PYG{p}{(}\PYG{n}{output\PYGZus{}dir}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{reporte\PYGZus{}resumen\PYGZus{}configuraciones.txt\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{fileID}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{fopen}\PYG{p}{(}\PYG{n}{txt\PYGZus{}filename}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{w\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{==========================================================\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ INFORME DE ANÁLISIS DE CONFIGURACIONES\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{==========================================================\PYGZbs{}n\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{k}{if}\PYG{+w}{ }\PYG{o}{\PYGZti{}}\PYG{n+nb}{isinf}\PYG{p}{(}\PYG{n}{global\PYGZus{}best}\PYG{p}{.}\PYG{n}{mass}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZhy{}\PYGZhy{}\PYGZhy{} ÓPTIMO GLOBAL (Masa Mínima de Constelación) \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{data}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{global\PYGZus{}best}\PYG{p}{.}\PYG{n}{data}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Masa Total de la Constelación: \PYGZpc{}.2f kg\PYGZbs{}n\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{global\PYGZus{}best}\PYG{p}{.}\PYG{n}{mass}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZgt{} Configuración: \PYGZpc{}d Satélite(s), \PYGZpc{}d Telescopio(s)/sat, \PYGZpc{}d Detector(es) Necesario(s), ID Detector \PYGZpc{}d con \PYGZpc{}s\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{3}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{4}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{5}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZgt{} Órbita: \PYGZpc{}d km, \PYGZpc{}.2f° inc, Desfase Anom. \PYGZpc{}.1f°\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{6}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{13}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{15}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZgt{} Rendimiento: Swath Requerido=\PYGZpc{}.1f km (Real=\PYGZpc{}.1f km, Excedente=\PYGZpc{}.1f\PYGZpc{}\PYGZpc{}) | Cobertura=\PYGZpc{}.1f días\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{8}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{10}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{12}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{9}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZgt{} Parámetros Ópticos: D=\PYGZpc{}.1f mm, F=\PYGZpc{}.2f m (f/\PYGZpc{}.1f) | MTF@Nyquist=\PYGZpc{}.3f, SNR=\PYGZpc{}.1f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{7}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{18}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{19}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{16}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{17}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZgt{} Prop. Físicas (Instrumento): Masa=\PYGZpc{}.2f kg, Long=\PYGZpc{}.2f m, Área=\PYGZpc{}.2f m\PYGZca{}2, Vol=\PYGZpc{}.6f m\PYGZca{}3, Potencia=\PYGZpc{}.1f W\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{20}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{21}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{22}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{23}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{24}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZgt{} Prop. Físicas (Satélite): Long=\PYGZpc{}.2f m, Área=\PYGZpc{}.2f m\PYGZca{}2, Vol=\PYGZpc{}.6f m\PYGZca{}3, Estándar U=\PYGZpc{}.2f U\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{33}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{34}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{35}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{36}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZgt{} Masa Satélite: Total=\PYGZpc{}.2f kg (Seca=\PYGZpc{}.2f kg, Combustible=\PYGZpc{}.2f kg)\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{27}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{25}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{26}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZgt{} Mantenimiento: \PYGZpc{}d impulsos, Delta\PYGZhy{}V Total \PYGZpc{}.1f m/s\PYGZbs{}n\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{29}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{30}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{end}
+
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}n==========================================================\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ LISTADO DE TODAS LAS CONFIGURACIONES VÁLIDAS\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ (Ordenadas por masa total de la constelación)\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{==========================================================\PYGZbs{}n\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{height}\PYG{p}{(}\PYG{n}{results\PYGZus{}table}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{row}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{table2cell}\PYG{p}{(}\PYG{n}{results\PYGZus{}table}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,}\PYG{p}{:}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZhy{}\PYGZhy{}\PYGZhy{} Solución \PYGZsh{}\PYGZpc{}d \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Masa Constelación: \PYGZpc{}.2f kg | Masa Satélite Total: \PYGZpc{}.2f kg (Seca: \PYGZpc{}.2f kg, Comb: \PYGZpc{}.2f kg)\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{28}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{27}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{25}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{26}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZgt{} Configuración: \PYGZpc{}d Sat, \PYGZpc{}d Tel, \PYGZpc{}d Dets | ID Detector: \PYGZpc{}d | Telescopio: \PYGZpc{}s\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{3}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{4}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{5}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZgt{} Órbita: \PYGZpc{}.0f km alt, \PYGZpc{}.2f° inc (SSO), LTAN \PYGZpc{}d h, Desfase Anom. \PYGZpc{}.1f°\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{6}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{13}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{14}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{15}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZgt{} Rendimiento: Swath Requerido=\PYGZpc{}.1f km (Real=\PYGZpc{}.1f km, Excedente=\PYGZpc{}.1f\PYGZpc{}\PYGZpc{}) | Cobertura=\PYGZpc{}.1f días\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{8}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{10}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{12}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{9}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZgt{} Parámetros Ópticos: D=\PYGZpc{}.1f mm, F=\PYGZpc{}.2f m (f/\PYGZpc{}.1f) | MTF@Nyquist=\PYGZpc{}.3f, SNR=\PYGZpc{}.1f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{7}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{18}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{19}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{16}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{17}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ \PYGZgt{} Prop. Físicas (Satélite): Long=\PYGZpc{}.2f m, Área=\PYGZpc{}.2f m\PYGZca{}2, Vol=\PYGZpc{}.6f m\PYGZca{}3, Estándar U=\PYGZpc{}.2f U\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{33}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{34}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{35}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{36}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{end}
+
+\PYG{n+nb}{fclose}\PYG{p}{(}\PYG{n}{fileID}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Reporte TXT detallado guardado en: \PYGZpc{}s\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{txt\PYGZus{}filename}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}\PYGZpc{} ========================================================================}
+\PYG{c}{\PYGZpc{} 4. GENERACIÓN DE GRÁFICAS DE MASA}
+\PYG{c}{\PYGZpc{} ========================================================================}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}nIniciando la generación de gráficas de desglose de masa...\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{GenerateMassPlots}\PYG{p}{(}\PYG{n}{results\PYGZus{}table}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}nAnálisis finalizado.\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{end}
+
+
+\end{MintedVerbatim}
