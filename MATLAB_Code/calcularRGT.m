@@ -26,8 +26,8 @@ for k = 1:n_h
     T_nodal(k) = T_k / (1 + 0.75 * J2 * ratio * (6 - 8*s2));
 end
 
-fprintf('--- Reference at 520 km ---\n');
-h_ref = 520;
+fprintf('--- Reference at 630 km ---\n');
+h_ref = 630;
 a_ref = R_E + h_ref*1e3;
 ci_ref = -(2 * a_ref^(7/2) * w_sol) / (3 * J2 * R_E^2 * sqrt(mu));
 ci_ref = max(-1, min(1, ci_ref));
@@ -36,9 +36,9 @@ Tk_ref = 2*pi * sqrt(a_ref^3 / mu);
 s2_ref = sind(i_ref)^2;
 ratio_ref = (R_E / a_ref)^2;
 Tn_ref = Tk_ref / (1 + 0.75 * J2 * ratio_ref * (6 - 8*s2_ref));
-fprintf('i_SSO(520 km)      = %.2f deg\n', i_ref);
-fprintf('T_k(520 km)         = %.2f s\n', Tk_ref);
-fprintf('T_nodal(520 km)     = %.2f s\n', Tn_ref);
+fprintf('i_SSO(630 km)      = %.2f deg\n', i_ref);
+fprintf('T_k(630 km)         = %.2f s\n', Tk_ref);
+fprintf('T_nodal(630 km)     = %.2f s\n', Tn_ref);
 fprintf('T_sol / T_nodal      = %.4f\n', T_sol / Tn_ref);
 fprintf('\n');
 
@@ -95,7 +95,7 @@ end
 
 roots = sortrows(roots, 1);
 
-h_nearest = 520;
+h_nearest = 630;
 [~, idx] = min(abs(roots(:,1) - h_nearest));
 fprintf('\n--- Nearest to %.0f km ---\n', h_nearest);
 fprintf('h = %.3f km, i = %.2f deg, N = %d, D = %d, T_n = %.2f s\n', ...
@@ -124,7 +124,7 @@ for k = 1:size(roots,1)
     [~, ih] = min(abs(h_vals - roots(k,1)));
     plot(roots(k,1), residual(ih), 'g.', 'MarkerSize', 18);
 end
-xline(520, 'r--', 'LineWidth', 1.5);
+xline(h_nearest, 'r--', 'LineWidth', 1.5);
 xlabel('Altura [km]');
 ylabel('Deriva longitudinal diaria [km/día]');
 title('Condición RGT para órbita SSO con J_2');

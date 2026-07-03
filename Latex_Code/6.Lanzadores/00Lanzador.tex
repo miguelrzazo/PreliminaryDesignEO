@@ -116,7 +116,7 @@ Para validar este lanzamiento se puede calcular el azimut inicial de lanzamiento
     \cos (i) = \sin(Az) \cdot \cos(\theta)
 \end{equation}
 
-Siendo $i= 97,48 \degree$ la inclinación de interés, $\theta=34,7 \degree$, la latitud a la que se sitúa la base de lanzamiento de Vandenberg SFB, se obtiene un azimut $Az = 189 \degree$. Este valor es compatible con los rangos disponibles de la base de lanzamiento \cite{karabeyoglu2018lecture7} y aplica por igual al Falcon 9 y al Firefly Alpha, puesto que ambos parten de Vandenberg hacia la misma órbita SSO y comparten, por tanto, la misma inclinación.
+Siendo $i= 97,91 \degree$ la inclinación de interés, $\theta=34,7 \degree$, la latitud a la que se sitúa la base de lanzamiento de Vandenberg SFB, se obtiene un azimut $Az \approx 190 \degree$. Este valor es compatible con los rangos disponibles de la base de lanzamiento \cite{karabeyoglu2018lecture7} y aplica por igual al Falcon 9 y al Firefly Alpha, puesto que ambos parten de Vandenberg hacia la misma órbita SSO y comparten, por tanto, la misma inclinación.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{6.Lanzadores/azimuth.jpg}
@@ -128,7 +128,7 @@ Siendo $i= 97,48 \degree$ la inclinación de interés, $\theta=34,7 \degree$, la
 
 Ambos satélites comparten el mismo plano orbital SSO y los mismos parámetros orbitales, y solo se diferencian en su anomalía, con un desfase de 180° sobre la órbita. Para lograr esta configuración, la etapa superior del lanzador ejecuta una estrategia de fase en tres maniobras:
 \begin{enumerate}
-    \item Inserción orbital y primer despliegue. El lanzador coloca la etapa superior y los satélites en la órbita objetivo, que en este caso es una SSO circular a 520 km de altitud. Inmediatamente tras alcanzar la órbita, se procede al despliegue del primer satélite, que comienza su operación en la trayectoria planificada.
+    \item Inserción orbital y primer despliegue. El lanzador coloca la etapa superior y los satélites en la órbita objetivo, que en este caso es una SSO circular a 630 km de altitud. Inmediatamente tras alcanzar la órbita, se procede al despliegue del primer satélite, que comienza su operación en la trayectoria planificada.
 
     \item Maniobra de fase: tras el primer despliegue, la etapa superior ejecuta una maniobra para elevar temporalmente el apogeo de su órbita. Al aumentar el apogeo aumenta también el semieje mayor y, por tanto, el periodo orbital de la etapa respecto al del satélite ya desplegado. Esta diferencia de periodo hace que la etapa acumule, en cada revolución, un desfase angular
     \begin{equation}
@@ -136,10 +136,10 @@ Ambos satélites comparten el mismo plano orbital SSO y los mismos parámetros o
     \end{equation}
     respecto al primer satélite, hasta alcanzar la separación de 180° buscada.
 
-    \item Recircularización y segundo despliegue: una vez alcanzada la separación angular de 180°, la etapa superior realiza una nueva maniobra para regresar a la órbita circular original de 520 km. Esta recircularización iguala el periodo del segundo satélite con el del primero y evita que el desfase siga creciendo durante la operación nominal.
+    \item Recircularización y segundo despliegue: una vez alcanzada la separación angular de 180°, la etapa superior realiza una nueva maniobra para regresar a la órbita circular original de 630 km. Esta recircularización iguala el periodo del segundo satélite con el del primero y evita que el desfase siga creciendo durante la operación nominal.
 \end{enumerate}
 
-A continuación se presenta una simulación en la que, mediante esta maniobra, se consigue el desfase deseado en 37 horas, por medio de una órbita de fase con perigeo en 520 km y apogeo ligeramente más elevado, en 720 km:
+A continuación se presenta una simulación en la que, mediante esta maniobra, se consigue el desfase deseado en 38{,}6 horas, por medio de una órbita de fase con perigeo en 630 km y apogeo ligeramente más elevado, en 830 km:
 \begin{figure}[H]
     \centering
     \begin{minipage}[t]{0.48\textwidth}
@@ -147,10 +147,10 @@ A continuación se presenta una simulación en la que, mediante esta maniobra, s
         \begin{lstlisting}[basicstyle=\tiny\ttfamily]
             >> phaseinjection
             --- Análisis de la Maniobra de Fase ---
-            Periodo de la órbita final: 94.88 minutos
-            Periodo de la órbita de fase: 96.95 minutos
-            Tiempo requerido para un desfase de 180: 36.98 horas
-            Número de órbitas en la trayectoria de fase: 22.89
+            Periodo de la órbita final: 97.31 minutos
+            Periodo de la órbita de fase: 99.40 minutos
+            Tiempo requerido para un desfase de 180: 38.56 horas
+            Número de órbitas en la trayectoria de fase: 23.28
             -------------------------------------------
         \end{lstlisting}
     \end{minipage}

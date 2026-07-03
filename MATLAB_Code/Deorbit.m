@@ -4,12 +4,11 @@
 % Este script simula el perfil completo de una mision satelital, incluyendo:
 % 1. Decaimiento orbital por arrastre atmosferico.
 % 2. Impulsos de mantenimiento para restaurar la altitud.
-% 3. Impulso final de deorbitacion.
-% 4. Curva de reentrada atmosferica hasta la desintegracion.
+% 3. Curva de reentrada atmosferica hasta la desintegracion.
 %
 % El script genera dos visualizaciones:
 %   - Figura 1: El ciclo de vida completo de la mision.
-%   - Figura 2: Una comparacion de la reentrada con y sin impulso,
+%   - Figura 2: Comparacion entre decaimiento natural y deorbitado activo.
 %               
 
 clear; clc; close all;
@@ -19,17 +18,17 @@ clear; clc; close all;
 %  ========================================================================
 
 % --- Parametros de la Mision y Orbita ---
-h0_km = 520;            % Altitud orbital inicial y objetivo (km)
+h0_km = 630;            % Altitud orbital inicial y objetivo (km)
 mission_duration_years = 8; % Duracion de la mision (años)
 decay_percentage_drop = 2.0;  % Porcentaje de decaimiento para activar impulso (%)
-h_perigeo_deorbit_km = 120; % Altitud del perigeo para la maniobra de deorbitacion (km)
 h_reentry_km = 100;      % Altitud a la que se considera reentrada/desintegracion (km)
+deorbit_time_limit_days = 365; % Requisito de fin de mision
 
 % --- Parametros del Satelite ---
-masa_seca_kg = 1.34;    % Masa seca del satelite (kg)
-Area_m2 = 0.07;           % Area transversal efectiva para resistencia aerodinamica (m^2)
+masa_seca_kg = 2.39;    % Masa seca del satelite (kg)
+Area_m2 = 0.097;        % Area transversal efectiva para resistencia aerodinamica (m^2)
 Cd = 2.5;               % Coeficiente de resistencia aerodinamica (adimensional)
-Isp_s = 209;            % Impulso especifico ECAPS HPGP 100 mN (s)
+Isp_s = 220;            % Impulso especifico asumido en el modelo de masa (s)
 
 
 %% ========================================================================
@@ -38,7 +37,6 @@ Isp_s = 209;            % Impulso especifico ECAPS HPGP 100 mN (s)
 mu = 3.986004418e14; R_earth_m = 6378e3; g0 = 9.80665;
 h0_m = h0_km * 1e3;
 h_umbral_m = h0_km * (1 - decay_percentage_drop / 100) * 1e3;
-h_perigeo_deorbit_m = h_perigeo_deorbit_km * 1e3;
 mission_duration_s = mission_duration_years * 365.25 * 24 * 3600;
 hist_tiempo_s = [0]; hist_altitud_m = [h0_m];
 t_actual_s = 0; h_actual_m = h0_m; masa_actual_kg = masa_seca_kg;
@@ -89,24 +87,10 @@ fprintf('Simulacion de mision completada.\n\n');
 %% ========================================================================
 %  3. SIMULACIONES POST-MISION
 %  ========================================================================
-r_apogeo_deorbit = R_earth_m + hist_altitud_m(end);
-r_perigeo_deorbit = R_earth_m + h_perigeo_deorbit_m;
-v_circular_final = sqrt(mu / r_apogeo_deorbit);
-a_transfer_deorbit = (r_apogeo_deorbit + r_perigeo_deorbit) / 2;
-v_apogeo_transfer = sqrt(mu * (2/r_apogeo_deorbit - 1/a_transfer_deorbit));
-dv_deorbit = v_circular_final - v_apogeo_transfer;
 masa_antes_impulso = masa_actual_kg;
-masa_despues_impulso = masa_antes_impulso / exp(dv_deorbit / (Isp_s * g0));
-fprintf('Maniobra de Deorbitacion:\n  - Delta-V: %.2f m/s\n', dv_deorbit);
 
 a_reentry_target = R_earth_m + h_reentry_km * 1e3;
 options_reentry = odeset('Events', @(t,a) decayEvent(t, a, a_reentry_target), 'RelTol', 1e-7);
-
-fprintf('Simulando reentrada con impulso...\n');
-[t_reentry_con_impulso, a_reentry_con_impulso] = ode45(@(t,a) decayODE(t, a, R_earth_m, mu, Cd, Area_m2, masa_despues_impulso), ...
-                               [0, inf], a_transfer_deorbit, options_reentry);
-tiempo_reentrada_dias = t_reentry_con_impulso(end) / (24 * 3600);
-fprintf('  - Reentrada estimada en %.2f dias.\n\n', tiempo_reentrada_dias);
 
 fprintf('Simulando decaimiento natural (sin impulso)...\n');
 a_initial_natural = R_earth_m + hist_altitud_m(end);
@@ -114,6 +98,45 @@ a_initial_natural = R_earth_m + hist_altitud_m(end);
                                [0, inf], a_initial_natural, options_reentry);
 tiempo_natural_dias = t_reentry_sin_impulso(end) / (24 * 3600);
 fprintf('  - Reentrada natural estimada en %.2f dias (%.2f a~nos).\n\n', tiempo_natural_dias, tiempo_natural_dias/365.25);
+
+fprintf('Buscando impulso minimo de deorbitacion para %.0f dias...\n', deorbit_time_limit_days);
+r_apogeo_deorbit = R_earth_m + hist_altitud_m(end);
+h_perigeo_low_m = h_reentry_km * 1e3;
+h_perigeo_high_m = hist_altitud_m(end);
+
+for iter = 1:50
+    h_perigeo_mid_m = 0.5 * (h_perigeo_low_m + h_perigeo_high_m);
+    r_perigeo_mid = R_earth_m + h_perigeo_mid_m;
+    a_transfer_mid = 0.5 * (r_apogeo_deorbit + r_perigeo_mid);
+    [t_mid, ~] = ode45(@(t,a) decayODE(t, a, R_earth_m, mu, Cd, Area_m2, masa_seca_kg), ...
+                       [0, inf], a_transfer_mid, options_reentry);
+    days_mid = t_mid(end) / (24 * 3600);
+
+    if days_mid <= deorbit_time_limit_days
+        h_perigeo_low_m = h_perigeo_mid_m;
+    else
+        h_perigeo_high_m = h_perigeo_mid_m;
+    end
+end
+
+h_perigeo_deorbit_m = h_perigeo_low_m;
+r_perigeo_deorbit = R_earth_m + h_perigeo_deorbit_m;
+v_circular_final = sqrt(mu / r_apogeo_deorbit);
+a_transfer_deorbit = 0.5 * (r_apogeo_deorbit + r_perigeo_deorbit);
+v_apogeo_transfer = sqrt(mu * (2/r_apogeo_deorbit - 1/a_transfer_deorbit));
+dv_deorbit = v_circular_final - v_apogeo_transfer;
+fuel_mass_deorbit_kg = masa_seca_kg * (exp(dv_deorbit / (Isp_s * g0)) - 1) * 1.1;
+
+fprintf('Maniobra de Deorbitacion:\n');
+fprintf('  - Perigeo objetivo: %.1f km\n', h_perigeo_deorbit_m / 1e3);
+fprintf('  - Delta-V minimo: %.2f m/s\n', dv_deorbit);
+fprintf('  - Combustible reservado (10%% margen): %.3f kg\n', fuel_mass_deorbit_kg);
+
+fprintf('Simulando reentrada con impulso...\n');
+[t_reentry_con_impulso, a_reentry_con_impulso] = ode45(@(t,a) decayODE(t, a, R_earth_m, mu, Cd, Area_m2, masa_seca_kg), ...
+                               [0, inf], a_transfer_deorbit, options_reentry);
+tiempo_reentrada_dias = t_reentry_con_impulso(end) / (24 * 3600);
+fprintf('  - Reentrada estimada en %.2f dias.\n\n', tiempo_reentrada_dias);
 
 
 %% ========================================================================
@@ -144,22 +167,29 @@ legend('Location', 'best', 'Interpreter', 'latex', 'FontSize', 12);
 hold off;
 
 %% ========================================================================
-%  5. GENERACION DE GRAFICA COMPARATIVA DE REENTRADA 
+%  5. GENERACION DE GRAFICA DE DECAIMIENTO POST-MISION
 %  ========================================================================
-figure('Name', 'Comparativa de Tiempos de Reentrada');
+fig_deorbit = figure('Name', 'Decaimiento Post-Mision');
 hold on; grid on;
 
-semilogx(t_reentry_con_impulso / (24*3600), (a_reentry_con_impulso - R_earth_m) / 1000, ...
-    'r-', 'LineWidth', 2, 'DisplayName', 'Con Impulso de Deorbitacion');
 semilogx(t_reentry_sin_impulso / (24*3600), (a_reentry_sin_impulso - R_earth_m) / 1000, ...
     'k--', 'LineWidth', 2, 'DisplayName', 'Decaimiento Natural (sin impulso)');
+semilogx(t_reentry_con_impulso / (24*3600), (a_reentry_con_impulso - R_earth_m) / 1000, ...
+    'r-', 'LineWidth', 2, 'DisplayName', sprintf('Con impulso deorbitado (%.1f m/s)', dv_deorbit));
+xline(deorbit_time_limit_days, 'b:', 'LineWidth', 1.5, 'DisplayName', 'Limite 365 dias');
 
-title('Comparativa de Tiempos de Reentrada', 'FontSize', 16, 'Interpreter', 'latex');
+title('Decaimiento Post-Mision', 'FontSize', 16, 'Interpreter', 'latex');
 xlabel('Tiempo tras fin de mision (dias)', 'FontSize', 14, 'Interpreter', 'latex');
 ylabel('Altitud (km)', 'FontSize', 14, 'Interpreter', 'latex');
 legend('Location', 'best', 'Interpreter', 'latex', 'FontSize', 12);
 hold off;
 
+script_dir = fileparts(mfilename('fullpath'));
+if isempty(script_dir)
+    script_dir = pwd;
+end
+output_deorbit = fullfile(script_dir, '..', 'Latex_Code', '5.Mission', 'deorbit.jpg');
+exportgraphics(fig_deorbit, output_deorbit, 'Resolution', 300);
 
 %% ========================================================================
 %  FUNCIONES AUXILIARES

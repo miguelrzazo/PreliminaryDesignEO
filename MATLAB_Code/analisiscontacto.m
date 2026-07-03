@@ -6,9 +6,9 @@ sampleTime = 60; % [s]
 gsName = 'Fairbanks'; gsLat = 64.84; gsLon = -147.712; minElevation = 10;
 
 % --- Parámetros de la Constelación y Satélite (SSO) ---
-N = 2; altitude = 520; earthRadius = 6371;
+N = 2; altitude = 630; earthRadius = 6371;
 semiMajorAxis = (earthRadius + altitude) * 1000;
-eccentricity = 0.001; inclination = 97.48;
+eccentricity = 0.001; inclination = 97.91;
 argOfPeriapsis = 0;
 mu = 3.986004418e14;
 orbitalPeriod_s = 2 * pi * sqrt(semiMajorAxis^3 / mu);
@@ -23,7 +23,7 @@ GSD = 80; areaUSA_km2 = 8080464; areaMargin = 1.15; numBands = 3; bitsPerBand = 
 % el área barrida es A / ((1-η)*cos(γ)), donde γ = |i - 90°|.
 % Se añade margen del 15% para costa, islas y periferia.
 overlap_swath = 0.05;
-gamma_deg = abs(inclination - 90);  % ~7.48°
+gamma_deg = abs(inclination - 90);  % ~7.91 deg
 factor_geometrico = 1 / ((1 - overlap_swath) * cosd(gamma_deg));
 areaBarrido_km2 = areaUSA_km2 * areaMargin * factor_geometrico;
 
@@ -43,9 +43,13 @@ sc = satelliteScenario(startTime, stopTime, sampleTime);
 gs = groundStation(sc, 'Name', gsName, 'Latitude', gsLat, 'Longitude', gsLon, 'MinElevationAngle', minElevation);
 
 fprintf('Calculando RAAN para un LTAN objetivo de %d:00...\n', LTAN_target);
-pos_sun_eci = planetEphemeris(juliandate(startTime),'Earth','Sun');
-[alpha_sun_rad, ~, ~] = cart2sph(pos_sun_eci(1), pos_sun_eci(2), pos_sun_eci(3));
-alpha_sun_deg = rad2deg(alpha_sun_rad);
+try
+    pos_sun_eci = planetEphemeris(juliandate(startTime),'Earth','Sun');
+    [alpha_sun_rad, ~, ~] = cart2sph(pos_sun_eci(1), pos_sun_eci(2), pos_sun_eci(3));
+    alpha_sun_deg = rad2deg(alpha_sun_rad);
+catch
+    alpha_sun_deg = approxSunRightAscensionDeg(startTime);
+end
 raan_offset = (LTAN_target - 12) * 15;
 raan_calculated = alpha_sun_deg + raan_offset;
 fprintf('RAAN calculado: %.2f grados.\n', raan_calculated);
@@ -135,19 +139,23 @@ end
 elapsedDays = days(timeVector - startTime);
 figure('Name', 'Estado de Memoria de Satélites');
 hold on;
-yline(memoryPerSatellite_GB, '--k', 'Limite de Memoria', 'LineWidth', 1.5);
+yline(memoryPerSatellite_GB, '--k', 'LineWidth', 1.5, 'DisplayName', 'Limite de memoria');
 
 for i = 1:N
-    plot(elapsedDays, memoryState(i,:), 'Color', colors(i,:), 'LineWidth', 2, 'DisplayName', sprintf('Satelite %d', i));
+    plot(elapsedDays, memoryState(i,:), 'Color', colors(i,:), 'LineWidth', 2, ...
+        'DisplayName', sprintf('Satelite %d', i));
 end
 hold off;
 grid on;
-xlabel('Tiempo (días)', 'Interpreter', 'latex');
-ylabel('Memoria Ocupada (GB)', 'Interpreter', 'latex');
-title(sprintf('Estado de Memoria (Capacidad Maxima: %.0f GB)', memoryPerSatellite_GB), 'Interpreter', 'latex');
-legend('show', 'Interpreter', 'latex', 'Location', 'best');
+ylim([0, memoryPerSatellite_GB * 1.08]);
+xlabel('$t$ [dias]', 'Interpreter', 'latex');
+ylabel('Memoria ocupada [GB]', 'Interpreter', 'latex');
+title(sprintf('Estado de memoria a bordo ($C_{max}=%.0f$ GB)', memoryPerSatellite_GB), 'Interpreter', 'latex');
+legend('show', 'Interpreter', 'latex', 'Location', 'northeast');
 set(gca, 'TickLabelInterpreter', 'latex');
-exportgraphics(gca, 'Estado_Memoria_Satelites.png', 'Resolution', 300);
+script_dir = fileparts(mfilename('fullpath'));
+exportgraphics(gcf, 'Estado_Memoria_Satelites.png', 'Resolution', 300);
+exportgraphics(gcf, fullfile(script_dir, '..', 'Latex_Code', '7.Segmento_Tierra', 'memoria.jpg'), 'Resolution', 300);
 
 % Comprobación de viabilidad basada en memoria (del código original)
 fprintf('\n--- Análisis de Viabilidad basado en Llenado de Memoria ---\n');
@@ -158,20 +166,29 @@ else
 end
 
 
-%% 7. GENERACIÃ“N DE VISUALIZACIONES 3D DEL ESCENARIO
+%% 7. GENERACION DE VISUALIZACIONES 3D DEL ESCENARIO
 fprintf('\n--- Generando y exportando visualizaciones 3D del escenario ---\n');
 generate3DPlot(sc, sats, gs, orbitalPeriod_s, 'Escenario_3D_1_Orbita', colors);
 %generate3DPlot(sc, sats, gs, 86400, 'Escenario_3D_1_Dia', colors);
 %generate3DPlot(sc, sats, gs, 7*86400, 'Escenario_3D_1_Semana', colors);
 %fprintf('Se han generado 3 archivos PNG con las visualizaciones 3D.\n');
 
-%% 8. GENERACIÃ“N DE TRAZAS 2D CON WORLDMAP
+%% 8. GENERACION DE TRAZAS 2D CON WORLDMAP
 fprintf('\n--- Generando y exportando visualizaciones 2D (worldmap) ---\n');
-load coastlines;
-generateWorldmapPlot(sats, gs, startTime, orbitalPeriod_s, 'Traza 2D 1 Orbita', colors, coastlat, coastlon, sampleTime);
-generateWorldmapPlot(sats, gs, startTime, 86400, 'Traza 2D 1 Dia', colors, coastlat, coastlon, sampleTime);
-generateWorldmapPlot(sats, gs, startTime, 7*86400, 'Traza 2D 1 Semana', colors, coastlat, coastlon, sampleTime);
-fprintf('Se han generado 3 archivos PNG con las trazas en 2D.\n');
+if exist('worldmap', 'file') ~= 2
+    fprintf('Mapping Toolbox no disponible; se omiten las trazas 2D.\n');
+else
+    try
+        load coastlines;
+    catch
+        coastlat = NaN;
+        coastlon = NaN;
+    end
+    generateWorldmapPlot(sats, gs, startTime, orbitalPeriod_s, 'Traza 2D 1 Orbita', colors, coastlat, coastlon, sampleTime);
+    generateWorldmapPlot(sats, gs, startTime, 86400, 'Traza 2D 1 Dia', colors, coastlat, coastlon, sampleTime);
+    generateWorldmapPlot(sats, gs, startTime, 7*86400, 'Traza 2D 1 Semana', colors, coastlat, coastlon, sampleTime);
+    fprintf('Se han generado 3 archivos PNG con las trazas en 2D.\n');
+end
 
 %% --- FUNCIONES AUXILIARES ---
 function generateWorldmapPlot(sats, gs, startTime, duration_s, title_str, colors, coastlat, coastlon, sampleTime)
@@ -201,7 +218,7 @@ function generateWorldmapPlot(sats, gs, startTime, duration_s, title_str, colors
     
     geoshow(gs.Latitude, gs.Longitude, 'DisplayType', 'point', 'Marker', 'o', 'MarkerEdgeColor', 'r', 'MarkerFaceColor', 'r', 'MarkerSize', 8);
     
-    % 1. TÃ­tulo con intÃ©rprete LaTeX. Se escapan los guiones bajos.
+    % 1. Titulo con interprete LaTeX. Se escapan los guiones bajos.
     title(strrep(title_str, '_', '\_'), 'Interpreter', 'latex');
     
     gridm on; mlabel on; plabel on;
@@ -209,7 +226,7 @@ function generateWorldmapPlot(sats, gs, startTime, duration_s, title_str, colors
     % 2. Se obtiene el manejador de los ejes actuales para modificar las etiquetas.
     ax = gca;
     
-    % 3. Se establece el intÃ©rprete LaTeX para las etiquetas de los meridianos y paralelos.
+    % 3. Se establece el interprete LaTeX para las etiquetas de los meridianos y paralelos.
     ax.TickLabelInterpreter = 'latex';
     
     legend(plotHandles, legendNames, 'Interpreter', 'latex', 'Location', 'best');
@@ -238,4 +255,14 @@ function generate3DPlot(sc, sats, gs, duration_s, title_str, colors)
     %filename = [title_str, '.png'];
     %exportgraphics(fig, filename, 'Resolution', 300);
     %close(fig);
+end
+
+function alpha_sun_deg = approxSunRightAscensionDeg(t)
+    jd = juliandate(t);
+    n = jd - 2451545.0;
+    L = mod(280.460 + 0.9856474 * n, 360);
+    g = mod(357.528 + 0.9856003 * n, 360);
+    lambda = L + 1.915 * sind(g) + 0.020 * sind(2*g);
+    epsilon = 23.439 - 0.0000004 * n;
+    alpha_sun_deg = mod(atan2d(cosd(epsilon) * sind(lambda), cosd(lambda)), 360);
 end
