@@ -11,7 +11,7 @@ Antes de seleccionar la estación, se establecen los requisitos mínimos del seg
     \item Descargar los datos de observación generados por dos satélites en una semana de operación.
     \item Admitir un enlace de alta tasa para datos de carga de pago en banda X (8\,GHz), estándar en misiones de observación terrestre que requieren altas tasas de transmisión, con velocidades teóricas del orden de 150 Mbps para plataformas pequeñas \cite{kulu2025nanosats,iqspacecom_xlinkx_2024,endurosat_xband_2025}.
     \item Mantener un canal independiente de telemetría y telecomando (TM/TC) en banda UHF (437\,MHz) o S, de baja tasa ($\sim$9,6 kbps) y cobertura omnidireccional, para enviar comandos y recibir el estado del satélite incluso con actitud degradada \cite{endurosat_uhf_2025}.
-    \item Garantizar contactos frecuentes con una órbita SSO de 520 km e inclinación \(97,48^\circ\), preferentemente desde latitudes altas.
+    \item Garantizar contactos frecuentes con una órbita SSO de 630 km e inclinación \(97,91^\circ\), preferentemente desde latitudes altas.
     \item Disponer de margen de memoria a bordo para periodos sin contacto y para interrupciones operativas de la estación.
 \end{itemize}
 
@@ -39,7 +39,7 @@ Tras exponer estas opciones, se selecciona la Estación de Fairbanks porque sati
 \begin{itemize}
     \item \textbf{Enlace de alta tasa en banda X}: la estación cuenta con antenas de 26 metros y varias de 13 metros, todas ellas con capacidad en banda X, compatibles con la tasa de descarga que exige la carga de pago.
     \item \textbf{Canal independiente de TM/TC}: junto al enlace de datos en banda X, la estación opera de forma simultánea e independiente los canales UHF/S dedicados a telemetría y telecomando, conforme a la arquitectura habitual de las estaciones NOAA/NASA de esta red \cite{noaa_fairbanks_2023}.
-    \item \textbf{Contactos frecuentes con la órbita SSO}: su latitud elevada (64,84°N) maximiza el número de pasadas visibles de una órbita cuasi-polar como la seleccionada ($i=97,48^\circ$), concentrando el tiempo de contacto diario y, con ello, el tiempo de descarga disponible.
+    \item \textbf{Contactos frecuentes con la órbita SSO}: su latitud elevada (64,84°N) maximiza el número de pasadas visibles de una órbita cuasi-polar como la seleccionada ($i=97,91^\circ$), concentrando el tiempo de contacto diario y, con ello, el tiempo de descarga disponible.
     \item \textbf{Redundancia}: Fairbanks actúa como nodo central de la Red Ártica de Comunicaciones por Satélite, interconectada con otras estaciones de alta latitud (Svalbard, Noruega, y Kiruna, Suecia, de ESTRACK-ESA) y con Wallops (Virginia) y McMurdo (Antártida), de la Near Space Network de la NASA \cite{noaa_fairbanks_2023}.
 \end{itemize}
 
@@ -47,7 +47,7 @@ Tras exponer estas opciones, se selecciona la Estación de Fairbanks porque sati
 
 Con los canales de comunicaciones definidos en los requisitos del enlace, se analiza la capacidad efectiva de descarga de los datos de observación.
 
-Para validar la elección del emplazamiento, se realiza una simulación en MATLAB mediante un escenario de \textit{Aerospace Toolbox} que analiza el tiempo de contacto semanal de cada satélite con la estación de Tierra de forma individual. El análisis se ejecuta satélite por satélite: cada uno obtiene un tiempo de contacto semanal de aproximadamente \textbf{39\,810 segundos}, y al agregar los dos satélites de la constelación el resultado asciende a \textbf{79\,620 segundos, o 22,1 h, semanales}. La órbita SSO de 520 km se fijó en el análisis de misión, tras cruzar los resultados de cobertura ($T_{\text{rev}} < 7$ días), MTF y SNR, y buscar el mínimo de masa total dentro de esas restricciones.
+Para validar la elección del emplazamiento, se realiza una simulación en MATLAB mediante un escenario de \textit{Aerospace Toolbox} que analiza el tiempo de contacto semanal de cada satélite con la estación de Tierra. Para la órbita SSO seleccionada de 630 km, la constelación obtiene un tiempo de contacto semanal agregado de aproximadamente \textbf{37\,740 segundos, o 10,5 h}. La órbita SSO de 630 km se fijó en el análisis de misión, tras cruzar los resultados de cobertura efectiva ($T_{\text{rev,eff}} < 7$ días), MTF y SNR, y buscar el mínimo de masa total dentro de esas restricciones.
 
 \begin{figure}[H]
     \centering
@@ -163,7 +163,7 @@ $$
 
 \subsection{Generación de datos. Viabilidad de la estación. Memoria de a bordo}
 
-Una vez evaluada la velocidad de descarga, se debe conocer el volumen de datos que la constelación captura en una cobertura completa. El estudio de cobertura del capítulo 4 caracteriza la revisita con el método semianalítico de \cite{crisp2018semi}: propaga las trazas de la constelación con la deriva nodal por J2 y la rotación terrestre y, para una latitud representativa del territorio de interés, evalúa el mayor intervalo entre pasadas consecutivas del barrido nadir de anchura igual al \textit{swath}. De ese análisis se concluye que la órbita SSO de 520 km cubre la totalidad del territorio continental de EE. UU. con un tiempo de revisita $T_{\text{rev}} < 7$ días, cumpliendo el requisito impuesto por el cliente. Esa misma órbita de 520 km se fijó, ya en el análisis de misión, tras cruzar los resultados de cobertura, MTF y SNR y buscar el mínimo de masa total dentro de esas restricciones.
+Una vez evaluada la velocidad de descarga, se debe conocer el volumen de datos que la constelación captura en una cobertura completa. El estudio de cobertura del capítulo 4 caracteriza la revisita con el método semianalítico de \cite{crisp2018semi}: propaga las trazas de la constelación con la deriva nodal por J2 y la rotación terrestre y evalúa el mayor intervalo entre pasadas consecutivas sobre la latitud inferior de EE.\,UU. continental, \(25^\circ\)N. De ese análisis se concluye que la órbita SSO de 630 km cumple el requisito de revisita efectiva $T_{\text{rev,eff}} < 7$ días, incluyendo la penalización de nubosidad. Esa misma órbita de 630 km se fijó, ya en el análisis de misión, tras cruzar los resultados de cobertura, MTF y SNR y buscar el mínimo de masa total dentro de esas restricciones.
 
 A partir de esta configuración orbital ya validada, se cuantifica ahora el volumen de datos que genera una cobertura completa del territorio. El sensor, de tipo \textit{pushbroom}, captura franjas continuas de ancho igual al \textit{swath} a lo largo de la traza. Para cubrir completamente un territorio de área $A_{\text{objetivo}}$ con franjas de ancho $s$ y solape $\eta$ entre pasadas consecutivas, el área física barrida por el sensor es mayor que el área objetivo:
 
@@ -172,17 +172,17 @@ A_{\text{barrido}} = \frac{A_{\text{objetivo}}}{(1-\eta)\,\cos\gamma}
 \label{eq:area_barrido}
 \end{equation}
 
-donde $\gamma = |i - 90^\circ| \approx 7{,}48^\circ$ es el ángulo entre la traza y el meridiano para una órbita SSO de $i=97{,}48^\circ$. El factor $\cos\gamma \approx 0{,}99$ corrige el estiramiento de las franjas al cruzar los paralelos con cierta inclinación \cite{wertz1999smad}. Sobre esta área se aplica un margen operativo del 15\% para cubrir costa, islas y periferia de interés (sección 4.7). Asumiendo los siguientes parámetros:
+donde $\gamma = |i - 90^\circ| \approx 7{,}91^\circ$ es el ángulo entre la traza y el meridiano para una órbita SSO de $i=97{,}91^\circ$. El factor $\cos\gamma \approx 0{,}99$ corrige el estiramiento de las franjas al cruzar los paralelos con cierta inclinación \cite{wertz1999smad}. Sobre esta área se aplica un \textbf{margen del 15\%} para cubrir costa, islas y periferia de interés (sección 4.7). Asumiendo los siguientes parámetros:
 
 \begin{itemize}
 \item Número de bandas espectrales: $N_{\text{bandas}} = 3$
 \item Resolución espacial (GSD): $80$ metros
 \item Área continental de EE. UU.: $8\,080\,464$ km$^2$
 \item Solape mínimo entre pasadas: $\eta = 5\%$
-\item Ángulo traza-meridiano: $\gamma = 7{,}48^\circ$
-\item Margen operativo (costa, islas, periferia): $15\%$
+\item Ángulo traza-meridiano: $\gamma = 7{,}91^\circ$
+\item Margen (costa, islas, periferia): $15\%$
 \item Área barrida por el sensor en una cobertura:
-      $A_{\text{barrido}} = 8\,080\,464 \times 1{,}15 \times \frac{1}{0{,}95 \times \cos 7{,}48^\circ} \approx 9{,}87 \times 10^6$ km$^2$
+      $A_{\text{barrido}} = 8\,080\,464 \times 1{,}15 \times \frac{1}{0{,}95 \times \cos 7{,}91^\circ} \approx 9{,}88 \times 10^6$ km$^2$
 \item Bits por banda: $12$ bits
 \end{itemize}
 
@@ -190,7 +190,7 @@ El volumen de datos generado en una cobertura física completa es:
 
 \begin{equation}
 V_{\text{cobertura}} = \frac{N_{\text{bandas}} \times \text{bits}_{\text{banda}} \times A_{\text{barrido}} \times 10^6}{\text{GSD}^2 \times 8 \times 10^9}
- = \frac{3 \times 12 \times 9{,}87 \times 10^{12}}{80^2 \times 8 \times 10^9}
+ = \frac{3 \times 12 \times 9{,}88 \times 10^{12}}{80^2 \times 8 \times 10^9}
  = \boxed{6{,}94\ \text{GB}}
 \end{equation}
 
@@ -201,11 +201,11 @@ Con el volumen de datos y la velocidad real de descarga ya calculados, se evalú
 t_{\text{descarga}} = \frac{V_{\text{cobertura}}}{90\ \text{Mbps} \times \frac{1}{8}\ \text{MB/s}} = \frac{6{,}94\ \text{GB}}{11{,}25\ \text{MB/s}} = \frac{6940}{11{,}25} = \boxed{617\ \text{segundos}}
 \end{equation}
 
-Este volumen y este tiempo de descarga corresponden a la constelación completa; conviene no mezclarlos con la capacidad de contacto de un satélite individual. Cada satélite genera aproximadamente la mitad del volumen de una cobertura, $V_{\text{cobertura,sat}} \approx 3{,}47$ GB, y dispone de un tiempo de contacto semanal propio de aproximadamente 39\,810 segundos, obtenido en el apartado anterior. El tiempo de descarga de ese volumen individual es:
+Este volumen y este tiempo de descarga corresponden a la constelación completa; conviene no mezclarlos con la capacidad de contacto de un satélite individual. Cada satélite genera aproximadamente la mitad del volumen de una cobertura, $V_{\text{cobertura,sat}} \approx 3{,}47$ GB, y dispone de un tiempo de contacto semanal del orden de 18\,870 segundos si se reparte de forma simétrica el contacto agregado obtenido en la simulación. El tiempo de descarga de ese volumen individual es:
 $$
 t_{\text{descarga,sat}} = \frac{3470\ \text{MB}}{11{,}25\ \text{MB/s}} \approx \boxed{308\ \text{segundos}}
 $$
-valor despreciable frente a los 39\,810 segundos de contacto disponibles por satélite. A nivel de constelación, los 617 segundos de descarga total resultan igualmente despreciables frente a los 79\,620 segundos de contacto semanal conjunto, de modo que se verifica $t_{\text{descarga}} < t_{\text{contacto, semana}}$ tanto por satélite como para la constelación completa. Por tanto, la configuración propuesta es viable desde el punto de vista de la capacidad de descarga, con margen más que suficiente para absorber posibles interrupciones o ineficiencias del enlace.
+valor despreciable frente a los 18\,870 segundos de contacto semanales por satélite. A nivel de constelación, los 617 segundos de descarga total resultan igualmente despreciables frente a los 37\,740 segundos de contacto semanal conjunto, de modo que se verifica $t_{\text{descarga}} < t_{\text{contacto, semana}}$ tanto por satélite como para la constelación completa. Por tanto, la configuración propuesta es viable desde el punto de vista de la capacidad de descarga, con margen suficiente para absorber posibles interrupciones o ineficiencias del enlace.
 
 \subsubsection{Gestión de la memoria de a bordo}
 
