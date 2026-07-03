@@ -1,0 +1,72 @@
+% Configurar intérprete LaTeX por defecto
+set(groot, 'defaultTextInterpreter', 'latex');
+set(groot, 'defaultAxesTickLabelInterpreter', 'latex');
+set(groot, 'defaultLegendInterpreter', 'latex');
+
+% Configuración de la figura
+figure('Position', [100, 100, 1200, 400]);
+
+% Definición de bandas:
+% Banda S: 2-4 GHz
+t1 = 2e9;
+t2 = 4e9;
+
+% Banda X: 8-12 GHz
+x1 = 8e9;
+x2 = 12e9;
+
+% Banda del detector: equivalente a 0.76-2.3 µm (f = c / λ)
+c = 3e8; % velocidad de la luz
+detector_low = c / 2.3e-6;  % Frecuencia para 2.3 µm
+detector_high = c / 0.76e-6; % Frecuencia para 0.76 µm
+
+% Definimos posiciones verticales para cada banda
+pos_detector = 1;
+pos_banda_x = 2;
+pos_banda_s = 3;
+height = 0.8;
+
+% Crear el gráfico con escala logarítmica
+semilogx([1e9, 1e15], [0, 0], 'HandleVisibility', 'off'); % Línea invisible
+hold on;
+
+% Dibujar las bandas usando rectángulos 
+rectangle('Position', [t1, pos_banda_s, t2-t1, height], ...
+          'FaceColor', [0.12, 0.47, 0.71], 'EdgeColor', 'none');
+
+rectangle('Position', [x1, pos_banda_x, x2-x1, height], ...
+          'FaceColor', [1.0, 0.5, 0.05], 'EdgeColor', 'none');
+
+rectangle('Position', [detector_low, pos_detector, detector_high-detector_low, height], ...
+          'FaceColor', [0.17, 0.63, 0.17], 'EdgeColor', 'none');
+
+% Crear objetos dummy para la leyenda (puntos invisibles)
+h1 = plot(NaN, NaN, 's', 'MarkerSize', 15, 'MarkerFaceColor', [0.12, 0.47, 0.71], ...
+          'MarkerEdgeColor', 'none');
+h2 = plot(NaN, NaN, 's', 'MarkerSize', 15, 'MarkerFaceColor', [1.0, 0.5, 0.05], ...
+          'MarkerEdgeColor', 'none');
+h3 = plot(NaN, NaN, 's', 'MarkerSize', 15, 'MarkerFaceColor', [0.17, 0.63, 0.17], ...
+          'MarkerEdgeColor', 'none');
+
+% Configuración de etiquetas y título
+xlabel('Frecuencia (Hz, escala logaritmica)');
+ylabel('Componentes');
+
+% Configurar etiquetas del eje Y
+yticks([pos_detector + height/2, pos_banda_x + height/2, pos_banda_s + height/2]);
+yticklabels({'Detector', 'Banda X', 'Banda S'});
+
+title('Ubicacion de las Bandas S, X y Detector en el Espectro de Frecuencias');
+
+% Ajustar límites
+xlim([1e9, 1e15]);
+ylim([0.5, 4]);
+
+% Grid simple
+grid on;
+
+% Leyenda usando los objetos dummy
+legend([h1, h2, h3], {'Banda S (2-4 GHz)', 'Banda X (8-12 GHz)', 'Detector (0.76-2.3 $\mu$m)'}, ...
+       'Location', 'best');
+
+hold off;
