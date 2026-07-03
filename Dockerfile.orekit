@@ -1,0 +1,13 @@
+FROM mambaorg/micromamba:1.5.8
+
+COPY --chown=$MAMBA_USER:$MAMBA_USER python/environment-orekit.yml /tmp/environment.yml
+RUN micromamba install -y -n base -f /tmp/environment.yml && micromamba clean --all --yes
+
+WORKDIR /workspace
+COPY --chown=$MAMBA_USER:$MAMBA_USER . /workspace
+
+RUN python -m pip install --no-cache-dir -e "python[dev,notebook]"
+
+ENV EO_MISSION_RUN_OREKIT_TESTS=1
+
+CMD ["pytest", "python/tests"]

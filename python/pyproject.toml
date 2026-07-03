@@ -12,10 +12,15 @@ dependencies = [
     "scipy>=1.11",
     "pandas>=2.1",
     "matplotlib>=3.8",
+    "PyYAML>=6.0",
 ]
 
 [project.optional-dependencies]
 dev = ["pytest>=7.4", "pytest-cov"]
+notebook = ["jupyterlab", "ipykernel"]
+
+[project.scripts]
+eo-mission = "eo_mission.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

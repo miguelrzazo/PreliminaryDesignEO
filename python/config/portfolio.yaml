@@ -1,0 +1,102 @@
+mission:
+  altitudes_km: {start: 400, stop: 900, step: 25}
+  diameters_mm: {start: 40, stop: 260, step: 5}
+  swaths_km: {start: 20, stop: 260, step: 10}
+  gsd_m: [50, 60, 80]
+
+thresholds:
+  snr_min: 400
+  mtf_min: 0.25
+  revisit_days_max: 7
+
+coverage:
+  mode: target_lat_revisit
+  target_latitude_deg: 39.5
+  cloud_cover_fraction: 0.30
+  overlap_fraction: 0.0
+  cache_dir: .cache/orekit-coverage
+  parallel_workers: 1
+
+bands:
+  - id: Lambda1
+    wavelength_m: 1.61e-6
+    detector_ids: [capyork, chroma_d, saturn_visir_ir]
+  - id: Lambda2
+    wavelength_m: 2.01e-6
+    detector_ids: [capyork, chroma_d, saturn_visir_ir]
+  - id: Lambda3
+    wavelength_m: 0.76e-6
+    detector_ids: [saturn_visir_vis, chroma_d, cmos]
+
+detectors:
+  - id: capyork
+    name: CAPYORK
+    eta: 0.60
+    mtf_detector: 0.45
+    n_pixels: 1024
+    pixel_size_m: 15.0e-6
+  - id: chroma_d
+    name: CHROMA-D
+    eta: 0.80
+    mtf_detector: 0.40
+    n_pixels: 3000
+    pixel_size_m: 18.0e-6
+  - id: saturn_visir_ir
+    name: SATURN VISIR IR
+    eta: 0.60
+    mtf_detector: 0.45
+    n_pixels: 1000
+    pixel_size_m: 30.0e-6
+  - id: saturn_visir_vis
+    name: SATURN VISIR VIS
+    eta: 0.60
+    mtf_detector: 0.50
+    n_pixels: 1000
+    pixel_size_m: 30.0e-6
+  - id: cmos
+    name: CMOS
+    eta: 0.35
+    mtf_detector: 0.36
+    n_pixels: 512
+    pixel_size_m: 25.0e-6
+
+telescopes:
+  - id: refractive
+    name: Refractivo
+    mtf_alignment: 0.90
+    transmission: 0.80
+    obstruction_ratio: 0.0
+    fov_limit_deg: 4.0
+    max_refractive_diameter_mm: 90
+  - id: korsch
+    name: Korsch
+    mtf_alignment: 0.85
+    transmission: 0.65
+    obstruction_ratio: 0.2
+    fov_limit_deg: 6.0
+  - id: cassegrain
+    name: Cassegrain
+    mtf_alignment: 0.80
+    transmission: 0.70
+    obstruction_ratio: 0.2
+    fov_limit_deg: 5.0
+  - id: tma
+    name: TMA
+    mtf_alignment: 0.70
+    transmission: 0.60
+    obstruction_ratio: 0.0
+    fov_limit_deg: 8.0
+
+constellations:
+  - id: 1sat_1tel
+    satellites: 1
+    telescopes_per_satellite: 1
+  - id: 1sat_2tel
+    satellites: 1
+    telescopes_per_satellite: 2
+  - id: 2sat_1tel
+    satellites: 2
+    telescopes_per_satellite: 1
+  - id: 2sat_2tel
+    satellites: 2
+    telescopes_per_satellite: 2

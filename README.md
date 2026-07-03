@@ -40,6 +40,50 @@ Coverage revisit-time calculations use the **RevisitTime toolkit** by Crisp & Li
 Open MATLAB, navigate to the desired model directory, and run the `master*.m` script.
 Results (PNG heatmaps, CSV tables) are saved to the model's output subdirectories.
 
+## Python/Orekit Portfolio Pipeline
+
+The Python package in `python/` provides a YAML-driven portfolio workflow for
+the same design trades:
+
+- SNR and MTF tensors over GSD, band, detector, telescope, altitude, and aperture.
+- Coverage/revisit tensors with `target_lat_revisit` as the default comparable mode.
+- Optional `usa_grid_coverage` mode for small validation or demonstration grids.
+- Dry-mass tensors and ranked feasible solution tables by GSD.
+- CLI-generated heatmaps for SNR, MTF, coverage, and feasible regions.
+
+Run locally for the analytical path:
+
+```bash
+cd python
+python -m pip install -e ".[dev]"
+eo-mission run --config config/portfolio.yaml --output-dir output/python-orekit
+eo-mission export --output-dir output/python-orekit --path output/python-orekit/top_solutions.csv
+```
+
+Generated artifacts are written under the selected output directory:
+
+- `tensors/*.npz`
+- `tables/ranked_solutions.csv`
+- `tables/per_gsd/*.csv`
+- `heatmaps/*.png`
+
+The report notebook at `python/notebooks/portfolio_report.ipynb` reads those
+saved artifacts and summarizes the ranked solutions without duplicating pipeline
+logic.
+
+Use Docker for the reproducible Orekit runtime and integration tests:
+
+```bash
+docker build -f Dockerfile.orekit -t preliminary-design-eo-orekit .
+docker run --rm preliminary-design-eo-orekit
+```
+
+To run the pipeline with Orekit JVM initialization inside the container:
+
+```bash
+docker run --rm -v "$PWD:/workspace" preliminary-design-eo-orekit \
+  eo-mission run --orekit --config python/config/portfolio.yaml --output-dir output/python-orekit
+```
+
 ---
 Date: 11/05/2026
-Also a version refactored in Python, improving some functions on MATLAB as well using Claude Code, just for fun

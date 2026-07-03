@@ -14,6 +14,9 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 from typing import Sequence
 
+from .config import PipelineConfig
+from .tensor import LabeledTensor, as_array
+
 
 # ── Physical constants ─────────────────────────────────────────────────────────
 _H_PLANCK    = 6.626e-34   # J·s
@@ -108,6 +111,31 @@ def compute_snr(
     index   = pd.Index(h_arr, name="altitude_km")
     columns = pd.Index(d_arr, name="diameter_mm")
     return pd.DataFrame(snr, index=index, columns=columns)
+
+
+def snr_array(
+    lambda_c: float,
+    pixel_size: float,
+    eta: float,
+    tau: float,
+    gsd: float,
+    r_obs: float,
+    altitudes: Sequence[float],
+    diameters: Sequence[float],
+    snr_req: float = 400.0,
+) -> np.ndarray:
+    """Compute SNR as a plain altitude x diameter array."""
+    return compute_snr(
+        lambda_c=lambda_c,
+        pixel_size=pixel_size,
+        eta=eta,
+        tau=tau,
+        gsd=gsd,
+        r_obs=r_obs,
+        altitudes=altitudes,
+        diameters=diameters,
+        snr_req=snr_req,
+    ).to_numpy()
 
 
 def _otf_obscured(X: float, R: float) -> float:
@@ -229,6 +257,96 @@ def compute_mtf(
     index   = pd.Index(h_arr, name="altitude_km")
     columns = pd.Index(d_arr, name="diameter_mm")
     return pd.DataFrame(result, index=index, columns=columns)
+
+
+def mtf_array(
+    lambda_: float,
+    pixel_size: float,
+    mtf_detector: float,
+    mtf_alignment: float,
+    gsd: float,
+    r_obs: float,
+    altitudes: Sequence[float],
+    diameters: Sequence[float],
+    mtf_req: float = 0.25,
+) -> np.ndarray:
+    """Compute MTF as a plain altitude x diameter array."""
+    return compute_mtf(
+        lambda_=lambda_,
+        pixel_size=pixel_size,
+        mtf_detector=mtf_detector,
+        mtf_alignment=mtf_alignment,
+        gsd=gsd,
+        r_obs=r_obs,
+        altitudes=altitudes,
+        diameters=diameters,
+        mtf_req=mtf_req,
+    ).to_numpy()
+
+
+def compute_optics_tensors(config: PipelineConfig) -> tuple[LabeledTensor, LabeledTensor]:
+    """Compute SNR and MTF tensors for all configured optical combinations.
+
+    Axes are ``gsd, band, detector, telescope, altitude, diameter``. Cells for
+    detector/band pairs not present in the YAML remain ``NaN``.
+    """
+    gsd = as_array(config.mission.gsd_m)
+    altitudes = as_array(config.mission.altitudes_km)
+    diameters = as_array(config.mission.diameters_mm)
+    bands = tuple(band.id for band in config.bands)
+    detectors = tuple(det.id for det in config.detectors)
+    telescopes = tuple(tel.id for tel in config.telescopes)
+    shape = (
+        len(gsd),
+        len(bands),
+        len(detectors),
+        len(telescopes),
+        len(altitudes),
+        len(diameters),
+    )
+    snr = np.full(shape, np.nan, dtype=float)
+    mtf = np.full(shape, np.nan, dtype=float)
+    detector_index = {det.id: i for i, det in enumerate(config.detectors)}
+
+    for g_i, gsd_m in enumerate(gsd):
+        for b_i, band in enumerate(config.bands):
+            for det_id in band.detector_ids:
+                det = config.detector_by_id[det_id]
+                d_i = detector_index[det_id]
+                for t_i, tel in enumerate(config.telescopes):
+                    snr[g_i, b_i, d_i, t_i] = snr_array(
+                        lambda_c=band.wavelength_m,
+                        pixel_size=det.pixel_size_m,
+                        eta=det.eta,
+                        tau=tel.transmission,
+                        gsd=float(gsd_m),
+                        r_obs=tel.obstruction_ratio,
+                        altitudes=altitudes,
+                        diameters=diameters,
+                        snr_req=config.thresholds.snr_min,
+                    )
+                    mtf[g_i, b_i, d_i, t_i] = mtf_array(
+                        lambda_=band.wavelength_m,
+                        pixel_size=det.pixel_size_m,
+                        mtf_detector=det.mtf_detector,
+                        mtf_alignment=tel.mtf_alignment,
+                        gsd=float(gsd_m),
+                        r_obs=tel.obstruction_ratio,
+                        altitudes=altitudes,
+                        diameters=diameters,
+                        mtf_req=config.thresholds.mtf_min,
+                    )
+
+    coords = {
+        "gsd": gsd,
+        "band": np.asarray(bands, dtype=object),
+        "detector": np.asarray(detectors, dtype=object),
+        "telescope": np.asarray(telescopes, dtype=object),
+        "altitude": altitudes,
+        "diameter": diameters,
+    }
+    axes = ("gsd", "band", "detector", "telescope", "altitude", "diameter")
+    return LabeledTensor(snr, axes, coords), LabeledTensor(mtf, axes, coords)
 
 
 def plot_heatmap(

@@ -9,6 +9,9 @@ import pandas as pd
 from scipy.integrate import solve_ivp
 from typing import Sequence
 
+from .config import PipelineConfig
+from .tensor import LabeledTensor, as_array
+
 # ── Reference instrument data (from calcularMasaSeca.m) ───────────────────────
 _TM       = {"aperture": 400.0, "length": 1.0, "weight": 240.0, "power": 280.0}
 _SEOSAT   = {"aperture": 250.0, "length": 1.0, "weight": 100.0, "power": 100.0}
@@ -117,6 +120,35 @@ def compute_dry_mass(
         "Diametro_pupila", "Longitud_media", "Sup_media",
         "Peso_medio", "Volumen_medio", "Potencia_media", "Masa_seca",
     ])
+
+
+def dry_mass_array(diameters_mm: Sequence[float], n_telescopes: int = 1) -> np.ndarray:
+    """Return dry mass in kg for each configured diameter."""
+    return compute_dry_mass(diameters_mm, n_telescopes=n_telescopes)["Masa_seca"].to_numpy()
+
+
+def compute_mass_tensor(config: PipelineConfig) -> LabeledTensor:
+    """Compute dry mass tensor over constellation and diameter.
+
+    The mission ranking uses this as the fast portfolio-level mass proxy. The
+    slower station-keeping fuel model remains available through
+    ``compute_total_mass`` for detailed follow-up on selected candidates.
+    """
+    diameters = as_array(config.mission.diameters_mm)
+    values = np.full((len(config.constellations), len(diameters)), np.nan, dtype=float)
+    for c_i, constellation in enumerate(config.constellations):
+        per_satellite = dry_mass_array(
+            diameters, n_telescopes=constellation.telescopes_per_satellite
+        )
+        values[c_i] = per_satellite * constellation.satellites
+    return LabeledTensor(
+        values=values,
+        axes=("constellation", "diameter"),
+        coords={
+            "constellation": np.asarray([c.id for c in config.constellations], dtype=object),
+            "diameter": diameters,
+        },
+    )
 
 
 def compute_total_mass(

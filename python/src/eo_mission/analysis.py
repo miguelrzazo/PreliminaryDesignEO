@@ -8,6 +8,9 @@ import numpy as np
 import pandas as pd
 from typing import Sequence
 
+from .config import PipelineConfig
+from .tensor import LabeledTensor
+
 
 def cross_data_analysis(
     snr_df: pd.DataFrame,
@@ -151,3 +154,83 @@ def optimum_configuration(
         "per_sat_mass_kg": best_mass / best_n_sat if best_n_sat else np.nan,
         "row":             best_row,
     }
+
+
+def rank_feasible_solutions(
+    config: PipelineConfig,
+    snr: LabeledTensor,
+    mtf: LabeledTensor,
+    coverage: LabeledTensor,
+    mass: LabeledTensor,
+) -> pd.DataFrame:
+    """Build a ranked table of feasible portfolio solutions.
+
+    A row is feasible when SNR, MTF, coverage, telescope aperture constraints and
+    the configured thresholds are all satisfied. Ranking prefers lower total dry
+    mass, then lower revisit days, then lower altitude.
+    """
+    rows: list[dict] = []
+    detector_index = {det_id: i for i, det_id in enumerate(snr.coord("detector"))}
+    telescope_index = {tel_id: i for i, tel_id in enumerate(snr.coord("telescope"))}
+    constellation_index = {c_id: i for i, c_id in enumerate(coverage.coord("constellation"))}
+
+    for g_i, gsd in enumerate(snr.coord("gsd")):
+        for b_i, band in enumerate(config.bands):
+            for det_id in band.detector_ids:
+                d_i = detector_index[det_id]
+                detector = config.detector_by_id[det_id]
+                for tel_id, t_i in telescope_index.items():
+                    telescope = config.telescope_by_id[str(tel_id)]
+                    for h_i, altitude in enumerate(snr.coord("altitude")):
+                        for dia_i, diameter in enumerate(snr.coord("diameter")):
+                            snr_value = snr.values[g_i, b_i, d_i, t_i, h_i, dia_i]
+                            mtf_value = mtf.values[g_i, b_i, d_i, t_i, h_i, dia_i]
+                            if not (np.isfinite(snr_value) and np.isfinite(mtf_value)):
+                                continue
+                            if telescope.max_refractive_diameter_mm is not None and diameter > telescope.max_refractive_diameter_mm:
+                                continue
+
+                            for const_id, c_i in constellation_index.items():
+                                cov_row = coverage.values[g_i, c_i, t_i, d_i, h_i]
+                                if not np.isfinite(cov_row).any():
+                                    continue
+                                best_swath_i = int(np.nanargmin(cov_row))
+                                revisit = float(cov_row[best_swath_i])
+                                total_mass = float(mass.values[c_i, dia_i])
+                                if not np.isfinite(total_mass):
+                                    continue
+                                rows.append(
+                                    {
+                                        "gsd_m": float(gsd),
+                                        "band": band.id,
+                                        "detector": detector.id,
+                                        "detector_name": detector.name,
+                                        "telescope": telescope.id,
+                                        "telescope_name": telescope.name,
+                                        "constellation": str(const_id),
+                                        "altitude_km": float(altitude),
+                                        "diameter_mm": float(diameter),
+                                        "swath_km": float(coverage.coord("swath")[best_swath_i]),
+                                        "snr": float(snr_value),
+                                        "mtf": float(mtf_value),
+                                        "revisit_days": revisit,
+                                        "total_dry_mass_kg": total_mass,
+                                    }
+                                )
+
+    df = pd.DataFrame(rows)
+    if df.empty:
+        return df
+    df = df.sort_values(
+        ["gsd_m", "total_dry_mass_kg", "revisit_days", "altitude_km", "diameter_mm"],
+        kind="mergesort",
+    ).reset_index(drop=True)
+    df["rank_within_gsd"] = df.groupby("gsd_m").cumcount() + 1
+    return df
+
+
+def best_solution_per_gsd(ranked: pd.DataFrame) -> pd.DataFrame:
+    """Return the first ranked feasible row for each GSD."""
+    if ranked.empty:
+        return ranked.copy()
+    return ranked.sort_values(["gsd_m", "rank_within_gsd"]).groupby("gsd_m", as_index=False).first()

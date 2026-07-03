@@ -39,3 +39,7 @@ __pycache__/
 dist/
 build/
 .pytest_cache/
+.ipynb_checkpoints/
+.cache/
+python/output/
+output/
