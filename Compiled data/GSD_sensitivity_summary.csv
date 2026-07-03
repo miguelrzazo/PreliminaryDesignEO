@@ -1,0 +1,11 @@
+GSD_m,Num_Satelites,Num_Telescopios,Detectores_Necesarios,Altura_km,Diametro_Pupila_mm,Swath_Requerido_km,Masa_Seca_Satelite_kg,Masa_Combustible_kg,Masa_Total_Constelacion_kg,Tipo_Telescopio
+30,2,2,3,520,76,170,26.733600,3.133580,59.734360,Refractivo
+40,2,2,3,520,57,170,11.278237,1.840548,26.237572,Refractivo
+50,2,2,2,520,45,170,5.774458,1.218140,13.985195,Refractivo
+60,2,2,2,520,38,170,3.341700,0.869439,8.422278,Refractivo
+70,2,2,2,520,32,170,2.104394,0.653748,5.516285,Refractivo
+80,2,2,2,520,28,170,1.409780,0.510676,3.840912,Refractivo
+90,2,2,1,520,25,170,0.990133,0.410706,2.801679,Refractivo
+100,2,2,1,520,23,170,0.721807,0.337983,2.119581,Refractivo
+110,2,2,1,520,21,170,0.542304,0.283357,1.651322,Refractivo
+120,2,2,1,520,19,170,0.417712,0.241233,1.317892,Refractivo
