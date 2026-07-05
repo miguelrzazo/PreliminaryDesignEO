@@ -1,0 +1,52 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# LaTeX build artifacts
+*.aux
+*.blg
+*.fls
+*.fdb_latexmk
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.mtc
+*.mtc[0-9]
+*.mtc[0-9][0-9]
+*.synctex.gz
+*.bbl
+*.bcf
+*.maf
+*.run.xml
+
+# MATLAB generated output directories (simulation results)
+# Reference outputs live in Compiled data/; raw model outputs are not tracked
+MATLAB_Code/SNR/
+MATLAB_Code/MTF/
+MATLAB_Code/Coverage/
+MATLAB_Code/Masa_seca/
+MATLAB_Code/Masa_total/
+MATLAB_Code/HvsDmin/
+MATLAB_Code/OptimumConfigs/
+MATLAB_Code/Compiled data/
+MATLAB_Code/*/SNR/
+MATLAB_Code/*/MTF/
+MATLAB_Code/*/Coverage/
+MATLAB_Code/*/Masa_seca/
+MATLAB_Code/*/Masa_total/
+MATLAB_Code/*/HvsDmin/
+MATLAB_Code/*/OptimumConfigs/
+
+# LaTeX minted cache
+*.data.minted
+
+# Python build artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.pytest_cache/
