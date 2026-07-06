@@ -72,10 +72,9 @@ def test_snr_lambda1_matches_reference(det_idx, tel_idx):
     py_v  = py.values[both_valid]
     ref_v = ref.values[both_valid]
     rel_err = np.abs((py_v - ref_v) / ref_v)
-    # NOTE: reference CSVs were generated with an older code version (different
-    # parameter values); current Python matches the current MATLAB formula exactly.
-    # Tolerance set to 15% to catch regressions while allowing known drift.
-    assert rel_err.max() < 0.15, (
+    # The 0.9 calibration margin (matching SNRfunction.m) shifts SNR values
+    # ~10% below the older reference CSVs; allow generous drift here.
+    assert rel_err.max() < 0.25, (
         f"SNR Lambda1 Det{det_idx} Tel{tel_idx}: max relative error {rel_err.max():.4%}"
     )
 
@@ -136,3 +135,33 @@ def test_mtf_monotone_with_diameter():
     # (smaller pupil → worse diffraction → lower MTF)
     if valid.sum() > 1:
         assert np.all(np.diff(row[valid]) >= -1e-9)
+
+
+# ── SNR 0.9 calibration margin (matches SNRfunction.m) ─────────────────────────
+
+def test_snr_has_0p9_margin():
+    """The computed SNR must equal 0.9 * Ne / N_total (the MATLAB margin)."""
+    import eo_mission.optics as optics
+
+    alts = np.array([700.0])
+    diams = np.array([200.0])
+    df = compute_snr(
+        lambda_c=1.61e-6, pixel_size=15e-6, eta=0.6, tau=0.8,
+        gsd=80.0, r_obs=0.0, altitudes=alts, diameters=diams, snr_req=0.0,
+    )
+    snr = float(df.iloc[0, 0])
+
+    # Reconstruct Ne/N_total from the same module constants, without the margin.
+    h_m = alts * 1e3
+    focal = (15e-6 * h_m) / 80.0
+    v = np.sqrt(optics._MU_EARTH / (optics._R_EARTH + h_m))
+    t_int = 80.0 / v
+    D_eff = np.sqrt((diams[0] / 1e3) ** 2 * (1 - 0.0**2))
+    f_over_D = focal[0] / D_eff
+    irradiance = (np.pi * 0.8 * optics._BANDWIDTH_M * optics._RAD_REF) / (1 + 4 * f_over_D**2)
+    Ne = (irradiance * (15e-6) ** 2 * 0.6 * 1.61e-6 * optics._TDI * t_int[0]) / (
+        optics._H_PLANCK * optics._C_LIGHT
+    )
+    N_total = np.sqrt(optics._N_FIXED_SQ + Ne)
+    marginless = Ne / N_total
+    assert snr == pytest.approx(0.9 * marginless, rel=1e-6)
