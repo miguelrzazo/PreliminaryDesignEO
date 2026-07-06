@@ -26,7 +26,7 @@ def run_pipeline(
     config_path: str | Path,
     output_dir: str | Path,
     *,
-    initialize_orekit: bool = False,
+    initialize_orekit: bool = True,
 ) -> PipelineArtifacts:
     config: PipelineConfig = load_config(config_path)
     out = Path(output_dir)
