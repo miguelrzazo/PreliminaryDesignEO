@@ -1,8 +1,8 @@
-"""Tests for mass, coverage, electrical and analysis modules."""
+"""Tests for mass, electrical and analysis modules."""
 import numpy as np
+import pandas as pd
 import pytest
 from eo_mission.mass import compute_dry_mass, compute_total_mass
-from eo_mission.coverage import compute_coverage
 from eo_mission.electrical import compute_power_budget
 from eo_mission.analysis import cross_data_analysis, optimum_configuration
 from eo_mission.optics import compute_snr, compute_mtf
@@ -41,36 +41,7 @@ def test_total_mass_greater_than_dry():
     assert (valid["Masa_total"] >= valid["Masa_seca"]).all()
 
 
-# ── coverage.py ───────────────────────────────────────────────────────────────
-
-def test_coverage_nan_when_fov_exceeded():
-    """Coverage must be NaN when swath requires FOV beyond limit."""
-    df = compute_coverage(
-        altitudes_km=[500], swaths_km=[500],
-        gsd=80, n_pix=1000, fov_limit_deg=2.0,
-    )
-    assert df.isna().all().all(), "Wide swath with tight FOV limit must give NaN"
-
-
-def test_coverage_decreases_with_more_satellites():
-    """More satellites → fewer revisit days."""
-    kw = dict(altitudes_km=[700], swaths_km=[200], gsd=80, n_pix=2000,
-              fov_limit_deg=10.0, cov_req=100.0)
-    df1 = compute_coverage(**kw, n_sat=1)
-    df2 = compute_coverage(**kw, n_sat=2)
-    v1, v2 = df1.iloc[0, 0], df2.iloc[0, 0]
-    if not (np.isnan(v1) or np.isnan(v2)):
-        assert v2 < v1, "2-sat constellation must have shorter revisit time"
-
-
-def test_coverage_max_det_swath_limit():
-    """Swath exceeding detector limit must be NaN."""
-    df = compute_coverage(
-        altitudes_km=[600], swaths_km=[10000],
-        gsd=80, n_pix=1000, fov_limit_deg=30.0,
-        detector_type=1,
-    )
-    assert df.isna().all().all()
+# ── coverage.py (analytical tests removed; see test_orekit_integration.py) ──
 
 
 # ── electrical.py ─────────────────────────────────────────────────────────────
@@ -114,9 +85,14 @@ def _make_optics_dfs():
 
 def test_cross_data_returns_dataframe():
     snr_df, mtf_df, alts, diams = _make_optics_dfs()
-    from eo_mission.coverage import compute_coverage
     swaths = np.arange(10, 200, 10, dtype=float)
-    cov_df = compute_coverage(alts, swaths, 50, 1024, 10.0, cov_req=100.0)
+    # Synthetic coverage DataFrame (altitude × swath) with a feasible band of
+    # swaths at every altitude; the analytical compute_coverage() was removed
+    # so cross_data_analysis is exercised here without an Orekit JVM.
+    feasible = (swaths[None, :] >= 60) & (swaths[None, :] <= 150)
+    cov = np.where(np.broadcast_to(feasible, (len(alts), len(swaths))), 3.0, np.nan)
+    cov_df = pd.DataFrame(cov, index=pd.Index(alts, name="altitude_km"),
+                          columns=pd.Index(swaths, name="swath_km"))
     result = cross_data_analysis(snr_df, mtf_df, cov_df, diams, alts, 10.0, swaths)
     assert "Dmin_mm" in result.columns
     assert len(result) == len(alts)
@@ -124,7 +100,6 @@ def test_cross_data_returns_dataframe():
 
 def test_optimum_configuration_finds_minimum():
     """optimum_configuration must pick the key with the lowest total mass."""
-    import pandas as pd
     frames = {
         "1sat_1tel/det1/tel1": pd.DataFrame({"Masa_total": [10.0, 20.0]}),
         "1sat_1tel/det1/tel2": pd.DataFrame({"Masa_total": [5.0, 15.0]}),
