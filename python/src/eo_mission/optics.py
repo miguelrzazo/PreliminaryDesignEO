@@ -102,9 +102,10 @@ def compute_snr(
     pixel_area = pixel_size**2
     Ne = (irradiance * pixel_area * eta * lambda_c * _TDI * t_int[:, None]) / (_H_PLANCK * _C_LIGHT)
 
-    # Total noise and SNR
+    # Total noise and SNR. The 0.9 calibration margin matches the MATLAB
+    # reference (SNRfunction.m: SNR_value = 0.9 * Ne / N_total).
     N_total = np.sqrt(_N_FIXED_SQ + Ne)
-    snr     = Ne / N_total
+    snr     = 0.9 * Ne / N_total
 
     snr[snr < snr_req] = np.nan
 
