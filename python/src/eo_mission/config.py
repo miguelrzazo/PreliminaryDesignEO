@@ -61,10 +61,20 @@ class Thresholds:
 
 @dataclass(frozen=True)
 class CoverageSettings:
-    mode: str = "target_lat_revisit"
+    mode: str = "conus_grid"
     target_latitude_deg: float = 39.5
     cloud_cover_fraction: float = 0.30
+    cloud_persistence: float = 0.5
     overlap_fraction: float = 0.0
+    mc_samples: int = 200
+    mc_seed: int = 12345
+    revisit_percentile: float = 95.0
+    propagation_days: int = 30
+    grid_lat_start: float = 25.0
+    grid_lat_stop: float = 49.0
+    grid_lat_step: float = 4.0
+    grid_lon_samples: int = 5
+    us_width_km: float = 4100.0
     cache_dir: str = ".cache/orekit-coverage"
     orekit_data_path: str | None = None
     parallel_workers: int = 1
@@ -166,10 +176,20 @@ def load_config(path: str | Path) -> PipelineConfig:
     )
     coverage_raw = raw.get("coverage", {})
     coverage = CoverageSettings(
-        mode=str(coverage_raw.get("mode", "target_lat_revisit")),
+        mode=str(coverage_raw.get("mode", "conus_grid")),
         target_latitude_deg=float(coverage_raw.get("target_latitude_deg", 39.5)),
         cloud_cover_fraction=float(coverage_raw.get("cloud_cover_fraction", 0.30)),
+        cloud_persistence=float(coverage_raw.get("cloud_persistence", 0.5)),
         overlap_fraction=float(coverage_raw.get("overlap_fraction", 0.0)),
+        mc_samples=int(coverage_raw.get("mc_samples", 200)),
+        mc_seed=int(coverage_raw.get("mc_seed", 12345)),
+        revisit_percentile=float(coverage_raw.get("revisit_percentile", 95.0)),
+        propagation_days=int(coverage_raw.get("propagation_days", 30)),
+        grid_lat_start=float(coverage_raw.get("grid_lat_start", 25.0)),
+        grid_lat_stop=float(coverage_raw.get("grid_lat_stop", 49.0)),
+        grid_lat_step=float(coverage_raw.get("grid_lat_step", 4.0)),
+        grid_lon_samples=int(coverage_raw.get("grid_lon_samples", 5)),
+        us_width_km=float(coverage_raw.get("us_width_km", 4100.0)),
         cache_dir=str(coverage_raw.get("cache_dir", ".cache/orekit-coverage")),
         orekit_data_path=coverage_raw.get("orekit_data_path"),
         parallel_workers=int(coverage_raw.get("parallel_workers", 1)),

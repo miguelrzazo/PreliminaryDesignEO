@@ -10,10 +10,20 @@ thresholds:
   revisit_days_max: 7
 
 coverage:
-  mode: target_lat_revisit
+  mode: conus_grid
   target_latitude_deg: 39.5
   cloud_cover_fraction: 0.30
+  cloud_persistence: 0.5
   overlap_fraction: 0.0
+  mc_samples: 200
+  mc_seed: 12345
+  revisit_percentile: 95
+  propagation_days: 30
+  grid_lat_start: 25.0
+  grid_lat_stop: 49.0
+  grid_lat_step: 4.0
+  grid_lon_samples: 5
+  us_width_km: 4100.0
   cache_dir: .cache/orekit-coverage
   parallel_workers: 1
 
