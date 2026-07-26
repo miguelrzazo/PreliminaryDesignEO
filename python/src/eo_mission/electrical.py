@@ -6,8 +6,8 @@ from __future__ import annotations
 
 import numpy as np
 
-_R_EARTH   = 6_371.0   # km
-_MU_EARTH  = 398_600.0 # km³/s²
+_R_EARTH   = 6_371_000.0   # m
+_MU_EARTH  = 3.986004418e14 # m³/s²
 _IRRADIANCE = 1_366.0  # W/m²
 
 
@@ -73,7 +73,7 @@ def compute_power_budget(
         orbital_period_s      — orbital period (s)
         max_dod_observed      — maximum DoD observed in simulation
     """
-    r_orb = _R_EARTH + altitude_km               # km
+    r_orb = _R_EARTH + altitude_km * 1000.0          # m
     T_orb = 2 * np.pi * np.sqrt(r_orb**3 / _MU_EARTH)  # s
 
     # Eclipse fraction by LTAN
