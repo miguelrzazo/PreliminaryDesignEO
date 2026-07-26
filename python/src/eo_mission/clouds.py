@@ -236,18 +236,18 @@ def revisit_tiling_95p(
 ) -> tuple[float, float]:
     """Orbit-level tiling revisit under persistent clouds (95th percentile).
 
-    For each latitude band the revisit (days) is the time to accumulate
-    ``passes_needed`` *clear* usable passes, where ``usable_passes_per_day`` is
-    the daylight crossing rate of the constellation (computed from the Orekit
-    orbital period). The clear-pass realisation is driven by a Markov-persistent
-    daily cloud chain: a day either yields its full usable passes (clear) or
-    none (cloudy). The reported revisit is the worst-band value at the requested
-    percentile across Monte-Carlo runs; bands flagged unreachable
-    (``reached_per_band`` False) force the horizon as the revisit.
+    The revisit (days) is computed from the single worst-band aggregate:
+    the maximum ``passes_needed`` across all latitude bands divided by the
+    clear-day pass rate. The clear-pass realisation is driven by a
+    Markov-persistent daily cloud chain: a day either yields its full usable
+    passes (clear) or none (cloudy). The reported revisit is the worst-band
+    aggregate at the requested percentile across Monte-Carlo runs; bands
+    flagged unreachable (``reached_per_band`` False) force the horizon as
+    the revisit.
 
-    This keeps the MATLAB ``_US_WIDTH / eff_swath`` tiling count but derives the
-    cadence from the real Orekit period and replaces ``1/(1-cloud)`` with the
-    Markov Monte-Carlo at a configurable confidence level.
+    This keeps the MATLAB ``_US_WIDTH / eff_swath`` tiling count but derives
+    the cadence from the real Orekit period and replaces ``1/(1-cloud)``
+    with the Markov Monte-Carlo at a configurable confidence level.
     """
     if not passes_needed_per_band or usable_passes_per_day <= 0:
         return float("nan"), float("nan")
