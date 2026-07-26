@@ -8,8 +8,10 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
-import matplotlib
-matplotlib.use("Agg")
+import os
+import matplotlib as mpl
+if not os.environ.get("DISPLAY"):
+    mpl.use("Agg")
 import matplotlib.pyplot as plt
 from pathlib import Path
 from typing import Sequence
@@ -28,6 +30,10 @@ _TDI         = 1           # TDI stages
 _RAD_REF     = 100         # W/(m²·sr·μm)  reference radiance
 
 # ── Noise floor (electrons RMS) ────────────────────────────────────────────────
+# Source: RAD iTEC 2020 typical values for CMOS 4T pixel (see also
+#   Janesick, "Photon Transfer", SPIE Press, 2007, §4.2–4.5). Dark current
+#   assumes moderate cooling (≤−20 °C focal plane temperature). Read noise
+#   is typical for pinned-photodiode CMOS. Quantisation assumes 12-bit ADC.
 _NOISE = {
     "dark":    50,   # thermal dark current
     "read":   100,   # readout electronics
