@@ -47,6 +47,14 @@ _MU_EARTH = 3.986004418e14            # Earth gravitational parameter [m³/s²]
 _J2 = 1.082629989052e-3               # Earth J2
 _SSO_NODAL_RATE = (360.0 / (365.2421897 * 24.0 * 3600.0)) * (math.pi / 180.0)
 
+# ── CONUS bounding box (latitude bands, longitude span) ───────────────────────
+CONUS_BOUNDS = {
+    "lat_min": 24.5,
+    "lat_max": 49.0,
+    "lon_min": -125.0,
+    "lon_max": -66.9,
+}
+
 
 def sso_inclination_deg(altitude_km: float) -> float:
     """Sun-synchronous inclination for the given altitude, or NaN if infeasible.
@@ -152,7 +160,7 @@ class OrekitCoverageAdapter:
         lats = np.arange(
             cfg.grid_lat_start, cfg.grid_lat_stop + cfg.grid_lat_step / 2.0, cfg.grid_lat_step
         )
-        lons = np.linspace(-120.0, -70.0, max(3, int(cfg.grid_lon_samples)))
+        lons = np.linspace(CONUS_BOUNDS["lon_min"], CONUS_BOUNDS["lon_max"], max(3, int(cfg.grid_lon_samples)))
         bands: dict[float, list[tuple[float, np.ndarray]]] = {}
         for lat in lats:
             bands[float(lat)] = [
@@ -357,6 +365,11 @@ class OrekitCoverageAdapter:
         gamma_max = _gamma_max_rad(altitude_km, half_fov_deg)
 
         t_orb = self._orbital_period_s(altitude_km)
+        # ── First-order pass-count approximation ──────────────────────────────
+        # This heuristic assumes uniform daily pass distribution and does not
+        # account for orbital precession over the mission lifetime. It is suitable
+        # for initial sizing; use the full Orekit-based reachability analysis
+        # (below) for detailed trade studies.
         # ~2 latitude crossings per orbit × daylight factor 0.5 ⇒ 1 usable band
         # pass per orbit; scaled by the constellation size.
         usable_passes_per_day = max(1.0, round(86400.0 / t_orb)) * max(1, n_satellites)
