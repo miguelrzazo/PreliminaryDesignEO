@@ -1,0 +1,31 @@
+=== RESUMEN DE ANALISIS CRUZADO ===
+
+Configuracion: 1sat_1tel (1 satelite(s), 1 telescopio(s) por satelite)
+
+Criterios aplicados para Dmin:
+- MTF (Lambda2) >= 0.25
+- SNR (Lambda3) >= 400
+- Dias de cobertura <= 7
+- FOV actual <= Limite FOV del telescopio
+- Para telescopio Refractivo (si idx=1): Diametro <= 90mm
+
+Resultados (Dmin en mm) por detector y telescopio:
+
+Detector 1:
+  Refractivo: No se encontraron combinaciones validas que cumplan todos los criterios.
+  Korsch: No se encontraron combinaciones validas que cumplan todos los criterios.
+  Cassegrain: No se encontraron combinaciones validas que cumplan todos los criterios.
+  TMA: No se encontraron combinaciones validas que cumplan todos los criterios.
+
+Detector 2:
+  Refractivo: No se encontraron combinaciones validas que cumplan todos los criterios.
+  Korsch: No se encontraron combinaciones validas que cumplan todos los criterios.
+  Cassegrain: No se encontraron combinaciones validas que cumplan todos los criterios.
+  TMA: No se encontraron combinaciones validas que cumplan todos los criterios.
+
+Detector 3:
+  Refractivo: No se encontraron combinaciones validas que cumplan todos los criterios.
+  Korsch: No se encontraron combinaciones validas que cumplan todos los criterios.
+  Cassegrain: No se encontraron combinaciones validas que cumplan todos los criterios.
+  TMA: No se encontraron combinaciones validas que cumplan todos los criterios.
+
