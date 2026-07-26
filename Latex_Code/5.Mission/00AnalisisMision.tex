@@ -6,7 +6,8 @@ Para evaluar la mejor solución y determinar la altura orbital óptima, se reali
 \begin{enumerate}
     \item Se estima la masa seca del satélite a partir del diámetro de pupila seleccionado y de instrumentos de referencia. De este mismo escalado se obtienen la geometría y la superficie del instrumento.
     \item Se calcula la masa de combustible con un modelo de decaimiento orbital que devuelve el número de impulsos, el \(\Delta V\) acumulado y el propulsante necesario para mantener la órbita durante 8 años.
-    \item Se suma la masa seca y la masa de combustible para obtener la masa total en cada altura viable. La solución óptima será el mínimo de esa curva dentro de las restricciones de cobertura, FoV, SNR y MTF.
+    \item Se suma la masa seca y la masa de combustible de mantenimiento para obtener la masa total en cada altura viable. La solución óptima será el mínimo de esa curva dentro de las restricciones de cobertura, SNR y MTF.
+    \item Una vez fijada la solución, se calcula la reserva adicional de combustible para deorbitado activo al final de misión.
 \end{enumerate}
 
 \newpage
@@ -27,7 +28,7 @@ W_i = K \cdot R^3 \cdot W_o
     \item $A, L, S, V, W$ definen, respectivamente, el diámetro, longitud, superficie, volumen y masa del instrumento.
     \item Se define el factor $K$ como $1$ cuando $R\geq 0,5$. En caso contrario se establece $K=2$.
 \end{itemize}
-Usando datos de otras misiones proporcionadas por el tutor (THEMATIC MAPPER Y SEOSAT) se realizará el cálculo interpolando los resultados de las estimaciones entre ambas misiones.
+Usando datos de otras misiones proporcionadas por el tutor (THEMATIC MAPPER Y SEOSAT), se realiza una estimación por escalado: las dimensiones lineales se escalan con la razón de apertura y la masa del instrumento se aproxima con una ley cúbica, proporcional al volumen resultante, antes de promediar ambas referencias.
 
 \begin{table}[h!]
     \centering
@@ -56,7 +57,7 @@ Suponiendo además que la masa del instrumento es un 25\% de la masa del satéli
 
 Aparecen, en la figura \ref{masaseca}, las estimaciones  de masa seca realizadas con los puntos extraídos de la relación $h\ vs\ D_{min}$, mediante THEMATIC MAPPER y mediante SEOSAT, junto con su promedio. La relación propuesta (en amarillo) aumentará un 50\% sobre este promedio al tener un telescopio adicional.
 
-En la sección~\ref{sec:deltav} se incorpora la masa de combustible a esta estimación. La solución óptima es el mínimo de la masa total (seca más combustible) entre los puntos que cumplen cobertura, FoV y revisita; la geometría de iluminación queda fijada por el LTAN de la órbita SSO. Al distribuir los satélites en un único plano, la constelación satisface el requisito de revisita con el menor número de satélites posible.
+En la sección~\ref{sec:deltav} se incorpora la masa de combustible a esta estimación. La solución óptima es el mínimo de la masa total (seca más combustible) entre los puntos que cumplen cobertura, SNR y MTF; la geometría de iluminación queda fijada por el LTAN de la órbita SSO. Al distribuir los satélites en un único plano, la constelación satisface el requisito de revisita con el menor número de satélites posible.
 
 \section{Impulsos, $\Delta V$ y masa de combustible. Fin de misión. }
 
@@ -83,7 +84,7 @@ siendo \(\rho_{0}\) la densidad tabulada en la base de cada capa, \(h_{\text{bas
 \subsection{Cálculo del Delta-V, número de impulsos y masa de
 combustible}\label{sec:deltav}
 
-Para calcular el decaimiento orbital se resuelve numéricamente la ecuación~\eqref{eq:dadt} con el \textit{solver} nativo de MATLAB \texttt{ode45}. Cuando la altura cae un 2\% respecto a la altura objetivo, el modelo aplica un impulso y devuelve el satélite a la órbita nominal. Tras ello calcula el delta-V necesario. Esta maniobra se ejecuta como una transferencia de Hohmann entre la órbita decaída y la órbita nominal \cite{curtis2020orbital}:
+Para calcular el decaimiento orbital se resuelve numéricamente la ecuación~\eqref{eq:dadt} con el \textit{solver} nativo de MATLAB \texttt{ode45}. Cuando la altura cae un \textbf{2\%} respecto a la altura objetivo, el modelo aplica un impulso y devuelve el satélite a la órbita nominal. Tras ello calcula el delta-V necesario. Esta maniobra se ejecuta como una transferencia de Hohmann entre la órbita decaída y la órbita nominal \cite{curtis2020orbital}:
 \(\,r_{1}=R_{\oplus}+h_{\text{actual}}\) y
 \(r_{2}=R_{\oplus}+h_{\text{objetivo}}\), donde \(r_{1}\) corresponde a la órbita decaída y \(r_{2}\) a la órbita objetivo.  
 El incremento de velocidad por maniobra es
@@ -108,7 +109,7 @@ El proceso iterativo continúa durante la vida nominal de la misión
 (\(T = 8\)~años).  
 Se acumulan el número de impulsos \(N\), cada uno activado al decaer la altura un 2\%, y el \(\Delta v_{\text{tot}}\)
 empleado.
-Concluida la simulación, la masa de combustible se obtiene aplicando la ecuación de Tsiolkovski \cite{curtis2020orbital}:
+Concluida la simulación, la masa de combustible de mantenimiento se obtiene aplicando la ecuación de Tsiolkovski \cite{curtis2020orbital}:
 \begin{equation}
 m_{\text{prop}} = m_{\text{seca}}
 \left(\exp\!\Bigl[\frac{\Delta v_{\text{tot}}}{I_{sp}\,g_{0}}\Bigr]-1\right),
@@ -116,12 +117,12 @@ m_{\text{prop}} = m_{\text{seca}}
 \end{equation}
 donde se emplea un impulso específico de \(I_{sp}= 220\ \mathrm{s}\), valor típico para propulsión química, y
 \(g_{0}=9.80665\ \mathrm{m\,s^{-2}}\).
-Además, se añade un margen del 10\% para contingencias:
+Además, se añade un margen del \textbf{10\%} para contingencias:
 \(
 m_{\text{prop,\,final}}=1.1\,m_{\text{prop}}
 \),
-de modo que la masa total del satélite es
-\(m_{\text{total}} = m_{\text{seca}} + m_{\text{prop,\,final}}\).
+de modo que la masa de selección del satélite es
+\(m_{\text{sel}} = m_{\text{seca}} + m_{\text{prop,\,mant}}\). La reserva de fin de misión se calcula después, una vez fijada la órbita seleccionada, porque solo depende del punto final de diseño.
 
 
 Una vez calculada la masa de combustible para todos los posibles puntos de altura, se suma a la masa seca estimada previamente, obteniendo la masa total en función de la altura:
@@ -129,19 +130,19 @@ Una vez calculada la masa de combustible para todos los posibles puntos de altur
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{5.Mission/MasaDesglose_2sat_2tel_Det2_Refractivo.pdf}
-    \caption{Desglose de masa seca, masa de combustible y masa total. La curva gris punteada representa el valor teórico sin contemplar el requisito de cobertura, únicamente MTF y SNR; los marcadores de color señalan los puntos viables, que cumplen todos los requisitos de la misión. \\Fuente: Elaboración propia.}
+    \caption{Desglose de masa seca, masa de combustible de mantenimiento y masa total de selección. La curva gris punteada representa el valor teórico sin contemplar el requisito de cobertura, únicamente MTF y SNR; los marcadores de color señalan los puntos viables, que cumplen todos los requisitos de la misión. \\Fuente: Elaboración propia.}
     \label{fig:masa_desglose}
 \end{figure}
 
-La gráfica muestra un mínimo de masa por satélite de \textbf{1,828 kg} (distribuidos como \(m_{\text{seca}}=1{,}337\ \text{kg}\) y \(m_{\text{comb}}=0{,}491\ \text{kg}\)) a una altura orbital de \textbf{520 km}, correspondiente a un diámetro de pupila de \textbf{28 mm}. Dado que la constelación estará formada por dos satélites, la masa total a inyectar en órbita será de \textbf{3,66 kg}.
+La gráfica muestra un mínimo de masa de selección por satélite de \textbf{2,50 kg} (distribuidos como \(m_{\text{seca}}=2{,}39\ \text{kg}\) y \(m_{\text{prop,\,mant}}=0{,}11\ \text{kg}\), es decir, \textbf{2,39 kg} y \textbf{0,11 kg}) a una altura orbital de \textbf{630 km}, correspondiente a un diámetro de pupila de \textbf{34 mm}. Esta es la configuración que minimiza la masa dentro de las restricciones de cobertura, SNR y MTF.
 
-El $\Delta V_{\text{tot}}$ acumulado en 8 años para la solución de 520\,km asciende a 591\,m/s (103 impulsos). Nótese que el combustible representa el 26,9\% de la masa total del satélite, coherente con la penalización que impone una órbita de 520 km frente a altitudes mayores.
+El $\Delta V_{\text{mant}}$ acumulado en 8 años para la solución de 630\,km asciende a \textbf{88{,}3\,m/s} (\textbf{13 impulsos}).
 
 La configuración final de la instrumentación, una vez calculados los parámetros restantes descritos previamente, se dispone de la siguiente manera:
 \begin{landscape}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{5.Mission/TFG_Tikz-8.jpg}
+    \includegraphics[width=1\linewidth]{5.Mission/final_telescope_disposition.pdf}
     \caption{Esquemática de la carga útil final. \\ Fuente: Elaboración propia.}
     \label{fig:payload-final-layout}
 \end{figure}
@@ -151,21 +152,21 @@ La configuración final de la instrumentación, una vez calculados los parámetr
     \centering
     \begin{subfigure}[b]{0.3\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{5.Mission/TFG_Tikz-4.jpg}
+        \includegraphics[width=\textwidth]{5.Mission/design_point_mtf.pdf}
         \caption{MTF en banda $2,01\ \mu m$}
         \label{fig:sub1}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.3\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{5.Mission/TFG_Tikz-5.jpg}
+        \includegraphics[width=\textwidth]{5.Mission/design_point_snr.pdf}
         \caption{SNR en banda $0,76\ \mu m$}
         \label{fig:sub2}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.33\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{5.Mission/TFG_Tikz-6.jpg}
+        \includegraphics[width=\textwidth]{5.Mission/design_point_coverage.pdf}
         \caption{Cobertura de la región}
         \label{fig:sub3}
     \end{subfigure}
@@ -173,18 +174,31 @@ La configuración final de la instrumentación, una vez calculados los parámetr
     \label{fig:puntodiseno}
 \end{figure}
 
-Dado que el swath mínimo necesario para cubrir semanalmente EE.\,UU. continental con 2 satélites y 2 telescopios es de 170\,km (valor obtenido del cruce de datos de cobertura del capítulo 4), mientras el swath final obtenido es de 183 km, se consigue un solapamiento final cercano al 8\%, por encima de nuestro requerimiento mínimo. La restricción viene impuesta por el FoV combinado de los telescopios. Debido a que el \textit{swath} completo de un detector individual es:
+Dado que el \textit{swath} mínimo necesario para cubrir semanalmente EE.\,UU. continental con 2 satélites y 2 telescopios es de 190\,km (valor obtenido del cruce de datos de cobertura del capítulo 4), mientras el FoV combinado de los dos telescopios permite aproximadamente 222\,km a 630\,km de altura, se cumple el margen de solapamiento del 5\%. Debido a que el \textit{swath} completo de un detector individual es:
 \[2048 \times 80\ \mathrm{m} = 163{,}8\ \mathrm{km}\]
-y el FoV de un telescopio único limita a \(91\ \mathrm{km}\), solo podrán usarse 1146 píxeles de ancho.
+se requieren dos detectores en línea para superar los 190\,km. El FoV de un telescopio único limita a \(110\ \mathrm{km}\), por lo que cada telescopio utiliza aproximadamente 1378 píxeles de ancho.
 
 En el anexo \ref{sec:annexdata}, se podrán encontrar las masas totales de las soluciones viables que aporta cada combinación de configuración, telescopio y detector, siendo la presentada en este capítulo el mínimo de masa absoluto a poner en órbita.
 
 
 \subsection{Fin de misión}
 
-La gestión de los residuos orbitales constituye actualmente un factor relevante, dada la creciente preocupación por la sostenibilidad del entorno espacial. Con el objetivo de mitigar el impacto negativo de la basura espacial, resulta interesante evaluar la necesidad de implementar maniobras activas para garantizar la reentrada controlada de los satélites una vez finalizada su misión. Para esta misión, se considera aceptable que el tiempo transcurrido desde el fin de operaciones hasta la reentrada en la atmósfera terrestre sea inferior a \textbf{un año}, especialmente para artefactos situados en órbitas LEO \cite{nasa_deorbit_systems_2025}.
+La gestión de los residuos orbitales constituye actualmente un factor relevante, dada la creciente preocupación por la sostenibilidad del entorno espacial. Con el objetivo de mitigar el impacto negativo de la basura espacial, resulta interesante evaluar la necesidad de implementar maniobras activas para garantizar la reentrada de los satélites una vez finalizada su misión. Para esta misión, se adopta como criterio que el tiempo transcurrido desde el fin de operaciones hasta la reentrada atmosférica sea inferior a \textbf{365 días}, valor coherente con las recomendaciones recientes de mitigación para artefactos en LEO \cite{nasa_deorbit_systems_2025}.
 
-La siguiente figura se obtiene con el mismo modelo exponencial de resistencia aerodinámica usado para el mantenimiento orbital, aplicado desde la órbita final de 520 km y sin impulsos adicionales. Se emplean la masa total de 1,828 kg, el área frontal efectiva del dimensionado geométrico y \(C_d=2{,}5\). El resultado representa un decaimiento natural post-misión.\footnote{Sin incluir variabilidad solar extrema, actitud no nominal ni cambios de área proyectada durante el giro descontrolado (\textit{tumbling}).}
+La siguiente figura se obtiene con el mismo modelo exponencial de resistencia aerodinámica usado para el mantenimiento orbital, aplicado desde la órbita final de 630 km. Se emplean el área frontal efectiva del dimensionado geométrico y \(C_d=2{,}5\). Se comparan dos casos: decaimiento natural sin maniobra y decaimiento con un impulso retrógrado al final de la misión.\footnote{Sin incluir variabilidad solar extrema, actitud no nominal ni cambios de área proyectada durante el giro descontrolado (\textit{tumbling}).}
+
+El cálculo de la maniobra activa se plantea como una transferencia tangencial en el apogeo de la órbita final. Para un perigeo candidato \(r_p\), el semieje mayor de la elipse de deorbitado es:
+\begin{equation}
+a_d=\frac{r_a+r_p}{2},
+\end{equation}
+donde \(r_a=R_\oplus+h_{\text{final}}\). El impulso retrógrado requerido en el apogeo es la diferencia entre la velocidad circular final y la velocidad en el apogeo de la elipse:
+\begin{equation}
+\Delta V_{\text{deorbit}}=
+\sqrt{\frac{\mu}{r_a}}-
+\sqrt{\mu\left(\frac{2}{r_a}-\frac{1}{a_d}\right)}.
+\label{eq:dv_deorbit}
+\end{equation}
+Después se integra de nuevo la ecuación de decaimiento aerodinámico, ecuación~\eqref{eq:dadt}, desde esa elipse hasta \(h=100\ \mathrm{km}\), tomada como altura de reentrada. El código busca por bisección el perigeo más alto que todavía cumple \(t_{\text{reentrada}}\leq365\) días; de esta forma se obtiene el impulso mínimo dentro del modelo.
 
 \begin{figure}[H]
     \centering
@@ -192,43 +206,44 @@ La siguiente figura se obtiene con el mismo modelo exponencial de resistencia ae
     \caption{Tiempo de deorbitación, en días, tras fin de misión. \\Fuente: Elaboración propia.}
 \end{figure}
 
-La simulación de decaimiento natural desde 520 km indica que los satélites tardarían aproximadamente \textbf{257 días} en decaer de manera natural, valor dentro del límite de un año considerado aceptable. No se requiere combustible adicional para maniobras de deorbitación.
+La simulación de decaimiento natural desde 630 km indica que los satélites tardarían aproximadamente \textbf{1247 días} en decaer de manera natural. Este valor supera el límite de \textbf{365 días}. Para cumplirlo, el modelo obtiene un perigeo objetivo de \textbf{464,7 km}, un \(\Delta V_{\text{deorbit}}\) de \textbf{41,9 m/s} y una reserva de combustible de \textbf{0,052 kg} por satélite, incluyendo el mismo margen del \textbf{10\%} usado en el combustible de mantenimiento. Por tanto, el combustible total presupuestado por satélite pasa a \textbf{0,162 kg}, y la masa final de diseño queda en \textbf{2,56 kg} por satélite, o \textbf{5,11 kg} para la constelación completa.
 
 \section{Verificación de las condiciones orbitales}
 
-Fijada la altura de 520 km por mínimo de masa total, se comprueba que la órbita elegida es compatible con las condiciones orbitales deseadas: la condición de traza repetida (RGT) y la condición de órbita \textit{frozen}.
+Fijada la altura de 630 km por mínimo de masa total, se comprueba la compatibilidad de la órbita con dos propiedades orbitales relevantes para la operación: traza repetida (RGT) y órbita \textit{frozen}.
 
 \subsection{Condición de traza repetida (RGT)}
 
-Con la altura de 520 km y la inclinación SSO de 97{,}48° ya fijadas, se resuelve la ecuación \eqref{eq:rgt_cond} para todas
-las parejas $(N,D)$ con $D \leq 30$ en el barrido 200--1000 km.
+Para cada altura del barrido se impone primero la condición heliosíncrona de la ecuación~\eqref{eq:SSO_cond}, que fija la inclinación \(i_{\mathrm{SSO}}(h)\). Con esa inclinación se calcula el periodo kepleriano \(T_k\), se aplican las correcciones seculares de \(J_2\) y se obtiene el periodo nodal \(T_{\mathrm{nodal}}\) de la ecuación~\eqref{eq:Tnodal}. La condición RGT se evalúa después buscando parejas enteras \((N,D)\), con \(D \leq 30\), que satisfagan:
+\[
+N\,T_{\mathrm{nodal}} = D\,T_{\mathrm{solar}} .
+\]
 
-El período nodal a 520 km, según la ecuación \eqref{eq:Tnodal}, vale:
+Para la órbita nominal de \textbf{630 km} e inclinación SSO de \textbf{\(97{,}91^\circ\)}, el período nodal vale:
 
 \begin{equation}
-T_{\mathrm{nodal}}(520\ \mathrm{km}) = 5709.15\ \mathrm{s}
-\label{eq:Tnodal_520}
+T_{\mathrm{nodal}}(630\ \mathrm{km}) = 5845.95\ \mathrm{s}
+\label{eq:Tnodal_630}
 \end{equation}
 
-La razón $T_{\mathrm{solar}} / T_{\mathrm{nodal}} = 15.1336$. La pareja
-entera más próxima es $N = 227$, $D = 15$, con $N/D = 15.1333$.
+La razón $T_{\mathrm{solar}} / T_{\mathrm{nodal}} = 14.7795$. La pareja
+entera más próxima es $N = 133$, $D = 9$, con $N/D = 14.7778$.
 
 Resolviendo la ecuación \eqref{eq:rgt_cond} con bisección para cada $(N,D)$, la altura RGT exacta más próxima al óptimo de masa es:
 
 \begin{equation}
-h_{\mathrm{RGT}} = 520.085\ \mathrm{km}
-\qquad (N = 227,\ D = 15)
+h_{\mathrm{RGT}} = 630.533\ \mathrm{km}
+\qquad (N = 133,\ D = 9)
 \label{eq:h_rgt}
 \end{equation}
 
-La diferencia con el óptimo de masa de 520 km es de 85 m. Esta distancia es
+La diferencia con el óptimo de masa de 630 km es de \textbf{533 m}. Esta distancia es
 inferior al paso del barrido de cobertura (10 km) y al del modelo de masa
-(5 km), es decir, queda por debajo de la resolución con la que se ha discretizado el espacio de diseño, por lo que ambas alturas son indistinguibles a efectos de los cálculos realizados. En consecuencia, la órbita de diseño puede considerarse que satisface en la práctica, de forma simultánea, la condición
-heliosíncrona y la condición RGT.
+(5 km), es decir, queda por debajo de la resolución con la que se ha discretizado el espacio de diseño, por lo que ambas alturas son indistinguibles a efectos de los cálculos realizados. En consecuencia, la órbita cumple en la práctica la condición RGT dentro de la resolución del diseño.
 
-El ciclo se completa en $D = 15$ días con $N = 227$ órbitas. La tabla
+El ciclo se completa en \(D = \textbf{9 días}\) con \(N = \textbf{133 órbitas}\). La tabla
 \ref{tab:rgt_altitudes} recoge las altitudes RGT exactas en el rango
-viable 400--600 km.
+viable cercano a la solución.
 
 \begin{table}[H]
 \centering
@@ -236,56 +251,51 @@ viable 400--600 km.
 \label{tab:rgt_altitudes}
 \begin{tabular}{@{}cccccc@{}}
 \toprule
-$h$ [km] & $i_{\mathrm{SSO}}$ [°] & $N$ & $D$ & $T_{\mathrm{nodal}}$ [s] & $\Delta h$ a 520 km [km] \\
+$h$ [km] & $i_{\mathrm{SSO}}$ [°] & $N$ & $D$ & $T_{\mathrm{nodal}}$ [s] & $\Delta h$ a 630 km [km] \\
 \midrule
-405{,}2 & 97{,}05 & 450 & 29 & 5568{,}00 & $-$114.8 \\
-419{,}2 & 97{,}10 & 263 & 17 & 5584{,}79 & $-$100.8 \\
-435{,}1 & 97{,}16 & 185 & 12 & 5604{,}32 & $-$84.9 \\
-454{,}0 & 97{,}23 & 261 & 17 & 5627{,}59 & $-$66.0 \\
-477{,}0 & 97{,}31 & 443 & 29 & 5655{,}98 & $-$43.0 \\
-505{,}4 & 97{,}42 & 167 & 11 & 5691{,}02 & $-$14.6 \\
-517{,}2 & 97{,}47 & 106 & 7  & 5705{,}66 & $-$2.8 \\
+623{,}5 & 97{,}88 & 74  & 5  & 5837{,}84 & $-$6{,}5 \\
+628{,}0 & 97{,}90 & 207 & 14 & 5843{,}48 & $-$2{,}0 \\
+629{,}0 & 97{,}90 & 340 & 23 & 5844{,}71 & $-$1{,}0 \\
 \rowcolor{gray!20}
-\textbf{520{,}1} & \textbf{97{,}48} & \textbf{227} & \textbf{15} & \textbf{5709{,}25} & \textbf{+0{,}1} \\
-522{,}6 & 97{,}49 & 121 & 8  & 5712{,}40 & +2{,}6 \\
-528{,}1 & 97{,}51 & 423 & 28 & 5719{,}15 & +8{,}1 \\
-540{,}5 & 97{,}56 & 226 & 15 & 5734{,}51 & +20{,}5 \\
-569{,}0 & 97{,}67 & 254 & 17 & 5769{,}23 & +49{,}0 \\
+\textbf{630{,}5} & \textbf{97{,}91} & \textbf{133} & \textbf{9} & \textbf{5846{,}62} & \textbf{+0{,}5} \\
+632{,}1 & 97{,}91 & 325 & 22 & 5848{,}62 & +2{,}1 \\
+633{,}2 & 97{,}92 & 192 & 13 & 5850{,}00 & +3{,}2 \\
+634{,}1 & 97{,}92 & 443 & 30 & 5851{,}02 & +4{,}1 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 
-\subsection{Condición de órbita frozen}
+\subsection{Condición de órbita \textit{frozen}}
 
-Aplicando la ecuación \eqref{eq:frozen_cond} a la órbita de 520 km con
-$i = 97.48^\circ$:
+La condición \textit{frozen} es opcional en esta misión: permite mantener casi constante la geometría de apogeo y perigeo, pero exige introducir una excentricidad no nula. Aplicando la ecuación \eqref{eq:frozen_cond} a la órbita de 630 km con
+$i = 97.91^\circ$:
 
 \begin{equation}
 e_{\mathrm{frozen}} =
 \frac{2.53 \times 10^{-6}}{2 \cdot 1.08 \times 10^{-3}}
-\cdot \frac{6378}{6898} \cdot \sin(97.48^\circ)
-\approx 1.07 \times 10^{-3}
-\label{eq:efrozen_520}
+\cdot \frac{6378}{7008} \cdot \sin(97.91^\circ)
+\approx 1.05 \times 10^{-3}
+\label{eq:efrozen_630}
 \end{equation}
 
 La oscilación de altura entre apogeo y perigeo asociada es:
 
 \begin{equation}
 \Delta h = 2 a e_{\mathrm{frozen}}
-= 2 \cdot 6898 \cdot 1.07 \times 10^{-3}
+= 2 \cdot 7008 \cdot 1.05 \times 10^{-3}
 \approx 14{,}8\ \mathrm{km}
-\label{eq:dh_frozen_520}
+\label{eq:dh_frozen_630}
 \end{equation}
 
-A 520 km la oscilación \textit{frozen} $\Delta h \approx 14{,}8$ km supera la banda muerta de mantenimiento adoptada. Esta banda muerta se toma como el 2\% de la altura orbital, por lo que a 520 km vale:
+A 630 km la oscilación \textit{frozen} $\Delta h \approx 14{,}8$ km supera la banda muerta de mantenimiento adoptada. Esta banda muerta se toma como el \textbf{2\%} de la altura orbital, por lo que a 630 km vale:
 
 \begin{equation}
-\Delta h_{\mathrm{mant}} = 0{,}02 \cdot 520 \approx 10{,}4\ \mathrm{km}
-\label{eq:deadband_520}
+\Delta h_{\mathrm{mant}} = 0{,}02 \cdot 630 \approx 12{,}6\ \mathrm{km}
+\label{eq:deadband_630}
 \end{equation}
 
-Adoptar la excentricidad \textit{frozen} obligaría, por tanto, a aceptar una excursión mayor que la que el propio ciclo de mantenimiento orbital ya compensa. Además, la densidad atmosférica a 520 km ronda $1{,}3\times10^{-13}\ \mathrm{kg/m^3}$, un orden de magnitud por encima de la densidad a 800 km ($1{,}0\times10^{-15}\ \mathrm{kg/m^3}$), de modo que el decaimiento continuo del semieje mayor por arrastre atmosférico domina la evolución orbital en escalas de días y enmascara las derivas seculares que la condición \textit{frozen} pretende cancelar. Por ello, no se adopta la condición \textit{frozen}.
+Los valores anteriores corresponden a \textbf{\(e_{\mathrm{frozen}}\approx 1{,}05 \times 10^{-3}\)}, una oscilación de \textbf{14,8 km} y una banda de mantenimiento de \textbf{12,6 km}. Adoptar la excentricidad \textit{frozen} obligaría, por tanto, a aceptar una excursión mayor que la que el propio ciclo de mantenimiento orbital ya compensa. Además, la densidad atmosférica a 630 km ronda $4{,}3\times10^{-14}\ \mathrm{kg/m^3}$, todavía varias veces superior a la densidad a 800 km ($1{,}0\times10^{-14}\ \mathrm{kg/m^3}$), de modo que el decaimiento continuo del semieje mayor por arrastre atmosférico sigue siendo el efecto operativo que dimensiona el mantenimiento. Por ello, no se adopta la condición \textit{frozen}.
 
 \section{Sensibilidad de la solución al GSD}
 \label{sec:gsd}
@@ -297,6 +307,6 @@ Al exigir un GSD más fino, el diámetro de pupila crece con rapidez y la masa t
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{4.Payload/GSD_sensitivity.pdf}
-    \caption{Masa total de la constelación (eje izquierdo, barras azules) y diámetro de pupila requerido (eje derecho, línea negra con marcadores) frente al GSD evaluado. \\Fuente: Elaboración propia.}
+    \caption{Sensibilidad de la masa y diámetro de pupila frente al GSD. \\Fuente: Elaboración propia.}
     \label{fig:gsd_sensitivity}
 \end{figure}
