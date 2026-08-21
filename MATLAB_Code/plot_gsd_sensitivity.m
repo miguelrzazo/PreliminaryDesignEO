@@ -21,6 +21,8 @@ fig = figure('Visible', 'off', 'Position', [100, 100, 900, 520]);
 
 yyaxis left;
 mass_bars = bar(gsd, [dry_constellation, fuel_constellation], 0.72, 'stacked', 'LineWidth', 0.4);
+mass_bars(1).FaceColor = [0.45 0.45 0.45];
+mass_bars(2).FaceColor = [0.90 0.45 0.10];
 hold on;
 nominal_line = xline(80, ':', 'GSD nominal', 'LabelVerticalAlignment', 'bottom', ...
     'Interpreter', 'latex', 'Color', [0.2 0.2 0.2]);

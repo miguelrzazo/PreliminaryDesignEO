@@ -447,7 +447,15 @@ A diferencia de un barrido geográfico punto a punto, el método semianalítico 
 
 En esa latitud se calcula, mediante trigonometría esférica sobre un elipsoide terrestre, el semiancho angular en longitud que cubre el \textit{swath} del sensor en cada paso del satélite. La traza subsatelital se propaga después con movimiento kepleriano circular corregido por la deriva secular del nodo debida al J2 y por la rotación terrestre, obteniendo los instantes sucesivos en que dicha traza vuelve a cruzar \(\phi_{\mathrm{inf}}\) dentro del campo de visión del instrumento. El tiempo de revisita de cada configuración es el mayor hueco temporal entre dos cruces consecutivos sobre esa franja continental dentro de la ventana simulada.
 
-El sensor observa exclusivamente al \textbf{nadir}, con barrido \textit{pushbroom} centrado en la traza subsatelital: no existe apuntamiento transversal ni maniobra de \textit{roll}. Por tanto, el ángulo central de observación fuera de nadir es nulo; el parámetro \(\psi\) usado más abajo no representa apuntamiento, sino el semiángulo geométrico desde el nadir hasta el borde del \textit{swath}. En consecuencia, el \textit{swath} queda determinado únicamente por la altura orbital y el campo de visión (FoV) del telescopio, o bien por el número de detectores dispuestos en línea, lo que primero se alcance:
+El sensor observa exclusivamente al \textbf{nadir}, con barrido \textit{pushbroom} centrado en la traza subsatelital. El parámetro \(\psi\) es el
+semiángulo geométrico desde el nadir hasta el borde del \textit{swath}. Antes de aplicar las ecuaciones, se
+define \(W_{\text{FoV}}\) como el ancho de barrido impuesto por el campo de
+visión, \(W_{\text{det}}\) como el ancho impuesto por los detectores,
+\(W=\min(W_{\text{FoV}},W_{\text{det}})\) como el ancho disponible y
+\(W_{\text{ef}}=W(1-f_{\mathrm{solap}})\) como el ancho efectivo tras aplicar la
+fracción de solapamiento. En el caso de dos telescopios, el FoV total se duplica. En
+consecuencia, el \textit{swath} queda determinado por la altura orbital y por
+la primera de estas dos limitaciones:
 
 \begin{equation}
 W_{\text{FoV}} = 2\,h \tan\!\left(\frac{\text{FoV}}{2}\right)
@@ -460,7 +468,7 @@ W_{\text{det}} = N_{\text{det}} \cdot N_{\text{pix}} \cdot GSD
 \end{equation}
 
 \begin{equation}
-W_{\text{ef}} = W\,(1-f_{\text{ov}}), \qquad
+W_{\text{ef}} = W\,(1-f_{\mathrm{solap}}), \qquad
 \psi = \arctan\!\left(\frac{W_{\text{ef}}}{2h}\right)
 \label{eq:swath_ef}
 \end{equation}
@@ -470,9 +478,15 @@ T_{\mathrm{rev,geom}} = \max_{k}\left(t_{k+1}-t_{k}\right)_{\phi=25^\circ}
 \label{eq:trev}
 \end{equation}
 
-donde $h$ es la altura orbital, $\text{FoV}$ el campo de visión total del telescopio (duplicado si se embarcan dos telescopios), $N_{\text{det}}$ el número de detectores alineados (hasta 3), $N_{\text{pix}}$ los píxeles por detector, $GSD$ la distancia de muestreo en tierra, $W=\min(W_{\text{FoV}},W_{\text{det}})$ el \textit{swath} resultante, $f_{\text{ov}}$ la fracción de solapamiento (5\%) y $\psi$ el semiángulo hasta el borde del \textit{swath} que recibe el software de revisita. La ecuación \ref{eq:trev} expresa el tiempo de revisita geométrico como el mayor intervalo entre dos instantes de paso consecutivos sobre la latitud inferior de EE.\,UU. continental.
+La ecuación \ref{eq:trev} expresa el tiempo de revisita geométrico como el
+mayor intervalo entre dos instantes de paso consecutivos sobre la latitud
+inferior de EE.\,UU. continental.
 
-Primero se calcula este tiempo de revisita geométrico. Después se aplica una penalización por nubosidad: se considera que una de cada seis pasadas no produce una adquisición útil. Por tanto, el tiempo de revisita usado en el dimensionado no es el geométrico, sino el efectivo:
+Primero se calcula este tiempo de revisita geométrico. Después se aplica la
+penalización por nubosidad especificada en el enunciado del cliente. Se adopta
+\(f_{\mathrm{nubes}}=1/6\), es decir, una de cada seis pasadas no produce una
+adquisición útil. Por tanto, el tiempo de revisita usado en el dimensionado no
+es el geométrico, sino el efectivo:
 
 \begin{equation}
 T_{\mathrm{rev,eff}}=\frac{T_{\mathrm{rev,geom}}}{1-1/6}=1{,}2\,T_{\mathrm{rev,geom}}
@@ -520,7 +534,7 @@ Se consideran dos limitaciones al \textit{swath}:
     \item El array del detector, mediante la ecuación \ref{swath}. Para ampliarlo y dar más flexibilidad a esta restricción, se considera el uso de hasta 3 detectores en línea.
 \end{itemize}
 
-Además, solo se considerará el territorio EE. UU. continental, representado en el cálculo por la latitud inferior de la ecuación \ref{eq:lat_crit}. Ya que el interés del cliente reside en la elaboración del mapa de las principales ciudades, se pueden excluir, por simplicidad de cálculo, otros territorios del país como Hawaii, Puerto Rico y otros territorios de ultramar. A continuación se presentan los resultados del cálculo en las siguientes páginas. Cada figura agrupa cuatro arquitecturas ópticas para el mismo detector; las zonas de color más bajo corresponden a combinaciones de altura y \textit{swath} que cumplen antes el requisito de revisita.
+Además, solo se considerará el territorio EE. UU. continental, representado en el cálculo por la latitud inferior de la ecuación \ref{eq:lat_crit}. Ya que el interés del cliente reside en la elaboración del mapa de las principales ciudades, se pueden excluir, por simplicidad de cálculo, otros territorios del país como Hawaii, Puerto Rico y otros territorios de ultramar. A continuación se presentan los resultados del cálculo en las siguientes páginas. Cada figura agrupa cuatro arquitecturas ópticas para el mismo detector. El eje horizontal representa el \textit{swath}, el eje vertical la altura orbital y la escala de color el tiempo de revisita efectivo en días. Las celdas coloreadas cumplen el requisito de revisita de 7 días, mientras que las celdas blancas corresponden a configuraciones no válidas. La línea roja discontinua marca el límite de FoV. A la derecha de esta línea, el \textit{swath} supera el ancho que puede proporcionar el campo de visión a esa altura y la combinación se descarta. Para dos telescopios se utiliza el FoV combinado.
 
 %% Gráficas 2 SAT 2TEL
 \begin{landscape}

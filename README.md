@@ -6,7 +6,7 @@ Bachelor's thesis (TFG) in Aerospace Engineering: preliminary design of a small-
 
 ## Result in brief
 
-A constellation of two satellites in a 520 km Sun-synchronous orbit, each carrying two refractive telescopes with Teledyne H2RG detectors (28 mm pupil diameter), achieves 80 m GSD imaging of the continental US with weekly revisit. The design closes with a total constellation mass of a few kilograms of payload optics per satellite plus the propellant to maintain the orbit for eight years, downlinking through the NOAA Fairbanks (Alaska) X-band station.
+A constellation of two satellites in a 630 km Sun-synchronous orbit, each carrying two refractive telescopes with Teledyne H2RG detectors (34 mm pupil diameter), achieves 80 m GSD imaging of the continental US with weekly revisit. The design closes with a total constellation mass of a few kilograms per satellite including maintenance propellant, downlinking through the NOAA Fairbanks (Alaska) S-band station.
 
 ## Repository layout
 
@@ -15,7 +15,7 @@ A constellation of two satellites in a 520 km Sun-synchronous orbit, each carryi
 | `Latex_Code/` | Thesis LaTeX sources and the compiled PDF |
 | `MATLAB_Code/` | The design pipeline: `master.m` + `lib/` (authoritative) |
 | `MATLAB_Code/legacy/` | Archived earlier model versions, kept for traceability only |
-| `Compiled data/` | Final simulation outputs (MTF, SNR, coverage, h–D_min, mass) and the GSD sensitivity summary |
+| `Compiled data/` | Final simulation outputs (MTF, SNR, coverage, h-D_min, mass) and the GSD sensitivity summary |
 | `python/` | Python port of the analysis pipeline |
 | `Defence/` | Final defence material (simulation videos) |
 
@@ -34,7 +34,7 @@ The revisit computation uses the RevisitTime toolkit (Crisp & Livadiotti, Univer
 
 ## Python port
 
-`python/` contains a NumPy/SciPy port of the MATLAB pipeline (optics, coverage, mass, and electrical modules) with tests. It requires Orekit (conda-forge only — not on PyPI):
+`python/` contains a NumPy/SciPy port of the MATLAB pipeline (optics, coverage, mass, and electrical modules) with tests. It requires Orekit (conda-forge only; not on PyPI):
 
 ```bash
 mamba create -y -n eo -c conda-forge python=3.11 orekit openjdk jpype1 numpy scipy pandas matplotlib pyyaml pytest pytest-cov
@@ -47,7 +47,7 @@ OREKIT_DATA_PATH="$PWD/orekit-data.zip" pytest
 OREKIT_DATA_PATH="$PWD/orekit-data.zip" python scripts/run_analysis.py --orekit
 ```
 
-It was vibecoded after the thesis, for fun, to re-validate the sizing study in a friendlier stack (frozen dataclasses, NumPy, PyYAML, matplotlib) and to play with packaging. The configuration is a single YAML file (`python/config/portfolio.yaml`) that defines the design space — bands, detectors, telescopes, constellations, altitudes, swaths, GSDs — and each module sweeps over it, returning a `LabeledTensor` (a self-describing `np.ndarray` with named axes) so the 6-D result grid stays easy to slice.
+It was written after the thesis to re-validate the sizing study in a friendlier stack (frozen dataclasses, NumPy, PyYAML, matplotlib) and to exercise the packaging. The configuration is a single YAML file (`python/config/portfolio.yaml`) that defines the design space: bands, detectors, telescopes, constellations, altitudes, swaths, and GSDs. Each module sweeps over it, returning a `LabeledTensor` (a self-describing `np.ndarray` with named axes) so the 6-D result grid stays easy to slice.
 
 ### What this is
 
@@ -62,13 +62,13 @@ The coverage module (`python/src/eo_mission/coverage.py`) is the interesting one
 - **CONUS latitude-band grid.** A coarse latitude/longitude grid spanning the continental US (25–49° N, a few longitude samples per band) provides the target set. The sensor's visible footprint radius is computed from the spherical geometry of the off-nadir cone (`γ_max` solved from the spherical triangle O-S-T). Revisit of a latitude band is the time to tile its longitudinal span: `passes_needed = ceil(band_width·cos(lat) / eff_swath)`, the MATLAB `_US_WIDTH / eff_swath` tiling count.
 - **Markov-persistent clouds, 95th-percentile revisit.** The MATLAB `1/(1−cloud)` mean heuristic is replaced by a persistent two-state Markov chain (`python/src/eo_mission/clouds.py`) parameterised by steady-state cloud cover `p` and a persistence coefficient `rho` (lag-1 autocorrelation of the daily cloud state), which keeps the stationary distribution exactly P(cloudy)=p for any `rho`. Monte-Carlo sampling (200 runs default, seeded) folds daily cloud state onto the acquisition cadence; the reported revisit is the worst-latitude-band value at the 95th percentile across runs (the mean is also tracked). This reports the revisit you actually achieve at 95% confidence rather than a mean correction.
 
-The pure-analytical single-target formula used by an earlier version of the port — which had invented a `1/0.5` daylight penalty and a `×0.35` USA-grid fudge factor absent from the MATLAB physics — has been removed. Coverage is Orekit-only; there is no JVM-free fallback. The pipeline (`run_pipeline`) initializes the JVM by default.
+The pure-analytical single-target formula used by an earlier version of the port, which had invented a `1/0.5` daylight penalty and a `×0.35` USA-grid fudge factor absent from the MATLAB physics, has been removed. Coverage is Orekit-only; there is no JVM-free fallback. The pipeline (`run_pipeline`) initializes the JVM by default.
 
 ### Other improvements over the MATLAB original
 
 - **SNR calibration margin.** The 0.9 factor of `SNRfunction.m` (`SNR_value = 0.9·Ne/N_total`) is now applied in `optics.py`, matching the MATLAB reference exactly (the previous port omitted it).
 - **Vectorisation.** The MATLAB scripts loop cell-by-cell and write results to disk. The Python port keeps the same physics but operates on whole `np.ndarray`s, so SNR/MTF/mass are evaluated as broadcasts over the full grid in one go. The `LabeledTensor` (`python/src/eo_mission/tensor.py`) keeps the axis names and coordinates alongside the array, so downstream code can do `snr.values[g_i, b_i, d_i, t_i, h_i, dia_i]` without losing track of what each index means.
-- **Portfolio sweep.** The original MATLAB pipeline picks a single configuration and sizes it. The Python port is portfolio-first: `rank_feasible_solutions` (`python/src/eo_mission/analysis.py:159`) enumerates *every* (band, detector, telescope, constellation, altitude, diameter, swath) cell that satisfies SNR, MTF, coverage and aperture thresholds, then sorts the feasible set by dry mass → revisit → altitude, and `best_solution_per_gsd` keeps the lightest one per GSD. The result is `tables/ranked_solutions.csv` and `tables/best_per_gsd.csv` — a ranked design catalogue rather than a single point.
+- **Portfolio sweep.** The original MATLAB pipeline picks a single configuration and sizes it. The Python port is portfolio-first: `rank_feasible_solutions` (`python/src/eo_mission/analysis.py:159`) enumerates *every* (band, detector, telescope, constellation, altitude, diameter, swath) cell that satisfies SNR, MTF, coverage and aperture thresholds, then sorts the feasible set by dry mass, revisit, and altitude. `best_solution_per_gsd` keeps the lightest one per GSD. The result is `tables/ranked_solutions.csv` and `tables/best_per_gsd.csv`, a ranked design catalogue rather than a single point.
 
 ### Tests
 
