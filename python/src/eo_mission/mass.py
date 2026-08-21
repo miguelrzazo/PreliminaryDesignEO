@@ -58,13 +58,10 @@ def _atm_density(h_m: float) -> float:
         (1500, 150e3,  1e-16),
         (2000, 200e3,  1e-17),
     ]
-    # Bounds check: clamp h to table range
-    if h < table[0][0]:
-        h = float(table[0][0])
-    if h > table[-1][0]:
-        h = float(table[-1][0])
     for h_limit, H, rho0 in table:
         if h < h_limit:
+            h_base = h_limit - (table[table.index((h_limit, H, rho0))] and
+                                next((t[0] for t in reversed(table) if t[0] < h_limit), 0))
             # Simpler: use integer multiples of 50 km as in MATLAB original
             h_floor = (int(h) // 50) * 50
             return rho0 * np.exp(-(h - h_floor) / (H / 1e3))
