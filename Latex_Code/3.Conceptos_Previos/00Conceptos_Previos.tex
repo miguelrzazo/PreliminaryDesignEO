@@ -728,46 +728,51 @@ adquirir imágenes de una misma zona bajo condiciones geométricas similares
 a intervalos regulares.
 
 En una órbita heliosíncrona el plano orbital precesa solidario con el Sol.
-La traza se repite respecto al día solar, no al día sidéreo. La condición
-RGT para una órbita SSO es:
+La condición RGT se formula mediante las tasas orbitales y la rotación
+sideral de la Tierra:
 
 \begin{equation}
-N \cdot T_{\mathrm{nodal}} = D \cdot T_{\mathrm{solar}},
-\qquad T_{\mathrm{solar}} = 86400\ \si{s}
+ n_k + \dot M_{J_2} + \dot\omega_{J_2}
+= \left(\omega_\oplus - \dot\Omega_{J_2}\right)\frac{N}{D}
 \label{eq:rgt_cond}
 \end{equation}
 
-donde $T_{\mathrm{nodal}}$ es el período entre dos cruces consecutivos del
-nodo ascendente. El achatamiento terrestre $J_2$ modifica este período
-respecto del kepleriano mediante dos efectos seculares. Para $e=0$:
+donde $n_k=\sqrt{\mu/a^3}$, $\omega_\oplus=2\pi/T_{\mathrm{rot}}$ y
+$T_{\mathrm{rot}}=86164.0905\ \si{s}$. El semilatus rectum es
+$p=a(1-e^2)$ y las tasas se calculan como:
 
 \begin{align}
-\dot{\Omega} &= -\frac{3}{2}\, n\, J_2 \left(\frac{R_T}{a}\right)^{\!2} \cos i
+\dot\Omega_{J_2} &= -\frac{3}{2} n_k J_2
+\left(\frac{R_T}{p}\right)^{\!2}\cos i
 \label{eq:Omega_dot}\\[4pt]
-\dot{\omega} &= \frac{3}{4}\, n\, J_2 \left(\frac{R_T}{a}\right)^{\!2}
-\bigl(5\cos^2 i - 1\bigr)
+\dot\omega_{J_2} &= \frac{3}{4} n_k J_2
+\left(\frac{R_T}{p}\right)^{\!2}\left(4-5\sin^2 i\right)
 \label{eq:omega_dot}
+\\[4pt]
+\dot M_{J_2} &= \frac{3}{4} n_k J_2
+\frac{\sqrt{1-e^2}\,R_T^2}{a^2(1-e^2)^2}
+\left(2-3\sin^2 i\right)
+\label{eq:M_dot_J2}
 \end{align}
 
-con $n = \sqrt{\mu / a^3}$ y $a = R_T + h$. El período nodal que combina
-ambos efectos es:
+Para presentar el resultado orbital se define el período orbital efectivo:
 
 \begin{equation}
-T_{\mathrm{nodal}} = \frac{T_k}
-{1 + \frac{3}{4}J_2\left(\frac{R_T}{a}\right)^{\!2}\!\bigl(6 - 8\sin^2 i\bigr)},
-\qquad T_k = 2\pi\sqrt{\frac{a^3}{\mu}}
-\label{eq:Tnodal}
+T_{\mathrm{orb,eff}} = \frac{2\pi}
+{n_k+\dot M_{J_2}+\dot\omega_{J_2}}
+\label{eq:Torb_eff}
 \end{equation}
 
-La condición heliosíncrona \eqref{eq:SSO_cond} fija $i = i_{\mathrm{SSO}}(h)$.
-Al sustituirla, $T_{\mathrm{nodal}}$ queda en función exclusiva de $h$ y la
-ecuación \eqref{eq:rgt_cond} se puede resolver para cada pareja de enteros
-$(N,D)$ \cite{vallado2013fundamentals}.
+La condición heliosíncrona \eqref{eq:SSO_cond} fija $i=i_{\mathrm{SSO}}(h)$.
+Al sustituirla, la ecuación \eqref{eq:rgt_cond} queda en función de la altura
+y se puede resolver para cada pareja de enteros $(N,D)$
+\cite{vallado2013fundamentals}.
 
 \subsubsection{Órbitas \textit{frozen}}
 
-Una órbita \textit{frozen} mantiene constantes la excentricidad y el argumento
-del perigeo anulando sus derivadas seculares. La condición se obtiene del
+Una órbita \textit{frozen} se diseña para reducir las derivas seculares de la
+excentricidad y del argumento del perigeo. Para el régimen de pequeña
+excentricidad, $e \ll 1$, la condición de primer orden se obtiene del
 acoplamiento entre $J_2$ y $J_3$:
 
 \begin{equation}
@@ -777,15 +782,15 @@ e_{\textit{frozen}} \approx -\frac{J_3}{2J_2}\,\frac{R_T}{a}\,\sin i,
 \end{equation}
 
 donde $J_3 \approx -2.53 \times 10^{-6}$ es el armónico zonal impar que
-rompe la simetría norte-sur del campo gravitatorio.
+rompe la simetría entre los hemisferios norte y sur del campo gravitatorio.
 
-El interés de esta condición para una misión de observación de la Tierra
-reside en que, al mantener $e$ y $\omega$ constantes frente a las
-perturbaciones de $J_2$ y $J_3$, el perfil de altura sobre cada latitud se
-repite de forma prácticamente idéntica en cada órbita. Esto asegura un GSD
-y una iluminación uniformes a lo largo de toda la vida útil de la misión,
-además de una geometría de observación repetible, tal como emplean
-misiones de referencia como Landsat o Sentinel-2.
+La condición \textit{frozen} no elimina las variaciones de $e$ y $\omega$.
+Elimina las derivas seculares debidas al acoplamiento entre $J_2$ y $J_3$,
+mientras que las componentes de largo periodo asociadas a $J_3$ persisten.
+Ambos parámetros continúan oscilando, con una amplitud menor que en una
+órbita no \textit{frozen}. La selección de $e$ y $\omega$ busca así limitar la
+variación de la altura orbital y conservar una geometría de observación
+estable a lo largo de la misión.
 
 La oscilación de altura asociada es $\Delta h = 2 a e_{\textit{frozen}}$.
 Para que la condición \textit{frozen} sea relevante, $\Delta h$ debe ser menor que

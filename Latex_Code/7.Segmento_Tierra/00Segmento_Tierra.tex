@@ -9,45 +9,178 @@ Antes de seleccionar la estación, se establecen los requisitos mínimos del seg
 
 \begin{itemize}
     \item Descargar los datos de observación generados por dos satélites en una semana de operación.
-    \item Admitir un enlace de alta tasa para datos de carga de pago en banda X (8\,GHz), estándar en misiones de observación terrestre que requieren altas tasas de transmisión, con velocidades teóricas del orden de 150 Mbps para plataformas pequeñas \cite{kulu2025nanosats,iqspacecom_xlinkx_2024,endurosat_xband_2025}.
-    \item Mantener un canal independiente de telemetría y telecomando (TM/TC) en banda UHF (437\,MHz) o S, de baja tasa ($\sim$9,6 kbps) y cobertura omnidireccional, para enviar comandos y recibir el estado del satélite incluso con actitud degradada \cite{endurosat_uhf_2025}.
+    \item Admitir un enlace de alta tasa para los datos de carga de pago. La portadora y la velocidad se seleccionan a partir del volumen de datos generado y del tiempo de contacto disponible.
+    \item Permitir telemetría y telecomando sobre el mismo enlace radioeléctrico, mediante un servicio separado de baja tasa. La UHF (437\,MHz) se considera únicamente como referencia para este tipo de servicio, no como opción para transmitir la carga de pago \cite{endurosat_uhf_2025}.
     \item Garantizar contactos frecuentes con una órbita SSO de 630 km e inclinación \(97,91^\circ\), preferentemente desde latitudes altas.
     \item Disponer de margen de memoria a bordo para periodos sin contacto y para interrupciones operativas de la estación.
 \end{itemize}
 
-\section{Elección del emplazamiento}
+\section{Descarga de los datos generados. Viabilidad.}
 
-Se evalúan primero las posibles opciones de estaciones terrestres para la presente misión. Dichas opciones son:
+Con los requisitos del enlace establecidos, se cuantifican primero los datos
+generados y se obtiene una estimación preliminar de la tasa. Esta estimación
+orienta la selección de la portadora. Después se fija una estación primaria de
+referencia por criterios geométricos y operativos, y se verifica
+cuantitativamente su tiempo de contacto y la tasa necesaria.
 
+\subsection{Generación de datos}
+
+El volumen de datos se obtiene a partir de la geometría de adquisición del sensor \textit{pushbroom}. La simulación propaga cada satélite durante una semana y conserva los segmentos de traza cuyo punto medio se encuentra dentro de la zona de cobertura, delimitada por las latitudes $25^\circ$N y $49^\circ$N y las longitudes $125^\circ$W y $66^\circ$W. Para cada satélite se suma la longitud $L_i$ de esos segmentos.
+
+Si $s$ es el ancho de barrido, $GSD$ la resolución espacial y $N_{\text{bandas}}$ y $b$ el número de bandas y bits por banda, respectivamente, el número de píxeles capturados por el satélite $i$ es:
+
+\begin{equation}
+N_{\text{pix},i} = \frac{L_i\,s}{GSD^2},
+\label{eq:pixeles_traza}
+\end{equation}
+
+y el volumen de datos correspondiente es:
+
+\begin{equation}
+V_i = \frac{N_{\text{pix},i}\,N_{\text{bandas}}\,b}{8\times10^9}
+      = \frac{L_i\,s\,N_{\text{bandas}}\,b}{GSD^2\,8\times10^9}.
+\label{eq:datos_traza}
+\end{equation}
+
+La longitud se expresa en metros en las ecuaciones. La suma de $V_i$ proporciona el volumen semanal de la constelación, mientras que conservar cada $V_i$ permite comprobar la memoria y la descarga de cada satélite de forma independiente. Este procedimiento relaciona directamente el volumen con los píxeles realmente adquiridos en las trazas de la zona de cobertura.
+
+\subsection{Estimación preliminar de la tasa}
+
+Antes de cerrar la selección de la banda y de la estación, se realiza una
+estimación dimensional. Tomando como orden de magnitud un volumen semanal de
+$29{,}05$ GB para la constelación y aproximadamente $37\,740$ s de contacto de
+referencia en una semana, la tasa media mínima resulta:
+
+\begin{equation}
+R_{\min,\text{est}} = \frac{8\times10^9\,V_{\text{sem}}}{10^6\,T_{\text{contacto,sem}}}
+ = \frac{8\times10^9\times29{,}05}{10^6\times37\,740}
+ \approx 6{,}16\ \text{Mbps}.
+\label{eq:tasa_estimada_tierra}
+\end{equation}
+
+Aplicando un margen operativo del $25\%$, la tasa de diseño preliminar es
+aproximadamente $7{,}70$ Mbps. Este valor permite descartar las soluciones de
+muy baja tasa y orientar la selección de la portadora antes de conocer el
+resultado detallado de la simulación de accesos. En particular, indica que una
+capacidad del orden de $10$ Mbps, disponible en banda S para plataformas
+pequeñas, es una candidata razonable que debe verificarse con los contactos de
+la estación de referencia.
+
+\subsection{Alternativas de banda y arquitectura del enlace}\label{sec:downlink}
+
+La UHF no se considera una alternativa para la descarga de la carga de pago,
+ya que su función habitual en esta arquitectura es proporcionar un servicio de
+telemetría y telecomando de baja tasa. La estimación dimensional muestra que
+la banda S puede cubrir la tasa preliminar, por lo que se selecciona como
+candidata para el enlace de datos. La banda X se conserva únicamente como
+referencia de mayor capacidad; no se evalúa como una alternativa económica.
+
+La arquitectura utiliza una única antena embarcada. La carga de pago y el
+servicio TM/TC se separan mediante la planificación y los canales del sistema
+de comunicaciones, sin requerir una segunda antena dedicada. La selección se
+verifica comparando la tasa de diseño con la capacidad efectiva de la banda S
+en la estación primaria de referencia.
+
+En la verificación detallada de Fairbanks, la tasa mínima se calcula de forma
+independiente para cada satélite. Sea $T_{\text{contacto},i}$ el tiempo
+semanal disponible para el satélite $i$:
+
+\begin{equation}
+R_{\min} = \max_i\left(\frac{8\times10^9 V_i}{10^6 T_{\text{contacto},i}}\right).
+\label{eq:tasa_minima_tierra}
+\end{equation}
+
+Se aplica el margen operativo del $25\%$ para obtener la tasa de diseño:
+
+\begin{equation}
+R_{\text{diseño}} = 1{,}25\,R_{\min}.
+\label{eq:tasa_diseno_tierra}
+\end{equation}
+
+El valor obtenido en esta segunda evaluación sustituye la estimación preliminar y se compara con la capacidad efectiva de las bandas candidatas.
+
+\subsection{Velocidad efectiva del enlace}\label{sec:velocidad_enlace}
+
+La velocidad de referencia del enlace se fija en $10$ Mbps para la banda S, de acuerdo con la capacidad de referencia del subsistema seleccionado. La influencia de la lluvia se comprueba mediante el modelo \textbf{ITU-R P.838-3} \cite{ITU-R_P838_3}, utilizando una frecuencia de 2,3 GHz, una altura de lluvia de 2 km y una elevación de referencia de 60$^\circ$. Los coeficientes interpolados entre 2,0 y 2,5 GHz son $k=0{,}0001131$ y $\alpha=1{,}0991$.
+
+Para una intensidad de 5 mm/h, representativa de lluvia moderada, la atenuación calculada es $0{,}0015$ dB. Para 30 mm/h, representativa de lluvia intensa, es $0{,}0110$ dB. La reducción asociada sobre una tasa nominal de 10 Mbps es inferior al $0{,}3\%$, por lo que la meteorología no constituye la restricción dominante del enlace S. No se introduce una serie anual de velocidades meteorológicas, ya que no modificaría de forma apreciable la capacidad disponible.
+
+Por tanto, se adopta como velocidad efectiva de referencia:
+\begin{equation}
+R_{\text{efectiva,S}} = \boxed{10\ \text{Mbps}}.
+\label{eq:tasa_s_referencia}
+\end{equation}
+
+Este valor se compara con $R_{\text{diseño}}$ y con los tiempos de descarga obtenidos para cada satélite.
+
+\subsubsection{Criterio de viabilidad}
+
+Con el volumen semanal de cada satélite, el tiempo de contacto y la tasa de diseño se calcula el tiempo de descarga mediante:
+
+\begin{equation}
+t_{\text{descarga},i} = \frac{8\times10^9 V_i}{R_{\text{diseño}}\times10^6}.
+\label{eq:tiempo_descarga_tierra}
+\end{equation}
+
+La configuración es viable cuando el tiempo de descarga de cada satélite es inferior al tiempo de contacto que obtiene en la semana y la memoria máxima ocupada permanece por debajo de su capacidad. La comprobación numérica se realiza después de fijar la banda y la estación de referencia.
+
+\subsection{Elección del emplazamiento}
+
+Con la banda S identificada como candidata, se enumeran estaciones cuya
+capacidad en esta banda está confirmada. Para esta misión se preselecciona
+Fairbanks como estación primaria de referencia por criterios geométricos y
+operativos: la órbita es casi polar, la estación se encuentra a una latitud
+elevada dentro de Estados Unidos y dispone de capacidad en banda S. Esta
+preselección evita presentar como resultado de una comparación numérica una
+campaña de simulaciones que no se ha realizado. Las demás estaciones se
+conservan como alternativas documentales:
 
 \begin{enumerate}
-    \item \textbf{Estación de Fairbanks, Alaska (NOAA)}: Ubicada en Gilmore Valley, esta estación es la instalación de comunicaciones por satélite más septentrional de Norteamérica, recibiendo más datos ambientales que cualquier otra estación.
-    \item \textbf{Estación de Wallops, Virginia}: La estación de Wallops constituye otra instalación fundamental de NOAA para adquisición de datos de satélite, localizada en Wallops Island a 37,94°N, -75,47°\,W. Esta estación opera como parte del Wallops Flight Facility y proporciona capacidades especializadas para satélites de observación terrestre. La instalación funciona como sistema redundante para la estación primaria de Fairbanks. El complejo incluye sistemas de comunicación por satélite geoestacionarios y facilidades para procesamiento de datos \cite{noaa_wallops_2019}.
-    \item \textbf{Red de Estaciones Europeas}: EUMETSAT opera una red de estaciones terrestres europeas desde su centro de control en Darmstadt, Alemania (49.87°N, 8.65°E) . Las estaciones principales incluyen Fucino, Italia (41.98°N, 13.60°E) y Cheia, Rumania . La estación de Svalbard, Noruega (78.23°N, 15.41°E) proporciona servicios para satélites de órbita polar  \cite{eumetsat_ground_segment_2025}.
-    \item \textbf{Implementación de una estación propia}: Opción que requeriría mayor inversión inicial pero podría personalizarse específicamente para nuestra misión.
+    \item \textbf{Estación de Fairbanks, Alaska (NOAA)}: Ubicada en Gilmore Valley, dispone de antenas con capacidad en banda S y constituye una referencia adecuada para una órbita cuasi polar por su latitud elevada \cite{noaa_fairbanks_2023,nasa_nsn_complexes}.
+    \item \textbf{Estación de Wallops, Virginia (NASA)}: Localizada en Wallops Island a 37,94°N y -75,47°\,W, dispone de servicios en banda S y ofrece una alternativa de menor latitud para la adquisición de datos \cite{noaa_wallops_2019,nasa_nsn_complexes}.
+    \item \textbf{Estación de Svalbard, Noruega}: Situada a 78,23°N y 15,41°E, proporciona servicios en banda S y constituye una alternativa de muy alta latitud para misiones en órbita polar \cite{eumetsat_ground_segment_2025,nasa_nsn_complexes}.
+    \item \textbf{Estación de McMurdo, Antártida}: La estación dispone de capacidad en banda S y permite considerar una alternativa de alta latitud en el hemisferio sur \cite{nasa_nsn_complexes}.
 \end{enumerate}
+
+Fucino y Cheia no se incluyen en esta lista principal porque la documentación consultada confirma servicios en banda S para telemetría, seguimiento y control, pero no una capacidad de recepción en banda S de carga de pago a alta tasa comparable a la requerida por esta misión.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=.5\linewidth]{7.Segmento_Tierra/AS3_oct-4-2022-1-scaled.png}
-    \caption{Antena de banda X de la estación de Fairbanks, Alaska. \\
+    \caption{Antena de comunicaciones de la estación de Fairbanks, Alaska. La estación dispone de capacidad en bandas S y X. \\
     Fuente: \cite{ASF2025_NSN}.}
 \end{figure}
 
-Tras exponer estas opciones, se selecciona la Estación de Fairbanks porque satisface directamente cada uno de los requisitos del enlace planteados:
+Fairbanks queda, por tanto, como estación primaria de referencia. La
+simulación que se presenta a continuación no pretende demostrar que sea la
+opción óptima frente a todas las estaciones posibles, sino verificar que esta
+elección geométricamente natural satisface los requisitos de la misión:
 
 \begin{itemize}
-    \item \textbf{Enlace de alta tasa en banda X}: la estación cuenta con antenas de 26 metros y varias de 13 metros, todas ellas con capacidad en banda X, compatibles con la tasa de descarga que exige la carga de pago.
-    \item \textbf{Canal independiente de TM/TC}: junto al enlace de datos en banda X, la estación opera de forma simultánea e independiente los canales UHF/S dedicados a telemetría y telecomando, conforme a la arquitectura habitual de las estaciones NOAA/NASA de esta red \cite{noaa_fairbanks_2023}.
-    \item \textbf{Contactos frecuentes con la órbita SSO}: su latitud elevada (64,84°N) maximiza el número de pasadas visibles de una órbita cuasi-polar como la seleccionada ($i=97,91^\circ$), concentrando el tiempo de contacto diario y, con ello, el tiempo de descarga disponible.
-    \item \textbf{Redundancia}: Fairbanks actúa como nodo central de la Red Ártica de Comunicaciones por Satélite, interconectada con otras estaciones de alta latitud (Svalbard, Noruega, y Kiruna, Suecia, de ESTRACK-ESA) y con Wallops (Virginia) y McMurdo (Antártida), de la Near Space Network de la NASA \cite{noaa_fairbanks_2023}.
+    \item \textbf{Enlace de carga de pago en banda S}: la estación cuenta con antenas de 26 metros, 21 metros, 13 metros y 5 metros con capacidad en banda S, por lo que puede evaluarse su compatibilidad con la tasa de descarga que exige la carga de pago \cite{noaa_fairbanks_2023}.
+    \item \textbf{Servicio TM/TC}: la misma antena del enlace S permite gestionar telemetría y telecomando mediante un servicio de baja tasa separado del flujo de carga de pago, sin requerir una antena adicional.
+    \item \textbf{Contactos frecuentes con la órbita SSO}: su latitud elevada (64,84°N) maximiza el número de pasadas visibles de una órbita cuasi polar como la seleccionada ($i=97,91^\circ$), concentrando el tiempo de contacto diario y, con ello, el tiempo de descarga disponible.
+    \item \textbf{Redundancia}: Fairbanks actúa como nodo central de la Red Ártica de Comunicaciones por Satélite, interconectada con otras estaciones de alta latitud, con Wallops y con McMurdo, de la Near Space Network de la NASA \cite{noaa_fairbanks_2023}.
 \end{itemize}
 
-\section{Descarga de los datos generados. Viabilidad.}
+La banda S se adopta finalmente como enlace de carga de pago porque la tasa de
+diseño obtenida para Fairbanks queda por debajo de su capacidad efectiva. La
+misma antena gestiona el servicio TM/TC con una tasa independiente. Esta es una
+conclusión de suficiencia técnica; la posible optimización económica mediante
+otras estaciones o bandas queda fuera del alcance de este diseño preliminar.
 
-Con los canales de comunicaciones definidos en los requisitos del enlace, se analiza la capacidad efectiva de descarga de los datos de observación.
+\subsection{Verificación del tiempo de contacto}
 
-Para validar la elección del emplazamiento, se realiza una simulación en MATLAB mediante un escenario de \textit{Aerospace Toolbox} que analiza el tiempo de contacto semanal de cada satélite con la estación de Tierra. Para la órbita SSO seleccionada de 630 km, la constelación obtiene un tiempo de contacto semanal agregado de aproximadamente \textbf{37\,740 segundos, o 10,5 h}. La órbita SSO de 630 km se fijó en el análisis de misión, tras cruzar los resultados de cobertura efectiva ($T_{\text{rev,eff}} < 7$ días), MTF y SNR, y buscar el mínimo de masa total dentro de esas restricciones.
+Para verificar la preselección de Fairbanks, se ejecuta el escenario de
+\textit{Aerospace Toolbox} y se obtienen los intervalos de acceso de cada
+satélite. En la simulación semanal disponible, la constelación reúne
+aproximadamente $37\,740$ s de contacto, equivalentes a $10{,}5$ h. Repartido
+entre los dos satélites, cada uno dispone de aproximadamente $18\,870$ s, es
+decir, $314{,}5$ min o $5{,}24$ h por semana.
+
+La simulación obtiene $15{,}124$ GB para el satélite 1 y $13{,}921$ GB para el satélite 2, con un volumen semanal total de $29{,}046$ GB. Estos valores se introducen en la ecuación \ref{eq:tasa_minima_tierra} junto con los tiempos de contacto de cada satélite. Las tasas mínimas resultan $6{,}463$ Mbps y $5{,}855$ Mbps, respectivamente, por lo que $R_{\min}=6{,}463$ Mbps y $R_{\text{diseño}}=8{,}079$ Mbps.
+
+La velocidad efectiva de referencia del enlace S, $R_{\text{efectiva,S}}=10$ Mbps, supera la tasa de diseño. El tiempo de descarga a esta velocidad es aproximadamente $3{,}36$ h para el satélite 1 y $3{,}09$ h para el satélite 2, inferior al tiempo de contacto semanal disponible para cada uno. Por tanto, la descarga es viable para la configuración seleccionada.
 
 \begin{figure}[H]
     \centering
@@ -81,135 +214,9 @@ Para validar la elección del emplazamiento, se realiza una simulación en MATLA
     \label{fig:conjunta}
 \end{figure}
 
-
-\subsection{Velocidad de descarga}\label{sec:downlink}
-
-
-
-A partir de la velocidad teórica indicada en los requisitos del enlace, diversos factores ambientales y operativos reducen el valor alcanzable en la práctica.
-
-\subsubsection{Atenuación por inclemencias meteorológicas}
-
-Las principales fuentes de atenuación atmosférica en banda X son las precipitaciones líquidas. La nieve seca y el hielo presentan atenuaciones inferiores a 0,05\,dB en torno a 8\,GHz, despreciables a efectos prácticos, de modo que los días con precipitación sólida se clasifican como condiciones favorables para la transmisión. La atenuación específica por lluvia se calcula mediante el modelo \textbf{ITU-R P.838-3} \cite{ITU-R_P838_3}. Las velocidades esperables en función de las condiciones meteorológicas son:
-
-\begin{table}[H]
-\centering
-\caption{Velocidades de transmisión aproximadas en función de las condiciones meteorológicas. \\ Fuente: \cite{ITU-R_P838_3}.}
-\begin{tabular}{ll}
-\hline
-\textbf{Condición Meteorológica} & \textbf{Velocidades (Mbps)} \\
-\hline
-Condiciones favorables (despejado/nieve) & 130--150 \\
-Lluvia moderada & 120--140 \\
-Lluvia intensa & 90--120 \\
-Nubes densas & 125--145 \\
-\hline
-\end{tabular}
-
-\end{table}
-
-Se debe considerar la estacionalidad a lo largo del año, teniendo en cuenta, por ejemplo, que el verano de Alaska es más lluvioso que el invierno. Con ello, se puede representar gráficamente las velocidades que son esperables a lo largo del año, así como obtener una velocidad media anual. Tomando las siguientes probabilidades:
-
-\begin{table}[H]
-\caption{Distribución estacional de condiciones meteorológicas en Fairbanks. \\Fuente: \cite{climate_data_fairbanks} (NOAA Climate Normals 1991-2020, estación USW00026411).}
-\centering
-\begin{tabularx}{\textwidth}{X X X X X}
-\toprule
-\textbf{Estación} & \textbf{Condiciones favorables$^*$ (\%)} & \textbf{Lluvia moderada (\%)} & \textbf{Lluvia intensa (\%)} & \textbf{Nubes densas (\%)} \\
-\midrule
-Invierno  & 82 & 1  & 0  & 17 \\
-Primavera & 76 & 12 & 3  & 9  \\
-Verano    & 52 & 36 & 7  & 5  \\
-Otoño     & 64 & 22 & 5  & 9  \\
-\bottomrule
-\end{tabularx}
-\smallskip
-
-\noindent\footnotesize $^*$ Incluye días despejados y con precipitación sólida (nieve/aguanieve). En banda X (8,1\,GHz), la nieve seca introduce $<$0,05\,dB de atenuación, despreciable a efectos prácticos. Lluvia moderada: $R < 10$\,mm/h; lluvia intensa: $R \geq 10$\,mm/h (clasificación OMM).
-
-\end{table}
-
-La simulación combina las probabilidades estacionales de la tabla anterior con las velocidades de la tabla de atenuación. Para cada semana se ponderan las condiciones meteorológicas esperables en Fairbanks, usando NOAA para la distribución climática e ITU-R P.838-3 para estimar la pérdida por lluvia. Las figuras muestran la velocidad media semanal resultante y una secuencia diaria sintética compatible con esas probabilidades:
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{7.Segmento_Tierra/velmediasemanal.png}
-    \caption{Velocidad de descarga de datos semanal a lo largo de 1 año. \\Fuente: Elaboración Propia}
-\end{figure}
-
-Para construir la secuencia diaria, la simulación asigna a cada día del año una condición meteorológica muestreada aleatoriamente de las probabilidades estacionales de la tabla anterior (invierno, primavera, verano u otoño según el mes). La velocidad de descarga de ese día se toma como el valor central de la franja correspondiente en la tabla de atenuación ITU-R P.838-3. La figura siguiente muestra la velocidad diaria resultante a lo largo de un año simulado; los episodios de lluvia intensa en verano producen los valles visibles. La distribución resultante es estadísticamente consistente con los registros de Fairbanks (NOAA Climate Normals 1991-2020).
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.85\textwidth]{7.Segmento_Tierra/veldiariabandax.png}
-    \caption{Velocidad de descarga diaria estimada en función de condiciones climáticas.\\ Fuente: Elaboración Propia}
-\end{figure}
-
-Se aprecia una velocidad media anual de \textbf{137 Mbps}, lo cual supone una pérdida del 8,7\% respecto al máximo teórico, debida principalmente a los episodios de lluvia en verano.
-
-
-\textbf{Otros factores correctores.}
-
-De este último valor, se aplican dos factores correctores adicionales:
-\begin{itemize}
-    \item \textbf{Factor corrector por hardware (12,5\,\%)}: la eficiencia operativa de las antenas, del 65-70\%, limita de partida la señal captada; a esto se suman la desadaptación de impedancia (aprox. 1 dB) y el ruido térmico de los receptores (aprox. 0,5 dB), que en conjunto justifican esta reducción \cite{altunc_xband_cubesat_2016}.
-    \item \textbf{Factor corrector por paso a baja elevación (25\,\%)}: en los pasos con elevación inferior a 30° la señal atraviesa un espesor de atmósfera mayor y recorre una distancia más larga hasta la estación, lo que incrementa la atenuación y reduce el tiempo de contacto efectivamente aprovechable \cite{satellite_coordinates_look_angles}.
-\end{itemize}
-
-Por lo que la velocidad de transmisión de datos real será:
-$$
-\text{Velocidad real} = 137\ \text{Mbps} \times 0{,}875 \times 0{,}75 = \boxed{90\ \text{Mbps}}
-$$
-
-\subsection{Generación de datos. Viabilidad de la estación. Memoria de a bordo}
-
-Una vez evaluada la velocidad de descarga, se debe conocer el volumen de datos que la constelación captura en una cobertura completa. El estudio de cobertura del capítulo 4 caracteriza la revisita con el método semianalítico de \cite{crisp2018semi}: propaga las trazas de la constelación con la deriva nodal por J2 y la rotación terrestre y evalúa el mayor intervalo entre pasadas consecutivas sobre la latitud inferior de EE.\,UU. continental, \(25^\circ\)N. De ese análisis se concluye que la órbita SSO de 630 km cumple el requisito de revisita efectiva $T_{\text{rev,eff}} < 7$ días, incluyendo la penalización de nubosidad. Esa misma órbita de 630 km se fijó, ya en el análisis de misión, tras cruzar los resultados de cobertura, MTF y SNR y buscar el mínimo de masa total dentro de esas restricciones.
-
-A partir de esta configuración orbital ya validada, se cuantifica ahora el volumen de datos que genera una cobertura completa del territorio. El sensor, de tipo \textit{pushbroom}, captura franjas continuas de ancho igual al \textit{swath} a lo largo de la traza. Para cubrir completamente un territorio de área $A_{\text{objetivo}}$ con franjas de ancho $s$ y solape $\eta$ entre pasadas consecutivas, el área física barrida por el sensor es mayor que el área objetivo:
-
-\begin{equation}
-A_{\text{barrido}} = \frac{A_{\text{objetivo}}}{(1-\eta)\,\cos\gamma}
-\label{eq:area_barrido}
-\end{equation}
-
-donde $\gamma = |i - 90^\circ| \approx 7{,}91^\circ$ es el ángulo entre la traza y el meridiano para una órbita SSO de $i=97{,}91^\circ$. El factor $\cos\gamma \approx 0{,}99$ corrige el estiramiento de las franjas al cruzar los paralelos con cierta inclinación \cite{wertz1999smad}. Sobre esta área se aplica un \textbf{margen del 15\%} para cubrir costa, islas y periferia de interés (sección 4.7). Asumiendo los siguientes parámetros:
-
-\begin{itemize}
-\item Número de bandas espectrales: $N_{\text{bandas}} = 3$
-\item Resolución espacial (GSD): $80$ metros
-\item Área continental de EE. UU.: $8\,080\,464$ km$^2$
-\item Solape mínimo entre pasadas: $\eta = 5\%$
-\item Ángulo traza-meridiano: $\gamma = 7{,}91^\circ$
-\item Margen (costa, islas, periferia): $15\%$
-\item Área barrida por el sensor en una cobertura:
-      $A_{\text{barrido}} = 8\,080\,464 \times 1{,}15 \times \frac{1}{0{,}95 \times \cos 7{,}91^\circ} \approx 9{,}88 \times 10^6$ km$^2$
-\item Bits por banda: $12$ bits
-\end{itemize}
-
-El volumen de datos generado en una cobertura física completa es:
-
-\begin{equation}
-V_{\text{cobertura}} = \frac{N_{\text{bandas}} \times \text{bits}_{\text{banda}} \times A_{\text{barrido}} \times 10^6}{\text{GSD}^2 \times 8 \times 10^9}
- = \frac{3 \times 12 \times 9{,}88 \times 10^{12}}{80^2 \times 8 \times 10^9}
- = \boxed{6{,}94\ \text{GB}}
-\end{equation}
-
-\subsubsection{Viabilidad de la estación}
-
-Con el volumen de datos y la velocidad real de descarga ya calculados, se evalúa la viabilidad del sistema en función de la capacidad de descarga de la estación de Tierra. El tiempo mínimo necesario para transferir el volumen de una cobertura completa de la constelación es:
-\begin{equation}
-t_{\text{descarga}} = \frac{V_{\text{cobertura}}}{90\ \text{Mbps} \times \frac{1}{8}\ \text{MB/s}} = \frac{6{,}94\ \text{GB}}{11{,}25\ \text{MB/s}} = \frac{6940}{11{,}25} = \boxed{617\ \text{segundos}}
-\end{equation}
-
-Este volumen y este tiempo de descarga corresponden a la constelación completa; conviene no mezclarlos con la capacidad de contacto de un satélite individual. Cada satélite genera aproximadamente la mitad del volumen de una cobertura, $V_{\text{cobertura,sat}} \approx 3{,}47$ GB, y dispone de un tiempo de contacto semanal del orden de 18\,870 segundos si se reparte de forma simétrica el contacto agregado obtenido en la simulación. El tiempo de descarga de ese volumen individual es:
-$$
-t_{\text{descarga,sat}} = \frac{3470\ \text{MB}}{11{,}25\ \text{MB/s}} \approx \boxed{308\ \text{segundos}}
-$$
-valor despreciable frente a los 18\,870 segundos de contacto semanales por satélite. A nivel de constelación, los 617 segundos de descarga total resultan igualmente despreciables frente a los 37\,740 segundos de contacto semanal conjunto, de modo que se verifica $t_{\text{descarga}} < t_{\text{contacto, semana}}$ tanto por satélite como para la constelación completa. Por tanto, la configuración propuesta es viable desde el punto de vista de la capacidad de descarga, con margen suficiente para absorber posibles interrupciones o ineficiencias del enlace.
-
 \subsubsection{Gestión de la memoria de a bordo}
 
-Por último, se modela el estado de la memoria de cada satélite a lo largo del tiempo, considerando tanto la generación continua de datos como la descarga durante los accesos, verificando que la memoria no se sature. En caso de que algún satélite agote su capacidad de almacenamiento, se considera que la configuración no es viable. Mediante el escenario de \textit{Aerospace Toolbox} creado previamente, y utilizando la velocidad media de descarga calculada en el apartado \ref{sec:downlink}:
+Por último, se modela el estado de la memoria de cada satélite a lo largo del tiempo, considerando la generación de datos de sus propias trazas y la descarga durante sus accesos. La simulación utiliza $R_{\text{efectiva,S}}$ y verifica que la memoria máxima ocupada permanezca por debajo de la capacidad instalada.
 
 \begin{figure}[H]
     \centering
@@ -217,4 +224,4 @@ Por último, se modela el estado de la memoria de cada satélite a lo largo del 
     \caption{Evolución de la memoria a bordo de los satélites a lo largo de 1 semana.\\ Fuente: Elaboración Propia}
 \end{figure}
 
-Se observa que, aunque existen periodos donde los satélites no tienen contacto con la estación durante varias horas, una memoria de apenas 512 MB es más que suficiente para almacenar estos datos. Convendría ampliar este límite a 1 GB o incluso más. Las tecnologías actuales de discos de estado sólido SSD permiten un almacenamiento muy superior a este sin una penalización significativa del peso. Esto permitiría almacenar los datos en el caso de pérdidas de conexión temporales o periodos de mantenimiento en la estación de Tierra, dando así una mayor robustez a la misión.
+La capacidad mínima de memoria se fija en $2$ GB por satélite para cubrir la acumulación de datos entre contactos. La simulación semanal obtiene ocupaciones máximas de $1{,}031$ GB para el satélite 1 y $0{,}949$ GB para el satélite 2. Por tanto, ambos valores permanecen por debajo del límite de $2$ GB y dejan un margen mínimo de aproximadamente $0{,}969$ GB.

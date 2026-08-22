@@ -15,13 +15,14 @@ function [total_mass, fuel_mass, num_impulses, total_delta_v] = calcularMasaTota
     
     for i = 1:length(h0_array)
         h0 = h0_array(i);
-        h_target = h0 * 1e3; % Altura objetivo original en metros
-        h_threshold = 0.98 * h_target; % 98% de la altura objetivo ORIGINAL
+        h_target = h0 * 1e3; % Altura orbital nominal en metros
+        h_threshold = 0.98 * h_target; % Umbral inferior de mantenimiento
+        h_recovery = 1.02 * h_target; % Altura de recuperacion tras el impulso
         dry_mass = getIndexedValue(masa_seca, i);
         drag_area_margin = 1.2;
         A = getIndexedValue(Am, i) * drag_area_margin;
         
-        cycle_time = decayCycleTime(h_threshold, h_target, R_earth, mu, Cd, A, dry_mass);
+        cycle_time = decayCycleTime(h_threshold, h_recovery, R_earth, mu, Cd, A, dry_mass);
         if isfinite(cycle_time) && cycle_time > 0
             impulses = floor((mission_duration - eps(mission_duration)) / cycle_time);
         else
@@ -30,7 +31,7 @@ function [total_mass, fuel_mass, num_impulses, total_delta_v] = calcularMasaTota
 
         % Calcular delta-V para cada impulso (Hohmann transfer)
         r1 = R_earth + h_threshold; % Radio despues del decaimiento
-        r2 = R_earth + h_target;  % Radio de la altura objetivo ORIGINAL
+        r2 = R_earth + h_recovery;  % Radio de la orbita de recuperacion
         dv = hohmannDeltaV(r1, r2, mu);
         total_dv = impulses * dv;
         
