@@ -3,8 +3,8 @@
 ==========================================================
 
 --- ÓPTIMO GLOBAL (Masa Mínima de Constelación) ---
-Masa Total de Selección de la Constelación: 5.01 kg
-Masa Total de Diseño con Reserva de Deorbitado: 5.11 kg
+Masa Total de la Constelación: 4.99 kg
+Masa Total de Diseño con Reserva de Deorbitado: 5.09 kg
 
  > Configuración: 2 Satélite(s), 2 Telescopio(s)/sat, 2 Detector(es) Necesario(s), ID Detector 2 con Refractivo
  > Órbita: 630 km, 97.91° inc, Desfase Anom. 180.0°
@@ -12,8 +12,8 @@ Masa Total de Diseño con Reserva de Deorbitado: 5.11 kg
  > Parámetros Ópticos: D=34.0 mm, F=0.14 m (f/4.2) | MTF@Nyquist=0.250, SNR=721.6
  > Prop. Físicas (Instrumento): Masa=0.60 kg, Long=0.11 m, Área=0.01 m^2, Vol=0.001565 m^3, Potencia=0.4 W
  > Prop. Físicas (Satélite): Long=0.31 m, Área=0.10 m^2, Vol=0.030299 m^3, Estándar U=30.30 U
- > Masa Satélite: Total selección=2.50 kg; Total diseño=2.56 kg (Seca=2.39 kg, Combustible total=0.162 kg)
- > Mantenimiento: 13 impulsos, Delta-V Total 88.3 m/s
+ > Masa Satélite: Total selección=2.49 kg; Total diseño=2.55 kg (Seca=2.39 kg, Combustible total=0.153 kg)
+ > Mantenimiento: 6 impulsos, Delta-V Total 81.4 m/s
  > Fin de misión: Delta-V deorbitado 41.9 m/s, combustible reservado 0.052 kg
 
 
@@ -23,7 +23,7 @@ Masa Total de Diseño con Reserva de Deorbitado: 5.11 kg
 ==========================================================
 
 --- Solución #1 ---
-Masa Constelación: 5.11 kg | Masa Satélite Total: 2.56 kg (Seca: 2.39 kg, Comb: 0.162 kg)
+Masa Constelación: 4.99 kg | Masa Satélite Total: 2.49 kg (Seca: 2.39 kg, Comb: 0.10 kg)
  > Configuración: 2 Sat, 2 Tel, 2 Dets | ID Detector: 2 | Telescopio: Refractivo
  > Órbita: 630 km alt, 97.91° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
  > Rendimiento: Swath Requerido=190.0 km (Real=327.7 km, Excedente=72.5%) | Cobertura=5.4 días
@@ -31,7 +31,7 @@ Masa Constelación: 5.11 kg | Masa Satélite Total: 2.56 kg (Seca: 2.39 kg, Comb
  > Prop. Físicas (Satélite): Long=0.31 m, Área=0.10 m^2, Vol=0.030299 m^3, Estándar U=30.30 U
 
 --- Solución #2 ---
-Masa Constelación: 5.85 kg | Masa Satélite Total: 2.92 kg (Seca: 2.84 kg, Comb: 0.08 kg)
+Masa Constelación: 5.81 kg | Masa Satélite Total: 2.90 kg (Seca: 2.84 kg, Comb: 0.06 kg)
  > Configuración: 2 Sat, 2 Tel, 2 Dets | ID Detector: 2 | Telescopio: Refractivo
  > Órbita: 660 km alt, 98.03° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
  > Rendimiento: Swath Requerido=210.0 km (Real=327.7 km, Excedente=56.0%) | Cobertura=6.0 días
@@ -39,7 +39,7 @@ Masa Constelación: 5.85 kg | Masa Satélite Total: 2.92 kg (Seca: 2.84 kg, Comb
  > Prop. Físicas (Satélite): Long=0.33 m, Área=0.11 m^2, Vol=0.035966 m^3, Estándar U=35.97 U
 
 --- Solución #3 ---
-Masa Constelación: 6.79 kg | Masa Satélite Total: 3.39 kg (Seca: 3.34 kg, Comb: 0.05 kg)
+Masa Constelación: 6.73 kg | Masa Satélite Total: 3.37 kg (Seca: 3.34 kg, Comb: 0.03 kg)
  > Configuración: 2 Sat, 2 Tel, 2 Dets | ID Detector: 2 | Telescopio: Refractivo
  > Órbita: 700 km alt, 98.19° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
  > Rendimiento: Swath Requerido=210.0 km (Real=327.7 km, Excedente=56.0%) | Cobertura=4.2 días
@@ -47,7 +47,7 @@ Masa Constelación: 6.79 kg | Masa Satélite Total: 3.39 kg (Seca: 3.34 kg, Comb
  > Prop. Físicas (Satélite): Long=0.35 m, Área=0.12 m^2, Vol=0.042300 m^3, Estándar U=42.30 U
 
 --- Solución #4 ---
-Masa Constelación: 6.97 kg | Masa Satélite Total: 3.48 kg (Seca: 3.34 kg, Comb: 0.14 kg)
+Masa Constelación: 6.92 kg | Masa Satélite Total: 3.46 kg (Seca: 3.34 kg, Comb: 0.12 kg)
  > Configuración: 2 Sat, 2 Tel, 3 Dets | ID Detector: 3 | Telescopio: Refractivo
  > Órbita: 630 km alt, 97.91° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
  > Rendimiento: Swath Requerido=190.0 km (Real=240.0 km, Excedente=26.3%) | Cobertura=5.4 días
@@ -55,7 +55,7 @@ Masa Constelación: 6.97 kg | Masa Satélite Total: 3.48 kg (Seca: 3.34 kg, Comb
  > Prop. Físicas (Satélite): Long=0.35 m, Área=0.12 m^2, Vol=0.042300 m^3, Estándar U=42.30 U
 
 --- Solución #5 ---
-Masa Constelación: 7.31 kg | Masa Satélite Total: 3.65 kg (Seca: 3.61 kg, Comb: 0.04 kg)
+Masa Constelación: 7.28 kg | Masa Satélite Total: 3.64 kg (Seca: 3.61 kg, Comb: 0.03 kg)
  > Configuración: 2 Sat, 2 Tel, 2 Dets | ID Detector: 2 | Telescopio: Refractivo
  > Órbita: 710 km alt, 98.23° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
  > Rendimiento: Swath Requerido=220.0 km (Real=327.7 km, Excedente=48.9%) | Cobertura=6.6 días
@@ -63,7 +63,7 @@ Masa Constelación: 7.31 kg | Masa Satélite Total: 3.65 kg (Seca: 3.61 kg, Comb
  > Prop. Físicas (Satélite): Long=0.36 m, Área=0.13 m^2, Vol=0.045728 m^3, Estándar U=45.73 U
 
 --- Solución #6 ---
-Masa Constelación: 7.99 kg | Masa Satélite Total: 4.00 kg (Seca: 3.90 kg, Comb: 0.10 kg)
+Masa Constelación: 7.97 kg | Masa Satélite Total: 3.98 kg (Seca: 3.90 kg, Comb: 0.08 kg)
  > Configuración: 2 Sat, 2 Tel, 3 Dets | ID Detector: 3 | Telescopio: Refractivo
  > Órbita: 660 km alt, 98.03° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
  > Rendimiento: Swath Requerido=210.0 km (Real=240.0 km, Excedente=14.3%) | Cobertura=6.0 días
@@ -71,23 +71,23 @@ Masa Constelación: 7.99 kg | Masa Satélite Total: 4.00 kg (Seca: 3.90 kg, Comb
  > Prop. Físicas (Satélite): Long=0.37 m, Área=0.13 m^2, Vol=0.049337 m^3, Estándar U=49.34 U
 
 --- Solución #7 ---
-Masa Constelación: 8.43 kg | Masa Satélite Total: 4.21 kg (Seca: 4.20 kg, Comb: 0.02 kg)
- > Configuración: 2 Sat, 2 Tel, 2 Dets | ID Detector: 2 | Telescopio: Refractivo
- > Órbita: 760 km alt, 98.44° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
- > Rendimiento: Swath Requerido=250.0 km (Real=327.7 km, Excedente=31.1%) | Cobertura=4.8 días
- > Parámetros Ópticos: D=41.0 mm, F=0.17 m (f/4.2) | MTF@Nyquist=0.250, SNR=724.7
- > Prop. Físicas (Satélite): Long=0.38 m, Área=0.14 m^2, Vol=0.053130 m^3, Estándar U=53.13 U
-
---- Solución #8 ---
-Masa Constelación: 8.46 kg | Masa Satélite Total: 4.23 kg (Seca: 4.20 kg, Comb: 0.03 kg)
+Masa Constelación: 8.39 kg | Masa Satélite Total: 4.20 kg (Seca: 4.20 kg, Comb: 0.00 kg)
  > Configuración: 2 Sat, 2 Tel, 2 Dets | ID Detector: 2 | Telescopio: Refractivo
  > Órbita: 750 km alt, 98.39° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
  > Rendimiento: Swath Requerido=220.0 km (Real=327.7 km, Excedente=48.9%) | Cobertura=4.2 días
  > Parámetros Ópticos: D=41.0 mm, F=0.17 m (f/4.1) | MTF@Nyquist=0.252, SNR=734.1
  > Prop. Físicas (Satélite): Long=0.38 m, Área=0.14 m^2, Vol=0.053130 m^3, Estándar U=53.13 U
 
+--- Solución #8 ---
+Masa Constelación: 8.39 kg | Masa Satélite Total: 4.20 kg (Seca: 4.20 kg, Comb: 0.00 kg)
+ > Configuración: 2 Sat, 2 Tel, 2 Dets | ID Detector: 2 | Telescopio: Refractivo
+ > Órbita: 760 km alt, 98.44° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
+ > Rendimiento: Swath Requerido=250.0 km (Real=327.7 km, Excedente=31.1%) | Cobertura=4.8 días
+ > Parámetros Ópticos: D=41.0 mm, F=0.17 m (f/4.2) | MTF@Nyquist=0.250, SNR=724.7
+ > Prop. Físicas (Satélite): Long=0.38 m, Área=0.14 m^2, Vol=0.053130 m^3, Estándar U=53.13 U
+
 --- Solución #9 ---
-Masa Constelación: 9.06 kg | Masa Satélite Total: 4.53 kg (Seca: 4.51 kg, Comb: 0.02 kg)
+Masa Constelación: 9.02 kg | Masa Satélite Total: 4.51 kg (Seca: 4.51 kg, Comb: 0.00 kg)
  > Configuración: 2 Sat, 2 Tel, 2 Dets | ID Detector: 2 | Telescopio: Refractivo
  > Órbita: 770 km alt, 98.48° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
  > Rendimiento: Swath Requerido=190.0 km (Real=327.7 km, Excedente=72.5%) | Cobertura=6.6 días
@@ -95,7 +95,7 @@ Masa Constelación: 9.06 kg | Masa Satélite Total: 4.53 kg (Seca: 4.51 kg, Comb
  > Prop. Físicas (Satélite): Long=0.39 m, Área=0.15 m^2, Vol=0.057113 m^3, Estándar U=57.11 U
 
 --- Solución #10 ---
-Masa Constelación: 9.13 kg | Masa Satélite Total: 4.56 kg (Seca: 4.51 kg, Comb: 0.05 kg)
+Masa Constelación: 9.09 kg | Masa Satélite Total: 4.55 kg (Seca: 4.51 kg, Comb: 0.03 kg)
  > Configuración: 2 Sat, 2 Tel, 3 Dets | ID Detector: 3 | Telescopio: Refractivo
  > Órbita: 700 km alt, 98.19° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
  > Rendimiento: Swath Requerido=210.0 km (Real=240.0 km, Excedente=14.3%) | Cobertura=4.2 días
@@ -103,7 +103,7 @@ Masa Constelación: 9.13 kg | Masa Satélite Total: 4.56 kg (Seca: 4.51 kg, Comb
  > Prop. Físicas (Satélite): Long=0.39 m, Área=0.15 m^2, Vol=0.057113 m^3, Estándar U=57.11 U
 
 --- Solución #11 ---
-Masa Constelación: 9.72 kg | Masa Satélite Total: 4.86 kg (Seca: 4.84 kg, Comb: 0.02 kg)
+Masa Constelación: 9.68 kg | Masa Satélite Total: 4.84 kg (Seca: 4.84 kg, Comb: 0.00 kg)
  > Configuración: 2 Sat, 2 Tel, 2 Dets | ID Detector: 2 | Telescopio: Refractivo
  > Órbita: 790 km alt, 98.56° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
  > Rendimiento: Swath Requerido=240.0 km (Real=327.7 km, Excedente=36.5%) | Cobertura=4.2 días
@@ -111,7 +111,7 @@ Masa Constelación: 9.72 kg | Masa Satélite Total: 4.86 kg (Seca: 4.84 kg, Comb
  > Prop. Físicas (Satélite): Long=0.39 m, Área=0.16 m^2, Vol=0.061291 m^3, Estándar U=61.29 U
 
 --- Solución #12 ---
-Masa Constelación: 9.80 kg | Masa Satélite Total: 4.90 kg (Seca: 4.84 kg, Comb: 0.06 kg)
+Masa Constelación: 9.76 kg | Masa Satélite Total: 4.88 kg (Seca: 4.84 kg, Comb: 0.04 kg)
  > Configuración: 2 Sat, 2 Tel, 3 Dets | ID Detector: 3 | Telescopio: Refractivo
  > Órbita: 710 km alt, 98.23° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
  > Rendimiento: Swath Requerido=220.0 km (Real=240.0 km, Excedente=9.1%) | Cobertura=6.6 días
@@ -119,7 +119,7 @@ Masa Constelación: 9.80 kg | Masa Satélite Total: 4.90 kg (Seca: 4.84 kg, Comb
  > Prop. Físicas (Satélite): Long=0.39 m, Área=0.16 m^2, Vol=0.061291 m^3, Estándar U=61.29 U
 
 --- Solución #13 ---
-Masa Constelación: 10.42 kg | Masa Satélite Total: 3.47 kg (Seca: 3.46 kg, Comb: 0.01 kg)
+Masa Constelación: 10.38 kg | Masa Satélite Total: 3.46 kg (Seca: 3.46 kg, Comb: 0.00 kg)
  > Configuración: 3 Sat, 1 Tel, 1 Dets | ID Detector: 2 | Telescopio: Refractivo
  > Órbita: 810 km alt, 98.65° inc (SSO), LTAN 6 h, Desfase Anom. 120.0°
  > Rendimiento: Swath Requerido=130.0 km (Real=163.8 km, Excedente=26.0%) | Cobertura=6.6 días
@@ -135,7 +135,7 @@ Masa Constelación: 11.10 kg | Masa Satélite Total: 5.55 kg (Seca: 5.55 kg, Com
  > Prop. Físicas (Satélite): Long=0.41 m, Área=0.17 m^2, Vol=0.070247 m^3, Estándar U=70.25 U
 
 --- Solución #15 ---
-Masa Constelación: 11.14 kg | Masa Satélite Total: 5.57 kg (Seca: 5.55 kg, Comb: 0.02 kg)
+Masa Constelación: 11.10 kg | Masa Satélite Total: 5.55 kg (Seca: 5.55 kg, Comb: 0.00 kg)
  > Configuración: 2 Sat, 2 Tel, 3 Dets | ID Detector: 3 | Telescopio: Refractivo
  > Órbita: 750 km alt, 98.39° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
  > Rendimiento: Swath Requerido=220.0 km (Real=240.0 km, Excedente=9.1%) | Cobertura=4.2 días
@@ -159,7 +159,7 @@ Masa Constelación: 12.65 kg | Masa Satélite Total: 6.32 kg (Seca: 6.32 kg, Com
  > Prop. Físicas (Satélite): Long=0.43 m, Área=0.19 m^2, Vol=0.080036 m^3, Estándar U=80.04 U
 
 --- Solución #18 ---
-Masa Constelación: 12.70 kg | Masa Satélite Total: 6.35 kg (Seca: 6.32 kg, Comb: 0.03 kg)
+Masa Constelación: 12.65 kg | Masa Satélite Total: 6.32 kg (Seca: 6.32 kg, Comb: 0.00 kg)
  > Configuración: 2 Sat, 2 Tel, 3 Dets | ID Detector: 3 | Telescopio: Refractivo
  > Órbita: 770 km alt, 98.48° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
  > Rendimiento: Swath Requerido=190.0 km (Real=240.0 km, Excedente=26.3%) | Cobertura=6.6 días
@@ -167,7 +167,7 @@ Masa Constelación: 12.70 kg | Masa Satélite Total: 6.35 kg (Seca: 6.32 kg, Com
  > Prop. Físicas (Satélite): Long=0.43 m, Área=0.19 m^2, Vol=0.080036 m^3, Estándar U=80.04 U
 
 --- Solución #19 ---
-Masa Constelación: 13.05 kg | Masa Satélite Total: 6.52 kg (Seca: 6.32 kg, Comb: 0.20 kg)
+Masa Constelación: 13.00 kg | Masa Satélite Total: 6.50 kg (Seca: 6.32 kg, Comb: 0.18 kg)
  > Configuración: 2 Sat, 2 Tel, 2 Dets | ID Detector: 1 | Telescopio: Refractivo
  > Órbita: 630 km alt, 97.91° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
  > Rendimiento: Swath Requerido=190.0 km (Real=192.0 km, Excedente=1.1%) | Cobertura=5.4 días
@@ -175,7 +175,7 @@ Masa Constelación: 13.05 kg | Masa Satélite Total: 6.52 kg (Seca: 6.32 kg, Com
  > Prop. Físicas (Satélite): Long=0.43 m, Área=0.19 m^2, Vol=0.080036 m^3, Estándar U=80.04 U
 
 --- Solución #20 ---
-Masa Constelación: 13.53 kg | Masa Satélite Total: 6.76 kg (Seca: 6.74 kg, Comb: 0.03 kg)
+Masa Constelación: 13.47 kg | Masa Satélite Total: 6.74 kg (Seca: 6.74 kg, Comb: 0.00 kg)
  > Configuración: 2 Sat, 2 Tel, 3 Dets | ID Detector: 3 | Telescopio: Refractivo
  > Órbita: 790 km alt, 98.56° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
  > Rendimiento: Swath Requerido=240.0 km (Real=240.0 km, Excedente=0.0%) | Cobertura=4.2 días
@@ -199,7 +199,7 @@ Masa Constelación: 14.33 kg | Masa Satélite Total: 4.78 kg (Seca: 4.78 kg, Com
  > Prop. Físicas (Satélite): Long=0.39 m, Área=0.15 m^2, Vol=0.060463 m^3, Estándar U=60.46 U
 
 --- Solución #23 ---
-Masa Constelación: 14.59 kg | Masa Satélite Total: 7.29 kg (Seca: 7.16 kg, Comb: 0.13 kg)
+Masa Constelación: 14.54 kg | Masa Satélite Total: 7.27 kg (Seca: 7.16 kg, Comb: 0.10 kg)
  > Configuración: 2 Sat, 2 Tel, 3 Dets | ID Detector: 1 | Telescopio: Refractivo
  > Órbita: 660 km alt, 98.03° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
  > Rendimiento: Swath Requerido=210.0 km (Real=288.0 km, Excedente=37.1%) | Cobertura=6.0 días
@@ -263,7 +263,7 @@ Masa Constelación: 17.13 kg | Masa Satélite Total: 5.71 kg (Seca: 5.71 kg, Com
  > Prop. Físicas (Satélite): Long=0.42 m, Área=0.17 m^2, Vol=0.072262 m^3, Estándar U=72.26 U
 
 --- Solución #31 ---
-Masa Constelación: 17.32 kg | Masa Satélite Total: 8.66 kg (Seca: 8.56 kg, Comb: 0.10 kg)
+Masa Constelación: 17.26 kg | Masa Satélite Total: 8.63 kg (Seca: 8.56 kg, Comb: 0.07 kg)
  > Configuración: 2 Sat, 2 Tel, 3 Dets | ID Detector: 1 | Telescopio: Refractivo
  > Órbita: 700 km alt, 98.19° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
  > Rendimiento: Swath Requerido=210.0 km (Real=288.0 km, Excedente=37.1%) | Cobertura=4.2 días
@@ -335,7 +335,7 @@ Masa Constelación: 20.26 kg | Masa Satélite Total: 6.75 kg (Seca: 6.75 kg, Com
  > Prop. Físicas (Satélite): Long=0.44 m, Área=0.19 m^2, Vol=0.085504 m^3, Estándar U=85.50 U
 
 --- Solución #40 ---
-Masa Constelación: 21.48 kg | Masa Satélite Total: 10.74 kg (Seca: 10.70 kg, Comb: 0.04 kg)
+Masa Constelación: 21.39 kg | Masa Satélite Total: 10.70 kg (Seca: 10.70 kg, Comb: 0.00 kg)
  > Configuración: 2 Sat, 2 Tel, 3 Dets | ID Detector: 1 | Telescopio: Refractivo
  > Órbita: 750 km alt, 98.39° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
  > Rendimiento: Swath Requerido=220.0 km (Real=288.0 km, Excedente=30.9%) | Cobertura=4.2 días
@@ -343,7 +343,7 @@ Masa Constelación: 21.48 kg | Masa Satélite Total: 10.74 kg (Seca: 10.70 kg, C
  > Prop. Físicas (Satélite): Long=0.51 m, Área=0.26 m^2, Vol=0.135380 m^3, Estándar U=135.38 U
 
 --- Solución #41 ---
-Masa Constelación: 21.48 kg | Masa Satélite Total: 10.74 kg (Seca: 10.70 kg, Comb: 0.04 kg)
+Masa Constelación: 21.39 kg | Masa Satélite Total: 10.70 kg (Seca: 10.70 kg, Comb: 0.00 kg)
  > Configuración: 2 Sat, 2 Tel, 3 Dets | ID Detector: 1 | Telescopio: Refractivo
  > Órbita: 760 km alt, 98.44° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
  > Rendimiento: Swath Requerido=250.0 km (Real=288.0 km, Excedente=15.2%) | Cobertura=4.8 días
@@ -351,7 +351,7 @@ Masa Constelación: 21.48 kg | Masa Satélite Total: 10.74 kg (Seca: 10.70 kg, C
  > Prop. Físicas (Satélite): Long=0.51 m, Área=0.26 m^2, Vol=0.135380 m^3, Estándar U=135.38 U
 
 --- Solución #42 ---
-Masa Constelación: 22.65 kg | Masa Satélite Total: 11.32 kg (Seca: 11.28 kg, Comb: 0.05 kg)
+Masa Constelación: 22.56 kg | Masa Satélite Total: 11.28 kg (Seca: 11.28 kg, Comb: 0.00 kg)
  > Configuración: 2 Sat, 2 Tel, 2 Dets | ID Detector: 1 | Telescopio: Refractivo
  > Órbita: 770 km alt, 98.48° inc (SSO), LTAN 6 h, Desfase Anom. 180.0°
  > Rendimiento: Swath Requerido=190.0 km (Real=192.0 km, Excedente=1.1%) | Cobertura=6.6 días
@@ -493,3 +493,4 @@ Masa Constelación: 328.96 kg | Masa Satélite Total: 164.48 kg (Seca: 164.48 kg
  > Rendimiento: Swath Requerido=230.0 km (Real=327.7 km, Excedente=42.5%) | Cobertura=6.6 días
  > Parámetros Ópticos: D=158.0 mm, F=0.21 m (f/1.3) | MTF@Nyquist=0.250, SNR=1905.8
  > Prop. Físicas (Satélite): Long=1.28 m, Área=1.63 m^2, Vol=2.081998 m^3, Estándar U=2082.00 U
+
