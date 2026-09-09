@@ -1,5 +1,5 @@
-%% Modelado de Atenuación por Inclemencias del Tiempo en Banda X
-% Este script simula la velocidad de descarga en banda X bajo diferentes
+%% Modelado de Atenuación por Inclemencias del Tiempo en Banda S
+% Este script simula la velocidad de descarga en banda S bajo diferentes
 % condiciones meteorológicas durante un año completo
 
 %% Configuración inicial
@@ -16,19 +16,34 @@ set(groot, 'defaultLegendInterpreter', 'latex');
 % Parámetros de simulación
 dias_simulacion = 365; % Un año completo
 
-% Parámetros de velocidad (Mbps) - [min, max]
-% Rangos basados en ITU-R P.838-3 a 8.1 GHz: gamma_R = k*R^alpha, k=0.00425, alpha=1.32
-% Atenuación en trayecto oblicuo (elev. 60°, altura lluvia 2 km): L_eff = 2/sin(60°) = 2.31 km
-% Lluvia moderada (5 mm/h): ~0.08 dB; Lluvia intensa (30 mm/h): ~0.74 dB
-% Margen de enlace disponible: 22.8 dB >> atenuaciones anteriores
+% Parámetros de referencia del enlace en banda S
+frecuencia_GHz = 2.3;
+tasa_nominal_Mbps = 10;
+elevacion_referencia_deg = 60;
+altura_lluvia_km = 2;
+
+% Coeficientes horizontales de ITU-R P.838-3 interpolados a 2,3 GHz.
+% La atenuación específica se calcula como gamma_R = k*R^alpha.
+frecuencias_GHz = [2.0, 2.5];
+kH = [0.0000847, 0.0001321];
+alphaH = [1.0664, 1.1209];
+k = interp1(frecuencias_GHz, kH, frecuencia_GHz, 'linear');
+alpha = interp1(frecuencias_GHz, alphaH, frecuencia_GHz, 'linear');
+
+% Se emplea una longitud efectiva de lluvia de h_rain/sin(elevación).
+longitud_lluvia_km = altura_lluvia_km / sind(elevacion_referencia_deg);
+tasas_lluvia_mm_h = [0, 5, 30, 0];
+atenuacion_lluvia_dB = k .* tasas_lluvia_mm_h .^ alpha .* longitud_lluvia_km;
+tasas_meteorologicas_Mbps = tasa_nominal_Mbps .* 10 .^ (-atenuacion_lluvia_dB / 10);
+
 VELOCIDADES = containers.Map(...
     {'Cond. favorables', 'Lluvia moderada', 'Lluvia intensa', 'Nubes densas'}, ...
-    {[130, 150], [120, 140], [90, 120], [125, 145]});
+    num2cell(tasas_meteorologicas_Mbps));
 
 % Probabilidades de condiciones meteorológicas por estación (%)
 % Fuente: NOAA Climate Normals 1991-2020, Fairbanks Intl Airport (USW00026411)
 % Días de lluvia real: invierno ~0, primavera ~4, verano ~37, otoño ~9 (total año ~103 precip.)
-% Nieve y nubes sin lluvia = "Cond. favorables" a efectos de enlace en banda X
+% Nieve y nubes sin lluvia = "Cond. favorables" a efectos de enlace en banda S
 PROBABILIDADES_ESTACION = containers.Map(...
     {'Primavera', 'Verano', 'Otono', 'Invierno'}, ...
     {[76, 12, 3, 9], [52, 36, 7, 5], [64, 22, 5, 9], [82, 1, 0, 17]});
@@ -68,9 +83,8 @@ for dia = 1:dias_simulacion
         condicion = condiciones_nombres{4};
     end
     
-    % Generar velocidad según la condición
-    rango_velocidad = VELOCIDADES(condicion);
-    velocidad = rango_velocidad(1) + rand() * (rango_velocidad(2) - rango_velocidad(1));
+    % La velocidad se obtiene de la atenuación meteorológica calculada para S.
+    velocidad = VELOCIDADES(condicion);
     
     condiciones_diarias{dia} = condicion;
     velocidades_diarias(dia) = velocidad;
@@ -107,7 +121,7 @@ xlim([1 52]);
 
 xlabel('Semana del a\~no', 'FontSize', 12);
 ylabel('Velocidad promedio (Mbps)', 'FontSize', 12);
-title('Velocidad promedio semanal en banda X durante un a\~no', 'FontSize', 14);
+title('Velocidad promedio semanal en banda S durante un a\~no', 'FontSize', 14);
 grid on; grid minor;
 
 % Corregir la leyenda - agregar ambas series
@@ -115,7 +129,8 @@ legend({'Velocidad promedio semanal', sprintf('Media anual (%.1f Mbps)', media_a
     'Location', 'best', 'FontSize', 11);
 hold off;
 
-out_dir = '/Users/miguelrosa/Desktop/UPM/TFG/Preliminary DesignEO github/PreliminaryDesignEO/Latex_Code/7.Segmento_Tierra';
+script_dir = fileparts(mfilename('fullpath'));
+out_dir = fullfile(script_dir, '..', 'Latex_Code', '7.Segmento_Tierra');
 exportgraphics(gcf, fullfile(out_dir, 'velmediasemanal.png'), 'Resolution', 150);
 
 
@@ -156,12 +171,12 @@ xlim([1 365]);
 
 xlabel('D\''ia del a\~no', 'FontSize', 12);
 ylabel('Velocidad de descarga (Mbps)', 'FontSize', 12);
-title('Velocidad diaria en banda X durante un a\~no', 'FontSize', 14);
+title('Velocidad diaria en banda S durante un a\~no', 'FontSize', 14);
 grid on; grid minor;
 legend('Location', 'best', 'FontSize', 11);
 hold off;
 
-exportgraphics(gcf, fullfile(out_dir, 'veldiariabandax.png'), 'Resolution', 150);
+exportgraphics(gcf, fullfile(out_dir, 'veldiariabandas.png'), 'Resolution', 150);
 
 %% Resumen estadístico
 fprintf('\nResumen Estadístico:\n');
@@ -184,4 +199,7 @@ end
 
 fprintf('\nTotal de días simulados: %d\n', dias_simulacion);
 fprintf('Velocidad promedio general: %.1f Mbps\n', mean(velocidades_diarias));
-
+fprintf('Frecuencia de referencia: %.1f GHz\n', frecuencia_GHz);
+fprintf('Coeficientes ITU-R P.838-3: k = %.7f, alpha = %.4f\n', k, alpha);
+fprintf('Longitud efectiva de lluvia: %.3f km\n', longitud_lluvia_km);
+fprintf('Atenuaciones de referencia [dB]: %s\n', mat2str(atenuacion_lluvia_dB, 5));

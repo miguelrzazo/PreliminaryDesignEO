@@ -55,9 +55,9 @@ for h = 1:length(alturas_orbitales)
         coes = [a, 0, inc, 0, 0]; % [sma, ecc, inc, RAAN, AoP]
 
         % --- Llamada a RevisitCalc ---
-        half_fov_angle = atand(effective_swath / (2 * height)); % [grados]
+        psi_deg = atand(effective_swath / (2 * height)); % semiángulo de observación [grados]
         try
-            maxRevisit = RevisitCalc(coes, lat, 1, 0, N_sat, 1, 0, 1, 0, dayLimit, half_fov_angle);
+            maxRevisit = RevisitCalc(coes, lat, 1, 0, N_sat, 1, 0, 1, 0, dayLimit, psi_deg);
             final_revisit = maxRevisit / (1 - cobertura_nubes);
             if final_revisit > Cov_Requirement
                 coverage_days(h,s) = NaN;

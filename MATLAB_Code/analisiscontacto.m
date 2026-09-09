@@ -14,27 +14,12 @@ mu = 3.986004418e14;
 orbitalPeriod_s = 2 * pi * sqrt(semiMajorAxis^3 / mu);
 LTAN_target = 6; % [horas] LTAN de las 6:00 AM
 
-% --- Parámetros de Datos y Memoria (en Gigabytes) ---
-GSD = 80; areaUSA_km2 = 8080464; areaMargin = 1.15; numBands = 3; bitsPerBand = 12;
-
-% Área barrida por el sensor durante una cobertura completa
-% El sensor captura franjas de ancho swath a lo largo de la ground track.
-% Para cubrir un territorio de área A con swath s y solape η,
-% el área barrida es A / ((1-η)*cos(γ)), donde γ = |i - 90°|.
-% Se añade margen del 15% para costa, islas y periferia.
-overlap_swath = 0.05;
-gamma_deg = abs(inclination - 90);  % ~7.91 deg
-factor_geometrico = 1 / ((1 - overlap_swath) * cosd(gamma_deg));
-areaBarrido_km2 = areaUSA_km2 * areaMargin * factor_geometrico;
-
-bitsPerPixel = numBands * bitsPerBand;
-areaBarrido_m2 = areaBarrido_km2 * 1e6;
-pixelArea_m2 = GSD^2;
-numPixels = areaBarrido_m2 / pixelArea_m2;
-totalDataBits = numPixels * bitsPerPixel;
-totalDataToMap_GB = totalDataBits / (8 * 1e9);
-downloadRate_Mbps = 90;
-memoryPerSatellite_GB = 1;
+% Parámetros del detector, de la zona de cobertura y de la memoria
+GSD = 80; swath_km = 222; numBands = 3; bitsPerBand = 12;
+coverageLat_deg = [25, 49];
+coverageLon_deg = [-125, -66];
+dataSampleTime = 10; % [s], resolución temporal para integrar las trazas
+memoryPerSatellite_GB = 2;
 
 %% 2. CREACIÓN DEL ESCENARIO DE SIMULACIÓN
 sc = satelliteScenario(startTime, stopTime, sampleTime);
@@ -75,36 +60,68 @@ for i = 1:N
 end
 fprintf('Cálculo de acceso completado.\n');
 
+%% 5. CÁLCULO DEL VOLUMEN DE DATOS A PARTIR DE LAS TRAZAS
+fprintf('Calculando el volumen de datos por satélite a partir de las trazas...\n');
+[dataBitsBySatellite, traceLengthBySatellite_km] = calculateTraceData( ...
+    sats, startTime, stopTime, dataSampleTime, GSD, swath_km, ...
+    coverageLat_deg, coverageLon_deg, numBands, bitsPerBand);
+totalDataBits = sum(dataBitsBySatellite);
+totalDataToMap_GB = totalDataBits / (8 * 1e9);
 
-%% 5. ANÁLISIS DE VIABILIDAD BASADO EN TIEMPO DE DESCARGA
+for i = 1:N
+    fprintf('%s: longitud de traza en cobertura = %.1f km, datos = %.3f GB\n', ...
+        sats(i).Name, traceLengthBySatellite_km(i), dataBitsBySatellite(i)/(8*1e9));
+end
+fprintf('Datos totales de la constelación en una semana: %.3f GB\n', totalDataToMap_GB);
+
+
+%% 6. TASA NECESARIA Y ANÁLISIS DE VIABILIDAD
 fprintf('\n--- Análisis de Viabilidad basado en Tiempo de Descarga ---\n');
-
-% --- Cálculo del tiempo de descarga necesario ---
-% Se convierte el total de datos a Megabits (Mb)
-totalDataToMap_Mb = totalDataToMap_GB * 8 * 1000;
-% Se calcula el tiempo necesario en segundos y horas para descargar todos los datos
-tiempoDescargaNecesario_s = totalDataToMap_Mb / downloadRate_Mbps;
-tiempoDescargaNecesario_h = tiempoDescargaNecesario_s / 3600;
-
-fprintf('Datos totales a descargar: %.2f GB\n', totalDataToMap_GB);
-fprintf('Tasa de descarga: %d Mbps\n', downloadRate_Mbps);
-fprintf('Tiempo de descarga NECESARIO: %.2f horas (%.0f segundos).\n', tiempoDescargaNecesario_h, tiempoDescargaNecesario_s);
 
 % --- Cálculo del tiempo de descarga total obtenido por los satélites ---
 tiempoDescargaObtenido_s = 0;
+contactSecondsBySatellite = zeros(1, N);
 for i = 1:N
     if ~isempty(accessIntervalsAllSats{i}) && height(accessIntervalsAllSats{i}) > 0
         % La duración de cada acceso es EndTime - StartTime
         durations = accessIntervalsAllSats{i}.EndTime - accessIntervalsAllSats{i}.StartTime;
         % Se suma la duración total (en segundos) de los accesos para toda la constelación
-        tiempoDescargaObtenido_s = tiempoDescargaObtenido_s + sum(seconds(durations));
+        contactSecondsBySatellite(i) = sum(seconds(durations));
     end
 end
+tiempoDescargaObtenido_s = sum(contactSecondsBySatellite);
 tiempoDescargaObtenido_h = tiempoDescargaObtenido_s / 3600;
 fprintf('Tiempo de descarga OBTENIDO (total constelación): %.2f horas (%.0f segundos).\n', tiempoDescargaObtenido_h, tiempoDescargaObtenido_s);
 
+if any(contactSecondsBySatellite <= 0)
+    error('Al menos un satélite no tiene contactos con la estación de Tierra.');
+end
+if tiempoDescargaObtenido_s <= 0
+    error('No se han encontrado contactos con la estación de Tierra.');
+end
+minimumRateBySatellite_Mbps = dataBitsBySatellite ./ (contactSecondsBySatellite * 1e6);
+minimumRate_Mbps = max(minimumRateBySatellite_Mbps);
+operationalMargin = 1.25;
+designRate_Mbps = minimumRate_Mbps * operationalMargin;
+effectiveRate_Mbps = 10; % Tasa efectiva de referencia adoptada para el enlace S [Mbps]
+downloadRate_Mbps = effectiveRate_Mbps;
+fprintf('Tasa mínima por satélite [Mbps]: %s\n', mat2str(minimumRateBySatellite_Mbps, 4));
+fprintf('Tasa mínima de diseño sin margen: %.3f Mbps\n', minimumRate_Mbps);
+fprintf('Tasa de diseño con margen operativo del %.0f%%: %.3f Mbps\n', ...
+    (operationalMargin - 1) * 100, designRate_Mbps);
+fprintf('Tasa efectiva adoptada para el enlace S: %.1f Mbps\n', effectiveRate_Mbps);
+
+totalDataToMap_Mb = totalDataToMap_GB * 8 * 1000;
+tiempoDescargaNecesario_s = totalDataToMap_Mb / downloadRate_Mbps;
+tiempoDescargaNecesario_h = tiempoDescargaNecesario_s / 3600;
+tiempoDescargaPorSat_s = dataBitsBySatellite ./ (downloadRate_Mbps * 1e6);
+fprintf('Datos totales a descargar: %.2f GB\n', totalDataToMap_GB);
+fprintf('Tiempo de descarga de diseño: %.2f horas (%.0f segundos).\n', ...
+    tiempoDescargaNecesario_h, tiempoDescargaNecesario_s);
+fprintf('Tiempo de descarga por satélite [h]: %s\n', mat2str(tiempoDescargaPorSat_s / 3600, 4));
+
 % --- Comprobación de viabilidad basada en el tiempo ---
-if tiempoDescargaObtenido_s >= tiempoDescargaNecesario_s
+if all(tiempoDescargaPorSat_s <= contactSecondsBySatellite)
     fprintf('RESULTADO (por tiempo): MISIÓN VIABLE. El tiempo de acceso total es suficiente.\n\n');
 else
     deficit_s = tiempoDescargaNecesario_s - tiempoDescargaObtenido_s;
@@ -115,19 +132,19 @@ end
 
 
 
-%% 6. SIMULACIÓN DE MEMORIA
+%% 7. SIMULACIÓN DE MEMORIA
 fprintf('Iniciando simulación de memoria en GB...\n');
 timeVector = startTime:seconds(sampleTime):stopTime;
 memoryState = zeros(N, numel(timeVector));
 totalSimSeconds = seconds(stopTime - startTime);
-dataGeneratedPerSample_GB = (totalDataToMap_GB / totalSimSeconds) * sampleTime;
+dataGeneratedPerSample_GB = (dataBitsBySatellite / (8 * 1e9) / totalSimSeconds) * sampleTime;
 downloadPerSample_GB = (downloadRate_Mbps * 1e6 * sampleTime) / (8 * 1e9);
 
 for t = 2:numel(timeVector)
     currentTime = timeVector(t);
     for i = 1:N
         memoryState(i, t) = memoryState(i, t-1);
-        memoryState(i, t) = min(memoryState(i, t) + dataGeneratedPerSample_GB, memoryPerSatellite_GB);
+        memoryState(i, t) = memoryState(i, t) + dataGeneratedPerSample_GB(i);
         isAccess = any(currentTime >= accessIntervalsAllSats{i}.StartTime & currentTime <= accessIntervalsAllSats{i}.EndTime);
         if isAccess
             memoryState(i, t) = max(0, memoryState(i, t) - downloadPerSample_GB);
@@ -135,7 +152,7 @@ for t = 2:numel(timeVector)
     end
 end
 
-%% 7. GENERACIÓN DE GRÁFICOS Y COMPROBACIÓN FINAL
+%% 8. GENERACIÓN DE GRÁFICOS Y COMPROBACIÓN FINAL
 elapsedDays = days(timeVector - startTime);
 figure('Name', 'Estado de Memoria de Satélites');
 hold on;
@@ -147,7 +164,7 @@ for i = 1:N
 end
 hold off;
 grid on;
-ylim([0, memoryPerSatellite_GB * 1.08]);
+ylim([0, max(memoryPerSatellite_GB * 1.08, max(memoryState, [], 'all') * 1.08)]);
 xlabel('$t$ [dias]', 'Interpreter', 'latex');
 ylabel('Memoria ocupada [GB]', 'Interpreter', 'latex');
 title(sprintf('Estado de memoria a bordo ($C_{max}=%.0f$ GB)', memoryPerSatellite_GB), 'Interpreter', 'latex');
@@ -159,21 +176,23 @@ exportgraphics(gcf, fullfile(script_dir, '..', 'Latex_Code', '7.Segmento_Tierra'
 
 % Comprobación de viabilidad basada en memoria (del código original)
 fprintf('\n--- Análisis de Viabilidad basado en Llenado de Memoria ---\n');
-if all(max(memoryState,[],2) < memoryPerSatellite_GB * 0.999)
+maxMemoryBySatellite_GB = max(memoryState, [], 2);
+fprintf('Memoria máxima por satélite [GB]: %s\n', mat2str(maxMemoryBySatellite_GB, 6));
+if all(maxMemoryBySatellite_GB <= memoryPerSatellite_GB)
     fprintf('RESULTADO (por memoria): VIABLE. La memoria de los satélites nunca se llena.\n');
 else
     fprintf('RESULTADO (por memoria): NO VIABLE. Al menos un satélite ha llenado su memoria.\n');
 end
 
 
-%% 7. GENERACION DE VISUALIZACIONES 3D DEL ESCENARIO
+%% 9. GENERACION DE VISUALIZACIONES 3D DEL ESCENARIO
 fprintf('\n--- Generando y exportando visualizaciones 3D del escenario ---\n');
 generate3DPlot(sc, sats, gs, orbitalPeriod_s, 'Escenario_3D_1_Orbita', colors);
 %generate3DPlot(sc, sats, gs, 86400, 'Escenario_3D_1_Dia', colors);
 %generate3DPlot(sc, sats, gs, 7*86400, 'Escenario_3D_1_Semana', colors);
 %fprintf('Se han generado 3 archivos PNG con las visualizaciones 3D.\n');
 
-%% 8. GENERACION DE TRAZAS 2D CON WORLDMAP
+%% 10. GENERACION DE TRAZAS 2D CON WORLDMAP
 fprintf('\n--- Generando y exportando visualizaciones 2D (worldmap) ---\n');
 if exist('worldmap', 'file') ~= 2
     fprintf('Mapping Toolbox no disponible; se omiten las trazas 2D.\n');
@@ -191,6 +210,49 @@ else
 end
 
 %% --- FUNCIONES AUXILIARES ---
+function [dataBitsBySatellite, traceLengthBySatellite_km] = calculateTraceData( ...
+    sats, startTime, stopTime, sampleTime, GSD, swath_km, ...
+    coverageLat_deg, coverageLon_deg, numBands, bitsPerBand)
+    dataBitsBySatellite = zeros(1, numel(sats));
+    traceLengthBySatellite_km = zeros(1, numel(sats));
+    timeVector = startTime:seconds(sampleTime):stopTime;
+    swath_m = swath_km * 1000;
+    bitsPerPixel = numBands * bitsPerBand;
+
+    for i = 1:numel(sats)
+        lat = zeros(1, numel(timeVector));
+        lon = zeros(1, numel(timeVector));
+        for k = 1:numel(timeVector)
+            position = states(sats(i), timeVector(k), 'CoordinateFrame', 'geographic');
+            lat(k) = position(1);
+            lon(k) = position(2);
+        end
+
+        segmentLength_km = greatCircleSegments(lat(1:end-1), lon(1:end-1), ...
+            lat(2:end), lon(2:end));
+        midpointLat = 0.5 * (lat(1:end-1) + lat(2:end));
+        midpointLon = mod(0.5 * (lon(1:end-1) + lon(2:end)) + 180, 360) - 180;
+        insideCoverage = midpointLat >= coverageLat_deg(1) & ...
+            midpointLat <= coverageLat_deg(2) & ...
+            midpointLon >= coverageLon_deg(1) & midpointLon <= coverageLon_deg(2);
+
+        traceLengthBySatellite_km(i) = sum(segmentLength_km(insideCoverage));
+        numberOfPixels = traceLengthBySatellite_km(i) * 1000 * swath_m / GSD^2;
+        dataBitsBySatellite(i) = numberOfPixels * bitsPerPixel;
+    end
+end
+
+function segmentLength_km = greatCircleSegments(lat1_deg, lon1_deg, lat2_deg, lon2_deg)
+    earthRadius_km = 6371;
+    lat1 = deg2rad(lat1_deg);
+    lat2 = deg2rad(lat2_deg);
+    deltaLat = lat2 - lat1;
+    deltaLon = deg2rad(mod(lon2_deg - lon1_deg + 180, 360) - 180);
+    haversine = sin(deltaLat/2).^2 + ...
+        cos(lat1) .* cos(lat2) .* sin(deltaLon/2).^2;
+    segmentLength_km = 2 * earthRadius_km * asin(sqrt(max(0, haversine)));
+end
+
 function generateWorldmapPlot(sats, gs, startTime, duration_s, title_str, colors, coastlat, coastlon, sampleTime)
     fig = figure('Name', title_str, 'NumberTitle', 'off', 'Visible', 'off');
     
