@@ -15,13 +15,16 @@ function [total_mass, fuel_mass, num_impulses, total_delta_v] = calcularMasaTota
     
     for i = 1:length(h0_array)
         h0 = h0_array(i);
-        h_target = h0 * 1e3; % Altura orbital nominal en metros
-        h_threshold = 0.98 * h_target; % Umbral inferior de mantenimiento
-        h_recovery = 1.02 * h_target; % Altura de recuperacion tras el impulso
+        h_nominal = h0 * 1e3; % Altura nominal de diseño [m]
+        h_threshold = 0.98 * h_nominal; % Límite inferior de la banda [m]
+        h_recovery = 1.02 * h_nominal; % Altura de inyección/reboost [m]
         dry_mass = getIndexedValue(masa_seca, i);
         drag_area_margin = 1.2;
         A = getIndexedValue(Am, i) * drag_area_margin;
         
+        % La misión se modela como ciclos equivalentes 102% -> 98%.
+        % El primer ciclo parte de h_recovery y cada ciclo termina con un
+        % reboost al mismo límite superior.
         cycle_time = decayCycleTime(h_threshold, h_recovery, R_earth, mu, Cd, A, dry_mass);
         if isfinite(cycle_time) && cycle_time > 0
             impulses = floor((mission_duration - eps(mission_duration)) / cycle_time);

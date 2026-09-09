@@ -112,11 +112,12 @@ El incremento de velocidad por maniobra es
 \end{figure}
 
 El mantenimiento orbital se representa mediante un modelo analítico de ciclos
-equivalentes durante los 8 años de misión. Cada ciclo comienza cuando la altura
-ha descendido hasta el \textbf{98\%} de la altura nominal y termina al recuperar
-el \textbf{102\%}. El tiempo de este ciclo se obtiene integrando el modelo de
-decaimiento entre ambas alturas, mientras que el \(\Delta v\) de la maniobra se
-calcula mediante la transferencia de Hohmann definida anteriormente.
+equivalentes durante los 8 años de misión. La condición inicial de referencia,
+incluida la inyección, se toma en el \textbf{102\%} de la altura nominal. Cada
+ciclo comienza cuando la altura ha descendido hasta el \textbf{98\%} y termina
+al recuperar el \textbf{102\%}. El tiempo de este ciclo se obtiene integrando
+el modelo de decaimiento entre ambas alturas, mientras que el \(\Delta v\) de la
+maniobra se calcula mediante la transferencia de Hohmann definida anteriormente.
 
 Para cada altura se calcula el número de ciclos completos contenidos en la
 misión mediante
@@ -161,18 +162,20 @@ Una vez calculada la masa de combustible para todos los posibles puntos de altur
 
 La variación no monótona de la masa seca se debe a dos efectos del
 procedimiento de dimensionado. El factor $K$ del escalado SMAD cambia cuando la
-razón de aperturas $R$ cruza el umbral $0{,}5$, y el diámetro mínimo se
-selecciona entre los valores discretos que cumplen simultáneamente los
-requisitos de MTF y SNR. Las oscilaciones de la curva representan cambios de
-régimen del modelo y de la discretización del diámetro a medida que varía la
-altura. Por su parte, los puntos coloreados son las alturas que además
+razón de aperturas $R$ cruza el umbral $0{,}5$: se emplea $K=2$ para
+$R\leq0{,}5$ y $K=1$ para $R>0{,}5$. En los instrumentos de referencia, este
+cambio corresponde aproximadamente a $D=200$ mm para TM y $D=125$ mm para
+SEOSAT. Además, el diámetro mínimo se selecciona entre los valores discretos
+que cumplen simultáneamente los requisitos de MTF y SNR. Las oscilaciones de la
+curva representan cambios de régimen del modelo y de la discretización del
+diámetro a medida que varía la altura. Por su parte, los puntos coloreados son las alturas que además
 satisfacen los requisitos de cobertura, MTF y SNR; la curva gris no aplica ese
 filtro conjunto.
 
 La gráfica muestra un mínimo de masa de selección por satélite de
-\textbf{2,49 kg} (distribuidos como \(m_{\text{seca}}=2{,}39\ \text{kg}\) y
-\(m_{\text{prop,\,mant}}=0{,}10\ \text{kg}\), es decir, \textbf{2,39 kg} y
-\textbf{0,10 kg}) a una altura orbital de \textbf{630 km}, correspondiente a
+\textbf{2,49 kg}, distribuido en \(m_{\text{seca}}=2{,}39\ \text{kg}\) y
+\(m_{\text{prop,\,mant}}=0{,}10\ \text{kg}\), a una altura orbital de
+\textbf{630 km}, correspondiente a
 un diámetro de pupila de \textbf{34 mm}. Esta es la configuración que
 minimiza la masa dentro de las restricciones de cobertura, SNR y MTF.
 

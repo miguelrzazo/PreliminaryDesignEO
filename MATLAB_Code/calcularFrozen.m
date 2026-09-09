@@ -56,7 +56,6 @@ idx_selected = find(h_vals == h_selected);
 fprintf('--- Frozen condition at %.0f km ---\n', h_selected);
 fprintf('e_frozen  = %.2e\n', e_f_vals(idx_selected));
 fprintf('Delta h   = %.1f km\n', dh_vals(idx_selected));
-fprintf('Delta h coverage, e0 = 0       = %.2f km\n', 0);
 fprintf('Delta h coverage, frozen       = %.2f km\n', dh_coverage_vals(idx_selected));
 fprintf('Delta h within one pass, frozen = %.2f km\n', dh_pass_vals(idx_selected));
 fprintf('Deadband  = %.1f km\n', deadband_vals(idx_selected));
