@@ -20,6 +20,9 @@
 *.bcf
 *.maf
 *.run.xml
+Bibliografia/*
+NORMATIVA_DE_TFT_V3.pdf
+Revisions/*
 
 # MATLAB generated output directories (simulation results)
 # Reference outputs live in Compiled data/; raw model outputs are not tracked
