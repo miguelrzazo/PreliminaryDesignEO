@@ -414,7 +414,7 @@ Sentinel-2  \cite{copernicus2025sentinel} & 2                & 290              
 Además, se tendrán en cuenta 2 factores adicionales para el cálculo:
 \begin{itemize}
     \item \textbf{Solapamiento del \textit{swath}}: Para asegurar la cobertura completa de la región entre pasadas, se establece un factor de solapamiento del \textit{swath} mínimo del \textbf{5\%} que compensa posibles desviaciones en la proyección del swath y pérdidas de altura del satélite antes de la reinyección orbital.
-    \item \textbf{Cobertura de nubes}: A diferencia de otros sistemas de observación, como el SAR (Radar de Apertura Sintética, o \textit{Synthetic Aperture Radar}, \cite{lou2020sar}), los detectores SWIR pasivos no son capaces de capturar la señal de la superficie terrestre a través de los cúmulos nubosos. Según el enunciado impuesto, \say{\textit{la cobertura de nubes sobre EE. UU. es un día cubierto por cada cinco descubiertos}}, por lo que se considera un \textbf{factor de 1/6 de pasadas del satélite no efectivas}. La imagen de nubosidad se emplea como motivación de este margen de diseño, no como una simulación meteorológica píxel a píxel.
+    \item \textbf{Cobertura de nubes}: A diferencia de otros sistemas de observación, como el SAR (Radar de Apertura Sintética, o \textit{Synthetic Aperture Radar}, \cite{lou2020sar}), los detectores SWIR pasivos no son capaces de capturar la señal de la superficie terrestre a través de los cúmulos nubosos. El enunciado del cliente establece un día cubierto por cada cinco despejados. Por ello, el modelo adopta una fracción media de pasadas no utilizables $f_{\mathrm{nube}}=1/6$ y una fracción media útil $1-f_{\mathrm{nube}}=5/6$. Este valor procede del enunciado y no representa una simulación meteorológica píxel a píxel.
 \end{itemize}
 
 \begin{figure}[H]
@@ -445,7 +445,7 @@ A diferencia de un barrido geográfico punto a punto, el método semianalítico 
 \label{eq:lat_crit}
 \end{equation}
 
-En esa latitud se calcula, mediante trigonometría esférica sobre un elipsoide terrestre, el semiancho angular en longitud que cubre el \textit{swath} del sensor en cada paso del satélite. La traza subsatelital se propaga después con movimiento kepleriano circular corregido por la deriva secular del nodo debida al J2 y por la rotación terrestre, obteniendo los instantes sucesivos en que dicha traza vuelve a cruzar \(\phi_{\mathrm{inf}}\) dentro del campo de visión del instrumento. El tiempo de revisita de cada configuración es el mayor hueco temporal entre dos cruces consecutivos sobre esa franja continental dentro de la ventana simulada.
+En esa latitud se calcula, mediante trigonometría esférica sobre un elipsoide terrestre, el semiancho angular en longitud que cubre el \textit{swath} del sensor en cada paso del satélite. La traza subsatelital se propaga después con movimiento kepleriano circular corregido por la deriva secular del nodo debida al J2 y por la rotación terrestre. El modelo obtiene los instantes sucesivos en que la traza observa esa latitud dentro del campo de visión del instrumento. La métrica resultante es el intervalo máximo entre observaciones consecutivas sobre la franja de referencia dentro de la ventana simulada.
 
 El sensor observa exclusivamente al \textbf{nadir}, con barrido \textit{pushbroom} centrado en la traza subsatelital: no existe apuntamiento transversal ni maniobra de \textit{roll}. Por tanto, el ángulo central de observación fuera de nadir es nulo; el parámetro \(\psi\) usado más abajo no representa apuntamiento, sino el semiángulo geométrico desde el nadir hasta el borde del \textit{swath}. En consecuencia, el \textit{swath} queda determinado únicamente por la altura orbital y el campo de visión (FoV) del telescopio, o bien por el número de detectores dispuestos en línea, lo que primero se alcance:
 
@@ -470,16 +470,16 @@ T_{\mathrm{rev,geom}} = \max_{k}\left(t_{k+1}-t_{k}\right)_{\phi=25^\circ}
 \label{eq:trev}
 \end{equation}
 
-donde $h$ es la altura orbital, $\text{FoV}$ el campo de visión total del telescopio (duplicado si se embarcan dos telescopios), $N_{\text{det}}$ el número de detectores alineados (hasta 3), $N_{\text{pix}}$ los píxeles por detector, $GSD$ la distancia de muestreo en tierra, $W=\min(W_{\text{FoV}},W_{\text{det}})$ el \textit{swath} resultante, $f_{\text{ov}}$ la fracción de solapamiento (5\%) y $\psi$ el semiángulo hasta el borde del \textit{swath} que recibe el software de revisita. La ecuación \ref{eq:trev} expresa el tiempo de revisita geométrico como el mayor intervalo entre dos instantes de paso consecutivos sobre la latitud inferior de EE.\,UU. continental.
+donde $h$ es la altura orbital, $\text{FoV}$ el campo de visión total del telescopio (duplicado si se embarcan dos telescopios), $N_{\text{det}}$ el número de detectores alineados (hasta 3), $N_{\text{pix}}$ los píxeles por detector, $GSD$ la distancia de muestreo en tierra, $W=\min(W_{\text{FoV}},W_{\text{det}})$ el \textit{swath} resultante, $f_{\text{ov}}$ la fracción de solapamiento (5\%) y $\psi$ el semiángulo geométrico desde el nadir hasta el borde del \textit{swath}. En el adaptador implementado para este trabajo, $\psi$ se calcula a partir de $W_{\text{ef}}$ y se introduce como entrada angular en el método semianalítico empleado. La ecuación \ref{eq:trev} expresa la métrica geométrica como el mayor intervalo entre observaciones consecutivas sobre la latitud inferior de EE.\,UU. continental.
 
-Primero se calcula este tiempo de revisita geométrico. Después se aplica una penalización por nubosidad: se considera que una de cada seis pasadas no produce una adquisición útil. Por tanto, el tiempo de revisita usado en el dimensionado no es el geométrico, sino el efectivo:
+Primero se calcula esta métrica geométrica. Después se aplica la penalización media por nubosidad indicada en el enunciado. El requisito de 7 días se aplica al tiempo efectivo:
 
 \begin{equation}
 T_{\mathrm{rev,eff}}=\frac{T_{\mathrm{rev,geom}}}{1-1/6}=1{,}2\,T_{\mathrm{rev,geom}}
 \label{eq:trev_eff}
 \end{equation}
 
-Este valor efectivo es el que se guarda en los ficheros de cobertura, se representa en los mapas de calor y se compara con el requisito de \textbf{7 días}.
+Este valor efectivo es el que se guarda en los ficheros de cobertura, se representa en los mapas de calor y se compara directamente con el requisito de \textbf{7 días}. El valor geométrico equivalente sería $T_{\mathrm{rev,geom}}\leq 7(5/6)=5{,}83\ \text{días}$.
 
 El método se apoya en las siguientes hipótesis: propagación kepleriana circular con corrección secular J2 en el nodo, Tierra modelada como elipsoide para el radio local de la latitud de cálculo y observación estrictamente al nadir. El adaptador desarrollado en este proyecto (\textit{wrapper}) parametriza la altitud, el número de satélites y telescopios, el ancho de barrido y el solapamiento, encadenando las ecuaciones \ref{eq:swath_fov}--\ref{eq:trev} con las funciones originales del software para automatizar el barrido paramétrico completo sobre el espacio de diseño.
 
