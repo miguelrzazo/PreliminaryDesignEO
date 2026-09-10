@@ -150,28 +150,38 @@ La configuración final de la instrumentación, una vez calculados los parámetr
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.3\textwidth}
+    \begin{subfigure}[b]{0.9\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{5.Mission/design_point_mtf.pdf}
+        \includegraphics[width=\linewidth]{5.Mission/design_point_mtf.pdf}
         \caption{MTF en banda $2,01\ \mu m$}
-        \label{fig:sub1}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{5.Mission/design_point_snr.pdf}
-        \caption{SNR en banda $0,76\ \mu m$}
-        \label{fig:sub2}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.33\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{5.Mission/design_point_coverage.pdf}
-        \caption{Cobertura de la región}
-        \label{fig:sub3}
+        \label{fig:puntodiseno-mtf}
     \end{subfigure}
     \caption{Punto de diseño del satélite. \\ Fuente: Elaboración propia.}
     \label{fig:puntodiseno}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \ContinuedFloat
+    \centering
+    \begin{subfigure}[b]{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{5.Mission/design_point_snr.pdf}
+        \caption{SNR en banda $0,76\ \mu m$}
+        \label{fig:puntodiseno-snr}
+    \end{subfigure}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \ContinuedFloat
+    \centering
+    \begin{subfigure}[b]{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{5.Mission/design_point_coverage.pdf}
+        \caption{Cobertura de la región}
+        \label{fig:puntodiseno-cobertura}
+    \end{subfigure}
 \end{figure}
 
 Dado que el \textit{swath} mínimo necesario para cubrir semanalmente EE.\,UU. continental con 2 satélites y 2 telescopios es de 190\,km (valor obtenido del cruce de datos de cobertura del capítulo 4), mientras el FoV combinado de los dos telescopios permite aproximadamente 222\,km a 630\,km de altura, se cumple el margen de solapamiento del 5\%. Debido a que el \textit{swath} completo de un detector individual es:
