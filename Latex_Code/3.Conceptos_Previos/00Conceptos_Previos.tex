@@ -693,7 +693,7 @@ Cuando solo dos cuerpos interactúan gravitacionalmente, sus movimientos forman 
 
 El tratamiento analítico de este problema es extraordinariamente difícil porque la perturbación depende explícitamente del tiempo. Las ecuaciones diferenciales que describen este sistema no tienen una solución cerrada o analítica exacta, lo que ha llevado al desarrollo de métodos numéricos para aproximar las soluciones.
 
-El sistema de tres cuerpos es intrínsecamente caótico, lo que significa que es extremadamente sensible a las condiciones iniciales. Pequeñas variaciones en la posición o velocidad inicial de cualquiera de los cuerpos pueden resultar en trayectorias completamente diferentes a largo plazo. Esto imposibilita predicciones precisas sin conocer con exactitud absoluta las condiciones iniciales.\\
+El problema de los tres cuerpos es intrínsecamente caótico, lo que significa que es extremadamente sensible a las condiciones iniciales. Pequeñas variaciones en la posición o velocidad inicial de cualquiera de los cuerpos pueden resultar en trayectorias completamente diferentes a largo plazo. Esto imposibilita predicciones precisas sin conocer con exactitud absoluta las condiciones iniciales.\\
 
 \subsection{Órbitas de especial interés}
 
@@ -721,48 +721,54 @@ El achatamiento terrestre, modelado mediante \(J_2\), permite imponer esa preces
 
 \subsubsection{Órbitas de Traza Repetida}
 
-Una órbita de traza repetida (RGT) es aquella en la que el satélite
-repite su proyección sobre la superficie terrestre tras un número entero
-de días $D$ y un número entero de órbitas $N$. Estas órbitas permiten
-adquirir imágenes de una misma zona bajo condiciones geométricas similares
-a intervalos regulares.
-
-En una órbita heliosíncrona el plano orbital precesa solidario con el Sol.
-La traza se repite respecto al día solar, no al día sidéreo. La condición
-RGT para una órbita SSO es:
+Una órbita de traza repetida (RGT) repite la proyección del satélite sobre
+la superficie terrestre tras $k_{\mathrm{day2rep}}$ rotaciones terrestres y
+$k_{\mathrm{orb2rep}}$ órbitas. La condición RGT exige que la frecuencia
+angular nodal media coincida con la velocidad angular de la traza respecto
+a la Tierra:
 
 \begin{equation}
-N \cdot T_{\mathrm{nodal}} = D \cdot T_{\mathrm{solar}},
-\qquad T_{\mathrm{solar}} = 86400\ \si{s}
+n_k(a) + \dot{M}_1(a,i,e) + \dot{\omega}(a,i,e)
+= \left[\omega_{\oplus} - \dot{\Omega}(a,i,e)\right]
+\frac{k_{\mathrm{orb2rep}}}{k_{\mathrm{day2rep}}}
 \label{eq:rgt_cond}
 \end{equation}
 
-donde $T_{\mathrm{nodal}}$ es el período entre dos cruces consecutivos del
-nodo ascendente. El achatamiento terrestre $J_2$ modifica este período
-respecto del kepleriano mediante dos efectos seculares. Para $e=0$:
+donde $n_k(a)=\sqrt{\mu/a^3}$ es el movimiento medio kepleriano,
+$\omega_{\oplus}$ es la velocidad angular de rotación terrestre y
+$\dot{\Omega}$, $\dot{\omega}$ y $\dot{M}_1$ son las tasas seculares
+asociadas a $J_2$. Las expresiones generales de estas tasas son:
 
 \begin{align}
-\dot{\Omega} &= -\frac{3}{2}\, n\, J_2 \left(\frac{R_T}{a}\right)^{\!2} \cos i
+\dot{\Omega}_{J_2} &= -\frac{3J_2 n R_{\oplus}^{2}}{2p^{2}}\cos i,
 \label{eq:Omega_dot}\\[4pt]
-\dot{\omega} &= \frac{3}{4}\, n\, J_2 \left(\frac{R_T}{a}\right)^{\!2}
-\bigl(5\cos^2 i - 1\bigr)
-\label{eq:omega_dot}
+\dot{\omega}_{J_2} &= \frac{3J_2 n R_{\oplus}^{2}}{4p^{2}}
+\left(4-5\sin^{2}i\right),
+\label{eq:omega_dot}\\[4pt]
+\dot{M}_{1,J_2} &= \frac{3J_2 n\sqrt{1-e^{2}}R_{\oplus}^{2}}{4p^{2}}
+\left(2-3\sin^{2}i\right),
+\label{eq:M1_dot}
 \end{align}
 
-con $n = \sqrt{\mu / a^3}$ y $a = R_T + h$. El período nodal que combina
-ambos efectos es:
+con $n=n_k(a)$, $p=a(1-e^2)$ y $a=R_{\oplus}+h$. Para el caso
+circular empleado en este diseño, $e=0$ y $p=a$; por tanto, el período
+nodal se obtiene como:
 
 \begin{equation}
-T_{\mathrm{nodal}} = \frac{T_k}
-{1 + \frac{3}{4}J_2\left(\frac{R_T}{a}\right)^{\!2}\!\bigl(6 - 8\sin^2 i\bigr)},
-\qquad T_k = 2\pi\sqrt{\frac{a^3}{\mu}}
+T_{\mathrm{nodal}} = \frac{2\pi}
+{n_k(a)+\dot{M}_{1,J_2}(a,i,0)+\dot{\omega}_{J_2}(a,i,0)}
+=\frac{T_k}
+{1+\frac{3}{4}J_2\left(\frac{R_{\oplus}}{a}\right)^2
+\left(6-8\sin^2 i\right)},
+\qquad T_k=2\pi\sqrt{\frac{a^3}{\mu}}
 \label{eq:Tnodal}
 \end{equation}
 
-La condición heliosíncrona \eqref{eq:SSO_cond} fija $i = i_{\mathrm{SSO}}(h)$.
-Al sustituirla, $T_{\mathrm{nodal}}$ queda en función exclusiva de $h$ y la
-ecuación \eqref{eq:rgt_cond} se puede resolver para cada pareja de enteros
-$(N,D)$ \cite{vallado2013fundamentals}.
+La condición heliosíncrona \eqref{eq:SSO_cond} determina
+$i=i_{\mathrm{SSO}}(h)$. Al sustituir esta inclinación en
+\eqref{eq:rgt_cond}, el modelo resuelve una ecuación para cada pareja de
+enteros $(k_{\mathrm{orb2rep}},k_{\mathrm{day2rep}})$
+\cite{vallado2013fundamentals}.
 
 \subsubsection{Órbitas \textit{frozen}}
 
