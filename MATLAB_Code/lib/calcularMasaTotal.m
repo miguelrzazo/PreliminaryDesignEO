@@ -1,4 +1,4 @@
-function [total_mass, fuel_mass, num_impulses, total_delta_v] = calcularMasaTotal(h0_array, masa_seca, Am)
+function [total_mass, fuel_mass, num_impulses, total_delta_v, cycle_time, delta_v_cycle, fuel_unmargined] = calcularMasaTotal(h0_array, masa_seca, Am, lower_factor, upper_factor)
     %% Parametros iniciales
     mu = 3.986004418e14; % Parametro gravitacional
     R_earth = 6378e3; % Radio terrestre (m)
@@ -6,31 +6,37 @@ function [total_mass, fuel_mass, num_impulses, total_delta_v] = calcularMasaTota
     Isp = 220; % Impulso especifico, valor tipico para propulsion quimica (s)
     g0 = 9.80665; % Gravedad 
     mission_duration = 8 * 365.25 * 24 * 3600; % duracion mision, 8 años en seg
+    if nargin < 4, lower_factor = 0.98; end
+    if nargin < 5, upper_factor = 1.02; end
     
     %% Prealocar resultados
     num_impulses = zeros(size(h0_array));
     total_delta_v = zeros(size(h0_array));
     fuel_mass = zeros(size(h0_array));
     total_mass = zeros(size(h0_array));
+    cycle_time = zeros(size(h0_array));
+    delta_v_cycle = zeros(size(h0_array));
+    fuel_unmargined = zeros(size(h0_array));
     
     for i = 1:length(h0_array)
         h0 = h0_array(i);
-        h_target = h0 * 1e3; % Altura objetivo original en metros
-        h_threshold = 0.98 * h_target; % 98% de la altura objetivo ORIGINAL
+        h_nom = h0 * 1e3; % Altura nominal usada por payload y cobertura
+        h_min = lower_factor * h_nom;
+        h_max = upper_factor * h_nom;
         dry_mass = getIndexedValue(masa_seca, i);
         drag_area_margin = 1.2;
         A = getIndexedValue(Am, i) * drag_area_margin;
         
-        cycle_time = decayCycleTime(h_threshold, h_target, R_earth, mu, Cd, A, dry_mass);
-        if isfinite(cycle_time) && cycle_time > 0
-            impulses = floor((mission_duration - eps(mission_duration)) / cycle_time);
+        cycle_time_i = decayCycleTime(h_min, h_max, R_earth, mu, Cd, A, dry_mass);
+        if isfinite(cycle_time_i) && cycle_time_i > 0
+            impulses = floor((mission_duration - eps(mission_duration)) / cycle_time_i);
         else
             impulses = 0;
         end
 
         % Calcular delta-V para cada impulso (Hohmann transfer)
-        r1 = R_earth + h_threshold; % Radio despues del decaimiento
-        r2 = R_earth + h_target;  % Radio de la altura objetivo ORIGINAL
+        r1 = R_earth + h_min; % Radio despues del decaimiento
+        r2 = R_earth + h_max; % Radio de reset de mantenimiento
         dv = hohmannDeltaV(r1, r2, mu);
         total_dv = impulses * dv;
         
@@ -38,13 +44,17 @@ function [total_mass, fuel_mass, num_impulses, total_delta_v] = calcularMasaTota
         num_impulses(i) = impulses;
         total_delta_v(i) = total_dv;
         fuel = dry_mass * (exp(total_dv / (Isp * g0)) - 1);
-        fuel_mass(i) = fuel*1.1;
+        fuel_unmargined(i) = fuel;
+        fuel_mass(i) = fuel * 1.1;
         total_mass(i) = fuel_mass(i) + dry_mass;
+        cycle_time(i) = cycle_time_i;
+        delta_v_cycle(i) = dv;
         
         % Aplicar filtro para valores extremos
         if total_mass(i) > 100000
             total_mass(i) = NaN;
             fuel_mass(i) = NaN;
+            fuel_unmargined(i) = NaN;
         end
     end
 end
@@ -83,18 +93,6 @@ end
         end
     end
 
-    function dadt = decayODE(~, a, R_earth, mu, Cd, A, mass)
-        h = a - R_earth;
-        rho = getAtmosphericDensity(h);
-        dadt = -Cd * A * rho * sqrt(mu * a) / mass;
-    end
-    
-    function [value, isterminal, direction] = decayEvent(~, a, a_target)
-        value = a - a_target;
-        isterminal = 1; % Detener integracion
-        direction = -1; % Detectar decrecimiento
-    end
-    
     function dv = hohmannDeltaV(r1, r2, mu)
         % Calcular delta-V para transferencia Hohmann (m/s)
         a_transfer = (r1 + r2) / 2;
