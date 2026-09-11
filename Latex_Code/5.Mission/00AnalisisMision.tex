@@ -84,9 +84,24 @@ siendo \(\rho_{0}\) la densidad tabulada en la base de cada capa, \(h_{\text{bas
 \subsection{Cálculo del Delta-V, número de impulsos y masa de
 combustible}\label{sec:deltav}
 
-Para calcular el decaimiento orbital se resuelve numéricamente la ecuación~\eqref{eq:dadt} con el \textit{solver} nativo de MATLAB \texttt{ode45}. Cuando la altura cae un \textbf{2\%} respecto a la altura objetivo, el modelo aplica un impulso y devuelve el satélite a la órbita nominal. Tras ello calcula el delta-V necesario. Esta maniobra se ejecuta como una transferencia de Hohmann entre la órbita decaída y la órbita nominal \cite{curtis2020orbital}:
-\(\,r_{1}=R_{\oplus}+h_{\text{actual}}\) y
-\(r_{2}=R_{\oplus}+h_{\text{objetivo}}\), donde \(r_{1}\) corresponde a la órbita decaída y \(r_{2}\) a la órbita objetivo.  
+La cobertura y el dimensionado del instrumento se calculan a la altura nominal \(h_{\mathrm{nom}}\). El mantenimiento orbital utiliza una banda alrededor de esa altura:
+\begin{equation}
+h_{\min}=0{,}98h_{\mathrm{nom}},\qquad
+h_{\max}=1{,}02h_{\mathrm{nom}}.
+\label{eq:maintenance_band}
+\end{equation}
+Cada ciclo comienza en \(h_{\max}\). El satélite desciende hasta \(h_{\min}\) y ejecuta una maniobra que lo devuelve a \(h_{\max}\).
+
+El código calcula el tiempo de cada ciclo a partir de la ley de decaimiento de la ecuación~\eqref{eq:dadt}. Divide el intervalo entre \(h_{\min}\) y \(h_{\max}\) en los tramos definidos por la tabla atmosférica y evalúa la integral en cada uno de ellos. El tiempo de ciclo resulta
+\begin{equation}
+T_{\mathrm{ciclo}}=
+\int_{h_{\min}}^{h_{\max}}
+\frac{m\,\mathrm{d}h}{C_dA\rho(h)\sqrt{\mu(R_{\oplus}+h)}}.
+\label{eq:cycle_time}
+\end{equation}
+La integración proporciona el tiempo transcurrido hasta alcanzar \(h_{\min}\). Después de cada maniobra, el mismo ciclo comienza de nuevo en \(h_{\max}\) y se repite durante los ocho años de misión. El incremento de velocidad se obtiene mediante una transferencia de Hohmann entre ambas órbitas \cite{curtis2020orbital}:
+\(r_{1}=R_{\oplus}+h_{\min}\) y
+\(r_{2}=R_{\oplus}+h_{\max}\). Aquí, \(r_{1}\) es el radio de la órbita al final del decaimiento y \(r_{2}\) el radio de la órbita de reinicio.
 El incremento de velocidad por maniobra es
 \begin{equation}
 \Delta v =
@@ -105,13 +120,18 @@ El incremento de velocidad por maniobra es
     \label{fig:hohmann-transfer}
 \end{figure}
 
-El proceso iterativo continúa durante la vida nominal de la misión
-(\(T = 8\)~años).  
-Se acumulan el número de impulsos \(N\), cada uno activado al decaer la altura un 2\%, y el \(\Delta v_{\text{tot}}\)
-empleado.
-Concluida la simulación, la masa de combustible de mantenimiento se obtiene aplicando la ecuación de Tsiolkovski \cite{curtis2020orbital}:
+El número de maniobras se obtiene a partir del tiempo de ciclo:
 \begin{equation}
-m_{\text{prop}} = m_{\text{seca}}
+N=\left\lfloor\frac{T_{\mathrm{misión}}-\operatorname{eps}(T_{\mathrm{misión}})}{T_{\mathrm{ciclo}}}\right\rfloor,
+\qquad
+\Delta v_{\mathrm{tot}}=N\Delta v_{\mathrm{ciclo}},
+\label{eq:number_of_impulses}
+\end{equation}
+donde \(T_{\mathrm{misión}}=8\cdot365{,}25\cdot24\cdot3600\)~s. Cada maniobra se ejecuta al alcanzar \(h_{\min}\).
+
+La masa de combustible se calcula con la ecuación de Tsiolkovski \cite{curtis2020orbital}:
+\begin{equation}
+m_{\text{prop},0} = m_{\text{seca}}
 \left(\exp\!\Bigl[\frac{\Delta v_{\text{tot}}}{I_{sp}\,g_{0}}\Bigr]-1\right),
 \label{eq:tsiolkovsky}
 \end{equation}
@@ -119,13 +139,14 @@ donde se emplea un impulso específico de \(I_{sp}= 220\ \mathrm{s}\), valor tí
 \(g_{0}=9.80665\ \mathrm{m\,s^{-2}}\).
 Además, se añade un margen del \textbf{10\%} para contingencias:
 \(
-m_{\text{prop,\,final}}=1.1\,m_{\text{prop}}
+m_{\text{prop,\,mant}}=1.1\,m_{\text{prop},0}
 \),
-de modo que la masa de selección del satélite es
-\(m_{\text{sel}} = m_{\text{seca}} + m_{\text{prop,\,mant}}\). La reserva de fin de misión se calcula después, una vez fijada la órbita seleccionada, porque solo depende del punto final de diseño.
+que se suma a la masa seca para obtener la masa de selección:
+\(m_{\text{sel}}=m_{\text{seca}}+m_{\text{prop,\,mant}}\).
+La reserva de fin de misión se incorpora después, cuando ya se ha seleccionado la órbita.
 
 
-Una vez calculada la masa de combustible para todos los posibles puntos de altura, se suma a la masa seca estimada previamente, obteniendo la masa total en función de la altura:
+El programa aplica este cálculo a cada altura y a cada configuración que supera los filtros de viabilidad.
 
 \begin{figure}[H]
     \centering
@@ -134,9 +155,9 @@ Una vez calculada la masa de combustible para todos los posibles puntos de altur
     \label{fig:masa_desglose}
 \end{figure}
 
-La gráfica muestra un mínimo de masa de selección por satélite de \textbf{2,50 kg} (distribuidos como \(m_{\text{seca}}=2{,}39\ \text{kg}\) y \(m_{\text{prop,\,mant}}=0{,}11\ \text{kg}\), es decir, \textbf{2,39 kg} y \textbf{0,11 kg}) a una altura orbital de \textbf{630 km}, correspondiente a un diámetro de pupila de \textbf{34 mm}. Esta es la configuración que minimiza la masa dentro de las restricciones de cobertura, SNR y MTF.
+La gráfica muestra un mínimo de masa de selección por satélite de \textbf{2,49 kg} (distribuidos como \(m_{\text{seca}}=2{,}39\ \text{kg}\) y \(m_{\text{prop,\,mant}}=0{,}10\ \text{kg}\), es decir, \textbf{2,39 kg} y \textbf{0,10 kg}) a una altura orbital de \textbf{630 km}, correspondiente a un diámetro de pupila de \textbf{34 mm}. Esta es la configuración que minimiza la masa dentro de las restricciones de cobertura, SNR y MTF.
 
-El $\Delta V_{\text{mant}}$ acumulado en 8 años para la solución de 630\,km asciende a \textbf{88{,}3\,m/s} (\textbf{13 impulsos}).
+El $\Delta V_{\text{mant}}$ acumulado en 8 años para la solución de 630\,km asciende a \textbf{81,4\,m/s} (\textbf{6 impulsos}).
 
 La configuración final de la instrumentación, una vez calculados los parámetros restantes descritos previamente, se dispone de la siguiente manera:
 \begin{landscape}
@@ -216,7 +237,7 @@ Después se integra de nuevo la ecuación de decaimiento aerodinámico, ecuació
     \caption{Tiempo de deorbitación, en días, tras fin de misión. \\Fuente: Elaboración propia.}
 \end{figure}
 
-La simulación de decaimiento natural desde 630 km indica que los satélites tardarían aproximadamente \textbf{1247 días} en decaer de manera natural. Este valor supera el límite de \textbf{365 días}. Para cumplirlo, el modelo obtiene un perigeo objetivo de \textbf{464,7 km}, un \(\Delta V_{\text{deorbit}}\) de \textbf{41,9 m/s} y una reserva de combustible de \textbf{0,052 kg} por satélite, incluyendo el mismo margen del \textbf{10\%} usado en el combustible de mantenimiento. Por tanto, el combustible total presupuestado por satélite pasa a \textbf{0,162 kg}, y la masa final de diseño queda en \textbf{2,56 kg} por satélite, o \textbf{5,11 kg} para la constelación completa.
+La simulación de decaimiento natural desde 630 km indica que los satélites tardarían aproximadamente \textbf{1247 días} en decaer de manera natural. Este valor supera el límite de \textbf{365 días}. Para cumplirlo, el modelo obtiene un perigeo objetivo de \textbf{464,7 km}, un \(\Delta V_{\text{deorbit}}\) de \textbf{41,9 m/s} y una reserva de combustible de \textbf{0,052 kg} por satélite, incluyendo el mismo margen del \textbf{10\%} usado en el combustible de mantenimiento. Por tanto, el combustible total presupuestado por satélite pasa a \textbf{0,153 kg}, y la masa final de diseño queda en \textbf{2,55 kg} por satélite, o \textbf{5,09 kg} para la constelación completa.
 
 \section{Verificación de las condiciones orbitales}
 
@@ -320,6 +341,6 @@ Al exigir un GSD más fino, el diámetro de pupila crece con rapidez y la masa t
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{4.Payload/GSD_sensitivity.pdf}
-    \caption{Sensibilidad de la masa y diámetro de pupila frente al GSD. \\Fuente: Elaboración propia.}
+    \caption{Sensibilidad de la masa de selección y del diámetro de pupila frente al GSD. \\Fuente: Elaboración propia.}
     \label{fig:gsd_sensitivity}
 \end{figure}
