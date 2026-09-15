@@ -57,7 +57,7 @@ Suponiendo además que la masa del instrumento es un 25\% de la masa del satéli
 
 Aparecen, en la figura~\ref{fig:masaseca}, las estimaciones de masa seca realizadas con los puntos extraídos de la relación $h\ vs\ D_{min}$, mediante THEMATIC MAPPER y mediante SEOSAT, junto con su promedio. La relación propuesta (en amarillo) aumentará un 50\% sobre este promedio al tener un telescopio adicional.
 
-En la sección~\ref{sec:deltav} se incorpora la masa de combustible a esta estimación. La solución óptima es el mínimo de la masa total (seca más combustible) entre los puntos que cumplen cobertura, SNR y MTF; la geometría de iluminación queda fijada por el LTAN de la órbita SSO. Al distribuir los satélites en un único plano, la constelación satisface el requisito de revisita con el menor número de satélites posible.
+En la sección~\ref{sec:deltav} se incorpora la masa de combustible a esta estimación. La solución óptima es el mínimo de la masa total (seca más combustible) entre los puntos que cumplen cobertura, SNR y MTF. La geometría de iluminación queda fijada por el LTAN de la órbita SSO. Al distribuir los satélites en un único plano, la constelación satisface el requisito de revisita con el menor número de satélites posible.
 
 \section{Impulsos, \texorpdfstring{$\Delta V$}{Delta V} y masa de combustible. Fin de misión.}
 
@@ -78,7 +78,7 @@ La densidad \(\rho(h)\) se aproxima con un modelo exponencial por capas, basado 
 \rho(h)=\rho_{0}\,
 \exp\!\Bigl[-\dfrac{h-h_{\text{base}}}{H}\Bigr],
 \end{equation}
-siendo \(\rho_{0}\) la densidad tabulada en la base de cada capa, \(h_{\text{base}}\) la altura de referencia y \(H\) su altura de escala. El modelo no representa variabilidad solar, geomagnética ni latitudinal; se usa como estimación preliminar conservadora para comparar alturas.
+siendo \(\rho_{0}\) la densidad tabulada en la base de cada capa, \(h_{\text{base}}\) la altura de referencia y \(H\) su altura de escala.
 
 
 \subsection{Cálculo del Delta-V, número de impulsos y masa de
@@ -151,7 +151,7 @@ El programa aplica este cálculo a cada altura y a cada configuración que super
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{5.Mission/MasaDesglose_2sat_2tel_Det2_Refractivo.pdf}
-    \caption{Desglose de masa seca, masa de combustible de mantenimiento y masa total de selección. La curva gris punteada representa la solución teórica, que solo comprueba MTF y SNR; los marcadores de color señalan los puntos viables, que además cumplen los requisitos de cobertura y FoV. Las oscilaciones de la masa seca se deben a la selección del diámetro de pupila en una malla discreta de 1\,mm y al escalado cúbico de la masa. \\Fuente: Elaboración propia.}
+    \caption{Desglose de masa seca, masa de combustible de mantenimiento y masa total de selección. La curva gris punteada representa la solución teórica, que solo comprueba MTF y SNR. Los marcadores de color señalan los puntos viables, que además cumplen los requisitos de cobertura y FoV. Las oscilaciones de la masa seca se deben a la selección del diámetro de pupila en una malla discreta de 1\,mm y al escalado cúbico de la masa. \\Fuente: Elaboración propia.}
     \label{fig:masa_desglose}
 \end{figure}
 
@@ -207,7 +207,7 @@ La configuración final de la instrumentación, una vez calculados los parámetr
 
 Dado que el \textit{swath} mínimo necesario para cubrir semanalmente EE.\,UU. continental con 2 satélites y 2 telescopios es de 190\,km (valor obtenido del cruce de datos de cobertura del capítulo 4), mientras el FoV combinado de los dos telescopios permite aproximadamente 222\,km a 630\,km de altura, se cumple el margen de solapamiento del 5\%. Debido a que el \textit{swath} completo de un detector individual es:
 \[2048 \times 80\ \mathrm{m} = 163{,}8\ \mathrm{km}\]
-se requieren dos detectores en línea para superar los 190\,km. El FoV de un telescopio único limita a \(110\ \mathrm{km}\), por lo que cada telescopio utiliza aproximadamente 1378 píxeles de ancho. Conviene precisar que 190\,km es el \textit{swath} mínimo requerido por la condición de revisita, y es el valor que se emplea de forma conservadora en el barrido de cobertura y en el cálculo del volumen de datos, mientras que 222\,km es el \textit{swath} disponible que permite la óptica; la diferencia constituye el margen de diseño.
+se requieren dos detectores en línea para superar los 190\,km. El FoV de un telescopio único limita a \(110\ \mathrm{km}\), por lo que cada telescopio utiliza aproximadamente 1378 píxeles de ancho. Conviene precisar que 190\,km es el \textit{swath} mínimo requerido por la condición de revisita, y es el valor que se emplea de forma conservadora en el barrido de cobertura y en el cálculo del volumen de datos, mientras que 222\,km es el \textit{swath} disponible que permite la óptica.
 
 En el anexo \ref{sec:annexdata}, se podrán encontrar las masas totales de las soluciones viables que aporta cada combinación de configuración, telescopio y detector, siendo la presentada en este capítulo el mínimo de masa absoluto a poner en órbita.
 
@@ -229,7 +229,7 @@ donde \(r_a=R_\oplus+h_{\text{final}}\). El impulso retrógrado requerido en el 
 \sqrt{\mu\left(\frac{2}{r_a}-\frac{1}{a_d}\right)}.
 \label{eq:dv_deorbit}
 \end{equation}
-Después se integra de nuevo la ecuación de decaimiento aerodinámico, ecuación~\eqref{eq:dadt}, desde esa elipse hasta \(h=100\ \mathrm{km}\), tomada como altura de reentrada. El código busca por bisección el perigeo más alto que todavía cumple \(t_{\text{reentrada}}\leq365\) días; de esta forma se obtiene el impulso mínimo dentro del modelo.
+Después se integra de nuevo la ecuación de decaimiento aerodinámico, ecuación~\eqref{eq:dadt}, desde esa elipse hasta \(h=100\ \mathrm{km}\), tomada como altura de reentrada. El código busca por bisección el perigeo más alto que todavía cumple \(t_{\text{reentrada}}\leq365\) días, de esta forma, se obtiene el impulso mínimo dentro del modelo.
 
 \begin{figure}[H]
     \centering
@@ -369,16 +369,16 @@ Circular & 0 & 0 & $2{,}1089\times10^{-3}$ & 13{,}640 & 8{,}137 \\
 
 La órbita \textit{frozen} mantiene constante la excentricidad media en el modelo utilizado. Con \(e_0=0\) el vector de excentricidad gira alrededor del centro \textit{frozen} con un periodo de 0,30 años, de modo que \(\omega\) recorre todas las orientaciones unas veintisiete veces a lo largo de la misión y la excentricidad alcanza $2{,}1089\times10^{-3}$, el doble de la \textit{frozen}. Al girar el perigeo se pierde la simetría de los pasos sobre \(25^\circ\mathrm{N}\) y la altura llega a variar 13,640 km dentro de una misma pasada.
 
-El mantenimiento orbital no separa ambos casos. \(J_2\) y \(J_3\) conservan el semieje mayor, y el decaimiento por resistencia aerodinámica es el mismo en las dos órbitas, así que la banda de \(\pm2\%\) arroja el mismo número de maniobras en ambas. Las separa la estabilidad de la geometría de observación. Un recorrido de 13,640 km sobre 630 km supone un 2,2\% de variación de GSD y de \textit{swath} dentro de una pasada, y consume buena parte del margen de solapamiento del 5\%; la órbita \textit{frozen} se queda en el 0,04\%. Se adopta la órbita \textit{frozen} por ese motivo.
+El mantenimiento orbital no separa ambos casos. \(J_2\) y \(J_3\) conservan el semieje mayor, y el decaimiento por resistencia aerodinámica es el mismo en las dos órbitas, así que la banda de \(\pm2\%\) arroja el mismo número de maniobras en ambas. Las separa la estabilidad de la geometría de observación. Un recorrido de 13,640 km sobre 630 km supone un 2,2\% de variación de GSD y de \textit{swath} dentro de una pasada, y consume buena parte del margen de solapamiento del 5\%, mientras que la órbita \textit{frozen} se queda en el 0,04\%. Por este motivo se adopta la órbita \textit{frozen}.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\linewidth]{5.Mission/frozen_secular_evolution_8yr.pdf}
-    \caption{Evolución de la excentricidad media y de la desviación máxima de altura sobre la zona de adquisición durante la misión. Fuente: Elaboración propia.}
-    \label{fig:frozen_secular_evolution}
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.9\linewidth]{5.Mission/frozen_secular_evolution_8yr.pdf}
+%     \caption{Evolución de la excentricidad media y de la desviación máxima de altura sobre la zona de adquisición durante la misión. Fuente: Elaboración propia.}
+%    \label{fig:frozen_secular_evolution}
+% \end{figure}
 
-El cálculo de mantenimiento sigue considerando el decaimiento del semieje mayor, que proporciona 6 impulsos, 81,4 m/s y 0,101 kg de combustible con margen. No se añade una maniobra específica de control de excentricidad, ya que el semieje mayor no se ve afectado por la deriva del vector de excentricidad. La configuración seleccionada es la órbita \textit{frozen} a 630 km.
+
 
 \subsection{Condición de traza repetida (RGT)}
 
