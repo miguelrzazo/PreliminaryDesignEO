@@ -58,6 +58,8 @@ max_detectores  = 3;
 solapamiento    = 0.05;                  % swath overlap fraction
 cobertura_nubes = 1/6;                   % fraction of passes blocked by cloud
 LTAN_hour       = 6;                     % LTAN: dawn-dusk SSO
+maintenance_lower_factor = 0.98;
+maintenance_upper_factor = 1.02;
 
 satellite_configs = [
      1, 1;
@@ -210,6 +212,8 @@ params.Npix_detectors    = N_pix_12;
 params.fov_limit         = fov_limit;
 params.LTAN_hour         = LTAN_hour;
 params.Pixel_size        = pixel_size_12;
+params.maintenance_lower_factor = maintenance_lower_factor;
+params.maintenance_upper_factor = maintenance_upper_factor;
 
 ConfigAnalysis(params);
 
