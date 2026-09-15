@@ -39,7 +39,7 @@ Usando datos de otras misiones proporcionadas por el tutor (THEMATIC MAPPER Y SE
         \midrule
         Dimensiones   & 2\,m × 1\,m × 1\,m     & 1\,m × 1\,m × 1\,m      \\
         Masa          & 240\,kg                & 100\,kg                \\
-        Pupila        & 0.4\,m                 & 0.25\,m                \\
+        Pupila        & 0{,}4\,m                 & 0{,}25\,m                \\
         \bottomrule
     \end{tabular}
     
@@ -52,14 +52,14 @@ Suponiendo además que la masa del instrumento es un 25\% de la masa del satéli
     \centering
     \includegraphics[width=1\linewidth]{5.Mission/MasaSeca_Comparativa_2sat_2tel_Det2_Refractivo.jpg}
     \caption{Estimación de la masa seca del satélite en función de la altura. \\Fuente: Elaboración propia.}
-    \label{masaseca}
+    \label{fig:masaseca}
 \end{figure}
 
-Aparecen, en la figura \ref{masaseca}, las estimaciones  de masa seca realizadas con los puntos extraídos de la relación $h\ vs\ D_{min}$, mediante THEMATIC MAPPER y mediante SEOSAT, junto con su promedio. La relación propuesta (en amarillo) aumentará un 50\% sobre este promedio al tener un telescopio adicional.
+Aparecen, en la figura~\ref{fig:masaseca}, las estimaciones de masa seca realizadas con los puntos extraídos de la relación $h\ vs\ D_{min}$, mediante THEMATIC MAPPER y mediante SEOSAT, junto con su promedio. La relación propuesta (en amarillo) aumentará un 50\% sobre este promedio al tener un telescopio adicional.
 
 En la sección~\ref{sec:deltav} se incorpora la masa de combustible a esta estimación. La solución óptima es el mínimo de la masa total (seca más combustible) entre los puntos que cumplen cobertura, SNR y MTF; la geometría de iluminación queda fijada por el LTAN de la órbita SSO. Al distribuir los satélites en un único plano, la constelación satisface el requisito de revisita con el menor número de satélites posible.
 
-\section{Impulsos, $\Delta V$ y masa de combustible. Fin de misión. }
+\section{Impulsos, \texorpdfstring{$\Delta V$}{Delta V} y masa de combustible. Fin de misión.}
 
 Para calcular la masa de combustible necesaria para mantener la misión durante los 8 años requeridos, se debe realizar un modelo de resistencia aerodinámica.
 
@@ -122,12 +122,12 @@ El incremento de velocidad por maniobra es
 
 El número de maniobras se obtiene a partir del tiempo de ciclo:
 \begin{equation}
-N=\left\lfloor\frac{T_{\mathrm{misión}}-\operatorname{eps}(T_{\mathrm{misión}})}{T_{\mathrm{ciclo}}}\right\rfloor,
+N=\left\lfloor\frac{T_{\text{misión}}-\operatorname{eps}(T_{\text{misión}})}{T_{\mathrm{ciclo}}}\right\rfloor,
 \qquad
 \Delta v_{\mathrm{tot}}=N\Delta v_{\mathrm{ciclo}},
 \label{eq:number_of_impulses}
 \end{equation}
-donde \(T_{\mathrm{misión}}=8\cdot365{,}25\cdot24\cdot3600\)~s. Cada maniobra se ejecuta al alcanzar \(h_{\min}\).
+donde \(T_{\text{misión}}=8\cdot365{,}25\cdot24\cdot3600\)~s. Cada maniobra se ejecuta al alcanzar \(h_{\min}\).
 
 La masa de combustible se calcula con la ecuación de Tsiolkovski \cite{curtis2020orbital}:
 \begin{equation}
@@ -136,7 +136,7 @@ m_{\text{prop},0} = m_{\text{seca}}
 \label{eq:tsiolkovsky}
 \end{equation}
 donde se emplea un impulso específico de \(I_{sp}= 220\ \mathrm{s}\), valor típico para propulsión química, y
-\(g_{0}=9.80665\ \mathrm{m\,s^{-2}}\).
+\(g_{0}=9{,}80665\ \mathrm{m\,s^{-2}}\).
 Además, se añade un margen del \textbf{10\%} para contingencias:
 \(
 m_{\text{prop,\,mant}}=1.1\,m_{\text{prop},0}
@@ -207,7 +207,7 @@ La configuración final de la instrumentación, una vez calculados los parámetr
 
 Dado que el \textit{swath} mínimo necesario para cubrir semanalmente EE.\,UU. continental con 2 satélites y 2 telescopios es de 190\,km (valor obtenido del cruce de datos de cobertura del capítulo 4), mientras el FoV combinado de los dos telescopios permite aproximadamente 222\,km a 630\,km de altura, se cumple el margen de solapamiento del 5\%. Debido a que el \textit{swath} completo de un detector individual es:
 \[2048 \times 80\ \mathrm{m} = 163{,}8\ \mathrm{km}\]
-se requieren dos detectores en línea para superar los 190\,km. El FoV de un telescopio único limita a \(110\ \mathrm{km}\), por lo que cada telescopio utiliza aproximadamente 1378 píxeles de ancho.
+se requieren dos detectores en línea para superar los 190\,km. El FoV de un telescopio único limita a \(110\ \mathrm{km}\), por lo que cada telescopio utiliza aproximadamente 1378 píxeles de ancho. Conviene precisar que 190\,km es el \textit{swath} mínimo requerido por la condición de revisita, y es el valor que se emplea de forma conservadora en el barrido de cobertura y en el cálculo del volumen de datos, mientras que 222\,km es el \textit{swath} disponible que permite la óptica; la diferencia constituye el margen de diseño.
 
 En el anexo \ref{sec:annexdata}, se podrán encontrar las masas totales de las soluciones viables que aporta cada combinación de configuración, telescopio y detector, siendo la presentada en este capítulo el mínimo de masa absoluto a poner en órbita.
 
@@ -247,9 +247,9 @@ Una vez seleccionada la altura de 630 km, se calcula primero la inclinación hel
 
 \begin{equation}
 e_{\mathrm{frozen}} =
-\frac{2.5327 \times 10^{-6}}{2 \cdot 1.08263 \times 10^{-3}}
-\cdot \frac{6378.137}{7008.137} \cdot \sin(97.90595^\circ)
-\approx 1.0544 \times 10^{-3}
+\frac{2{,}5327 \times 10^{-6}}{2 \cdot 1{,}08263 \times 10^{-3}}
+\cdot \frac{6378{,}137}{7008{,}137} \cdot \sin(97{,}90595^\circ)
+\approx 1{,}0544 \times 10^{-3}
 \label{eq:efrozen_630}
 \end{equation}
 
@@ -257,7 +257,7 @@ La diferencia de altura entre el apogeo y el perigeo es:
 
 \begin{equation}
 \Delta h_{\mathrm{global}} = 2 a e_{\mathrm{frozen}}
-= 2 \cdot 7008.137 \cdot 1.0544 \times 10^{-3}
+= 2 \cdot 7008{,}137 \cdot 1{,}0544 \times 10^{-3}
 \approx 14{,}779\ \mathrm{km}.
 \label{eq:dh_frozen_630}
 \end{equation}
@@ -353,20 +353,23 @@ y su evolución se calcula mediante una rotación del vector inicial alrededor d
 La órbita \textit{frozen} se inicializa en el centro del círculo, con \(e(0)=e_{\mathrm{f}}\) y \(\omega(0)=90^\circ\). La órbita circular se inicializa con el vector nulo. Para cada día de la misión se evalúa de nuevo la altura sobre los arcos de adquisición y se comprueba la semibanda de mantenimiento de 12,6 km.
 
 \begin{table}[H]
+\scriptsize
 \centering
 \caption{Evolución de la excentricidad y de la altura durante los ocho años de misión.}
 \label{tab:eccentricity_evolution}
-\begin{tabular}{@{}lccccc@{}}
+\begin{tabularx}{\linewidth}{@{}l *{5}{>{\centering\arraybackslash}X}@{}}
 \toprule
-Caso & $e(0)$ & $e_{\min}$ & $e_{\max}$ & $\max(\Delta h_{\mathrm{obs}})$ [km] & $\max|h-630|$ [km] \\
+Caso & $e(0)$ & $e_{\min}$ & $e_{\max}$ & \makecell{$\max(\Delta h_{\mathrm{obs}})$\\\text{[km]}} & \makecell{$\max|h-630|$\\\text{[km]}} \\
 \midrule
 \textit{Frozen} & $1{,}0544\times10^{-3}$ & $1{,}0544\times10^{-3}$ & $1{,}0544\times10^{-3}$ & 0{,}270 & 0{,}747 \\
 Circular & 0 & 0 & $2{,}1089\times10^{-3}$ & 13{,}640 & 8{,}137 \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{table}
 
-La órbita \textit{frozen} mantiene constante la excentricidad media en el modelo utilizado. La órbita circular desarrolla una excentricidad máxima de $2{,}1089\times10^{-3}$, aproximadamente el doble de la excentricidad \textit{frozen}, y presenta una variación de altura mayor sobre la zona de adquisición. Ninguno de los dos casos supera la semibanda de mantenimiento, pero la órbita \textit{frozen} ofrece la condición más estable para la adquisición.
+La órbita \textit{frozen} mantiene constante la excentricidad media en el modelo utilizado. La órbita circular desarrolla una excentricidad máxima de $2{,}1089\times10^{-3}$, aproximadamente el doble de la excentricidad \textit{frozen}, y presenta una variación de altura mayor sobre la zona de adquisición.
+
+Conviene distinguir las dos columnas de la tabla. La columna $\max(\Delta h_{\mathrm{obs}})$ recoge el recorrido pico a pico de la altura a lo largo de toda la misión, mientras que la columna $\max|h-630|$ mide la desviación respecto a la altura nominal, que es la magnitud que debe compararse con la semibanda de mantenimiento de 12,6 km. Con ese criterio, la órbita circular alcanza 8,137 km y la \textit{frozen} 0,747 km: ambas permanecen dentro de la banda $617{,}4$--$642{,}6$ km, ya que el recorrido real de la órbita circular queda contenido entre $623{,}088$ y $638{,}137$ km. El recorrido pico a pico de 13,640 km de la órbita circular no implica, por tanto, salirse de la banda, pero sí supone una geometría de adquisición mucho menos estable. Se selecciona la órbita \textit{frozen} por ese motivo.
 
 \begin{figure}[H]
     \centering
@@ -384,11 +387,11 @@ Con estos valores se evalúa la condición RGT de la ecuación \eqref{eq:rgt_con
 En la órbita de \textbf{630 km}, el modelo calcula:
 
 \begin{equation}
-T_{\mathrm{nodal}}(630\ \mathrm{km}) = 5845.950753\ \mathrm{s}
+T_{\mathrm{nodal}}(630\ \mathrm{km}) = 5845{,}950753\ \mathrm{s}
 \label{eq:Tnodal_630}
 \end{equation}
 
-El cociente entre la frecuencia nodal y la velocidad angular de la traza respecto a la Tierra vale \(14.7794606\). El programa evalúa parejas enteras con \(k_{\mathrm{day2rep}}\leq30\) y conserva las que pueden presentar una raíz entre 200 y 1000 km. La pareja cuya solución queda más próxima a la altura nominal es \(k_{\mathrm{orb2rep}}=133\), \(k_{\mathrm{day2rep}}=9\), cuyo cociente es \(133/9=14.7777778\).
+El cociente entre la frecuencia nodal y la velocidad angular de la traza respecto a la Tierra vale \(14{,}7794606\). El programa evalúa parejas enteras con \(k_{\mathrm{day2rep}}\leq30\) y conserva las que pueden presentar una raíz entre 200 y 1000 km. La pareja cuya solución queda más próxima a la altura nominal es \(k_{\mathrm{orb2rep}}=133\), \(k_{\mathrm{day2rep}}=9\), cuyo cociente es \(133/9=14{,}7777778\).
 
 Para cada pareja candidata se define la función residual:
 
@@ -402,14 +405,14 @@ F(h)=\omega_{\mathrm{nodal}}(h)
 La altura de cierre RGT corresponde a la raíz \(F(h)=0\). El algoritmo de bisección comprueba primero el cambio de signo de \(F(h)\) en el intervalo 200--1000 km. Después calcula la altura intermedia y conserva el subintervalo que mantiene el cambio de signo. Repite este proceso hasta que \(\lvert F(h)\rvert<10^{-10}\) o alcanza 100 iteraciones. Para la pareja \((133,9)\), obtiene:
 
 \begin{equation}
-h_{\mathrm{RGT}} = 630.533155\ \mathrm{km}
+h_{\mathrm{RGT}} = 630{,}533155\ \mathrm{km}
 \qquad (k_{\mathrm{orb2rep}}=133,\ k_{\mathrm{day2rep}}=9).
 \label{eq:h_rgt}
 \end{equation}
 
-Al recalcular la condición \textit{frozen} en esta altura se obtiene \(e_{\mathrm{frozen}}=1.05434\times10^{-3}\). La altura RGT difiere \textbf{533 m} de la altura nominal, por debajo de los pasos de 10 km del barrido de cobertura y de 5 km del modelo de masa. La pareja seleccionada completa el ciclo después de 9 rotaciones siderales de la Tierra y 133 órbitas.
+Al recalcular la condición \textit{frozen} en esta altura se obtiene \(e_{\mathrm{frozen}}=1{,}05434\times10^{-3}\). La altura RGT difiere \textbf{533 m} de la altura nominal, por debajo de los pasos de 10 km del barrido de cobertura y de 5 km del modelo de masa. La pareja seleccionada completa el ciclo después de 9 rotaciones siderales de la Tierra y 133 órbitas.
 
-Como comprobación, el cálculo circular con \(e=0\) produce \(h_{\mathrm{RGT}}=630.533138\ \mathrm{km}\). La diferencia con el resultado \textit{frozen} es de aproximadamente \(0{,}017\ \mathrm{m}\), por lo que la excentricidad calculada no modifica la selección de altura ni la pareja RGT a la resolución del estudio. La tabla \ref{tab:rgt_altitudes} conserva, por tanto, los valores redondeados del cierre RGT en el entorno de la solución.
+Como comprobación, el cálculo circular con \(e=0\) produce \(h_{\mathrm{RGT}}=630{,}533138\ \mathrm{km}\). La diferencia con el resultado \textit{frozen} es de aproximadamente \(0{,}017\ \mathrm{m}\), por lo que la excentricidad calculada no modifica la selección de altura ni la pareja RGT a la resolución del estudio. La tabla \ref{tab:rgt_altitudes} conserva, por tanto, los valores redondeados del cierre RGT en el entorno de la solución.
 
 \begin{table}[H]
 \centering
