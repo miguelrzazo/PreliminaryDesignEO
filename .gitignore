@@ -63,3 +63,7 @@ Latex_Code/00main.bbl-SAVE-ERROR
 *.bcf
 *.bcf-SAVE-ERROR
 *.synctex*
+
+# El PDF compilado no se versiona: se publica como asset de release.
+# Reconstruirlo con: cd Latex_Code && latexmk -pdf 00main.tex
+Latex_Code/00main.pdf
