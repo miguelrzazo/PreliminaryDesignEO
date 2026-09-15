@@ -597,8 +597,11 @@ donde \( b \) es el semieje menor. La excentricidad determina varios tipos de ó
     \item \( e > 1 \): Trayectoria hiperbólica
 \end{itemize}
 
-\noindent Estos parámetros no tendrán mucha relevancia en este trabajo como veremos más adelante, ya que por simplicidad escogeremos una órbita circular$(e\approx0)$. El semieje mayor se podrá resumir en la altura orbital,
-definida como $h= a- R_T$, siendo $R_T$ el radio de la Tierra.
+\noindent En el análisis preliminar, el tamaño de una órbita terrestre puede
+expresarse convenientemente mediante la altura orbital, definida como
+$h=a-R_T$, siendo $R_T$ el radio de la Tierra. La excentricidad se conserva
+como parámetro independiente para distinguir entre una aproximación circular
+y una órbita ligeramente elíptica.
 
 \subsection{Inclinación ($i$)}
 
@@ -712,11 +715,11 @@ El achatamiento terrestre, modelado mediante \(J_2\), permite imponer esa preces
 
 \begin{itemize}
     \item \( i \) es la inclinación orbital,
-    \item \( r \) es el radio orbital (radio de la Tierra + altitud del satélite),
+    \item \( r \) es el radio orbital (radio de la Tierra más la altitud del satélite),
     \item \( \omega_{\text{sol}} \approx 1.991 \times 10^{-7} \ \text{rad/s} \) es la velocidad angular aparente del Sol respecto a la Tierra,
     \item \( J_2 \approx 1.08263 \times 10^{-3} \) es el coeficiente zonal que representa el achatamiento terrestre,
-    \item \( R_T \approx 6378.1 \ \text{km} \) es el radio ecuatorial de la Tierra,
-    \item \( \mu \approx 3.986 \times 10^{14} \ \text{m}^3/\text{s}^2 \) es la constante gravitacional estándar de la Tierra.
+    \item \( R_T=R_{\oplus}\approx 6378.137 \ \text{km} \) es el radio ecuatorial de la Tierra,
+    \item \( \mu \approx 3.986004418 \times 10^{14} \ \text{m}^3/\text{s}^2 \) es el parámetro gravitacional estándar de la Tierra.
 \end{itemize}
 
 \subsubsection{Órbitas de Traza Repetida}
@@ -734,10 +737,17 @@ n_k(a) + \dot{M}_1(a,i,e) + \dot{\omega}(a,i,e)
 \label{eq:rgt_cond}
 \end{equation}
 
-donde $n_k(a)=\sqrt{\mu/a^3}$ es el movimiento medio kepleriano,
-$\omega_{\oplus}$ es la velocidad angular de rotación terrestre y
-$\dot{\Omega}$, $\dot{\omega}$ y $\dot{M}_1$ son las tasas seculares
-asociadas a $J_2$. Las expresiones generales de estas tasas son:
+donde $n_k(a)=\sqrt{\mu/a^3}$ es el movimiento medio de la órbita
+kepleriana y $\omega_{\oplus}$ es la velocidad angular de rotación terrestre respecto al sistema inercial. En esta condición se emplea el periodo sideral:
+
+\begin{equation}
+T_{\oplus}=\frac{2\pi}{\omega_{\oplus}}=86164.09\ \mathrm{s},
+\qquad
+\omega_{\oplus}=7.292115373\times10^{-5}\ \mathrm{rad/s}.
+\label{eq:earth_sidereal}
+\end{equation}
+
+Las cantidades $\dot{\Omega}$, $\dot{\omega}$ y $\dot{M}_1$ son las tasas seculares asociadas a $J_2$. Las expresiones generales de estas tasas son \cite{vallado2013fundamentals}:
 
 \begin{align}
 \dot{\Omega}_{J_2} &= -\frac{3J_2 n R_{\oplus}^{2}}{2p^{2}}\cos i,
@@ -751,8 +761,8 @@ asociadas a $J_2$. Las expresiones generales de estas tasas son:
 \end{align}
 
 con $n=n_k(a)$, $p=a(1-e^2)$ y $a=R_{\oplus}+h$. Para el caso
-circular empleado en este diseño, $e=0$ y $p=a$; por tanto, el período
-nodal se obtiene como:
+circular, $e=0$ y $p=a$; por tanto, el período nodal se obtiene como caso
+particular de la expresión general:
 
 \begin{equation}
 T_{\mathrm{nodal}} = \frac{2\pi}
@@ -772,26 +782,31 @@ enteros $(k_{\mathrm{orb2rep}},k_{\mathrm{day2rep}})$
 
 \subsubsection{Órbitas \textit{frozen}}
 
-Una órbita \textit{frozen} mantiene constantes la excentricidad y el argumento
-del perigeo anulando sus derivadas seculares. La condición se obtiene del
-acoplamiento entre $J_2$ y $J_3$:
+Una órbita \textit{frozen} se obtiene al escoger la excentricidad y la
+orientación de la órbita para cancelar, en la aproximación de primer orden,
+los términos seculares dominantes asociados a $J_3$ en la evolución de $e$ y
+$\omega$. Esta condición reduce las variaciones seculares de ambos
+parámetros, pero no las elimina por completo. Para $e\ll1$ y la orientación
+analizada en este trabajo, $\omega=90^\circ$, la excentricidad se aproxima
+mediante \cite{vallado2013fundamentals}:
 
 \begin{equation}
 e_{\textit{frozen}} \approx -\frac{J_3}{2J_2}\,\frac{R_T}{a}\,\sin i,
-\qquad \omega = 90^\circ\ \text{o}\ 270^\circ
+\qquad e\ll1,\quad \omega=90^\circ
 \label{eq:frozen_cond}
 \end{equation}
 
-donde $J_3 \approx -2.53 \times 10^{-6}$ es el armónico zonal impar que
-rompe la simetría norte-sur del campo gravitatorio.
+donde $J_3 \approx -2.5327 \times 10^{-6}$ es el armónico zonal impar que
+rompe la simetría norte-sur del campo gravitatorio. Aunque $\omega=270^\circ$
+puede aparecer como orientación alternativa en formulaciones generales, esta
+orientación no se considera en el presente análisis.
 
 El interés de esta condición para una misión de observación de la Tierra
-reside en que, al mantener $e$ y $\omega$ constantes frente a las
-perturbaciones de $J_2$ y $J_3$, el perfil de altura sobre cada latitud se
-repite de forma prácticamente idéntica en cada órbita. Esto asegura un GSD
-y una iluminación uniformes a lo largo de toda la vida útil de la misión,
-además de una geometría de observación repetible, tal como emplean
-misiones de referencia como Landsat o Sentinel-2.
+reside en que limita la deriva secular de la geometría orbital. Por tanto,
+el perfil de altura y la geometría de observación se repiten con menor
+variación entre órbitas, aunque permanecen variaciones residuales debidas a
+los términos no cancelados y a las perturbaciones que no se incluyen en esta
+aproximación.
 
 La oscilación de altura asociada es $\Delta h = 2 a e_{\textit{frozen}}$.
 Para que la condición \textit{frozen} sea relevante, $\Delta h$ debe ser menor que

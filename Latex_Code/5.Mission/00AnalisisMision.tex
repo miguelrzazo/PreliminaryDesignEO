@@ -241,43 +241,175 @@ La simulación de decaimiento natural desde 630 km indica que los satélites tar
 
 \section{Verificación de las condiciones orbitales}
 
-Fijada la altura de 630 km por mínimo de masa total, se comprueba la compatibilidad de la órbita con dos propiedades orbitales relevantes para la operación: traza repetida (RGT) y órbita \textit{frozen}.
+\subsection{Condición de órbita \textit{frozen}}
+
+Una vez seleccionada la altura de 630 km, se calcula primero la inclinación heliosíncrona mediante la ecuación~\eqref{eq:SSO_cond}, que resulta \(i_{\mathrm{SSO}}=97{,}90595^\circ\). Con esta inclinación se calcula la excentricidad de la órbita \textit{frozen} mediante la ecuación~\eqref{eq:frozen_cond}, válida para \(e\ll1\) y \(\omega=90^\circ\), empleando \(a=R_{\oplus}+630=7008{,}137\ \mathrm{km}\):
+
+\begin{equation}
+e_{\mathrm{frozen}} =
+\frac{2.5327 \times 10^{-6}}{2 \cdot 1.08263 \times 10^{-3}}
+\cdot \frac{6378.137}{7008.137} \cdot \sin(97.90595^\circ)
+\approx 1.0544 \times 10^{-3}
+\label{eq:efrozen_630}
+\end{equation}
+
+La diferencia de altura entre el apogeo y el perigeo es:
+
+\begin{equation}
+\Delta h_{\mathrm{global}} = 2 a e_{\mathrm{frozen}}
+= 2 \cdot 7008.137 \cdot 1.0544 \times 10^{-3}
+\approx 14{,}779\ \mathrm{km}.
+\label{eq:dh_frozen_630}
+\end{equation}
+
+Por tanto, dichos valores son \(h_{\mathrm{perigeo}}=622{,}610\ \mathrm{km}\) y \(h_{\mathrm{apogeo}}=637{,}390\ \mathrm{km}\). El modelo de mantenimiento utiliza una banda de \(\pm2\%\) alrededor de la altura del semieje mayor:
+
+\begin{equation}
+\begin{aligned}
+h_{\min} &= 0{,}98h_{\mathrm{nom}}=617{,}4\ \mathrm{km},\\
+h_{\max} &= 1{,}02h_{\mathrm{nom}}=642{,}6\ \mathrm{km},\\
+\Delta h_{\mathrm{mant,full}} &= h_{\max}-h_{\min}=25{,}2\ \mathrm{km}.
+\end{aligned}
+\label{eq:deadband_630}
+\end{equation}
+
+La excursión global es menor que el ancho completo de la banda de mantenimiento, pero supera su semiancho de 12,6 km. Por tanto, la excursión global no se usa como criterio de operación. Para la adquisición interesa la variación de altura sobre los arcos que cubren la región de interés.
+
+\subsection{Variación de altura en la zona de observación}
+
+El análisis se realiza en la latitud de referencia de \(25^\circ\mathrm{N}\). Se mantiene la geometría del capítulo 4: un \textit{swath} de 190 km, un \textit{swath} efectivo de 180,5 km y un solapamiento del 5\%. El ángulo equivalente del borde del \textit{swath} es \(\psi=\arctan(W_{\mathrm{ef}}/(2h_{\mathrm{nom}}))\), y el cálculo geométrico proporciona un semiángulo de adquisición de \(\theta=0{,}8169^\circ\) en la latitud de referencia. Se analizan los arcos ascendente y descendente asociados a ese intervalo.
+
+Para cada punto del arco se calcula la anomalía verdadera y el radio orbital mediante:
+
+\begin{equation}
+r(\nu)=\frac{a(1-e^2)}{1+e\cos\nu}.
+\label{eq:height_orbit_radius}
+\end{equation}
+
+La altura sobre el elipsoide se calcula como:
+
+\begin{equation}
+h(\nu,\varphi)=r(\nu)-R_{\mathrm{el}}(\varphi).
+\label{eq:height_acquisition}
+\end{equation}
+
+Se comparan dos órbitas con la misma altura nominal, inclinación y orientación: una \textit{frozen}, con \(e=e_{\mathrm{frozen}}\), y otra circular, con \(e_0=0\). La variación de altura sobre la zona observada se define como:
+
+\begin{equation}
+\Delta h_{\mathrm{obs}}=
+\max_{\mathrm{arco\ asc.,\ arco\ desc.}}(h)-
+\min_{\mathrm{arco\ asc.,\ arco\ desc.}}(h).
+\label{eq:height_variation_observed}
+\end{equation}
+
+Los resultados se muestran en la tabla:
+
+\begin{table}[H]
+\centering
+\caption{Variación de altura sobre los arcos de adquisición en la latitud crítica.}
+\label{tab:height_variation_observed}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Caso & $e$ & $\theta$ [°] & $h_{\min}$ [km] & $h_{\max}$ [km] & $\Delta h_{\mathrm{obs}}$ [km] \\
+\midrule
+\textit{Frozen} & $1{,}0544\times10^{-3}$ & 0{,}8169 & 630{,}478 & 630{,}747 & 0{,}270 \\
+Circular & 0 & 0{,}8169 & 633{,}523 & 633{,}986 & 0{,}463 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{5.Mission/frozen_coverage_height_analysis.pdf}
+    \caption{Altura sobre el elipsoide a lo largo de los arcos de adquisición ascendente y descendente en la latitud crítica de $25^\circ\mathrm{N}$. Fuente: Elaboración propia.}
+    \label{fig:frozen_coverage_height}
+\end{figure}
+
+La variación de la tabla incluye los dos sentidos de paso. Para la órbita \textit{frozen}, la variación sobre la zona de observación es de 0,270 km y la máxima desviación respecto a 630 km es de 0,747 km. En la órbita circular, la variación local debida a la geometría del elipsoide es 0,463 km; su altura media sobre la latitud de referencia queda desplazada respecto a la altura ecuatorial nominal.
+
+La órbita \textit{frozen} cumple la banda de mantenimiento en el arco de adquisición. El modelo de cobertura sigue usando la altura nominal en el barrido paramétrico. El resultado comprueba la sensibilidad de la adquisición, pero no introduce un nuevo requisito de cobertura.
+
+\subsection{Evolución de la excentricidad durante la misión}
+
+Para completar la comparación entre una órbita \textit{frozen} y una órbita inicialmente circular, se propaga durante los ocho años la evolución de su vector de excentricidad media. Se utiliza el modelo analítico de primer orden del problema $J_2$--$J_3$ \cite{kiedron_cook_frozen_1992}. Este modelo describe la rotación del vector alrededor de la excentricidad \textit{frozen} y permite comparar la variación secular sin introducir un propagador orbital de alta fidelidad.
+
+El vector se define como \(\boldsymbol{e}=(e\cos\omega,e\sin\omega)\). Su centro es:
+
+\begin{equation}
+\boldsymbol{e}_{\mathrm{f}}=\left(0,-\frac{J_3}{2J_2}\frac{R_{\oplus}}{p}\sin i\right),
+\qquad p=a(1-e^2),
+\label{eq:frozen_eccentricity_vector}
+\end{equation}
+
+y su evolución se calcula mediante una rotación del vector inicial alrededor de dicho centro. La velocidad angular de esta rotación se aproxima por:
+
+\begin{equation}
+\dot{\alpha}=-3nJ_2\left(\frac{R_{\oplus}}{p}\right)^2
+\left(\frac{5}{4}\sin^2 i-1\right),
+\qquad n=\sqrt{\frac{\mu}{a^3}}.
+\label{eq:eccentricity_vector_rate}
+\end{equation}
+
+La órbita \textit{frozen} se inicializa en el centro del círculo, con \(e(0)=e_{\mathrm{f}}\) y \(\omega(0)=90^\circ\). La órbita circular se inicializa con el vector nulo. Para cada día de la misión se evalúa de nuevo la altura sobre los arcos de adquisición y se comprueba la semibanda de mantenimiento de 12,6 km.
+
+\begin{table}[H]
+\centering
+\caption{Evolución de la excentricidad y de la altura durante los ocho años de misión.}
+\label{tab:eccentricity_evolution}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Caso & $e(0)$ & $e_{\min}$ & $e_{\max}$ & $\max(\Delta h_{\mathrm{obs}})$ [km] & $\max|h-630|$ [km] \\
+\midrule
+\textit{Frozen} & $1{,}0544\times10^{-3}$ & $1{,}0544\times10^{-3}$ & $1{,}0544\times10^{-3}$ & 0{,}270 & 0{,}747 \\
+Circular & 0 & 0 & $2{,}1089\times10^{-3}$ & 13{,}640 & 8{,}137 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+La órbita \textit{frozen} mantiene constante la excentricidad media en el modelo utilizado. La órbita circular desarrolla una excentricidad máxima de $2{,}1089\times10^{-3}$, aproximadamente el doble de la excentricidad \textit{frozen}, y presenta una variación de altura mayor sobre la zona de adquisición. Ninguno de los dos casos supera la semibanda de mantenimiento, pero la órbita \textit{frozen} ofrece la condición más estable para la adquisición.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{5.Mission/frozen_secular_evolution_8yr.pdf}
+    \caption{Evolución de la excentricidad media y de la desviación máxima de altura sobre la zona de adquisición durante la misión. Fuente: Elaboración propia.}
+    \label{fig:frozen_secular_evolution}
+\end{figure}
+
+El cálculo de mantenimiento sigue considerando el decaimiento del semieje mayor, que proporciona 6 impulsos, 81,4 m/s y 0,101 kg de combustible con margen. Como ambos casos permanecen dentro de la semibanda en el arco analizado, no se añade una maniobra específica de control de excentricidad. La configuración seleccionada es, por tanto, la órbita \textit{frozen} a 630 km.
 
 \subsection{Condición de traza repetida (RGT)}
 
-Para cada altura del barrido, el análisis aplica primero la condición heliosíncrona de la ecuación~\eqref{eq:SSO_cond}. Esta condición determina la inclinación \(i_{\mathrm{SSO}}(h)\). El modelo calcula con ella el periodo kepleriano \(T_k\), incorpora las tasas seculares de \(J_2\) y obtiene el periodo nodal \(T_{\mathrm{nodal}}\) mediante la ecuación~\eqref{eq:Tnodal}. Después, busca parejas enteras \((k_{\mathrm{orb2rep}},k_{\mathrm{day2rep}})\), con \(k_{\mathrm{day2rep}} \leq 30\), que satisfagan la ecuación~\eqref{eq:rgt_cond}.
+Con estos valores se evalúa la condición RGT de la ecuación \eqref{eq:rgt_cond}. Para ello se usa la velocidad de rotación terrestre \(\omega_{\oplus}\) y el periodo sideral de la ecuación \eqref{eq:earth_sidereal}. La velocidad aparente del Sol solo interviene en la condición heliosíncrona. Las tasas seculares incluyen \(J_2\) a través de \(p=a(1-e^2)\) \cite{vallado2013fundamentals}.
 
-En la órbita nominal de \textbf{630 km}, con una inclinación SSO de \textbf{\(97{,}91^\circ\)}, el modelo calcula:
+En la órbita de \textbf{630 km}, el modelo calcula:
 
 \begin{equation}
-T_{\mathrm{nodal}}(630\ \mathrm{km}) = 5845.95\ \mathrm{s}
+T_{\mathrm{nodal}}(630\ \mathrm{km}) = 5845.950753\ \mathrm{s}
 \label{eq:Tnodal_630}
 \end{equation}
 
-En 630 km, el cociente entre la frecuencia nodal y la velocidad angular de
-la traza respecto a la Tierra vale $14.7795$. La pareja entera más próxima es
-$k_{\mathrm{orb2rep}} = 133$, $k_{\mathrm{day2rep}} = 9$, con
-$k_{\mathrm{orb2rep}}/k_{\mathrm{day2rep}} = 14.7778$.
+El cociente entre la frecuencia nodal y la velocidad angular de la traza respecto a la Tierra vale \(14.7794606\). El programa evalúa parejas enteras con \(k_{\mathrm{day2rep}}\leq30\) y conserva las que pueden presentar una raíz entre 200 y 1000 km. La pareja cuya solución queda más próxima a la altura nominal es \(k_{\mathrm{orb2rep}}=133\), \(k_{\mathrm{day2rep}}=9\), cuyo cociente es \(133/9=14.7777778\).
 
-El algoritmo de bisección resuelve la ecuación \eqref{eq:rgt_cond} para cada
-$(k_{\mathrm{orb2rep}},k_{\mathrm{day2rep}})$. La altura RGT exacta más próxima al óptimo de masa resulta:
+Para cada pareja candidata se define la función residual:
 
 \begin{equation}
-h_{\mathrm{RGT}} = 630.533\ \mathrm{km}
-\qquad (k_{\mathrm{orb2rep}} = 133,\ k_{\mathrm{day2rep}} = 9)
+F(h)=\omega_{\mathrm{nodal}}(h)
+-\left[\omega_{\oplus}-\dot{\Omega}(h)\right]
+\frac{k_{\mathrm{orb2rep}}}{k_{\mathrm{day2rep}}}.
+\label{eq:rgt_residual}
+\end{equation}
+
+La altura de cierre RGT corresponde a la raíz \(F(h)=0\). El algoritmo de bisección comprueba primero el cambio de signo de \(F(h)\) en el intervalo 200--1000 km. Después calcula la altura intermedia y conserva el subintervalo que mantiene el cambio de signo. Repite este proceso hasta que \(\lvert F(h)\rvert<10^{-10}\) o alcanza 100 iteraciones. Para la pareja \((133,9)\), obtiene:
+
+\begin{equation}
+h_{\mathrm{RGT}} = 630.533155\ \mathrm{km}
+\qquad (k_{\mathrm{orb2rep}}=133,\ k_{\mathrm{day2rep}}=9).
 \label{eq:h_rgt}
 \end{equation}
 
-La altura RGT difiere \textbf{533 m} del óptimo de masa. El barrido de
-cobertura usa pasos de 10 km y el modelo de masa pasos de 5 km. La
-diferencia queda por debajo de ambas resoluciones, por lo que el diseño de
-630 km satisface la condición RGT dentro de la resolución del estudio.
+Al recalcular la condición \textit{frozen} en esta altura se obtiene \(e_{\mathrm{frozen}}=1.05434\times10^{-3}\). La altura RGT difiere \textbf{533 m} de la altura nominal, por debajo de los pasos de 10 km del barrido de cobertura y de 5 km del modelo de masa. La pareja seleccionada completa el ciclo después de 9 rotaciones siderales de la Tierra y 133 órbitas.
 
-La pareja seleccionada completa el ciclo con
-\(k_{\mathrm{day2rep}} = \textbf{9}\) rotaciones terrestres y
-\(k_{\mathrm{orb2rep}} = \textbf{133}\) órbitas. La tabla
-\ref{tab:rgt_altitudes} recoge las altitudes RGT exactas en el rango
-viable cercano a la solución.
+Como comprobación, el cálculo circular con \(e=0\) produce \(h_{\mathrm{RGT}}=630.533138\ \mathrm{km}\). La diferencia con el resultado \textit{frozen} es de aproximadamente \(0{,}017\ \mathrm{m}\), por lo que la excentricidad calculada no modifica la selección de altura ni la pareja RGT a la resolución del estudio. La tabla \ref{tab:rgt_altitudes} conserva, por tanto, los valores redondeados del cierre RGT en el entorno de la solución.
 
 \begin{table}[H]
 \centering
@@ -298,38 +430,6 @@ $h$ [km] & $i_{\mathrm{SSO}}$ [°] & $k_{\mathrm{orb2rep}}$ & $k_{\mathrm{day2re
 \bottomrule
 \end{tabular}
 \end{table}
-
-
-\subsection{Condición de órbita \textit{frozen}}
-
-La condición \textit{frozen} es opcional en esta misión: permite mantener casi constante la geometría de apogeo y perigeo, pero exige introducir una excentricidad no nula. Aplicando la ecuación \eqref{eq:frozen_cond} a la órbita de 630 km con
-$i = 97.91^\circ$:
-
-\begin{equation}
-e_{\mathrm{frozen}} =
-\frac{2.53 \times 10^{-6}}{2 \cdot 1.08 \times 10^{-3}}
-\cdot \frac{6378}{7008} \cdot \sin(97.91^\circ)
-\approx 1.05 \times 10^{-3}
-\label{eq:efrozen_630}
-\end{equation}
-
-La oscilación de altura entre apogeo y perigeo asociada es:
-
-\begin{equation}
-\Delta h = 2 a e_{\mathrm{frozen}}
-= 2 \cdot 7008 \cdot 1.05 \times 10^{-3}
-\approx 14{,}8\ \mathrm{km}
-\label{eq:dh_frozen_630}
-\end{equation}
-
-A 630 km la oscilación \textit{frozen} $\Delta h \approx 14{,}8$ km supera la banda muerta de mantenimiento adoptada. Esta banda muerta se toma como el \textbf{2\%} de la altura orbital, por lo que a 630 km vale:
-
-\begin{equation}
-\Delta h_{\mathrm{mant}} = 0{,}02 \cdot 630 \approx 12{,}6\ \mathrm{km}
-\label{eq:deadband_630}
-\end{equation}
-
-Los valores anteriores corresponden a \textbf{\(e_{\mathrm{frozen}}\approx 1{,}05 \times 10^{-3}\)}, una oscilación de \textbf{14,8 km} y una banda de mantenimiento de \textbf{12,6 km}. Adoptar la excentricidad \textit{frozen} obligaría, por tanto, a aceptar una excursión mayor que la que el propio ciclo de mantenimiento orbital ya compensa. Además, la densidad atmosférica a 630 km ronda $4{,}3\times10^{-14}\ \mathrm{kg/m^3}$, todavía varias veces superior a la densidad a 800 km ($1{,}0\times10^{-14}\ \mathrm{kg/m^3}$), de modo que el decaimiento continuo del semieje mayor por arrastre atmosférico sigue siendo el efecto operativo que dimensiona el mantenimiento. Por ello, no se adopta la condición \textit{frozen}.
 
 \section{Sensibilidad de la solución al GSD}
 \label{sec:gsd}

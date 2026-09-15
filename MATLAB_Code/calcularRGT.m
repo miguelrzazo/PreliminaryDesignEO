@@ -4,9 +4,10 @@ clear; close all;
 mu        = 3.986004418e14;
 R_E       = 6378.137e3;
 J2        = 1.08263e-3;
+J3        = -2.5327e-6;
 omega_E   = 7.292115373194e-5; % Earth rotation [rad/s]
 omega_sol = 1.991e-7;           % Apparent solar motion [rad/s]
-T_day     = 86400;              % Reference day for drift [s]
+T_sidereal = 2*pi/omega_E;      % Sidereal rotation period [s]
 
 h_vals  = 200:2:1000;  % km
 n_h     = length(h_vals);
@@ -18,15 +19,16 @@ T_nodal    = zeros(1,n_h);
 for k = 1:n_h
     h = h_vals(k);
     [i_SSO(k), omega_nodal(k), dotOmega(k)] = ...
-        rgt_rates(h*1e3, mu, R_E, J2, omega_sol);
+        rgt_rates(h*1e3, mu, R_E, J2, J3, omega_sol);
     T_nodal(k) = 2*pi / omega_nodal(k);
 end
 
 fprintf('--- Reference at 630 km ---\n');
 h_ref = 630;
-[i_ref, omega_nodal_ref, dotOmega_ref] = ...
-    rgt_rates(h_ref*1e3, mu, R_E, J2, omega_sol);
+[i_ref, omega_nodal_ref, dotOmega_ref, e_ref] = ...
+    rgt_rates(h_ref*1e3, mu, R_E, J2, J3, omega_sol);
 Tn_ref = 2*pi / omega_nodal_ref;
+fprintf('e_frozen(630 km)   = %.8f\n', e_ref);
 fprintf('i_SSO(630 km)      = %.2f deg\n', i_ref);
 fprintf('T_nodal(630 km)     = %.2f s\n', Tn_ref);
 fprintf('omega_nodal/(omega_E-dotOmega) = %.4f\n', ...
@@ -49,8 +51,8 @@ for D = 1:30
         ha = 200e3;  % lower bound in m
         hb = 1000e3; % upper bound in m
 
-        fa = f_RGT(ha, N, D, mu, R_E, J2, omega_E, omega_sol);
-        fb = f_RGT(hb, N, D, mu, R_E, J2, omega_E, omega_sol);
+        fa = f_RGT(ha, N, D, mu, R_E, J2, J3, omega_E, omega_sol);
+        fb = f_RGT(hb, N, D, mu, R_E, J2, J3, omega_E, omega_sol);
 
         if fa * fb > 0
             continue;
@@ -58,7 +60,7 @@ for D = 1:30
 
         for iter = 1:maxit
             hc = (ha + hb) / 2;
-            fc = f_RGT(hc, N, D, mu, R_E, J2, omega_E, omega_sol);
+            fc = f_RGT(hc, N, D, mu, R_E, J2, J3, omega_E, omega_sol);
             if abs(fc) < tol
                 break;
             end
@@ -71,7 +73,7 @@ for D = 1:30
 
         h_exact = hc / 1e3;
         [i_exact, omega_nodal_exact] = ...
-            rgt_rates(hc, mu, R_E, J2, omega_sol);
+            rgt_rates(hc, mu, R_E, J2, J3, omega_sol);
         Tn_exact = 2*pi / omega_nodal_exact;
 
         roots = [roots; h_exact, i_exact, N, D, Tn_exact, N/D];
@@ -102,7 +104,7 @@ for k = 1:n_h
             best_err = err;
         end
     end
-    residual(k) = best_err * R_E * T_day / 1e3;  % km/day
+    residual(k) = best_err * R_E * T_sidereal / 1e3;  % km/sidereal day
 end
 
 figure('Position', [100 100 700 420]);
@@ -114,32 +116,34 @@ for k = 1:size(roots,1)
 end
 xline(h_nearest, 'r--', 'LineWidth', 1.5);
 xlabel('Altura [km]');
-ylabel('Deriva longitudinal diaria [km/día]');
+ylabel('Deriva longitudinal por día sideral [km/día sideral]');
 title('Condición RGT para órbita SSO con J_2');
 grid on;
 set(gca, 'FontSize', 11);
 exportgraphics(gcf, 'RGT_residual.pdf', 'ContentType', 'vector');
 fprintf('\nSaved RGT_residual.pdf\n');
 
-function [inc, omega_nodal, dotOmega] = rgt_rates(h_m, mu, R_E, J2, omega_sol)
+function [inc, omega_nodal, dotOmega, e_frozen] = ...
+        rgt_rates(h_m, mu, R_E, J2, J3, omega_sol)
     a = R_E + h_m;
     n = sqrt(mu / a^3);
     ci = -(2 * a^(7/2) * omega_sol) / (3 * J2 * R_E^2 * sqrt(mu));
     ci = max(-1, min(1, ci));
     inc = acosd(ci);
 
-    p = a; % Circular mission orbit: e = 0
+    e_frozen = -J3 / (2 * J2) * (R_E / a) * sind(inc);
+    p = a * (1 - e_frozen^2);
     dotOmega = -(3 * J2 * n * R_E^2 / (2 * p^2)) * cosd(inc);
     dotomega = (3 * J2 * n * R_E^2 / (4 * p^2)) * ...
         (4 - 5 * sind(inc)^2);
-    dotM1 = (3 * J2 * n * R_E^2 / (4 * p^2)) * ...
+    dotM1 = (3 * J2 * n * R_E^2 * sqrt(1 - e_frozen^2) / (4 * p^2)) * ...
         (2 - 3 * sind(inc)^2);
     omega_nodal = n + dotM1 + dotomega;
 end
 
-function out = f_RGT(h_m, N, D, mu, R_E, J2, omega_E, omega_sol)
+function out = f_RGT(h_m, N, D, mu, R_E, J2, J3, omega_E, omega_sol)
     [~, omega_nodal, dotOmega] = ...
-        rgt_rates(h_m, mu, R_E, J2, omega_sol);
+        rgt_rates(h_m, mu, R_E, J2, J3, omega_sol);
     out = omega_nodal - (omega_E - dotOmega) * ...
         N / D;
 end
