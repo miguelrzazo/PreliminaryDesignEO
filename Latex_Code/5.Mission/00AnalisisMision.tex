@@ -273,7 +273,7 @@ h_{\max} &= 1{,}02h_{\mathrm{nom}}=642{,}6\ \mathrm{km},\\
 \label{eq:deadband_630}
 \end{equation}
 
-La excursión global es menor que el ancho completo de la banda de mantenimiento, pero supera su semiancho de 12,6 km. Por tanto, la excursión global no se usa como criterio de operación. Para la adquisición interesa la variación de altura sobre los arcos que cubren la región de interés.
+Esta excursión recorre la órbita completa y su mayor parte ocurre en latitudes ajenas a la región de interés, de modo que no describe la geometría de adquisición. Tampoco interviene en el mantenimiento orbital: la banda de \(\pm2\%\) actúa sobre la altura del semieje mayor, y \(J_2\) y \(J_3\) conservan el semieje mayor. La magnitud relevante es la variación de altura sobre los arcos que cubren la región de interés.
 
 \subsection{Variación de altura en la zona de observación}
 
@@ -327,7 +327,7 @@ Circular & 0 & 0{,}8169 & 633{,}523 & 633{,}986 & 0{,}463 \\
 
 La variación de la tabla incluye los dos sentidos de paso. Para la órbita \textit{frozen}, la variación sobre la zona de observación es de 0,270 km y la máxima desviación respecto a 630 km es de 0,747 km. En la órbita circular, la variación local debida a la geometría del elipsoide es 0,463 km; su altura media sobre la latitud de referencia queda desplazada respecto a la altura ecuatorial nominal.
 
-La órbita \textit{frozen} cumple la banda de mantenimiento en el arco de adquisición. El modelo de cobertura sigue usando la altura nominal en el barrido paramétrico. El resultado comprueba la sensibilidad de la adquisición, pero no introduce un nuevo requisito de cobertura.
+La diferencia entre ambos casos procede de la orientación del perigeo. Con \(\omega=90^\circ\) el perigeo queda fijo en la latitud \(82{,}1^\circ\mathrm{N}\), de forma que los pasos ascendente y descendente sobre \(25^\circ\mathrm{N}\) ocurren en \(\nu=-64{,}74^\circ\) y \(\nu=+64{,}74^\circ\). Ambos quedan simétricos respecto al perigeo y comparten radio orbital, y por eso la órbita \textit{frozen} varía 0,270 km sobre la zona de adquisición frente a los 14,779 km de excursión global. El barrido paramétrico de cobertura sigue empleando la altura nominal.
 
 \subsection{Evolución de la excentricidad durante la misión}
 
@@ -350,7 +350,7 @@ y su evolución se calcula mediante una rotación del vector inicial alrededor d
 \label{eq:eccentricity_vector_rate}
 \end{equation}
 
-La órbita \textit{frozen} se inicializa en el centro del círculo, con \(e(0)=e_{\mathrm{f}}\) y \(\omega(0)=90^\circ\). La órbita circular se inicializa con el vector nulo. Para cada día de la misión se evalúa de nuevo la altura sobre los arcos de adquisición y se comprueba la semibanda de mantenimiento de 12,6 km.
+La órbita \textit{frozen} se inicializa en el centro del círculo, con \(e(0)=e_{\mathrm{f}}\) y \(\omega(0)=90^\circ\). La órbita circular se inicializa con el vector nulo. Para cada día de la misión se evalúa de nuevo la altura sobre los arcos de adquisición y se registra su desviación respecto a la altura nominal.
 
 \begin{table}[H]
 \scriptsize
@@ -359,7 +359,7 @@ La órbita \textit{frozen} se inicializa en el centro del círculo, con \(e(0)=e
 \label{tab:eccentricity_evolution}
 \begin{tabularx}{\linewidth}{@{}l *{5}{>{\centering\arraybackslash}X}@{}}
 \toprule
-Caso & $e(0)$ & $e_{\min}$ & $e_{\max}$ & \makecell{$\max(\Delta h_{\mathrm{obs}})$\\\text{[km]}} & \makecell{$\max|h-630|$\\\text{[km]}} \\
+Caso & $e(0)$ & $e_{\min}$ & $e_{\max}$ & \makecell{$\max(\Delta h_{\mathrm{obs}})$ en\\una pasada [km]} & \makecell{$\max|h-630|$\\\text{[km]}} \\
 \midrule
 \textit{Frozen} & $1{,}0544\times10^{-3}$ & $1{,}0544\times10^{-3}$ & $1{,}0544\times10^{-3}$ & 0{,}270 & 0{,}747 \\
 Circular & 0 & 0 & $2{,}1089\times10^{-3}$ & 13{,}640 & 8{,}137 \\
@@ -367,9 +367,9 @@ Circular & 0 & 0 & $2{,}1089\times10^{-3}$ & 13{,}640 & 8{,}137 \\
 \end{tabularx}
 \end{table}
 
-La órbita \textit{frozen} mantiene constante la excentricidad media en el modelo utilizado. La órbita circular desarrolla una excentricidad máxima de $2{,}1089\times10^{-3}$, aproximadamente el doble de la excentricidad \textit{frozen}, y presenta una variación de altura mayor sobre la zona de adquisición.
+La órbita \textit{frozen} mantiene constante la excentricidad media en el modelo utilizado. Con \(e_0=0\) el vector de excentricidad gira alrededor del centro \textit{frozen} con un periodo de 0,30 años, de modo que \(\omega\) recorre todas las orientaciones unas veintisiete veces a lo largo de la misión y la excentricidad alcanza $2{,}1089\times10^{-3}$, el doble de la \textit{frozen}. Al girar el perigeo se pierde la simetría de los pasos sobre \(25^\circ\mathrm{N}\) y la altura llega a variar 13,640 km dentro de una misma pasada.
 
-Conviene distinguir las dos columnas de la tabla. La columna $\max(\Delta h_{\mathrm{obs}})$ recoge el recorrido pico a pico de la altura a lo largo de toda la misión, mientras que la columna $\max|h-630|$ mide la desviación respecto a la altura nominal, que es la magnitud que debe compararse con la semibanda de mantenimiento de 12,6 km. Con ese criterio, la órbita circular alcanza 8,137 km y la \textit{frozen} 0,747 km: ambas permanecen dentro de la banda $617{,}4$--$642{,}6$ km, ya que el recorrido real de la órbita circular queda contenido entre $623{,}088$ y $638{,}137$ km. El recorrido pico a pico de 13,640 km de la órbita circular no implica, por tanto, salirse de la banda, pero sí supone una geometría de adquisición mucho menos estable. Se selecciona la órbita \textit{frozen} por ese motivo.
+El mantenimiento orbital no separa ambos casos. \(J_2\) y \(J_3\) conservan el semieje mayor, y el decaimiento por resistencia aerodinámica es el mismo en las dos órbitas, así que la banda de \(\pm2\%\) arroja el mismo número de maniobras en ambas. Las separa la estabilidad de la geometría de observación. Un recorrido de 13,640 km sobre 630 km supone un 2,2\% de variación de GSD y de \textit{swath} dentro de una pasada, y consume buena parte del margen de solapamiento del 5\%; la órbita \textit{frozen} se queda en el 0,04\%. Se adopta la órbita \textit{frozen} por ese motivo.
 
 \begin{figure}[H]
     \centering
@@ -378,7 +378,7 @@ Conviene distinguir las dos columnas de la tabla. La columna $\max(\Delta h_{\ma
     \label{fig:frozen_secular_evolution}
 \end{figure}
 
-El cálculo de mantenimiento sigue considerando el decaimiento del semieje mayor, que proporciona 6 impulsos, 81,4 m/s y 0,101 kg de combustible con margen. Como ambos casos permanecen dentro de la semibanda en el arco analizado, no se añade una maniobra específica de control de excentricidad. La configuración seleccionada es, por tanto, la órbita \textit{frozen} a 630 km.
+El cálculo de mantenimiento sigue considerando el decaimiento del semieje mayor, que proporciona 6 impulsos, 81,4 m/s y 0,101 kg de combustible con margen. No se añade una maniobra específica de control de excentricidad, ya que el semieje mayor no se ve afectado por la deriva del vector de excentricidad. La configuración seleccionada es la órbita \textit{frozen} a 630 km.
 
 \subsection{Condición de traza repetida (RGT)}
 

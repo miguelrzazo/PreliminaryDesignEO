@@ -26,7 +26,10 @@ LTAN_target = 6; % [h]
 
 % Datos brutos de un flujo combinado por satélite.
 GSD = 80; % [m]
-effectiveSwath_km = 190; % ancho combinado de los dos telescopios [km]
+nominalSwath_km = 190; % swath nominal combinado de los dos telescopios [km].
+% Es el swath nominal, no el efectivo (0,95*W = 180,5 km): el solape entre
+% pasadas genera datos reales, asi que para volumen de descarga contar el
+% ancho completo es lo conservador.
 numBands = 3;
 bitsPerBand = 12;
 memoryPerSatellite_GB = 2;
@@ -41,7 +44,7 @@ conusBounds = struct('latMin', 25, 'latMax', 49, ...
 sBandReferenceCapacity_Mbps = 10;
 
 bitsPerPixel = numBands * bitsPerBand;
-pixelsPerLine = effectiveSwath_km * 1000 / GSD;
+pixelsPerLine = nominalSwath_km * 1000 / GSD;
 
 %% Escenario, estación y satélites
 sc = satelliteScenario(startTime, stopTime, sampleTime);
