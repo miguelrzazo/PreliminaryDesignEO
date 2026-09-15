@@ -8,12 +8,14 @@ Definidos los fundamentos teóricos, se determinan las variables que cumplen los
 Se ha creado para el trabajo un paquete de códigos disponible en el anexo \ref{sec:annexcode} que, a partir de los datos de entrada iniciales, calcula los requerimientos y exporta las soluciones óptimas listas a interpretar por el usuario. El código maestro, que aloja dichos parámetros de entrada y las llamadas a las funciones, alberga el siguiente flujo de trabajo:
 
 \begin{landscape}
+\captionsetup{hypcap=false}
 \thispagestyle{plain}
 \begin{center}
     \includegraphics[width=0.92\linewidth,height=0.78\textheight,keepaspectratio]{4.Payload/workflow.jpg}
     \captionof{figure}{Flujo de trabajo de los scripts de MATLAB}
     \label{fig:flowchart}
 \end{center}
+\captionsetup{hypcap=true}
 \end{landscape}
 \newpage
 
@@ -91,7 +93,7 @@ La banda de absorción del oxígeno atmosférico a 0,76 \textmu m se emplea para
 
 \subsubsection{Bandas CO\textsubscript{2} SWIR (1,61 y 2,01 \textmu m)}
 
-Las bandas de 1610 nm y 2010 nm corresponden a las principales regiones de absorción del CO\textsubscript{2} en el infrarrojo de onda corta, como se vio en el capítulo \ref{cap3}. La utilización de dos bandas independientes permite implementar algoritmos de validación cruzada y mejora el cálculo de estimaciones de concentración.
+Las bandas de 1610 nm y 2010 nm corresponden a las principales regiones de absorción del CO\textsubscript{2} en el infrarrojo de onda corta, como se vio en el capítulo~\ref{ch:conceptos}. La utilización de dos bandas independientes permite implementar algoritmos de validación cruzada y mejora el cálculo de estimaciones de concentración.
 
 \subsubsection{Ancho de banda}
 
@@ -135,13 +137,15 @@ Definidas las bandas de interés, se busca el detector capaz de cubrir dichos ra
 \textbf{Nombre} & LYNRED CAPYORK  & \textbf{Teledyne H2RG}   & Saturn VISIR \\
 \textbf{Tamaño píxel} & 15 × 15 \textmu m & 18 × 18 \textmu m & 30 × 30 \textmu m \\
 \textbf{Array} & 1200 × 12 & 2048 × 2048 &  1000 × 256 \\
-\textbf{Canales\tablefootnote{Evaluar los canales de salida permite evaluar cuántas bandas independientes es capaz de capturar un detector}} & 4 & 4 & 4 ó 8 \\
+\textbf{Canales}\textsuperscript{*} & 4 & 4 & 4 ó 8 \\
 \textbf{TDI} & Si (4 etapas) & No  & No \\
 \textbf{Rango espectral} & 0,8-5 \textmu m & 0,4-2,5 \textmu m & 0,3-2,5 \textmu m \\
 \textbf{Eficiencia cuántica} & 85\% &  70\% &  70\%  \\
 \textbf{MTF @ Nyquist} & 0,45  & 0,5 & 0,48 \\
 \bottomrule
 \end{tabular}
+\par\smallskip
+\noindent\textsuperscript{*}\footnotesize Evaluar los canales de salida permite evaluar cuántas bandas independientes es capaz de capturar un detector.
 
 \label{tab:detectores_comparacion}
 \end{table}
@@ -164,10 +168,12 @@ Se aprecia que los detectores 2 y 3 tienen un rango válido para evaluarse tambi
 \textbf{Canales} & 4 & 4 & 4 ó 8 \\
 \textbf{TDI} & No & No  & No  \\
 \textbf{Rango espectral} & 0,4–1,1 \textmu m & 0,4–2,5 \textmu m & 0,3 –2,5 \textmu m \\
-\textbf{Eficiencia cuántica} & 35 \% &  70\% &  50\% \tablefootnote{Según especificaciones del fabricante; desciende un 20\% para rango visible} \\
+\textbf{Eficiencia cuántica} & 35 \% &  70\% &  50\%\textsuperscript{*} \\
 \textbf{MTF @ Nyquist} & 0,36 & 0,5 & 0,45 \\
 \bottomrule
 \end{tabular}
+\par\smallskip
+\noindent\textsuperscript{*}\footnotesize Según especificaciones del fabricante; desciende un 20\% para rango visible.
 
 \end{table}
 
@@ -193,7 +199,7 @@ La implementación práctica implicaría fabricar filtros de interferencia multi
 
 \section{Tipo de órbita. Altura orbital. Hora de paso local}
 
-Como se ha expuesto en el capítulo \ref{semejantes}, las misiones ópticas de observación terrestre con requerimientos comparables adoptan, de manera unánime, \textbf{órbitas heliosíncronas}. Esta elección responde a la necesidad de garantizar condiciones de iluminación solar consistentes, ya que el instrumento óptico pasivo empleado depende de la radiación solar reflejada por la superficie terrestre.
+Como se ha expuesto en el capítulo~\ref{ch:semejantes}, las misiones ópticas de observación terrestre con requerimientos comparables adoptan, de manera unánime, \textbf{órbitas heliosíncronas}. Esta elección responde a la necesidad de garantizar condiciones de iluminación solar consistentes, ya que el instrumento óptico pasivo empleado depende de la radiación solar reflejada por la superficie terrestre.
 
 
 Una limitación inherente a estos sistemas es su incapacidad para operar eficazmente en condiciones de penumbra. Por tanto, es necesario que la trayectoria orbital proporcione una iluminación solar directa y estable en cada pasada del satélite. La órbita heliosíncrona cumple precisamente este requisito, ya que su precesión mantiene el ángulo entre el plano orbital y el Sol constante a lo largo del año, asegurando que cada observación sobre una misma región se realice a una hora solar local fija. Esta estabilidad favorece la coherencia radiométrica de las imágenes y mejora la comparabilidad temporal de los datos adquiridos. Por ello se calcularán soluciones de órbita \textbf{heliosíncrona entre los 350 km y los 1400 km de altitud}, con una discretización de 10 km de paso \cite{nasa_sso_slots_2011}.
@@ -233,6 +239,7 @@ Por lo tanto, la banda más restrictiva corresponde a la mayor longitud de onda 
 
 %% Lambda 2
 \begin{landscape}
+\captionsetup{hypcap=false}
 \thispagestyle{plain}
 \begin{center}
 \setlength{\tabcolsep}{1pt}
@@ -246,11 +253,13 @@ Por lo tanto, la banda más restrictiva corresponde a la mayor longitud de onda 
 \end{tabular}
 \captionof{figure}{Mapas de calor resultantes del cálculo de MTF: Banda 2,01 \textmu m; Detector 1}
 \end{center}
+\captionsetup{hypcap=true}
 \end{landscape}
 
 
 %% DETECTOR 2
 \begin{landscape}
+\captionsetup{hypcap=false}
 \thispagestyle{plain}
 \begin{center}
 \setlength{\tabcolsep}{1pt}
@@ -264,11 +273,13 @@ Por lo tanto, la banda más restrictiva corresponde a la mayor longitud de onda 
 \end{tabular}
 \captionof{figure}{Mapas de calor resultantes del cálculo de MTF: Banda 2,01 \textmu m; Detector 2}
 \end{center}
+\captionsetup{hypcap=true}
 \end{landscape}
 
 
 %% DETECTOR 3
 \begin{landscape}
+\captionsetup{hypcap=false}
 \thispagestyle{plain}
 \begin{center}
 \setlength{\tabcolsep}{1pt}
@@ -282,6 +293,7 @@ Por lo tanto, la banda más restrictiva corresponde a la mayor longitud de onda 
 \end{tabular}
 \captionof{figure}{Mapas de calor resultantes del cálculo de MTF: Banda 2,01 \textmu m; Detector 3}
 \end{center}
+\captionsetup{hypcap=true}
 \end{landscape}
 
 Estos gráficos permiten extraer las siguientes consideraciones:
@@ -294,7 +306,7 @@ Estos gráficos permiten extraer las siguientes consideraciones:
 
 \section{Cálculo de la SNR}
 
-El cálculo de la relación señal-ruido (SNR) se ha realizado empleando las ecuaciones de la sección \ref{snr}. Para cada combinación de diámetro de pupila y altura orbital, y considerando los diferentes detectores y tipos de telescopio, se han generado mapas de calor que representan los valores de SNR obtenidos.
+El cálculo de la relación señal-ruido (SNR) se ha realizado empleando las ecuaciones de la sección~\ref{sec:snr}. Para cada combinación de diámetro de pupila y altura orbital, y considerando los diferentes detectores y tipos de telescopio, se han generado mapas de calor que representan los valores de SNR obtenidos.
 
 En este análisis se han utilizado los parámetros expuestos de detectores (tablas \ref{tab:detectores_comparacion_2}) y de telescopios(tabla \ref{tab:tabla_telescopios}), así como los parámetros iniciales especificados en la tabla \ref{tab:parametros_ruidos}, que incluyen tanto las características instrumentales como los valores de ruido en condiciones de peor caso. Este enfoque permite identificar, para cada configuración, las regiones del espacio de diseño que cumplen con los requisitos mínimos de SNR establecidos para la misión.
 
@@ -306,7 +318,7 @@ En este análisis se han utilizado los parámetros expuestos de detectores (tabl
 \hline
 \multicolumn{2}{c}{\textbf{Parámetros iniciales}} \\
 \hline
-TDI & 1\tablefootnote{un TDI=1 equivale a no implementado.} \\
+TDI & 1\textsuperscript{*} \\
 Radiancia de referencia & 100 W/m\textsuperscript{2}·sr·\textmu m \\
 \hline
 \multicolumn{2}{c}{\textbf{Ruidos}\cite{gravrand_development_2017}} \\
@@ -321,6 +333,8 @@ $N_{quant}$ & 2 $e^-$  \\
 $N_{nonlin}$ & 2 $e^-$  \\
 \hline
 \end{tabular}
+\par\smallskip
+\noindent\textsuperscript{*}\footnotesize Un TDI=1 equivale a no implementado.
 
 \label{tab:parametros_ruidos}
 \end{table}
@@ -334,6 +348,7 @@ De nuevo, solo se presenta la banda más restrictiva. En este caso, será la de 
 %% Lambda 3
 
 \begin{landscape}
+\captionsetup{hypcap=false}
 \thispagestyle{plain}
 \begin{center}
 \setlength{\tabcolsep}{1pt}
@@ -347,10 +362,12 @@ De nuevo, solo se presenta la banda más restrictiva. En este caso, será la de 
 \end{tabular}
 \captionof{figure}{Mapas de calor resultantes del cálculo de SNR: Banda 0,76 \textmu m; Detector 4 (STAR250)}
 \end{center}
+\captionsetup{hypcap=true}
 \end{landscape}
 
 % Detector 2
 \begin{landscape}
+\captionsetup{hypcap=false}
 \thispagestyle{plain}
 \begin{center}
 \setlength{\tabcolsep}{1pt}
@@ -364,10 +381,12 @@ De nuevo, solo se presenta la banda más restrictiva. En este caso, será la de 
 \end{tabular}
 \captionof{figure}{Mapas de calor resultantes del cálculo de SNR: Banda 0,76 \textmu m; Detector 5 (H2RG)}
 \end{center}
+\captionsetup{hypcap=true}
 \end{landscape}
 
 % Detector 3
 \begin{landscape}
+\captionsetup{hypcap=false}
 \thispagestyle{plain}
 \begin{center}
 \setlength{\tabcolsep}{1pt}
@@ -381,6 +400,7 @@ De nuevo, solo se presenta la banda más restrictiva. En este caso, será la de 
 \end{tabular}
 \captionof{figure}{Mapas de calor resultantes del cálculo de SNR: Banda 0,76 \textmu m; Detector 6 (SATURN VISIR)}
 \end{center}
+\captionsetup{hypcap=true}
 \end{landscape}
 
 
@@ -401,11 +421,13 @@ Otro de los requerimientos impuestos por el cliente es el obtener un mapa cada \
 \centering
 \begin{tabular}{@{}llll@{}}
 \toprule
-             & N.º Satélites & \textit{Swath} (km) & Tiempo revisita\tablefootnote{Estos valores son más favorables que los calculados en este trabajo, pues no se consideran los factores limitantes descritos en esta página. Por ello, no serán directamente comparables a los resultados obtenidos, aunque permite hacerse una idea aproximada de la solución} (días) \\ \midrule
+             & N.º Satélites & \textit{Swath} (km) & Tiempo revisita\textsuperscript{*} (días) \\ \midrule
 Landsat 8 \cite{li2020global}   & 1                & 185                 & 16                     \\
 Landsat Next \cite{neigh2023landsat} & 3                & 164                 & 6                      \\
 Sentinel-2  \cite{copernicus2025sentinel} & 2                & 290                 & 5                      \\ \bottomrule
 \end{tabular}
+\par\smallskip
+\noindent\textsuperscript{*}\footnotesize Estos valores son más favorables que los calculados en este trabajo, pues no se consideran los factores limitantes descritos en esta página. Por ello, no serán directamente comparables a los resultados obtenidos, aunque permiten hacerse una idea aproximada de la solución.
 
 \label{tab:revisitlandsat}
 \end{table}
@@ -470,7 +492,7 @@ T_{\mathrm{rev,geom}} = \max_{k}\left(t_{k+1}-t_{k}\right)_{\phi=25^\circ}
 \label{eq:trev}
 \end{equation}
 
-donde $h$ es la altura orbital, $\text{FoV}$ el campo de visión total del telescopio (duplicado si se embarcan dos telescopios), $N_{\text{det}}$ el número de detectores alineados (hasta 3), $N_{\text{pix}}$ los píxeles por detector, $GSD$ la distancia de muestreo en tierra, $W=\min(W_{\text{FoV}},W_{\text{det}})$ el \textit{swath} resultante, $f_{\text{ov}}$ la fracción de solapamiento (5\%) y $\psi$ el semiángulo geométrico desde el nadir hasta el borde del \textit{swath}. En el adaptador implementado para este trabajo, $\psi$ se calcula a partir de $W_{\text{ef}}$ y se introduce como entrada angular en el método semianalítico empleado. La ecuación \ref{eq:trev} expresa la métrica geométrica como el mayor intervalo entre observaciones consecutivas sobre la latitud inferior de EE.\,UU. continental.
+donde $h$ es la altura orbital, $\text{FoV}$ el campo de visión total del telescopio (duplicado si se embarcan dos telescopios), $N_{\text{det}}$ el número de detectores alineados (hasta 3), $N_{\text{pix}}$ los píxeles por detector, $GSD$ la distancia de muestreo en tierra, $W=\min(W_{\text{FoV}},W_{\text{det}})$ el \textit{swath} resultante, $f_{\text{ov}}$ la fracción de solapamiento (5\%) y $\psi$ el semiángulo geométrico desde el nadir hasta el borde del \textit{swath}. En el adaptador implementado para este trabajo, $\psi$ se calcula a partir de $W_{\text{ef}}$ y se introduce como entrada angular en el método semianalítico empleado. La ecuación~\eqref{eq:trev} expresa la métrica geométrica como el mayor intervalo entre observaciones consecutivas sobre la latitud inferior de EE.\,UU. continental.
 
 Primero se calcula esta métrica geométrica. Después se aplica la penalización media por nubosidad indicada en el enunciado. El requisito de 7 días se aplica al tiempo efectivo:
 
@@ -481,7 +503,7 @@ T_{\mathrm{rev,eff}}=\frac{T_{\mathrm{rev,geom}}}{1-1/6}=1{,}2\,T_{\mathrm{rev,g
 
 Este valor efectivo es el que se guarda en los ficheros de cobertura, se representa en los mapas de calor y se compara directamente con el requisito de \textbf{7 días}. El valor geométrico equivalente sería $T_{\mathrm{rev,geom}}\leq 7(5/6)=5{,}83\ \text{días}$.
 
-El método se apoya en las siguientes hipótesis: propagación kepleriana circular con corrección secular J2 en el nodo, Tierra modelada como elipsoide para el radio local de la latitud de cálculo y observación estrictamente al nadir. El adaptador desarrollado en este proyecto (\textit{wrapper}) parametriza la altitud, el número de satélites y telescopios, el ancho de barrido y el solapamiento, encadenando las ecuaciones \ref{eq:swath_fov}--\ref{eq:trev} con las funciones originales del software para automatizar el barrido paramétrico completo sobre el espacio de diseño.
+El método se apoya en las siguientes hipótesis: propagación kepleriana circular con corrección secular J2 en el nodo, Tierra modelada como elipsoide para el radio local de la latitud de cálculo y observación estrictamente al nadir. El adaptador desarrollado en este proyecto (\textit{wrapper}) parametriza la altitud, el número de satélites y telescopios, el ancho de barrido y el solapamiento, encadenando las ecuaciones~\eqref{eq:swath_fov}--\eqref{eq:trev} con las funciones originales del software para automatizar el barrido paramétrico completo sobre el espacio de diseño.
 
 Cada configuración evaluada (combinación de número de satélites, telescopios y detector, que fija el \textit{swath} disponible) se simula de forma independiente. El \textit{wrapper} obtiene la inclinación heliosíncrona correspondiente a cada altura, calcula el tiempo de revisita efectivo y lo escribe en un archivo \texttt{coverage\_*.csv}. De esos archivos salen los mapas de calor de esta sección y el filtro de cobertura empleado más adelante en el cruce de datos. La discretización de altura y \textit{swath} se realiza en pasos de 10 km. Se evalúan distintas configuraciones:
 
@@ -516,16 +538,17 @@ En todas las constelaciones, los satélites se dispondrán desfasados en anomal�
 
 Se consideran dos limitaciones al \textit{swath}:
 \begin{itemize}
-    \item El FoV de cada telescopio, definido en la tabla \ref{tab:tabla_telescopios}, que limita el \textit{swath} en función de la altura, mediante la relación \ref{fov}
-    \item El array del detector, mediante la ecuación \ref{swath}. Para ampliarlo y dar más flexibilidad a esta restricción, se considera el uso de hasta 3 detectores en línea.
+    \item El FoV de cada telescopio, definido en la tabla \ref{tab:tabla_telescopios}, que limita el \textit{swath} en función de la altura, mediante la relación~\eqref{eq:fov}.
+    \item El array del detector, mediante la ecuación~\eqref{eq:swath}. Para ampliarlo y dar más flexibilidad a esta restricción, se considera el uso de hasta 3 detectores en línea.
 \end{itemize}
 
-Además, solo se considerará el territorio EE. UU. continental, representado en el cálculo por la latitud inferior de la ecuación \ref{eq:lat_crit}. Ya que el interés del cliente reside en la elaboración del mapa de las principales ciudades, se pueden excluir, por simplicidad de cálculo, otros territorios del país como Hawaii, Puerto Rico y otros territorios de ultramar.
+Además, solo se considerará el territorio EE. UU. continental, representado en el cálculo por la latitud inferior de la ecuación~\eqref{eq:lat_crit}. Ya que el interés del cliente reside en la elaboración del mapa de las principales ciudades, se pueden excluir, por simplicidad de cálculo, otros territorios del país como Hawaii, Puerto Rico y otros territorios de ultramar.
 
-Las figuras siguientes muestran el barrido de cobertura para las configuraciones evaluadas. En cada mapa, el eje horizontal representa el \textit{swath} nominal $W$, el eje vertical la altura orbital $h$ y el color el tiempo de revisita efectivo $T_{\mathrm{rev,eff}}$, calculado para $25^\circ\mathrm{N}$ e incluyendo la penalización por nubosidad. El cálculo emplea $W_{\mathrm{ef}}=0{,}95W$. Las celdas coloreadas cumplen $T_{\mathrm{rev,eff}}\leq 7$ días; las blancas no son viables porque superan ese límite o incumplen una restricción física. La línea roja marca el límite de FoV y las líneas negras los límites correspondientes a uno, dos y tres detectores disuestos en línea. Cada lámina compara cuatro arquitecturas ópticas para un detector y una configuración de satélites determinados.
+Las figuras siguientes muestran el barrido de cobertura para las configuraciones evaluadas. En cada mapa, el eje horizontal representa el \textit{swath} nominal $W$, el eje vertical la altura orbital $h$ y el color el tiempo de revisita efectivo $T_{\mathrm{rev,eff}}$, calculado para $25^\circ\mathrm{N}$ e incluyendo la penalización por nubosidad. El cálculo emplea $W_{\mathrm{ef}}=0{,}95W$. Las celdas coloreadas cumplen $T_{\mathrm{rev,eff}}\leq 7$ días; las blancas no son viables porque superan ese límite o incumplen una restricción física. La línea roja marca el límite de FoV y las líneas negras los límites correspondientes a uno, dos y tres detectores dispuestos en línea. Cada lámina compara cuatro arquitecturas ópticas para un detector y una configuración de satélites determinados.
 
 %% Gráficas 2 SAT 2TEL
 \begin{landscape}
+\captionsetup{hypcap=false}
 \thispagestyle{plain}
 \begin{center}
 \setlength{\tabcolsep}{1pt}
@@ -538,9 +561,11 @@ Las figuras siguientes muestran el barrido de cobertura para las configuraciones
 \end{tabular}
 \captionof{figure}{Mapas de calor resultantes del cálculo de cobertura para el Detector 1, con 2 satélites y 2 telescopios.}
 \end{center}
+\captionsetup{hypcap=true}
 \end{landscape}
 
 \begin{landscape}
+\captionsetup{hypcap=false}
 \thispagestyle{plain}
 \begin{center}
 \setlength{\tabcolsep}{1pt}
@@ -553,9 +578,11 @@ Las figuras siguientes muestran el barrido de cobertura para las configuraciones
 \end{tabular}
 \captionof{figure}{Mapas de calor resultantes del cálculo de cobertura para el Detector 2, con 2 satélites y 2 telescopios.}
 \end{center}
+\captionsetup{hypcap=true}
 \end{landscape}
 
 \begin{landscape}
+\captionsetup{hypcap=false}
 \thispagestyle{plain}
 \begin{center}
 \setlength{\tabcolsep}{1pt}
@@ -568,11 +595,13 @@ Las figuras siguientes muestran el barrido de cobertura para las configuraciones
 \end{tabular}
 \captionof{figure}{Mapas de calor resultantes del cálculo de cobertura para el Detector 3, con 2 satélites y 2 telescopios.}
 \end{center}
+\captionsetup{hypcap=true}
 \end{landscape}
 
 
 %% Gráficas 3 SAT
 \begin{landscape}
+\captionsetup{hypcap=false}
 \thispagestyle{plain}
 \begin{center}
 \setlength{\tabcolsep}{1pt}
@@ -585,9 +614,11 @@ Las figuras siguientes muestran el barrido de cobertura para las configuraciones
 \end{tabular}
 \captionof{figure}{Mapas de calor resultantes del cálculo de cobertura para el Detector 1, con 3 satélites.}
 \end{center}
+\captionsetup{hypcap=true}
 \end{landscape}
 
 \begin{landscape}
+\captionsetup{hypcap=false}
 \thispagestyle{plain}
 \begin{center}
 \setlength{\tabcolsep}{1pt}
@@ -600,9 +631,11 @@ Las figuras siguientes muestran el barrido de cobertura para las configuraciones
 \end{tabular}
 \captionof{figure}{Mapas de calor resultantes del cálculo de cobertura para el Detector 2, con 3 satélites.}
 \end{center}
+\captionsetup{hypcap=true}
 \end{landscape}
 
 \begin{landscape}
+\captionsetup{hypcap=false}
 \thispagestyle{plain}
 \begin{center}
 \setlength{\tabcolsep}{1pt}
@@ -615,6 +648,7 @@ Las figuras siguientes muestran el barrido de cobertura para las configuraciones
 \end{tabular}
 \captionof{figure}{Mapas de calor resultantes del cálculo de cobertura para el Detector 3, con 3 satélites.}
 \end{center}
+\captionsetup{hypcap=true}
 \end{landscape}
 
 
