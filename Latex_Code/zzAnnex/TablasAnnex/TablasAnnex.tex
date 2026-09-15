@@ -1,6 +1,10 @@
 \chapter{Tablas de datos}
 \minitoc
 
+% Cuatro mapas por página: limitar la altura para que los flotantes landscape
+% no desborden la caja de texto ni la página de anexos.
+\newcommand{\annexHeatmap}[1]{\includegraphics[width=0.47\linewidth,height=0.36\textheight,keepaspectratio]{#1}}
+
 \subsubsection{MTF}
 \addcontentsline{toc}{section}{MTF}
 
@@ -16,10 +20,10 @@
 \renewcommand{\arraystretch}{0}
 \paragraph{Banda $0,76\ \mu m$}
 \begin{tabular}{cc}
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio1_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio2_heatmap.jpg} \\
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio3_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio4_heatmap.jpg} \\
+\annexHeatmap{4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio1_heatmap.jpg} &
+\annexHeatmap{4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio2_heatmap.jpg} \\
+\annexHeatmap{4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio3_heatmap.jpg} &
+\annexHeatmap{4.Payload/MTF/MTF_Lambda3_Detector4_Telescopio4_heatmap.jpg} \\
 \end{tabular}
 
 \caption{Mapas de calor resultantes del cálculo de MTF: Banda 0,76 \textmu m; Detector 1}
@@ -35,10 +39,10 @@
 \renewcommand{\arraystretch}{0}
 
 \begin{tabular}{cc}
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio1_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio2_heatmap.jpg} \\
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio3_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio4_heatmap.jpg} \\
+\annexHeatmap{4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio1_heatmap.jpg} &
+\annexHeatmap{4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio2_heatmap.jpg} \\
+\annexHeatmap{4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio3_heatmap.jpg} &
+\annexHeatmap{4.Payload/MTF/MTF_Lambda3_Detector5_Telescopio4_heatmap.jpg} \\
 \end{tabular}
 \caption{Mapas de calor resultantes del cálculo de MTF: Banda 0,76 \textmu m; Detector 2}
 \end{figure}
@@ -53,10 +57,10 @@
 \renewcommand{\arraystretch}{0}
 
 \begin{tabular}{cc}
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio1_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio2_heatmap.jpg} \\
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio3_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio4_heatmap.jpg} \\
+\annexHeatmap{4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio1_heatmap.jpg} &
+\annexHeatmap{4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio2_heatmap.jpg} \\
+\annexHeatmap{4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio3_heatmap.jpg} &
+\annexHeatmap{4.Payload/MTF/MTF_Lambda3_Detector6_Telescopio4_heatmap.jpg} \\
 \end{tabular}
 
 \caption{Mapas de calor resultantes del cálculo de MTF: Banda 0,76 \textmu m; Detector 3}
@@ -77,10 +81,10 @@
 \renewcommand{\arraystretch}{0}
 \paragraph{Banda $1,61\ \mu m$}
 \begin{tabular}{cc}
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio1_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio2_heatmap.jpg} \\
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio3_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio4_heatmap.jpg} \\
+\annexHeatmap{4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio1_heatmap.jpg} &
+\annexHeatmap{4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio2_heatmap.jpg} \\
+\annexHeatmap{4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio3_heatmap.jpg} &
+\annexHeatmap{4.Payload/MTF/MTF_Lambda1_Detector1_Telescopio4_heatmap.jpg} \\
 \end{tabular}
 
 \caption{Mapas de calor resultantes del cálculo de MTF: Banda 1,61 \textmu m; Detector 1}
@@ -96,10 +100,10 @@
 \renewcommand{\arraystretch}{0}
 
 \begin{tabular}{cc}
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio1_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio2_heatmap.jpg} \\
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio3_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio4_heatmap.jpg} \\
+\annexHeatmap{4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio1_heatmap.jpg} &
+\annexHeatmap{4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio2_heatmap.jpg} \\
+\annexHeatmap{4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio3_heatmap.jpg} &
+\annexHeatmap{4.Payload/MTF/MTF_Lambda1_Detector2_Telescopio4_heatmap.jpg} \\
 \end{tabular}
 
 \caption{Mapas de calor resultantes del cálculo de MTF: Banda 1,61 \textmu m; Detector 2}
@@ -115,10 +119,10 @@
 \renewcommand{\arraystretch}{0}
 
 \begin{tabular}{cc}
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio1_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio2_heatmap.jpg} \\
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio3_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio4_heatmap.jpg} \\
+\annexHeatmap{4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio1_heatmap.jpg} &
+\annexHeatmap{4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio2_heatmap.jpg} \\
+\annexHeatmap{4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio3_heatmap.jpg} &
+\annexHeatmap{4.Payload/MTF/MTF_Lambda1_Detector3_Telescopio4_heatmap.jpg} \\
 \end{tabular}
 
 \caption{Mapas de calor resultantes del cálculo de MTF: Banda 1,61 \textmu m; Detector 3}
@@ -138,10 +142,10 @@
 \renewcommand{\arraystretch}{0}
 \paragraph{Banda $2,01\ \mu m$}
 \begin{tabular}{cc}
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio1_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio2_heatmap.jpg} \\
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio3_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio4_heatmap.jpg} \\
+\annexHeatmap{4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio1_heatmap.jpg} &
+\annexHeatmap{4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio2_heatmap.jpg} \\
+\annexHeatmap{4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio3_heatmap.jpg} &
+\annexHeatmap{4.Payload/MTF/MTF_Lambda2_Detector1_Telescopio4_heatmap.jpg} \\
 \end{tabular}
 \caption{Mapas de calor resultantes del cálculo de MTF: Banda 2,01 \textmu m; Detector 1}
 \end{figure}
@@ -156,10 +160,10 @@
 \renewcommand{\arraystretch}{0}
 
 \begin{tabular}{cc}
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio1_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio2_heatmap.jpg} \\
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio3_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio4_heatmap.jpg} \\
+\annexHeatmap{4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio1_heatmap.jpg} &
+\annexHeatmap{4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio2_heatmap.jpg} \\
+\annexHeatmap{4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio3_heatmap.jpg} &
+\annexHeatmap{4.Payload/MTF/MTF_Lambda2_Detector2_Telescopio4_heatmap.jpg} \\
 \end{tabular}
 \caption{Mapas de calor resultantes del cálculo de MTF: Banda 2,01 \textmu m; Detector 2}
 \end{figure}
@@ -174,10 +178,10 @@
 \renewcommand{\arraystretch}{0}
 
 \begin{tabular}{cc}
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio1_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio2_heatmap.jpg} \\
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio3_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio4_heatmap.jpg} \\
+\annexHeatmap{4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio1_heatmap.jpg} &
+\annexHeatmap{4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio2_heatmap.jpg} \\
+\annexHeatmap{4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio3_heatmap.jpg} &
+\annexHeatmap{4.Payload/MTF/MTF_Lambda2_Detector3_Telescopio4_heatmap.jpg} \\
 \end{tabular}
 \caption{Mapas de calor resultantes del cálculo de MTF: Banda 2,01 \textmu m; Detector 3}
 \end{figure}
@@ -201,10 +205,10 @@
 
 \paragraph{Banda 0,76 \textmu m}
 \begin{tabular}{cc}
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio1_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio2_heatmap.jpg} \\
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio3_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio4_heatmap.jpg} \\
+\annexHeatmap{4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio1_heatmap.jpg} &
+\annexHeatmap{4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio2_heatmap.jpg} \\
+\annexHeatmap{4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio3_heatmap.jpg} &
+\annexHeatmap{4.Payload/SNR/SNR_Lambda3_Detector4_Telescopio4_heatmap.jpg} \\
 \end{tabular}
 % Nota: Reemplazar "0,76" con el valor de longitud de onda para Lambda 3.
 \caption{Mapas de calor resultantes del cálculo de SNR: Banda 0,76 \textmu m; Detector 4}
@@ -221,10 +225,10 @@
 
 \paragraph{Banda 0,76 \textmu m}
 \begin{tabular}{cc}
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio1_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio2_heatmap.jpg} \\
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio3_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio4_heatmap.jpg} \\
+\annexHeatmap{4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio1_heatmap.jpg} &
+\annexHeatmap{4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio2_heatmap.jpg} \\
+\annexHeatmap{4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio3_heatmap.jpg} &
+\annexHeatmap{4.Payload/SNR/SNR_Lambda3_Detector5_Telescopio4_heatmap.jpg} \\
 \end{tabular}
 % Nota: Reemplazar "0,76" con el valor de longitud de onda para Lambda 3.
 \caption{Mapas de calor resultantes del cálculo de SNR: Banda 0,76 \textmu m; Detector 5}
@@ -241,10 +245,10 @@
 
 \paragraph{Banda 0,76 \textmu m}
 \begin{tabular}{cc}
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio1_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio2_heatmap.jpg} \\
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio3_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio4_heatmap.jpg} \\
+\annexHeatmap{4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio1_heatmap.jpg} &
+\annexHeatmap{4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio2_heatmap.jpg} \\
+\annexHeatmap{4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio3_heatmap.jpg} &
+\annexHeatmap{4.Payload/SNR/SNR_Lambda3_Detector6_Telescopio4_heatmap.jpg} \\
 \end{tabular}
 % Nota: Reemplazar "0,76" con el valor de longitud de onda para Lambda 3.
 \caption{Mapas de calor resultantes del cálculo de SNR: Banda 0,76 \textmu m; Detector 6}
@@ -264,10 +268,10 @@
 
 \paragraph{Banda 1,61 \textmu m}
 \begin{tabular}{cc}
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio1_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio2_heatmap.jpg} \\
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio3_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio4_heatmap.jpg} \\
+\annexHeatmap{4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio1_heatmap.jpg} &
+\annexHeatmap{4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio2_heatmap.jpg} \\
+\annexHeatmap{4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio3_heatmap.jpg} &
+\annexHeatmap{4.Payload/SNR/SNR_Lambda1_Detector1_Telescopio4_heatmap.jpg} \\
 \end{tabular}
 % Nota: Reemplazar "1,61" con el valor de longitud de onda para Lambda 1.
 \caption{Mapas de calor resultantes del cálculo de SNR: Banda 1,61 \textmu m; Detector 1}
@@ -284,10 +288,10 @@
 
 \paragraph{Banda 1,61 \textmu m}
 \begin{tabular}{cc}
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio1_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio2_heatmap.jpg} \\
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio3_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio4_heatmap.jpg} \\
+\annexHeatmap{4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio1_heatmap.jpg} &
+\annexHeatmap{4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio2_heatmap.jpg} \\
+\annexHeatmap{4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio3_heatmap.jpg} &
+\annexHeatmap{4.Payload/SNR/SNR_Lambda1_Detector2_Telescopio4_heatmap.jpg} \\
 \end{tabular}
 % Nota: Reemplazar "1,61" con el valor de longitud de onda para Lambda 1.
 \caption{Mapas de calor resultantes del cálculo de SNR: Banda 1,61 \textmu m; Detector 2}
@@ -304,10 +308,10 @@
 
 \paragraph{Banda 1,61 \textmu m}
 \begin{tabular}{cc}
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio1_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio2_heatmap.jpg} \\
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio3_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio4_heatmap.jpg} \\
+\annexHeatmap{4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio1_heatmap.jpg} &
+\annexHeatmap{4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio2_heatmap.jpg} \\
+\annexHeatmap{4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio3_heatmap.jpg} &
+\annexHeatmap{4.Payload/SNR/SNR_Lambda1_Detector3_Telescopio4_heatmap.jpg} \\
 \end{tabular}
 % Nota: Reemplazar "1,61" con el valor de longitud de onda para Lambda 1.
 \caption{Mapas de calor resultantes del cálculo de SNR: Banda 1,61 \textmu m; Detector 3}
@@ -327,10 +331,10 @@
 
 \paragraph{Banda 2,01 \textmu m}
 \begin{tabular}{cc}
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio1_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio2_heatmap.jpg} \\
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio3_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio4_heatmap.jpg} \\
+\annexHeatmap{4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio1_heatmap.jpg} &
+\annexHeatmap{4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio2_heatmap.jpg} \\
+\annexHeatmap{4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio3_heatmap.jpg} &
+\annexHeatmap{4.Payload/SNR/SNR_Lambda2_Detector1_Telescopio4_heatmap.jpg} \\
 \end{tabular}
 \caption{Mapas de calor resultantes del cálculo de SNR: Banda 2,01 \textmu m; Detector 1}
 \end{figure}
@@ -346,10 +350,10 @@
 
 \paragraph{Banda 2,01 \textmu m}
 \begin{tabular}{cc}
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio1_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio2_heatmap.jpg} \\
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio3_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio4_heatmap.jpg} \\
+\annexHeatmap{4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio1_heatmap.jpg} &
+\annexHeatmap{4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio2_heatmap.jpg} \\
+\annexHeatmap{4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio3_heatmap.jpg} &
+\annexHeatmap{4.Payload/SNR/SNR_Lambda2_Detector2_Telescopio4_heatmap.jpg} \\
 \end{tabular}
 \caption{Mapas de calor resultantes del cálculo de SNR: Banda 2,01 \textmu m; Detector 2}
 \end{figure}
@@ -365,10 +369,10 @@
 
 \paragraph{Banda 2,01 \textmu m}
 \begin{tabular}{cc}
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio1_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio2_heatmap.jpg} \\
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio3_heatmap.jpg} &
-\includegraphics[width=0.48\linewidth]{4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio4_heatmap.jpg} \\
+\annexHeatmap{4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio1_heatmap.jpg} &
+\annexHeatmap{4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio2_heatmap.jpg} \\
+\annexHeatmap{4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio3_heatmap.jpg} &
+\annexHeatmap{4.Payload/SNR/SNR_Lambda2_Detector3_Telescopio4_heatmap.jpg} \\
 \end{tabular}
 \caption{Mapas de calor resultantes del cálculo de SNR: Banda 2,01 \textmu m; Detector 3}
 \end{figure}

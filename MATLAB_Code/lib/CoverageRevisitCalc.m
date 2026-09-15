@@ -40,7 +40,7 @@ for h = 1:length(alturas_orbitales)
             continue;
         end
 
-        % --- Cálculo del Swath Efectivo (con solapamiento) ---
+        % --- Cálculo del Swath Efectivo (W_ef, con solapamiento) ---
         effective_swath = swath * (1 - solapamiento);
 
         % --- Parámetros Orbitales para SSO ---
@@ -55,9 +55,12 @@ for h = 1:length(alturas_orbitales)
         coes = [a, 0, inc, 0, 0]; % [sma, ecc, inc, RAAN, AoP]
 
         % --- Llamada a RevisitCalc ---
-        half_fov_angle = atand(effective_swath / (2 * height)); % [grados]
+        % psi: semiángulo geométrico desde el nadir hasta el borde del swath.
+        % Se pasa a RevisitCalc como el parámetro de FoV equivalente.
+        half_fov_angle = atand(effective_swath / (2 * height)); % psi [grados]
         try
             maxRevisit = RevisitCalc(coes, lat, 1, 0, N_sat, 1, 0, 1, 0, dayLimit, half_fov_angle);
+            % Penalización media del enunciado: cobertura_nubes = 1/6.
             final_revisit = maxRevisit / (1 - cobertura_nubes);
             if final_revisit > Cov_Requirement
                 coverage_days(h,s) = NaN;

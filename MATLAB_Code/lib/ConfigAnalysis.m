@@ -22,6 +22,16 @@ diametros_pupila = params.diametros_pupila;
 GSD = params.GSD;
 Pixel_size = params.Pixel_size;
 LTAN_hour = params.LTAN_hour;
+if isfield(params, 'maintenance_lower_factor')
+    maintenance_lower_factor = params.maintenance_lower_factor;
+else
+    maintenance_lower_factor = 0.98;
+end
+if isfield(params, 'maintenance_upper_factor')
+    maintenance_upper_factor = params.maintenance_upper_factor;
+else
+    maintenance_upper_factor = 1.02;
+end
 
 % --- Constantes físicas y orbitales
 R_E_m = 6378.137 * 1000;
@@ -105,7 +115,7 @@ for config_idx = 1:size(satellite_configs, 1)
                 [masa_seca, masa_seca_TM, masa_seca_SEOSAT, L_instrumento, S_instrumento, ...
                 V_instrumento, W_instrumento, P_instrumento, V_sat, L_sat, S_sat, U_sat] = calcularMasaSeca(D_mm, N_telescopes);
 
-                [masa_total_satelite, masa_comb, num_impulsos, delta_v] = cachedMasaTotal(mass_cache, h_km, masa_seca, S_sat);
+                [masa_total_satelite, masa_comb, num_impulsos, delta_v] = cachedMasaTotal(mass_cache, h_km, masa_seca, S_sat, maintenance_lower_factor, maintenance_upper_factor);
 
                 if isnan(masa_total_satelite), continue; end
 
@@ -175,7 +185,7 @@ for config_idx = 1:size(satellite_configs, 1)
                 if isKey(viable_keys, key), continue; end
                 [masa_seca, masa_seca_TM, masa_seca_SEOSAT, ~, ~, ~, ~, ~, ...
                  V_sat, L_sat, S_sat, U_sat] = calcularMasaSeca(D_mm, N_telescopes);
-                [masa_total_satelite, masa_comb, num_impulsos, delta_v] = cachedMasaTotal(mass_cache, h_km, masa_seca, S_sat);
+                [masa_total_satelite, masa_comb, num_impulsos, delta_v] = cachedMasaTotal(mass_cache, h_km, masa_seca, S_sat, maintenance_lower_factor, maintenance_upper_factor);
                 if isnan(masa_total_satelite), continue; end
                 desfase_anomalia = 360 / N_sat;
                 solution_data = {false, N_sat, N_telescopes, NaN, detector_idx, telescope_names{telescopio_idx}, h_km, D_mm, ...
@@ -195,6 +205,8 @@ end
 num_viables = sum(cell2mat(results_data(:, 1)));
 fprintf('Análisis detallado completado. Se encontraron %d soluciones viables y %d soluciones teóricas.\n', ...
     num_viables, size(results_data,1) - num_viables);
+
+writeMaintenanceComparison(results_data, output_dir);
 
 %% ========================================================================
 % 3. EXPORTACIÓN DE RESULTADOS (CSV Y TXT)
@@ -277,12 +289,12 @@ GenerateMassPlots(results_table);
 fprintf('\nAnálisis finalizado.\n');
 end
 
-function [total_mass, fuel_mass, num_impulses, total_delta_v] = cachedMasaTotal(cache, h_km, masa_seca, area_sat)
-    key = sprintf('%.6f_%.9f_%.9f', h_km, masa_seca, area_sat);
+function [total_mass, fuel_mass, num_impulses, total_delta_v] = cachedMasaTotal(cache, h_km, masa_seca, area_sat, lower_factor, upper_factor)
+    key = sprintf('%.6f_%.9f_%.9f_%.6f_%.6f', h_km, masa_seca, area_sat, lower_factor, upper_factor);
     if isKey(cache, key)
         values = cache(key);
     else
-        [total_mass, fuel_mass, num_impulses, total_delta_v] = calcularMasaTotal(h_km, masa_seca, area_sat);
+        [total_mass, fuel_mass, num_impulses, total_delta_v] = calcularMasaTotal(h_km, masa_seca, area_sat, lower_factor, upper_factor);
         values = [total_mass, fuel_mass, num_impulses, total_delta_v];
         cache(key) = values;
     end
@@ -290,4 +302,39 @@ function [total_mass, fuel_mass, num_impulses, total_delta_v] = cachedMasaTotal(
     fuel_mass = values(2);
     num_impulses = values(3);
     total_delta_v = values(4);
+end
+
+function writeMaintenanceComparison(results_data, output_dir)
+    viable = cell2mat(results_data(:, 1));
+    rows = results_data(viable, :);
+    if isempty(rows), return; end
+
+    rows = unique(cell2mat(rows(:, [2, 3, 5, 7, 8, 26, 35])), 'rows');
+    policies = [0.98, 1.00; 0.98, 1.02];
+    output = zeros(size(rows, 1) * 2, 16);
+    out_idx = 0;
+    for i = 1:size(rows, 1)
+        N_sat = rows(i, 1);
+        N_tel = rows(i, 2);
+        detector = rows(i, 3);
+        h_km = rows(i, 4);
+        D_mm = rows(i, 5);
+        dry_mass = rows(i, 6);
+        area_sat = rows(i, 7);
+        for p = 1:size(policies, 1)
+            [total_mass, fuel_final, impulses, total_dv, cycle_s, dv_cycle, fuel] = ...
+                calcularMasaTotal(h_km, dry_mass, area_sat, policies(p, 1), policies(p, 2));
+            out_idx = out_idx + 1;
+            output(out_idx, :) = [N_sat, N_tel, detector, h_km, D_mm, policies(p, :), ...
+                cycle_s / 86400, impulses, dv_cycle, total_dv, fuel, fuel_final, ...
+                dry_mass, area_sat, total_mass];
+        end
+    end
+
+    headers = {'Num_Satelites', 'Num_Telescopios', 'ID_Detector', 'Altura_nominal_km', ...
+        'Diametro_Pupila_mm', 'Factor_inferior', 'Factor_reset', 'T_ciclo_dias', ...
+        'N_impulsos', 'DeltaV_ciclo_ms', 'DeltaV_total_ms', 'Propelente_sin_margen_kg', ...
+        'Propelente_final_kg', 'Masa_seca_kg', 'Area_frontal_m2', 'Masa_total_satelite_kg'};
+    writetable(array2table(output, 'VariableNames', headers), ...
+        fullfile(output_dir, 'maintenance_policy_comparison.csv'));
 end

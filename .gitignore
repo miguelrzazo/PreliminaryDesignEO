@@ -20,6 +20,9 @@
 *.bcf
 *.maf
 *.run.xml
+Bibliografia/*
+NORMATIVA_DE_TFT_V3.pdf
+Revisions/*
 
 # MATLAB generated output directories (simulation results)
 # Reference outputs live in Compiled data/; raw model outputs are not tracked
@@ -50,3 +53,13 @@ __pycache__/
 dist/
 build/
 .pytest_cache/
+.hermes/plans/2026-09-11_000000-c08-c10-maintenance-gsd.md
+Latex_Code/00main.bbl-SAVE-ERROR
+.gitignore
+
+# Duplicados de macOS y artefactos de compilacion LaTeX
+*[0-9].xml
+*.run.xml
+*.bcf
+*.bcf-SAVE-ERROR
+*.synctex*

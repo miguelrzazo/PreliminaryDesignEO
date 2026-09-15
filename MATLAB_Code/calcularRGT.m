@@ -1,45 +1,38 @@
 % calcularRGT.m - RGT exact altitudes for SSO orbits with J2
 clear; close all;
 
-mu    = 3.986004418e14;
-R_E   = 6378.137e3;
-J2    = 1.08263e-3;
-T_sol = 86400;
-w_sol = 1.991e-7;
+mu        = 3.986004418e14;
+R_E       = 6378.137e3;
+J2        = 1.08263e-3;
+J3        = -2.5327e-6;
+omega_E   = 7.292115373194e-5; % Earth rotation [rad/s]
+omega_sol = 1.991e-7;           % Apparent solar motion [rad/s]
+T_sidereal = 2*pi/omega_E;      % Sidereal rotation period [s]
 
 h_vals  = 200:2:1000;  % km
 n_h     = length(h_vals);
-i_SSO   = zeros(1,n_h);
-T_nodal = zeros(1,n_h);
+i_SSO      = zeros(1,n_h);
+omega_nodal = zeros(1,n_h);
+dotOmega   = zeros(1,n_h);
+T_nodal    = zeros(1,n_h);
 
 for k = 1:n_h
-    h  = h_vals(k);
-    a  = (R_E + h*1e3);
-    r  = a;
-    ci = -(2 * r^(7/2) * w_sol) / (3 * J2 * R_E^2 * sqrt(mu));
-    ci = max(-1, min(1, ci));
-    i_SSO(k) = acosd(ci);
-
-    T_k = 2*pi * sqrt(a^3 / mu);
-    s2  = sind(i_SSO(k))^2;
-    ratio = (R_E / a)^2;
-    T_nodal(k) = T_k / (1 + 0.75 * J2 * ratio * (6 - 8*s2));
+    h = h_vals(k);
+    [i_SSO(k), omega_nodal(k), dotOmega(k)] = ...
+        rgt_rates(h*1e3, mu, R_E, J2, J3, omega_sol);
+    T_nodal(k) = 2*pi / omega_nodal(k);
 end
 
 fprintf('--- Reference at 630 km ---\n');
 h_ref = 630;
-a_ref = R_E + h_ref*1e3;
-ci_ref = -(2 * a_ref^(7/2) * w_sol) / (3 * J2 * R_E^2 * sqrt(mu));
-ci_ref = max(-1, min(1, ci_ref));
-i_ref = acosd(ci_ref);
-Tk_ref = 2*pi * sqrt(a_ref^3 / mu);
-s2_ref = sind(i_ref)^2;
-ratio_ref = (R_E / a_ref)^2;
-Tn_ref = Tk_ref / (1 + 0.75 * J2 * ratio_ref * (6 - 8*s2_ref));
+[i_ref, omega_nodal_ref, dotOmega_ref, e_ref] = ...
+    rgt_rates(h_ref*1e3, mu, R_E, J2, J3, omega_sol);
+Tn_ref = 2*pi / omega_nodal_ref;
+fprintf('e_frozen(630 km)   = %.8f\n', e_ref);
 fprintf('i_SSO(630 km)      = %.2f deg\n', i_ref);
-fprintf('T_k(630 km)         = %.2f s\n', Tk_ref);
 fprintf('T_nodal(630 km)     = %.2f s\n', Tn_ref);
-fprintf('T_sol / T_nodal      = %.4f\n', T_sol / Tn_ref);
+fprintf('omega_nodal/(omega_E-dotOmega) = %.4f\n', ...
+    omega_nodal_ref / (omega_E - dotOmega_ref));
 fprintf('\n');
 
 fprintf('--- Exact RGT altitudes (D <= 30) ---\n');
@@ -50,15 +43,16 @@ tol   = 1e-10;
 maxit = 100;
 roots = [];
 
+ratio_rgt = omega_nodal ./ (omega_E - dotOmega);
 for D = 1:30
-    N_min = ceil(D * T_sol / T_nodal(end));   % at h=1000 km (smallest T_nodal -> largest ratio)
-    N_max = floor(D * T_sol / T_nodal(1));     % at h=200 km
+    N_min = ceil(D * min(ratio_rgt));
+    N_max = floor(D * max(ratio_rgt));
     for N = N_min:N_max
         ha = 200e3;  % lower bound in m
         hb = 1000e3; % upper bound in m
 
-        fa = f_RGT(ha, N, D, mu, R_E, J2, T_sol, w_sol);
-        fb = f_RGT(hb, N, D, mu, R_E, J2, T_sol, w_sol);
+        fa = f_RGT(ha, N, D, mu, R_E, J2, J3, omega_E, omega_sol);
+        fb = f_RGT(hb, N, D, mu, R_E, J2, J3, omega_E, omega_sol);
 
         if fa * fb > 0
             continue;
@@ -66,7 +60,7 @@ for D = 1:30
 
         for iter = 1:maxit
             hc = (ha + hb) / 2;
-            fc = f_RGT(hc, N, D, mu, R_E, J2, T_sol, w_sol);
+            fc = f_RGT(hc, N, D, mu, R_E, J2, J3, omega_E, omega_sol);
             if abs(fc) < tol
                 break;
             end
@@ -78,14 +72,9 @@ for D = 1:30
         end
 
         h_exact = hc / 1e3;
-        a_exact = R_E + hc;
-        ci = -(2 * a_exact^(7/2) * w_sol) / (3 * J2 * R_E^2 * sqrt(mu));
-        ci = max(-1, min(1, ci));
-        i_exact = acosd(ci);
-        Tk_exact = 2*pi * sqrt(a_exact^3 / mu);
-        s2_exact = sind(i_exact)^2;
-        ratio_exact = (R_E / a_exact)^2;
-        Tn_exact = Tk_exact / (1 + 0.75 * J2 * ratio_exact * (6 - 8*s2_exact));
+        [i_exact, omega_nodal_exact] = ...
+            rgt_rates(hc, mu, R_E, J2, J3, omega_sol);
+        Tn_exact = 2*pi / omega_nodal_exact;
 
         roots = [roots; h_exact, i_exact, N, D, Tn_exact, N/D];
         fprintf('%9.3f   %8.2f     %4d   %2d   %10.2f    %.4f\n', ...
@@ -105,16 +94,17 @@ fprintf('Delta h = %.1f m\n', (roots(idx,1) - h_nearest)*1e3);
 % Daily longitudinal drift
 residual = zeros(1, n_h);
 for k = 1:n_h
-    ratio_k = T_sol / T_nodal(k);
+    ratio_k = ratio_rgt(k);
     best_err = inf;
     for D = 1:30
         N_cand = round(ratio_k * D);
-        err = abs(N_cand * T_nodal(k) - D * T_sol) / D;
+        err = abs(omega_nodal(k) - (omega_E - dotOmega(k)) * ...
+            N_cand / D);
         if err < best_err
             best_err = err;
         end
     end
-    residual(k) = best_err * (2*pi*R_E / T_sol) / 1e3;  % km/day
+    residual(k) = best_err * R_E * T_sidereal / 1e3;  % km/sidereal day
 end
 
 figure('Position', [100 100 700 420]);
@@ -126,20 +116,34 @@ for k = 1:size(roots,1)
 end
 xline(h_nearest, 'r--', 'LineWidth', 1.5);
 xlabel('Altura [km]');
-ylabel('Deriva longitudinal diaria [km/día]');
+ylabel('Deriva longitudinal por día sideral [km/día sideral]');
 title('Condición RGT para órbita SSO con J_2');
 grid on;
 set(gca, 'FontSize', 11);
 exportgraphics(gcf, 'RGT_residual.pdf', 'ContentType', 'vector');
 fprintf('\nSaved RGT_residual.pdf\n');
 
-function out = f_RGT(h_m, N, D, mu, R_E, J2, T_sol, w_sol)
+function [inc, omega_nodal, dotOmega, e_frozen] = ...
+        rgt_rates(h_m, mu, R_E, J2, J3, omega_sol)
     a = R_E + h_m;
-    ci = -(2 * a^(7/2) * w_sol) / (3 * J2 * R_E^2 * sqrt(mu));
+    n = sqrt(mu / a^3);
+    ci = -(2 * a^(7/2) * omega_sol) / (3 * J2 * R_E^2 * sqrt(mu));
     ci = max(-1, min(1, ci));
-    s2 = (sqrt(1 - ci^2))^2;
-    T_k = 2*pi * sqrt(a^3 / mu);
-    ratio = (R_E / a)^2;
-    T_n = T_k / (1 + 0.75 * J2 * ratio * (6 - 8*s2));
-    out = N * T_n - D * T_sol;
+    inc = acosd(ci);
+
+    e_frozen = -J3 / (2 * J2) * (R_E / a) * sind(inc);
+    p = a * (1 - e_frozen^2);
+    dotOmega = -(3 * J2 * n * R_E^2 / (2 * p^2)) * cosd(inc);
+    dotomega = (3 * J2 * n * R_E^2 / (4 * p^2)) * ...
+        (4 - 5 * sind(inc)^2);
+    dotM1 = (3 * J2 * n * R_E^2 * sqrt(1 - e_frozen^2) / (4 * p^2)) * ...
+        (2 - 3 * sind(inc)^2);
+    omega_nodal = n + dotM1 + dotomega;
+end
+
+function out = f_RGT(h_m, N, D, mu, R_E, J2, J3, omega_E, omega_sol)
+    [~, omega_nodal, dotOmega] = ...
+        rgt_rates(h_m, mu, R_E, J2, J3, omega_sol);
+    out = omega_nodal - (omega_E - dotOmega) * ...
+        N / D;
 end

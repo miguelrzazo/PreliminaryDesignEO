@@ -1,4 +1,4 @@
-\chapter{Conceptos Previos}\label{cap3}
+\chapter{Conceptos Previos}\label{ch:conceptos}
 \minitoc
 
 Este apartado sienta las bases teóricas necesarias para definir la carga útil y buscar la solución de diseño.
@@ -35,7 +35,7 @@ La \textbf{Ground Sampling Distance (GSD)} es la distancia en terreno que corres
 \end{align}
 
 
-\subsection{Frecuencia de Nyquist($f_{Ny}$)}
+\subsection{Frecuencia de Nyquist\texorpdfstring{($f_{Ny}$)}{(fNy)}}
 
 La \textbf{frecuencia de Nyquist} es un concepto fundamental en la teoría de muestreo que define la máxima frecuencia espacial que un sistema de imagen puede capturar sin distorsión por \textit{aliasing}. En el contexto de un satélite de observación terrestre, esta frecuencia está directamente ligada a la resolución espacial (GSD) y determina la capacidad del sistema para preservar detalles finos en la escena observada.
 
@@ -76,7 +76,7 @@ La MTF total del sistema es el producto de las MTF de cada uno de los subsistema
 \mathrm{OTF}_{\mathrm{diff}} = \frac{A + B + C}{1 - R^2}
 \end{equation}
 
-\begin{equation}\label{mtfrobs}
+\begin{equation}\label{eq:mtfrobs}
 R = \frac{d_{\mathrm{obs}}}{D_o}
 \end{equation}
 
@@ -129,7 +129,7 @@ MTF_{\text{sistema}} =\ & MTF_{\text{difracción}} \times MTF_{\text{aberracione
 \end{align}
 
 
-\subsection{\textit{Signal To Noise Ratio} (SNR)}\label{snr}
+\subsection{\textit{Signal To Noise Ratio} (SNR)}\label{sec:snr}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\linewidth]{3.Conceptos_Previos/SNR_image_demonstration.png}
@@ -158,7 +158,7 @@ La irradiancia \( E \) en el plano focal se estima mediante:
 E = \frac{\pi \cdot \tau \cdot \Delta \lambda \cdot L_{\mathrm{ref}}}{1 + 4\,T\#^{2}}
 \end{equation}
 
-donde \( F\# = \frac{f}{D} \) es la relación focal del sistema, con \( f \) la distancia focal y \( D \) el diámetro de la apertura.\footnote{Para los sistemas con obstrucción central se utilizará la relación focal equivalente $T\#$, definida más adelante en la ecuación \ref{relfoc}}.
+donde \( F\# = \frac{f}{D} \) es la relación focal del sistema, con \( f \) la distancia focal y \( D \) el diámetro de la apertura.\footnote{Para los sistemas con obstrucción central se utilizará la relación focal equivalente $T\#$, definida más adelante en la ecuación~\eqref{eq:relfoc}}.
 
 La cantidad de electrones generados por píxel durante el tiempo de integración se calcula como:
 
@@ -187,7 +187,7 @@ La velocidad orbital del satélite a una altitud \( H\) se estima aplicando la t
 v_{\mathrm{orb}} = \sqrt{\frac{\mu}{R_T + H}}
 \end{equation}
 
-donde \( \mu = 3.986 \times 10^{14} \, \si{m^3/s^2} \) es el parámetro gravitacional estándar de la Tierra y \( R_T = 6371 \, \si{km} \) es el radio medio terrestre. Este tiempo de integración se utiliza directamente en el cálculo de \( N_e \), y representa el tiempo efectivo durante el cual se acumulan fotones en cada píxel del detector. Se emplea la velocidad orbital, ligeramente superior a la velocidad de la traza sobre el suelo, lo que proporciona un tiempo de integración conservador.
+donde \( \mu = 3{,}986 \times 10^{14} \, \si{m^3/s^2} \) es el parámetro gravitacional estándar de la Tierra y \( R_T = 6371 \, \si{km} \) es el radio medio terrestre. Este tiempo de integración se utiliza directamente en el cálculo de \( N_e \), y representa el tiempo efectivo durante el cual se acumulan fotones en cada píxel del detector. Se emplea la velocidad orbital, ligeramente superior a la velocidad de la traza sobre el suelo, lo que proporciona un tiempo de integración conservador.
 
 \subsubsection{Cálculo del Ruido Total}
 
@@ -230,7 +230,7 @@ SNR = \frac{N_{e^-}}{\sqrt{N_{e^-} + \sigma_{\text{stray}}^2 + \sigma_{\text{dar
 El \textit{\textbf{swath}} se define como la anchura de la franja de terreno que el satélite puede observar en una pasada. Se mide en kilómetros y depende tanto de la óptica del instrumento como de la altura orbital. Un \textit{swath} mayor permite cubrir más superficie terrestre en menos tiempo, lo que reduce el tiempo de revisita necesario para obtener mapas completos del área de interés. Se relaciona con el GSD mediante la ecuación:
 
 \begin{equation}
-\label{swath}
+\label{eq:swath}
 Swath = GSD \cdot N_{pix} 
 \end{equation}
 
@@ -242,7 +242,7 @@ Siendo $N_{pix}$ el número de píxeles situados en línea perpendicular al sent
 Ambos valores se relacionan de la siguiente manera:
 
 \begin{equation}
-\label{fov}
+\label{eq:fov}
 Swath = 2h \cdot \tan \left( \frac{FoV}{2} \right)
 \end{equation}
 
@@ -449,11 +449,11 @@ La distancia focal es la separación entre el centro óptico del sistema (o el e
 
 La relación focal se define como el cociente entre la distancia focal y el diámetro de pupila ($F\#=\frac{f}{D}$). Para los sistemas con obstrucción central, se define la relación focal equivalente $T\#$, que viene dada por la relación:
 \begin{align}
-\label{relfoc}
+\label{eq:relfoc}
     T\# = \frac{f}{\sqrt{D^2(1-R_{obs}^2)}} 
 \end{align}
 
-Siendo $R_{obs}$ la misma relación de obstrucción en la ecuación \ref{mtfrobs}.
+Siendo $R_{obs}$ la misma relación de obstrucción en la ecuación~\eqref{eq:mtfrobs}.
 Es un parámetro clave ya que un número $F\#$ bajo (óptica «rápida») implica una apertura grande respecto a la distancia focal, lo que permite captar más luz y mejora la SNR, pero puede aumentar las aberraciones ópticas y reducir la profundidad de campo. Un número $F\#$ alto (óptica «lenta») reduce la cantidad de luz captada, pero suele simplificar el diseño y controlar mejor las aberraciones. La relación focal afecta directamente a la MTF, la SNR y la saturación del detector.
 
 
@@ -508,18 +508,23 @@ El telescopio de tres espejos anastigmático es un reflector de tres espejos sin
 \subsubsection*{Tabla comparativa de Telescopios}
 
 \begin{table}[H]
+\scriptsize
+\setlength{\tabcolsep}{2pt}
 \caption{Comparativa de tipos de sistemas ópticos.}
 \centering
-\begin{tabular}{l c c c c}
+\begin{tabularx}{\linewidth}{@{}l *{4}{>{\centering\arraybackslash}X}@{}}
 \hline
-\textbf{Tipo} & \textbf{Obstrucción($R_{obs}$)} & \textbf{$FoV_{lim}$} & \textbf{MTF\textsubscript{Alineamiento}} & \textbf{Transmisión óptica $(\tau)$} \\
+\textbf{Tipo} & \makecell{\textbf{Obstrucción}\\\textbf{$R_{obs}$}} & \textbf{$FoV_{lim}$} & \makecell{\textbf{MTF}\\\textbf{alineamiento}} & \makecell{\textbf{Transmisión óptica}\\\textbf{$(\tau)$}} \\
 \hline
-Refractivo\tablefootnote{ Limitado a 80 mm de diámetro máximo válido para el presente trabajo}    & No  & 10º & 0,90 & 0,8 \\
+Refractivo\textsuperscript{*}    & No  & 10º & 0,90 & 0,8 \\
 Cassegrain    & Sí (0,2)  & 3º  & 0,85 & 0,7 \\
 Korsch        & Sí (0,2)  & 3º  & 0,80 & 0,65 \\
 TMA           & No  & 8º  & 0{,}70 & 0{,}6 \\
 \hline
-\end{tabular}
+\end{tabularx}
+
+\par\smallskip
+\noindent\textsuperscript{*}\footnotesize Limitado a 80 mm de diámetro máximo válido para el presente trabajo.
 
 \label{tab:tabla_telescopios}
 \end{table}
@@ -597,10 +602,13 @@ donde \( b \) es el semieje menor. La excentricidad determina varios tipos de ó
     \item \( e > 1 \): Trayectoria hiperbólica
 \end{itemize}
 
-\noindent Estos parámetros no tendrán mucha relevancia en este trabajo como veremos más adelante, ya que por simplicidad escogeremos una órbita circular$(e\approx0)$. El semieje mayor se podrá resumir en la altura orbital,
-definida como $h= a- R_T$, siendo $R_T$ el radio de la Tierra.
+\noindent En el análisis preliminar, el tamaño de una órbita terrestre puede
+expresarse convenientemente mediante la altura orbital, definida como
+$h=a-R_T$, siendo $R_T$ el radio de la Tierra. La excentricidad se conserva
+como parámetro independiente para distinguir entre una aproximación circular
+y una órbita ligeramente elíptica.
 
-\subsection{Inclinación ($i$)}
+\subsection{Inclinación \texorpdfstring{($i$)}{(i)}}
 
 La inclinación representa el ángulo entre el plano orbital y el plano de referencia (generalmente el ecuador terrestre). En la primera imagen se muestra como el ángulo formado entre estos dos planos. Para órbitas terrestres, se clasifica de la siguiente manera:
 
@@ -613,7 +621,7 @@ La inclinación representa el ángulo entre el plano orbital y el plano de refer
 
 Este parámetro es crucial para determinar qué regiones de la Tierra sobrevolará el satélite.
 
-\subsection{Longitud del Nodo Ascendente ($\Omega$)}
+\subsection{Longitud del Nodo Ascendente \texorpdfstring{($\Omega$)}{(Omega)}}
 
 La longitud del nodo ascendente define la orientación del plano orbital en el espacio tridimensional. Como se visualiza en la primera imagen, es el ángulo medido desde la dirección de referencia hasta el nodo ascendente (punto donde la órbita cruza el plano de referencia en dirección norte). Este elemento es particularmente importante para órbitas heliosíncronas, donde precesa aproximadamente $1^\circ$ diario para mantener una hora solar local prácticamente constante, compensando el movimiento de traslación de la Tierra alrededor del Sol.
 
@@ -636,13 +644,13 @@ donde:
 En la práctica se suele referir el LTAN a valores redondeados (por ejemplo, 10:30 h o 13:30 h) para garantizar escenas con sombras y contraste adecuados. En órbitas heliosíncronas, la precesión de $\Omega$ ($\approx$ 1º/día) se ajusta de modo que el LTAN permanezca prácticamente constante durante toda la misión.
 
 
-\subsection{Argumento del Perigeo ($\omega$)}
+\subsection{Argumento del Perigeo \texorpdfstring{($\omega$)}{(omega)}}
 
 El argumento del perigeo describe la orientación de la elipse dentro del plano orbital. En las figuras se muestra como el ángulo entre el nodo ascendente y el punto de máximo acercamiento al cuerpo central (perigeo). Este parámetro determina dónde se producirán las distancias mínima y máxima de la órbita. Para satélites científicos en órbitas excéntricas, este valor se elige cuidadosamente para sobrevolar determinadas regiones a la altura mínima. 
 
 Debido a que en este estudio solo se aplicarán órbitas circulares ($e\approx0$), este parámetro carece de relevancia, pues no habrá un perigeo claramente definido.
 
-\subsection{Anomalía Verdadera ($\nu$)}
+\subsection{Anomalía Verdadera \texorpdfstring{($\nu$)}{(nu)}}
 
 La anomalía verdadera es el único elemento que varía con el tiempo para una órbita no perturbada. Representa la posición instantánea del cuerpo orbitante, medida como el ángulo desde el perigeo hasta la posición actual del satélite, en la dirección del movimiento.
 
@@ -693,7 +701,7 @@ Cuando solo dos cuerpos interactúan gravitacionalmente, sus movimientos forman 
 
 El tratamiento analítico de este problema es extraordinariamente difícil porque la perturbación depende explícitamente del tiempo. Las ecuaciones diferenciales que describen este sistema no tienen una solución cerrada o analítica exacta, lo que ha llevado al desarrollo de métodos numéricos para aproximar las soluciones.
 
-El sistema de tres cuerpos es intrínsecamente caótico, lo que significa que es extremadamente sensible a las condiciones iniciales. Pequeñas variaciones en la posición o velocidad inicial de cualquiera de los cuerpos pueden resultar en trayectorias completamente diferentes a largo plazo. Esto imposibilita predicciones precisas sin conocer con exactitud absoluta las condiciones iniciales.\\
+El problema de los tres cuerpos es intrínsecamente caótico, lo que significa que es extremadamente sensible a las condiciones iniciales. Pequeñas variaciones en la posición o velocidad inicial de cualquiera de los cuerpos pueden resultar en trayectorias completamente diferentes a largo plazo. Esto imposibilita predicciones precisas sin conocer con exactitud absoluta las condiciones iniciales.\\
 
 \subsection{Órbitas de especial interés}
 
@@ -701,7 +709,7 @@ El sistema de tres cuerpos es intrínsecamente caótico, lo que significa que es
 
 Las órbitas heliosíncronas ajustan la precesión del nodo ascendente para conservar una hora solar local casi constante. Esta propiedad interesa en observación óptica pasiva porque el instrumento mide radiación solar reflejada; mantener el LTAN reduce cambios de iluminación entre pasadas.
 
-El achatamiento terrestre, modelado mediante \(J_2\), permite imponer esa precesión. Para una órbita casi circular, se escoge la inclinación de modo que la regresión nodal iguale la velocidad angular aparente del Sol respecto a la Tierra (\( \approx 0.9856^\circ/\text{día} \)):
+El achatamiento terrestre, modelado mediante \(J_2\), permite imponer esa precesión. Para una órbita casi circular, se escoge la inclinación de modo que la regresión nodal iguale la velocidad angular aparente del Sol respecto a la Tierra (\( \approx 0{,}9856^\circ/\text{día} \)):
 
 \begin{align}
 \cos i = -\frac{2 r^{7/2} \, \omega_{\text{sol}}}{3 J_2 R_T^2 \sqrt{\mu}}
@@ -712,80 +720,98 @@ El achatamiento terrestre, modelado mediante \(J_2\), permite imponer esa preces
 
 \begin{itemize}
     \item \( i \) es la inclinación orbital,
-    \item \( r \) es el radio orbital (radio de la Tierra + altitud del satélite),
-    \item \( \omega_{\text{sol}} \approx 1.991 \times 10^{-7} \ \text{rad/s} \) es la velocidad angular aparente del Sol respecto a la Tierra,
-    \item \( J_2 \approx 1.08263 \times 10^{-3} \) es el coeficiente zonal que representa el achatamiento terrestre,
-    \item \( R_T \approx 6378.1 \ \text{km} \) es el radio ecuatorial de la Tierra,
-    \item \( \mu \approx 3.986 \times 10^{14} \ \text{m}^3/\text{s}^2 \) es la constante gravitacional estándar de la Tierra.
+    \item \( r \) es el radio orbital (radio de la Tierra más la altitud del satélite),
+    \item \( \omega_{\text{sol}} \approx 1{,}991 \times 10^{-7} \ \text{rad/s} \) es la velocidad angular aparente del Sol respecto a la Tierra,
+    \item \( J_2 \approx 1{,}08263 \times 10^{-3} \) es el coeficiente zonal que representa el achatamiento terrestre,
+    \item \( R_T=R_{\oplus}\approx 6378{,}137 \ \text{km} \) es el radio ecuatorial de la Tierra,
+    \item \( \mu \approx 3{,}986004418 \times 10^{14} \ \text{m}^3/\text{s}^2 \) es el parámetro gravitacional estándar de la Tierra.
 \end{itemize}
 
 \subsubsection{Órbitas de Traza Repetida}
 
-Una órbita de traza repetida (RGT) es aquella en la que el satélite
-repite su proyección sobre la superficie terrestre tras un número entero
-de días $D$ y un número entero de órbitas $N$. Estas órbitas permiten
-adquirir imágenes de una misma zona bajo condiciones geométricas similares
-a intervalos regulares.
-
-En una órbita heliosíncrona el plano orbital precesa solidario con el Sol.
-La traza se repite respecto al día solar, no al día sidéreo. La condición
-RGT para una órbita SSO es:
+Una órbita de traza repetida (RGT) repite la proyección del satélite sobre
+la superficie terrestre tras $k_{\mathrm{day2rep}}$ rotaciones terrestres y
+$k_{\mathrm{orb2rep}}$ órbitas. La condición RGT exige que la frecuencia
+angular nodal media coincida con la velocidad angular de la traza respecto
+a la Tierra:
 
 \begin{equation}
-N \cdot T_{\mathrm{nodal}} = D \cdot T_{\mathrm{solar}},
-\qquad T_{\mathrm{solar}} = 86400\ \si{s}
+n_k(a) + \dot{M}_1(a,i,e) + \dot{\omega}(a,i,e)
+= \left[\omega_{\oplus} - \dot{\Omega}(a,i,e)\right]
+\frac{k_{\mathrm{orb2rep}}}{k_{\mathrm{day2rep}}}
 \label{eq:rgt_cond}
 \end{equation}
 
-donde $T_{\mathrm{nodal}}$ es el período entre dos cruces consecutivos del
-nodo ascendente. El achatamiento terrestre $J_2$ modifica este período
-respecto del kepleriano mediante dos efectos seculares. Para $e=0$:
-
-\begin{align}
-\dot{\Omega} &= -\frac{3}{2}\, n\, J_2 \left(\frac{R_T}{a}\right)^{\!2} \cos i
-\label{eq:Omega_dot}\\[4pt]
-\dot{\omega} &= \frac{3}{4}\, n\, J_2 \left(\frac{R_T}{a}\right)^{\!2}
-\bigl(5\cos^2 i - 1\bigr)
-\label{eq:omega_dot}
-\end{align}
-
-con $n = \sqrt{\mu / a^3}$ y $a = R_T + h$. El período nodal que combina
-ambos efectos es:
+donde $n_k(a)=\sqrt{\mu/a^3}$ es el movimiento medio de la órbita
+kepleriana y $\omega_{\oplus}$ es la velocidad angular de rotación terrestre respecto al sistema inercial. En esta condición se emplea el periodo sideral:
 
 \begin{equation}
-T_{\mathrm{nodal}} = \frac{T_k}
-{1 + \frac{3}{4}J_2\left(\frac{R_T}{a}\right)^{\!2}\!\bigl(6 - 8\sin^2 i\bigr)},
-\qquad T_k = 2\pi\sqrt{\frac{a^3}{\mu}}
+T_{\oplus}=\frac{2\pi}{\omega_{\oplus}}=86164{,}09\ \mathrm{s},
+\qquad
+\omega_{\oplus}=7{,}292115373\times10^{-5}\ \mathrm{rad/s}.
+\label{eq:earth_sidereal}
+\end{equation}
+
+Las cantidades $\dot{\Omega}$, $\dot{\omega}$ y $\dot{M}_1$ son las tasas seculares asociadas a $J_2$. Las expresiones generales de estas tasas son \cite{vallado2013fundamentals}:
+
+\begin{align}
+\dot{\Omega}_{J_2} &= -\frac{3J_2 n R_{\oplus}^{2}}{2p^{2}}\cos i,
+\label{eq:Omega_dot}\\[4pt]
+\dot{\omega}_{J_2} &= \frac{3J_2 n R_{\oplus}^{2}}{4p^{2}}
+\left(4-5\sin^{2}i\right),
+\label{eq:omega_dot}\\[4pt]
+\dot{M}_{1,J_2} &= \frac{3J_2 n\sqrt{1-e^{2}}R_{\oplus}^{2}}{4p^{2}}
+\left(2-3\sin^{2}i\right),
+\label{eq:M1_dot}
+\end{align}
+
+con $n=n_k(a)$, $p=a(1-e^2)$ y $a=R_{\oplus}+h$. Para el caso
+circular, $e=0$ y $p=a$; por tanto, el período nodal se obtiene como caso
+particular de la expresión general:
+
+\begin{equation}
+T_{\mathrm{nodal}} = \frac{2\pi}
+{n_k(a)+\dot{M}_{1,J_2}(a,i,0)+\dot{\omega}_{J_2}(a,i,0)}
+=\frac{T_k}
+{1+\frac{3}{4}J_2\left(\frac{R_{\oplus}}{a}\right)^2
+\left(6-8\sin^2 i\right)},
+\qquad T_k=2\pi\sqrt{\frac{a^3}{\mu}}
 \label{eq:Tnodal}
 \end{equation}
 
-La condición heliosíncrona \eqref{eq:SSO_cond} fija $i = i_{\mathrm{SSO}}(h)$.
-Al sustituirla, $T_{\mathrm{nodal}}$ queda en función exclusiva de $h$ y la
-ecuación \eqref{eq:rgt_cond} se puede resolver para cada pareja de enteros
-$(N,D)$ \cite{vallado2013fundamentals}.
+La condición heliosíncrona \eqref{eq:SSO_cond} determina
+$i=i_{\mathrm{SSO}}(h)$. Al sustituir esta inclinación en
+\eqref{eq:rgt_cond}, el modelo resuelve una ecuación para cada pareja de
+enteros $(k_{\mathrm{orb2rep}},k_{\mathrm{day2rep}})$
+\cite{vallado2013fundamentals}.
 
 \subsubsection{Órbitas \textit{frozen}}
 
-Una órbita \textit{frozen} mantiene constantes la excentricidad y el argumento
-del perigeo anulando sus derivadas seculares. La condición se obtiene del
-acoplamiento entre $J_2$ y $J_3$:
+Una órbita \textit{frozen} se obtiene al escoger la excentricidad y la
+orientación de la órbita para cancelar, en la aproximación de primer orden,
+los términos seculares dominantes asociados a $J_3$ en la evolución de $e$ y
+$\omega$. Esta condición reduce las variaciones seculares de ambos
+parámetros, pero no las elimina por completo. Para $e\ll1$ y la orientación
+analizada en este trabajo, $\omega=90^\circ$, la excentricidad se aproxima
+mediante \cite{vallado2013fundamentals}:
 
 \begin{equation}
 e_{\textit{frozen}} \approx -\frac{J_3}{2J_2}\,\frac{R_T}{a}\,\sin i,
-\qquad \omega = 90^\circ\ \text{o}\ 270^\circ
+\qquad e\ll1,\quad \omega=90^\circ
 \label{eq:frozen_cond}
 \end{equation}
 
-donde $J_3 \approx -2.53 \times 10^{-6}$ es el armónico zonal impar que
-rompe la simetría norte-sur del campo gravitatorio.
+donde $J_3 \approx -2{,}5327 \times 10^{-6}$ es el armónico zonal impar que
+rompe la simetría norte-sur del campo gravitatorio. Aunque $\omega=270^\circ$
+puede aparecer como orientación alternativa en formulaciones generales, esta
+orientación no se considera en el presente análisis.
 
 El interés de esta condición para una misión de observación de la Tierra
-reside en que, al mantener $e$ y $\omega$ constantes frente a las
-perturbaciones de $J_2$ y $J_3$, el perfil de altura sobre cada latitud se
-repite de forma prácticamente idéntica en cada órbita. Esto asegura un GSD
-y una iluminación uniformes a lo largo de toda la vida útil de la misión,
-además de una geometría de observación repetible, tal como emplean
-misiones de referencia como Landsat o Sentinel-2.
+reside en que limita la deriva secular de la geometría orbital. Por tanto,
+el perfil de altura y la geometría de observación se repiten con menor
+variación entre órbitas, aunque permanecen variaciones residuales debidas a
+los términos no cancelados y a las perturbaciones que no se incluyen en esta
+aproximación.
 
 La oscilación de altura asociada es $\Delta h = 2 a e_{\textit{frozen}}$.
 Para que la condición \textit{frozen} sea relevante, $\Delta h$ debe ser menor que
