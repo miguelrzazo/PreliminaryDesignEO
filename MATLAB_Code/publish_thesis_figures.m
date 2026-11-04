@@ -43,7 +43,9 @@ for item = {'MTF','SNR'}
     h = str2double(erase(t.Properties.RowNames,'Alt_'));
     diam = str2double(erase(t.Properties.VariableNames,'Diam_'));
     figure('Position',[100 100 850 450]);
-    imagesc(diam,h,t{:,:}); axis xy; colorbar; hold on;
+    hm = imagesc(diam,h,t{:,:});
+    set(hm,'AlphaData',~isnan(t{:,:}));
+    set(gca,'Color','w'); axis xy; colorbar; hold on;
     plot(38,690,'rp','MarkerFaceColor','w','MarkerSize',14,'LineWidth',1.5);
     xlabel('Diámetro de pupila [mm]'); ylabel('Altura nominal [km]'); title(name);
     finish(lower(name));

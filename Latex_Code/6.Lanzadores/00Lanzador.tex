@@ -118,7 +118,7 @@ Para validar este lanzamiento se puede calcular el azimut inicial de lanzamiento
     \cos (i) = \sin(Az) \cdot \cos(\theta)
 \end{equation}
 
-Siendo $i= 97,91 \degree$ la inclinación de interés, $\theta=34,7 \degree$, la latitud a la que se sitúa la base de lanzamiento de Vandenberg SFB, se obtiene un azimut $Az \approx 190 \degree$. Este valor es compatible con los rangos disponibles de la base de lanzamiento \cite{karabeyoglu2018lecture7} y aplica por igual al Falcon 9 y al Firefly Alpha, puesto que ambos parten de Vandenberg hacia la misma órbita SSO y comparten, por tanto, la misma inclinación.
+Siendo $i= 98,15 \degree$ la inclinación de interés, $\theta=34,7 \degree$, la latitud a la que se sitúa la base de lanzamiento de Vandenberg SFB, se obtiene un azimut $Az \approx 190 \degree$. Este valor es compatible con los rangos disponibles de la base de lanzamiento \cite{karabeyoglu2018lecture7} y aplica por igual al Falcon 9 y al Firefly Alpha, puesto que ambos parten de Vandenberg hacia la misma órbita SSO y comparten, por tanto, la misma inclinación.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{6.Lanzadores/azimuth.jpg}
@@ -128,39 +128,10 @@ Siendo $i= 97,91 \degree$ la inclinación de interés, $\theta=34,7 \degree$, la
 
 \subsubsection{Despliegue de dos satélites en órbita}
 
-Ambos satélites comparten el mismo plano orbital SSO y los mismos parámetros orbitales, y solo se diferencian en su anomalía, con un desfase de 180° sobre la órbita. Para lograr esta configuración, la etapa superior del lanzador ejecuta una estrategia de fase en tres maniobras:
-\begin{enumerate}
-    \item Inserción orbital y primer despliegue. El lanzador coloca la etapa superior y los satélites en la órbita objetivo, que en este caso es una SSO circular a 630 km de altitud. Inmediatamente tras alcanzar la órbita, se procede al despliegue del primer satélite, que comienza su operación en la trayectoria planificada.
+Ambos satélites comparten el plano SSO y se separan 180° en anomalía. Una estrategia de despliegue consiste en liberar el primer satélite, mantener el segundo en una órbita de fase con periodo distinto y, al alcanzar la separación prevista, ajustar su órbita a la de operación. Como aproximación inicial, la deriva angular media cumple:
+\begin{equation}
+\Delta\varphi(t)=\left(n_{\mathrm{op}}-n_{\mathrm{fase}}\right)t.
+\end{equation}
+El cálculo definitivo debe partir de la órbita nominal de 690 km e incluir la inserción en la pequeña excentricidad \textit{frozen}. La estimación previa de faseo a 630 km no corresponde a la solución seleccionada y no se utiliza como validación del despliegue.
 
-    \item Maniobra de fase: tras el primer despliegue, la etapa superior ejecuta una maniobra para elevar temporalmente el apogeo de su órbita. Al aumentar el apogeo aumenta también el semieje mayor y, por tanto, el periodo orbital de la etapa respecto al del satélite ya desplegado. Esta diferencia de periodo hace que la etapa acumule, en cada revolución, un desfase angular
-    \begin{equation}
-        \Delta\varphi = 2\pi\,\frac{T_{\text{fase}} - T_{\text{circular}}}{T_{\text{circular}}}
-    \end{equation}
-    respecto al primer satélite, hasta alcanzar la separación de 180° buscada.
-
-    \item Recircularización y segundo despliegue: una vez alcanzada la separación angular de 180°, la etapa superior realiza una nueva maniobra para regresar a la órbita circular original de 630 km. Esta recircularización iguala el periodo del segundo satélite con el del primero y evita que el desfase siga creciendo durante la operación nominal.
-\end{enumerate}
-
-A continuación se presenta una simulación en la que, mediante esta maniobra, se consigue el desfase deseado en 38{,}6 horas, por medio de una órbita de fase con perigeo en 630 km y apogeo ligeramente más elevado, en 830 km:
-\begin{figure}[H]
-    \centering
-    \begin{minipage}[t]{0.48\textwidth}
-        \centering
-        \begin{lstlisting}[basicstyle=\tiny\ttfamily]
-            >> phaseinjection
-            --- Análisis de la Maniobra de Fase ---
-            Periodo de la órbita final: 97.31 minutos
-            Periodo de la órbita de fase: 99.40 minutos
-            Tiempo requerido para un desfase de 180: 38.56 horas
-            Número de órbitas en la trayectoria de fase: 23.28
-            -------------------------------------------
-        \end{lstlisting}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{6.Lanzadores/phasing.jpg}
-        \caption{Órbita de fase para el despliegue de los satélites.\\Fuente: Elaboración propia.}
-        \label{fig:phasing}
-    \end{minipage}
-\end{figure}
+Esta estrategia requiere que la etapa o un vehículo de transferencia mantenga capacidad de operación durante todo el faseo. La ventana de reencendido citada para el lanzador no acredita por sí sola esa capacidad. Se conserva Falcon 9 como candidato de lanzamiento compartido, pero el despliegue en el LTAN y la separación requeridos debe acordarse con el proveedor antes de cerrar el diseño.
