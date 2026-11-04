@@ -4,6 +4,7 @@ on:
     branches: [fix/tutor-review-calculations]
     paths:
       - 'MATLAB_Code/**'
+      - '!MATLAB_Code/publish_thesis_figures.m'
       - '.github/workflows/tutor-calculations.yml'
 permissions:
   contents: read

@@ -20,6 +20,8 @@ q = q(logical(q.Es_Viable),:);
 plot(q.Altura_km,q.Masa_Seca_Satelite_kg,'o-');
 plot(q.Altura_km,q.Masa_Combustible_kg,'s-');
 plot(q.Altura_km,q.Masa_Total_Satelite_kg,'d-');
+xlim([min(q.Altura_km)-20,max(q.Altura_km)+20]);
+ylim([0,max(q.Masa_Total_Satelite_kg)*1.12]);
 xlabel('Altura nominal [km]'); ylabel('Masa por satélite [kg]'); grid on;
 legend('Óptica sin filtro regional','Seca viable','Propulsante de mantenimiento','Selección viable','Location','best');
 finish('mass');
@@ -71,9 +73,9 @@ copyfile(fullfile(src,'EndOfLife','end_of_life.csv'),data);
 
 % A compact annex keeps all viable rows without retaining old console output.
 fid = fopen(fullfile(root,'Latex_Code','zzAnnex','TablasAnnex','review_designs.tex'),'w');
-fprintf(fid,'\\begin{longtable}{rrrrrrr}\n\\caption{Soluciones viables tras el filtro regional. Masa de selección sin reserva de fin de misión.}\\\\\n\\toprule\nSat. & Tel. & Det. & $h$ [km] & $D$ [mm] & $T_{eff}$ [d] & $m_{const}$ [kg] \\\\\n\\midrule\n\\endfirsthead\n\\toprule\nSat. & Tel. & Det. & $h$ [km] & $D$ [mm] & $T_{eff}$ [d] & $m_{const}$ [kg] \\\\\n\\midrule\n\\endhead\n');
+fprintf(fid,'\\begin{longtable}{rrrlrrrr}\n\\caption{Soluciones viables tras el filtro regional. Masa de selección sin reserva de fin de misión.}\\\\\n\\toprule\nSat. & Tel. & Det. & Óptica & $h$ [km] & $D$ [mm] & $T_{eff}$ [d] & $m_{const}$ [kg] \\\\\n\\midrule\n\\endfirsthead\n\\toprule\nSat. & Tel. & Det. & Óptica & $h$ [km] & $D$ [mm] & $T_{eff}$ [d] & $m_{const}$ [kg] \\\\\n\\midrule\n\\endhead\n');
 for k=1:height(v)
-    fprintf(fid,'%d & %d & %d & %.0f & %.0f & %.3f & %.3f \\\\\n',v.Num_Satelites(k),v.Num_Telescopios(k),v.ID_Detector(k),v.Altura_km(k),v.Diametro_Pupila_mm(k),v.Dias_Cobertura(k),v.Masa_Total_Constelacion_kg(k));
+    fprintf(fid,'%d & %d & %d & %s & %.0f & %.0f & %.3f & %.3f \\\\\n',v.Num_Satelites(k),v.Num_Telescopios(k),v.ID_Detector(k),v.Tipo_Telescopio{k},v.Altura_km(k),v.Diametro_Pupila_mm(k),v.Dias_Cobertura(k),v.Masa_Total_Constelacion_kg(k));
 end
 fprintf(fid,'\\bottomrule\n\\end{longtable}\n'); fclose(fid);
 fprintf('THESIS_FIGURES_COMPLETE: %d viable designs\n',height(v));
