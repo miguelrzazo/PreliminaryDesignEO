@@ -2,33 +2,32 @@
 
 Bachelor's thesis (TFG) in Aerospace Engineering: preliminary design of a small-satellite constellation for CO₂/O₂ monitoring over the continental United States, covering payload sizing, orbit and mission analysis, launcher selection, and ground segment.
 
-**📄 Read the full thesis: [`Latex_Code/00main.pdf`](Latex_Code/00main.pdf)** (Spanish)
+Read the thesis: [TFG_Miguel_Rosa.pdf](TFG_Miguel_Rosa.pdf) (Spanish).
 
 ## Result in brief
 
-A constellation of two satellites in a 520 km Sun-synchronous orbit, each carrying two refractive telescopes with Teledyne H2RG detectors (28 mm pupil diameter), achieves 80 m GSD imaging of the continental US with weekly revisit. The design closes with a total constellation mass of a few kilograms of payload optics per satellite plus the propellant to maintain the orbit for eight years, downlinking through the NOAA Fairbanks (Alaska) X-band station.
+The selected design uses two satellites at 690 km in a Sun-synchronous frozen orbit, each with two refractive telescopes (38 mm pupil) and two H2RG detectors. At 80 m GSD, the sampled regional model gives a maximum effective revisit of 6.642 days with the assumed mean cloud correction. The estimated mass is 3.538 kg per satellite, including maintenance and deorbit reserves. Downlink sizing uses a 10 Mbps S-band reference for ASF AS1 equipment at Fairbanks; service availability is assumed.
 
 ## Repository layout
 
 | Path | Contents |
 |------|----------|
-| `Latex_Code/` | Thesis LaTeX sources and the compiled PDF |
+| `Latex_Code/` | Thesis LaTeX sources and figure sources |
 | `MATLAB_Code/` | The design pipeline: `master.m` + `lib/` (authoritative) |
 | `MATLAB_Code/legacy/` | Archived earlier model versions, kept for traceability only |
-| `Compiled data/` | Final simulation outputs (MTF, SNR, coverage, h–D_min, mass) and the GSD sensitivity summary |
+| `Compiled data/` | Regenerated MATLAB pipeline, selected mission budgets, and auxiliary GSD sensitivity data |
 | `python/` | Python port of the analysis pipeline |
 | `Defence/` | Final defence material (simulation videos) |
 
 ## Running the MATLAB pipeline
 
-The full sizing pipeline (optical MTF/SNR heatmaps, coverage/revisit simulation, configuration cross-check, dry and total mass) runs from `master.m`:
+Run the optical and coverage sweep, selected mission budgets, and figure exports in MATLAB with Aerospace Toolbox:
 
 ```bash
-TFG_GSD=80 TFG_OUTPUT_ROOT="Compiled data" \
-  matlab -batch "cd('MATLAB_Code'); master"
+matlab -batch "addpath('MATLAB_Code'); runThesisAnalysis"
 ```
 
-`TFG_GSD` sets the required ground sample distance in metres, so the whole study can be repeated for a different resolution requirement. `TFG_OUTPUT_ROOT` sets where results are written.
+`master.m` contains the editable design grid and requirements. `TFG_GSD` overrides the ground sample distance in metres. Results are written to `Compiled data/Pipeline` and `Compiled data/Mission`; the independent study scripts reuse `Mission/selected_design.csv`. Pipeline mass rankings include dry mass and maintenance propellant; `Mission/EndOfLife` adds the deorbit reserve.
 
 The revisit computation uses the RevisitTime toolkit (Crisp & Livadiotti, University of Manchester), which must be on the MATLAB path.
 
@@ -47,7 +46,7 @@ OREKIT_DATA_PATH="$PWD/orekit-data.zip" pytest
 OREKIT_DATA_PATH="$PWD/orekit-data.zip" python scripts/run_analysis.py --orekit
 ```
 
-It was vibecoded after the thesis, for fun, to re-validate the sizing study in a friendlier stack (frozen dataclasses, NumPy, PyYAML, matplotlib) and to play with packaging. The configuration is a single YAML file (`python/config/portfolio.yaml`) that defines the design space — bands, detectors, telescopes, constellations, altitudes, swaths, GSDs — and each module sweeps over it, returning a `LabeledTensor` (a self-describing `np.ndarray` with named axes) so the 6-D result grid stays easy to slice.
+This auxiliary implementation uses a different coverage and cloud model and does not supply the thesis results. The configuration is a single YAML file (`python/config/portfolio.yaml`) that defines the design space — bands, detectors, telescopes, constellations, altitudes, swaths, GSDs — and each module sweeps over it, returning a `LabeledTensor` (a self-describing `np.ndarray` with named axes) so the 6-D result grid stays easy to slice.
 
 ### What this is
 

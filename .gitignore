@@ -53,7 +53,7 @@ __pycache__/
 dist/
 build/
 .pytest_cache/
-.hermes/plans/2026-09-11_000000-c08-c10-maintenance-gsd.md
+.*/plans/
 Latex_Code/00main.bbl-SAVE-ERROR
 .gitignore
 
@@ -67,3 +67,4 @@ Latex_Code/00main.bbl-SAVE-ERROR
 # El PDF compilado no se versiona: se publica como asset de release.
 # Reconstruirlo con: cd Latex_Code && latexmk -pdf 00main.tex
 Latex_Code/00main.pdf
+.*/settings.local.json
