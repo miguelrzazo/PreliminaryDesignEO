@@ -9,42 +9,42 @@
     \definecolor{swath2}{RGB}{150,255,150}  % Verde claro
     \definecolor{swath3}{RGB}{150,150,255}  % Azul claro
     \definecolor{overlap}{RGB}{200,200,100} % Color de solapamiento
-    
-    
+
+
     % Primer swath
     \fill[swath1, opacity=0.7] (0,0.5) -- (2,1.5) -- (2,2.5) -- (0,1.5) -- cycle;
     \draw[thick] (0,0.5) -- (2,1.5) -- (2,2.5) -- (0,1.5) -- cycle;
-    
+
     % Segundo swath con 5% de solapamiento
     \fill[swath2, opacity=0.7] (1.9,1.4) -- (3.9,2.4) -- (3.9,3.4) -- (1.9,2.4) -- cycle;
     \draw[thick] (1.9,1.4) -- (3.9,2.4) -- (3.9,3.4) -- (1.9,2.4) -- cycle;
-    
+
     % Tercer swath con 5% de solapamiento
     \fill[swath3, opacity=0.7] (3.8,2.3) -- (5.8,3.3) -- (5.8,4.3) -- (3.8,3.3) -- cycle;
     \draw[thick] (3.8,2.3) -- (5.8,3.3) -- (5.8,4.3) -- (3.8,3.3) -- cycle;
-    
+
     % Marcar zonas de solapamiento
     \fill[overlap, opacity=0.9] (1.9,1.4) -- (2,1.5) -- (2,2.5) -- (1.9,2.4) -- cycle;
     \fill[overlap, opacity=0.9] (3.8,2.3) -- (3.9,2.4) -- (3.9,3.4) -- (3.8,3.3) -- cycle;
-    
+
     % Satélites en órbitas
     \node[circle, fill=orange, minimum size=8pt] (sat1) at (0.8,3.5) {};
     \node[circle, fill=orange, minimum size=8pt] (sat2) at (2.5,4.5) {};
 
-    
+
     % Líneas de vista desde satélites
     \draw[thin, gray] (sat1) -- (0,1);
     \draw[thin, gray] (sat1) -- (2,2);
     \draw[thin, gray] (sat2) -- (1.9,2);
     \draw[thin, gray] (sat2) -- (3.9,3);
-    
+
     % Indicar porcentaje de solapamiento
     \draw[<->, red, thick] (1.9,1.8) -- (2,1.9);
     \node[red, above] at (1.95,0.7) {\small solapamiento 5\%};
-    
+
     \draw[<->, red, thick] (3.8,2.7) -- (3.9,2.8);
     \node[red, above] at (3.85,1.7) {\small solapamiento 5\%};
-    
+
 \end{tikzpicture}
 
 \begin{tikzpicture}[scale=1.2]

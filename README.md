@@ -27,7 +27,7 @@ Run the optical and coverage sweep, selected mission budgets, and figure exports
 matlab -batch "addpath('MATLAB_Code'); runThesisAnalysis"
 ```
 
-`master.m` contains the editable design grid and requirements. `TFG_GSD` overrides the ground sample distance in metres. Results are written to `Compiled data/Pipeline` and `Compiled data/Mission`; the independent study scripts reuse `Mission/selected_design.csv`. Pipeline mass rankings include dry mass and maintenance propellant; `Mission/EndOfLife` adds the deorbit reserve.
+`master.m` contains the editable design grid and requirements. `TFG_GSD` overrides the ground sample distance in metres. Results are written to `Compiled data/Pipeline` and `Compiled data/Mission`; the independent study scripts reuse `Mission/selected_design.csv`. The legacy CSV column `Num_Impulsos_Mantenimiento` counts complete two-burn Hohmann manoeuvres. Pipeline mass rankings include dry mass and maintenance propellant; `Mission/EndOfLife` adds the deorbit reserve.
 
 The revisit computation uses the RevisitTime toolkit (Crisp & Livadiotti, University of Manchester), which must be on the MATLAB path.
 

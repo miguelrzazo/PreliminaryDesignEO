@@ -126,19 +126,19 @@ for config_idx = 1:size(configs, 1)
                     end
                     % Seleccionar el índice del diámetro mínimo (asumiendo diametros_pupila y las columnas de mtf/snr están ordenados ascendentemente)
                     min_diam_col_idx = valid_diameter_indices(1);
-                    
+
                     % Asegurar que el índice del diámetro no exceda las dimensiones de diametros_pupila
                     if min_diam_col_idx > length(diametros_pupila)
                         fprintf('Advertencia: Índice de diámetro %d excede la longitud de diametros_pupila (%d).\n', min_diam_col_idx, length(diametros_pupila));
                         continue;
                     end
-                    
+
                     selected_dmin_mm = diametros_pupila(min_diam_col_idx);
 
                     % 4. Condición específica para telescopio Refractivo (asumiendo telescopio_idx == 1)
                     % Preserve the existing 200 mm limit for the first telescope.
                     if telescopio_idx == 1 && selected_dmin_mm > 200
-                        continue; 
+                        continue;
                     end
 
                     % Almacenar el Dmin encontrado

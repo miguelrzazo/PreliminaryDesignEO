@@ -27,4 +27,3 @@ function radius = ellipsoidRadius(equatorial_radius, latitude)
         ((equatorial_radius .* cosd(latitude)).^2 + ...
         (polar_radius .* sind(latitude)).^2));
 end
-

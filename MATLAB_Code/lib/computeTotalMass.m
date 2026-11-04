@@ -1,6 +1,7 @@
 function mass = computeTotalMass(altitudes_km, dryMass_kg, dragAreas_m2, ...
     maintenanceLowerFactor, maintenanceUpperFactor)
 %COMPUTETOTALMASS Preserve the eight-year drag/maintenance/propellant model.
+% Each counted cycle is a complete two-burn Hohmann manoeuvre.
 % Arrays follow the altitude input shape. Scalar mass/area inputs are reused.
 % Atmospheric constants, integration tolerances, margins and cutoff are unchanged.
     earthGravitationalParameter_m3_s2 = 3.986004418e14;

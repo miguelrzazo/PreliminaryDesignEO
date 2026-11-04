@@ -11,7 +11,7 @@ figureHandleCleanup = onCleanup(@() closeStudyFigure(figureHandle));
 imageHandle = imagesc(pupilDiameters_mm, altitudes_km, snrGrid);
 
 set(imageHandle, 'AlphaData', ~isnan(snrGrid));
-set(gca, 'Color', [1 1 1]); 
+set(gca, 'Color', [1 1 1]);
 
 colormap(parula);
 clim([snrRequirement max(2000,snrRequirement+1)]);

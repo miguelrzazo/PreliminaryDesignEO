@@ -63,7 +63,7 @@ function [Li, Si, Vi, Wi, Pi] = scaleInstrument(Ai, Ao, Lo, Wo, Po)
     K = ones(size(R)); % Inicializa K en 1
     K(R <= 0.5) = 2;   % Asigna K=2 donde R<=0.5
 
-    Li = R .* Lo; 
+    Li = R .* Lo;
     Si = Li.^2;
     Vi = Li.^3;
     Wi = (R.^3) .* Wo .* K; % Multiplica por K la masa

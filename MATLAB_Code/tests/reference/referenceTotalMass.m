@@ -4,11 +4,11 @@ function [total_mass, fuel_mass, num_impulses, total_delta_v, cycle_time, delta_
     R_earth = 6378e3; % Radio terrestre (m)
     Cd = 2.5; % Coeficiente de resistencia aerodinamica
     Isp = 220; % Impulso especifico, valor tipico para propulsion quimica (s)
-    g0 = 9.80665; % Gravedad 
+    g0 = 9.80665; % Gravedad
     mission_duration = 8 * 365.25 * 24 * 3600; % duracion mision, 8 años en seg
     if nargin < 4, lower_factor = 0.98; end
     if nargin < 5, upper_factor = 1.02; end
-    
+
     %% Prealocar resultados
     num_impulses = zeros(size(h0_array));
     total_delta_v = zeros(size(h0_array));
@@ -17,7 +17,7 @@ function [total_mass, fuel_mass, num_impulses, total_delta_v, cycle_time, delta_
     cycle_time = zeros(size(h0_array));
     delta_v_cycle = zeros(size(h0_array));
     fuel_unmargined = zeros(size(h0_array));
-    
+
     for i = 1:length(h0_array)
         h0 = h0_array(i);
         h_nom = h0 * 1e3; % Altura nominal usada por payload y cobertura
@@ -26,7 +26,7 @@ function [total_mass, fuel_mass, num_impulses, total_delta_v, cycle_time, delta_
         dry_mass = getIndexedValue(masa_seca, i);
         drag_area_margin = 1.2;
         A = getIndexedValue(Am, i) * drag_area_margin;
-        
+
         cycle_time_i = decayCycleTime(h_min, h_max, R_earth, mu, Cd, A, dry_mass);
         if isfinite(cycle_time_i) && cycle_time_i > 0
             impulses = floor((mission_duration - eps(mission_duration)) / cycle_time_i);
@@ -39,7 +39,7 @@ function [total_mass, fuel_mass, num_impulses, total_delta_v, cycle_time, delta_
         r2 = R_earth + h_max; % Radio de reset de mantenimiento
         dv = hohmannDeltaV(r1, r2, mu);
         total_dv = impulses * dv;
-        
+
         % Calculo masa
         num_impulses(i) = impulses;
         total_delta_v(i) = total_dv;
@@ -49,7 +49,7 @@ function [total_mass, fuel_mass, num_impulses, total_delta_v, cycle_time, delta_
         total_mass(i) = fuel_mass(i) + dry_mass;
         cycle_time(i) = cycle_time_i;
         delta_v_cycle(i) = dv;
-        
+
         % Aplicar filtro para valores extremos
         if total_mass(i) > 100000
             total_mass(i) = NaN;
@@ -58,7 +58,7 @@ function [total_mass, fuel_mass, num_impulses, total_delta_v, cycle_time, delta_
         end
     end
 end
-    
+
     %% Funciones internas
     function value = getIndexedValue(values, idx)
         if isscalar(values)
@@ -104,7 +104,7 @@ end
         dv2 = v2 - v_a;
         dv = dv1 + dv2;
     end
-    
+
     function rho = getAtmosphericDensity(h)
         % Exponential atmosphere table from Vallado/Curtis, consistent with USSA76.
         h_km = max(h / 1e3, 0);

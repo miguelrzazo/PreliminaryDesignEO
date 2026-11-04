@@ -82,7 +82,7 @@ for config_idx = 1:size(satellite_configs, 1)
         for telescopio_idx = 1:length(telescope_names)
             diam_col_name = sprintf('Dmin_%s_mm', strrep(telescope_names{telescopio_idx},' ','_'));
             if ~ismember(diam_col_name, datos_validos_h_dmin.Properties.VariableNames), continue; end
-            
+
             try
                 if useStoredFiles
                     mtf_data_table = readtable(sprintf('MTF/MTF_Lambda2_Detector%d_Telescopio%d_resultados.csv', detector_idx, telescopio_idx), 'ReadRowNames', true);
@@ -111,24 +111,24 @@ for config_idx = 1:size(satellite_configs, 1)
                 end
                 alt_idx_coverage = find(alturas_orbitales == h_km, 1);
                 if isempty(alt_idx_coverage), continue; end
-                
+
                 coverage_row = coverage_matrix(alt_idx_coverage, :);
                 valid_swath_indices = find(coverage_row <= Cov_Requirement & ~isnan(coverage_row));
                 if isempty(valid_swath_indices), continue; end
-                
+
                 selected_swath_km = swaths_km(valid_swath_indices(1));
                 dias_cobertura = coverage_row(valid_swath_indices(1));
-                
+
                 current_Npix = params.Npix_detectors(detector_idx);
                 num_detectores_necesarios = ceil(selected_swath_km / (GSD * current_Npix / 1000));
 
                 swath_real_sistema_km = num_detectores_necesarios * GSD * current_Npix / 1000;
                 excedente_swath_km = swath_real_sistema_km - selected_swath_km;
                 excedente_swath_porc = (excedente_swath_km / selected_swath_km) * 100;
-                
+
                 row_name_perf = sprintf('Alt_%d', h_km);
                 col_name_perf = sprintf('Diam_%d', round(D_mm));
-                
+
                 try
                     if useStoredFiles
                         mtf_val = mtf_data_table{row_name_perf, col_name_perf};
@@ -144,7 +144,7 @@ for config_idx = 1:size(satellite_configs, 1)
                     if ~useStoredFiles, rethrow(dataError); end
                     mtf_val = NaN; snr_val = NaN;
                 end
-                
+
                 h_m = h_km * 1000;
                 pixel_size_m = Pixel_size(detector_idx);
                 D_m = D_mm / 1000;
@@ -165,7 +165,7 @@ for config_idx = 1:size(satellite_configs, 1)
                 cos_i = min(max(cos_i, -1), 1);
                 inclinacion_deg = acosd(cos_i);
                 desfase_anomalia = 360 / N_sat;
-                
+
                 solution_data = {true, ...
                     N_sat, N_telescopes, num_detectores_necesarios, detector_idx, telescope_names{telescopio_idx}, h_km, D_mm, ...
                     selected_swath_km, dias_cobertura, ...
@@ -179,7 +179,7 @@ for config_idx = 1:size(satellite_configs, 1)
                     masa_seca_TM, masa_seca_SEOSAT, ...
                     L_sat, S_sat, V_sat, U_sat
                 };
-                
+
                 results_data(end+1, :) = solution_data;
 
                 if masa_total_constelacion < global_best.mass
@@ -278,4 +278,3 @@ function [total_mass, fuel_mass, num_impulses, total_delta_v] = cachedMasaTotal(
     num_impulses = values(3);
     total_delta_v = values(4);
 end
-

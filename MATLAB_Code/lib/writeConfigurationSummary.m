@@ -30,7 +30,7 @@ if ~isinf(bestDesign.mass)
     fprintf(fileId, ' > Prop. Físicas (Instrumento): Masa=%.2f kg, Long=%.2f m, Área=%.2f m^2, Vol=%.6f m^3, Potencia=%.1f W\n', data{21}, data{22}, data{23}, data{24}, data{25});
     fprintf(fileId, ' > Prop. Físicas (Satélite): Long=%.2f m, Área=%.2f m^2, Vol=%.6f m^3, Estándar U=%.2f U\n', data{34}, data{35}, data{36}, data{37});
     fprintf(fileId, ' > Masa Satélite: Total=%.2f kg (Seca=%.2f kg, Combustible=%.2f kg)\n', data{28}, data{26}, data{27});
-    fprintf(fileId, ' > Mantenimiento: %d impulsos, Delta-V Total %.1f m/s\n\n', data{30}, data{31});
+    fprintf(fileId, ' > Mantenimiento: %d maniobras, Delta-V Total %.1f m/s\n', data{30}, data{31});
 end
 fprintf(fileId, '\n==========================================================\n');
 fprintf(fileId, ' LISTADO DE TODAS LAS CONFIGURACIONES VÁLIDAS\n');
@@ -41,7 +41,7 @@ for rowIndex = 1:height(resultsTable)
     row = table2cell(resultsTable(rowIndex,:));
     if ~row{1}, continue; end
     viableCount = viableCount + 1;
-    fprintf(fileId, '--- Solución #%d ---\n', viableCount);
+    fprintf(fileId, '\n--- Solución #%d ---\n', viableCount);
     fprintf(fileId, 'Masa Constelación: %.2f kg | Masa Satélite Total: %.2f kg (Seca: %.2f kg, Comb: %.2f kg)\n', row{29}, row{28}, row{26}, row{27});
     fprintf(fileId, ' > Configuración: %d Sat, %d Tel, %d Dets | ID Detector: %d | Telescopio: %s\n', row{2}, row{3}, row{4}, row{5}, row{6});
     fprintf(fileId, ' > Órbita: %.0f km alt, %.2f° inc (SSO), LTAN %d h, Desfase Anom. %.1f°\n', row{7}, row{14}, row{15}, row{16});

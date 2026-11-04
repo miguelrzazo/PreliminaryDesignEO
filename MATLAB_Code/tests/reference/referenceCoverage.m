@@ -21,7 +21,7 @@ for h = 1:length(alturas_orbitales)
         end
         max_swath_by_fov = 2 * height * tand(effective_fov_limit / 2);
         max_swath_by_detector = max_detectores * GSD * current_Npix / 1000; % [km]
-        
+
         if swath > max_swath_by_fov || swath > max_swath_by_detector
             coverage_days(h,s) = NaN;
             continue;

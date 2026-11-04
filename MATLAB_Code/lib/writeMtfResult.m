@@ -11,10 +11,10 @@ figureHandleCleanup = onCleanup(@() closeStudyFigure(figureHandle));
 imageHandle = imagesc(pupilDiameters_mm, altitudes_km, mtfGrid);
 
 set(imageHandle, 'AlphaData', ~isnan(mtfGrid));
-set(gca, 'Color', [1 1 1]); 
+set(gca, 'Color', [1 1 1]);
 
 colormap(parula);
-clim([mtfRequirement max(0.35,mtfRequirement+0.1)]); 
+clim([mtfRequirement max(0.35,mtfRequirement+0.1)]);
 
 axis xy;
 

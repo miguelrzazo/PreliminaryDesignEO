@@ -29,7 +29,7 @@ velocidades_diarias = zeros(dias_simulacion, 1);
 for dia = 1:dias_simulacion
     estacion = asignar_estacion(dia);
     probabilidades = PROBABILIDADES_ESTACION(estacion);
-    
+
     % Generar condición meteorológica según probabilidades
     rand_val = rand() * 100;
     if rand_val <= probabilidades(1)
@@ -41,11 +41,11 @@ for dia = 1:dias_simulacion
     else
         condicion = condiciones_nombres{4};
     end
-    
+
     % Generar velocidad según la condición
     rango_velocidad = VELOCIDADES(condicion);
     velocidad = rango_velocidad(1) + rand() * (rango_velocidad(2) - rango_velocidad(1));
-    
+
     condiciones_diarias{dia} = condicion;
     velocidades_diarias(dia) = velocidad;
 end
@@ -78,4 +78,3 @@ function estacion = asignar_estacion(dia)
         estacion = 'Invierno';
     end
 end
-
