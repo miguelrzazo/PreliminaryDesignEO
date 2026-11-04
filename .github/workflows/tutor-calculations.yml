@@ -2,6 +2,9 @@ name: Tutor review calculations
 on:
   push:
     branches: [fix/tutor-review-calculations]
+    paths:
+      - 'MATLAB_Code/**'
+      - '.github/workflows/tutor-calculations.yml'
 permissions:
   contents: read
 concurrency:
@@ -20,9 +23,12 @@ jobs:
       - uses: matlab-actions/run-command@v3
         with:
           command: addpath('MATLAB_Code'); review_calculations
+      - name: Package calculation outputs
+        if: always()
+        run: tar -czf tutor-review-calculations.tar.gz review-results
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: tutor-review-calculations
-          path: review-results/
+          path: tutor-review-calculations.tar.gz
           if-no-files-found: error

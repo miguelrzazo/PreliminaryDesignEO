@@ -30,9 +30,9 @@ fprintf('--- Reference at %.0f km ---\n', h_ref);
 [i_ref, omega_nodal_ref, dotOmega_ref, e_ref] = ...
     rgt_rates(h_ref*1e3, mu, R_E, J2, J3, omega_sol);
 Tn_ref = 2*pi / omega_nodal_ref;
-fprintf('e_frozen(630 km)   = %.8f\n', e_ref);
-fprintf('i_SSO(630 km)      = %.2f deg\n', i_ref);
-fprintf('T_nodal(630 km)     = %.2f s\n', Tn_ref);
+fprintf('e_frozen(%.0f km) = %.8f\n', h_ref, e_ref);
+fprintf('i_SSO(%.0f km) = %.2f deg\n', h_ref, i_ref);
+fprintf('T_nodal(%.0f km) = %.2f s\n', h_ref, Tn_ref);
 fprintf('omega_nodal/(omega_E-dotOmega) = %.4f\n', ...
     omega_nodal_ref / (omega_E - dotOmega_ref));
 fprintf('\n');

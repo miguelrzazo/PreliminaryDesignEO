@@ -88,17 +88,23 @@ for config_idx = 1:size(satellite_configs, 1)
                 
                 selected_swath_km = swaths_km(valid_swath_indices(1));
                 dias_cobertura = coverage_row(valid_swath_indices(1));
+
+                % Check the latitude assumption before ranking a design.
+                [selected_swath_km, dias_cobertura] = regionalSwath( ...
+                    h_km, N_sat, N_telescopes, swaths_km(valid_swath_indices), ...
+                    params);
+                if isnan(selected_swath_km), continue; end
                 
                 current_Npix = params.Npix_detectors(detector_idx);
-                num_detectores_necesarios = ceil(selected_swath_km / (GSD * current_Npix / 1000));
+                num_detectores_necesarios = max(N_telescopes, ceil(selected_swath_km / (GSD * current_Npix / 1000)));
 
                 % Read an integer number of pixels; cap available width by FoV.
                 pixels_per_telescope = ceil(selected_swath_km * 1000 / (GSD * N_telescopes));
-                selected_swath_km = N_telescopes * pixels_per_telescope * GSD / 1000;
+                acquired_swath_km = N_telescopes * pixels_per_telescope * GSD / 1000;
                 swath_real_sistema_km = min( ...
                     num_detectores_necesarios * GSD * current_Npix / 1000, ...
                     2 * h_km * tand(N_telescopes * params.fov_limit(telescopio_idx) / 2));
-                if selected_swath_km > swath_real_sistema_km, continue; end
+                if acquired_swath_km > swath_real_sistema_km, continue; end
                 excedente_swath_km = swath_real_sistema_km - selected_swath_km;
                 excedente_swath_porc = (excedente_swath_km / selected_swath_km) * 100;
                 
@@ -144,7 +150,7 @@ for config_idx = 1:size(satellite_configs, 1)
                     masa_seca, masa_comb, masa_total_satelite, masa_total_constelacion, ...
                     num_impulsos, delta_v, ...
                     masa_seca_TM, masa_seca_SEOSAT, ...
-                    L_sat, S_sat, V_sat, U_sat
+                    L_sat, S_sat, V_sat, U_sat, acquired_swath_km
                 };
                 
                 results_data(end+1, :) = solution_data;
@@ -201,7 +207,7 @@ for config_idx = 1:size(satellite_configs, 1)
                     NaN, NaN, NaN, NaN, NaN, ...
                     masa_seca, masa_comb, masa_total_satelite, masa_total_satelite * N_sat, ...
                     num_impulsos, delta_v, masa_seca_TM, masa_seca_SEOSAT, ...
-                    L_sat, S_sat, V_sat, U_sat};
+                    L_sat, S_sat, V_sat, U_sat, NaN};
                 results_data(end+1, :) = solution_data;
             end
         end
@@ -234,7 +240,7 @@ headers = {
     'Masa_Seca_Satelite_kg', 'Masa_Combustible_kg', 'Masa_Total_Satelite_kg', 'Masa_Total_Constelacion_kg', ...
     'Num_Impulsos_Mantenimiento', 'DeltaV_Total_ms', ...
     'Masa_Seca_TM_kg', 'Masa_Seca_SEOSAT_kg', ...
-    'Longitud_Satelite_m', 'Area_Satelite_m2', 'Volumen_Satelite_m3', 'Estandar_U'
+    'Longitud_Satelite_m', 'Area_Satelite_m2', 'Volumen_Satelite_m3', 'Estandar_U', 'Swath_Adquirido_km'
 };
 
 results_table = cell2table(results_data, 'VariableNames', headers);
@@ -293,6 +299,37 @@ fprintf('Reporte TXT detallado guardado en: %s\n', txt_filename);
 fprintf('\nIniciando la generación de gráficas de desglose de masa...\n');
 GenerateMassPlots(results_table);
 fprintf('\nAnálisis finalizado.\n');
+end
+
+function [width, revisit] = regionalSwath(h_km, satellites, telescopes, widths, params)
+    GSD = params.GSD; limit = params.Cov_Requirement;
+    persistent cache
+    if isempty(cache), cache = containers.Map('KeyType','char','ValueType','double'); end
+    a = 6378.137e3+h_km*1000;
+    n = sqrt(3.986004418e14/a^3);
+    sun = 2*pi/(365.2421897*86400);
+    inc = acos(-sun/(1.5*n*1.082629989052e-3*(6378.137e3/a)^2));
+    width = NaN; revisit = NaN;
+    for candidate = widths(:).'
+        acquired = telescopes*ceil(candidate*1000/(GSD*telescopes))*GSD/1000;
+        key = sprintf('%.17g_', [h_km,satellites,acquired,limit,params.solapamiento,params.cobertura_nubes]);
+        if isKey(cache,key)
+            worst = cache(key);
+        else
+            worst = 0;
+            psi = atand((1-params.solapamiento)*acquired/(2*h_km));
+            for latitude = 25:2:49
+                days = RevisitCalc([a,0,inc,0,0],latitude,1,0,satellites,1,0,1,0,[1,limit],psi)/(1-params.cobertura_nubes);
+                assert(isfinite(days) && days > 0, 'Invalid regional revisit.');
+                worst = max(worst,days);
+                if worst > limit, break; end
+            end
+            cache(key) = worst;
+        end
+        if worst <= limit
+            width = candidate; revisit = worst; return;
+        end
+    end
 end
 
 function [total_mass, fuel_mass, num_impulses, total_delta_v] = cachedMasaTotal(cache, h_km, masa_seca, area_sat, lower_factor, upper_factor)

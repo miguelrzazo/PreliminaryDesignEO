@@ -1,4 +1,5 @@
 function GenerateMassPlots(results_table)
+if strcmp(getenv('TFG_SKIP_PLOTS'), '1'), return; end
 % GenerateMassPlots: Crea gráficos de masa para las configuraciones viables.
 %
 % Descripción:

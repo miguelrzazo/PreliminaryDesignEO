@@ -1,3 +1,4 @@
+function result = Deorbit(design, output_dir)
 %% SIMULACION DE CICLO DE VIDA ORBITAL
 %
 % Descripcion:
@@ -11,22 +12,28 @@
 %   - Figura 2: Comparacion entre decaimiento natural y deorbitado activo.
 %               
 
-clear; clc; close all;
+if nargin < 1
+    design = struct('Altura_km',630,'Masa_Seca_Satelite_kg',2.39, ...
+        'Area_Satelite_m2',.097,'Num_Satelites',2);
+    [~,design.Masa_Combustible_kg] = calcularMasaTotal(630,2.39,.097);
+end
+if nargin < 2, output_dir = fullfile(pwd,'review-results','EndOfLife'); end
+if ~exist(output_dir,'dir'), mkdir(output_dir); end
 
 %% ========================================================================
 %  PARAMETROS INICIALES
 %  ========================================================================
 
 % --- Parametros de la Mision y Orbita ---
-h0_km = 630;            % Altitud orbital inicial y objetivo (km)
+h0_km = design.Altura_km;            % Altitud orbital inicial y objetivo (km)
 mission_duration_years = 8; % Duracion de la mision (años)
 decay_percentage_drop = 2.0;  % Porcentaje de decaimiento para activar impulso (%)
 h_reentry_km = 100;      % Altitud a la que se considera reentrada/desintegracion (km)
 deorbit_time_limit_days = 365; % Requisito de fin de mision
 
 % --- Parametros del Satelite ---
-masa_seca_kg = 2.39;    % Masa seca del satelite (kg)
-Area_m2 = 0.097;        % Area transversal efectiva para resistencia aerodinamica (m^2)
+masa_seca_kg = design.Masa_Seca_Satelite_kg;    % Masa seca del satelite (kg)
+Area_m2 = 1.2*design.Area_Satelite_m2;        % Area transversal efectiva para resistencia aerodinamica (m^2)
 Cd = 2.5;               % Coeficiente de resistencia aerodinamica (adimensional)
 Isp_s = 220;            % Impulso especifico asumido en el modelo de masa (s)
 
@@ -36,26 +43,18 @@ Isp_s = 220;            % Impulso especifico asumido en el modelo de masa (s)
 %  ========================================================================
 mu = 3.986004418e14; R_earth_m = 6378e3; g0 = 9.80665;
 h0_m = h0_km * 1e3;
+h_reset_m = 1.02*h0_m;
+post_mission_horizon_s = 100*365.25*86400;
 h_umbral_m = h0_km * (1 - decay_percentage_drop / 100) * 1e3;
 mission_duration_s = mission_duration_years * 365.25 * 24 * 3600;
-hist_tiempo_s = [0]; hist_altitud_m = [h0_m];
-t_actual_s = 0; h_actual_m = h0_m; masa_actual_kg = masa_seca_kg;
+hist_tiempo_s = [0]; hist_altitud_m = [h_reset_m];
+t_actual_s = 0; h_actual_m = h_reset_m; masa_actual_kg = masa_seca_kg;
 total_delta_v_mps = 0; num_impulsos = 0;
 
 %% ========================================================================
 %  1. PRE-CALCULO DEL COMBUSTIBLE PARA MANTENIMIENTO
 %  ========================================================================
-t_sim = 0; h_sim = h0_m; dv_sim = 0;
-while t_sim < mission_duration_s
-    if h_sim <= h_umbral_m
-        r1 = R_earth_m + h_sim; r2 = R_earth_m + h0_m;
-        dv_sim = dv_sim + hohmannDeltaV(r1, r2, mu); h_sim = h0_m;
-    end
-    a_sim = R_earth_m + h_sim;
-    h_sim = h_sim + decayODE(0, a_sim, R_earth_m, mu, Cd, Area_m2, masa_seca_kg) * 3600;
-    t_sim = t_sim + 3600;
-end
-fuel_mass_maintenance_kg = masa_seca_kg * (exp(dv_sim / (Isp_s * g0)) - 1) * 1.1;
+fuel_mass_maintenance_kg = design.Masa_Combustible_kg;
 masa_total_inicial_kg = masa_seca_kg + fuel_mass_maintenance_kg;
 masa_actual_kg = masa_total_inicial_kg;
 fprintf('Calculo preliminar:\n  - Masa total inicial: %.2f kg\n\n', masa_total_inicial_kg);
@@ -76,10 +75,10 @@ while t_actual_s < mission_duration_s
     if t_actual_s >= mission_duration_s; break; end
     num_impulsos = num_impulsos + 1;
     fprintf('Impulso #%d en t = %.2f a~nos. Altitud: %.1f km\n', num_impulsos, t_actual_s / (365.25*24*3600), h_actual_m/1000);
-    r1 = R_earth_m + h_actual_m; r2 = R_earth_m + h0_m;
+    r1 = R_earth_m + h_actual_m; r2 = R_earth_m + h_reset_m;
     dv_impulso = hohmannDeltaV(r1, r2, mu);
     masa_actual_kg = masa_actual_kg / exp(dv_impulso / (Isp_s * g0));
-    h_actual_m = h0_m;
+    h_actual_m = h_reset_m;
     hist_tiempo_s = [hist_tiempo_s; t_actual_s]; hist_altitud_m = [hist_altitud_m; h_actual_m];
 end
 fprintf('Simulacion de mision completada.\n\n');
@@ -95,7 +94,9 @@ options_reentry = odeset('Events', @(t,a) decayEvent(t, a, a_reentry_target), 'R
 fprintf('Simulando decaimiento natural (sin impulso)...\n');
 a_initial_natural = R_earth_m + hist_altitud_m(end);
 [t_reentry_sin_impulso, a_reentry_sin_impulso] = ode45(@(t,a) decayODE(t, a, R_earth_m, mu, Cd, Area_m2, masa_antes_impulso), ...
-                               [0, inf], a_initial_natural, options_reentry);
+                               [0, post_mission_horizon_s], a_initial_natural, options_reentry);
+assert(a_reentry_sin_impulso(end)-R_earth_m <= h_reentry_km*1000+1, ...
+    'Natural decay exceeds the 100-year integration horizon.');
 tiempo_natural_dias = t_reentry_sin_impulso(end) / (24 * 3600);
 fprintf('  - Reentrada natural estimada en %.2f dias (%.2f a~nos).\n\n', tiempo_natural_dias, tiempo_natural_dias/365.25);
 
@@ -109,7 +110,7 @@ for iter = 1:50
     r_perigeo_mid = R_earth_m + h_perigeo_mid_m;
     a_transfer_mid = 0.5 * (r_apogeo_deorbit + r_perigeo_mid);
     [t_mid, ~] = ode45(@(t,a) decayODE(t, a, R_earth_m, mu, Cd, Area_m2, masa_seca_kg), ...
-                       [0, inf], a_transfer_mid, options_reentry);
+                       [0, post_mission_horizon_s], a_transfer_mid, options_reentry);
     days_mid = t_mid(end) / (24 * 3600);
 
     if days_mid <= deorbit_time_limit_days
@@ -134,10 +135,24 @@ fprintf('  - Combustible reservado (10%% margen): %.3f kg\n', fuel_mass_deorbit_
 
 fprintf('Simulando reentrada con impulso...\n');
 [t_reentry_con_impulso, a_reentry_con_impulso] = ode45(@(t,a) decayODE(t, a, R_earth_m, mu, Cd, Area_m2, masa_seca_kg), ...
-                               [0, inf], a_transfer_deorbit, options_reentry);
+                               [0, post_mission_horizon_s], a_transfer_deorbit, options_reentry);
 tiempo_reentrada_dias = t_reentry_con_impulso(end) / (24 * 3600);
 fprintf('  - Reentrada estimada en %.2f dias.\n\n', tiempo_reentrada_dias);
 
+
+% The post-burn decay keeps the original circular-equivalent drag model:
+% it propagates the transfer semimajor axis, not an eccentric orbit.
+final_mass_kg = masa_seca_kg+fuel_mass_maintenance_kg+fuel_mass_deorbit_kg;
+result = table(h0_km,hist_altitud_m(end)/1000,num_impulsos, ...
+    tiempo_natural_dias,h_perigeo_deorbit_m/1000,dv_deorbit, ...
+    fuel_mass_maintenance_kg,fuel_mass_deorbit_kg,final_mass_kg, ...
+    final_mass_kg*design.Num_Satelites, ...
+    'VariableNames',{'NominalAltitude_km','EndAltitude_km','SimulatedMaintenanceBurns', ...
+    'NaturalDecay_days','DeorbitPerigee_km','DeorbitDeltaV_ms', ...
+    'MaintenanceFuel_kg','DeorbitFuel_kg','TotalSatelliteMass_kg','TotalConstellationMass_kg'});
+writetable(result,fullfile(output_dir,'end_of_life.csv'));
+assert(tiempo_reentrada_dias <= deorbit_time_limit_days+.1, 'Deorbit time exceeds the model limit.');
+if strcmp(getenv('TFG_SKIP_PLOTS'),'1'), return; end
 
 %% ========================================================================
 %  4. GENERACION DE GRAFICA PRINCIPAL (CICLO DE VIDA)
@@ -184,16 +199,14 @@ ylabel('Altitud (km)', 'FontSize', 14, 'Interpreter', 'latex');
 legend('Location', 'best', 'Interpreter', 'latex', 'FontSize', 12);
 hold off;
 
-script_dir = fileparts(mfilename('fullpath'));
-if isempty(script_dir)
-    script_dir = pwd;
-end
-output_deorbit = fullfile(script_dir, '..', 'Latex_Code', '5.Mission', 'deorbit.jpg');
+output_deorbit = fullfile(output_dir,'deorbit.jpg');
 exportgraphics(fig_deorbit, output_deorbit, 'Resolution', 300);
 
 %% ========================================================================
 %  FUNCIONES AUXILIARES
 %  ========================================================================
+end
+
 function dadt = decayODE(~, a, R_earth, mu, Cd, A, mass)
     h = a - R_earth; if h < 0; h = 0; end
     rho = getAtmosphericDensity(h);

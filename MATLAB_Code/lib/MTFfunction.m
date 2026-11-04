@@ -88,6 +88,7 @@ end
 %% Generar heatmap con paleta parula y límites optimizados
 assert(isequal(size(MTF_total), [numel(alturas_orbitales), numel(diametros_pupila)]), ...
     'MTF matrix size does not match altitude/diameter axes.');
+if ~strcmp(getenv('TFG_SKIP_PLOTS'), '1')
 fig = figure('Visible', 'off', 'Position', [100, 100, 900, 700]);
 h = imagesc(diametros_pupila, alturas_orbitales, MTF_total);
 
@@ -123,6 +124,8 @@ set(gca, 'XTick', xticks_vals, 'YTick', yticks_vals);
 saveas(fig, [filename_prefix '_heatmap.jpg']);
 exportgraphics(fig, [filename_prefix '_heatmap.pdf'], 'ContentType', 'image', 'Resolution', 300);
 close(fig);
+
+end
 
 %% Guardar datos en CSV
 % Crear tabla con nombres de filas y columnas

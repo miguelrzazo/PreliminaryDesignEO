@@ -90,6 +90,10 @@ end
 if nargout > 0, return; end
 output_dir = 'coverage';
 if ~exist(output_dir, 'dir'), mkdir(output_dir); end
+if strcmp(getenv('TFG_SKIP_PLOTS'), '1')
+    writematrix(coverage_days, fullfile(output_dir, sprintf('coverage_%s.csv', config_name)));
+    return;
+end
 fig = figure('Visible', 'off');
 custom_cmap = [1 1 1; parula(256)];
 colormap(custom_cmap);

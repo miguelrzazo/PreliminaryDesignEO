@@ -148,6 +148,7 @@ for config_idx = 1:size(configs, 1)
     end % Fin loop detectores
 
     % --- Generación de Gráficos para la configuración actual ---
+    if ~strcmp(getenv('TFG_SKIP_PLOTS'), '1')
     theoretical_fig = figure('Position', [100, 100, 900, 700], 'Visible', 'off');
     config_title_tex = sprintf('Configuracion: %d satelite(s), %d telescopio(s) por satelite', N_sat, N_telescopes);
 
@@ -258,6 +259,8 @@ for config_idx = 1:size(configs, 1)
             exportgraphics(refractivo_fig, [refractivo_plot_base '.pdf'], 'ContentType', 'vector');
         end
         close(refractivo_fig);
+    end
+
     end
 
     % --- Exportar resultados a CSV y TXT para la configuración actual ---

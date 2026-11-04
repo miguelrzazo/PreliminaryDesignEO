@@ -76,7 +76,7 @@ raan = alphaSun + (LTAN_target - 12) * 15;
 
 sats = [];
 trueAnomalySeparation = 360 / N;
-colors = [[0.8500, 0.3250, 0.0980]; [0.0, 0.4470, 0.7410]];
+colors = lines(N);
 for i = 1:N
     trueAnomaly = (i - 1) * trueAnomalySeparation;
     sats = [sats, satellite(sc, semiMajorAxis, eccentricity, inclination, ...
@@ -147,9 +147,10 @@ for t = 2:numel(timeVector)
     end
 end
 
-fprintf('RESULT Memory: capacity_GB=%.3f, peak_required_sat1_GB=%.6f, peak_required_sat2_GB=%.6f, overflow_GB=%.6f\n', ...
-    memoryPerSatellite_GB, max(unboundedMemoryState(1, :)), ...
-    max(unboundedMemoryState(2, :)), sum(overflow_GB));
+for i = 1:N
+    fprintf('RESULT Memory Sat %d: capacity_GB=%.3f, peak_required_GB=%.6f\n', ...
+        i, memoryPerSatellite_GB, max(unboundedMemoryState(i,:)));
+end
 if any(overflow_GB > 0)
     fprintf('RESULT Memory viability: NOT VIABLE.\n');
 else
