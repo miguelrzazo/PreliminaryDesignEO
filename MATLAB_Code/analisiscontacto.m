@@ -1,7 +1,16 @@
+function result = analisiscontacto(design, outputDir, propagator)
 %% Segmento Tierra: volumen de datos, contactos y enlace S
 % La generación de datos se calcula por satélite a partir de la longitud de
 % traza dentro de CONUS. La longitud se obtiene con segmentos geodésicos
 % recortados en la frontera de la región y una muestra temporal de 10 s.
+
+if nargin < 1
+    design = struct('Num_Satelites', 2, 'Num_Telescopios', 2, ...
+        'Altura_km', 630, 'Swath_Requerido_km', 190, 'GSD', 80);
+end
+if nargin < 2, outputDir = fullfile(pwd, 'review-results', 'Contacts'); end
+if nargin < 3, propagator = 'sgp4'; end
+if ~exist(outputDir, 'dir'), mkdir(outputDir); end
 
 startTime = datetime('28-Apr-2024 00:00:00', 'TimeZone', 'UTC');
 stopTime = startTime + days(7);
@@ -13,23 +22,24 @@ gsLon = -147.712;
 minElevation = 10;
 
 % Entradas de misión fijadas en los capítulos anteriores.
-N = 2;
-altitude = 630; % [km]
-earthRadius = 6371; % [km]
+N = design.Num_Satelites;
+altitude = design.Altura_km; % [km]
+earthRadius = 6378.137; % [km]
 semiMajorAxis = (earthRadius + altitude) * 1000;
-eccentricity = 0.001;
-inclination = 97.91; % [deg]
-argOfPeriapsis = 0;
+J2 = 1.08263e-3; J3 = -2.5327e-6; omegaSun = 1.991e-7;
+mu = 3.986004418e14;
+inclination = acosd(-2*semiMajorAxis^(7/2)*omegaSun / ...
+    (3*J2*(earthRadius*1000)^2*sqrt(mu)));
+eccentricity = -J3/(2*J2)*(earthRadius*1000/semiMajorAxis)*sind(inclination);
+argOfPeriapsis = 90;
 mu = 3.986004418e14;
 orbitalPeriod_s = 2 * pi * sqrt(semiMajorAxis^3 / mu);
 LTAN_target = 6; % [h]
 
 % Datos brutos de un flujo combinado por satélite.
-GSD = 80; % [m]
-nominalSwath_km = 190; % swath nominal combinado de los dos telescopios [km].
-% Es el swath nominal, no el efectivo (0,95*W = 180,5 km): el solape entre
-% pasadas genera datos reales, asi que para volumen de descarga contar el
-% ancho completo es lo conservador.
+GSD = design.GSD; % [m]
+nominalSwath_km = design.Swath_Requerido_km; % swath nominal combinado de los dos telescopios [km].
+% La lectura recorta cada telescopio al ancho adquirido; el solape genera datos.
 numBands = 3;
 bitsPerBand = 12;
 memoryPerSatellite_GB = 2;
@@ -38,13 +48,16 @@ memoryPerSatellite_GB = 2;
 conusBounds = struct('latMin', 25, 'latMax', 49, ...
     'lonMin', -125, 'lonMax', -66);
 
-% Capacidad de referencia para un enlace S de SmallSat. NASA indica tasas
-% de hasta aproximadamente 10 Mbps para S-band; no es una capacidad medida
-% de Fairbanks y se mantiene como hipótesis de dimensionado.
+% Tasa adoptada de 10 Mbps. NASA NENUG Rev. 4, tabla 7-2, documenta
+% 1 kbps--10 Mbps (FM/PCM) y hasta 20 Mbps (BPSK/OQPSK) para ASF AS1.
+% Es una capacidad de equipo; la disponibilidad del servicio se asume.
 sBandReferenceCapacity_Mbps = 10;
 
 bitsPerPixel = numBands * bitsPerBand;
-pixelsPerLine = nominalSwath_km * 1000 / GSD;
+activePixelsPerTelescope = ceil(nominalSwath_km * 1000 / ...
+    (GSD * design.Num_Telescopios));
+pixelsPerLine = design.Num_Telescopios * activePixelsPerTelescope;
+acquiredSwath_km = pixelsPerLine * GSD / 1000;
 
 %% Escenario, estación y satélites
 sc = satelliteScenario(startTime, stopTime, sampleTime);
@@ -67,7 +80,7 @@ for i = 1:N
     trueAnomaly = (i - 1) * trueAnomalySeparation;
     sats = [sats, satellite(sc, semiMajorAxis, eccentricity, inclination, ...
         raan, argOfPeriapsis, trueAnomaly, "Name", sprintf('Sat %d', i), ...
-        "OrbitPropagator", "two-body-keplerian")];
+        "OrbitPropagator", propagator)];
 end
 
 %% Contactos y generación de datos por satélite
@@ -143,8 +156,13 @@ else
 end
 
 %% Figura mínima de memoria y traza semanal
-scriptDir = fileparts(mfilename('fullpath'));
-outputDir = fullfile(scriptDir, '..', 'Latex_Code', '7.Segmento_Tierra');
+result = table((1:N).', dataVolume_GB, contactTime_s, minimumRate_Mbps, ...
+    max(unboundedMemoryState, [], 2), ...
+    'VariableNames', {'Satellite','Data_GB','Contact_s','MinimumRate_Mbps','PeakMemory_GB'});
+result.AcquiredSwath_km = repmat(acquiredSwath_km, N, 1);
+result.Propagator = repmat(string(propagator), N, 1);
+assert(all(isfinite(result{:,2:6}), 'all'), 'Non-finite contact result.');
+writetable(result, fullfile(outputDir, ['contacts_', char(propagator), '.csv']));
 elapsedDays = days(timeVector - startTime);
 figure('Name', 'Estado de memoria de satélites', 'Visible', 'off');
 hold on;
@@ -183,13 +201,12 @@ if exist('worldmap', 'file') == 2
     close(fig);
 end
 
+end
+
 %% Funciones auxiliares
 function [length_km, segmentLengths_km, lat, lon] = groundTrackLengthInMask(sat, timeVector, bounds)
-    position = zeros(3, numel(timeVector));
-    for k = 1:numel(timeVector)
-        position(:, k) = states(sat, timeVector(k), ...
-            'CoordinateFrame', 'geographic');
-    end
+    position = states(sat, 'CoordinateFrame', 'geographic');
+    assert(size(position, 2) == numel(timeVector), 'Unexpected state time grid.');
     lat = position(1, :);
     lon = position(2, :);
     segmentLengths_km = zeros(1, numel(timeVector) - 1);

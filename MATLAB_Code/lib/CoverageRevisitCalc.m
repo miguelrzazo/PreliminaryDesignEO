@@ -1,4 +1,10 @@
-function CoverageRevisitCalc(GSD, alturas_orbitales, swaths_km, Cov_Requirement, current_Npix, current_fov_limit, N_sat, N_telescopes, detector_id, telescope_name, solapamiento, cobertura_nubes, max_detectores)
+function coverage_days = CoverageRevisitCalc(GSD, alturas_orbitales, swaths_km, Cov_Requirement, current_Npix, current_fov_limit, N_sat, N_telescopes, detector_id, telescope_name, solapamiento, cobertura_nubes, max_detectores)
+
+% Detector and telescope limits do not change the revisit of a given swath.
+persistent revisit_cache
+if isempty(revisit_cache)
+    revisit_cache = containers.Map('KeyType', 'char', 'ValueType', 'double');
+end
 
 % --- Constantes y Parámetros Orbitales ---
 R_E = 6378.137e3; % Radio de la Tierra [m]
@@ -46,7 +52,7 @@ for h = 1:length(alturas_orbitales)
         % --- Parámetros Orbitales para SSO ---
         a = (R_E + height * 1000); % Semieje mayor [m]
         n = sqrt(mu_E / a^3); % Movimiento medio [rad/s]
-        cos_i = -SSO_nodal_rate * (a/R_E)^(7/2) / (1.5 * n * J2);
+        cos_i = -SSO_nodal_rate / (1.5 * n * J2 * (R_E/a)^2);
         if abs(cos_i) > 1
             coverage_days(h,s) = NaN; % SSO no posible a esta altura
             continue;
@@ -59,7 +65,13 @@ for h = 1:length(alturas_orbitales)
         % Se pasa a RevisitCalc como el parámetro de FoV equivalente.
         half_fov_angle = atand(effective_swath / (2 * height)); % psi [grados]
         try
-            maxRevisit = RevisitCalc(coes, lat, 1, 0, N_sat, 1, 0, 1, 0, dayLimit, half_fov_angle);
+            key = sprintf('%.17g_', [height, effective_swath, N_sat, dayLimit]);
+            if isKey(revisit_cache, key)
+                maxRevisit = revisit_cache(key);
+            else
+                maxRevisit = RevisitCalc(coes, lat, 1, 0, N_sat, 1, 0, 1, 0, dayLimit, half_fov_angle);
+                revisit_cache(key) = maxRevisit;
+            end
             % Penalización media del enunciado: cobertura_nubes = 1/6.
             final_revisit = maxRevisit / (1 - cobertura_nubes);
             if final_revisit > Cov_Requirement
@@ -69,12 +81,13 @@ for h = 1:length(alturas_orbitales)
             end
         catch ME
             fprintf('    RevisitCalc error h=%g km swath=%g km: %s\n', height, swath, ME.message);
-            coverage_days(h,s) = NaN;
+            rethrow(ME);
         end
     end
 end
 
 % --- Generación de Gráficos y Guardado de Datos ---
+if nargout > 0, return; end
 output_dir = 'coverage';
 if ~exist(output_dir, 'dir'), mkdir(output_dir); end
 fig = figure('Visible', 'off');

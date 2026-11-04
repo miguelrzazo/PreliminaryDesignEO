@@ -1,0 +1,32 @@
+name: Tutor review calculations
+on:
+  push:
+    branches: [fix/tutor-review-calculations]
+  pull_request:
+    paths:
+      - 'MATLAB_Code/**'
+      - '.github/workflows/tutor-calculations.yml'
+permissions:
+  contents: read
+concurrency:
+  group: tutor-calculations-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  calculate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: matlab-actions/setup-matlab@v2
+        with:
+          release: R2025b
+          products: Aerospace_Toolbox
+      - uses: matlab-actions/run-command@v3
+        with:
+          command: addpath('MATLAB_Code'); review_calculations
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tutor-review-calculations
+          path: review-results/
+          if-no-files-found: error

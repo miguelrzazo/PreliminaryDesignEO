@@ -186,7 +186,7 @@ for config_idx = 1:size(satellite_configs, 1)
                     N_pix_12(detector_id), fov_limit(telescope_id), N_sat, N_telescopes, ...
                     detector_id, telescope_names{telescope_id}, solapamiento, cobertura_nubes, max_detectores);
             catch ME
-                fprintf('    Error: %s\n', ME.message);
+                rethrow(ME);
             end
         end
     end

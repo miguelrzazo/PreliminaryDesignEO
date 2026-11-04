@@ -92,7 +92,13 @@ for config_idx = 1:size(satellite_configs, 1)
                 current_Npix = params.Npix_detectors(detector_idx);
                 num_detectores_necesarios = ceil(selected_swath_km / (GSD * current_Npix / 1000));
 
-                swath_real_sistema_km = num_detectores_necesarios * GSD * current_Npix / 1000;
+                % Read an integer number of pixels; cap available width by FoV.
+                pixels_per_telescope = ceil(selected_swath_km * 1000 / (GSD * N_telescopes));
+                selected_swath_km = N_telescopes * pixels_per_telescope * GSD / 1000;
+                swath_real_sistema_km = min( ...
+                    num_detectores_necesarios * GSD * current_Npix / 1000, ...
+                    2 * h_km * tand(N_telescopes * params.fov_limit(telescopio_idx) / 2));
+                if selected_swath_km > swath_real_sistema_km, continue; end
                 excedente_swath_km = swath_real_sistema_km - selected_swath_km;
                 excedente_swath_porc = (excedente_swath_km / selected_swath_km) * 100;
                 
