@@ -1,28 +1,26 @@
 function results = runGsdSensitivityStudy(config)
-%RUNGSDSENSITIVITYSTUDY Recompute the historical fixed-altitude samples.
-% Preserve sample-specific constellation masses and the explicitly configured
-% two-satellite display assumption. The input table is not overwritten by default.
+%RUNGSDSENSITIVITYSTUDY Resize the adopted optical architecture at fixed altitude.
 previousPath=path; pathCleanup=onCleanup(@() path(previousPath));
 addpath(fullfile(fileparts(mfilename('fullpath')),'lib'));
 outputDirectory=config.outputDirectory;
-sensitivityTable = readtable(config.inputFile);
-sensitivityTable = sortrows(sensitivityTable, 'GSD_m');
-for sampleIndex = 1:height(sensitivityTable)
-    massProperties = computeDryMass(sensitivityTable.Diametro_Pupila_mm(sampleIndex), ...
-        sensitivityTable.Num_Telescopios(sampleIndex));
-    mass = computeTotalMass(sensitivityTable.Altura_km(sampleIndex),massProperties.dryMass_kg,massProperties.satelliteArea_m2);
-    sensitivityTable.Masa_Seca_Satelite_kg(sampleIndex) = massProperties.dryMass_kg;
-    sensitivityTable.Masa_Combustible_kg(sampleIndex) = mass.fuelMass_kg;
-    sensitivityTable.Masa_Total_Constelacion_kg(sampleIndex) = sensitivityTable.Num_Satelites(sampleIndex) * mass.totalMass_kg;
+gsd = sort(config.groundSampleDistances_m(:));
+validateattributes(gsd,{'numeric'},{'vector','finite','positive','nonempty'});
+rows = cell(numel(gsd),15);
+for sampleIndex = 1:numel(gsd)
+    rows(sampleIndex,:) = sensitivitySample(config,gsd(sampleIndex));
 end
+sensitivityTable = cell2table(rows,'VariableNames',{'GSD_m','Num_Satelites', ...
+    'Num_Telescopios','Detectores_Necesarios','Altura_km','Diametro_Pupila_mm', ...
+    'Swath_Requerido_km','Masa_Seca_Satelite_kg','Masa_Combustible_kg', ...
+    'Masa_Total_Constelacion_kg','Tipo_Telescopio','MTF','SNR', ...
+    'Swath_Disponible_km','Cumple_Limite_Detectores_y_FoV'});
 results.config=config; results.summary=sensitivityTable;
 if ~config.writeOutputs, return; end
-if ~exist(config.outputDirectory,'dir'), mkdir(config.outputDirectory); end
-writetable(sensitivityTable,fullfile(config.outputDirectory,'GSD_sensitivity_summary_recomputed.csv'));
-if config.updateInputSummary, writetable(sensitivityTable,config.inputFile); end
+if ~exist(outputDirectory,'dir'), mkdir(outputDirectory); end
+writetable(sensitivityTable,fullfile(outputDirectory,'GSD_sensitivity_summary.csv'));
 groundSampleDistances_m = sensitivityTable.GSD_m;
-constellationDryMass_kg=config.displaySatelliteCount*sensitivityTable.Masa_Seca_Satelite_kg;
-constellationFuelMass_kg=config.displaySatelliteCount*sensitivityTable.Masa_Combustible_kg;
+constellationDryMass_kg=config.satelliteCount*sensitivityTable.Masa_Seca_Satelite_kg;
+constellationFuelMass_kg=config.satelliteCount*sensitivityTable.Masa_Combustible_kg;
 pupilDiameters_mm = sensitivityTable.Diametro_Pupila_mm;
 figureHandle = figure('Visible', 'off', 'Position', [100, 100, 900, 520]);
 yyaxis left;
@@ -46,9 +44,10 @@ title(sprintf('Sensibilidad al GSD a altura fija de %g km', sensitivityTable.Alt
     'Interpreter', 'latex', 'Color', 'k');
 legend([massBars(1), massBars(2), nominalLine, diameterLine], ...
     {'Masa seca', 'Combustible de mantenimiento', 'GSD nominal', 'Diametro pupila'}, ...
-    'Location', 'northwest', 'Interpreter', 'latex', 'TextColor', 'black', 'Color', 'white');
+    'Location', 'northeast', 'Interpreter', 'latex', 'TextColor', 'black', 'Color', 'white');
 grid on;
-xlim([25, 125]);
+xticks(groundSampleDistances_m);
+xlim([min(groundSampleDistances_m)-5, max(groundSampleDistances_m)+5]);
 figureHandle.Color = 'white';
 set(findall(figureHandle, 'Type', 'Axes'), 'Color', 'white', 'XColor', 'black');
 figureDirectory=config.figureDirectory;
@@ -58,4 +57,29 @@ exportgraphics(figureHandle, fullfile(outputDirectory, 'GSD_sensitivity.pdf'), '
 exportgraphics(figureHandle, fullfile(outputDirectory, 'GSD_sensitivity.jpg'), 'Resolution', 300);
 close(figureHandle);
 fprintf('GSD sensitivity data and plot saved at fixed altitude %.0f km.\n', sensitivityTable.Altura_km(1));
+end
+
+function row = sensitivitySample(config,gsd)
+% The limiting bands are CO2 at 2.01 um (MTF) and O2 at 0.76 um (SNR).
+diameters = config.pupilDiameters_mm;
+mtf = computeMtfGrid(2.01e-6,config.pixelSize_m,config.detectorMtf, ...
+    config.alignmentMtf,gsd,0,config.altitude_km,diameters,config.mtfRequirement);
+snr = computeSnrGrid(0.76e-6,config.pixelSize_m,config.quantumEfficiency, ...
+    config.transmittance,gsd,0,config.altitude_km,diameters,config.snrRequirement);
+index = find(isfinite(mtf) & isfinite(snr),1);
+assert(~isempty(index),'eo:GsdOptics','No aperture satisfies MTF and SNR for GSD %g m.',gsd);
+diameter = diameters(index);
+dry = computeDryMass(diameter,config.telescopesPerSatellite);
+mass = computeTotalMass(config.altitude_km,dry.dryMass_kg,dry.satelliteArea_m2);
+detectors = max(config.telescopesPerSatellite, ...
+    ceil(config.swath_km*1000/(gsd*config.detectorPixelCount)));
+availableSwath = min(detectors*gsd*config.detectorPixelCount/1000, ...
+    2*config.altitude_km*tand(config.telescopesPerSatellite*config.telescopeFov_deg/2));
+pixels = ceil(config.swath_km*1000/(gsd*config.telescopesPerSatellite));
+acquiredSwath = pixels*gsd*config.telescopesPerSatellite/1000;
+geometryFits = detectors<=config.maxDetectorCount && acquiredSwath<=availableSwath;
+row = {gsd,config.satelliteCount,config.telescopesPerSatellite,detectors, ...
+    config.altitude_km,diameter,config.swath_km,dry.dryMass_kg,mass.fuelMass_kg, ...
+    config.satelliteCount*mass.totalMass_kg,'Refractivo',mtf(index),snr(index), ...
+    availableSwath,geometryFits};
 end

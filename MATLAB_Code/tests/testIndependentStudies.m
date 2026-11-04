@@ -69,28 +69,30 @@ actual=computeOnboardMemory({[];[]},false(2,1),2,1);
 verifyEqual(testCase,actual.required_GB,zeros(2,1));
 verifyEqual(testCase,actual.overflow_GB,zeros(2,1));
 end
-function testSensitivityLeavesInputUnchanged(testCase)
-folder=tempname; mkdir(folder);
-cleanup=onCleanup(@() rmdir(folder,'s'));
-inputFile=fullfile(folder,'samples.csv');
-source=table([100;80],[90;28],[520;520],[2;2],[2;2],zeros(2,1),zeros(2,1),zeros(2,1), ...
-    'VariableNames',{'GSD_m','Diametro_Pupila_mm','Altura_km','Num_Telescopios', ...
-    'Num_Satelites','Masa_Seca_Satelite_kg','Masa_Combustible_kg','Masa_Total_Constelacion_kg'});
-writetable(source,inputFile); originalText=fileread(inputFile);
-config=struct('inputFile',inputFile,'outputDirectory',fullfile(folder,'output'), ...
-    'figureDirectory',fullfile(folder,'figures'),'displaySatelliteCount',2, ...
-    'updateInputSummary',false,'writeOutputs',false);
-actual=runGsdSensitivityStudy(config);
-verifyEqual(testCase,fileread(inputFile),originalText);
-verifyFalse(testCase,isfolder(config.outputDirectory));
-verifyEqual(testCase,actual.summary.GSD_m,[80;100]);
-for rowIndex=1:height(actual.summary)
-    [expectedDryMass,~,~,~,~,~,~,~,~,~,expectedArea]= ...
-        referenceDryMass(actual.summary.Diametro_Pupila_mm(rowIndex),2);
-    [expectedTotalMass,expectedFuelMass]=referenceTotalMass(520,expectedDryMass,expectedArea);
-    verifyEqual(testCase,actual.summary.Masa_Seca_Satelite_kg(rowIndex),expectedDryMass,'RelTol',1e-10);
-    verifyEqual(testCase,actual.summary.Masa_Combustible_kg(rowIndex),expectedFuelMass,'RelTol',1e-10);
-    verifyEqual(testCase,actual.summary.Masa_Total_Constelacion_kg(rowIndex),2*expectedTotalMass,'RelTol',1e-10);
+function testSensitivityNominalDesignAndOpticalLimits(testCase)
+root=fileparts(fileparts(fileparts(mfilename('fullpath'))));
+report=jsondecode(fileread(fullfile(root,'Compiled data','Mission','summary.json')));
+config=gsdSensitivityInputs(report.selected); config.writeOutputs=false;
+config.outputDirectory=fullfile(tempdir,'unused-gsd-output');
+actual=runGsdSensitivityStudy(config); samples=actual.summary;
+nominal=samples(samples.GSD_m==80,:);
+verifyEqual(testCase,samples.Altura_km,repmat(690,height(samples),1));
+verifyEqual(testCase,nominal.Diametro_Pupila_mm,report.selected.Diametro_Pupila_mm);
+verifyEqual(testCase,nominal.Masa_Total_Constelacion_kg, ...
+    report.selected.Masa_Total_Constelacion_kg,'RelTol',1e-10);
+verifyGreaterThanOrEqual(testCase,samples.MTF,config.mtfRequirement);
+verifyGreaterThanOrEqual(testCase,samples.SNR,config.snrRequirement);
+verifyLessThanOrEqual(testCase,diff(samples.Diametro_Pupila_mm),zeros(height(samples)-1,1));
+verifyEqual(testCase,samples.Detectores_Necesarios(1),4);
+verifyFalse(testCase,samples.Cumple_Limite_Detectores_y_FoV(1));
+verifyTrue(testCase,all(samples.Cumple_Limite_Detectores_y_FoV(2:end)));
+for sampleIndex=1:height(samples)
+    gsd=samples.GSD_m(sampleIndex); diameter=samples.Diametro_Pupila_mm(sampleIndex);
+    smallerMtf=computeMtfGrid(2.01e-6,config.pixelSize_m,config.detectorMtf, ...
+        config.alignmentMtf,gsd,0,690,diameter-1,0);
+    smallerSnr=computeSnrGrid(0.76e-6,config.pixelSize_m,config.quantumEfficiency, ...
+        config.transmittance,gsd,0,690,diameter-1,0);
+    verifyTrue(testCase,smallerMtf<config.mtfRequirement || smallerSnr<config.snrRequirement);
 end
 end
 function testPhasingOriginalSampling(testCase)

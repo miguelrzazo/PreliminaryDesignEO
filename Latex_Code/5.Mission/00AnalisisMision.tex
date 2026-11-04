@@ -356,13 +356,15 @@ Esta raíz indica una opción cercana de ajuste orbital. Los presupuestos de cob
 \section{Sensibilidad de la solución al GSD}
 \label{sec:gsd}
 
-Para evaluar la sensibilidad de la solución al requisito de GSD, se realiza un análisis auxiliar a altura fija de 520 km, variando el GSD requerido, representando el diámetro de pupila y la masa total resultantes frente al GSD.
+Para evaluar la sensibilidad de la solución al requisito de GSD, se realiza un análisis auxiliar a altura fija de 690 km, variando el GSD requerido y representando el diámetro de pupila y la masa total resultantes frente al GSD. Se mantienen dos satélites, dos telescopios refractivos por satélite y detectores H2RG, con un barrido requerido de 240 km. Para cada GSD se recalcula el diámetro mínimo, en pasos de 1 mm, que cumple los requisitos de MTF y SNR, junto con la masa seca y el combustible de mantenimiento.
 
-Al exigir un GSD más fino, el diámetro de pupila crece con rapidez y la masa total lo sigue, ya que la masa seca del instrumento escala con el cubo del diámetro. Relajar el requisito de GSD, por el contrario, abarata sensiblemente la constelación. Este análisis muestra la tendencia del escalado óptico para dos satélites y dos telescopios refractivos; no constituye una nueva optimización regional a 690 km para cada GSD.
+Al exigir un GSD más fino, el diámetro de pupila crece con rapidez y la masa total lo sigue, ya que la masa seca del instrumento escala con el cubo del diámetro. Relajar el requisito de GSD, por el contrario, reduce sensiblemente la masa de la constelación. Este análisis muestra la tendencia del escalado óptico de la arquitectura adoptada; no constituye una nueva optimización regional para cada GSD. Las masas representadas incluyen mantenimiento, sin la reserva de desorbitado.
+
+Para GSD de 60, 80 y 100 m se obtienen diámetros de 50, 38 y 30 mm y masas de constelación de 15,339, 6,784 y 3,338 kg, respectivamente. El punto de 80 m reproduce la solución seleccionada.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{4.Payload/GSD_sensitivity.pdf}
-    \caption{Análisis auxiliar a 520 km: sensibilidad de masa y diámetro de pupila frente al GSD. \\Fuente: Elaboración propia.}
+    \caption{Análisis auxiliar a 690 km: sensibilidad de masa y diámetro de pupila frente al GSD. \\Fuente: Elaboración propia.}
     \label{fig:gsd_sensitivity}
 \end{figure}
