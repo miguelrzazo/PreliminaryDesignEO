@@ -1,0 +1,2 @@
+NominalAltitude_km,EndAltitude_km,SimulatedMaintenanceBurns,NaturalDecay_days,DeorbitPerigee_km,DeorbitDeltaV_ms,MaintenanceFuel_kg,DeorbitFuel_kg,TotalSatelliteMass_kg,TotalConstellationMass_kg
+690,699.944708247484,2,3868.92315851452,391.433905312509,84.0673840528143,0.0503044085462734,0.146060824196779,3.53807003274305,7.0761400654861
