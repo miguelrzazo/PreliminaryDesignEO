@@ -9,9 +9,9 @@ validateattributes(h_selected, {'numeric'}, {'scalar','finite','positive'});
 
 mu = 3.986004418e14;
 R_E = 6378.137e3;
-J2 = 1.08263e-3;
+J2 = 1.082629989052e-3;
 J3 = -2.5327e-6;
-w_sol = 1.991e-7;
+w_sol = 2*pi/(365.2421897*86400);
 a = R_E + h_selected * 1000;
 n = sqrt(mu/a^3);
 inc = acos(-2*a^(7/2)*w_sol/(3*J2*R_E^2*sqrt(mu)));

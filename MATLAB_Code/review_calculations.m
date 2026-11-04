@@ -43,6 +43,7 @@ disp(best);
 design = table2struct(best);
 design.GSD = 80;
 calcularFrozen(design.Altura_km, fullfile(out, 'FrozenSelected'));
+calcularRGT(design.Altura_km, fullfile(out, 'RGT'));
 
 % Revisit each sampled latitude; 25 deg N is a hypothesis to check.
 latitudes = (25:2:49).';

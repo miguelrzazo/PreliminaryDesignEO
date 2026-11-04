@@ -36,7 +36,7 @@ end
 % --- Constantes físicas y orbitales
 R_E_m = 6378.137 * 1000;
 mu_E = 3.986004418e14;
-J2 = 1.08262668e-3;
+J2 = 1.082629989052e-3;
 
 % --- Configuración de salida
 output_dir = 'OptimumConfigs';
@@ -127,7 +127,7 @@ for config_idx = 1:size(satellite_configs, 1)
 
                 masa_total_constelacion = masa_total_satelite * N_sat;
                 a_m = (h_km * 1000) + R_E_m;
-                SSO_nodal_rate_rad_s = 2 * pi / (365.2422 * 86400);
+                SSO_nodal_rate_rad_s = 2 * pi / (365.2421897 * 86400);
                 cos_i = - (2 * SSO_nodal_rate_rad_s * a_m^(3.5)) / (3 * J2 * R_E_m^2 * sqrt(mu_E));
                 cos_i = min(max(cos_i, -1), 1);
                 inclinacion_deg = acosd(cos_i);

@@ -2,10 +2,6 @@ name: Tutor review calculations
 on:
   push:
     branches: [fix/tutor-review-calculations]
-  pull_request:
-    paths:
-      - 'MATLAB_Code/**'
-      - '.github/workflows/tutor-calculations.yml'
 permissions:
   contents: read
 concurrency:

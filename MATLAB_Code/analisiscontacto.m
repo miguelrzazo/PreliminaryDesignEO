@@ -26,14 +26,13 @@ N = design.Num_Satelites;
 altitude = design.Altura_km; % [km]
 earthRadius = 6378.137; % [km]
 semiMajorAxis = (earthRadius + altitude) * 1000;
-J2 = 1.08263e-3; J3 = -2.5327e-6; omegaSun = 1.991e-7;
+J2 = 1.082629989052e-3; J3 = -2.5327e-6;
+omegaSun = 2*pi/(365.2421897*86400);
 mu = 3.986004418e14;
 inclination = acosd(-2*semiMajorAxis^(7/2)*omegaSun / ...
     (3*J2*(earthRadius*1000)^2*sqrt(mu)));
 eccentricity = -J3/(2*J2)*(earthRadius*1000/semiMajorAxis)*sind(inclination);
 argOfPeriapsis = 90;
-mu = 3.986004418e14;
-orbitalPeriod_s = 2 * pi * sqrt(semiMajorAxis^3 / mu);
 LTAN_target = 6; % [h]
 
 % Datos brutos de un flujo combinado por satélite.
@@ -47,6 +46,8 @@ memoryPerSatellite_GB = 2;
 % Aproximación reproducible de la región continental de EE. UU.
 conusBounds = struct('latMin', 25, 'latMax', 49, ...
     'lonMin', -125, 'lonMax', -66);
+assert(clippedSegmentLength(30, 179.9, 30, -179.9, conusBounds) == 0, ...
+    'A date-line crossing must not create a CONUS acquisition.');
 
 % Tasa adoptada de 10 Mbps. NASA NENUG Rev. 4, tabla 7-2, documenta
 % 1 kbps--10 Mbps (FM/PCM) y hasta 20 Mbps (BPSK/OQPSK) para ASF AS1.
@@ -218,7 +219,7 @@ function [length_km, segmentLengths_km, lat, lon] = groundTrackLengthInMask(sat,
 end
 
 function length_km = clippedSegmentLength(lat1, lon1, lat2, lon2, bounds)
-    if any(~isfinite([lat1, lon1, lat2, lon2]))
+    if any(~isfinite([lat1, lon1, lat2, lon2])) || abs(lon2-lon1) > 180
         length_km = 0;
         return;
     end

@@ -1,12 +1,15 @@
 % calcularRGT.m - RGT exact altitudes for SSO orbits with J2
-clear; close all;
+function nearest = calcularRGT(h_ref, output_dir)
+if nargin < 1, h_ref = 630; end
+if nargin < 2, output_dir = fullfile(pwd, 'review-results', 'RGT'); end
+if ~exist(output_dir, 'dir'), mkdir(output_dir); end
 
 mu        = 3.986004418e14;
 R_E       = 6378.137e3;
-J2        = 1.08263e-3;
+J2        = 1.082629989052e-3;
 J3        = -2.5327e-6;
 omega_E   = 7.292115373194e-5; % Earth rotation [rad/s]
-omega_sol = 1.991e-7;           % Apparent solar motion [rad/s]
+omega_sol = 2*pi/(365.2421897*86400);           % Apparent solar motion [rad/s]
 T_sidereal = 2*pi/omega_E;      % Sidereal rotation period [s]
 
 h_vals  = 200:2:1000;  % km
@@ -23,8 +26,7 @@ for k = 1:n_h
     T_nodal(k) = 2*pi / omega_nodal(k);
 end
 
-fprintf('--- Reference at 630 km ---\n');
-h_ref = 630;
+fprintf('--- Reference at %.0f km ---\n', h_ref);
 [i_ref, omega_nodal_ref, dotOmega_ref, e_ref] = ...
     rgt_rates(h_ref*1e3, mu, R_E, J2, J3, omega_sol);
 Tn_ref = 2*pi / omega_nodal_ref;
@@ -84,7 +86,7 @@ end
 
 roots = sortrows(roots, 1);
 
-h_nearest = 630;
+h_nearest = h_ref;
 [~, idx] = min(abs(roots(:,1) - h_nearest));
 fprintf('\n--- Nearest to %.0f km ---\n', h_nearest);
 fprintf('h = %.3f km, i = %.2f deg, N = %d, D = %d, T_n = %.2f s\n', ...
@@ -120,8 +122,13 @@ ylabel('Deriva longitudinal por día sideral [km/día sideral]');
 title('Condición RGT para órbita SSO con J_2');
 grid on;
 set(gca, 'FontSize', 11);
-exportgraphics(gcf, 'RGT_residual.pdf', 'ContentType', 'vector');
+exportgraphics(gcf, fullfile(output_dir, 'RGT_residual.pdf'), 'ContentType', 'vector');
 fprintf('\nSaved RGT_residual.pdf\n');
+
+nearest = array2table(roots(idx,:), 'VariableNames', ...
+    {'Altitude_km','Inclination_deg','Orbits','Days','NodalPeriod_s','Ratio'});
+writetable(nearest, fullfile(output_dir, 'nearest_rgt.csv'));
+end
 
 function [inc, omega_nodal, dotOmega, e_frozen] = ...
         rgt_rates(h_m, mu, R_E, J2, J3, omega_sol)
