@@ -1,0 +1,186 @@
+{
+  "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+  "source_commit": "0fa3c4db02dc232c3c642403efa4a974eb9a81c1",
+  "selected": {
+    "Es_Viable": 1,
+    "Num_Satelites": 2,
+    "Num_Telescopios": 2,
+    "Detectores_Necesarios": 2,
+    "ID_Detector": 2,
+    "Tipo_Telescopio": "Refractivo",
+    "Altura_km": 690,
+    "Diametro_Pupila_mm": 38,
+    "Swath_Requerido_km": 240,
+    "Dias_Cobertura": 6.64195,
+    "Swath_Real_Sistema_km": 243.331233377682,
+    "Excedente_Swath_km": 3.33123337768166,
+    "Excedente_Swath_porc": 1.38801390736736,
+    "Inclinacion_SSO_deg": 98.1472649550129,
+    "LTAN_h": 6,
+    "Desfase_Anomalia_Verdadera_deg": 180,
+    "MTF_a_Nyquist_lambda2": 0.252525753867215,
+    "SNR_lambda3": 737.998946206156,
+    "Longitud_Focal_m": 0.15525,
+    "Relacion_Focal_f_num": 4.08552631578947,
+    "Masa_Instrumento_kg": 0.8354262,
+    "Longitud_Instrumento_m": 0.1235,
+    "Area_Instrumento_m2": 0.0160645,
+    "Volumen_Instrumento_m3": 0.0021845915,
+    "Potencia_Electrica_Instrumento_W": 0.5912458,
+    "Masa_Seca_Satelite_kg": 3.3417048,
+    "Masa_Combustible_kg": 0.0503044085462734,
+    "Masa_Total_Satelite_kg": 3.39200920854627,
+    "Masa_Total_Constelacion_kg": 6.78401841709255,
+    "Num_Impulsos_Mantenimiento": 2,
+    "DeltaV_Total_ms": 29.3247136169375,
+    "Masa_Seca_TM_kg": 1.64616,
+    "Masa_Seca_SEOSAT_kg": 2.8094464,
+    "Longitud_Satelite_m": 0.348428493952967,
+    "Area_Satelite_m2": 0.121402415398333,
+    "Volumen_Satelite_m3": 0.0423000607594937,
+    "Estandar_U": 42.3000607594937,
+    "Swath_Adquirido_km": 240
+  },
+  "reference_frozen": [
+    {
+      "MinEccentricity": 0.0010544283203644136,
+      "MaxEccentricity": 0.0010544283203644136,
+      "MinHeight_km": 630.6512119507845,
+      "MaxHeight_km": 636.5189045314426,
+      "MaxAscendingArcVariation_km": 5.867692580658058,
+      "MaxDescendingArcVariation_km": 5.867692580658058,
+      "MaxCombinedEnvelope_km": 5.867692580658058,
+      "MaxDeviationFromNominal_km": 6.518904531442558,
+      "NominalAltitude_km": 630,
+      "Case": "frozen"
+    },
+    {
+      "MinEccentricity": 0,
+      "MaxEccentricity": 0.0021088566126503876,
+      "MinHeight_km": 623.2616271163486,
+      "MaxHeight_km": 643.9084858906446,
+      "MaxAscendingArcVariation_km": 8.978659880085843,
+      "MaxDescendingArcVariation_km": 8.978660432062952,
+      "MaxCombinedEnvelope_km": 17.613386131927427,
+      "MaxDeviationFromNominal_km": 13.908485890644556,
+      "NominalAltitude_km": 630,
+      "Case": "circular"
+    }
+  ],
+  "selected_frozen": [
+    {
+      "MinEccentricity": 0.0010448573934173355,
+      "MaxEccentricity": 0.0010448573934173355,
+      "MinHeight_km": 690.6512752940151,
+      "MaxHeight_km": 696.5189416058464,
+      "MaxAscendingArcVariation_km": 5.867666311831272,
+      "MaxDescendingArcVariation_km": 5.867666311831272,
+      "MaxCombinedEnvelope_km": 5.867666311831272,
+      "MaxDeviationFromNominal_km": 6.518941605846408,
+      "NominalAltitude_km": 690,
+      "Case": "frozen"
+    },
+    {
+      "MinEccentricity": 0,
+      "MaxEccentricity": 0.0020897146889658296,
+      "MinHeight_km": 683.2660740548707,
+      "MaxHeight_km": 703.9041397890235,
+      "MaxAscendingArcVariation_km": 8.979815085424093,
+      "MaxDescendingArcVariation_km": 8.979818405295646,
+      "MaxCombinedEnvelope_km": 17.602174169938053,
+      "MaxDeviationFromNominal_km": 13.904139789023475,
+      "NominalAltitude_km": 690,
+      "Case": "circular"
+    }
+  ],
+  "rgt": {
+    "Altitude_km": 689.8307800292969,
+    "Inclination_deg": 98.14657764260086,
+    "Orbits": 394,
+    "Days": 27,
+    "NodalPeriod_s": 5920.81285489074,
+    "Ratio": 14.592592592592593
+  },
+  "end_of_life": {
+    "NominalAltitude_km": 690,
+    "EndAltitude_km": 699.9447082474837,
+    "SimulatedMaintenanceBurns": 2,
+    "NaturalDecay_days": 3868.923158514516,
+    "DeorbitPerigee_km": 391.43390531250856,
+    "DeorbitDeltaV_ms": 84.0673840528143,
+    "MaintenanceFuel_kg": 0.0503044085462734,
+    "DeorbitFuel_kg": 0.14606082419677852,
+    "TotalSatelliteMass_kg": 3.538070032743052,
+    "TotalConstellationMass_kg": 7.076140065486104
+  },
+  "latitudes_deg": [
+    25,
+    27,
+    29,
+    31,
+    33,
+    35,
+    37,
+    39,
+    41,
+    43,
+    45,
+    47,
+    49
+  ],
+  "revisit_days": [
+    4.223453998565674,
+    4.222532272338867,
+    4.165974140167236,
+    4.1669206619262695,
+    5.360223770141602,
+    5.361148357391357,
+    6.554483890533447,
+    6.002809047698975,
+    6.6419501304626465,
+    5.448522567749023,
+    4.255166053771973,
+    4.2542314529418945,
+    4.1340250968933105
+  ],
+  "keplerian": [
+    {
+      "Satellite": 1,
+      "Data_GB": 15.938843490404736,
+      "Contact_s": 25920,
+      "MinimumRate_Mbps": 4.9193961390138075,
+      "PeakMemory_GB": 1.36340880157178,
+      "AcquiredSwath_km": 240,
+      "Propagator": "two-body-keplerian"
+    },
+    {
+      "Satellite": 2,
+      "Data_GB": 15.524137127588402,
+      "Contact_s": 25940,
+      "MinimumRate_Mbps": 4.787706130327957,
+      "PeakMemory_GB": 1.3004208769189953,
+      "AcquiredSwath_km": 240,
+      "Propagator": "two-body-keplerian"
+    }
+  ],
+  "sgp4": [
+    {
+      "Satellite": 1,
+      "Data_GB": 16.15816102046585,
+      "Contact_s": 25780,
+      "MinimumRate_Mbps": 5.014169440020435,
+      "PeakMemory_GB": 1.2671462700532157,
+      "AcquiredSwath_km": 240,
+      "Propagator": "sgp4"
+    },
+    {
+      "Satellite": 2,
+      "Data_GB": 15.428942171431999,
+      "Contact_s": 25660,
+      "MinimumRate_Mbps": 4.810270357422291,
+      "PeakMemory_GB": 1.3894718251364118,
+      "AcquiredSwath_km": 240,
+      "Propagator": "sgp4"
+    }
+  ]
+}
