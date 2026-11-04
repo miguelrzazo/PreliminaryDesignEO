@@ -67,17 +67,21 @@
 \newpage
 \subsubsection{Simulación de puesta en orbita de transferencia}
 \addcontentsline{toc}{section}{Simulación de puesta en orbita de transferencia}
+El siguiente código conserva el ejemplo auxiliar de faseo a 630 km. No valida la secuencia de despliegue de la solución nominal a 690 km.
 \input{zzAnnex/MATLABCode/phasing orbit transfer}
 
 \newpage
 \subsubsection{Cálculo de órbita RGT con J2}
 \addcontentsline{toc}{section}{Cálculo de órbita RGT con J2}
 \lstinputlisting{../MATLAB_Code/calcularRGT.m}
+\lstinputlisting[caption={runRgtStudy.m}]{../MATLAB_Code/runRgtStudy.m}
 
 \newpage
 \subsubsection{Cálculo de órbita frozen}
 \addcontentsline{toc}{section}{Cálculo de órbita frozen}
 \lstinputlisting{../MATLAB_Code/calcularFrozen.m}
+\lstinputlisting[caption={runFrozenOrbitStudy.m}]{../MATLAB_Code/runFrozenOrbitStudy.m}
+\lstinputlisting[caption={computeAcquisitionHeightEnvelope.m}]{../MATLAB_Code/lib/computeAcquisitionHeightEnvelope.m}
 
 \newpage
 \subsubsection{Representación Gráfica de las bandas en el espectro electromagnético.}
@@ -85,6 +89,13 @@
 \input{zzAnnex/MATLABCode/grafico espectro bandas}
 
 \newpage
-\subsubsection{Modelado de atenuación de inclemencias meteorológicas}
-\addcontentsline{toc}{section}{Modelado de atenuación de inclemencias meteorológicas}
+\subsubsection{Simulación auxiliar del enlace en banda X}
+\addcontentsline{toc}{section}{Simulación auxiliar del enlace en banda X}
+Las tasas de descarga de este ejemplo se fijan por escenario meteorológico; no proceden de un presupuesto de enlace ni se utilizan para validar el enlace en banda S de la solución seleccionada.
 \input{zzAnnex/MATLABCode/Attenuation inclemencias}
+
+\newpage
+\subsubsection{Reproducción del análisis completo}
+\lstinputlisting{../MATLAB_Code/runThesisAnalysis.m}
+
+\lstinputlisting[caption={missionStudyInputs.m}]{../MATLAB_Code/missionStudyInputs.m}

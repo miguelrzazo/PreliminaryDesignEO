@@ -9,7 +9,7 @@ Se parte de la configuración seleccionada en los capítulos anteriores con la r
 
 El sensor \textit{pushbroom} genera una línea de imagen mientras avanza sobre la traza. Para cada satélite \(i\), el programa propaga la órbita durante una semana con un paso temporal de 10 s y suma la longitud de los segmentos de traza contenidos en la región de interés. La longitud resultante se denomina \(L_i\).
 
-El programa utiliza un escenario de \textit{Aerospace Toolbox} en MATLAB para propagar las órbitas durante siete días. La función obtiene la posición geográfica de cada satélite con un paso de 10 s. A continuación, el programa analiza cada par de posiciones consecutivas, recorta el segmento a la caja geográfica definida y calcula la distancia entre los extremos recortados mediante la fórmula de Haversine:
+El programa utiliza un escenario de \textit{Aerospace Toolbox} en MATLAB con el propagador SGP4 para propagar las órbitas durante siete días desde el 28 de abril de 2024. La función obtiene la posición geográfica de cada satélite con un paso de 10 s. A continuación, el programa analiza cada par de posiciones consecutivas, recorta el segmento a la caja geográfica definida y calcula la distancia entre los extremos recortados mediante la fórmula de Haversine:
 \begin{equation}
 d_{12}=2R_{\oplus}\arcsin\left(
 \sqrt{
@@ -29,14 +29,14 @@ N_{\text{líneas},i}=\frac{L_i}{\mathrm{GSD}},
 N_{\text{píxeles/línea}}=\frac{W}{\mathrm{GSD}},
 \label{eq:data_pixels}
 \end{equation}
-con \(W=190\) km, siendo el swath resultante. El volumen de datos brutos de cada satélite es
+expresando las longitudes en las mismas unidades, con \(W=240\) km. Se utilizan 1500 píxeles por telescopio, 3000 por línea combinada, y tres bandas espectrales. El volumen de datos brutos de cada satélite es
 \begin{equation}
 D_i=N_{\text{líneas},i}
 N_{\text{píxeles/línea}}
 N_{\text{bandas}}b_{\text{píxel}},
 \label{eq:data_per_satellite}
 \end{equation}
-donde \(b_{\text{píxel}}=12\) bits por banda. La expresión se convierte a gigabytes dividiendo entre \(8\times10^9\). Cada segmento de traza se contabiliza una vez, por lo que el volumen obtenido corresponde a los datos brutos generados durante la semana. Los datos de los dos telescopios se agrupan en un único flujo, ya que ambos forman el barrido combinado.
+donde \(b_{\text{píxel}}=12\) bits por banda. La expresión se convierte a gigabytes dividiendo entre \(8\times10^9\). Cada segmento de traza se contabiliza una vez, por lo que el volumen obtenido corresponde a los datos brutos generados durante la semana. No se descuenta el sexto de imágenes con nubes, puesto que también generan datos brutos. Los datos de los dos telescopios se agrupan en un único flujo, ya que ambos forman el barrido combinado.
 
 La simulación obtiene los siguientes volúmenes semanales:
 
@@ -48,10 +48,10 @@ La simulación obtiene los siguientes volúmenes semanales:
 \toprule
 Satélite & Datos brutos [GB] \\
 \midrule
-1 & 14,911 \\
-2 & 15,318 \\
+1 & 16,133 \\
+2 & 15,391 \\
 \midrule
-\textbf{Total} & \textbf{30,230} \\
+\textbf{Total} & \textbf{31,524} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -74,19 +74,13 @@ Se consideran cuatro alternativas para la estación de Tierra:
     \caption{Antena de la estación de Fairbanks, Alaska.\\ Fuente: \cite{ASF2025_NSN}.}
 \end{figure}
 
-\textbf{Fairbanks} se preselecciona para el análisis detallado, debido a su latitud elevada, favorable para maximizar los contactos de satélites en órbita polar. Además, se encuentra en territorio nacional de EE.UU. y dispone de antenas en bandas S, X y Ka, además de soporte y recursos para la transmisión de datos científicos y funciones de telemetría, seguimiento y telecomando \cite{ASF2025_NSN} \cite{noaa_fairbanks_2023}. La simulación de contactos permite validar esta elección.
+\textbf{Fairbanks} se preselecciona para el análisis detallado, debido a su latitud elevada, favorable para maximizar los contactos de satélites en órbita polar. Además, se encuentra en territorio nacional de EE.UU. y dispone de antenas en bandas S, X y Ka, además de soporte y recursos para la transmisión de datos científicos y funciones de telemetría, seguimiento y telecomando \cite{ASF2025_NSN} \cite{noaa_fairbanks_2023}. La simulación permite estimar los accesos geométricos a esa localización. Las instalaciones NOAA de Gilmore Valley y las antenas ASF son instalaciones distintas; sus capacidades no se intercambian en el modelo.
 
 \section{Simulación de los contactos con Fairbanks}
 
-El programa propaga los dos satélites durante una semana con el escenario creado en \textit{Aerospace Toolbox} para calcular el tiempo de contacto. La estación se modela en Fairbanks, con coordenadas \(64,84^\circ\mathrm{N}\) y \(-147,712^\circ\), y una elevación mínima de \(10^\circ\). El cálculo obtiene los intervalos de acceso de cada satélite por separado.
+El programa utiliza SGP4 y propaga los dos satélites durante una semana con el escenario creado en \textit{Aerospace Toolbox} para calcular el tiempo de contacto. La estación se modela en Fairbanks, con coordenadas \(64,84^\circ\mathrm{N}\) y \(-147,712^\circ\), y una elevación mínima de \(10^\circ\). El cálculo obtiene los intervalos de acceso de cada satélite por separado.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{7.Segmento_Tierra/analisis_contacto.jpg}
-    \caption{Escenario de simulación creado con \textit{Aerospace Toolbox}. \\Fuente: Elaboración Propia}
-\end{figure}
-
-El tiempo de contacto semanal es de \(21\,840\) s para el satélite 1 y de \(21\,900\) s para el satélite 2.
+El tiempo de contacto semanal es de \(25\,690\) s para el satélite 1 y de \(25\,640\) s para el satélite 2.
 
 \section{Tasa mínima de descarga}
 \label{sec:downlink}
@@ -96,7 +90,7 @@ Para cada satélite, el programa calcula la tasa mínima mediante
 R_{\min,i}=\frac{D_i}{T_{\mathrm{contacto},i}}.
 \label{eq:minimum_downlink_rate}
 \end{equation}
-El requisito del enlace es el mayor de los dos valores:
+En esta expresión se utiliza \(D_i\) en bits y \(T_{\mathrm{contacto},i}\) en segundos. El requisito del enlace es el mayor de los dos valores:
 \begin{equation}
 R_{\min}=\max\left(R_{\min,1},R_{\min,2}\right).
 \label{eq:mission_minimum_downlink_rate}
@@ -110,15 +104,15 @@ R_{\min}=\max\left(R_{\min,1},R_{\min,2}\right).
 \toprule
 Satélite & Datos [GB] & Contacto [s] & \(R_{\min}\) [Mbps] \\
 \midrule
-1 & 14,911 & 21\,840 & 5,462 \\
-2 & 15,318 & 21\,900 & 5,596 \\
+1 & 16,133 & 25\,690 & 5,024 \\
+2 & 15,391 & 25\,640 & 4,802 \\
 \midrule
-\textbf{Requisito del enlace} & & & \textbf{5,596} \\
+\textbf{Requisito del enlace} & & & \textbf{5,024} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Por tanto, el enlace debe proporcionar al menos \(5,596\) Mbps durante los contactos útiles del satélite más restrictivo. Esta tasa constituye el requisito mínimo de diseño y se calcula antes de seleccionar la banda de comunicaciones.
+Por tanto, el enlace debe proporcionar al menos \(5,024\) Mbps durante los contactos útiles del satélite más restrictivo. Esta tasa constituye el requisito mínimo de diseño y se calcula antes de seleccionar la banda de comunicaciones.
 
 \section{Selección de la banda de enlace}
 
@@ -141,28 +135,30 @@ Ka  & \(27\)--\(40\) GHz & \(100\)--\(3500\) Mbps \\
 \end{table}
 
 
-Se selecciona la banda S porque es la opción de menor frecuencia que cumple \(5,596\) Mbps. Esta decisión reduce la potencia eléctrica, la masa y el coste del sistema frente a una solución en banda X o Ka. La banda S también permite integrar los datos científicos con la telemetría y el telecomando mediante multiplexación temporal. La tasa de TM/TC es mucho menor que la tasa científica y no modifica el requisito calculado. Fairbanks dispone de antenas en banda S para este tipo de servicio \cite{ASF2025_NSN,noaa_fairbanks_2023}.
+Se selecciona la banda S como referencia para un enlace de 10 Mbps, superior al requisito de 5,024 Mbps. La guía de usuarios de la red NEN documenta para la antena ASF AS1, en Fairbanks, telemetría en banda S de hasta 10 Mbps con FM/PCM \cite[tabla 7-2]{nasa_nenug_rev4_2019}. Esta cifra corresponde a un modo de una instalación concreta; no es un máximo universal de la banda S ni acredita una tasa contratada para la estación NOAA modelada. La disponibilidad del servicio y el presupuesto de enlace quedan pendientes de la selección del equipo y del operador.
 
 \subsection{Velocidad adoptada del enlace}
 
-Se adopta una tasa nominal de \(10\) Mbps dentro del intervalo típico de la banda S. Esta tasa se fija después de calcular la tasa mínima:
+Se adopta una tasa nominal de \(10\) Mbps como hipótesis de dimensionado preliminar. Esta tasa se fija después de calcular la tasa mínima:
 \begin{equation}
 M_R=\frac{R_{\mathrm{adoptada}}}{R_{\min}}
-    =\frac{10}{5,596}\approx 1,79.
+    =\frac{10}{5,024}\approx 1,99.
 \label{eq:downlink_margin}
 \end{equation}
-La tasa adoptada supera en un 79\% la mínima exigida y permite transmitir los datos científicos, la telemetría y el telecomando durante los contactos disponibles.
+La tasa adoptada supera en un 99,0\% la mínima del balance científico semanal. Ese cociente no sustituye al margen radioeléctrico ni incluye pérdidas de protocolo, planificación de accesos o disponibilidad de la estación.
 
 \subsubsection{Gestión de la memoria de a bordo}
 
-Por último, se modela el estado de la memoria de cada satélite a lo largo del tiempo, considerando tanto la generación continua de datos como la descarga durante los accesos, verificando que la memoria no se sature. En caso de que algún satélite agote su capacidad de almacenamiento, se considera que la configuración no es viable. Mediante el escenario de \textit{Aerospace Toolbox} creado previamente, y utilizando la velocidad media de descarga calculada en el apartado \ref{sec:downlink}:
+Por último, se modela el estado de la memoria de cada satélite a lo largo del tiempo, considerando tanto la generación continua de datos como la descarga durante los accesos, verificando que la memoria no se sature. En caso de que algún satélite agote su capacidad de almacenamiento, se considera que la configuración no es viable. Mediante el escenario de \textit{Aerospace Toolbox} creado previamente, y utilizando la tasa adoptada de 10 Mbps durante los accesos:
 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\linewidth]{7.Segmento_Tierra/memoria.jpg}
+    \includegraphics[width=0.9\linewidth]{figures/memory.jpg}
     \caption{Evolución de la memoria a bordo durante una semana.}
     \label{fig:memoria_satelites}
 \end{figure}
 
-Se observa que, aunque existen periodos donde los satélites no tienen contacto con la estación durante varias horas, una memoria de apenas 2 GB es más que suficiente para almacenar estos datos. Convendría ampliar este límite a 4 GB o incluso más. Las tecnologías actuales de discos de estado sólido SSD permiten un almacenamiento muy superior a este sin una penalización significativa del peso o coste. Esto permitiría almacenar los datos en el caso de pérdidas de conexión temporales o periodos de mantenimiento en la estación de Tierra, dando así una mayor robustez a la misión.
+La ocupación máxima es de 1,286 GB en el satélite 1 y 1,327 GB en el satélite 2. Una memoria de 2 GB permite almacenar los datos en la semana simulada con descarga a 10 Mbps. La reserva frente a interrupciones más largas debe comprobarse con un calendario de contactos y fallos de servicio.
+
+Como comprobación de sensibilidad al propagador, el modelo kepleriano de dos cuerpos obtiene 15,950 y 15,524 GB, con tasas mínimas de 4,913 y 4,799 Mbps, respectivamente. Los valores adoptados en las tablas y en la memoria corresponden a SGP4 con las mismas condiciones iniciales. Esta comparación no representa una validación frente a efemérides observadas.
