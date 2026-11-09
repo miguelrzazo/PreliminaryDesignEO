@@ -1,16 +1,31 @@
+
+
 \documentclass[12pt]{report}
 \usepackage{iftex}
 \ifPDFTeX
   \input{glyphtounicode}
-  \pdfgentounicode=1
+    \pdfgentounicode=1
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{lmodern}
 \else
   \usepackage{fontspec}
-  \setmainfont{Latin Modern Roman}
-  \setsansfont{Latin Modern Sans}
-  \setmonofont{Latin Modern Mono}
+  % File names let TeXpresso resolve TeX Live fonts without system font lookup.
+  \setmainfont{lmroman10-regular.otf}[
+    Path=/usr/local/texlive/2026/texmf-dist/fonts/opentype/public/lm/,
+    BoldFont=lmroman10-bold.otf,
+    ItalicFont=lmroman10-italic.otf,
+    BoldItalicFont=lmroman10-bolditalic.otf]
+  \setsansfont{lmsans10-regular.otf}[
+    Path=/usr/local/texlive/2026/texmf-dist/fonts/opentype/public/lm/,
+    BoldFont=lmsans10-bold.otf,
+    ItalicFont=lmsans10-oblique.otf,
+    BoldItalicFont=lmsans10-boldoblique.otf]
+  \setmonofont{lmmono10-regular.otf}[
+    Path=/usr/local/texlive/2026/texmf-dist/fonts/opentype/public/lm/,
+    BoldFont=lmmonolt10-bold.otf,
+    ItalicFont=lmmono10-italic.otf,
+    BoldItalicFont=lmmonolt10-boldoblique.otf]
 \fi
 \usepackage{graphicx} % para insertar imagenes
 \usepackage[spanish,es-tabla]{babel}  % Traducción al español
@@ -38,7 +53,7 @@
 \usepackage[dvipsnames,table]{xcolor} % Para dar texto de colores al codigo
 \usepackage{csquotes} %% Para comillas español
 \usepackage{fancyvrb} % Mejor verbatim mas elegante
-% minted replaced by listings (minted v3.7 generates 150k+ PDF objects via pygmentize)
+% Source-code listings
 \usepackage{listings}
 \lstset{
   basicstyle=\tiny\ttfamily,
@@ -113,9 +128,6 @@
 \newpage
 
 
-%% Dedicatoria? Agradecimientos
-%Lista simbolos?
-%Palabras clave?
 
 
 \pagenumbering{arabic}

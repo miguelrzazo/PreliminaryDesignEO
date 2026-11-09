@@ -104,6 +104,8 @@ def _expand_range(raw: Any) -> tuple[float, ...]:
         start = float(raw["start"])
         stop = float(raw["stop"])
         step = float(raw["step"])
+        if step <= 0 or stop < start:
+            raise ValueError("Grid ranges require a positive step and stop >= start.")
         values: list[float] = []
         x = start
         while x <= stop + step * 1e-9:

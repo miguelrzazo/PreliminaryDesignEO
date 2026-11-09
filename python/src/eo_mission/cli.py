@@ -52,6 +52,29 @@ def _export(args: argparse.Namespace) -> None:
     print(f"Wrote {len(ranked)} ranked solutions to {target}")
 
 
+def _mission(args: argparse.Namespace) -> None:
+    from .mission import run_selected_mission
+
+    artifact = run_selected_mission(
+        args.config, args.output_dir, data_path=args.orekit_data,
+        html=not args.no_html, backend=args.backend,
+    )
+    print(f"Mission analysis: {artifact}")
+
+
+def _design(args: argparse.Namespace) -> None:
+    import json
+    from .design_optimizer import run_design
+    artifact = run_design(args.output_dir, master_path=args.master,
+        cloud_fraction=args.cloud_fraction, persistence=args.persistence,
+        mc_samples=args.mc_samples, seed=args.seed, duration_days=args.duration_days,
+        data_path=args.orekit_data, criterion=args.criterion)
+    result = json.loads(artifact.read_text())
+    print(f"Design search: {artifact}")
+    print(f"Status: {result['status']}; hardware candidates: {result['hardware_candidates']}")
+    print("Selected result reused: no")
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="EO mission portfolio pipeline")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -72,6 +95,26 @@ def build_parser() -> argparse.ArgumentParser:
     export.add_argument("--gsd", type=float)
     export.add_argument("--limit", type=int, default=50)
     export.set_defaults(func=_export)
+
+    design = sub.add_parser("design", help="recompute and optimize the full MATLAB trade space with Orekit/Markov coverage")
+    design.add_argument("--master", type=Path, help="authoritative MATLAB master.m inputs")
+    design.add_argument("--output-dir", type=Path, default=Path("python/outputs/design"))
+    design.add_argument("--orekit-data", type=Path)
+    design.add_argument("--cloud-fraction", type=float, help="default: the same cloud fraction as MATLAB master.m")
+    design.add_argument("--persistence", type=float, default=0.5)
+    design.add_argument("--mc-samples", type=int, default=200)
+    design.add_argument("--seed", type=int, default=12345)
+    design.add_argument("--duration-days", type=float, default=30)
+    design.add_argument("--criterion", choices=("matlab-mean", "p95"), default="matlab-mean")
+    design.set_defaults(func=_design)
+
+    mission = sub.add_parser("mission", help="propagate the selected thesis mission and compute timed accesses")
+    mission.add_argument("--config", type=Path, default=_default_config().with_name("selected_mission.yaml"))
+    mission.add_argument("--output-dir", type=Path, default=Path("python/outputs"))
+    mission.add_argument("--orekit-data", type=Path, help="Orekit data archive/directory (or OREKIT_DATA_PATH)")
+    mission.add_argument("--backend", choices=("orekit", "scipy-reference"), default="orekit")
+    mission.add_argument("--no-html", action="store_true", help="export numerical artifacts without the explorer")
+    mission.set_defaults(func=_mission)
     return parser
 
 

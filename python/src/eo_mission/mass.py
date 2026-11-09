@@ -1,249 +1,255 @@
-"""Dry mass and total mass models.
+"""Instrument scaling and eight-year maintenance budgets used by the thesis.
 
-Port of calcularMasaSeca.m and calcularMasaTotal.m.
+The numerical laws and constants follow MATLAB ``computeDryMass`` and
+``computeTotalMass``. Inputs are design quantities; no reference result files
+are read by these calculations.
 """
 from __future__ import annotations
 
+from functools import lru_cache
+from typing import Sequence
+
 import numpy as np
 import pandas as pd
-from scipy.integrate import solve_ivp
-from typing import Sequence
+from scipy.integrate import quad
 
 from .config import PipelineConfig
 from .tensor import LabeledTensor, as_array
 
-# ── Reference instrument data (from calcularMasaSeca.m) ───────────────────────
-_TM       = {"aperture": 400.0, "length": 1.0, "weight": 240.0, "power": 280.0}
-_SEOSAT   = {"aperture": 250.0, "length": 1.0, "weight": 100.0, "power": 100.0}
-
-# ── Propulsion constants (from calcularMasaTotal.m) ───────────────────────────
-_MU_EARTH = 3.986004418e14   # m³/s²
-_R_EARTH  = 6_378e3          # m
-_CD       = 2.5              # drag coefficient
-_ISP      = 220.0            # s (specific impulse, ECAPS HPGP nominal)
-_G0       = 9.80665          # m/s²
+_TM = {"aperture": 400.0, "length": 1.0, "weight": 240.0, "power": 280.0}
+_SEOSAT = {"aperture": 250.0, "length": 1.0, "weight": 100.0, "power": 100.0}
+_MU_EARTH = 3.986004418e14  # m³/s²
+_R_EARTH = 6_378e3  # m
+_CD = 2.5
+_ISP = 220.0  # s
+_G0 = 9.80665  # m/s²
 _MISSION_YEARS = 8
 _MISSION_DURATION = _MISSION_YEARS * 365.25 * 24 * 3600  # s
 
+# Vallado/Curtis piecewise exponential atmosphere, as used by MATLAB.
+_ATM_BASE_ALTITUDES_KM = np.array([
+    0, 25, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140,
+    150, 180, 200, 250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000,
+], dtype=float)
+_ATM_BASE_DENSITIES_KG_M3 = np.array([
+    1.225, 3.899e-2, 1.774e-2, 3.972e-3, 1.057e-3, 3.206e-4,
+    8.770e-5, 1.905e-5, 3.396e-6, 5.297e-7, 9.661e-8, 2.438e-8,
+    8.484e-9, 3.845e-9, 2.070e-9, 5.464e-10, 2.789e-10, 7.248e-11,
+    2.418e-11, 9.518e-12, 3.725e-12, 1.585e-12, 6.967e-13,
+    1.454e-13, 3.614e-14, 1.170e-14, 5.245e-15, 3.019e-15,
+])
+_ATM_SCALE_HEIGHTS_KM = np.array([
+    7.249, 6.349, 6.682, 7.554, 8.382, 7.714, 6.549, 5.799,
+    5.382, 5.877, 7.263, 9.473, 12.636, 16.149, 22.523, 29.740,
+    37.105, 45.546, 53.628, 53.298, 58.515, 60.828, 63.822,
+    71.835, 88.667, 124.64, 181.05, 268.00,
+])
+
+
+def _input_vector(values: Sequence[float] | float, name: str, *, nonnegative: bool = False) -> np.ndarray:
+    array = np.atleast_1d(np.asarray(values, dtype=float))
+    if array.ndim != 1 or not array.size or not np.isfinite(array).all():
+        raise ValueError(f"{name} must be a nonempty finite vector or scalar.")
+    invalid = array < 0 if nonnegative else array <= 0
+    if invalid.any():
+        qualifier = "nonnegative" if nonnegative else "positive"
+        raise ValueError(f"{name} must contain {qualifier} values.")
+    return array
+
 
 def _scale_instrument(aperture_i: float, ref: dict) -> tuple[float, float, float, float, float]:
-    """Scale a reference instrument to aperture_i (mm). Returns L, S, V, W, P."""
-    R = aperture_i / ref["aperture"]
-    L = R * ref["length"]
-    S = L ** 2
-    V = L ** 3
-    W = R ** 3 * ref["weight"]
-    P = R ** 3 * ref["power"]
-    return L, S, V, W, P
+    """Scale reference length, area, volume, mass and power at the pupil size."""
+    ratio = aperture_i / ref["aperture"]
+    small_aperture_factor = 2.0 if ratio <= 0.5 else 1.0
+    length = ratio * ref["length"]
+    return (
+        length, length**2, length**3,
+        ratio**3 * ref["weight"] * small_aperture_factor,
+        ratio**3 * ref["power"] * small_aperture_factor,
+    )
 
 
-def _atm_density(h_m: float) -> float:
-    """Piecewise exponential atmospheric density (kg/m³) up to 2000 km."""
-    h = h_m / 1e3  # km
-    table = [
-        (100,  6.7e3,  1.225),
-        (150,  9.5e3,  4.79e-7),
-        (200,  25.5e3, 1.81e-9),
-        (250,  37.5e3, 2.53e-10),
-        (300,  44.8e3, 6.24e-11),
-        (350,  50.3e3, 7.40e-9),
-        (400,  54.8e3, 6.98e-12),
-        (450,  58.2e3, 2.72e-12),
-        (500,  61.3e3, 1.13e-12),
-        (600,  70e3,   5e-13),
-        (700,  80e3,   1e-13),
-        (800,  90e3,   2e-14),
-        (900,  100e3,  5e-15),
-        (1000, 110e3,  1e-15),
-        (1500, 150e3,  1e-16),
-        (2000, 200e3,  1e-17),
-    ]
-    for h_limit, H, rho0 in table:
-        if h < h_limit:
-            h_base = h_limit - (table[table.index((h_limit, H, rho0))] and
-                                next((t[0] for t in reversed(table) if t[0] < h_limit), 0))
-            # Simpler: use integer multiples of 50 km as in MATLAB original
-            h_floor = (int(h) // 50) * 50
-            return rho0 * np.exp(-(h - h_floor) / (H / 1e3))
-    return 1e-18
+def _atm_density(h_m: float | np.ndarray) -> float | np.ndarray:
+    """Piecewise exponential density in kg/m³; input altitude is in metres.
+
+    Layer breakpoints use the new layer at equality, including its tabulated
+    base density. Negative heights clamp to sea level, and the final layer
+    extrapolates exponentially above 1000 km, matching the MATLAB model.
+    """
+    altitude_km = np.maximum(np.asarray(h_m, dtype=float) / 1000, 0)
+    layer = np.maximum(np.searchsorted(_ATM_BASE_ALTITUDES_KM, altitude_km, side="right") - 1, 0)
+    density = _ATM_BASE_DENSITIES_KG_M3[layer] * np.exp(
+        -(altitude_km - _ATM_BASE_ALTITUDES_KM[layer]) / _ATM_SCALE_HEIGHTS_KM[layer]
+    )
+    return float(density) if np.ndim(density) == 0 else density
 
 
 def _decay_ode(t: float, a: float, Cd: float, A: float, mass: float) -> float:
-    h = a - _R_EARTH
-    rho = _atm_density(h)
-    return -Cd * A * rho * np.sqrt(_MU_EARTH * a) / mass
+    return -Cd * A * _atm_density(a - _R_EARTH) * np.sqrt(_MU_EARTH * a) / mass
 
 
 def _hohmann_dv(r1: float, r2: float) -> float:
-    a_t = (r1 + r2) / 2
-    v1  = np.sqrt(_MU_EARTH / r1)
-    vp  = np.sqrt(_MU_EARTH * (2 / r1 - 1 / a_t))
-    v2  = np.sqrt(_MU_EARTH / r2)
-    va  = np.sqrt(_MU_EARTH * (2 / r2 - 1 / a_t))
-    return abs(vp - v1) + abs(v2 - va)
+    transfer_semimajor_axis = (r1 + r2) / 2
+    lower_speed = np.sqrt(_MU_EARTH / r1)
+    transfer_perigee_speed = np.sqrt(_MU_EARTH * (2 / r1 - 1 / transfer_semimajor_axis))
+    upper_speed = np.sqrt(_MU_EARTH / r2)
+    transfer_apogee_speed = np.sqrt(_MU_EARTH * (2 / r2 - 1 / transfer_semimajor_axis))
+    return float((transfer_perigee_speed - lower_speed) + (upper_speed - transfer_apogee_speed))
 
 
-def compute_dry_mass(
-    diameters_mm: Sequence[float],
-    n_telescopes: int = 1,
-) -> pd.DataFrame:
-    """Estimate dry mass for each pupil diameter.
+@lru_cache(maxsize=8192)
+def _decay_cycle_time(lower_altitude_m: float, upper_altitude_m: float,
+                      dry_mass_kg: float, drag_area_m2: float) -> float:
+    if upper_altitude_m <= lower_altitude_m or drag_area_m2 <= 0:
+        return float("inf")
+    # Mass/area is constant over each model cycle, so its atmospheric integral
+    # can be reused across pupil diameters without changing the decay law.
+    return dry_mass_kg / (_CD * drag_area_m2) * _atmospheric_decay_integral(
+        lower_altitude_m, upper_altitude_m
+    )
 
-    Parameters
-    ----------
-    diameters_mm : sequence of float
-        Pupil diameters (mm).
-    n_telescopes : int
-        Number of telescopes per satellite (1 or 2).
 
-    Returns
-    -------
-    pd.DataFrame
-        Columns: Diametro_pupila, Longitud_media, Sup_media, Peso_medio,
-        Volumen_medio, Potencia_media, Masa_seca (all SI/mm units as in MATLAB).
+@lru_cache(maxsize=512)
+def _atmospheric_decay_integral(lower_altitude_m: float, upper_altitude_m: float) -> float:
+    breakpoints_m = _ATM_BASE_ALTITUDES_KM * 1000
+    bounds = np.concatenate((
+        [lower_altitude_m],
+        breakpoints_m[(breakpoints_m > lower_altitude_m) & (breakpoints_m < upper_altitude_m)],
+        [upper_altitude_m],
+    ))
+
+    def integrand(altitude_m: float) -> float:
+        return 1 / (_atm_density(altitude_m) * np.sqrt(_MU_EARTH * (_R_EARTH + altitude_m)))
+
+    # Separate quadratures preserve the jumps in the tabulated atmosphere.
+    return float(sum(
+        quad(integrand, lower, upper, epsrel=1e-8, epsabs=1e-3)[0]
+        for lower, upper in zip(bounds[:-1], bounds[1:])
+    ))
+
+
+def _completed_cycle_count(cycle_time_s: float) -> int:
+    if not np.isfinite(cycle_time_s) or cycle_time_s <= 0:
+        return 0
+    # A manoeuvre exactly at the eight-year mission endpoint is not counted.
+    return int(np.floor((_MISSION_DURATION - np.spacing(_MISSION_DURATION)) / cycle_time_s))
+
+
+def compute_dry_mass(diameters_mm: Sequence[float], n_telescopes: int = 1) -> pd.DataFrame:
+    """Compute per-satellite dry mass and instrument/satellite dimensions.
+
+    Below or at half each reference aperture, reference mass and power include
+    a factor of two. Two telescopes multiply the adopted instrument mass by
+    1.5; they do not change the reference estimates or adopted dimensions.
+    Satellite dimensions use the thesis density of 79 kg/m³.
+
+    Legacy Spanish columns and explicit MATLAB-style SI-unit columns are both
+    returned. ``Peso_medio`` is the adopted instrument mass, in kilograms.
     """
-    d = np.asarray(diameters_mm, dtype=float)
-    n = len(d)
+    diameters = _input_vector(diameters_mm, "diameters_mm")
+    if n_telescopes not in (1, 2):
+        raise ValueError("n_telescopes must be 1 or 2.")
     rows = []
-    for di in d:
-        L_tm, S_tm, V_tm, W_tm, P_tm       = _scale_instrument(di, _TM)
-        L_se, S_se, V_se, W_se, P_se       = _scale_instrument(di, _SEOSAT)
-        L_m = (L_tm + L_se) / 2
-        S_m = (S_tm + S_se) / 2
-        V_m = (V_tm + V_se) / 2
-        W_m = (W_tm + W_se) / 2
-        P_m = (P_tm + P_se) / 2
-        masa_seca = 4 * W_m * (1.5 if n_telescopes == 2 else 1.0)
-        rows.append((di, L_m, S_m, W_m, V_m, P_m, masa_seca))
-
-    return pd.DataFrame(rows, columns=[
-        "Diametro_pupila", "Longitud_media", "Sup_media",
-        "Peso_medio", "Volumen_medio", "Potencia_media", "Masa_seca",
-    ])
+    for diameter in diameters:
+        tm = _scale_instrument(float(diameter), _TM)
+        seosat = _scale_instrument(float(diameter), _SEOSAT)
+        instrument_length, instrument_area, instrument_volume, instrument_mass, instrument_power = (
+            (left + right) / 2 for left, right in zip(tm, seosat)
+        )
+        if n_telescopes == 2:
+            instrument_mass *= 1.5
+        dry_mass = 4 * instrument_mass
+        satellite_volume = dry_mass / 79
+        satellite_length = satellite_volume ** (1 / 3)
+        satellite_area = satellite_length**2
+        rows.append({
+            "Diametro_pupila": diameter, "Longitud_media": instrument_length,
+            "Sup_media": instrument_area, "Peso_medio": instrument_mass,
+            "Volumen_medio": instrument_volume, "Potencia_media": instrument_power,
+            "Masa_seca": dry_mass, "dryMass_kg": dry_mass,
+            "thematicMapperDryMass_kg": 4 * tm[3], "seosatDryMass_kg": 4 * seosat[3],
+            "instrumentLength_m": instrument_length, "instrumentArea_m2": instrument_area,
+            "instrumentVolume_m3": instrument_volume, "instrumentMass_kg": instrument_mass,
+            "instrumentPower_W": instrument_power, "satelliteVolume_m3": satellite_volume,
+            "satelliteLength_m": satellite_length, "satelliteArea_m2": satellite_area,
+            "cubesatUnits": satellite_volume / 0.1**3,
+        })
+    return pd.DataFrame(rows)
 
 
 def dry_mass_array(diameters_mm: Sequence[float], n_telescopes: int = 1) -> np.ndarray:
-    """Return dry mass in kg for each configured diameter."""
     return compute_dry_mass(diameters_mm, n_telescopes=n_telescopes)["Masa_seca"].to_numpy()
 
 
 def compute_mass_tensor(config: PipelineConfig) -> LabeledTensor:
-    """Compute dry mass tensor over constellation and diameter.
+    """Per-constellation dry mass over the configured pupil diameter grid.
 
-    The mission ranking uses this as the fast portfolio-level mass proxy. The
-    slower station-keeping fuel model remains available through
-    ``compute_total_mass`` for detailed follow-up on selected candidates.
+    This tensor supplies the auxiliary portfolio's dry-mass proxy. The thesis
+    design optimizer must additionally calculate maintenance fuel for every
+    candidate altitude through ``compute_total_mass``.
     """
     diameters = as_array(config.mission.diameters_mm)
     values = np.full((len(config.constellations), len(diameters)), np.nan, dtype=float)
-    for c_i, constellation in enumerate(config.constellations):
-        per_satellite = dry_mass_array(
-            diameters, n_telescopes=constellation.telescopes_per_satellite
-        )
-        values[c_i] = per_satellite * constellation.satellites
+    for index, constellation in enumerate(config.constellations):
+        values[index] = dry_mass_array(diameters, constellation.telescopes_per_satellite) * constellation.satellites
     return LabeledTensor(
-        values=values,
-        axes=("constellation", "diameter"),
-        coords={
-            "constellation": np.asarray([c.id for c in config.constellations], dtype=object),
-            "diameter": diameters,
-        },
+        values=values, axes=("constellation", "diameter"),
+        coords={"constellation": np.asarray([case.id for case in config.constellations], dtype=object),
+                "diameter": diameters},
     )
 
 
 def compute_total_mass(
     altitudes_km: Sequence[float],
-    dry_mass_arr: Sequence[float],
-    cross_section_arr: Sequence[float],
+    dry_mass_arr: Sequence[float] | float,
+    cross_section_arr: Sequence[float] | float,
+    maintenance_lower_factor: float = 0.98,
+    maintenance_upper_factor: float = 1.02,
 ) -> pd.DataFrame:
-    """Compute propellant and total mass for orbital station-keeping over 8 years.
+    """Eight-year station-keeping budget from the original thesis model.
 
-    Uses Hohmann re-boost manoeuvres when altitude decays to 98% of target.
+    Each cycle decays from ``maintenance_upper_factor * h`` to
+    ``maintenance_lower_factor * h`` and returns with a complete two-burn
+    Hohmann manoeuvre. The atmosphere is integrated separately at every layer
+    boundary, drag area receives a 1.2 margin and fuel receives a 1.1 margin.
+    Dry mass and reference drag area may be scalar or match the altitude grid.
 
-    Parameters
-    ----------
-    altitudes_km : sequence of float
-        Target orbital altitudes (km).
-    dry_mass_arr : sequence of float
-        Dry mass per altitude (kg).
-    cross_section_arr : sequence of float
-        Frontal cross-section per altitude (m²); multiplied by 1.1 for margin.
-
-    Returns
-    -------
-    pd.DataFrame
-        Columns: Altura_km, Diametro_pupila (NaN), Masa_seca, Masa_combustible,
-        Num_impulsos, DeltaV_total, Masa_total.
+    ``Num_impulsos``/``impulseCounts`` count complete manoeuvres, not individual
+    burns. Results above 100,000 kg mask total and fuel mass with NaN while
+    preserving cycle counts and delta-V metadata. No deorbit reserve is added.
     """
-    altitudes_km = np.asarray(altitudes_km, dtype=float)
-    dry_mass_arr  = np.asarray(dry_mass_arr,  dtype=float)
-    cross_section_arr = np.asarray(cross_section_arr, dtype=float)
-
-    results = []
-    for h0_km, m_dry, A_ref in zip(altitudes_km, dry_mass_arr, cross_section_arr):
-        h_target = h0_km * 1e3
-        h_thresh = 0.98 * h_target
-        A = A_ref * 1.1
-
-        t_elapsed = 0.0
-        h_current = h_target
-        total_dv  = 0.0
-        impulses  = 0
-
-        while t_elapsed < _MISSION_DURATION:
-            a0 = _R_EARTH + h_current
-            a_thresh = _R_EARTH + h_thresh
-            t_remain = _MISSION_DURATION - t_elapsed
-
-            def event(t, a, a_thresh=a_thresh):
-                return a - a_thresh
-            event.terminal  = True
-            event.direction = -1
-
-            try:
-                sol = solve_ivp(
-                    lambda t, a: [_decay_ode(t, a[0], _CD, A, m_dry)],
-                    [0, t_remain],
-                    [a0],
-                    events=event,
-                    rtol=1e-6, atol=1e-8,
-                    max_step=86400,
-                    dense_output=False,
-                )
-                t_elapsed += sol.t[-1]
-                h_current  = sol.y[0, -1] - _R_EARTH
-            except Exception:
-                # Euler fallback
-                dt = 3600.0
-                a_cur = a0
-                while a_cur > a_thresh and t_elapsed < _MISSION_DURATION:
-                    da = _decay_ode(0, a_cur, _CD, A, m_dry)
-                    a_cur     += da * dt
-                    t_elapsed += dt
-                h_current = a_cur - _R_EARTH
-
-            if t_elapsed >= _MISSION_DURATION:
-                break
-
-            dv = _hohmann_dv(_R_EARTH + h_current, _R_EARTH + h_target)
-            total_dv  += dv
-            impulses  += 1
-            h_current  = h_target
-
-        fuel  = m_dry * (np.exp(total_dv / (_ISP * _G0)) - 1)
-        total = m_dry + fuel
-        if total > 1e5:
-            total = np.nan
-            fuel  = np.nan
-
-        results.append({
-            "Altura_km":       h0_km,
-            "Diametro_pupila": np.nan,
-            "Masa_seca":       m_dry,
-            "Masa_combustible": fuel,
-            "Num_impulsos":    impulses,
-            "DeltaV_total":    total_dv,
-            "Masa_total":      total,
+    altitudes = _input_vector(altitudes_km, "altitudes_km")
+    dry_masses = _input_vector(dry_mass_arr, "dry_mass_arr")
+    areas = _input_vector(cross_section_arr, "cross_section_arr", nonnegative=True)
+    if dry_masses.size not in (1, altitudes.size) or areas.size not in (1, altitudes.size):
+        raise ValueError("Dry mass and drag area must be scalar or match the altitude count.")
+    for name, value in (("maintenance_lower_factor", maintenance_lower_factor),
+                        ("maintenance_upper_factor", maintenance_upper_factor)):
+        if not np.isscalar(value) or not np.isfinite(value) or value <= 0:
+            raise ValueError(f"{name} must be a finite positive scalar.")
+    dry_masses = np.broadcast_to(dry_masses, altitudes.shape)
+    areas = np.broadcast_to(areas, altitudes.shape)
+    rows = []
+    for altitude_km, dry_mass, area in zip(altitudes, dry_masses, areas):
+        nominal_altitude_m = float(altitude_km * 1000)
+        lower_m = float(maintenance_lower_factor * nominal_altitude_m)
+        upper_m = float(maintenance_upper_factor * nominal_altitude_m)
+        cycle_time = _decay_cycle_time(lower_m, upper_m, float(dry_mass), float(area * 1.2))
+        cycles = _completed_cycle_count(cycle_time)
+        cycle_dv = _hohmann_dv(_R_EARTH + lower_m, _R_EARTH + upper_m)
+        total_dv = cycles * cycle_dv
+        with np.errstate(over="ignore", invalid="ignore"):
+            unmargined_fuel = float(dry_mass * (np.exp(total_dv / (_ISP * _G0)) - 1))
+        fuel = unmargined_fuel * 1.1
+        total_mass = dry_mass + fuel
+        if total_mass > 100000:
+            total_mass = fuel = unmargined_fuel = np.nan
+        rows.append({
+            "Altura_km": altitude_km, "Diametro_pupila": np.nan, "Masa_seca": dry_mass,
+            "Masa_combustible": fuel, "Num_impulsos": cycles, "DeltaV_total": total_dv,
+            "Masa_total": total_mass, "totalMass_kg": total_mass, "fuelMass_kg": fuel,
+            "impulseCounts": cycles, "totalDeltaV_m_s": total_dv,
+            "cycleTimes_s": cycle_time, "cycleDeltaV_m_s": cycle_dv,
+            "unmarginedFuelMass_kg": unmargined_fuel,
         })
-
-    return pd.DataFrame(results)
+    return pd.DataFrame(rows)

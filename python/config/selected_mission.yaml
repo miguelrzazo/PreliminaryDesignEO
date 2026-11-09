@@ -1,0 +1,29 @@
+# Design values are read from MATLAB's adopted design, not re-optimized here.
+selected_design: ../../Compiled data/Mission/selected_design.csv
+mission:
+  epoch: '2024-04-28T00:00:00Z'
+  duration_days: 30
+  step_s: 10
+  argument_of_perigee_deg: 90
+  overlap_fraction: 0.05
+  latitude_min_deg: 25
+  latitude_max_deg: 49
+  longitude_min_deg: -125
+  longitude_max_deg: -66
+  target_latitude_step_deg: 2
+  target_longitude_step_deg: 3
+  require_daylight: true
+  station_name: 'NOAA/Fairbanks geographic baseline'
+  station_latitude_deg: 64.84
+  station_longitude_deg: -147.712
+  station_altitude_m: 0
+  minimum_elevation_deg: 10
+  reference_rate_mbps: 10
+clouds:
+  enabled: true
+  cloud_fraction: 0.16666666666666666
+  persistence: 0.5
+  mc_samples: 200
+  seed: 12345
+  requirement_days: 7
+  sensitivity_fractions: [0.30]

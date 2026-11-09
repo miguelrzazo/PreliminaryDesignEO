@@ -50,7 +50,7 @@ def test_sso_inclination_typical_altitude():
 def test_sso_inclination_too_high_is_infeasible():
     """Very high altitudes cannot sustain SSO; inclination must be NaN.
 
-    The J2 sun-sync condition has a solution up to roughly 5000 km; above it the
+    The J2 sun-sync condition has a solution up to roughly 6000 km; above it the
     required nodal precession exceeds what J2 can supply and |cos_i| > 1.
     """
     inc = sso_inclination_deg(6000.0)
@@ -58,7 +58,7 @@ def test_sso_inclination_too_high_is_infeasible():
 
 
 def test_sso_inclination_increases_with_altitude():
-    """SSO inclination grows toward polar as altitude increases."""
+    """SSO inclination becomes more retrograde as altitude increases."""
     incs = [sso_inclination_deg(h) for h in (400.0, 600.0, 800.0)]
     incs = [i for i in incs if np.isfinite(i)]
     assert np.all(np.diff(incs) > 0)

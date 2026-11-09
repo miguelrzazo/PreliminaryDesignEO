@@ -23,7 +23,7 @@ _H_PLANCK    = 6.626e-34   # J·s
 _C_LIGHT     = 3.00e8      # m/s
 _R_EARTH     = 6_371e3     # m
 _MU_EARTH    = 3.986e14    # m³/s²  (gravitational parameter)
-_BANDWIDTH_M = 20e-3       # m  (20 nm spectral bandwidth)
+_BANDWIDTH_M = 20e-3       # historical name; value in micrometres (20 nm)
 _TDI         = 1           # TDI stages
 _RAD_REF     = 100         # W/(m²·sr·μm)  reference radiance
 

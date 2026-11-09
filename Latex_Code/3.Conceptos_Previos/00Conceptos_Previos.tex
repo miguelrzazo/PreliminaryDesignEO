@@ -648,7 +648,7 @@ En la práctica se suele referir el LTAN a valores redondeados (por ejemplo, 10:
 
 El argumento del perigeo describe la orientación de la elipse dentro del plano orbital. En las figuras se muestra como el ángulo entre el nodo ascendente y el punto de máximo acercamiento al cuerpo central (perigeo). Este parámetro determina dónde se producirán las distancias mínima y máxima de la órbita. Para satélites científicos en órbitas excéntricas, este valor se elige cuidadosamente para sobrevolar determinadas regiones a la altura mínima. 
 
-Debido a que en este estudio solo se aplicarán órbitas circulares ($e\approx0$), este parámetro carece de relevancia, pues no habrá un perigeo claramente definido.
+El barrido inicial se aproxima mediante órbitas circulares. La solución final se comprueba como órbita \textit{frozen} de pequeña excentricidad, en la que el argumento del perigeodetermina la geometría de observación.
 
 \subsection{Anomalía Verdadera \texorpdfstring{($\nu$)}{(nu)}}
 
@@ -813,17 +813,11 @@ variación entre órbitas, aunque permanecen variaciones residuales debidas a
 los términos no cancelados y a las perturbaciones que no se incluyen en esta
 aproximación.
 
-La oscilación de altura asociada es $\Delta h = 2 a e_{\textit{frozen}}$.
-Para que la condición \textit{frozen} sea relevante, $\Delta h$ debe ser menor que
-la banda muerta de mantenimiento orbital y el decaimiento atmosférico no
-debe dominar sobre las derivas seculares. A altitudes bajas la densidad
-crece y el decaimiento continuo del semieje mayor enmascara el beneficio
-de la condición \textit{frozen} \cite{vallado2013fundamentals}.
-
+La excursión entre apogeo y perigeo es $\Delta h=2ae_{\textit{frozen}}$. Su valor corresponde a la órbita completa. El beneficio para la observación se evalúa mediante la variación de altura dentro de los arcos que recorren la región de interés. La banda de mantenimiento se aplica al semieje mayor y se analiza por separado \cite{vallado2013fundamentals}.
 
 \subsection{Consideración de las perturbaciones orbitales}
 
 
-Para el presente trabajo no se modelan la presión de radiación solar ni el problema del tercer cuerpo. En una órbita circular de 630 km, la aceleración gravitatoria terrestre vale aproximadamente \(8{,}1\ \mathrm{m/s^2}\). La perturbación lunar queda del orden de \(10^{-6}\ \mathrm{m/s^2}\), y la solar en torno a \(10^{-7}\ \mathrm{m/s^2}\). La presión de radiación solar, para un satélite compacto con relación área/masa cercana a \(0{,}04\ \mathrm{m^2/kg}\), queda alrededor de \(10^{-7}\ \mathrm{m/s^2}\). Estas contribuciones son pequeñas frente al término central y no gobiernan la selección preliminar de altura \cite{vallado2013fundamentals}.
+Para el presente trabajo no se modelan la presión de radiación solar ni el problema del tercer cuerpo. En una órbita LEO, la aceleración gravitatoria terrestre vale aproximadamente \(8{,}0\ \mathrm{m/s^2}\). La perturbación lunar queda del orden de \(10^{-6}\ \mathrm{m/s^2}\), y la solar en torno a \(10^{-7}\ \mathrm{m/s^2}\). La presión de radiación solar, para un satélite compacto con relación área/masa cercana a \(0{,}04\ \mathrm{m^2/kg}\), queda alrededor de \(10^{-7}\ \mathrm{m/s^2}\). Estas contribuciones son pequeñas frente al término central y no gobiernan la selección preliminar de altura \cite{vallado2013fundamentals}.
 
 Sí se incluyen dos efectos porque condicionan directamente la misión: \(J_2\), que fija la inclinación heliosíncrona y el LTAN, y la resistencia aerodinámica, que determina el decaimiento orbital y la masa de combustible.

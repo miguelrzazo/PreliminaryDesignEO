@@ -1,0 +1,75 @@
+% The original vector drawing is preserved as the background PDF. This TikZ
+% overlay updates only labels that changed with the selected 690 km design.
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usetikzlibrary{calc}
+
+\newcommand{\whitepatch}[4]{%
+  \fill[white] (#1,#2) rectangle ++(#3,#4);%
+}
+
+\begin{document}
+\begin{tikzpicture}[x=1pt,y=1pt]
+  % Recovered original arrangement: preserve optics, focal planes, spectral
+  % channels, arrows, footprints, and interpretation block exactly as drawn.
+  \node[anchor=south west,inner sep=0] at (0,0) {\includegraphics[
+    width=546.352pt,height=359.482pt]{final_telescope_disposition_base.pdf}};
+
+  % All coordinates below use the recovered PDF's point-sized page, with the
+  % origin at its lower-left corner.
+  % Old wavelength image dimensions (not present in the current design model).
+  \whitepatch{350}{218}{105}{33}
+  \node[anchor=west,font=\fontsize{7}{8}\selectfont] at (352,245)
+    {Banda 0,76 $\mu$m};
+  \node[anchor=west,font=\fontsize{7}{8}\selectfont] at (352,235)
+    {Banda 1,61 $\mu$m};
+  \node[anchor=west,font=\fontsize{7}{8}\selectfont] at (352,225)
+    {Banda 2,01 $\mu$m};
+
+  % Per-telescope acquired swath and selected aperture.
+  \whitepatch{20}{215}{9}{50}
+  \node[rotate=90,font=\fontsize{6}{7}\selectfont,fill=white,inner sep=0.4pt]
+    at (25,240) {Swath = 120 km};
+  \whitepatch{20}{112}{9}{50}
+  \node[rotate=90,font=\fontsize{6}{7}\selectfont,fill=white,inner sep=0.4pt]
+    at (25,137) {Swath = 120 km};
+
+  \whitepatch{54}{240}{31}{11}
+  \node[anchor=west,font=\fontsize{6.5}{7.5}\selectfont,fill=white,inner sep=0.3pt]
+    at (56,245) {$D=38$ mm};
+  \whitepatch{53}{121}{32}{11}
+  \node[anchor=west,font=\fontsize{6.5}{7.5}\selectfont,fill=white,inner sep=0.3pt]
+    at (55,126) {$D=38$ mm};
+  \whitepatch{208}{208}{40}{12}
+  \node[anchor=west,font=\fontsize{7}{8}\selectfont,fill=white,inner sep=0.4pt]
+    at (210,214) {$f=15.53$ cm};
+  \whitepatch{208}{103}{40}{12}
+  \node[anchor=west,font=\fontsize{7}{8}\selectfont,fill=white,inner sep=0.4pt]
+    at (210,109) {$f=15.53$ cm};
+
+  % Replace the original three-column specification block while keeping its
+  % position, typographic scale, and overall organization.
+  \whitepatch{10}{8}{461}{52}
+  \node[anchor=north west,align=left,font=\fontsize{7.2}{8.6}\selectfont]
+    at (13,58) {\textbf{Óptica:}\\
+      $\bullet$ Distancia focal: 15,53 cm\\
+      $\bullet$ Diámetro pupila: 38 mm\\
+      $\bullet$ Relación focal: F/4,09\\
+      $\bullet$ Tipo: Refractivo};
+  \node[anchor=north west,align=left,font=\fontsize{7.2}{8.6}\selectfont]
+    at (169,58) {\textbf{Configuración FoV:}\\
+      $\bullet$ Ángulos respecto horizontal: $\pm 5^\circ$\\
+      $\bullet$ FoV individual: $10^\circ$\\
+      $\bullet$ FoV total: $20^\circ$\\
+      $\bullet$ Swath final: 240 km @ $h=690$ km};
+  \node[anchor=north west,align=left,font=\fontsize{7.2}{8.6}\selectfont]
+    at (339,58) {\textbf{Diseño:}\\
+      $\bullet$ Método escaneo: Pushbroom\\
+      $\bullet$ Masa estimada instrumento: 0,835 kg\\
+      $\bullet$ Volumen escalado: 0,00218 m$^3$};
+\end{tikzpicture}
+\end{document}

@@ -29,7 +29,7 @@ N_{\text{líneas},i}=\frac{L_i}{\mathrm{GSD}},
 N_{\text{píxeles/línea}}=\frac{W}{\mathrm{GSD}},
 \label{eq:data_pixels}
 \end{equation}
-con \(W=190\) km, siendo el swath resultante. El volumen de datos brutos de cada satélite es
+expresando las longitudes en las mismas unidades, con \(W=240\) km. Se utilizan 1500 píxeles por telescopio, 3000 por línea combinada, y tres bandas espectrales. El volumen de datos brutos de cada satélite es
 \begin{equation}
 D_i=N_{\text{líneas},i}
 N_{\text{píxeles/línea}}
@@ -48,10 +48,10 @@ La simulación obtiene los siguientes volúmenes semanales:
 \toprule
 Satélite & Datos brutos [GB] \\
 \midrule
-1 & 14,911 \\
-2 & 15,318 \\
+1 & 16,133 \\
+2 & 15,391 \\
 \midrule
-\textbf{Total} & \textbf{30,230} \\
+\textbf{Total} & \textbf{31,524} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -80,13 +80,7 @@ Se consideran cuatro alternativas para la estación de Tierra:
 
 El programa propaga los dos satélites durante una semana con el escenario creado en \textit{Aerospace Toolbox} para calcular el tiempo de contacto. La estación se modela en Fairbanks, con coordenadas \(64,84^\circ\mathrm{N}\) y \(-147,712^\circ\), y una elevación mínima de \(10^\circ\). El cálculo obtiene los intervalos de acceso de cada satélite por separado.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{7.Segmento_Tierra/analisis_contacto.jpg}
-    \caption{Escenario de simulación creado con \textit{Aerospace Toolbox}. \\Fuente: Elaboración Propia}
-\end{figure}
-
-El tiempo de contacto semanal es de \(21\,840\) s para el satélite 1 y de \(21\,900\) s para el satélite 2.
+El tiempo de contacto semanal es de \(25\,690\) s para el satélite 1 y de \(25\,640\) s para el satélite 2.
 
 \section{Tasa mínima de descarga}
 \label{sec:downlink}
@@ -96,7 +90,7 @@ Para cada satélite, el programa calcula la tasa mínima mediante
 R_{\min,i}=\frac{D_i}{T_{\mathrm{contacto},i}}.
 \label{eq:minimum_downlink_rate}
 \end{equation}
-El requisito del enlace es el mayor de los dos valores:
+En esta expresión se utiliza \(D_i\) en bits y \(T_{\mathrm{contacto},i}\) en segundos. El requisito del enlace es el mayor de los dos valores:
 \begin{equation}
 R_{\min}=\max\left(R_{\min,1},R_{\min,2}\right).
 \label{eq:mission_minimum_downlink_rate}
@@ -110,15 +104,15 @@ R_{\min}=\max\left(R_{\min,1},R_{\min,2}\right).
 \toprule
 Satélite & Datos [GB] & Contacto [s] & \(R_{\min}\) [Mbps] \\
 \midrule
-1 & 14,911 & 21\,840 & 5,462 \\
-2 & 15,318 & 21\,900 & 5,596 \\
+1 & 16,133 & 25\,690 & 5,024 \\
+2 & 15,391 & 25\,640 & 4,802 \\
 \midrule
-\textbf{Requisito del enlace} & & & \textbf{5,596} \\
+\textbf{Requisito del enlace} & & & \textbf{5,024} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Por tanto, el enlace debe proporcionar al menos \(5,596\) Mbps durante los contactos útiles del satélite más restrictivo. Esta tasa constituye el requisito mínimo de diseño y se calcula antes de seleccionar la banda de comunicaciones.
+Por tanto, el enlace debe proporcionar al menos \(5,024\) Mbps durante los contactos útiles del satélite más restrictivo. Esta tasa constituye el requisito mínimo de diseño y se calcula antes de seleccionar la banda de comunicaciones.
 
 \section{Selección de la banda de enlace}
 
@@ -141,21 +135,21 @@ Ka  & \(27\)--\(40\) GHz & \(100\)--\(3500\) Mbps \\
 \end{table}
 
 
-Se selecciona la banda S porque es la opción de menor frecuencia que cumple \(5,596\) Mbps. Esta decisión reduce la potencia eléctrica, la masa y el coste del sistema frente a una solución en banda X o Ka. La banda S también permite integrar los datos científicos con la telemetría y el telecomando mediante multiplexación temporal. La tasa de TM/TC es mucho menor que la tasa científica y no modifica el requisito calculado. Fairbanks dispone de antenas en banda S para este tipo de servicio \cite{ASF2025_NSN,noaa_fairbanks_2023}.
+Se selecciona la banda S porque es la opción de menor frecuencia que cumple el requisito de \(5,596\) Mbps. Esta decisión reduce la potencia eléctrica, la masa y el coste del sistema frente a una solución en banda X o Ka. La banda S también permite integrar los datos científicos con la telemetría y el telecomando mediante multiplexación temporal. La tasa de TM/TC es mucho menor que la tasa científica y no modifica el requisito calculado. Fairbanks dispone de antenas en banda S para este tipo de servicio \cite{ASF2025_NSN,noaa_fairbanks_2023}.
 
 \subsection{Velocidad adoptada del enlace}
 
-Se adopta una tasa nominal de \(10\) Mbps dentro del intervalo típico de la banda S. Esta tasa se fija después de calcular la tasa mínima:
+Se adopta una tasa nominal de \(10\) Mbps como hipótesis de dimensionado preliminar. Esta tasa se fija después de calcular la tasa mínima:
 \begin{equation}
 M_R=\frac{R_{\mathrm{adoptada}}}{R_{\min}}
-    =\frac{10}{5,596}\approx 1,79.
+    =\frac{10}{5,024}\approx 1,99.
 \label{eq:downlink_margin}
 \end{equation}
-La tasa adoptada supera en un 79\% la mínima exigida y permite transmitir los datos científicos, la telemetría y el telecomando durante los contactos disponibles.
+La tasa adoptada supera en un 99\% la mínima exigida y permite transmitir los datos científicos, la telemetría y el telecomando durante los contactos disponibles.
 
 \subsubsection{Gestión de la memoria de a bordo}
 
-Por último, se modela el estado de la memoria de cada satélite a lo largo del tiempo, considerando tanto la generación continua de datos como la descarga durante los accesos, verificando que la memoria no se sature. En caso de que algún satélite agote su capacidad de almacenamiento, se considera que la configuración no es viable. Mediante el escenario de \textit{Aerospace Toolbox} creado previamente, y utilizando la velocidad media de descarga calculada en el apartado \ref{sec:downlink}:
+Por último, se modela el estado de la memoria de cada satélite a lo largo del tiempo, considerando tanto la generación continua de datos como la descarga durante los accesos, verificando que la memoria no se sature. En caso de que algún satélite agote su capacidad de almacenamiento, se considera que la configuración no es viable. Mediante el escenario de \textit{Aerospace Toolbox} creado previamente, y utilizando la tasa adoptada de 10 Mbps durante los accesos:
 
 
 \begin{figure}[H]

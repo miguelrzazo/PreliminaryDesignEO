@@ -1,6 +1,6 @@
 """Validation tests for optics.py against MATLAB reference CSVs.
 
-Reference CSVs are in Compiled data/SNR/ and Compiled data/MTF/.
+Reference CSVs are in Compiled data/Pipeline/SNR/ and Compiled data/Pipeline/MTF/.
 Run from the repo root: pytest python/tests/
 """
 import numpy as np
@@ -12,11 +12,11 @@ from eo_mission.optics import compute_snr, compute_mtf
 
 # Path to reference data (relative to repo root)
 REPO_ROOT = Path(__file__).parents[2]
-SNR_REF   = REPO_ROOT / "Compiled data" / "SNR"
-MTF_REF   = REPO_ROOT / "Compiled data" / "MTF"
+SNR_REF   = REPO_ROOT / "Compiled data" / "Pipeline" / "SNR"
+MTF_REF   = REPO_ROOT / "Compiled data" / "Pipeline" / "MTF"
 
-# ── wrapper 1.0 scenario parameters (match the compiled reference CSVs) ───────
-# Reference CSVs in Compiled data/ were produced with wrapper 1.0 settings:
+# ── current MATLAB scenario parameters (match the compiled reference CSVs) ───────
+# Reference CSVs in Compiled data/Pipeline/ use master.m settings:
 #   GSD=80, altitudes 200-1000 km step 10, diameters 20-200 mm step 1
 ALTITUDES  = np.arange(200, 1001, 10, dtype=float)    # 200–1000 km, step 10
 DIAMETERS  = np.arange(20,  201,  1,  dtype=float)    # 20–200 mm,  step 1
@@ -24,7 +24,7 @@ GSD        = 80.0
 
 # CO2-band detectors (lambda 1 & 2): [CAPYORK, H2RG, SATURN VISIR]
 ETA_12        = [0.85, 0.70, 0.60]
-MTF_DET_12    = [0.45, 0.45, 0.50]
+MTF_DET_12    = [0.45, 0.50, 0.48]
 N_PIX_12      = [1200, 2048, 1000]
 PIXEL_SIZE_12 = np.array([15, 18, 30]) * 1e-6
 
@@ -45,10 +45,9 @@ def _load_ref_csv(path: Path) -> pd.DataFrame:
 
 @pytest.mark.parametrize("det_idx,tel_idx", [(1, 1), (1, 2), (2, 1), (3, 4)])
 def test_snr_lambda1_matches_reference(det_idx, tel_idx):
-    """SNR values for Lambda1 must agree with MATLAB reference to within 0.5%."""
+    """SNR values for Lambda1 must agree with MATLAB reference within numerical precision."""
     ref_file = SNR_REF / f"SNR_Lambda1_Detector{det_idx}_Telescopio{tel_idx}_resultados.csv"
-    if not ref_file.exists():
-        pytest.skip(f"Reference file not found: {ref_file}")
+    assert ref_file.exists(), f"MATLAB reference file not found: {ref_file}"
 
     ref = _load_ref_csv(ref_file)
 
@@ -66,25 +65,22 @@ def test_snr_lambda1_matches_reference(det_idx, tel_idx):
 
     # Align on common valid (non-NaN) cells
     both_valid = ~np.isnan(py.values) & ~np.isnan(ref.values)
-    if not both_valid.any():
-        pytest.skip("No valid cells in either reference or Python output")
+    assert both_valid.any(), "No valid cells in either reference or Python output"
+    np.testing.assert_array_equal(np.isnan(py.values), np.isnan(ref.values))
 
     py_v  = py.values[both_valid]
     ref_v = ref.values[both_valid]
     rel_err = np.abs((py_v - ref_v) / ref_v)
-    # The 0.9 calibration margin (matching SNRfunction.m) shifts SNR values
-    # ~10% below the older reference CSVs; allow generous drift here.
-    assert rel_err.max() < 0.25, (
+    assert rel_err.max() < 1e-9, (
         f"SNR Lambda1 Det{det_idx} Tel{tel_idx}: max relative error {rel_err.max():.4%}"
     )
 
 
 @pytest.mark.parametrize("det_idx,tel_idx", [(1, 1), (1, 3), (2, 2)])
 def test_mtf_lambda1_matches_reference(det_idx, tel_idx):
-    """MTF values for Lambda1 must agree with MATLAB reference to within 0.5%."""
+    """MTF values for Lambda1 must agree with MATLAB reference within numerical precision."""
     ref_file = MTF_REF / f"MTF_Lambda1_Detector{det_idx}_Telescopio{tel_idx}_resultados.csv"
-    if not ref_file.exists():
-        pytest.skip(f"Reference file not found: {ref_file}")
+    assert ref_file.exists(), f"MATLAB reference file not found: {ref_file}"
 
     ref = _load_ref_csv(ref_file)
 
@@ -101,14 +97,13 @@ def test_mtf_lambda1_matches_reference(det_idx, tel_idx):
     )
 
     both_valid = ~np.isnan(py.values) & ~np.isnan(ref.values)
-    if not both_valid.any():
-        pytest.skip("No valid cells in either reference or Python output")
+    assert both_valid.any(), "No valid cells in either reference or Python output"
+    np.testing.assert_array_equal(np.isnan(py.values), np.isnan(ref.values))
 
     py_v  = py.values[both_valid]
     ref_v = ref.values[both_valid]
     rel_err = np.abs((py_v - ref_v) / ref_v)
-    # Same note as SNR: reference may differ from current formula version.
-    assert rel_err.max() < 0.15, (
+    assert rel_err.max() < 1e-9, (
         f"MTF Lambda1 Det{det_idx} Tel{tel_idx}: max relative error {rel_err.max():.4%}"
     )
 

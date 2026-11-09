@@ -6,20 +6,15 @@ external MATLAB RevisitTime toolkit) with a genuine Orekit-based computation:
     1. The sun-synchronous inclination is solved from the J2 sun-sync
        condition (the same equation used by ``CoverageRevisitCalc.m``); altitudes
        where SSO is impossible return NaN.
-    2. A numerical propagator with a J2-only force model is propagated over a
-       configurable horizon (default 30 days). The sub-satellite ground track
-       is sampled at a fixed step and cached per (altitude, n-satellites), since
-       the track does not depend on the swath.
-    3. A coarse latitude/longitude grid spanning the continental US is used as
-       the set of ground targets. For every (target, swath) cell the off-nadir
-       visibility radius is computed from the spherical geometry of the sensor
-       cone (half-angle ``arctan(eff_swath / 2h)``) and applied to the cached
-       ground track; the result is the set of days on which each target is
-       observable.
-    4. Cloud effects are modelled with a persistent two-state Markov chain (see
-       ``clouds.py``). Monte-Carlo sampling folds daily cloud state onto the
-       opportunity log; the reported revisit is the worst-target max-clear-gap
-       at the 95th percentile across runs (the mean is also tracked).
+    2. A two-body Keplerian orbit is propagated with Orekit and sampled in
+       the Earth-fixed Veis-1950 frame. The initial inclination satisfies the
+       J2 SSO condition, but this propagator does not evolve the node under J2
+       and therefore does not maintain a Sun-synchronous orbit.
+    3. The maximum reached latitude provides a reachability gate for a CONUS
+       latitude-band tiling estimate. This is not point-access revisit analysis.
+    4. Cloud effects use a persistent two-state Markov chain (``clouds.py``).
+       Monte-Carlo sampling estimates the 95th percentile of the time needed
+       to accumulate the assumed number of clear tiling passes.
 
 The analytical single-target formula used by the previous port — which invented
 a ``1/0.5`` daylight penalty and a ``×0.35`` USA-grid fudge factor absent from
@@ -40,6 +35,7 @@ import pandas as pd
 from .config import PipelineConfig
 from .clouds import revisit_tiling_95p
 from .tensor import LabeledTensor, as_array
+from .orekit_runtime import initialize_runtime
 
 # ── physical constants (match MATLAB CoverageRevisitCalc.m) ───────────────────
 _R_EARTH_M = 6_378_137.0               # WGS84 equatorial radius [m]
@@ -53,14 +49,14 @@ def sso_inclination_deg(altitude_km: float) -> float:
 
     Reproduces the J2 sun-sync condition of ``CoverageRevisitCalc.m``::
 
-        cos_i = -SSO_nodal_rate * (a/R_E)^(7/2) / (1.5 * n * J2)
+        cos_i = -SSO_nodal_rate / (1.5 * n * J2 * (R_E/a)^2)
 
     where ``a = R_E + h`` and ``n = sqrt(mu / a^3)``. When ``|cos_i| > 1`` an
     SSO orbit cannot be maintained at that altitude and NaN is returned.
     """
     a = _R_EARTH_M + float(altitude_km) * 1000.0
     n = math.sqrt(_MU_EARTH / a**3)
-    cos_i = -_SSO_NODAL_RATE * (a / _R_EARTH_M) ** 3.5 / (1.5 * n * _J2)
+    cos_i = -_SSO_NODAL_RATE / (1.5 * n * _J2 * (_R_EARTH_M / a) ** 2)
     if abs(cos_i) > 1.0:
         return float("nan")
     return math.degrees(math.acos(cos_i))
@@ -105,8 +101,8 @@ class OrekitCoverageAdapter:
     """Orekit-backed coverage adapter.
 
     The adapter lazily starts a JVM, registers an orekit-data directory, and
-    propagates SSO satellites with a J2 force model to log the sub-satellite
-    ground track. The track (sampled lat/lon per step) is memoised to a JSON
+    propagates two-body orbits initialized at the J2 SSO inclination to log
+    the sub-satellite ground track. J2 nodal precession is not propagated. The track (sampled lat/lon per step) is memoised to a JSON
     cache so that portfolio sweeps reuse it across swath / telescope cells.
     """
 
@@ -125,14 +121,7 @@ class OrekitCoverageAdapter:
     # ── JVM / orekit-data bootstrap ──────────────────────────────────────────
     def initialize_orekit(self, require: bool = False) -> bool:
         try:
-            import orekit
-
-            orekit.initVM()
-            path = self.orekit_data_path
-            if path is not None and Path(path).exists():
-                from orekit.pyhelpers import setup_orekit_curdir
-
-                setup_orekit_curdir(path)
+            initialize_runtime(self.orekit_data_path)
             self.jvm_initialized = True
             return True
         except Exception:
@@ -169,13 +158,10 @@ class OrekitCoverageAdapter:
     ) -> np.ndarray:
         """Return sub-satellite (lat, lon) samples (deg) of shape (N, 2).
 
-        The orbit uses the SSO inclination derived from the J2 sun-sync
-        condition and is propagated with an analytical Keplerian propagator; the
-        sun-synchronous RAAN precession is captured through the Earth-fixed
-        Veis-1950 frame, in which a fixed-RAAN inertial orbit naturally traces a
-        slowly drifting ground track. (A numerical J2 propagator is a possible
-        refinement; the revisit result is insensitive to the residual ∼0.1°/day
-        difference over the 30-day horizon.)
+        The initial inclination satisfies the J2 SSO condition. Propagation is
+        two-body Keplerian: transforming into an Earth-fixed frame accounts for
+        Earth rotation, not J2 nodal precession. This auxiliary ground-track
+        approximation does not preserve Sun-synchronous local solar time.
 
         The satellite mean anomalies are equally spaced (``360°/n_sat``) so the
         constellation flies as a plane train; the merged ground track over all
@@ -229,6 +215,8 @@ class OrekitCoverageAdapter:
         self, altitude_km: float, n_sat: int, propagation_days: int
     ) -> np.ndarray:
         payload = {
+            "orbit_model": "keplerian-j2-sso-inclination-v2",
+            "inclination_deg": sso_inclination_deg(altitude_km),
             "altitude_km": float(altitude_km),
             "n_sat": int(n_sat),
             "propagation_days": int(propagation_days),
@@ -295,8 +283,8 @@ class OrekitCoverageAdapter:
     def _orbital_period_s(self, altitude_km: float) -> float:
         """Keplerian orbital period (s) from an Orekit Keplerian orbit.
 
-        Uses the same WGS84 radius and EIGEN5C μ as the SSO inclination formula,
-        so the period is consistent with the propagated ground track.
+        Uses the WGS84 radius and Orekit EIGEN5C μ of the propagated auxiliary
+        ground track.
         """
         from org.orekit.orbits import KeplerianOrbit, PositionAngleType
         from org.orekit.frames import FramesFactory
